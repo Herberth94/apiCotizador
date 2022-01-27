@@ -1,0 +1,129 @@
+
+.log{
+    width: 10%;
+    justify-content: center;
+    text-align: center;
+    margin-left: 60px;
+}
+
+.header-a h3{
+  
+text-align: center;
+justify-content: center;
+
+}
+.header{
+    position: absolute;
+
+    width: 100%;
+    height: 10%;
+
+    background-color: rgb(255, 255, 255);
+
+   
+}
+
+.contenido-main{
+    position: absolute;
+    display: flex;
+    top: 10%;
+    margin-left: calc(33%);
+    margin-left: calc(50%  - 250px);
+  
+  
+  
+    }
+
+
+
+
+
+/*Tablet*/
+    @media screen and (max-width: 1024px) {
+
+	
+        .log{
+            width: 30%;
+            justify-content: center;
+            text-align: center ;
+            margin-left: 60px;
+        
+        }
+              
+            
+          
+          }
+        
+     
+          @media (min-width: 600px) and (max-width: 1024px) {  
+
+
+            .log{
+                width: 15%;
+                justify-content: center;
+                text-align: center ;
+                margin-left: 60px;
+            
+            }
+          }
+    
+
+
+
+@media screen and (max-width: 960px) {
+
+	
+.log{
+    width: 35%;
+    justify-content: center;
+    text-align: center;
+    margin-left: 60px;
+
+}
+  
+  }
+
+  
+@media screen and (max-width: 480px) {
+
+	
+    .log{
+        width: 40%;
+        justify-content: center;
+        text-align: center;
+        margin-left: 60px;
+    
+    }
+      
+      }
+    
+
+      @media screen and (max-width: 360px) {
+
+	
+        .log{
+            width: 35%;
+            justify-content: center;
+            text-align: center;
+            margin-left: 60px;
+        
+        }
+          
+          }
+        
+          @media screen and (max-width: 280px) {
+
+	
+            .log{
+                width: 50%;
+                justify-content: center;
+                text-align: center;
+                margin-left: 60px;
+            
+            }
+              
+              }
+            
+        
+      
+    

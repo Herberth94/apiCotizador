@@ -1,0 +1,22 @@
+.titulo-proyectos h1{
+    text-align: center;
+    }
+    .lista-proyectos label{
+        background-color: black;
+    }
+    
+    .titulo-proyectos label{
+        background-color: black;
+        }
+    
+    
+    
+        .boton-cotizador{
+    
+            display: flex;
+            justify-content: center;
+            width: 100%;
+             margin: 0 auto;
+             padding: 1%;
+        }
+    

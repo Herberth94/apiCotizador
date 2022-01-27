@@ -1,0 +1,49 @@
+.contenido-usuarios{
+ 
+    position: absolute;
+    top: 10%;
+    margin-left: 60px;
+    width: calc(100%  - 60px); 
+    padding: 2%;
+
+    
+}
+
+.titulo-tabla-usuarios{
+background-color:#38153E;
+color: rgb(255, 255, 255);
+
+
+}
+
+.verde{
+
+    backdrop-filter: blur(10px);
+    background: #8300fd9c;
+}
+
+.blanco{
+  
+
+    backdrop-filter: blur(10px);
+    background: #ffffff96;
+   
+    
+}
+.table-responsive h2{
+    font-size: 50px;
+    color: rgb(0, 0, 0);
+    font-family: Verdana;
+    font-family: 'PT Sans'; 
+  
+}
+
+.btn.btn-danger.boton    , .btn.btn{
+width: 90px;
+height: 35px;
+}
+/*Arreglar el -14px*/
+.fa-trash{
+     justify-content: center;
+   font-size: 5rem;
+}
