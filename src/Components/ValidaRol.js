@@ -1,15 +1,14 @@
 import React from "react";
-
 export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
-
 export let i = "global";
+export let validator  = "";
 
-export let validator  = "administrador";
 
-
-function foo() {
+export  function foo() {
+   
+    console.log("prueba");
       
     if(validator === "administrador"){
         i = "administrador";
@@ -17,13 +16,13 @@ function foo() {
         i = "preventa";
     }else if(validator === "venta"){
         i = "venta";
-    }else{
-        i = "null"
-    }
- 
+    }else {
+        i = "null";
+
+    } 
     console.log(i); // local
-}
-foo();
+    }
+foo()
 
 
 

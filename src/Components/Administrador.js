@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect, Route } from "react-router"
-
 import ValidaRol from './ValidaRol';
 import {i} from './ValidaRol';
 
@@ -8,7 +7,7 @@ import {i} from './ValidaRol';
 //Validacion de Usuario Administrador
 let  auth = true;
 
-if(i=== "administrador"){
+if(i === 'administrador'){
 
   auth = true;
   

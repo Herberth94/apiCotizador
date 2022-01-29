@@ -11,12 +11,9 @@ function Clientes() {
               <h2 >
                 <span>Registrar Cliente</span>
               </h2>
-          
-           
-  
-              <label htmlFor="user" className=" label">
-           Nombre Cliente
-              </label>
+                 <label htmlFor="user" className=" label">
+                    Nombre Cliente
+                 </label>
               <input
                 id="user"
                 type="text"
@@ -30,6 +27,7 @@ function Clientes() {
               <input
                 id="user2"
                 type="text"
+                name =""
                 className="card-input"
                 placeholder="Razón Social"
               />

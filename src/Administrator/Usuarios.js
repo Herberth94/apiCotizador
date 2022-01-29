@@ -2,22 +2,17 @@ import React from "react";
 import "./css/Usuarios.css";
 import Table from 'react-bootstrap/Table'
 
+
 const hola = ()=>{
     console.log("hola");
 
 }
 
 function Usuarios(prop) {
-
-
-
     return (
         <div className="contenido-usuarios">
-            
-            <div className="table-responsive">
-
-
-            <h2>Lista Usuarios</h2>
+               <div className="table-responsive">
+               <h2>Lista Usuarios</h2>
                 <Table responsive>
                     <thead>
                         <tr className="titulo-tabla-usuarios">
