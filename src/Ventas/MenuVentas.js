@@ -1,9 +1,22 @@
 import React from 'react'
 import './css/menuVentas.css';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 
 
 function archivo() {
+  const cierreSesion=()=>{
+
+    cookies.remove('id_usuario',{path:"/"});
+    cookies.remove('rol',{path:"/"});
+    window.location.href="../Login.js";
+
+
+  };
+
+
   return (
     <div className="contenedor">
 
@@ -65,12 +78,16 @@ function archivo() {
 
         <ul className="logout">
           <li>
-            <a href="/login">
+          <a href="#" onClick={cierreSesion}   >
+             
               <i className="fa fa-power-off fa-2x"></i>
               <span className="nav-text">
-                Salir
+               Salir      
+                 <div> </div>  
+          
               </span>
-            </a>
+             </a>
+          
           </li>
         </ul>
       </nav>

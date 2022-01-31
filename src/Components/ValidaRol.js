@@ -1,14 +1,16 @@
 import React from "react";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
 export let i = "global";
-export let validator  = "";
+export const validator  = cookies.get('rol');
 
 
 export  function foo() {
+    //console.log(Cookies.get('id_usuario'));
    
-    console.log("prueba");
       
     if(validator === "administrador"){
         i = "administrador";

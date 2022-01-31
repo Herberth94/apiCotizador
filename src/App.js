@@ -93,7 +93,7 @@ function App() {
 
       {/* Rutas Venta  */}
         <Venta path="/" component={MenuVentas} />
-        <Venta path="/am" component={AMVentas} />
+        <Venta path="/am2" component={AMVentas} />
         <Venta path="/proporcionalidad" component={ProporcionalidadVentas} />
        
 
