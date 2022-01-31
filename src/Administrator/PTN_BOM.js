@@ -64,14 +64,14 @@ const enviarDatos = (event) => {
 
         <div className="opciones-proyecto">
          
-          <Table responsive id="nombreDiv">
+          <Table responsive id="nombreDiv" striped bordered hover >
             <thead>
 
               <tr className="titulo-tabla-usuarios">
                 <th>Clave</th>
                 <th>Descripción</th>
                 <th> Cliente </th>
-                <th> Valor Dolar </th>
+              
               </tr>
 
             </thead>
@@ -100,21 +100,12 @@ const enviarDatos = (event) => {
                   <option value="lista 3">Cliente 3</option>
                 </select>
                 </td>
-                <td>
-                  <input className="agregar"
-                    type="number"
-                    name="valor_dolar"
-                    onChange={handleInputChange}
-                    min="0"
-                    step="any"
-                    placeholder="ingrese Valor Dolar" />
-                </td>
+             
               </tr>
 
               <tr className="boton-agregar-proyecto">
                 <td></td>
-                <td></td>
-                <td></td>
+                <td></td>            
                 <td>   <button className="btn btn-primary"> Añadir </button>    </td>
               </tr>
 
@@ -130,8 +121,8 @@ const enviarDatos = (event) => {
                  placeholder="ingrese Nombre Partida" />
                  <br/>
                  <br/>
-            <button className="btn btn-primary">
-              agregar Partida </button>       
+            <button className="btn btn-primary"> Partida </button>  
+                
               <br/>
               <br/>
           </div>
@@ -144,7 +135,7 @@ const enviarDatos = (event) => {
                 <th>Descripción</th>
                 <th> Duración Meses </th>
                 <th> Entrega </th>
-                <th> Cantidad </th>
+                <th> Moneda </th>
               </tr>
             </thead>
             <tbody>
@@ -181,12 +172,11 @@ const enviarDatos = (event) => {
                     placeholder="Entrega semanas" />
                 </td>
                 
-                <td> <input className="agregar"
-                  type="number"
-                  name="cantidad"
-                  onChange={handleInputChange}
-                  min="0"
-                  placeholder="Cantidad" />
+                <td> 
+                    <select id="moneda" name="moneda" onChange={handleInputChange}>
+                    <option value="lista 1">MXN</option>
+                    <option value="lista 2">USD</option>
+                  </select>
                 </td>
               </tr>
 
@@ -198,10 +188,10 @@ const enviarDatos = (event) => {
           <Table responsive id="nombreDiv">
             <thead>
               <tr className="titulo-tabla-usuarios">
+                <th>Cantidad</th>
                 <th>Precio Lista</th>
-                <th>Precio Unitario</th>
-                <th>Descuento (%) </th>
-                <th> Moneda</th>
+                <th>Precio Unitario </th>
+                <th> Descuneto (%)</th>
                 <th> Total </th>
               </tr>
             </thead>
@@ -209,61 +199,55 @@ const enviarDatos = (event) => {
               <tr className="">
                 <td>  <input className="agregar"
                   type="number"
-                  name="precio_lista"
+                  name="cantidad"
                   onChange={handleInputChange}
-                  placeholder="Precio Lista" 
+                  placeholder="Cantidad" 
                   min="0"
                   step="any"             
                   />
                 </td>
                 <td>   <input className="agregar"
                   type="number"
-                  name="precio_unitario"
+                  name="precio_lista"
                   onChange={handleInputChange}
-                  placeholder="Precio Unitario"
+                  placeholder="Precio Lista"
                   min="0"
                   step="any"
                    />
                 </td>
                 <td> <input className="agregar"
                   type="number"
-                  name="total"
+                  name="precio_unitario"
                   onChange={handleInputChange}
-                  placeholder="Total" 
+                  placeholder="Precio Unitario" 
                   min="0"
                   step="any"
                   
                   />
-                </td>
-
-                <td> <input className="agregar"
-                  type="number"
-                  name="descuento"
-                  onChange={handleInputChange}
-                  placeholder="Descuento" 
-                  min="0"
-                  step="any"
-                  />
-                  
-                
-                </td>
-                <td>
-                  <select id="moneda" name="moneda" onChange={handleInputChange}>
-                    <option value="lista 1">MXN</option>
-                    <option value="lista 2">USD</option>
-                  </select>
                 </td>
 
 
                 <td>   <input className="agregar"
                   type="number"
-                  name="total"
-                  placeholder="Total" 
+                  name="descuento"
+                  placeholder="Descuento %" 
                   min="0"
                   step="any"
                   
                   />
                 </td>
+
+                <td>
+                <input className="agregar"
+                  type="number"
+                  name="total"
+                  onChange={handleInputChange}
+                  placeholder="Total" 
+                  min="0"
+                  step="any"             
+                  />
+                </td>
+
               
               </tr>
 
