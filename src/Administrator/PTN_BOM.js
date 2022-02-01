@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import  {useState} from 'react';
-import './css/PTN_BOM.css'
-
+import './css/PTN_BOM.css';
+import {total} from '../Components/Operaciones'
 import Table from 'react-bootstrap/Table'
 
 
@@ -30,7 +30,11 @@ const [datos,setDatos] = useState ({
   descripcion_proyecto: "",
   cliente: "",
   valor_dolar: "",
-  Partida:""
+  Partida:"",
+  precio_lista:"",
+  precio_unitario:"",
+  descuento:"",
+  cantidad:""
 
 });
 const handleInputChange = (event) => {
@@ -43,8 +47,16 @@ const handleInputChange = (event) => {
 const enviarDatos = (event) => {  
   console.log(datos.clave);
   event.preventDefault();
-  
 }
+
+useEffect(() =>{
+  
+  console.log (datos.precio_unitario)
+  console.log (datos.cantidad)
+  console.log (datos.descuento)
+ total(datos.precio_unitario,datos.cantidad,datos.descuento);
+ 
+});
    
 
 
@@ -219,6 +231,7 @@ const enviarDatos = (event) => {
                 <td>   <input className="agregar"
                   type="number"
                   name="precio_unitario"
+                  //onClick={}
                   onChange={handleInputChange}
                   placeholder="Precio Unitario"
                   min="0"
