@@ -72,6 +72,17 @@ function archivo() {
 
           </li>
 
+
+          <li className="has-subnav">
+            <a href="/administrar-clientes">
+              <i className="bi bi-people-fill fa-2x"></i>
+              <span className="nav-text">
+                Administrar Clientes
+              </span>
+            </a>
+
+          </li>
+
           <li className="has-subnav">
             <a href="/ptn">
               <i className="bi bi-file-earmark-spreadsheet fa-2x"></i>
@@ -91,15 +102,7 @@ function archivo() {
             </a>
           </li>
 
-          <li className="has-subnav">
-            <a href="/propuesta-economica">
-              <i className="bi bi-briefcase fa-2x"></i>
-              <span className="nav-text">
-                Propuesta Ecónomica
-              </span>
-            </a>
-          </li>
-
+      
        
 
 
@@ -122,6 +125,16 @@ function archivo() {
               </span>
             </a>
           </li>
+
+          <li className="has-subnav">
+            <a href="/propuesta-economica">
+              <i className="bi bi-briefcase fa-2x"></i>
+              <span className="nav-text">
+                Propuesta Ecónomica
+              </span>
+            </a>
+          </li>
+
 
 
           <li className="has-subnav">

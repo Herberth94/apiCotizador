@@ -5,16 +5,54 @@ import Table from 'react-bootstrap/Table'
 function Proyectos() {
     return (
         <div className="contenido-usuarios">
-
             <div className="table-responsive">
                 <div className="titulo-proyectos">
-                    <h1>Lista de Proyectos </h1>
+                    <h2>Buscar Proyectos </h2>
                 </div>
-                <br />
-                <br />
 
-                <Table responsive id="nombreDiv">
-                    <thead>                     
+
+                {/*********Búsqueda de Lista de Proyectos por Nombre Proyecto, Clave, Cliente, Fecha ********/}
+                <div className="busqueda-proyectos">
+                    <Table responsive id="nombreDiv">
+                        <thead>
+                            <tr className="titulo-tabla-usuarios">
+                                <th>Búsqueda por Atributo</th>
+                                <th>Clave</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr >
+                                <td>
+                                    <select id="lista-opciones">
+                                        <option value="lista 3">Nombre Proyecto</option>
+                                        <option value="lista 1">Clave</option>
+                                        <option value="lista 2">Cliente</option>
+                                        <option value="lista 3">Fecha</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input className="agregar"
+                                        type="text"
+                                        name="Ingrese Parametro"
+                                        placeholder="busqueda" />
+                                </td>
+                                <td>
+                                    <button className="btn btn-primary"> Buscar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </div>
+                
+ {/****************************Lista de los Proyectos Creados ****************************************/}
+
+                <div className="titulo-proyectos">
+                    <h2>Lista de Proyectos </h2>
+                </div>
+
+                <Table responsive id="nombreDiv"   striped bordered hover size="sm">
+                    <thead>
                         <tr className="titulo-tabla-usuarios">
                             <th># Proyecto</th>
                             <th>Clave</th>
@@ -28,26 +66,14 @@ function Proyectos() {
                     <tbody>
 
 
-            {/*   RECORRER ARREGLO CON MAP
-            
-            {items.map((d) => (
-            <tr key={d.Id}>
-
-              <td> {d.Id} </td>
-              <td>{d.producto} </td>
-              <td>{d.precio} </td>
-              <td>{d.comentario}</td>
-            </tr>
-
-          ))} */}
                         <tr className="blanco">
                             <td>1</td>
                             <td>PT1-001</td>
                             <td>Palo Tinto Networks </td>
                             <td>Prueba 1</td>
-                            <td>Aprobado</td>                        
-                            <td>  
-                              <button className="btn btn-primary"> ver </button>    
+                            <td>Aprobado</td>
+                            <td>
+                                <button className="btn btn-primary"> ver </button>
                             </td>
 
                         </tr>
@@ -60,49 +86,24 @@ function Proyectos() {
                             <td>Palo Tinto Networks </td>
                             <td>Prueba 2</td>
                             <td>Aprobado</td>
-                            <td>                
-                             <button className="btn btn-primary"> ver </button>    
+                            <td>
+                                <button className="btn btn-primary"> ver </button>
                             </td>
 
-                        </tr>
-
-
-                        <tr className="blanco">
-                            <td>3</td>
-                            <td>PT1-003</td>
-                            <td>Palo Tinto Networks </td>
-                            <td>Prueba 3</td>
-                            <td>Rechazado</td>
-                            <td>             
-                              <button className="btn btn-primary"> ver </button>    
-                            </td>
-
-                        </tr>
-
-                      
-                        <tr className="verde">
-                            <td>4</td>
-                            <td>PT1-004</td>
-                            <td>Palo Tinto Networks </td>
-                            <td>Prueba 4</td>
-                            <td>Rechazado</td>
-                            <td>               
-                               <button className="btn btn-primary"> ver </button>   
-                           </td>
                         </tr>
 
                     </tbody>
                 </Table>
 
 
-
+ {/******************Lista de los Datos Completos del Proyecto****************************************/}
                 <div className="titulo-proyectos">
                     <h2>RESUMEN BOM </h2>
 
                 </div>
-             <Table responsive id="nombreDiv">
+                <Table responsive id="nombreDiv"  striped bordered hover size="sm">
                     <thead>
-                        <tr className="titulo-tabla">
+                        <tr className="titulo-tabla-usuarios">
                             <th># Parte</th>
                             <th>Descripción</th>
                             <th>Duración Meses</th>
@@ -272,7 +273,7 @@ function Proyectos() {
                             <td>Kingston</td>
                             <td>-------</td>
                         </tr>
-                        
+
                         <tr className="mesa-ayuda-ptn">
                             <td>12</td>
                             <td>Prueba</td>
@@ -294,16 +295,11 @@ function Proyectos() {
                     </tbody>
                 </Table>
 
-                
-                <div className="boton-cotizador"  >
-                    
-                    <button className="btn btn-success">Imprimir</button> 
 
-                    
-                </div>
+             
 
             </div>
         </div>
-      );
-    }
+    );
+}
 export default Proyectos

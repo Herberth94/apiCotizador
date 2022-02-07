@@ -5,7 +5,7 @@ export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
 export let i = "global";
-export const validator  = cookies.get('rol');
+export const validator  = "administrador";
 
 
 export  function foo() {

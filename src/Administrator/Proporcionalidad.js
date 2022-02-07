@@ -11,69 +11,89 @@ function Proporcionalidad() {
         <div className="contenido-usuarios">
 
 
+            <div className="titulo-proyectos">
+                <h2>Buscar Proyectos </h2>
+            </div>
 
-  <div className="titulo-proyectos">
-                    <h1>RESUMEN </h1>
 
-                    <select id="lista-proyectos">
-                        <option value="lista 1">Nombre Proyecto</option>
-                        <option value="lista 2">Nombre Proyecto 2</option>
-                        <option value="lista 3">Nombre Proyecto 3</option>
-                    </select>
-
-                </div>
-                
-             <Table responsive id="nombreDiv">
+            {/*********Búsqueda de Lista de Proyectos por Nombre Proyecto, Clave, Cliente, Fecha ********/}
+            <div className="busqueda-proyectos">
+                <Table responsive id="nombreDiv">
                     <thead>
-                     <tr className="azul" >
+                        <tr className="titulo-tabla-usuarios">
+                            <th>Búsqueda por Atributo</th>
+                            <th>Clave</th>
                             <th></th>
-                            <th></th>
-                       
-                           
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="">
-                            <td>Capacitación</td>
-                            <td>160003</td>
-                        
-                            
+                        <tr >
+                            <td>
+                                <select id="lista-opciones">
+                                    <option value="lista 3">Nombre Proyecto</option>
+                                    <option value="lista 1">Clave</option>
+                                    <option value="lista 2">Cliente</option>
+                                    <option value="lista 3">Fecha</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input className="agregar"
+                                    type="text"
+                                    name="Ingrese Parametro"
+                                    placeholder="busqueda" />
+                            </td>
+                            <td>
+                                <button className="btn btn-primary"> Buscar</button>
+                            </td>
                         </tr>
-                        <tr className="color">
-                        <td>Accesorios</td>
-                            <td>80807</td>
-                        
-                            
-                        </tr>
-
-
-                        <tr className="">
-                        <td>Servicios PTN</td>
-                            <td>371.36</td>
-                         
-                            
-                        </tr>
-
-                        <tr className="">
-                        <td>Mesa de Ayuda</td>
-                            <td>371.36</td>
-                         
-                            
-                        </tr>
-
                     </tbody>
                 </Table>
+            </div>
+
+
+            <div className="titulo-proyectos">
+                    <h2>Resumen </h2>
+                </div>
+
+            <Table responsive id="nombreDiv">
+                <thead>
+                    <tr className="azul" >
+                        <th>Categoria</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr className="">
+                        <td>Capacitación</td>
+                        <td>160003</td>
+                    </tr>
+                    <tr className="color">
+                        <td>Accesorios</td>
+                        <td>80807</td>
+                    </tr>
+                    <tr className="">
+                        <td>Servicios PTN</td>
+                        <td>371.36</td>
+                    </tr>
+                    <tr className="">
+                        <td>Mesa de Ayuda</td>
+                        <td>371.36</td>
+                    </tr>
+                    <tr className="total">
+                        <td>Total</td>
+                        <td>263572.36</td>
+                    </tr>
+
+                </tbody>
+            </Table>
 
             <div className="table-responsive">
 
-                <div className="titulo-proyectos">
-                    <h1>Lista de Proyectos </h1>
-
+            <div className="titulo-proyectos">
+                    <h2>Proporcionalidad </h2>
                 </div>
-                <br />
-                <br />
 
-
+         
 
                 <Table responsive id="nombreDiv">
                     <thead>
@@ -82,9 +102,7 @@ function Proporcionalidad() {
                             <th>PRECIO VENTA</th>
                             <th>%</th>
                             <th>Proporcionar MESA DE AYUDA</th>
-                            <th>TOTAL</th>
-                            <th>TOTAL MENSUAL</th>
-                            <th>Financiamiento</th>
+                            <th>TOTAL</th>                      
                         </tr>
                     </thead>
                     <tbody>
@@ -94,93 +112,64 @@ function Proporcionalidad() {
                             <td>24% </td>
                             <td>1193</td>
                             <td>2267.93</td>
-                            <td></td>
-                            <td></td>
-                         
-                        </tr>
-
-                        <tr className="">
-                        <td>Routers</td>
-                            <td>1073.98</td>
-                            <td>24% </td>
-                            <td>1193</td>
-                            <td>2267.93</td>
-                            <td></td>
-                            <td></td>
-                         
-                        </tr>
                         
+
+                        </tr>
+
                         <tr className="">
-                        <td>Servidores</td>
+                            <td>Routers</td>
                             <td>1073.98</td>
                             <td>24% </td>
                             <td>1193</td>
                             <td>2267.93</td>
-                            <td></td>
-                            <td></td>
-                         
+                       
+
                         </tr>
 
-    
                         <tr className="">
-                        <td>Consultoría</td>
+                            <td>Servidores</td>
                             <td>1073.98</td>
                             <td>24% </td>
                             <td>1193</td>
                             <td>2267.93</td>
-                            <td></td>
-                            <td></td>
-                         
+                          
+
                         </tr>
 
-    
+
+                        <tr className="">
+                            <td>Consultoría</td>
+                            <td>1073.98</td>
+                            <td>24% </td>
+                            <td>1193</td>
+                            <td>2267.93</td>
+                         
+
+                        </tr>
+
+
                         <tr className="green">
-                        <td>Totales</td>
+                            <td>Totales</td>
                             <td>1073.98</td>
                             <td>24% </td>
                             <td>1193</td>
                             <td>2267.93</td>
-                            <td></td>
-                            <td></td>
-                         
+                           
+
                         </tr>
-
-    
-                        <tr className="">
-                        <td></td>
-                            <td></td>
-                            <td>Comprobación</td>
-                            <td>$</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                         
-                        </tr>
-
-                   
-
-
-
-
-
-
-
-
-
-
                     </tbody>
                 </Table>
 
 
 
-              
 
-                
+
+
                 <div className="boton-cotizador"  >
-                    
-                    <button className="btn btn-success">Imprimir</button> 
 
-                    
+                    <button className="btn btn-success">Imprimir</button>
+
+
                 </div>
 
 
@@ -189,6 +178,6 @@ function Proporcionalidad() {
 
             </div>
         </div>
-      );
-    }
+    );
+}
 export default Proporcionalidad
