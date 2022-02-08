@@ -3,6 +3,14 @@ import "./css/Usuarios.css";
 import Table from 'react-bootstrap/Table'
 
 
+
+const listaUsuarios = [
+    {id: 1, rol: 'Rol', correo: 'Correo' , contrasena: 'Contraseña'},
+    {id: 2, rol: 'Administrador', correo: 'oscar@delfos369.com' , contrasena: '12345'},
+    {id: 3, rol: 'Preventa', correo: 'usuario@delfos369.com' , contrasena: '12345'}
+  ];
+
+
 const hola = ()=>{
     console.log("hola");
 
@@ -17,64 +25,25 @@ function Usuarios(prop) {
             </div>
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
-                        <tr className="titulo-tabla-usuarios">
-                            <th>#</th>
-                            <th>Rol</th>
-                            <th>Correo</th>
-                            <th>Eliminar</th>
-                            <th>Modificar</th>
-                        </tr>
+                   
                     </thead>
-                    <tbody>
+                                       
+         <tbody>
+      {Object.keys(listaUsuarios).map((key) => (
 
+          //checar aqui va los titulos
+        <tr key={listaUsuarios[key].id} >    
+
+        
+        <td>{listaUsuarios[key].rol}</td>
+        <td>{listaUsuarios[key].correo}</td>
+        <td>{listaUsuarios[key].contrasena}</td>
+        </tr>
+     
+       ))
+      }
+    </tbody>
                         
-                        <tr className="verde">
-                            <td>1</td>
-                            <td>Administrador</td>
-                            <td>name@dominio.com</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr className="blanco">
-                            <td>2</td>
-                            <td>Pre-venta</td>
-                            <td>name@domino.com</td>
-                            <td className ="icono">
-                               
-                             
-                               <a
-                                  className="btn btn-danger boton">
-                                    <i className="bi bi-trash"></i>
-                                </a>
-                            </td>
-                            <td className ="icono">
-                               
-                             
-                               <a
-                                  className="btn btn-primary boton">
-                                    <i className="fas fa-edit"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr className="verde">
-                            <td>3</td>
-                            <td>Venta</td>
-                            <td>name@domino.com</td>
-                            <td> <a onClick = {hola}
-                                className="btn btn-danger boton">                         
-                                <i className="bi bi-trash"></i>
-                            </a></td>
-
-                            <td className ="icono">
-                                                         
-                               <a
-                                  className="btn btn-primary boton">
-                                    <i className="fas fa-edit"></i>
-                                </a>
-                            </td>
-                            
-                        </tr>
-                        </tbody>
                 </Table>
             </div>
         </div>
