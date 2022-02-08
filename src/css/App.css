@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&family=Open+Sans:wght@300&display=swap');
 
+
+@font-face {
+  font-family: 'Code Pro';
+  src: local('Code Pro Light Lowercase'), local('Code-Pro-Light-Lowercase'),
+      url('Code-Pro-Light-LC.woff2') format('woff2'),
+      url('Code-Pro-Light-LC.woff') format('woff'),
+      url('Code-Pro-Light-LC.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
 :root {
     --colorTextos: #0d0d0d;
   }
@@ -11,22 +21,20 @@
 
 body{
 
-  background: #362100;
+/*   background: #362100;
   background: url('../images/fondo.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+ */
+  background-color: rgb(255, 255, 255);
 
 }
 
 p,h1,h2, span, label, input{
 
-  
-  font-family: 'Inconsolata', monospace;
-font-family: 'Open Sans', sans-serif;
-
-
+  font-family: Arial, Helvetica, sans-serif;
 
 }
 
@@ -51,5 +59,27 @@ select
   border-radius: 2px;
 }
 
+::placeholder{
+  text-align: center;
+}
+th, td{
+  text-align: center;
 
-/*Contraido*/
+}
+input{
+  width: 100%;
+}
+
+
+.titulo-proyectos h2{
+
+
+
+  font-family: 'Code Pro'; 
+  font-size: 40px;
+  font-weight: 600; 
+  color: rgb(0, 0, 0);
+  font-display: swap;
+
+
+}

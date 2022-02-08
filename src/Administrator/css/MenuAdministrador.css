@@ -1,7 +1,4 @@
 
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 .fa-2x {
 font-size: 2em;
 }
@@ -38,9 +35,13 @@ overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
 z-index:10;
-backdrop-filter: blur(10px);
+/* backdrop-filter: blur(10px);
 background: #38153E;
 background: #137adb69;
+
+ */
+background-color:#6786b8 ;
+
 }
 
 .main-menu>ul {
@@ -65,7 +66,7 @@ font-size: 14px;
 text-decoration:none;
 -webkit-transition:all .1s linear;
 transition:all .1s linear;
-  
+text-align: justify;
 }
 
 .main-menu .nav-icon {
@@ -149,9 +150,4 @@ color: rgb(9, 255, 0);
 }
 
 
-@font-face {
-  font-family: 'Titillium Web';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
-}
+

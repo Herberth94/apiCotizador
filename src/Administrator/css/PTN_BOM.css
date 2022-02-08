@@ -47,8 +47,8 @@
       color: #fff;
       font-size: 20px;
       font-weight: bold;
-      text-align: center;
-      background-color: #2d972d;
+      text-align: center; 
+       background: #6786b8;
     
     }
     
@@ -59,7 +59,7 @@
       font-weight: bold;
       text-align: center;
     
-        background: #008628c7;
+      background: #6786b8;
     
     }
     select#lista-proyectos{
@@ -68,8 +68,7 @@
       font-weight: bold;
       text-align: center;
     
-        background: #008628c7;
-    
+      background: #6786b8;
     }
     
     .titulo-BOM{
@@ -92,10 +91,16 @@
     .contenido-usuarios{
     
     
-      background: url('https://image.freepik.com/foto-gratis/textura-papel-blanco_1194-5416.jpg') no-repeat center center fixed; 
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-      
+
+      background-color: #fff;
+    }
+
+    .btn.btn-success{
+      width: 100%;
+
+    }
+
+    .btn.btn-primary{
+      width: 100%;
+      background-color: rgb(196, 108, 36);
     }

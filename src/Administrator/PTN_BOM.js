@@ -56,11 +56,12 @@ const enviarDatos = (event) => {
 
 useEffect(() =>{
   console.log("total:  ");
-  const hola =total(datos.precio_lista,datos.cantidad,datos.descuento);
-  console.log(hola);
+  const total_1 =total(datos.precio_lista,datos.cantidad,datos.descuento);
+  console.log(total_1);
   console.log("Precio unitario :");
-  console.log(precio_u(hola,datos.cantidad));
-  },[datos.cantidad, datos.descuento, datos.precio_lista, precio_u, total]);
+  console.log(precio_u(total_1,datos.cantidad));
+  console.log()
+  },[datos.cantidad, datos.descuento, datos.precio_lista]);
    
 
 

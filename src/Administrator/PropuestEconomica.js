@@ -9,11 +9,9 @@ function PropuestaEconomica() {
 
             <div className="table-responsive">
 
-                <div className="titulo-proyectos">
-                    <h1>Propuestas Ecónomicas </h1>
-
-                </div>
-
+            <div className="titulo-proyectos">
+                <h2>Propuesta Ecónomica </h2>
+            </div>
 
                 <select id="lista-cotizaciones">
                         <option value="lista 1">Proyecto 1</option>
