@@ -2,8 +2,7 @@ import React ,{useState} from "react";
 import "./css/Usuarios.css";
 import Table from 'react-bootstrap/Table'
 import axios from 'axios';
-
-
+import {useRegistro} from '../Components/ModificarUsuarios';
 /*const listaUsuarios = [
     {id: 1, rol: 'Rol', correo: 'Correo' , contrasena: 'Contraseña'},
     {id: 2, rol: 'Administrador', correo: 'oscar@delfos369.com' , contrasena: '12345'},
@@ -12,7 +11,19 @@ import axios from 'axios';
 
 function Usuarios(prop) {
 
+    const {  
+          handleInputChange,
+          enviarDatos
+        } = useRegistro();
+
     const [listaUsuarios,setlistaUsarios ] = useState([]);
+    const [activado,setactivado] = useState(true);
+    const enable = (valor) => {
+        if(valor){ return true}
+        else {return false};
+
+    }
+    
     const borrarUsuario = async(dato)=>{
         const confirmacion =window.confirm("¿Seguro que quieres borrar este registro?");
         if(confirmacion){
@@ -28,7 +39,6 @@ function Usuarios(prop) {
     const llamadoUsuario = async() => {
         const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
         setlistaUsarios (respuesta.data.reSql);
-        <Modal/>
     }
     
     
@@ -44,7 +54,7 @@ function Usuarios(prop) {
 
 
             <div>
-                <button className= "btn btn-primary actualizar" onClick={llamadoUsuario}>Actualizar </button>
+                <button className= "btn btn-primary actualizar" onClick={llamadoUsuario}>Actualizar Datos</button>
            <br/>
            <br/>
            </div>
@@ -56,32 +66,22 @@ function Usuarios(prop) {
                                 <th>Administrador</th>
                                 <th>Correo</th>
                                 <th>Contraseña</th>
-                                <th></th>
+                                <th>Eliminar</th>
+                                <th>Modificar</th>
                             </tr>
                     </thead>
                                        
          <tbody>
-      {Object.keys(listaUsuarios).map((key) => (
-     
+      {Object.keys(listaUsuarios).map((key) => (    
           //checar aqui va los titulos
-    
-        <tr key={listaUsuarios[key].id_usuario} >           
-            <td>{listaUsuarios[key].id_usuario}</td>
-            <td>
-            <input className="agregar"
-                    type="text"
-                    name="clave"
-                    placeholder="ingrese Clave" 
-                    value={listaUsuarios[key].rol}                
-                /> 
-                </td>
-            <td>{listaUsuarios[key].email}</td>
-            <td>{listaUsuarios[key].password}</td>
-            <td><button className="btn btn-primary eliminar" onClick={() =>borrarUsuario(listaUsuarios[key].id_usuario)}>Eliminar </button></td>     
-      
-      
-        </tr>
-       
+        <tr key={listaUsuarios[key].id_usuario} >
+            <td>{listaUsuarios[key].id_usuario}</td>        
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={activado} name="rol"      id={listaUsuarios[key].id_usuario}></input></td>
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={activado} name="email"></input> </td>                     
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].password} onChange={handleInputChange} disabled={activado} name="password"></input> </td> 
+            <td><button className="btn btn-primary eliminar" onClick={() =>borrarUsuario(listaUsuarios[key].id_usuario)}> borrar</button></td>
+            <td><button className="btn btn-primary modificar" onClick={()=>setactivado(!activado)  }>Actualizar</button></td> 
+        </tr>  
        ))
       }
      
@@ -95,7 +95,6 @@ function Usuarios(prop) {
          
         </div>
         
-    );
+    );  
 }
-
 export default Usuarios;
