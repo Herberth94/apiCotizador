@@ -2,6 +2,9 @@ import React ,{useState} from "react";
 import "./css/Usuarios.css";
 import Table from 'react-bootstrap/Table'
 import axios from 'axios';
+import {useRegistro} from '../Components/ModificarUsuarios';
+
+
 
 /*const listaUsuarios = [
     {id: 1, rol: 'Rol', correo: 'Correo' , contrasena: 'Contraseña'},
@@ -11,7 +14,19 @@ import axios from 'axios';
 
 function Usuarios(prop) {
 
+    const {  
+          handleInputChange,
+          enviarDatos
+        } = useRegistro();
+
     const [listaUsuarios,setlistaUsarios ] = useState([]);
+    const [activado,setactivado] = useState(true);
+    const enable = (valor) => {
+        if(valor){ return true}
+        else {return false};
+
+    }
+    
     const borrarUsuario = async(dato)=>{
         const confirmacion =window.confirm("¿Seguro que quieres borrar este registro?");
         if(confirmacion){
@@ -49,11 +64,12 @@ function Usuarios(prop) {
      
           //checar aqui va los titulos
         <tr key={listaUsuarios[key].id_usuario} >
-            <td>{listaUsuarios[key].id_usuario}</td>
-            <td>{listaUsuarios[key].rol}</td>
+            <td>{listaUsuarios[key].id_usuario}</td>        
+            <td><input defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={activado} name="rol"></input></td>
             <td>{listaUsuarios[key].email}</td>
             <td>{listaUsuarios[key].password}</td>
             <td><button  onClick={() =>borrarUsuario(listaUsuarios[key].id_usuario)}> borrar</button></td>
+            <td><button  onClick={()=>setactivado(!activado)}>Actualizar</button></td>
        
         </tr>
        
@@ -71,6 +87,7 @@ function Usuarios(prop) {
         </div>
         
     );
+    
 }
 
 export default Usuarios;

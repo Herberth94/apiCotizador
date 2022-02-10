@@ -10,8 +10,6 @@ export const validator  = "administrador";
 
 export  function foo() {
     //console.log(Cookies.get('id_usuario'));
-   
-      
     if(validator === "administrador"){
         i = "administrador";
     }else if(validator === "preventa"){

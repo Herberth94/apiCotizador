@@ -25,11 +25,7 @@ total                        DOUBLE
 descuento                    DOUBLE
 moneda {value  = 2 opciones} VARCHAR
  */
-const { total, precio_u}= operaciones();
-const {punitario , setpunitario} = useState({
-  total: "2"
-  
-});
+const { total, precio_u,descuento_1,  total_1   }= operaciones();
 const [datos,setDatos] = useState ({
   clave:"",
   descripcion_proyecto: "",
@@ -55,14 +51,25 @@ const enviarDatos = (event) => {
 }
 
 useEffect(() =>{
-  console.log("total:  ");
-  const total_1 =total(datos.precio_lista,datos.cantidad,datos.descuento);
-  console.log(total_1);
-  console.log("Precio unitario :");
-  console.log(precio_u(total_1,datos.cantidad));
-  console.log()
-  },[datos.cantidad, datos.descuento, datos.precio_lista]);
-   
+  if(datos.precio_lista.length > 0 && datos.cantidad.length > 0 && datos.descuento.length>0 && datos.precio_unitario ==="")
+  {
+    console.log("total:  ");
+    const Total =total(datos.precio_lista,datos.cantidad,datos.descuento);
+    console.log(Total);
+    console.log("Precio unitario :");
+    console.log(precio_u(Total,datos.cantidad));
+  }
+  if(datos.precio_lista.length > 0 && datos.cantidad.length > 0 && datos.precio_unitario.length>0 && datos.descuento ===""){
+    console.log("Descuento: ");
+    const desc_1 = descuento_1(datos.precio_unitario,datos.precio_lista)
+    console.log(desc_1.toFixed(2));
+    console.log("total_1: ");
+    console.log((total_1(datos.cantidad,datos.precio_unitario)));
+  }
+  
+  },[datos.cantidad, datos.descuento, datos.precio_lista, datos.precio_unitario, descuento_1, precio_u, total, total_1]);
+
+
 
 
   return (
