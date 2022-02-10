@@ -78,6 +78,8 @@ function Usuarios(prop) {
             <td>{listaUsuarios[key].email}</td>
             <td>{listaUsuarios[key].password}</td>
             <td><button className="btn btn-primary eliminar" onClick={() =>borrarUsuario(listaUsuarios[key].id_usuario)}>Eliminar </button></td>     
+      
+      
         </tr>
        
        ))
