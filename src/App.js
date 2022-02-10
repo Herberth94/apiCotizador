@@ -11,7 +11,7 @@ import Header from './Header';
 import PublicRoutes from "./Components/PublicRoutes";
 
 
-
+import Modal from "./Components/Modal";
 import Administrador from "./Components/Administrador";
 import MenuAdministrador from "./Administrator/MenuAdministrador";
 import Registro from './Administrator/Registro';
@@ -64,10 +64,9 @@ function App() {
          <Administrador exact path="/ptn" component={PTN_BOM} />
          <Administrador exact path="/proyectos" component={Proyectos} />
          <Administrador exact path="/propuesta-economica" component={PropuestaEconomica} />
-         <Administrador exact path="/am" component={AM} />
+          <Administrador exact path="/am" component={AM} /> 
+ 
          <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
-
-
 
          
         {/* Rutas Preventa  */}

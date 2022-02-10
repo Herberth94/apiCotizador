@@ -3,6 +3,7 @@ import "./css/Usuarios.css";
 import Table from 'react-bootstrap/Table'
 import axios from 'axios';
 
+
 /*const listaUsuarios = [
     {id: 1, rol: 'Rol', correo: 'Correo' , contrasena: 'Contraseña'},
     {id: 2, rol: 'Administrador', correo: 'oscar@delfos369.com' , contrasena: '12345'},
@@ -27,6 +28,7 @@ function Usuarios(prop) {
     const llamadoUsuario = async() => {
         const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
         setlistaUsarios (respuesta.data.reSql);
+        <Modal/>
     }
     
     
@@ -39,22 +41,43 @@ function Usuarios(prop) {
                 <h2>Lista de Usuarios </h2>
                 
             </div>
+
+
+            <div>
+                <button className= "btn btn-primary actualizar" onClick={llamadoUsuario}>Actualizar </button>
+           <br/>
+           <br/>
+           </div>
+          
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
-                   
+                    <tr className="titulo-tabla-usuarios">
+                                <th>ID</th>
+                                <th>Administrador</th>
+                                <th>Correo</th>
+                                <th>Contraseña</th>
+                                <th></th>
+                            </tr>
                     </thead>
                                        
          <tbody>
       {Object.keys(listaUsuarios).map((key) => (
      
           //checar aqui va los titulos
-        <tr key={listaUsuarios[key].id_usuario} >
+    
+        <tr key={listaUsuarios[key].id_usuario} >           
             <td>{listaUsuarios[key].id_usuario}</td>
-            <td>{listaUsuarios[key].rol}</td>
+            <td>
+            <input className="agregar"
+                    type="text"
+                    name="clave"
+                    placeholder="ingrese Clave" 
+                    value={listaUsuarios[key].rol}                
+                /> 
+                </td>
             <td>{listaUsuarios[key].email}</td>
             <td>{listaUsuarios[key].password}</td>
-            <td><button  onClick={() =>borrarUsuario(listaUsuarios[key].id_usuario)}> borrar</button></td>
-       
+            <td><button className="btn btn-primary eliminar" onClick={() =>borrarUsuario(listaUsuarios[key].id_usuario)}>Eliminar </button></td>     
         </tr>
        
        ))
@@ -65,8 +88,8 @@ function Usuarios(prop) {
             
                 </Table>
             </div>
-            <div><button onClick={llamadoUsuario}>actulizar</button></div>
-          
+
+        
          
         </div>
         
