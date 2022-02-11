@@ -2,6 +2,12 @@ import React from 'react'
 import "./css/Proyectos.css";
 import Table from 'react-bootstrap/Table'
 
+const listaProyectos = [
+    {id: 1, clave: 'PTN-BOM-01', descripcion: 'Prueba 1' , status: 'Aprobado'},
+    {id: 2, clave: 'PTN-BOM-02', descripcion: 'Prueba 2' , status: 'Rechazado'},
+    {id: 3, clave: 'PTN-BOM-03', descripcion: 'Prueba 3' ,status: 'Rechazado'}
+  ];
+
 function Proyectos() {
     return (
         <div className="contenido-usuarios">
@@ -51,49 +57,39 @@ function Proyectos() {
                     <h2>Lista de Proyectos </h2>
                 </div>
 
-                <Table responsive id="nombreDiv"   striped bordered hover size="sm">
+                <Table responsive  striped bordered hover size="sm">
                     <thead>
-                        <tr className="titulo-tabla-usuarios">
-                            <th># Proyecto</th>
-                            <th>Clave</th>
-                            <th>Cliente</th>
-                            <th>Descripción</th>
-                            <th>Status</th>
-                            <th></th>
-                        </tr>
-
+                    <tr className="titulo-tabla-usuarios">
+                                <th>ID</th>
+                                <th>Clave</th>
+                                <th>Descripción</th>
+                                <th>Status</th>
+                                <th>Eliminar</th>
+                                <th>Modificar</th>
+                                <th>Detalles</th>
+                            </tr>
                     </thead>
-                    <tbody>
-
-
-                        <tr className="blanco">
-                            <td>1</td>
-                            <td>PT1-001</td>
-                            <td>Palo Tinto Networks </td>
-                            <td>Prueba 1</td>
-                            <td>Aprobado</td>
-                            <td>
-                                <button className="btn btn-primary"> ver </button>
-                            </td>
-
-                        </tr>
-
-
-
-                        <tr className="verde">
-                            <td>2</td>
-                            <td>PT1-002</td>
-                            <td>Palo Tinto Networks </td>
-                            <td>Prueba 2</td>
-                            <td>Aprobado</td>
-                            <td>
-                                <button className="btn btn-primary"> ver </button>
-                            </td>
-
-                        </tr>
-
-                    </tbody>
+                                       
+         <tbody>
+      {Object.keys(listaProyectos).map((key) => (    
+          //checar aqui va los titulos
+        <tr key={listaProyectos[key].id_usuario} >
+            <td>{listaProyectos[key].id_usuario}</td>        
+            <td>{listaProyectos[key].clave}</td>  
+            <td>{listaProyectos[key].descripcion}</td>  
+            <td>{listaProyectos[key].status}</td>  
+            <td><button className="btn btn-primary eliminar" > borrar</button></td>
+            <td><button className="btn btn-primary modificar" >Actualizar</button></td> 
+            <td><button className="btn btn-primary detalles" >Ver más</button></td> 
+        </tr>  
+       ))
+      }
+     
+     </tbody>
+       
+            
                 </Table>
+
 
 
  {/******************Lista de los Datos Completos del Proyecto****************************************/}

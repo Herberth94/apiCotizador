@@ -93,6 +93,7 @@ function Usuarios(prop) {
                     </thead>
                                        
          <tbody>
+<<<<<<< HEAD
       {Object.keys(listaUsuarios).map((key) => (
           
          
@@ -106,6 +107,18 @@ function Usuarios(prop) {
             <td><button className="btn btn-primary modificar" onClick={()=>enable(key)}>Actualizar</button></td> 
         </tr>  
        
+=======
+      {Object.keys(listaUsuarios).map((key) => (    
+          //checar aqui va los titulos
+        <tr key={listaUsuarios[key].id_usuario} >
+            <td>{listaUsuarios[key].id_usuario}</td>        
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={activado} name="rol"      id={listaUsuarios[key].id_usuario}></input></td>
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={activado} name="email"></input> </td>                     
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].password} onChange={handleInputChange} disabled={activado} name="password"></input> </td> 
+            <td><button className="btn btn-primary eliminar" onClick={() =>borrarUsuario(listaUsuarios[key].id_usuario)}> borrar</button></td>
+            <td><button className="btn btn-primary modificar" onClick={()=>setactivado(!activado)  }>Actualizar</button></td> 
+        </tr>  
+>>>>>>> b233287d0b1deee844239986fef2d1238f71314c
        ))
       }
      

@@ -30,3 +30,32 @@ color: rgb(255, 255, 255);
   text-align: center;
   justify-items: center;
 }
+
+.btn.btn-primary.actualizar{
+    background-color: green;
+}
+
+.btn.btn-primary.eliminar{
+ 
+    background-color: rgb(129, 11, 11);
+}
+.btn.btn-primary.modificar{
+ 
+    background-color: rgb(75, 109, 224);
+}
+
+.btn.btn-primary.eliminar:hover {
+    background-color: rgb(255, 0, 0);;
+}
+
+.btn.btn-primary.actualizar:hover{
+    background-color: rgb(31, 168, 31);
+}
+
+.btn.btn-primary.modificar:hover{
+    background-color: rgb(31, 102, 168);
+}
+
+.input-name{
+    text-align: center;
+}
