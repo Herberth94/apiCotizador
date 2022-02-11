@@ -10,10 +10,18 @@ export const useRegistro = () => {
    });
 
    const handleInputChange = (event) => {
+          setDatos ({
+            ...datos,[event.target.name] : event.target.value ,
+        })
+   
     //console.log(event.target.value)
-    setDatos ({
-        ...datos,[event.target.name] : event.target.value ,
-    })
+   
+}
+
+const actulizacion = (e)=>{
+
+    console.log(e);
+
 }
 
 async function Send (){
@@ -55,7 +63,7 @@ async function Send (){
 
 
     return {
-
+        actulizacion,
         handleInputChange,
         enviarDatos
     }

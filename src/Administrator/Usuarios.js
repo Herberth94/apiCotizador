@@ -3,9 +3,6 @@ import "./css/Usuarios.css";
 import Table from 'react-bootstrap/Table'
 import axios from 'axios';
 import {useRegistro} from '../Components/ModificarUsuarios';
-
-
-
 /*const listaUsuarios = [
     {id: 1, rol: 'Rol', correo: 'Correo' , contrasena: 'Contraseña'},
     {id: 2, rol: 'Administrador', correo: 'oscar@delfos369.com' , contrasena: '12345'},
@@ -21,13 +18,22 @@ function Usuarios(prop) {
 
     const [listaUsuarios,setlistaUsarios ] = useState([]);
     const [activado,setactivado] = useState(true);
-    const enable = (valor) => {
-        if(valor){ return true}
-        else {return false};
+    const [validar , setvalidar] = useState({})
+    const book ={}
 
+
+    const enable =(key)=>
+    {
+       
+        setvalidar({
+            [key] : activado,            
+        })
+
+        console.log(validar);
     }
+        
     
-    const borrarUsuario = async(dato)=>{
+     const borrarUsuario = async(dato)=>{
         const confirmacion =window.confirm("¿Seguro que quieres borrar este registro?");
         if(confirmacion){
           console.log(dato);
@@ -39,9 +45,21 @@ function Usuarios(prop) {
         }
     };
 
-    const llamadoUsuario = async() => {
+     const llamadoUsuario = async() => {
         const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
-        setlistaUsarios (respuesta.data.reSql);
+        const i = Object.keys(respuesta.data.reSql);
+        for(let j=0 ;j < i.length;j++ ){
+            
+            setvalidar({
+                [j] : true,            
+            })
+            
+        }
+        console.log()
+
+       setlistaUsarios (respuesta.data.reSql);
+        
+        
     }
     
     
@@ -54,24 +72,39 @@ function Usuarios(prop) {
                 <h2>Lista de Usuarios </h2>
                 
             </div>
+
+
+            <div>
+                <button className= "btn btn-primary actualizar" onClick={llamadoUsuario}>Actualizar Datos</button>
+           <br/>
+           <br/>
+           </div>
+          
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
-                   
+                    <tr className="titulo-tabla-usuarios">
+                                <th>ID</th>
+                                <th>Administrador</th>
+                                <th>Correo</th>
+                                <th>Contraseña</th>
+                                <th>Eliminar</th>
+                                <th>Modificar</th>
+                            </tr>
                     </thead>
                                        
          <tbody>
       {Object.keys(listaUsuarios).map((key) => (
-     
+          
+         
           //checar aqui va los titulos
         <tr key={listaUsuarios[key].id_usuario} >
             <td>{listaUsuarios[key].id_usuario}</td>        
-            <td><input defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={activado} name="rol"></input></td>
-            <td>{listaUsuarios[key].email}</td>
-            <td>{listaUsuarios[key].password}</td>
-            <td><button  onClick={() =>borrarUsuario(listaUsuarios[key].id_usuario)}> borrar</button></td>
-            <td><button  onClick={()=>setactivado(!activado)}>Actualizar</button></td>
-       
-        </tr>
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={validar[key]} name="rol"      id={listaUsuarios[key].id_usuario}></input></td>
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={validar[key]} name="email"></input> </td>                     
+            <td><input  className="input-name" defaultValue={listaUsuarios[key].password} onChange={handleInputChange} disabled={validar[key]} name="password"></input> </td> 
+            <td><button className="btn btn-primary eliminar" onClick={()=>borrarUsuario(listaUsuarios[key].id_usuario)}> borrar</button></td>
+            <td><button className="btn btn-primary modificar" onClick={()=>enable(key)}>Actualizar</button></td> 
+        </tr>  
        
        ))
       }
@@ -81,13 +114,11 @@ function Usuarios(prop) {
             
                 </Table>
             </div>
-            <div><button onClick={llamadoUsuario}>actulizar</button></div>
-          
+
+        
          
         </div>
         
-    );
-    
+    );  
 }
-
 export default Usuarios;
