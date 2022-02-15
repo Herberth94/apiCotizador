@@ -9,9 +9,22 @@ function PropuestaEconomica() {
 
             <div className="table-responsive">
 
-            <div className="titulo-proyectos">
-                <h2>Propuesta Ecónomica </h2>
-            </div>
+            {/*============= Titulo Animación =============*/}
+            <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Propuesta Económica<span></span></h1>
+                        </div>
+
+                        <div className="role">
+                            <div className="block"></div>
+                            <p>Palo Tinto Networks</p>
+                        </div>
+
+                    </div>
+                </div>
 
                 <select id="lista-cotizaciones">
                         <option value="lista 1">Proyecto 1</option>

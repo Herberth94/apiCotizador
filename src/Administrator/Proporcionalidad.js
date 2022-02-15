@@ -10,10 +10,22 @@ function Proporcionalidad() {
     return (
         <div className="contenido-usuarios">
 
+      {/*============= Titulo Animación =============*/}
+      <div className="container">
+                    <div className="box">
 
-            <div className="titulo-proyectos">
-                <h2>Buscar Proyectos </h2>
-            </div>
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Buscar Proyectos<span></span></h1>
+                        </div>
+
+                        <div className="role">
+                            <div className="block"></div>
+                            <p>Palo Tinto Networks</p>
+                        </div>
+
+                    </div>
+                </div>
 
 
             {/*********Búsqueda de Lista de Proyectos por Nombre Proyecto, Clave, Cliente, Fecha ********/}
@@ -50,11 +62,16 @@ function Proporcionalidad() {
                 </Table>
             </div>
 
+      {/*============= Titulo Animación =============*/}
+      <div className="container">
+                    <div className="box">
 
-            <div className="titulo-proyectos">
-                    <h2>Resumen </h2>
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Resumen<span></span></h1>
+                        </div>
+                    </div>
                 </div>
-
             <Table responsive id="nombreDiv">
                 <thead>
                     <tr className="azul" >
@@ -89,11 +106,16 @@ function Proporcionalidad() {
 
             <div className="table-responsive">
 
-            <div className="titulo-proyectos">
-                    <h2>Proporcionalidad </h2>
-                </div>
+      {/*============= Titulo Animación =============*/}
+      <div className="container">
+                    <div className="box">
 
-         
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Proporcionalidad<span></span></h1>
+                        </div>
+                    </div>
+                </div>
 
                 <Table responsive id="nombreDiv">
                     <thead>

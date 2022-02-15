@@ -40,7 +40,10 @@ background: #38153E;
 background: #137adb69;
 
  */
-background-color:#6786b8 ;
+
+ backdrop-filter: blur(5px);
+	background-color:  #6786b873;
+
 
 }
 

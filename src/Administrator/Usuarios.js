@@ -47,10 +47,9 @@ function Usuarios(prop) {
      const llamadoUsuario = async() => {
         const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
         const i = Object.keys(respuesta.data.reSql);
-        for(let j=0 ;j < i.length;j++ ){
-            
+        for(let j=0 ;j < i.length;j++ ){       
             setvalidar({
-                [j] : true,            
+                [j] : false,            
             })
             
         }
@@ -67,10 +66,23 @@ function Usuarios(prop) {
         
         <div className="contenido-usuarios">
                <div className="table-responsive">
-               <div className="titulo-proyectos">
-                <h2>Lista de Usuarios </h2>
-                
-            </div>
+             
+                {/*============= Titulo Animación =============*/}
+                <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Lista de Usuarios<span></span></h1>
+                        </div>
+
+                        <div className="role">
+                            <div className="block"></div>
+                            <p>Palo Tinto Networks</p>
+                        </div>
+
+                    </div>
+                </div>
 
 
             <div>
@@ -102,7 +114,7 @@ function Usuarios(prop) {
             <td><input  className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={validar[key]} name="email"></input> </td>                     
             <td><input  className="input-name" defaultValue={listaUsuarios[key].password} onChange={handleInputChange} disabled={validar[key]} name="password"></input> </td> 
             <td><button className="btn btn-primary eliminar" onClick={()=>borrarUsuario(listaUsuarios[key].id_usuario)}> borrar</button></td>
-            <td><button className="btn btn-primary modificar" onClick={()=>enable(key)}>Actualizar</button></td> 
+            <td><button className="btn btn-primary modificar" onClick={()=>enable([key].id_usuario)}>Actualizar</button></td> 
         </tr>  
        
        ))
