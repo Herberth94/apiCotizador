@@ -38,11 +38,7 @@ export const operaciones = ()=>{
             else {
                 const resultado = (Number.parseFloat(p_lista) * Number.parseFloat(cantidad))
                 return resultado*(1-(Number.parseFloat(descuento)/100));
-            }
-    
-        
-         
-           
+            }         
         };
 //PRECIO UNITARIO EN BASE TOTAL(LINEA 3-OPERACIONES.JS) Y CANTIDAD
     const precio_u = (total, cantidad)=> Number.parseFloat(total)/Number.parseFloat(cantidad) ;

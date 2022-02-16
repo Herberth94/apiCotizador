@@ -13,8 +13,21 @@ function Am() {
 
 
                 <div className="valor-dolar">
-                <div className="titulo-proyectos">
-                    <h2>Divisa del Proyecto</h2>
+                      {/*============= Titulo Animación =============*/}
+                      <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Divisa Proyectos<span></span></h1>
+                        </div>
+
+                        <div className="role">
+                            <div className="block"></div>
+                            <p>Palo Tinto Networks</p>
+                        </div>
+
+                    </div>
                 </div>
                     <div className="valor_dolar">
                    <input className="agregar"
@@ -36,9 +49,17 @@ function Am() {
 
             <div className="espacio"></div>
 
-                <div className="titulo-proyectos">
-                    <h2>Búsqueda por Proyecto</h2>
-                </div> 
+                 {/*============= Titulo Animación =============*/}
+                 <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Buscar Proyectos<span></span></h1>
+                        </div>
+
+                    </div>
+                </div>
  {/*********Búsqueda de Proyectos AM ********/}
 
                 <div className="busqueda-proyectos">
@@ -77,8 +98,17 @@ function Am() {
 
  {/*********Resumen Monedas MXN USD Y Conversion de Moneda BOM PTN ********/}
 
-                <div className="titulo-proyectos">
-                    <h2>Resumen</h2>
+                   {/*============= Titulo Animación =============*/}
+                   <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Resumen<span></span></h1>
+                        </div>
+
+
+                    </div>
                 </div>
                 <Table responsive id="nombreDiv">
                     <thead>

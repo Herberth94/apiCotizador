@@ -127,3 +127,64 @@ justify-content: center;
         
       
     
+
+
+
+
+              
+/*=========================MEDIA QUERIES PANTALLA ANCHA================================*/
+
+@media (max-width: 1200px) {
+    
+    .log{
+        width: 15%;
+        justify-content: center;
+        text-align: center;
+        margin-left: 60px;
+    }
+
+  }
+  
+  /*=========================MEDIA QUERIES PANTALLA SM================================*/
+  
+  @media (max-width: 960px) {
+ 
+
+    .log{
+        width: 15%;
+        justify-content: center;
+        text-align: center;
+        margin-left: 60px;
+    }
+  }
+  
+  /*=========================MEDIA QUERIES PANTALLA EXTRA-SM================================*/
+  
+  @media (max-width: 768px) {
+ 
+    
+.log{
+    width: 20%;
+    justify-content: center;
+    text-align: center;
+    margin-left: 60px;
+}
+ /*=========================MEDIA QUERIES PANTALLA EXTRA-SM================================*/
+  }
+  @media (max-width: 576px) {
+    .log{
+        width: 25%;
+        justify-content: center;
+        text-align: center;
+        margin-left: 60px;
+    }
+  }
+  @media (max-width: 375px) {
+    .log{
+        width: 35%;
+        justify-content: center;
+        text-align: center;
+        margin-left: 60px;
+    }
+  }
+  

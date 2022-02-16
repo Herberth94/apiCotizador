@@ -149,7 +149,6 @@ function archivo() {
 
 
         </ul>
-
         <ul className="logout">
           <li >    
            <a href="#" onClick={cierreSesion}   >
@@ -157,8 +156,6 @@ function archivo() {
               <i className="fa fa-power-off fa-2x"></i>
               <span className="nav-text">
                Salir      
-                 <div> </div>  
-          
               </span>
              </a>
           

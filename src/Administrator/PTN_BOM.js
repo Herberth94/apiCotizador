@@ -36,8 +36,8 @@ const [datos,setDatos] = useState ({
   precio_unitario:"",
   descuento:"",
   cantidad:""
-
 });
+
 const handleInputChange = (event) => {
   //console.log(event.target.value)
   setDatos ({
@@ -78,7 +78,23 @@ useEffect(() =>{
 
       <div className="table-responsive">
 
-        <h2>PTN BOM  Cotizaciones</h2>
+    
+                {/*============= Titulo Animación =============*/}
+                <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >PTN BOM Cotizaciones<span></span></h1>
+                        </div>
+
+                        <div className="role">
+                            <div className="block"></div>
+                            <p>Palo Tinto Networks</p>
+                        </div>
+
+                    </div>
+                </div>
 
         {/*  Nuevo Proyecto*/}
         <div className="boton-ptn"  >
@@ -268,9 +284,7 @@ useEffect(() =>{
                   step="any"
                   />              
                 </td>
-              
-
-
+    
                 <td>   <input className="agregar"
                   type="text"
                   placeholder="Total" 
@@ -348,11 +362,6 @@ useEffect(() =>{
 
         </div>
 
-        {/*  Añadir */}
-
-        {/* <div className="boton-ptn-agregar"  >
-          <button className="btn btn-primary"> + Añadir </button>
-        </div> */}
 
         {/* Finalizar */}
         <div className="boton-ptn-finalizar"  >

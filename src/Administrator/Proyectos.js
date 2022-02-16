@@ -12,8 +12,22 @@ function Proyectos() {
     return (
         <div className="contenido-usuarios">
             <div className="table-responsive">
-                <div className="titulo-proyectos">
-                    <h2>Buscar Proyectos </h2>
+             
+                {/*============= Titulo Animación =============*/}
+                <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Buscar Proyectos<span></span></h1>
+                        </div>
+
+                        <div className="role">
+                            <div className="block"></div>
+                            <p>Palo Tinto Networks</p>
+                        </div>
+
+                    </div>
                 </div>
 
 
@@ -52,9 +66,18 @@ function Proyectos() {
                 </div>
                 
  {/****************************Lista de los Proyectos Creados ****************************************/}
+      {/*============= Titulo Animación =============*/}
+      <div className="container">
+                    <div className="box">
 
-                <div className="titulo-proyectos">
-                    <h2>Lista de Proyectos </h2>
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Lista de Proyectos<span></span></h1>
+                        </div>
+
+                        
+
+                    </div>
                 </div>
 
                 <Table responsive  striped bordered hover size="sm">
@@ -93,9 +116,15 @@ function Proyectos() {
 
 
  {/******************Lista de los Datos Completos del Proyecto****************************************/}
-                <div className="titulo-proyectos">
-                    <h2>RESUMEN BOM </h2>
+                   {/*============= Titulo Animación =============*/}
+                   <div className="container">
+                    <div className="box">
 
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Resumen BOM<span></span></h1>
+                        </div>
+                    </div>
                 </div>
                 <Table responsive id="nombreDiv"  striped bordered hover size="sm">
                     <thead>
