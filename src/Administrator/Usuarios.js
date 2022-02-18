@@ -12,10 +12,12 @@ import {useRegistro} from '../Components/ModificarUsuarios';
 function Usuarios(prop) {
 
     const {  
-          handleInputChange,
-          enviarDatos
+        actualizacion,
+        handleInputChange,
+                   
         } = useRegistro();
-
+  
+    const [keyRegistro , SetKeyregistro] = useState('');
     const [listaUsuarios,setlistaUsarios ] = useState([]);
     const [validar , setvalidar] = useState([]);
     const borrarUsuario = async(dato)=>{
@@ -32,32 +34,34 @@ function Usuarios(prop) {
     
     const enable=(key)=>{
        const newARR =[]
-       console.log(validar);
+       //console.log(validar);
        let i =  Object.keys(listaUsuarios);
        for(let x = 0 ; x < i.length ; x++){
            
                 newARR[x] = validar[0][x];
             }
-            console.log(newARR);    
+            //console.log(newARR);    
         for(let y =0 ; y <i.length;y++){
             if(y == key){
+                //newARR[y]=!validar[0][y];
                 newARR[y]=!validar[0][y];
+            }
+            if(y != key){
+                newARR[y]=true
 
             }
         }   
 
         setvalidar([newARR])
-
-        console.log(newARR)
+        SetKeyregistro(key)
+        //console.log(newARR)
             
     }
       
     const llamado = async()=>{
         const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
-        setlistaUsarios (respuesta.data.reSql);
-        
+        setlistaUsarios (respuesta.data.reSql);          
     }
-    
     
     const llamadoUsuario = async() => {
         const newValidar =[];       
@@ -73,7 +77,19 @@ function Usuarios(prop) {
         
       
     }
-  
+    const envioData= (datos,key)=>{
+        //console.log(key);
+        actualizacion(datos[key]); 
+        //window.location.reload();
+        actulizarPage(key);
+                       
+    }
+    const actulizarPage =(key)=>{
+       enable(key);
+       
+    }
+
+
     return (
         
         <div className="contenido-usuarios">
@@ -83,10 +99,10 @@ function Usuarios(prop) {
                 
             </div>
             <div>
-            <button    className= "btn btn-primary actualizar" onClick={llamadoUsuario}>Mostrart lista</button>
+            <button    className= "btn btn-primary actualizar" onClick={llamadoUsuario}>Mostrar lista</button>
             <br/>
             <br/>
-            <button    className= "btn btn-primary actualizar" >Aceptar cambios</button>
+            <button    className= "btn btn-primary actualizar" onClick={()=>envioData(listaUsuarios,keyRegistro)} >Aceptar cambios</button>
            <br/>
            <br/>
            </div>

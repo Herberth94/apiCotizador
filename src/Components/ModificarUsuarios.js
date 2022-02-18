@@ -2,6 +2,7 @@ import  {useState} from 'react';
 import axios from 'axios';
 
 export const useRegistro = () => {
+    
      const [datos,setDatos] = useState ({
           rol: '', 
           email  :'',
@@ -18,42 +19,61 @@ export const useRegistro = () => {
    
 }
 
-const actulizacion = (e)=>{
+    const actualizacion = (data)=>{
 
-    console.log(e);
+         const data_1 ={
+             rol:data.rol,
+             email : data.email,
+             password : data.password
+             
+         };
+                 
+         //console.log(data);
+         //console.log(datos);
+         //Send(datos,data.id_usuario);
+         //console.log(data.id_usuario);
+         Send(data_1,data.id_usuario)
+        
+        
+        
 
+         
 }
 
-async function Send (){
+ async function Send (data,id){
+     const dataActulizacion = {
+         rol:data.rol,
+         email:data.email,
+         password:data.password   
 
-    const data= {
-        rol: datos.rol,
-        email : datos.email,
-        password : datos.password
-       
-    };
+     };
+     //console.log(data);
+     //console.log(id);
+     //console.log(datos);
+     const prueba = Object.keys(datos);
+     for(let keys of prueba){
+         if(datos[keys]!==''){
+             //console.log("prueba");
+             //console.log(datos[keys]);
+             dataActulizacion[keys]=datos[keys]
+             //console.log(dataActulizacion);
 
-    if(datos.email === datos.remail)
-    {
-        try {
+         }    
+     } 
+    try {
 
-        const respuesta = await axios.post('http://localhost:4001/api/cotizador/registro',data);
+        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/edit/${id}`,dataActulizacion);
         const send2= respuesta.data;
-        console.log(send2);
-        alert('Registro exitoso');
+        //console.log(send2);
+        alert('Dato Actualizado');
             
         } catch (error) {
-            console.log(error);
+           console.log(error);
             
         }
         
-    }
-    else {
-        alert('Los correos ingresados NO son iguales');
-    }
  
-
-}
+ }
     const enviarDatos = (event) => {  
         Send();
         event.preventDefault();
@@ -63,8 +83,8 @@ async function Send (){
 
 
     return {
-        actulizacion,
+        actualizacion,
         handleInputChange,
-        enviarDatos
+       
     }
 };
