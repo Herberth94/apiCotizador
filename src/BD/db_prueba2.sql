@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3307
--- Tiempo de generación: 21-02-2022 a las 21:15:52
+-- Tiempo de generación: 22-02-2022 a las 03:57:52
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `am` (
-  `am_id` bigint(20) NOT NULL,
-  `am_desc_fab` float NOT NULL,
+  `am_id` int(10) NOT NULL,
+  `am_desc_cliente` float NOT NULL,
   `am_margen_ganancia` float NOT NULL,
-  `am_id_sv_pd` bigint(20) NOT NULL
+  `am_desc_fabrica` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -48,13 +48,24 @@ CREATE TABLE `categoria` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cliente`
+-- Estructura de tabla para la tabla `clientes`
 --
 
-CREATE TABLE `cliente` (
-  `cliente_id` bigint(20) NOT NULL,
-  `cliente_nombre` varchar(255) NOT NULL,
-  `cliente_razon_social` varchar(255) NOT NULL
+CREATE TABLE `clientes` (
+  `cliente_id` int(11) NOT NULL,
+  `nombre_cliente` varchar(255) NOT NULL,
+  `razon_social` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `costos_indirectos`
+--
+
+CREATE TABLE `costos_indirectos` (
+  `ci_id` int(10) NOT NULL,
+  `ci_porcentajes` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -88,7 +99,21 @@ CREATE TABLE `moneda` (
 CREATE TABLE `partida` (
   `partida_id` bigint(20) NOT NULL,
   `partida_nombre` varchar(255) NOT NULL,
-  `partida_id_serv_prod` bigint(20) NOT NULL
+  `partida_id_sp` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `precio`
+--
+
+CREATE TABLE `precio` (
+  `precio_id` bigint(20) NOT NULL,
+  `precio_lista` decimal(20,3) NOT NULL,
+  `precio_unitario` decimal(20,3) NOT NULL,
+  `precio_descuento` float NOT NULL,
+  `precio_id_moneda` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -105,16 +130,28 @@ CREATE TABLE `proveedor` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `proveedor_marca`
+--
+
+CREATE TABLE `proveedor_marca` (
+  `pm_id` int(10) NOT NULL,
+  `pm_id_proveedor` int(10) NOT NULL,
+  `pm_id_marca` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `proyecto`
 --
 
 CREATE TABLE `proyecto` (
   `proyecto_id` bigint(20) NOT NULL,
   `proyecto_clave` varchar(255) NOT NULL,
-  `proyecto_descripcion` varchar(255) NOT NULL,
+  `proyecto_descripcion` text NOT NULL,
   `proyecto_id_partida` bigint(20) NOT NULL,
   `proyecto_valor_dolar` float NOT NULL,
-  `proyecto_id_cliente` bigint(20) NOT NULL
+  `proyecto_id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -124,48 +161,53 @@ CREATE TABLE `proyecto` (
 --
 
 CREATE TABLE `servicio_producto` (
-  `sv_pd_id` bigint(20) NOT NULL,
-  `sv_pd_no_parte` bigint(20) NOT NULL,
-  `sv_pd_descripcion` varchar(255) NOT NULL,
-  `sv_pd_meses` float NOT NULL,
-  `sv_pd_semanas` float NOT NULL,
-  `sv_pd_cantidad` int(20) NOT NULL,
-  `sv_pd_precio_l` decimal(20,3) NOT NULL,
-  `sv_pd_precio_u` decimal(20,3) NOT NULL,
-  `sv_pd_desc_cli` float NOT NULL,
-  `sv_pd_total_mxn` varchar(10) NOT NULL,
-  `sv_pd_total_usd` decimal(20,3) NOT NULL,
-  `sv_pd_total_boom` decimal(20,3) NOT NULL,
-  `sv_pd_id_moneda` int(10) NOT NULL,
-  `sv_pd_id_marca` int(10) NOT NULL,
-  `sv_pd_id_provedor` int(10) NOT NULL,
-  `sv_pd_id_categoria` int(10) NOT NULL,
-  `sv_pd_comentarios` varchar(255) NOT NULL
+  `sp_id` bigint(20) NOT NULL,
+  `sp_no_parte` bigint(20) NOT NULL,
+  `sp_descripcion` varchar(255) NOT NULL,
+  `sp_meses` float NOT NULL,
+  `sp_semanas` float NOT NULL,
+  `sp_cantidad` int(20) NOT NULL,
+  `sp_id_precio` bigint(20) NOT NULL,
+  `sp_total_mxn` decimal(20,3) NOT NULL,
+  `sp_total_usd` decimal(20,3) NOT NULL,
+  `sp_total_bom` decimal(20,3) NOT NULL,
+  `sp_id_proveedor` int(10) NOT NULL,
+  `sp_id_categoria` int(10) NOT NULL,
+  `sp_comentarios` text NOT NULL,
+  `sp_id_am` int(10) NOT NULL,
+  `sp_id_costos_indirectos` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
-CREATE TABLE `usuario` (
-  `usuario_id` bigint(20) NOT NULL,
-  `usuario_rol` varchar(20) NOT NULL,
-  `usuario_ correo` varchar(255) NOT NULL,
-  `usuario_contra` varchar(255) NOT NULL
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `rol` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `rol`, `email`, `password`) VALUES
+(1, 'preventa', 'car', '1234');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `us_cli`
+-- Estructura de tabla para la tabla `usuarios_clientes`
 --
 
-CREATE TABLE `us_cli` (
-  `us_cli_id` bigint(20) NOT NULL,
-  `us_cli_id_cliente` bigint(20) NOT NULL,
-  `us_cli_id_usuario` bigint(20) NOT NULL
+CREATE TABLE `usuarios_clientes` (
+  `id_user` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -176,8 +218,7 @@ CREATE TABLE `us_cli` (
 -- Indices de la tabla `am`
 --
 ALTER TABLE `am`
-  ADD PRIMARY KEY (`am_id`),
-  ADD KEY `fk_am_id_sv_pd` (`am_id_sv_pd`);
+  ADD PRIMARY KEY (`am_id`);
 
 --
 -- Indices de la tabla `categoria`
@@ -186,10 +227,16 @@ ALTER TABLE `categoria`
   ADD PRIMARY KEY (`categoria_id`);
 
 --
--- Indices de la tabla `cliente`
+-- Indices de la tabla `clientes`
 --
-ALTER TABLE `cliente`
+ALTER TABLE `clientes`
   ADD PRIMARY KEY (`cliente_id`);
+
+--
+-- Indices de la tabla `costos_indirectos`
+--
+ALTER TABLE `costos_indirectos`
+  ADD PRIMARY KEY (`ci_id`);
 
 --
 -- Indices de la tabla `marca`
@@ -208,13 +255,28 @@ ALTER TABLE `moneda`
 --
 ALTER TABLE `partida`
   ADD PRIMARY KEY (`partida_id`),
-  ADD KEY `fk_partida_id_serv_prod` (`partida_id_serv_prod`);
+  ADD KEY `fk_partida_id_sp` (`partida_id_sp`);
+
+--
+-- Indices de la tabla `precio`
+--
+ALTER TABLE `precio`
+  ADD PRIMARY KEY (`precio_id`),
+  ADD KEY `fk_precio_id_moneda` (`precio_id_moneda`);
 
 --
 -- Indices de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   ADD PRIMARY KEY (`proveedor_id`);
+
+--
+-- Indices de la tabla `proveedor_marca`
+--
+ALTER TABLE `proveedor_marca`
+  ADD PRIMARY KEY (`pm_id`),
+  ADD KEY `fk_p_m_id_proveedor` (`pm_id_proveedor`),
+  ADD KEY `fk_p_m_id_marca` (`pm_id_marca`);
 
 --
 -- Indices de la tabla `proyecto`
@@ -228,25 +290,26 @@ ALTER TABLE `proyecto`
 -- Indices de la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
-  ADD PRIMARY KEY (`sv_pd_id`),
-  ADD KEY `fk_sv_pd_id_categoria` (`sv_pd_id_categoria`),
-  ADD KEY `fk_sv_pd_id_marca` (`sv_pd_id_marca`),
-  ADD KEY `fk_sv_pd_id_moneda` (`sv_pd_id_moneda`),
-  ADD KEY `fk_sv_pd_id_proveedor` (`sv_pd_id_provedor`);
+  ADD PRIMARY KEY (`sp_id`),
+  ADD KEY `fk_sp_id_precio` (`sp_id_precio`),
+  ADD KEY `fk_sp_id_proveedor` (`sp_id_proveedor`),
+  ADD KEY `fk_sp_id_categoria` (`sp_id_categoria`),
+  ADD KEY `fk_sp_id_am` (`sp_id_am`),
+  ADD KEY `fk_sp_id_costos_indirectos` (`sp_id_costos_indirectos`);
 
 --
--- Indices de la tabla `usuario`
+-- Indices de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`usuario_id`);
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
--- Indices de la tabla `us_cli`
+-- Indices de la tabla `usuarios_clientes`
 --
-ALTER TABLE `us_cli`
-  ADD PRIMARY KEY (`us_cli_id`),
-  ADD KEY `fk_us_cli_id_usuario` (`us_cli_id_usuario`),
-  ADD KEY `fk_us_cli_id_cliente` (`us_cli_id_cliente`);
+ALTER TABLE `usuarios_clientes`
+  ADD PRIMARY KEY (`id_user`),
+  ADD KEY `cliente_fk` (`id_cliente`),
+  ADD KEY `usuario_fk` (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -256,7 +319,7 @@ ALTER TABLE `us_cli`
 -- AUTO_INCREMENT de la tabla `am`
 --
 ALTER TABLE `am`
-  MODIFY `am_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `am_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -265,10 +328,16 @@ ALTER TABLE `categoria`
   MODIFY `categoria_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `cliente`
+-- AUTO_INCREMENT de la tabla `clientes`
 --
-ALTER TABLE `cliente`
-  MODIFY `cliente_id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `clientes`
+  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `costos_indirectos`
+--
+ALTER TABLE `costos_indirectos`
+  MODIFY `ci_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -289,10 +358,22 @@ ALTER TABLE `partida`
   MODIFY `partida_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `precio`
+--
+ALTER TABLE `precio`
+  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
   MODIFY `proveedor_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `proveedor_marca`
+--
+ALTER TABLE `proveedor_marca`
+  MODIFY `pm_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `proyecto`
@@ -304,58 +385,65 @@ ALTER TABLE `proyecto`
 -- AUTO_INCREMENT de la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
-  MODIFY `sv_pd_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
-ALTER TABLE `usuario`
-  MODIFY `usuario_id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `us_cli`
+-- AUTO_INCREMENT de la tabla `usuarios_clientes`
 --
-ALTER TABLE `us_cli`
-  MODIFY `us_cli_id` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `usuarios_clientes`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `am`
---
-ALTER TABLE `am`
-  ADD CONSTRAINT `fk_am_id_sv_pd` FOREIGN KEY (`am_id_sv_pd`) REFERENCES `servicio_producto` (`sv_pd_id`) ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `partida`
 --
 ALTER TABLE `partida`
-  ADD CONSTRAINT `fk_partida_id_serv_prod` FOREIGN KEY (`partida_id_serv_prod`) REFERENCES `servicio_producto` (`sv_pd_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_partida_id_sp` FOREIGN KEY (`partida_id_sp`) REFERENCES `servicio_producto` (`sp_id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `precio`
+--
+ALTER TABLE `precio`
+  ADD CONSTRAINT `fk_precio_id_moneda` FOREIGN KEY (`precio_id_moneda`) REFERENCES `moneda` (`moneda_id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `proveedor_marca`
+--
+ALTER TABLE `proveedor_marca`
+  ADD CONSTRAINT `fk_p_m_id_marca` FOREIGN KEY (`pm_id_marca`) REFERENCES `marca` (`marca_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_p_m_id_proveedor` FOREIGN KEY (`pm_id_proveedor`) REFERENCES `proveedor` (`proveedor_id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  ADD CONSTRAINT `fk_proyecto_id_cliente` FOREIGN KEY (`proyecto_id_cliente`) REFERENCES `cliente` (`cliente_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_proyecto_id_partida` FOREIGN KEY (`proyecto_id_partida`) REFERENCES `partida` (`partida_id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
-  ADD CONSTRAINT `fk_sv_pd_id_categoria` FOREIGN KEY (`sv_pd_id_categoria`) REFERENCES `categoria` (`categoria_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sv_pd_id_marca` FOREIGN KEY (`sv_pd_id_marca`) REFERENCES `marca` (`marca_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sv_pd_id_moneda` FOREIGN KEY (`sv_pd_id_moneda`) REFERENCES `moneda` (`moneda_id`),
-  ADD CONSTRAINT `fk_sv_pd_id_proveedor` FOREIGN KEY (`sv_pd_id_provedor`) REFERENCES `proveedor` (`proveedor_id`);
+  ADD CONSTRAINT `fk_sp_id_am` FOREIGN KEY (`sp_id_am`) REFERENCES `am` (`am_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sp_id_categoria` FOREIGN KEY (`sp_id_categoria`) REFERENCES `categoria` (`categoria_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sp_id_costos_indirectos` FOREIGN KEY (`sp_id_costos_indirectos`) REFERENCES `costos_indirectos` (`ci_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sp_id_precio` FOREIGN KEY (`sp_id_precio`) REFERENCES `precio` (`precio_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sp_id_proveedor` FOREIGN KEY (`sp_id_proveedor`) REFERENCES `proveedor` (`proveedor_id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `us_cli`
+-- Filtros para la tabla `usuarios_clientes`
 --
-ALTER TABLE `us_cli`
-  ADD CONSTRAINT `fk_us_cli_id_cliente` FOREIGN KEY (`us_cli_id_cliente`) REFERENCES `cliente` (`cliente_id`),
-  ADD CONSTRAINT `fk_us_cli_id_usuario` FOREIGN KEY (`us_cli_id_usuario`) REFERENCES `usuario` (`usuario_id`) ON UPDATE CASCADE;
+ALTER TABLE `usuarios_clientes`
+  ADD CONSTRAINT `cliente_fk` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`cliente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `usuario_fk` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
