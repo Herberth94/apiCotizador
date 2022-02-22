@@ -86,7 +86,7 @@ function Usuarios(prop) {
     }
     const actulizarPage =(key)=>{
        enable(key);
-       
+              
     }
 
 
