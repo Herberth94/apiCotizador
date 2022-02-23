@@ -1,5 +1,6 @@
 import React from 'react'
 import './css/MenuPreventa.css';
+
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
@@ -39,6 +40,28 @@ function MenuPreventa() {
             </a>
 
           </li>
+
+          <li>
+            <a href="/add-preventa-cliente">
+            <i class="bi bi-person-plus"></i>
+              <span className="nav-text">
+            Agregar Clientes
+              </span>
+            </a>
+
+          </li>
+
+
+          <li>
+            <a href="/admin-preventa-clientes">
+            <i class="bi bi-person-video2"></i>
+              <span className="nav-text">
+                Administrar Clientes
+              </span>
+            </a>
+
+          </li>
+
 
           <li className="has-subnav">
             <a href="/resumen">

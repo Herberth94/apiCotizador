@@ -20,10 +20,10 @@ function Registro() {
             <label htmlFor="rol">Tipo rol: </label>
 
             <select id="rol" name="rol" required onChange={handleInputChange}>
-            <option value="">---------------</option>
+          
               <option value="administrador">Administrador</option>
-              <option value="preventa">preventa</option>
-              <option value="venta">venta</option>
+              <option value="preventa">Preventa</option>
+              <option value="venta">Venta</option>
             </select>
             <br />
             <br />

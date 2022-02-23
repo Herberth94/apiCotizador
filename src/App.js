@@ -30,6 +30,11 @@ import Proporcionalidad from "./Administrator/Proporcionalidad";
 import Preventa from "./Components/Preventa";
 //Preventa Rutas
 import MenuPreventa from "./Preventa/MenuPreventa";
+import addClientesPreventa from "./Preventa/rClientes";
+import administrarClientespreventa from "./Preventa/rAdministrarClientes";
+
+
+
 
 
 
@@ -72,6 +77,8 @@ function App() {
         {/* Rutas Preventa  */}
 
         <Preventa path="/" component={MenuPreventa} />
+        <Preventa path="/add-preventa-cliente" component={addClientesPreventa} />
+        <Preventa path="/admin-preventa-clientes" component={administrarClientespreventa} />
 
       {/* Rutas Venta  */}
         <Venta path="/" component={MenuVentas} />

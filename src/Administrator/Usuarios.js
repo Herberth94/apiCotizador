@@ -9,7 +9,15 @@ import {useRegistro} from '../Components/ModificarUsuarios';
     {id: 3, rol: 'Preventa', correo: 'usuario@delfos369.com' , contrasena: '12345'}
   ];*/
 
-function Usuarios(prop) {
+function Usuarios() {
+
+
+    const [show, setShow] = useState(false);
+
+    const [show2, setShow2] = useState(true);
+
+
+
 
     const {  
         actualizacion,
@@ -64,6 +72,8 @@ function Usuarios(prop) {
     }
     
     const llamadoUsuario = async() => {
+
+        setShow2(!show2) ;
         const newValidar =[];       
         const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
         let i = Object.keys(respuesta.data.reSql);
@@ -78,6 +88,9 @@ function Usuarios(prop) {
       
     }
     const envioData= (datos,key)=>{
+
+
+        setShow(!show) ;
         //console.log(key);
         actualizacion(datos[key]); 
         //window.location.reload();
@@ -94,53 +107,103 @@ function Usuarios(prop) {
         
         <div className="contenido-usuarios">
                <div className="table-responsive">
-               <div className="titulo-proyectos">
-                <h2>Lista de Usuarios </h2>
-                
-            </div>
+                   {/*============= Titulo Animación =============*/}
+                   <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Lista de Usuarios<span></span></h1>
+                        </div>
+
+                        <div className="role">
+                            <div className="block"></div>
+                            <p>Palo Tinto Networks</p>
+                        </div>
+
+                    </div>
+                </div>
             <div>
-            <button    className= "btn btn-primary actualizar" onClick={llamadoUsuario}>Mostrar lista</button>
-            <br/>
-            <br/>
-            <button    className= "btn btn-primary actualizar" onClick={()=>envioData(listaUsuarios,keyRegistro)} >Aceptar cambios</button>
-           <br/>
-           <br/>
-           </div>
-             
-                <Table responsive  striped bordered hover size="sm">
-                
-                    <thead>
-                    <tr className="titulo-tabla-usuarios">
-                                <th>ID</th>
-                                <th>Administrador</th>
-                                <th>Correo</th>
-                                <th>Contraseña</th>
-                                <th>Eliminar</th>
-                                <th>Modificar</th>
-                            </tr>
-                    </thead>
-                                       
-         <tbody>
          
 
-           {Object.keys(listaUsuarios).map((key) => (
-           //checar aqui va los titulos
-        <tr key={listaUsuarios[key].id_usuario} >
-            <td>{listaUsuarios[key].id_usuario}</td>        
-            <td><input  className="input-name" defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={validar[0][key]} name="rol"      id={listaUsuarios[key].id_usuario}></input></td>
-            <td><input  className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={validar[0][key]} name="email"></input> </td>                     
-            <td><input  className="input-name" defaultValue={listaUsuarios[key].password} onChange={handleInputChange} disabled={validar[0][key]} name="password"></input> </td> 
-            <td><button className="btn btn-primary eliminar" onClick={()=>borrarUsuario(listaUsuarios[key].id_usuario)}> borrar</button></td>
-            <td><button   className="btn btn-primary modificar" onClick={()=>enable(key)} >Actualizar</button></td> 
-        </tr>  
-       
-       ))
-      }
-     
-     </tbody>
-       
+           <button  className="btn btn-primary modificar" type="button" onClick={() => {llamadoUsuario() ;  }  }>  {show2 ? 'Mostrar Lista' : 'Ocultar Lista'} </button>    
+      {show2 ? (
+        <div >  
+
+           
+       {/*      <h2>Ocultar Lista DIV</h2>  */}
+
+              
             
-                </Table>
+        </div>
+      ) : (
+        <div >
+              {/*      <h2>Mostrar Lista DIV</h2>  */}
+
+            <br/>
+
+             <Table responsive  striped bordered hover size="sm">
+                
+                <thead>
+                <tr className="titulo-tabla-usuarios">
+                            <th>ID</th>
+                            <th>Administrador</th>
+                            <th>Correo</th>
+                            <th>Contraseña</th>
+                            <th>Eliminar</th>
+                            <th>Modificar</th>
+                         
+                        </tr>
+                </thead>
+                                   
+     <tbody>
+     
+
+       {Object.keys(listaUsuarios).map((key) => (
+       //checar aqui va los titulos
+    <tr key={listaUsuarios[key].id_usuario} >
+        <td>{listaUsuarios[key].id_usuario}</td>        
+        <td><input  className="input-name" defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={validar[0][key]} name="rol"      id={listaUsuarios[key].id_usuario}></input></td>
+        <td><input  className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={validar[0][key]} name="email"></input> </td>                     
+        <td><input  className="input-name" defaultValue={listaUsuarios[key].password} onChange={handleInputChange} disabled={validar[0][key]} name="password"></input> </td> 
+        <td><button className="btn btn-primary eliminar" onClick={()=>borrarUsuario(listaUsuarios[key].id_usuario)}> Eliminar </button></td> 
+        <td>   <button  className="btn btn-primary modificar" type="button" onClick={() => {enable(key) ; envioData(listaUsuarios,keyRegistro) }  }>  {show ? 'Aceptar' : 'Modificar'} </button>    
+  {show ? (
+    <div >  
+       {/*    <h2>Aceptar Cambios</h2>  
+         */}
+    </div>
+  ) : (
+    <div >
+
+        
+{/* <h2>Modificar</h2>  */} 
+    </div>
+  )}
+  
+  </td> 
+
+   
+    </tr>  
+   
+   ))
+  }
+ 
+ </tbody>
+   
+        
+            </Table>
+        </div>
+      )}
+            
+         
+         
+            <br/>
+            <br/>
+          
+           </div>
+             
+      
             </div>
               
          

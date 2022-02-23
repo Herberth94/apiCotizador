@@ -64,7 +64,7 @@ function archivo() {
 
           <li className="has-subnav">
             <a href="/usuarios">
-              <i className="bi bi-people-fill fa-2x"></i>
+            <i class="bi bi-person-video2"></i>
               <span className="nav-text">
                 Administrar Usuarios
               </span>
@@ -75,7 +75,7 @@ function archivo() {
 
           <li className="has-subnav">
             <a href="/administrar-clientes">
-              <i className="bi bi-people-fill fa-2x"></i>
+            <i class="bi bi-person-video2"></i>
               <span className="nav-text">
                 Administrar Clientes
               </span>

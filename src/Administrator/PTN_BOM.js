@@ -8,23 +8,6 @@ import Table from 'react-bootstrap/Table'
 function PTN_BOM() {
 
 
-/* 
-names INPUT para PTN_BOM
-clave                        VARCHAR
-descripcion_proyecto         VARCHAR
-cliente {value = 3 opciones} VARCHAR
-valor_dolar                  DOUBLE
-no_parte                     INT
-descripcion                  VARCHAR
-meses                        INT
-entrega_semanas              INT
-cantidad                     INT
-precio_lista                 DOUBLE
-precio_unitario              DOUBLE
-total                        DOUBLE
-descuento                    DOUBLE
-moneda {value  = 2 opciones} VARCHAR
- */
 const { total, precio_u,descuento_1,  total_1   }= operaciones();
 const [datos,setDatos] = useState ({
   clave:"",
@@ -111,13 +94,13 @@ useEffect(() =>{
                 <th>Clave</th>
                 <th>Descripción</th>
                 <th> Cliente </th>
-                <th> Valor Dolar </th>
               </tr>
 
             </thead>
 
             <tbody>
               <tr className="">
+               
                 <td>
                   <input className="agregar"
                     type="text"
@@ -140,19 +123,9 @@ useEffect(() =>{
                   <option value="lista 3">Cliente 3</option>
                 </select>
                 </td>
-                <td>
-                  <input className="agregar"
-                    type="number"
-                    name="valor_dolar"
-                    onChange={handleInputChange}
-                    min="0"
-                    step="any"
-                    placeholder="ingrese Valor Dolar" />
-                </td>
               </tr>
 
               <tr className="boton-agregar-proyecto">
-                <td></td>
                 <td></td>
                 <td></td>
                 <td>   <button className="btn btn-primary"> Añadir </button>    </td>
