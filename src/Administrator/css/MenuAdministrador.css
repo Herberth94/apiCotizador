@@ -126,7 +126,7 @@ padding:0;
 }
 .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
 color:#fff;
-background: #38153ece;
+background: #38153e;
 
 
 }
@@ -138,18 +138,53 @@ height: 100%;
 }
 
 
+/*============================ ICONOS ADMINISTRADOR ============================ */
 i.fa.fa-power-off {
 color: #ff0000;
 }
 
 i.fa.fa-home{
-color: rgb(9, 255, 0);
+color: rgb(0, 162, 255);
 }
 
 .administrador-user{
-  background-color: #4c216e;
-  color: #31f300;
+	background-color:  #6786b8;
+  color: #00ffb3;
   margin-bottom: 30px;
+}
+
+
+.main-menu span{
+color: #ffffff;
+font-weight: 300;
+
+}
+
+
+/*============================ Agregar Clientes y Usuarios ============================ */
+i.bi.bi-person-plus{
+  color: #00ffb3;  
+}
+
+/*============================ Administrador usuarios y Cliente ============================ */
+i.bi.bi-person-video2{
+  color: #00d9ff;  
+}
+/*============================ PTN BOM ============================ */
+i.bi.bi-file-earmark-spreadsheet{
+  color: #ff5100;  
+}
+
+i.bi.bi-file-earmark-break{
+  color: #00d9ff;  
+}
+
+i.bi.bi-check2-circle{
+  color: #ffee00;  
+}
+
+i.bi.bi-briefcase{
+  color: #1eff00;  
 }
 
 

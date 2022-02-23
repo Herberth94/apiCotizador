@@ -317,3 +317,12 @@ input{
 
 }
 
+
+/* ================================== Transparencia fondo menus ==================================*/
+.contenido-usuarios{ 
+	background-color:  #ffffffe0;
+  }
+
+  .tablas{
+	  background-color: #ffffff;
+  }

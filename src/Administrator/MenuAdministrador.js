@@ -95,7 +95,7 @@ function archivo() {
           
           <li className="has-subnav">
             <a href="/proyectos">
-              <i className="bi bi-file-earmark-spreadsheet fa-2x"></i>
+              <i className="bi bi-file-earmark-break fa-2x"></i>
               <span className="nav-text">
                 Proyectos
               </span>
@@ -119,7 +119,7 @@ function archivo() {
           </li>
           <li className="has-subnav">
             <a href="/proporcionalidad">
-            <i className="bi bi-check2-circle fa-2x"></i>
+            <i className="bi bi-check-circle-fill fa-2x"></i>
               <span className="nav-text">
             Proporcionalidad
               </span>
@@ -137,7 +137,7 @@ function archivo() {
 
 
 
-          <li className="has-subnav">
+        {/*   <li className="has-subnav">
             <a href="/">
               <i className="bi bi-info-circle fa-2x"></i>
               <span className="nav-text">
@@ -145,7 +145,7 @@ function archivo() {
               </span>
             </a>
 
-          </li>
+          </li> */}
 
 
         </ul>
