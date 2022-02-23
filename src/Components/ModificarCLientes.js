@@ -4,9 +4,8 @@ import axios from 'axios';
 export const useRegistro = () => {
     
      const [datos,setDatos] = useState ({
-          rol: '', 
-          email  :'',
-          password:''
+          nombre_cliente: '', 
+          razon_social:''
            
    });
 
@@ -22,9 +21,8 @@ export const useRegistro = () => {
     const actualizacion = (data)=>{
 
          const data_1 ={
-             rol:data.rol,
-             email : data.email,
-             password : data.password
+             nombre_cliente:data.nombre_cliente,
+             razon_social : data.razon_social
              
          };
                  
@@ -32,7 +30,7 @@ export const useRegistro = () => {
          //console.log(datos);
          //Send(datos,data.id_usuario);
          //console.log(data.id_usuario);
-         Send(data_1,data.id_usuario)
+         Send(data_1,data.id_cliente)
         
         
         
@@ -42,10 +40,9 @@ export const useRegistro = () => {
 
  async function Send (data,id){
      const dataActulizacion = {
-         rol:data.rol,
-         email:data.email,
-         password:data.password   
-
+         nombre_cliente:data.nombre_cliente,
+         razon_social:data.razon_social
+        
      };
      //console.log(data);
      //console.log(id);
@@ -62,7 +59,7 @@ export const useRegistro = () => {
      } 
     try {
 
-        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/edit/${id}`,dataActulizacion);
+        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/clientes/update/${id}`,dataActulizacion);
         const send2= respuesta.data;
         //console.log(send2);
         alert('Dato Actualizado');
@@ -74,7 +71,7 @@ export const useRegistro = () => {
         
  
  }
-    return {
+   return {
         actualizacion,
         handleInputChange,
        

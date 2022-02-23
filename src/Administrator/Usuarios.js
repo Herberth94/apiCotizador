@@ -99,7 +99,7 @@ function Usuarios() {
     }
     const actulizarPage =(key)=>{
        enable(key);
-       
+              
     }
 
 
