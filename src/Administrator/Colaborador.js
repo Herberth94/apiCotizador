@@ -1,63 +1,67 @@
 import React from 'react'
-import { useRegistro } from '../Components/registroClientes'
 
+function Colaborador() {
 
-function Clientes() {
-
-  const {
-    handleInputChange,
-    enviarDatos
-  }=useRegistro()
 
     return (
         <div className="contenido-main-registro">
         <div className="scene flex">
           <section className="card-body">
-            <form  method="post" className="card-form" onSubmit = {enviarDatos}>
+            <form  method="post" className="card-form" >
               <h2 >
-                <span>Registrar Cliente</span>
+                <span>Agregrar Colaborador</span>
               </h2>
                  <label htmlFor="user" className=" label">
-                    Nombre Cliente
+              Correo del Colaborador
                  </label>
               <input
                 id="user"
                 type="text"
-                name='nombre_cliente'
+                name='correo'
                 className="card-input"
-                onChange={handleInputChange}
-                placeholder="Nombre Cliente"
+                placeholder="Ingrese Correo del Colaborador"
+              />
+
+
+            <label htmlFor="user" className=" label">
+              Clave del Proyecto
+                 </label>
+              <input
+                id="user"
+                type="text"
+                name='clave'
+                className="card-input"
+                placeholder="Ingrese Clave del Proyecto"
               />
   
+  
               <label htmlFor="user2" className=" label">
-                Razón Social
+                Contraseña 
               </label>
               <input
                 id="user2"
                 type="text"
-                name ="razon_social"
-                onChange={handleInputChange}
+                name ="contraseña"
                 className="card-input"
-                placeholder="Razón Social"
+                placeholder="Ingrese su Contraseña"
               />
   
 
   <label htmlFor="user2" className=" label">
-              Contacto (Teléfono)
+              Repetir Contraseña
               </label>
               <input
                 id="user2"
                 type="number"
-                name ="telefono"
-                onChange={handleInputChange}
+                name ="rcontraseña"
                 className="card-input"
-                placeholder="Ingrese Número Telefónico"
+                placeholder="Repita la Contraseña"
               />
   
   
               <div className="boton-registro">
                 <button className="card-button3" type="submit">
-                  <span>Registrar</span>
+                  <span>Agregar al Proyecto</span>
                 </button>
               </div>
             </form>
@@ -67,4 +71,4 @@ function Clientes() {
     )
 }
 
-export default Clientes
+export default Colaborador

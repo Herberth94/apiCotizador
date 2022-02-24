@@ -11,18 +11,23 @@ import Header from './Header';
 import PublicRoutes from "./Components/PublicRoutes";
 
 
-import Modal from "./Components/Modal";
+import CambioContraseña from "./Components/CambioContraseña";
 import Administrador from "./Components/Administrador";
 import MenuAdministrador from "./Administrator/MenuAdministrador";
 import Registro from './Administrator/Registro';
 import Clientes from "./Administrator/Clientes";
 import Usuarios from "./Administrator/Usuarios";
+import Colaboradores from "./Administrator/Colaborador";
 import AdministrarClientes from "./Administrator/AdministrarClientes";
 import PTN_BOM from "./Administrator/PTN_BOM";
 import Proyectos from "./Administrator/Proyectos";
 import PropuestaEconomica from "./Administrator/PropuestEconomica";
 import AM from "./Administrator/AM";
 import Proporcionalidad from "./Administrator/Proporcionalidad";
+
+import ExportarPDF from "./Administrator/ExportarPDF";
+
+
 
 
 
@@ -62,16 +67,25 @@ function App() {
           <Administrador  path="/" component={Header} />
 
 
+
+
+          <Administrador exact path="/" component={CambioContraseña} />
+
+
+          
          <Administrador exact path="/registrar" component={Registro} />
          <Administrador exact path="/registrar-cliente" component={Clientes} />
          <Administrador exact path="/usuarios" component={Usuarios} />
+         <Administrador exact path="/agregar-colaborador" component={Colaboradores} />
          <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />
          <Administrador exact path="/ptn" component={PTN_BOM} />
          <Administrador exact path="/proyectos" component={Proyectos} />
-         <Administrador exact path="/propuesta-economica" component={PropuestaEconomica} />
+         <Administrador exact path="/propuesta-economica" component={ExportarPDF} />
           <Administrador exact path="/am" component={AM} /> 
  
          <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
+
+         
 
          
         {/* Rutas Preventa  */}

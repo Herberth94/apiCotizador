@@ -108,9 +108,7 @@ function AdministrarClientes() {
         </div>
         {/*================= Botón Mostrar/Ocultar Lista =======================*/}
         <div>
-          <button
-            className="btn btn-primary modificar"
-            type="button"
+          <button className="btn btn-primary modificar" type="button"
             onClick={() => {
               llamadoCliente();
             }}
@@ -134,6 +132,7 @@ function AdministrarClientes() {
                     <th>ID</th>
                     <th>Cliente</th>
                     <th>Razón Social</th>
+                    <th>Teléfono</th>
                     <th>Eliminar</th>
                     <th>Modificar</th>
                   </tr>
@@ -161,6 +160,18 @@ function AdministrarClientes() {
                           name="razon_social"
                         ></input>{" "}
                       </td>
+{/* CHECAR NUMERO TELEFONICO */}
+                      <td>
+                        <input
+                          className="input-name"
+                          defaultValue={listaClientes[key].razon_social}
+                          onChange={handleInputChange}
+                          disabled={validar[0][key]}
+                          name="telefono"
+                        ></input>{" "}
+                      </td>
+
+
                       <td>
                         <button
                           className="btn btn-primary eliminar"

@@ -279,7 +279,7 @@ input{
 		 bottom: 0px;
 	}
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 960px) {
 
   
  .container .box .title {
@@ -294,23 +294,13 @@ input{
  .container .box .title h1 {
 
 	 color: rgb(0, 0, 0);
-	 font-size: 32px;
-	 -webkit-animation: mainFadeIn 2s forwards;
-	 -o-animation: mainFadeIn 2s forwards;
-	 animation: mainFadeIn 2s forwards;
-	 animation-delay: 1.6s;
-	 opacity: 0;
-	 display: flex;
-	 align-items: baseline;
-	 position: relative;
-
-   margin-left: 20px;
+	 font-size: 26px;
+text-align: center;
 }
 
  .container .box .role p {
 
-
-   margin-left: 100px;
+text-align: center;
    
 }
 
@@ -320,7 +310,7 @@ input{
 
 /* ================================== Transparencia fondo menus ==================================*/
 .contenido-usuarios{ 
-	background-color:  #ffffffe0;
+	background-color:  #ffffff;
   }
 
   .tablas{

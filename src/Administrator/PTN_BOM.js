@@ -7,7 +7,17 @@ import Table from 'react-bootstrap/Table'
 
 function PTN_BOM() {
 
+  {
+    /*========================== Mostrar Ocultar Tabla ==========================*/
+  }
+  const [show, setShow] = useState(true);
+  {
+    /*========================== Mostrar Ocultar Botón ==========================*/
+  }
+  const [show2, setShow2] = useState(true);
 
+
+/*======================  Operaciones ==============================*/
 const { total, precio_u,descuento_1,  total_1   }= operaciones();
 const [datos,setDatos] = useState ({
   clave:"",
@@ -79,17 +89,25 @@ useEffect(() =>{
                     </div>
                 </div>
 
-        {/*  Nuevo Proyecto*/}
-        <div className="boton-ptn"  >
-          <button className="btn btn-success"> + Nuevo Proyecto</button>
-        </div>
-        <form  >
+ 
 
-        <div className="opciones-proyecto">
-         
-          <Table responsive id="nombreDiv">
+  {/*================= Nuevo Proyecto ==================*/}
+
+  {/*================= Botón Mostrar/Ocultar Lista ==================*/}
+  <div>
+                    <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show); }}>  {show ? '+ Agregrar Nuevo Proyecto' : 'Ocultar Datos '} </button>
+                    {show ? (
+                        <div >
+   {/*=================== Ocultar Lista DIV  =====================*/}
+                        </div>
+                    ) : (
+                        <div className="nuevo-proyecto">
+  {/*=================== Botón Mostrar Lista DIV====================*/}
+
+<br/>
+
+  <Table responsive id="nombreDiv">
             <thead>
-
               <tr className="titulo-tabla-usuarios">
                 <th>Clave</th>
                 <th>Descripción</th>
@@ -124,27 +142,121 @@ useEffect(() =>{
                 </select>
                 </td>
               </tr>
-
-              <tr className="boton-agregar-proyecto">
-                <td></td>
-                <td></td>
-                <td>   <button className="btn btn-primary"> Añadir </button>    </td>
-              </tr>
-
             </tbody>
+
+            
           </Table>
 
+          <button className="btn btn-success "> agregar Proyecto </button> 
+               <br />
+ 
+                        </div>
+                    )}
+                </div>
 
+
+
+<br/>
+
+  {/*=================Continuar Proyecto ==================*/}
+
+  {/*================= Botón Mostrar/Ocultar Lista ==================*/}
+  <div>
+                    <button className="btn btn-primary continuar" type="button" onClick={() => { setShow2(!show2); }}>  {show2 ? 'Continuar Proyecto' : 'Ocultar Datos '} </button>
+                    {show2 ? (
+                        <div >
+   {/*=================== Ocultar Lista DIV  =====================*/}
+                        </div>
+                    ) : (
+                        <div className="nuevo-proyecto">
+  {/*=================== Botón Mostrar Lista DIV====================*/}
+
+<br/>
+
+  <Table responsive id="nombreDiv">
+            <thead>
+              <tr className="titulo-tabla-usuarios">
+                <th>Clave</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+              <tr className="">
+               
+                <td>
+                  <input className="agregar"
+                    type="text"
+                    name="clave"
+                    onChange={handleInputChange}
+                    placeholder="ingrese Clave" />
+
+                </td>
+
+              </tr>
+            </tbody>
+
+            
+          </Table>
+
+          <button className="btn btn-success "> Aceptar </button> 
+               <br />
+ 
+                        </div>
+                    )}
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <br/>
+        
           <div className="partida">
+
+
+            
+                {/*============= Titulo Animación =============*/}
+                <div className="container">
+                    <div className="box">
+
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 >Datos PTN<span></span></h1>
+                        </div>
+                    </div>
+                </div>
+
           <input className="agregar"
                  type="text"
                  name="Partida"
                  onChange={handleInputChange}
                  placeholder="ingrese Nombre Partida" />
+              <br/>
+              <br/>
+         <input className="agregar"
+                 type="text"
+                 name="Partida"
+                 onChange={handleInputChange}
+                 placeholder="ingrese Descripción Partida" />
                  <br/>
                  <br/>
-            <button className="btn btn-primary">
-              agregar Partida </button>       
+              
+            <button className="btn btn-success">
+              agregar Datos Partida </button>       
               <br/>
               <br/>
           </div>
@@ -333,16 +445,11 @@ useEffect(() =>{
          
 
 
-        </div>
-
-
         {/* Finalizar */}
         <div className="boton-ptn-finalizar"  >
           <button className="btn btn-danger" onClick={enviarDatos}> Finalizar </button>
         </div>
-        </form>
-
-
+    
       </div>
     </div>
   )

@@ -61,10 +61,21 @@ function archivo() {
 
           </li>
 
+          <li className="has-subnav">
+            <a href="/agregar-colaborador">
+              <i className="bi bi-people fa-2x"></i>
+              <span className="nav-text">
+             Añadir Colaborador
+              </span>
+            </a>
+
+          </li>
+
+
 
           <li className="has-subnav">
             <a href="/usuarios">
-            <i class="bi bi-person-video2"></i>
+            <i className="bi bi-person-video2"></i>
               <span className="nav-text">
                 Administrar Usuarios
               </span>
@@ -75,7 +86,7 @@ function archivo() {
 
           <li className="has-subnav">
             <a href="/administrar-clientes">
-            <i class="bi bi-person-video2"></i>
+            <i className="bi bi-person-video2"></i>
               <span className="nav-text">
                 Administrar Clientes
               </span>

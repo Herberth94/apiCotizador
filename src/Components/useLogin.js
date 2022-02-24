@@ -30,7 +30,6 @@ export const useLogin = () => {
         console.log(cookies.get('rol'))
          window.location.href="../Components/ValidaRol.js";
 
-
         //console.log(send2.id_usuario);
         alert('Información valida');
 }

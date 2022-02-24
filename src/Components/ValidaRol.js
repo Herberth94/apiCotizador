@@ -4,7 +4,7 @@ const cookies = new Cookies();
 export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
-export let i = "global";
+export let i = "";
 export const validator  = "administrador";
 
 
