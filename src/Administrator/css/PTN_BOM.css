@@ -1,12 +1,6 @@
 
 
-.container .box {
-    height: 110px;
-}
 
-.container .box .role {
-  margin-top: 10px;
-}
 .agregar::placeholder  { color: rgba(0, 0, 0, 0.363); 
 
     background-color: #fff;
@@ -105,3 +99,23 @@
       width: 100%;
       background-color: rgb(196, 108, 36);
     }
+
+    @media(min-width: 300px){
+      .container .box {
+        height: 110px;
+    }
+    
+    .container .box .role {
+      margin-top: 10px;
+    }
+  }
+
+  @media(min-width: 769px){
+    .container .box {
+      height: 100px;
+  }
+  
+  .container .box .role {
+    margin-top: -10px;
+  }
+  }
