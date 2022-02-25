@@ -25,10 +25,10 @@ import PropuestaEconomica from "./Administrator/PropuestEconomica";
 import AM from "./Administrator/AM";
 import Proporcionalidad from "./Administrator/Proporcionalidad";
 
-import ExportarPDF from "./Administrator/ExportarPDF";
+ import ExportarPDF from "./Administrator/ExportarPDF";
 
 
-
+ 
 
 
 //Preventa Private
@@ -64,9 +64,9 @@ function App() {
 
           {/* Rutas Administrador  */}
           <Administrador path="/" component={MenuAdministrador} />
-          <Administrador  path="/" component={Header} />
+       {/*    <Administrador  path="/" component={Header} />
 
-
+ */}
 
 
           <Administrador exact path="/" component={CambioContraseña} />
@@ -79,8 +79,7 @@ function App() {
          <Administrador exact path="/agregar-colaborador" component={Colaboradores} />
          <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />
          <Administrador exact path="/ptn" component={PTN_BOM} />
-         <Administrador exact path="/proyectos" component={Proyectos} />
-         <Administrador exact path="/propuesta-economica" component={ExportarPDF} />
+             <Administrador exact path="/propuesta-economica" component={ExportarPDF} /> 
           <Administrador exact path="/am" component={AM} /> 
  
          <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
