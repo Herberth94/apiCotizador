@@ -22,12 +22,14 @@ div.subir_dolar{
     background-color: rgb(0, 0, 0);
 }
 
+
+/* tabla de proporcionalidad titulo y totales */
 .azul{
-    background-color: rgb(89, 146, 201);
+    background-color: #1a0257;
     COLOR: WHITE;
 }
 
 .total{
-    background-color: rgb(27, 80, 17);
+    background-color: #3c1053 ;
     color: aliceblue;
 }

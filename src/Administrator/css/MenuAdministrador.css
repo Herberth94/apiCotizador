@@ -136,7 +136,7 @@ color: #ff0000;
 }
 
 i.fa.fa-home{
-color: #91bdff;
+color: #bad4fc;
 }
 
 .administrador-user{
@@ -171,15 +171,16 @@ i.bi.bi-people.fa-2x{
 }
 /*============================ PTN BOM ============================ */
 i.bi.bi-file-earmark-spreadsheet{
-  color: #ff5100;  
+  color: #a8dcff;  
 }
 /* AM */
 .bi.bi-check2-circle.fa-2x{
-  color: #ffeb3b;
+  color: #e59af2e0;
 }
 
 i.bi.bi-file-earmark-break{
-  color: #ffae7d;  
+  color: hsl(242deg 88% 77%);
+  
 }
 
 i.bi.fa-solid.fa-chart-line{
@@ -187,7 +188,7 @@ i.bi.fa-solid.fa-chart-line{
 }
 
 i.bi.bi-briefcase{
-  color: #1eff00;  
+  color: #8bffc5;  
 }
 
 

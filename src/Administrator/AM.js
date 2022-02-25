@@ -65,7 +65,7 @@ function Am() {
                 <div className="busqueda-proyectos">
                     <Table responsive id="nombreDiv">
                         <thead>
-                            <tr className="titulo-tabla-usuarios">
+                            <tr className="azul">
                                 <th>Búsqueda por Atributo</th>
                                 <th>Clave</th>
                                 <th></th>
@@ -112,7 +112,7 @@ function Am() {
                 </div>
                 <Table responsive id="nombreDiv">
                     <thead>
-                        <tr className="titulo-tabla-usuarios">
+                        <tr className="azul">
                             <th>Descripción</th>
                             <th>Total MXN</th>
                             <th>Total USD</th>
@@ -132,25 +132,25 @@ function Am() {
                             <td>100 </td>
                             <td>132.525</td>                         
                         </tr>
-                        <tr className="azul">
+                        <tr className="par">
                             <td>Capacitación</td>
                             <td>0</td>
                             <td>0 </td>
                             <td>0</td>                
                         </tr>
-                        <tr className="azul">
+                        <tr className="par">
                             <td>Accesorios</td>
                             <td>0</td>
                             <td>0 </td>
                             <td>0</td>                 
                         </tr>
-                        <tr className="azul">
+                        <tr className="par">
                             <td>Servicios PTN</td>
                             <td>0</td>
                             <td>0 </td>
                             <td>0</td>                
                         </tr>
-                    <tr className="azul">
+                    <tr className="par">
                             <td>Mesa de Ayuda</td>
                             <td>200</td>
                             <td>0 </td>

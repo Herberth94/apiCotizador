@@ -32,7 +32,7 @@ function Proporcionalidad() {
             <div className="busqueda-proyectos">
                 <Table responsive id="nombreDiv">
                     <thead>
-                        <tr className="titulo-tabla-usuarios">
+                        <tr className="azul">
                             <th>Búsqueda por Atributo</th>
                             <th>Clave</th>
                             <th></th>
@@ -80,19 +80,19 @@ function Proporcionalidad() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="">
+                    <tr className= "par" >
                         <td>Capacitación</td>
                         <td>160003</td>
                     </tr>
-                    <tr className="color">
+                    <tr className="color impar">
                         <td>Accesorios</td>
                         <td>80807</td>
                     </tr>
-                    <tr className="">
+                    <tr className="par">
                         <td>Servicios PTN</td>
                         <td>371.36</td>
                     </tr>
-                    <tr className="">
+                    <tr className="impar">
                         <td>Mesa de Ayuda</td>
                         <td>371.36</td>
                     </tr>
@@ -119,7 +119,7 @@ function Proporcionalidad() {
 
                 <Table responsive id="nombreDiv">
                     <thead>
-                        <tr className="titulo-tabla-usuarios">
+                        <tr className="azul">
                             <th>Descripción</th>
                             <th>PRECIO VENTA</th>
                             <th>%</th>
@@ -128,7 +128,7 @@ function Proporcionalidad() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="">
+                        <tr className="par">
                             <td>Swithches</td>
                             <td>1073.98</td>
                             <td>24% </td>
@@ -138,7 +138,7 @@ function Proporcionalidad() {
 
                         </tr>
 
-                        <tr className="">
+                        <tr className="impar">
                             <td>Routers</td>
                             <td>1073.98</td>
                             <td>24% </td>
@@ -148,7 +148,7 @@ function Proporcionalidad() {
 
                         </tr>
 
-                        <tr className="">
+                        <tr className="par">
                             <td>Servidores</td>
                             <td>1073.98</td>
                             <td>24% </td>
@@ -159,7 +159,7 @@ function Proporcionalidad() {
                         </tr>
 
 
-                        <tr className="">
+                        <tr className="impar">
                             <td>Consultoría</td>
                             <td>1073.98</td>
                             <td>24% </td>
@@ -170,7 +170,7 @@ function Proporcionalidad() {
                         </tr>
 
 
-                        <tr className="green">
+                        <tr className="total">
                             <td>Totales</td>
                             <td>1073.98</td>
                             <td>24% </td>
