@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2022 a las 01:18:53
+-- Tiempo de generación: 25-02-2022 a las 18:08:49
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -93,7 +93,7 @@ CREATE TABLE `colaboradores` (
 
 CREATE TABLE `costos_indirectos` (
   `ci_id` int(10) NOT NULL,
-  `ci_porcentajes` float NOT NULL
+  `ci_porcentajes` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -132,7 +132,7 @@ CREATE TABLE `estado` (
 
 CREATE TABLE `marca` (
   `marca_id` int(10) NOT NULL,
-  `marca_nombre` varchar(255) NOT NULL
+  `marca_nombre` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -143,7 +143,7 @@ CREATE TABLE `marca` (
 
 CREATE TABLE `moneda` (
   `moneda_id` int(10) NOT NULL,
-  `moneda_nombre` varchar(20) NOT NULL
+  `moneda_nombre` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -155,8 +155,7 @@ CREATE TABLE `moneda` (
 CREATE TABLE `partida` (
   `partida_id` bigint(20) NOT NULL,
   `partida_nombre` varchar(255) DEFAULT NULL,
-  `partida_descripcion` varchar(255) DEFAULT NULL,
-  `partida_id_sp` bigint(20) NOT NULL
+  `partida_descripcion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -167,8 +166,8 @@ CREATE TABLE `partida` (
 
 CREATE TABLE `pp` (
   `pp_id` bigint(20) NOT NULL,
-  `pp_id_proyecto` bigint(20) NOT NULL,
-  `pp_id_partida` bigint(20) NOT NULL
+  `pp_id_proyecto` bigint(20) DEFAULT NULL,
+  `pp_id_partida` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -208,8 +207,8 @@ CREATE TABLE `proveedor` (
 
 CREATE TABLE `proveedor_marca` (
   `pm_id` int(10) NOT NULL,
-  `pm_id_proveedor` int(10) NOT NULL,
-  `pm_id_marca` int(10) NOT NULL
+  `pm_id_proveedor` int(10) DEFAULT NULL,
+  `pm_id_marca` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -220,10 +219,10 @@ CREATE TABLE `proveedor_marca` (
 
 CREATE TABLE `proyecto` (
   `proyecto_id` bigint(20) NOT NULL,
-  `proyecto_clave` varchar(255) NOT NULL,
-  `proyecto_descripcion` text NOT NULL,
-  `proyecto_id_cliente` int(11) NOT NULL,
-  `proyecto_id_cat_c_a_sptn_ma` bigint(20) NOT NULL
+  `proyecto_clave` varchar(255) DEFAULT NULL,
+  `proyecto_descripcion` text DEFAULT NULL,
+  `proyecto_id_cliente` int(11) DEFAULT NULL,
+  `proyecto_id_cat_c_a_sptn_ma` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -234,8 +233,8 @@ CREATE TABLE `proyecto` (
 
 CREATE TABLE `psp` (
   `psp_id` bigint(20) NOT NULL,
-  `psp_id_partida` bigint(20) NOT NULL,
-  `psp_id_sp` bigint(20) NOT NULL
+  `psp_id_partida` bigint(20) DEFAULT NULL,
+  `psp_id_sp` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -246,16 +245,16 @@ CREATE TABLE `psp` (
 
 CREATE TABLE `servicio_producto` (
   `sp_id` bigint(20) NOT NULL,
-  `sp_no_parte` bigint(20) NOT NULL,
-  `sp_descripcion` varchar(255) NOT NULL,
-  `sp_meses` float NOT NULL,
-  `sp_semanas` float NOT NULL,
-  `sp_id_precio` bigint(20) NOT NULL,
-  `sp_id_proveedor` int(10) NOT NULL,
-  `sp_id_categoria` int(10) NOT NULL,
-  `sp_comentarios` text NOT NULL,
-  `sp_id_am` int(10) NOT NULL,
-  `sp_id_costos_indirectos` int(10) NOT NULL
+  `sp_no_parte` bigint(20) DEFAULT NULL,
+  `sp_descripcion` varchar(255) DEFAULT NULL,
+  `sp_meses` float DEFAULT NULL,
+  `sp_semanas` float DEFAULT NULL,
+  `sp_id_precio` bigint(20) DEFAULT NULL,
+  `sp_id_proveedor` int(10) DEFAULT NULL,
+  `sp_id_categoria` int(10) DEFAULT NULL,
+  `sp_comentarios` text DEFAULT NULL,
+  `sp_id_am` int(10) DEFAULT NULL,
+  `sp_id_costos_indirectos` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -269,7 +268,7 @@ CREATE TABLE `usuarios` (
   `rol` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `estado_login` tinyint(1) NOT NULL
+  `estado_login` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -277,7 +276,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `rol`, `email`, `password`, `estado_login`) VALUES
-(1, 'preventa', 'car', '1234', 0);
+(1, 'preventa', 'car', '1234', b'0');
 
 -- --------------------------------------------------------
 
