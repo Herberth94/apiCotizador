@@ -22,5 +22,9 @@
     
 
         .btn.btn-primary.detalles{
-background-color: rgb(55, 158, 14);
+background-color: rgb(39 123 6);
         }
+
+        .btn.btn-primary.detalles:hover{
+            background-color: rgb(71 214 15);
+                    }

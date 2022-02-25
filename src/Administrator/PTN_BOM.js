@@ -95,7 +95,7 @@ useEffect(() =>{
 
   {/*================= Botón Mostrar/Ocultar Lista ==================*/}
   <div>
-                    <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show); }}>  {show ? '+ Agregrar Nuevo Proyecto' : 'Ocultar Datos '} </button>
+                    <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show); }}>  {show ? '+ Agregar Nuevo Proyecto' : 'Ocultar Datos '} </button>
                     {show ? (
                         <div >
    {/*=================== Ocultar Lista DIV  =====================*/}
@@ -147,7 +147,7 @@ useEffect(() =>{
             
           </Table>
 
-          <button className="btn btn-success "> agregar Proyecto </button> 
+          <button className="btn btn-success "> Agregar Proyecto </button> 
                <br />
  
                         </div>
@@ -256,7 +256,7 @@ useEffect(() =>{
                  <br/>
               
             <button className="btn btn-success">
-              agregar Datos Partida </button>       
+              + Agregar Datos Partida </button>       
               <br/>
               <br/>
           </div>
@@ -392,7 +392,7 @@ useEffect(() =>{
                 <th>Marca</th>
                 <th>Proveedor</th>
                 <th>Comentarios </th>
-                <th>Categoria </th>
+                <th>Categoría </th>
                 <th> - </th>
 
               </tr>
@@ -419,8 +419,8 @@ useEffect(() =>{
                 </td>
 
                 <td>     <select id="lista-opciones"  onChange={handleInputChange}>
-                  <option value="lista 1">Técnologia Principal</option>
-                  <option value="lista 2">Sub-tecnlogía</option>
+                  <option value="lista 1">Tecnología Principal</option>
+                  <option value="lista 2">Sub-tecnología</option>
                   <option value="lista 3">Equipamiento</option>
                   <option value="lista 1">Licencia</option>
                   <option value="lista 2">Soporte</option>
@@ -436,7 +436,7 @@ useEffect(() =>{
 
 
                 <td>
-                  <button className="btn btn-primary"> agregar</button>
+                  <button className="btn btn-primary"> Agregar</button>
                 </td>
               </tr>
 

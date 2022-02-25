@@ -10,7 +10,7 @@
 }
 
 .titulo-tabla-usuarios{
-background-color:#38153E;
+background-color:#3c1053;
 color: rgb(255, 255, 255);
 
 
@@ -39,9 +39,12 @@ color: rgb(255, 255, 255);
  
     background-color: rgb(129, 11, 11);
 }
-.btn.btn-primary.modificar{
+.btn.btn-primary.modificar.usuarios{
  
-    background-color: rgb(75, 109, 224);
+    background-color: rgb(224 77 16);
+}
+.btn.btn-primary.modificar.usuarios:hover{
+    background-color: rgb(255, 164, 45);
 }
 
 .btn.btn-primary.eliminar:hover {

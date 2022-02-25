@@ -130,7 +130,8 @@ function archivo() {
           </li>
           <li className="has-subnav">
             <a href="/proporcionalidad">
-            <i className="bi bi-check-circle-fill fa-2x"></i>
+            <i className="bi fa-solid fa-chart-line"></i>
+            
               <span className="nav-text">
             Proporcionalidad
               </span>

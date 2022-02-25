@@ -55,7 +55,7 @@ function Proyectos() {
                                     <input className="agregar"
                                         type="text"
                                         name="Ingrese Parametro"
-                                        placeholder="busqueda" />
+                                        placeholder="Búsqueda" />
                                 </td>
                                 <td>
                                     <button className="btn btn-primary"> Buscar</button>
@@ -101,8 +101,8 @@ function Proyectos() {
             <td>{listaProyectos[key].clave}</td>  
             <td>{listaProyectos[key].descripcion}</td>  
             <td>{listaProyectos[key].status}</td>  
-            <td><button className="btn btn-primary eliminar" > borrar</button></td>
-            <td><button className="btn btn-primary modificar" >Actualizar</button></td> 
+            <td><button className="btn btn-primary eliminar" > Eliminar</button></td>
+            <td><button className="btn btn-primary modificar usuarios" >Modificar</button></td> 
             <td><button className="btn btn-primary detalles" >Ver más</button></td> 
         </tr>  
        ))

@@ -50,7 +50,7 @@
       font-size: 20px;
       font-weight: bold;
       text-align: center; 
-       background: #6786b8;
+       background: #6787B7;
     
     }
     
@@ -61,7 +61,7 @@
       font-weight: bold;
       text-align: center;
     
-      background: #6786b8;
+      background: #6787B7;
     
     }
     select#lista-proyectos{
@@ -95,19 +95,44 @@
 
     }
 
+    .btn.btn-primary.continuar{
+      background-color: #8c6583;
+
+    }
+
     .btn.btn-primary{
       width: 100%;
-      background-color: rgb(196, 108, 36);
+      background-color: #198754;
+      border-color: #198754;
+
     }
 
-    .btn.btn-primary.continuar{
-      width: 100%;
-      background-color: rgb(36, 159, 196);
-    }
-
-
-    .nuevo-proyecto{
-      background-color: rgba(189, 197, 199, 0.219);
-    }
-
+    .btn.btn-primary.modificar{
+      background-color: rgb(75, 109, 224);
+  }
+  .btn.btn-primary.modificar.usuarios{
   
+      background-color: rgb(224 77 16);
+  }
+  .btn.btn-primary.modificar.usuarios:hover{
+      background-color: rgb(255, 164, 45);
+  }
+    @media(min-width: 300px){
+      .container .box {
+        height: 110px;
+    }
+    
+      .container .box .role {
+        margin-top: 10px;
+      }
+  }
+
+  @media(min-width: 769px){
+    .container .box {
+      height: 100px;
+  }
+  
+    .container .box .role {
+      margin-top: -10px;
+    }
+  }

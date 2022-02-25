@@ -136,12 +136,12 @@ color: #ff0000;
 }
 
 i.fa.fa-home{
-color: rgb(0, 162, 255);
+color: #91bdff;
 }
 
 .administrador-user{
 	background-color:  #6786b8;
-  color: #00ffb3;
+  color: #25ffbe;
   margin-bottom: 30px;
 }
 
@@ -152,27 +152,38 @@ font-weight: 300;
 
 }
 
+.bi.bi-person-circle.fa-2x{
+  color: #91bdff;
+}
 
 /*============================ Agregar Clientes y Usuarios ============================ */
 i.bi.bi-person-plus{
-  color: #00ffb3;  
+  color: #00d9ff;  
 }
 
 /*============================ Administrador usuarios y Cliente ============================ */
 i.bi.bi-person-video2{
   color: #00d9ff;  
 }
+/*============================ colaborador ============================ */
+i.bi.bi-people.fa-2x{
+  color: #00d9ff
+}
 /*============================ PTN BOM ============================ */
 i.bi.bi-file-earmark-spreadsheet{
   color: #ff5100;  
 }
-
-i.bi.bi-file-earmark-break{
-  color: #00d9ff;  
+/* AM */
+.bi.bi-check2-circle.fa-2x{
+  color: #ffeb3b;
 }
 
-i.bi.bi-check2-circle{
-  color: #ffee00;  
+i.bi.bi-file-earmark-break{
+  color: #ffae7d;  
+}
+
+i.bi.fa-solid.fa-chart-line{
+  color: #0bc8b6;  
 }
 
 i.bi.bi-briefcase{
