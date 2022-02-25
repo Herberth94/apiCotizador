@@ -36,14 +36,21 @@ class ExportarPDF extends React.Component {
 let dia = "01";
 let mes = "septiembre"
 let año = "2022";
-
 //Datos Proyectos
+let claveProyecto = "2303";
+let organizacion = "Delfos369";
+let nombreProyecto = "Titulo Proyecto";
+//Atención 
+
+let nombreContacto = "Compras OIEGSA";
 
 
     const title = "PROPUESTA ECONÓMICA";
     const fecha = "Ciudad de México a "  + dia + " " + " de " + mes + " " + " de " + " " + año;
-    const proyecto = "1582 OIEGSA";
-    const atencion = "Marco Banda";
+    const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
+    const atencion = "Atención "  + nombreContacto;
+
+
     const importe = "Compras OIEGSA";
     const condiciones = "Compras OIEGSA";
 

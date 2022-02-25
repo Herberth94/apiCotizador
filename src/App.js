@@ -64,9 +64,8 @@ function App() {
 
           {/* Rutas Administrador  */}
           <Administrador path="/" component={MenuAdministrador} />
-       {/*    <Administrador  path="/" component={Header} />
+           <Administrador  path="/" component={Header} />
 
- */}
 
 
           <Administrador exact path="/" component={CambioContraseña} />
