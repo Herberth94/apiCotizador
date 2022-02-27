@@ -26,20 +26,59 @@ class ExportarPDF extends React.Component {
     const marginLeft = 40;
     const doc = new jsPDF(orientation, unit, size);
 
-    doc.setFontSize(15);
+  
+    doc.setFontSize(12);
+    doc.setTextColor(0,85,136);
+    doc.setFont("Arial");
+  
+
+//Datos Fechas
+let dia = "01";
+let mes = "septiembre"
+let año = "2022";
+//Datos Proyectos
+let claveProyecto = "2303";
+let organizacion = "Delfos369";
+let nombreProyecto = "Titulo Proyecto";
+//Atención 
+
+let nombreContacto = "Compras OIEGSA";
+
 
     const title = "PROPUESTA ECONÓMICA";
+    const fecha = "Ciudad de México a "  + dia + " " + " de " + mes + " " + " de " + " " + año;
+    const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
+    const atencion = "Atención "  + nombreContacto;
+
+
+    const importe = "Compras OIEGSA";
+    const condiciones = "Compras OIEGSA";
+
+
+    
     const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"]];
 
     const data = this.state.datos.map(elt=> [elt.partida, elt.servicio, , elt.descripcion , elt.dispositivos, elt.subtotal]);
 
     let content = {
-      startY: 50,
+      startY: 150,
       head: headers,
       body: data
     };
 
-    doc.text(title, marginLeft, 40);
+
+
+
+
+    doc.text(title, marginLeft, 30);
+    doc.text(fecha, marginLeft, 50 );
+    doc.text(proyecto, marginLeft, 70 );
+    doc.text(atencion, marginLeft, 90 );
+    doc.text(importe, marginLeft, 110 );
+    doc.text(condiciones, marginLeft, 130 );
+
+
+    
     doc.autoTable(content);
     doc.save("PropuestaEconómica.pdf")
   }
