@@ -5,16 +5,15 @@ import axios from "axios";
 import { useRegistro } from "../Components/ModificarCLientes";
 
 function AdministrarClientes() {
-  {
+  
     /*========================== Mostrar Ocultar Tabla ==========================*/
-  }
+  
   const [show, setShow] = useState(false);
-  {
+  
     /*========================== Mostrar Ocultar Botón ==========================*/
-  }
+  
   const [show2, setShow2] = useState(true);
-
-  const [keyRegistro, SetKeyregistro] = useState("");
+  const [keyRegistro, SetKeyregistro] = useState('');
   const [listaClientes, setlistaClientes] = useState([]);
   const [validar, setvalidar] = useState([]);
   const { actualizacion, handleInputChange } = useRegistro();
@@ -45,7 +44,7 @@ function AdministrarClientes() {
       "¿Seguro que quieres borrar este registro?"
     );
     if (confirmacion) {
-      console.log(dato);
+      //console.log(dato);
       const respuesta = await axios.delete(
         `http://localhost:4001/api/cotizador/clientes/delete/${dato}`
       );
@@ -68,20 +67,28 @@ function AdministrarClientes() {
     const respuesta = await axios.get(
       "http://localhost:4001/api/cotizador/clientes/view"
     );
-    console.log(respuesta.data.reSql);
+    //console.log(respuesta.data.reSql);
     let i = Object.keys(respuesta.data.reSql);
     for (let x = 0; x < i.length; x++) {
       newValidar[x] = true;
     }
     setvalidar([...validar, newValidar]);
     setlistaClientes(respuesta.data.reSql);
+    
   };
   const envioData = (datos, key) => {
-    setShow(!show);
-    //console.log(key);
-    actualizacion(datos[key]);
-    //window.location.reload();
-    actulizarPage(key);
+    console.log(datos);
+    if(key == '')
+    {
+         setShow(!show);
+        //console.log("prueba");
+    }
+    else{
+        setShow(!show);
+        actualizacion(datos[key]);
+        //window.location.reload();
+        actulizarPage(key);
+    }
   };
   const actulizarPage = (key) => {
     enable(key);
@@ -140,8 +147,8 @@ function AdministrarClientes() {
                 <tbody>
                   {/*=================== Contenido Tabla Clientes =================*/}
                   {Object.keys(listaClientes).map((key) => (
-                    <tr key={listaClientes[key].id_cliente}>
-                      <td>{listaClientes[key].id_cliente}</td>
+                    <tr key={listaClientes[key].cliente_id}>
+                      <td>{listaClientes[key].cliente_id}</td>
                       <td>
                         <input
                           className="input-name"
@@ -164,7 +171,7 @@ function AdministrarClientes() {
                       <td>
                         <input
                           className="input-name"
-                          defaultValue={listaClientes[key].razon_social}
+                          defaultValue={listaClientes[key].telefono}
                           onChange={handleInputChange}
                           disabled={validar[0][key]}
                           name="telefono"
