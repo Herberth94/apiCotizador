@@ -53,17 +53,18 @@ let claveProyecto = "2303";
 let organizacion = "Delfos369";
 let nombreProyecto = "Titulo Proyecto";
 //Atención 
-
 let nombreContacto = "Marco Banda, Compras OIEGSA";
 
 
     const title = "PROPUESTA ECONÓMICA";
     const fecha = "Ciudad de México a "  + dia + " " + " de " + mes + " " + " de " + " " + año;
-
+    const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
+    const atencion = "Atención "  + nombreContacto;
     const comentarios = "Propuesta económica correspondiente al servicio de TV de paga.";
     const importe = "IMPORTE: SETENTA Y CUATRO MIL DOSCIENTOS OCHENTA 24/100 ANTES DE IVAOIEGSA";
     const cuota = "CUOTA MENSUAL";
     const importeMensual = "IMPORTE MENSUAL UN DISPOSITIVO: SEIS MIL CIENTO NOVENTA PESOS 02/100 ANTES DE IVA"
+
     const condiciones = "CONDICIONES COMERCIALES"
     const vigencia= "La vigencia de la presente propuesta es de 10 días naturales."
     const propuesta="La propuesta contempla el servicio para 9 Pantallas mensual"
@@ -76,13 +77,8 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
     const encargada="ESMERALDA RODRÍGUEZ MEDELLÍN"
     const cargo ="EJECUTIVA DE CUENTA"
     const empresa="PALO TINTO NETWORKS SA DE CV"
-    const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
-    const atencion = "Atención "  + nombreContacto;
 
-
-    
-    
-
+ 
     const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"]];
 
     const data = this.state.datos.map(elt=> [elt.partida, elt.servicio, elt.descripcion , elt.dispositivos, elt.subtotal]);
