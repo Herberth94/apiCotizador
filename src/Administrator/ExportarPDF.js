@@ -48,14 +48,18 @@ class ExportarPDF extends React.Component {
 let dia = "01";
 let mes = "septiembre"
 let año = "2022";
-
 //Datos Proyectos
+let claveProyecto = "2303";
+let organizacion = "Delfos369";
+let nombreProyecto = "Titulo Proyecto";
+//Atención 
+
+let nombreContacto = "Marco Banda, Compras OIEGSA";
 
 
     const title = "PROPUESTA ECONÓMICA";
     const fecha = "Ciudad de México a "  + dia + " " + " de " + mes + " " + " de " + " " + año;
-    const proyecto = "Proyecto: 1582-OIEGSA-Servicio de SKY 2021";
-    const atencion = "Atención: Marco Banda, Compras OIEGSA";
+
     const comentarios = "Propuesta económica correspondiente al servicio de TV de paga.";
     const importe = "IMPORTE: SETENTA Y CUATRO MIL DOSCIENTOS OCHENTA 24/100 ANTES DE IVAOIEGSA";
     const cuota = "CUOTA MENSUAL";
@@ -72,6 +76,12 @@ let año = "2022";
     const encargada="ESMERALDA RODRÍGUEZ MEDELLÍN"
     const cargo ="EJECUTIVA DE CUENTA"
     const empresa="PALO TINTO NETWORKS SA DE CV"
+    const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
+    const atencion = "Atención "  + nombreContacto;
+
+
+    
+    
 
     const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"]];
 

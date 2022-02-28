@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRegistro } from '../Components/ModificarUsuarios';
 import Table from 'react-bootstrap/Table'
 import axios from 'axios';
@@ -6,9 +6,9 @@ import axios from 'axios';
 
 function Usuarios() {
 
-    {  /*========================== Mostrar Ocultar Tabla ==========================*/  }
+     /*========================== Mostrar Ocultar Tabla ==========================*/  
     const [show, setShow] = useState(false);
-    { /*========================== Mostrar Ocultar Botón ==========================*/}
+    /*========================== Mostrar Ocultar Botón ==========================*/
     const [show2, setShow2] = useState(true);
     const {
         actualizacion,
@@ -31,7 +31,7 @@ function Usuarios() {
     };
 
     const enable = (key) => {
-        const newARR = []
+        const newARR = [];
         //console.log(validar);
         let i = Object.keys(listaUsuarios);
         for (let x = 0; x < i.length; x++) {
@@ -46,11 +46,12 @@ function Usuarios() {
             }
             if (y != key) {
                 newARR[y] = true
-            }
+            };
         }
-        setvalidar([newARR])
-        SetKeyregistro(key)
+        setvalidar([newARR]);
+        SetKeyregistro(key);
         //console.log(newARR)
+       
     }
 
     const llamado = async () => {
@@ -69,15 +70,25 @@ function Usuarios() {
         setlistaUsarios(respuesta.data.reSql);
     }
     const envioData = (datos, key) => {
-        setShow(!show);
-        //console.log(key);
-        actualizacion(datos[key]);
-        //window.location.reload();
-        actulizarPage(key);
+        if(key == '')
+        {
+            setShow(!show);
+            console.log("prueba");
+        }
+        else{
+            setShow(!show);
+            console.log(key);
+            actualizacion(datos[key]);
+            //window.location.reload();
+            actulizarPage(key);
+        }
+        
     }
     const actulizarPage = (key) => {
         enable(key);
     }
+
+  
     return (
         <div className="contenido-usuarios">
             <div className="table-responsive">
@@ -128,7 +139,7 @@ function Usuarios() {
                                             <td><input className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={validar[0][key]} name="email"></input> </td>
                                             <td><input className="input-name" defaultValue={listaUsuarios[key].password} onChange={handleInputChange} disabled={validar[0][key]} name="password"></input> </td>
                                             <td><button className="btn btn-primary eliminar" onClick={() => borrarUsuario(listaUsuarios[key].id_usuario)}> Eliminar </button></td>
-                                            <td>   <button className="btn btn-primary modificar usuarios" type="button" onClick={() => { enable(key); envioData(listaUsuarios, keyRegistro) }}>  {show ? 'Aceptar' : 'Modificar'} </button>
+                                            <td>  <button className="btn btn-primary modificar usuarios" type="button" onClick={() => { enable(key); envioData(listaUsuarios, keyRegistro)}}>  {show ? 'Aceptar' : 'Modificar'} </button>
                                                 {show ? (
                                                     <div >
    {/*=================== Aceptar Cambios DIV ====================*/}
