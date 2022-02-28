@@ -5,7 +5,12 @@ export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
 export let i = "";
-export const validator  = "administrador";
+
+/* 
+export let validator  = cookies.get('rol'); */
+
+let validator = "administrador"
+console.log(validator);
 
 
 export  function foo() {

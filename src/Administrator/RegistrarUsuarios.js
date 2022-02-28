@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/registroUsuarios.css";
-import {useRegistro} from '../Components/useRegistro';
+import {useRegistro} from '../Routes/useRegistro';
 
 function Registro() {
   const {  
@@ -20,7 +20,8 @@ function Registro() {
             <label htmlFor="rol">Tipo rol: </label>
 
             <select id="rol" name="rol" required onChange={handleInputChange}>
-          
+              
+            <option value="administrador">--------------</option>
               <option value="administrador">Administrador</option>
               <option value="preventa">Preventa</option>
               <option value="venta">Venta</option>
@@ -66,7 +67,7 @@ function Registro() {
             />
 
             <div className="boton-registro">
-              <button className="card-button3" type="submit">
+              <button className="card-button" type="submit">
                 <span>Registrar</span>
               </button>
             </div>

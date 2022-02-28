@@ -60,7 +60,7 @@ function Colaborador() {
   
   
               <div className="boton-registro">
-                <button className="card-button3" type="submit">
+                <button className="card-button" type="submit">
                   <span>Agregar al Proyecto</span>
                 </button>
               </div>

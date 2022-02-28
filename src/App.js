@@ -1,24 +1,28 @@
 import { BrowserRouter as Router} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
+import "./Componentes/css/Animaciones.css";
+import "./css/Tablas.css";
+
 import Login from './Login';
 import Footer from './Footer';
 
-import Header from './Header';
+import Header from './Componentes/Header';
 
 
 //PublicRoutes
-import PublicRoutes from "./Components/PublicRoutes";
+import PublicRoutes from "./Routes/PublicRoutes";
+import AdministrarClientes from "./Componentes/AdministrarClientes";
+import Clientes from "./Componentes/RegistrarClientes";
 
-
-import CambioContraseña from "./Components/CambioContraseña";
-import Administrador from "./Components/Administrador";
+import CambioContraseña from "./Componentes/CambioContraseña";
+import Administrador from "./Routes/Administrador";
 import MenuAdministrador from "./Administrator/MenuAdministrador";
-import Registro from './Administrator/Registro';
-import Clientes from "./Administrator/Clientes";
-import Usuarios from "./Administrator/Usuarios";
+import Registro from './Administrator/RegistrarUsuarios';
+
+import Usuarios from "./Administrator/AdministrarUsuarios";
 import Colaboradores from "./Administrator/Colaborador";
-import AdministrarClientes from "./Administrator/AdministrarClientes";
+
 import PTN_BOM from "./Administrator/PTN_BOM";
 import Proyectos from "./Administrator/Proyectos";
 import PropuestaEconomica from "./Administrator/PropuestEconomica";
@@ -32,7 +36,7 @@ import Proporcionalidad from "./Administrator/Proporcionalidad";
 
 
 //Preventa Private
-import Preventa from "./Components/Preventa";
+import Preventa from "./Routes/Preventa";
 //Preventa Rutas
 import MenuPreventa from "./Preventa/MenuPreventa";
 import addClientesPreventa from "./Preventa/rClientes";
@@ -44,7 +48,7 @@ import administrarClientespreventa from "./Preventa/rAdministrarClientes";
 
 
 //Ventas Private
-import Venta from "./Components/Venta";
+import Venta from "./Routes/Venta";
 //Ventas Rutas
 import MenuVentas from "./Ventas/MenuVentas";
 import ProporcionalidadVentas from "./Ventas/Proporcionalidad";
@@ -60,6 +64,8 @@ function App() {
      
         <PublicRoutes path="/" component={Login} />
         <PublicRoutes path="/" component={Footer} />
+        <PublicRoutes path="/" component={Header} />
+
 
 
           {/* Rutas Administrador  */}
@@ -78,7 +84,7 @@ function App() {
          <Administrador exact path="/agregar-colaborador" component={Colaboradores} />
          <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />
          <Administrador exact path="/ptn" component={PTN_BOM} />
-             <Administrador exact path="/propuesta-economica" component={ExportarPDF} /> 
+         <Administrador exact path="/propuesta-economica" component={ExportarPDF} /> 
           <Administrador exact path="/am" component={AM} /> 
  
          <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />

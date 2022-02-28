@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import "../Administrator/css/Usuarios.css";
 import Table from 'react-bootstrap/Table'
 import axios from 'axios';
-import { useRegistro } from '../Components/ModificarUsuarios';
+import { useRegistro } from '../Routes/ModificarUsuarios';
 
 
 function AdministrarClientesP(prop) {

@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import "./css/PTN_BOM.css";
-import { operaciones } from "../Components/Operaciones";
+import { operaciones } from "../Routes/Operaciones";
 import Table from "react-bootstrap/Table";
+import Animaciones from "../Componentes/Animaciones";
+
+
 
 function PTN_BOM() {
   { /*========================== Mostrar Ocultar Tabla ==========================*/ }
@@ -78,22 +81,9 @@ function PTN_BOM() {
   return (
     <div className="contenido-usuarios">
       <div className="table-responsive">
-        {/*============= Titulo Animación =============*/}
-        <div className="container">
-          <div className="box">
-            <div className="title">
-              <span className="block"></span>
-              <h1>
-                PTN BOM Cotizaciones<span></span>
-              </h1>
-            </div>
+        {/*======================= Titulo Animación =======================*/}
+      <div> <Animaciones   mytext= "PTN BOM Cotizaciones"      /> </div>
 
-            <div className="role">
-              <div className="block"></div>
-              <p>Palo Tinto Networks</p>
-            </div>
-          </div>
-        </div>
 
         {/*================= Nuevo Proyecto ==================*/}
 
@@ -228,17 +218,9 @@ function PTN_BOM() {
         <br />
 
         <div className="partida">
-          {/*============= Titulo Animación =============*/}
-          <div className="container">
-            <div className="box">
-              <div className="title">
-                <span className="block"></span>
-                <h1>
-                  Datos PTN<span></span>
-                </h1>
-              </div>
-            </div>
-          </div>
+        <div> <Animaciones   mytext= "Datos PTN"      /> </div>
+
+
 
           <input
             className="agregar"
@@ -264,6 +246,7 @@ function PTN_BOM() {
           <br />
         </div>
 
+<div className= "partida">
         <Table responsive id="nombreDiv">
           <thead>
             <tr className="titulo-tabla-usuarios">
@@ -472,6 +455,8 @@ function PTN_BOM() {
             </tr>
           </tbody>
         </Table>
+
+        </div>
 
         {/* Finalizar */}
         {/*     <div className="boton-ptn-finalizar">

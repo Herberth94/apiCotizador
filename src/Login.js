@@ -1,7 +1,7 @@
 import React from 'react';
-import './css/login.css';
+import './css/ventanas.css';
 import banner from './images/logo.png';
-import {useLogin} from '../src/Components/useLogin';
+import {useLogin} from './Routes/useLogin';
 
 
 
@@ -16,9 +16,9 @@ export function Login() {
 
   return (
     <div className="container-portada">
-      <div className="banner-login">
+   {/*    <div className="banner-login">
      <img src={banner} alt="usuario" /> 
-      </div>
+      </div> */}
       <div className="scene flex">
 
         <section className="card-body">
@@ -46,7 +46,7 @@ export function Login() {
               placeholder="Ingrese Contraseña" />
   
             <div className ="boton-login">
-            <button className="card-button2" type="submit">
+            <button className="card-button" type="submit">
               <span>Entrar</span>
             </button>
             </div>

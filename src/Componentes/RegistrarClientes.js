@@ -1,9 +1,8 @@
 import React from 'react'
-import { useRegistro } from '../Components/registroClientes'
+import { useRegistro } from '../Routes/registroClientes'
 
 
 function Clientes() {
-
   const {
     handleInputChange,
     enviarDatos
@@ -14,9 +13,9 @@ function Clientes() {
         <div className="scene flex">
           <section className="card-body">
             <form  method="post" className="card-form" onSubmit = {enviarDatos}>
-              <h2 >
-                <span>Registrar Cliente</span>
-              </h2>
+                {/*========= Registrar Clientes========= */}
+              <h2 >  <span>Registrar Clientes</span> </h2>
+   {/*========= Nombre Cliente========= */}
                  <label htmlFor="user" className=" label">
                     Nombre Cliente
                  </label>
@@ -28,7 +27,7 @@ function Clientes() {
                 onChange={handleInputChange}
                 placeholder="Nombre Cliente"
               />
-  
+    {/*========= Razón Social ========= */}
               <label htmlFor="user2" className=" label">
                 Razón Social
               </label>
@@ -41,7 +40,7 @@ function Clientes() {
                 placeholder="Razón Social"
               />
   
-
+   {/*========= FALTA Teléfono ========= */}
   <label htmlFor="user2" className=" label">
               Contacto (Teléfono)
               </label>
@@ -53,10 +52,21 @@ function Clientes() {
                 className="card-input"
                 placeholder="Ingrese Número Telefónico"
               />
-  
-  
+   {/*========= FALTA Dirección ========= */}
+     <label htmlFor="user2" className=" label">
+             Dirección
+              </label>
+              <input
+                id="user2"
+                type="text"
+                name ="dirección"
+                onChange={handleInputChange}
+                className="card-input"
+                placeholder="Ingrese Dirección"
+              />
+    {/*========= Botón Registrar ========= */}
               <div className="boton-registro">
-                <button className="card-button3" type="submit">
+                <button className="card-button" type="submit">
                   <span>Registrar</span>
                 </button>
               </div>

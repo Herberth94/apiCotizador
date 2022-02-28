@@ -1,14 +1,4 @@
 
-#rol{
-   
-    color: rgb(0, 0, 0);
-  }
-  
-  #rol:hover{
-  background-color: #38153E;
-  color: white;
-  }
-  
     .registro{
       position:relative;  
       height:65%;
@@ -18,56 +8,7 @@
       margin-top: 5%;
   
     }
-    .card__titulo{
-      color: rgb(0, 0, 0);
-      font-size: 20px;
-  }
-   
-    .btn-primary {
-      background-color: #070707;
-      color: #ffffff;
-      border: 1px solid transparent;
-      border: 0;
-   
-    }
-   
-    .card-button3{
-      background-color: #0062ff;
-      color: rgb(255, 255, 255);
-      border: none;
-      border-radius: 3px;
-      margin: 15px auto 0 auto;
-      padding: 8px 20px;
-      
-    }
-  
-    .card-button3:hover{
-     
-      background-color: #38153E;
-  color: white;
-    }
-  
-   
-  
-  
-    .contenido-main-registro {	
-      position: absolute;
-    
-      margin-left: 60px;
-      width: calc(100% - 60px) ;
-       top: 60px;
-  }
 
+ 
 
   
-    @media screen and (max-width: 960px) {
-  
-  contenido-main-registro {	
-           position: absolute;
-         
-           margin-left: 60px;
-           width: calc(100% - 60px) ;
-            top: 60px;
-      }
-    
-    }

@@ -2,65 +2,47 @@ import React from 'react'
 
 import Table from 'react-bootstrap/Table'
 import './css/AM.css';
+import Animaciones from "../Componentes/Animaciones";
+
 
 
 
 function Am() {
     return (
+
+        <div  className = "white">
         <div className="contenido-usuarios">
 
             <div className="table-responsive">
-
-
                 <div className="valor-dolar">
-                      {/*============= Titulo Animación =============*/}
-                      <div className="container">
-                    <div className="box">
-
-                        <div className="title">
-                            <span className="block"></span>
-                            <h1 >Divisa Proyectos<span></span></h1>
-                        </div>
-
-                        <div className="role">
-                            <div className="block"></div>
-                            <p>Palo Tinto Networks</p>
-                        </div>
+                    {/*============= Titulo Animación =============*/}
+                    <div className="container">
+                        {/*======================= Titulo Animación =======================*/}
+                        <div> <Animaciones mytext="Divisa del Proyecto" /> </div>
 
                     </div>
-                </div>
                     <div className="valor_dolar">
-                   <input className="agregar"
-                    type="text"
-                    name="clave"
-                    placeholder="ingrese Clave Proyecto" />
-                    <br/>
-                    <br/>           
-                      <input className="agregar"
-                    type="number"
-                    name="doalr"
-                    placeholder="ingrese Valor Dolar" />
+                        <input className="agregar"
+                            type="text"
+                            name="clave"
+                            placeholder="ingrese Clave Proyecto" />
+                        <br />
+                        <br />
+                        <input className="agregar"
+                            type="number"
+                            name="doalr"
+                            placeholder="ingrese Valor Dolar" />
                     </div>
                     <div className="subir_dolar">
-                    <button className="btn btn-success">Subir Valor Dolar</button>
+                        <button className="btn btn-success">Subir Valor Dolar</button>
                     </div>
                 </div>
-            
 
-            <div className="espacio"></div>
 
-                 {/*============= Titulo Animación =============*/}
-                 <div className="container">
-                    <div className="box">
 
-                        <div className="title">
-                            <span className="block"></span>
-                            <h1 >Buscar Proyectos<span></span></h1>
-                        </div>
-
-                    </div>
-                </div>
- {/*********Búsqueda de Proyectos AM ********/}
+                {/*======================= Titulo Animación =======================*/}
+                <div> <Animaciones mytext="Buscar Proyectos" /> </div>
+                {/*********Búsqueda de Proyectos AM ********/}
 
                 <div className="busqueda-proyectos">
                     <Table responsive id="nombreDiv">
@@ -94,22 +76,13 @@ function Am() {
                         </tbody>
                     </Table>
                 </div>
-                
-
- {/*********Resumen Monedas MXN USD Y Conversion de Moneda BOM PTN ********/}
-
-                   {/*============= Titulo Animación =============*/}
-                   <div className="container">
-                    <div className="box">
-
-                        <div className="title">
-                            <span className="block"></span>
-                            <h1 >Resumen<span></span></h1>
-                        </div>
 
 
-                    </div>
-                </div>
+       
+                {/*======================= Titulo Animación =======================*/}
+                <div> <Animaciones mytext="Resumen" /> </div>
+
+              
                 <Table responsive id="nombreDiv">
                     <thead>
                         <tr className="azul">
@@ -124,51 +97,57 @@ function Am() {
                             <td>Partdia 1</td>
                             <td>99</td>
                             <td>1049 </td>
-                            <td>1053.95</td>                        
+                            <td>1053.95</td>
                         </tr>
-                       <tr className="">
+                        <tr className="">
                             <td>Partida 2</td>
                             <td>650.5</td>
                             <td>100 </td>
-                            <td>132.525</td>                         
+                            <td>132.525</td>
                         </tr>
                         <tr className="par">
                             <td>Capacitación</td>
                             <td>0</td>
                             <td>0 </td>
-                            <td>0</td>                
+                            <td>0</td>
                         </tr>
                         <tr className="par">
                             <td>Accesorios</td>
                             <td>0</td>
                             <td>0 </td>
-                            <td>0</td>                 
+                            <td>0</td>
                         </tr>
                         <tr className="par">
                             <td>Servicios PTN</td>
                             <td>0</td>
                             <td>0 </td>
-                            <td>0</td>                
+                            <td>0</td>
                         </tr>
-                    <tr className="par">
+                        <tr className="par">
                             <td>Mesa de Ayuda</td>
                             <td>200</td>
                             <td>0 </td>
-                            <td>10</td>               
+                            <td>10</td>
                         </tr>
                         <tr className="total">
                             <td>Total</td>
                             <td>949.5</td>
                             <td>1149</td>
-                            <td>1196.475</td>                                    
+                            <td>1196.475</td>
                         </tr>
                     </tbody>
                 </Table>
- {/********************    Margen de Ganancia  *******************************/}
-                <div className="titulo-proyectos">
-                    <h2>Margen de Ganancia </h2>
+           
 
-                </div>
+
+
+
+
+                {/********************    Margen de Ganancia  *******************************/}
+                {/*======================= Titulo Animación =======================*/}
+                <div> <Animaciones mytext="Margen de Ganancias" /> </div>
+
+
                 <Table responsive id="nombreDiv">
                     <thead>
                         <tr className="azul">
@@ -189,14 +168,14 @@ function Am() {
                             <td>Partida 2</td>
                             <td>132.525</td>
                             <td>32 % </td>
-                            <td>194.889705 </td>           
+                            <td>194.889705 </td>
                         </tr>
                         <tr className="">
                             <td>Capacitación</td>
                             <td>0</td>
                             <td>0 % </td>
                             <td>0 </td>
-                        </tr>                    
+                        </tr>
                         <tr className="">
                             <td>Accesorios</td>
                             <td>0</td>
@@ -214,7 +193,7 @@ function Am() {
                             <td>10</td>
                             <td>32 % </td>
                             <td>14.70588</td>
-                        </tr>                       
+                        </tr>
                         <tr className="total">
                             <td>Total</td>
                             <td>1196.475</td>
@@ -223,11 +202,11 @@ function Am() {
                         </tr>
                     </tbody>
                 </Table>
-{/******************************Costos Indirectos  *********************************************/}
-<div className="titulo-proyectos">
-                    <h2>Costos Indirectos </h2>
+                {/******************************Costos Indirectos  *********************************************/}
+                {/*======================= Titulo Animación =======================*/}
+                <div> <Animaciones mytext="Costos Indirectos" /> </div>
 
-                </div>
+
                 <Table responsive id="nombreDiv">
                     <thead>
                         <tr className="azul">
@@ -248,14 +227,14 @@ function Am() {
                             <td>Riezgo</td>
                             <td>17.595220</td>
                             <td>1% </td>
-                            <td>17.595220 </td>           
+                            <td>17.595220 </td>
                         </tr>
                         <tr className="">
                             <td>Fianza</td>
                             <td>87.97610</td>
                             <td> 5 %</td>
                             <td> 87.97610 </td>
-                        </tr>                    
+                        </tr>
                         <tr className="">
                             <td>Seguros y Fletes</td>
                             <td>17.59522</td>
@@ -268,7 +247,7 @@ function Am() {
                             <td>4 % </td>
                             <td>70.38088 </td>
                         </tr>
-                                       
+
                         <tr className="total">
                             <td>Total</td>
                             <td>228.73786</td>
@@ -285,6 +264,8 @@ function Am() {
                 </div>
 
             </div>
+        </div>
+
         </div>
     );
 }
