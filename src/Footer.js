@@ -5,8 +5,11 @@ import "./css/footer.css"
 
 function Footer() {
     return (
-    //Footer Página Login
+  
+//============ Footer Página Web ============
         <div className="footer">
+            
+{/* //============ Redes Sociales ============ */}
             <div className="redes-sociales">
                 <h4>
                     <a href="tel:+525568434433" target="_blank" rel="noreferrer" > <i className="bi bi-telephone-fill"></i></a>
@@ -16,7 +19,7 @@ function Footer() {
                 </h4>
             </div>
                  <div className="box1">
-                    <h3>© Palo Tinto Networks</h3>
+                    <h3>Palo Tinto Networks-</h3>
                  </div>
         </div>
     )

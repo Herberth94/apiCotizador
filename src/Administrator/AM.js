@@ -258,7 +258,6 @@ function Am() {
                 </Table>
 
 
-
                 <div className="boton-cotizador"  >
                     <button className="btn btn-success">Imprimir</button>
                 </div>

@@ -8,6 +8,8 @@ class ExportarPDF extends React.Component {
   constructor() {
     super();
     this.state = {
+
+       //============ Datos Tablas ============ //
       datos: [
         { partida: "1", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
         { partida: "2", servicio: "Feberero",descripcion: "descripcion",dispositivos: "1" , subtotal: "200"},

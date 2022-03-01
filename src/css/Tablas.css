@@ -1,3 +1,4 @@
+
 .contenido-usuarios{
  
     position: absolute;
@@ -7,6 +8,38 @@
     padding: 2%;
 
     
+}
+
+
+.arregla{
+ position: absolute;
+ height: 100%;
+left: -60px;
+width: calc(100% + 60px);
+
+}
+
+
+.data-PTN{
+
+    position: absolute;
+    height: 100%;
+   left: -60px;
+   width: calc(100% + 60px);
+   margin-top: 2%;
+
+}
+
+.boton{
+    width: calc(100% + 60px);
+    position: absolute;  
+    left: -60px;
+    padding: 1%;
+}
+
+.partidax{
+    background-color: rgba(57, 117, 185, 0.61);
+  
 }
 
 .titulo-tabla-usuarios{
@@ -21,6 +54,13 @@ color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
  
   
+}
+
+#nombreDiv{
+    
+    width: 100%;
+    background-color: #ffffff;
+    height: 100%;
 }
 
 

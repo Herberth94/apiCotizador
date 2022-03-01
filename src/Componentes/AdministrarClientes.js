@@ -16,6 +16,7 @@ function AdministrarClientes() {
     /*========================== Mostrar Ocultar Botón ==========================*/
   
   const [show2, setShow2] = useState(true);
+  
   const [keyRegistro, SetKeyregistro] = useState('');
   const [listaClientes, setlistaClientes] = useState([]);
   const [validar, setvalidar] = useState([]);

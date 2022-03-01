@@ -31,6 +31,7 @@ IMAGEN MOVIMIENTO LOGIN
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #ffffff;
     
   }
    .container .box {
@@ -68,6 +69,9 @@ IMAGEN MOVIMIENTO LOGIN
        align-items: baseline;
        position: relative;
       font-family:Georgia, 'Times New Roman', Times, serif;
+      
+    
+
     
   }
    .container .box .title h1 span {
@@ -77,7 +81,7 @@ IMAGEN MOVIMIENTO LOGIN
        -moz-border-radius: 50%;
        border-radius: 50%;
        background: #81b867;
-       -webkit-animation: load 0.6s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+       -webkit-animation: popIn 0.8s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
        animation: popIn 0.8s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
        animation-delay: 2s;
        margin-left: 5px;
@@ -85,7 +89,7 @@ IMAGEN MOVIMIENTO LOGIN
        position: absolute;
        bottom: 13px;
        right: -12px;
-  }
+}
    .container .box .role {
        width: 100%;
        position: relative;
