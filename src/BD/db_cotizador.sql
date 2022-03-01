@@ -175,7 +175,6 @@ CREATE TABLE `pp` (
 
 CREATE TABLE `precio` (
   `precio_id` bigint(20) NOT NULL,
-  `precio_cantidad` int(10) DEFAULT NULL,
   `precio_lista` decimal(20,3) DEFAULT NULL,
   `precio_unitario` decimal(20,3) DEFAULT NULL,
   `precio_descuento` float DEFAULT NULL,
@@ -218,7 +217,20 @@ CREATE TABLE `proyecto` (
   `proyecto_clave` varchar(255) DEFAULT NULL,
   `proyecto_descripcion` text DEFAULT NULL,
   `proyecto_id_cliente` int(11) DEFAULT NULL,
-  `proyecto_id_cat_c_a_sptn_ma` bigint(20) DEFAULT NULL
+  `proyecto_id_cat_c_a_sptn_ma` bigint(20) DEFAULT NULL,
+  `proyecto_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proyectos_cat`
+--
+
+CREATE TABLE `proyectos_cat` (
+  `pc_id` bigint(20) NOT NULL,
+  `pc_id_proyecto` bigint(20) DEFAULT NULL,
+  `pc_id_cat` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -257,6 +269,7 @@ CREATE TABLE `servicio_producto` (
   `sp_descripcion` varchar(255) DEFAULT NULL,
   `sp_meses` float DEFAULT NULL,
   `sp_semanas` float DEFAULT NULL,
+  `sp_cantidad` int(10) DEFAULT NULL,
   `sp_id_precio` bigint(20) DEFAULT NULL,
   `sp_id_proveedor` int(10) DEFAULT NULL,
   `sp_id_categoria` int(10) DEFAULT NULL,
@@ -267,8 +280,13 @@ CREATE TABLE `servicio_producto` (
 -- Volcado de datos para la tabla `servicio_producto`
 --
 
+<<<<<<< HEAD
 INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_meses`, `sp_semanas`, `sp_id_precio`, `sp_id_proveedor`, `sp_id_categoria`, `sp_comentarios`) VALUES
 (1000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+=======
+INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_meses`, `sp_semanas`, `sp_cantidad`, `sp_id_precio`, `sp_id_proveedor`, `sp_id_categoria`, `sp_comentarios`) VALUES
+(1002, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+>>>>>>> d85854aff3b4c5477c2aca1bea90cb2846f839b4
 
 -- --------------------------------------------------------
 
@@ -573,7 +591,11 @@ ALTER TABLE `psp`
 -- AUTO_INCREMENT de la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
+<<<<<<< HEAD
   MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
+=======
+  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1003;
+>>>>>>> d85854aff3b4c5477c2aca1bea90cb2846f839b4
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
