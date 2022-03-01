@@ -8,8 +8,6 @@ class ExportarPDF extends React.Component {
   constructor() {
     super();
     this.state = {
-
-       //============ Datos Tablas ============ //
       datos: [
         { partida: "1", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
         { partida: "2", servicio: "Feberero",descripcion: "descripcion",dispositivos: "1" , subtotal: "200"},
@@ -41,6 +39,7 @@ class ExportarPDF extends React.Component {
 
   
     doc.setFontSize(12);
+    doc.setTextColor(0,85,136);
     doc.setFont("Arial");
   
 
@@ -59,23 +58,6 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
 
     const title = "PROPUESTA ECONÓMICA";
     const fecha = "Ciudad de México a "  + dia + " " + " de " + mes + " " + " de " + " " + año;
-
-    const comentarios = "Propuesta económica correspondiente al servicio de TV de paga.";
-    const importe = "IMPORTE: SETENTA Y CUATRO MIL DOSCIENTOS OCHENTA 24/100 ANTES DE IVAOIEGSA";
-    const cuota = "CUOTA MENSUAL";
-    const importeMensual = "IMPORTE MENSUAL UN DISPOSITIVO: SEIS MIL CIENTO NOVENTA PESOS 02/100 ANTES DE IVA"
-    const condiciones = "CONDICIONES COMERCIALES"
-    const vigencia= "La vigencia de la presente propuesta es de 10 días naturales."
-    const propuesta="La propuesta contempla el servicio para 9 Pantallas mensual"
-    const formaPago= "La forma de pago será en mensualidades de $ 687.78 antes de IVA por pantalla."
-    const duracion= "Esta propuesta contempla los servicios de ENERO 2021 al mes de DICIEMBRE 2021."
-    const moneda= "Los precios están expresados en moneda nacional."
-    const interes="Los retrasos en pagos generarán un interés moratorio del 0.2% por cada día de atraso en el pago."
-    const iva= "El cargo por refacturación es de 200.m.n. + IVA"
-
-    const encargada="ESMERALDA RODRÍGUEZ MEDELLÍN"
-    const cargo ="EJECUTIVA DE CUENTA"
-    const empresa="PALO TINTO NETWORKS SA DE CV"
     const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
     const atencion = "Atención "  + nombreContacto;
     const comentarios = "Propuesta económica correspondiente al servicio de TV de paga.";

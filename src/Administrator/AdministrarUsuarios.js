@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRegistro } from '../Components/ModificarUsuarios';
+import { useRegistro } from '../Routes/ModificarUsuarios';
 import Table from 'react-bootstrap/Table'
 import axios from 'axios';
 import Animaciones from "../Componentes/Animaciones";

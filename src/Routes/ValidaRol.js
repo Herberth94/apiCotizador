@@ -5,15 +5,11 @@ export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
 export let i = "";
-<<<<<<< HEAD:src/Routes/ValidaRol.js
 
 /* 
 export let validator  = cookies.get('rol'); */
 
 let validator = "administrador"
-=======
-export let validator  = cookies.get('rol');
->>>>>>> d45d6e4e346155050fe0c71da950f23cf4c76d3e:src/Components/ValidaRol.js
 console.log(validator);
 
 
