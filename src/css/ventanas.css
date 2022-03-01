@@ -13,7 +13,7 @@ LOGIN
 }
 /*============== ALTURA ==============*/
 .scene {
-	height: 85vh;
+	
 	position: relative;
 }
 
@@ -22,6 +22,10 @@ LOGIN
       margin-left: 60px;
       width: calc(100% - 60px) ;
        top: 15%;
+  }
+
+  .contenido-main-registro.contraseña{
+    top: 35%;
   }
 
 /*============== Color Placeholder ==============*/
@@ -41,6 +45,7 @@ LOGIN
 	text-align: center;
 	z-index: 1;
 	background-color:  #86868654;
+
 }
 
 /*============== Estilo Input ==============*/

@@ -5,7 +5,7 @@ function CambioContraseña() {
 
 
     return (
-        <div className="contenido-main-registro">
+        <div className="contenido-main-registro  contraseña">
         <div className="scene flex">
           <section className="card-body">
             <form  method="post" className="card-form" >

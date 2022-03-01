@@ -1,111 +1,38 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import "./css/PTN_BOM.css";
-import { operaciones } from "../Routes/Operaciones";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../Componentes/Animaciones";
 
-
-import Check from "./NuevoProyecto";
-
+import NuevoProyecto from "./NuevoProyecto";
+import ContinuarProyecto from "./ContinuarProyecto";
+import Proyectos from "./Proyectos";
 
 function PTN_BOM() {
   {
     /*========================== Mostrar Ocultar Tabla ==========================*/
   }
   const [show, setShow] = useState(true);
+
   {
     /*========================== Mostrar Ocultar Botón ==========================*/
   }
   const [show2, setShow2] = useState(true);
+
   {
     /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
   }
   const [show3, setShow3] = useState(true);
 
-  /*======================  Operaciones ==============================*/
-  const { total, precio_u, descuento_1, total_1 } = operaciones();
-  const [datos, setDatos] = useState({
-    clave: "",
-    descripcion_proyecto: "",
-    cliente: "",
-    valor_dolar: "",
-    Partida: "",
-    precio_lista: "",
-    precio_unitario: "",
-    descuento: "",
-    cantidad: "",
-  });
-
-  const handleInputChange = (event) => {
-    //console.log(event.target.value)
-    setDatos({
-      ...datos,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const enviarDatos = (event) => {
-    console.log(datos.clave);
-    event.preventDefault();
-  };
-
-  useEffect(() => {
-    if (
-      datos.precio_lista.length > 0 &&
-      datos.cantidad.length > 0 &&
-      datos.descuento.length > 0 &&
-      datos.precio_unitario === ""
-    ) {
-      console.log("total:  ");
-      const Total = total(datos.precio_lista, datos.cantidad, datos.descuento);
-      console.log(Total);
-      console.log("Precio unitario :");
-      console.log(precio_u(Total, datos.cantidad));
-    }
-    if (
-      datos.precio_lista.length > 0 &&
-      datos.cantidad.length > 0 &&
-      datos.precio_unitario.length > 0 &&
-      datos.descuento === ""
-    ) {
-      console.log("Descuento: ");
-      const desc_1 = descuento_1(datos.precio_unitario, datos.precio_lista);
-      console.log(desc_1.toFixed(2));
-      console.log("total_1: ");
-      console.log(total_1(datos.cantidad, datos.precio_unitario));
-    }
-  }, [
-    datos.cantidad,
-    datos.descuento,
-    datos.precio_lista,
-    datos.precio_unitario,
-    descuento_1,
-    precio_u,
-    total,
-    total_1,
-  ]);
-
-
-const a = false;
-const b = false;
-const c = false;
-  function check (){
-
-    if(a === false){
-      console.log("Imprime Nuevvo Proyecto");
-    }
-
-  }
   return (
     <div className="contenido-usuarios">
-
       {/*======================= Titulo Animación =======================*/}
 
       <Animaciones mytext="PTN BOM " />
 
-
+      {/*========================== Tabla  Categorias ==========================*/}
       <Table responsive id="nombreDiv">
+        {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
             <th>Nuevo Proyecto</th>
@@ -115,45 +42,73 @@ const c = false;
         </thead>
         <tbody>
           <tr className="">
+            {/*========================== Nuevo Proyecto ==========================*/}
             <td>
-
-              <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show) ;   }}>  {show ? 'Añadir' : 'Ocultar Proyecto'}    </button>
+              <button
+                className="btn btn-primary modificar"
+                type="button"
+                onClick={() => {
+                  setShow(!show);
+                }}
+              >
+                {" "}
+                {show ? "Añadir" : "Ocultar Proyecto"}{" "}
+              </button>
               {show ? (
-        <div >
+                <div></div>
+              ) : (
+                <div className="arregla">
+                  {/*========================== Llamado al Componente ==========================*/}
+                  <NuevoProyecto />
+                </div>
+              )}
+            </td>
 
+            <td>
+              <button
+                className="btn btn-primary modificar"
+                type="button"
+                onClick={() => {
+                  setShow2(!show2);
+                }}
+              >
+                {" "}
+                {show2 ? "Continuar" : "Ocultar Proyecto"}{" "}
+              </button>
+              {show2 ? (
+                <div></div>
+              ) : (
+                <div className="arregla">
+                  {/*========================== Llamado al Componente ==========================*/}
+                  <ContinuarProyecto />
+                </div>
+              )}
+            </td>
 
-        </div>
-      ) : (
-        <div className="arregla">   
-          <Check/>
-         </div>
-      )}
-         </td>
-
-                <td>
-
-         
-                
-                </td>
-
-                <td>
-
-            
-   
-                
-                </td>
-
-             
-              </tr>
+            <td>
+              <button
+                className="btn btn-primary modificar"
+                type="button"
+                onClick={() => {
+                  setShow3(!show3);
+                }}
+              >
+                {" "}
+                {show3 ? "Ver Proyectos" : "Ocultar Proyecto"}{" "}
+              </button>
+              {show3 ? (
+                <div></div>
+              ) : (
+                <div className="arregla">
+                  {/*========================== Llamado al Componente ==========================*/}
+                  <Proyectos/>
+                </div>
+              )}
+            </td>
+          </tr>
         </tbody>
       </Table>
-
-
-    
     </div>
-
-
-
   );
 }
 

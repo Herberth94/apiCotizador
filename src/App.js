@@ -29,7 +29,6 @@ import CambioContraseña from "./Componentes/CambioContraseña";
 import Colaboradores from "./Administrator/Colaborador";
 
 import PTN_BOM from "./Administrator/PTN_BOM";
-import Proyectos from "./Administrator/Proyectos";
 import AM from "./Administrator/AM";
 import Proporcionalidad from "./Administrator/Proporcionalidad";
 import PropuestaEconomica from "./Administrator/PropuestEconomica";
@@ -79,7 +78,6 @@ function App() {
         <Administrador exact path="/ptn" component={PTN_BOM} />
         <Administrador exact path="/propuesta-economica" component={ExportarPDF} />
         <Administrador exact path="/am" component={AM} />
-        <Administrador exact path="/proyectos" component={Proyectos} />
         <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
 
         {/*========================== Páginas Preventa ==========================*/}
