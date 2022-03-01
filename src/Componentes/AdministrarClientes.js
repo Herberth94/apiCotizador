@@ -16,7 +16,6 @@ function AdministrarClientes() {
     /*========================== Mostrar Ocultar Botón ==========================*/
   
   const [show2, setShow2] = useState(true);
-  
   const [keyRegistro, SetKeyregistro] = useState('');
   const [listaClientes, setlistaClientes] = useState([]);
   const [validar, setvalidar] = useState([]);
@@ -141,7 +140,6 @@ function AdministrarClientes() {
                   {Object.keys(listaClientes).map((key) => (
                     <tr key={listaClientes[key].cliente_id}>
                       <td>{listaClientes[key].cliente_id}</td>
-{/*================= Nombre Cliente ==================*/}
                       <td>
                         <input
                           className="input-name"

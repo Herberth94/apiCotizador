@@ -1,3 +1,3 @@
 # Diagrama relacional
 
-[![imagen-2022-02-25-164811.png](https://i.postimg.cc/Bv0trHZ7/imagen-2022-02-25-164811.png)](https://postimg.cc/hX2SxJdV)
+[![imagen-2022-02-28-211853.png](https://i.postimg.cc/kgqzPbFT/imagen-2022-02-28-211853.png)](https://postimg.cc/7ftmgbRz)

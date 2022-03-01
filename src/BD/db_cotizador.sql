@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2022 a las 23:49:31
+-- Tiempo de generación: 01-03-2022 a las 04:22:38
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -33,8 +33,7 @@ CREATE TABLE `am` (
   `am_desc_cliente` float DEFAULT NULL,
   `am_margen_ganancia` float DEFAULT NULL,
   `am_desc_fabrica` float DEFAULT NULL,
-  `am_id_proyecto` bigint(20) DEFAULT NULL,
-  `am_id_pt` bigint(20) DEFAULT NULL
+  `am_id_proyecto` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -56,8 +55,31 @@ CREATE TABLE `categoria` (
 
 CREATE TABLE `categorias_c_a_sptn_ma` (
   `cat_id` bigint(20) NOT NULL,
-  `cat_nombre` varchar(100) NOT NULL,
-  `cat_id_pt` bigint(20) NOT NULL
+  `cat_nombre` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cat_cat_t`
+--
+
+CREATE TABLE `cat_cat_t` (
+  `cc_id` bigint(20) NOT NULL,
+  `cc_id_cat` bigint(20) DEFAULT NULL,
+  `cc_id_cat_t` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cat_totales`
+--
+
+CREATE TABLE `cat_totales` (
+  `ct_id` bigint(20) NOT NULL,
+  `ct_totales` bigint(20) DEFAULT NULL,
+  `ct_id_moneda` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -70,8 +92,8 @@ CREATE TABLE `clientes` (
   `cliente_id` int(11) NOT NULL,
   `nombre_cliente` varchar(50) NOT NULL,
   `razon_social` varchar(50) NOT NULL,
-  `telefono` bigint(10) NOT NULL,
-  `id_direccion` bigint(20) NOT NULL
+  `telefono` bigint(10) DEFAULT NULL,
+  `cliente_direccion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -97,34 +119,6 @@ CREATE TABLE `costos_indirectos` (
   `ci_descripcion` text DEFAULT NULL,
   `ci_costo` decimal(20,3) DEFAULT NULL,
   `ci_id_am` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `direccion`
---
-
-CREATE TABLE `direccion` (
-  `direccion_id` bigint(20) NOT NULL,
-  `direccion_calle` varchar(100) NOT NULL,
-  `direccion_no_exterior` int(10) NOT NULL,
-  `direccion_no_interior` int(10) DEFAULT NULL,
-  `direccion_colonia` varchar(100) NOT NULL,
-  `direccion_cp` int(10) NOT NULL,
-  `direccion_alcaldia_municipio` varchar(100) NOT NULL,
-  `direccion_id_estado` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `estado`
---
-
-CREATE TABLE `estado` (
-  `estado_id` int(2) NOT NULL,
-  `estado_nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -185,19 +179,7 @@ CREATE TABLE `precio` (
   `precio_lista` decimal(20,3) DEFAULT NULL,
   `precio_unitario` decimal(20,3) DEFAULT NULL,
   `precio_descuento` float DEFAULT NULL,
-  `precio_id_pt` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `precios_totales`
---
-
-CREATE TABLE `precios_totales` (
-  `pt_id` bigint(20) NOT NULL,
-  `pt_total` decimal(20,3) DEFAULT NULL,
-  `pt_id_moneda` int(10) DEFAULT NULL
+  `precio_id_moneda` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -242,6 +224,18 @@ CREATE TABLE `proyecto` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `proyectos_cat`
+--
+
+CREATE TABLE `proyectos_cat` (
+  `pc_id` bigint(20) NOT NULL,
+  `pc_id_proyecto` bigint(20) DEFAULT NULL,
+  `pc_id_cat` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `psp`
 --
 
@@ -268,6 +262,13 @@ CREATE TABLE `servicio_producto` (
   `sp_id_categoria` int(10) DEFAULT NULL,
   `sp_comentarios` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `servicio_producto`
+--
+
+INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_meses`, `sp_semanas`, `sp_id_precio`, `sp_id_proveedor`, `sp_id_categoria`, `sp_comentarios`) VALUES
+(1000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -311,7 +312,6 @@ CREATE TABLE `usuarios_proyectos` (
 --
 ALTER TABLE `am`
   ADD PRIMARY KEY (`am_id`),
-  ADD KEY `fk_am_id_pt` (`am_id_pt`),
   ADD KEY `fk_am_id_proyecto` (`am_id_proyecto`);
 
 --
@@ -324,15 +324,29 @@ ALTER TABLE `categoria`
 -- Indices de la tabla `categorias_c_a_sptn_ma`
 --
 ALTER TABLE `categorias_c_a_sptn_ma`
-  ADD PRIMARY KEY (`cat_id`),
-  ADD KEY `fk_cad_id_pt` (`cat_id_pt`);
+  ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indices de la tabla `cat_cat_t`
+--
+ALTER TABLE `cat_cat_t`
+  ADD PRIMARY KEY (`cc_id`),
+  ADD KEY `fk_cc_id_cat` (`cc_id_cat`),
+  ADD KEY `fk_cc_id_cat_t` (`cc_id_cat_t`);
+
+--
+-- Indices de la tabla `cat_totales`
+--
+ALTER TABLE `cat_totales`
+  ADD PRIMARY KEY (`ct_id`),
+  ADD KEY `fk_ct_id_moneda` (`ct_id_moneda`);
 
 --
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`cliente_id`),
-  ADD KEY `fk_cliente_id_direccion` (`id_direccion`);
+  ADD KEY `fk_cliente_id_direccion` (`cliente_direccion`(768));
 
 --
 -- Indices de la tabla `colaboradores`
@@ -348,19 +362,6 @@ ALTER TABLE `colaboradores`
 ALTER TABLE `costos_indirectos`
   ADD PRIMARY KEY (`ci_id`),
   ADD KEY `fk_ci_id_am` (`ci_id_am`);
-
---
--- Indices de la tabla `direccion`
---
-ALTER TABLE `direccion`
-  ADD PRIMARY KEY (`direccion_id`),
-  ADD KEY `fk_direccion_id_estado` (`direccion_id_estado`);
-
---
--- Indices de la tabla `estado`
---
-ALTER TABLE `estado`
-  ADD PRIMARY KEY (`estado_id`);
 
 --
 -- Indices de la tabla `marca`
@@ -393,14 +394,7 @@ ALTER TABLE `pp`
 --
 ALTER TABLE `precio`
   ADD PRIMARY KEY (`precio_id`),
-  ADD KEY `fk_precio_id_pt` (`precio_id_pt`);
-
---
--- Indices de la tabla `precios_totales`
---
-ALTER TABLE `precios_totales`
-  ADD PRIMARY KEY (`pt_id`),
-  ADD KEY `fk_pt_id_moneda` (`pt_id_moneda`);
+  ADD KEY `fk_precio_id_moneda` (`precio_id_moneda`);
 
 --
 -- Indices de la tabla `proveedor`
@@ -423,6 +417,14 @@ ALTER TABLE `proyecto`
   ADD PRIMARY KEY (`proyecto_id`),
   ADD KEY `fk_proyecto_id_cliente` (`proyecto_id_cliente`),
   ADD KEY `fk_proyecto_id_cat` (`proyecto_id_cat_c_a_sptn_ma`);
+
+--
+-- Indices de la tabla `proyectos_cat`
+--
+ALTER TABLE `proyectos_cat`
+  ADD PRIMARY KEY (`pc_id`),
+  ADD KEY `fk_pc_id_proyecto` (`pc_id_proyecto`),
+  ADD KEY `fk_pc_id_cat` (`pc_id_cat`);
 
 --
 -- Indices de la tabla `psp`
@@ -478,6 +480,18 @@ ALTER TABLE `categorias_c_a_sptn_ma`
   MODIFY `cat_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `cat_cat_t`
+--
+ALTER TABLE `cat_cat_t`
+  MODIFY `cc_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `cat_totales`
+--
+ALTER TABLE `cat_totales`
+  MODIFY `ct_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
@@ -494,18 +508,6 @@ ALTER TABLE `colaboradores`
 --
 ALTER TABLE `costos_indirectos`
   MODIFY `ci_id` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `direccion`
---
-ALTER TABLE `direccion`
-  MODIFY `direccion_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `estado`
---
-ALTER TABLE `estado`
-  MODIFY `estado_id` int(2) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -538,12 +540,6 @@ ALTER TABLE `precio`
   MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `precios_totales`
---
-ALTER TABLE `precios_totales`
-  MODIFY `pt_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
@@ -562,6 +558,12 @@ ALTER TABLE `proyecto`
   MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `proyectos_cat`
+--
+ALTER TABLE `proyectos_cat`
+  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `psp`
 --
 ALTER TABLE `psp`
@@ -571,7 +573,7 @@ ALTER TABLE `psp`
 -- AUTO_INCREMENT de la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
-  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -593,20 +595,20 @@ ALTER TABLE `usuarios_proyectos`
 -- Filtros para la tabla `am`
 --
 ALTER TABLE `am`
-  ADD CONSTRAINT `fk_am_id_proyecto` FOREIGN KEY (`am_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_am_id_pt` FOREIGN KEY (`am_id_pt`) REFERENCES `precios_totales` (`pt_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_am_id_proyecto` FOREIGN KEY (`am_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `categorias_c_a_sptn_ma`
+-- Filtros para la tabla `cat_cat_t`
 --
-ALTER TABLE `categorias_c_a_sptn_ma`
-  ADD CONSTRAINT `fk_cad_id_pt` FOREIGN KEY (`cat_id_pt`) REFERENCES `precios_totales` (`pt_id`) ON UPDATE CASCADE;
+ALTER TABLE `cat_cat_t`
+  ADD CONSTRAINT `fk_cc_id_cat` FOREIGN KEY (`cc_id_cat`) REFERENCES `categorias_c_a_sptn_ma` (`cat_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_cc_id_cat_t` FOREIGN KEY (`cc_id_cat_t`) REFERENCES `cat_totales` (`ct_id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `clientes`
+-- Filtros para la tabla `cat_totales`
 --
-ALTER TABLE `clientes`
-  ADD CONSTRAINT `fk_cliente_id_direccion` FOREIGN KEY (`id_direccion`) REFERENCES `direccion` (`direccion_id`) ON UPDATE CASCADE;
+ALTER TABLE `cat_totales`
+  ADD CONSTRAINT `fk_ct_id_moneda` FOREIGN KEY (`ct_id_moneda`) REFERENCES `moneda` (`moneda_id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `colaboradores`
@@ -622,12 +624,6 @@ ALTER TABLE `costos_indirectos`
   ADD CONSTRAINT `fk_ci_id_am` FOREIGN KEY (`ci_id_am`) REFERENCES `am` (`am_id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `direccion`
---
-ALTER TABLE `direccion`
-  ADD CONSTRAINT `fk_direccion_id_estado` FOREIGN KEY (`direccion_id_estado`) REFERENCES `estado` (`estado_id`) ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `pp`
 --
 ALTER TABLE `pp`
@@ -638,13 +634,7 @@ ALTER TABLE `pp`
 -- Filtros para la tabla `precio`
 --
 ALTER TABLE `precio`
-  ADD CONSTRAINT `fk_precio_id_pt` FOREIGN KEY (`precio_id_pt`) REFERENCES `precios_totales` (`pt_id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `precios_totales`
---
-ALTER TABLE `precios_totales`
-  ADD CONSTRAINT `fk_pt_id_moneda` FOREIGN KEY (`pt_id_moneda`) REFERENCES `moneda` (`moneda_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_precio_id_moneda` FOREIGN KEY (`precio_id_moneda`) REFERENCES `moneda` (`moneda_id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `proveedor_marca`
@@ -659,6 +649,13 @@ ALTER TABLE `proveedor_marca`
 ALTER TABLE `proyecto`
   ADD CONSTRAINT `fk_proyecto_id_cat` FOREIGN KEY (`proyecto_id_cat_c_a_sptn_ma`) REFERENCES `categorias_c_a_sptn_ma` (`cat_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_proyecto_id_cliente` FOREIGN KEY (`proyecto_id_cliente`) REFERENCES `clientes` (`cliente_id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `proyectos_cat`
+--
+ALTER TABLE `proyectos_cat`
+  ADD CONSTRAINT `fk_pc_id_cat` FOREIGN KEY (`pc_id_cat`) REFERENCES `categorias_c_a_sptn_ma` (`cat_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pc_id_proyecto` FOREIGN KEY (`pc_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `psp`

@@ -22,7 +22,8 @@ async function Send (){
     const data= {
         rol: datos.rol,
         email : datos.email,
-        password : datos.password
+        password : datos.password,
+        estado_login:false
        
     };
 

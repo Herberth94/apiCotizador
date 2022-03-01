@@ -21,7 +21,7 @@ function Registro() {
 
             <select id="rol" name="rol" required onChange={handleInputChange}>
               
-            <option value="administrador">--------------</option>
+            <option value="-----">--------------</option>
               <option value="administrador">Administrador</option>
               <option value="preventa">Preventa</option>
               <option value="venta">Venta</option>
