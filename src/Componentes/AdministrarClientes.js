@@ -19,7 +19,9 @@ function AdministrarClientes() {
   const [keyRegistro, SetKeyregistro] = useState('');
   const [listaClientes, setlistaClientes] = useState([]);
   const [validar, setvalidar] = useState([]);
-  const { actualizacion, handleInputChange } = useRegistro();
+  const [t, setT] = useState();
+  
+  const { actualizacion, handleInputChange  } = useRegistro();
   const enable = (key) => {
     const newARR = [];
     //console.log(validar);
@@ -63,34 +65,45 @@ function AdministrarClientes() {
     );
     setlistaClientes(respuesta.data.reSql);
   };
-
+  
   const llamadoCliente = async () => {
     setShow2(!show2);
     const newValidar = [];
-    const respuesta = await axios.get(
-      "http://localhost:4001/api/cotizador/clientes/view"
-    );
-    //console.log(respuesta.data.reSql);
-    let i = Object.keys(respuesta.data.reSql);
-    for (let x = 0; x < i.length; x++) {
-      newValidar[x] = true;
+    try {
+      const respuesta = await axios.get(
+        "http://localhost:4001/api/cotizador/clientes/view"
+      );
+      //console.log(respuesta.data.reSql);
+      let i = await  Object.keys(respuesta.data.reSql);
+      for (let x = 0; x < i.length; x++) {
+         newValidar[x] = true;
+      }
+     setvalidar([...validar, newValidar]);
+     setlistaClientes(respuesta.data.reSql);
+     //console.log(listaClientes);
+     //console.log(validar);
+      
+    } catch (error) {
+      
     }
-    setvalidar([...validar, newValidar]);
-    setlistaClientes(respuesta.data.reSql);
+   
     
   };
-  const envioData = (datos, key) => {
-    console.log(datos);
+  const envioData = async(datos, key) => {
+    
+    //console.log(datos);
     if(key == '')
     {
          setShow(!show);
-        //console.log("prueba");
+       
     }
     else{
         setShow(!show);
-        actualizacion(datos[key]);
-        //window.location.reload();
-        actulizarPage(key);
+        //(async ()=> setT(await actualizacion(datos[key])) )() 
+       const respuesta = await actualizacion(datos[key]);
+       console.log(respuesta);
+       //window.location.reload();
+       actulizarPage(key);
     }
   };
   const actulizarPage = (key) => {
@@ -173,7 +186,7 @@ function AdministrarClientes() {
                        <td>
                         <input
                           className="input-name"
-                          defaultValue={listaClientes[key].telefono}
+                          defaultValue={listaClientes[key].cliente_direccion}
                           onChange={handleInputChange}
                           disabled={validar[0][key]}
                           name="direccion"

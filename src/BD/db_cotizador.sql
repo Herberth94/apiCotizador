@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-03-2022 a las 04:22:38
+-- Tiempo de generación: 02-03-2022 a las 19:25:04
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -96,6 +96,13 @@ CREATE TABLE `clientes` (
   `cliente_direccion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`cliente_id`, `nombre_cliente`, `razon_social`, `telefono`, `cliente_direccion`) VALUES
+(1, 'carlos', '', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +149,14 @@ CREATE TABLE `moneda` (
   `moneda_id` int(10) NOT NULL,
   `moneda_nombre` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `moneda`
+--
+
+INSERT INTO `moneda` (`moneda_id`, `moneda_nombre`) VALUES
+(1, 'MXN'),
+(2, 'USD');
 
 -- --------------------------------------------------------
 
@@ -236,18 +251,6 @@ CREATE TABLE `proyectos_cat` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proyectos_cat`
---
-
-CREATE TABLE `proyectos_cat` (
-  `pc_id` bigint(20) NOT NULL,
-  `pc_id_proyecto` bigint(20) DEFAULT NULL,
-  `pc_id_cat` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `psp`
 --
 
@@ -276,18 +279,6 @@ CREATE TABLE `servicio_producto` (
   `sp_comentarios` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `servicio_producto`
---
-
-<<<<<<< HEAD
-INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_meses`, `sp_semanas`, `sp_id_precio`, `sp_id_proveedor`, `sp_id_categoria`, `sp_comentarios`) VALUES
-(1000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-=======
-INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_meses`, `sp_semanas`, `sp_cantidad`, `sp_id_precio`, `sp_id_proveedor`, `sp_id_categoria`, `sp_comentarios`) VALUES
-(1002, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
->>>>>>> d85854aff3b4c5477c2aca1bea90cb2846f839b4
-
 -- --------------------------------------------------------
 
 --
@@ -299,7 +290,7 @@ CREATE TABLE `usuarios` (
   `rol` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `estado_login` bit(1) NOT NULL
+  `estado_login` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -307,7 +298,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `rol`, `email`, `password`, `estado_login`) VALUES
-(1, 'preventa', 'car', '1234', b'0');
+(1, 'preventa', 'car', '1234', 0);
 
 -- --------------------------------------------------------
 
@@ -489,7 +480,7 @@ ALTER TABLE `am`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `categoria_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `categoria_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias_c_a_sptn_ma`
@@ -513,7 +504,7 @@ ALTER TABLE `cat_totales`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cliente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `colaboradores`
@@ -531,13 +522,13 @@ ALTER TABLE `costos_indirectos`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `marca_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `marca_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `moneda`
 --
 ALTER TABLE `moneda`
-  MODIFY `moneda_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `moneda_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `partida`
@@ -555,13 +546,13 @@ ALTER TABLE `pp`
 -- AUTO_INCREMENT de la tabla `precio`
 --
 ALTER TABLE `precio`
-  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `proveedor_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `proveedor_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor_marca`
@@ -591,11 +582,7 @@ ALTER TABLE `psp`
 -- AUTO_INCREMENT de la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
-<<<<<<< HEAD
-  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1001;
-=======
-  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1003;
->>>>>>> d85854aff3b4c5477c2aca1bea90cb2846f839b4
+  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
