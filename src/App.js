@@ -70,7 +70,7 @@ function App() {
         <Administrador path="/" component={MenuAdministrador} />
         <Administrador path="/" component={Header} />
 
-        <Administrador exact path="/" component={CambioContraseña} />
+        {/* <Administrador exact path="/" component={CambioContraseña} /> */}
         <Administrador exact path="/registrar" component={Registro} />
         <Administrador exact path="/registrar-cliente" component={Clientes} />
         <Administrador exact path="/usuarios" component={Usuarios} />
@@ -85,11 +85,17 @@ function App() {
         {/*========================== Páginas Preventa ==========================*/}
 
         <Preventa path="/" component={MenuPreventa} />
+        {/* oooo */}
+        <Preventa path="/" component={CambioContraseña} />
+
         <Preventa path="/add-preventa-cliente" component={addClientesPreventa} />
         <Preventa path="/admin-preventa-clientes" component={administrarClientespreventa} />
 
         {/*========================== Páginas Ventas ==========================*/}
         <Venta path="/" component={MenuVentas} />
+        {/* oooo */}
+        <Venta path="/" component={CambioContraseña} />
+
         <Venta path="/am2" component={AMVentas} />
         <Venta path="/proporcionalidad" component={ProporcionalidadVentas} />
 
