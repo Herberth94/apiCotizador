@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import "./css/PTN_BOM.css";
+import "../css/PTN_BOM.css";
 import Table from "react-bootstrap/Table";
-import Animaciones from "../Componentes/Animaciones";
 
+
+import Animaciones from "../../Componentes/Animaciones";
 import NuevoProyecto from "./NuevoProyecto";
 import ContinuarProyecto from "./ContinuarProyecto";
-import Proyectos from "./Proyectos";
+import Proyectos from "./ResumenProyectos";
 
 function PTN_BOM() {
   {

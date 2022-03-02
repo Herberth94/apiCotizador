@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
-import Animaciones from "../Componentes/Animaciones";
+import Animaciones from "../../Componentes/Animaciones";
 import Categorias from "./Categorias";
+
 
 function DatosPTN() {
   { /*========================== Mostrar Ocultar Tabla ==========================*/}
@@ -27,6 +28,7 @@ function DatosPTN() {
           name="Partida"
           placeholder="ingrese Nombre Partida"
         />
+        
         <br />
         <br />
 

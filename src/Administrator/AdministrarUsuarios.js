@@ -96,6 +96,10 @@ function AdministrarUsuarios() {
   {/*======================= Titulo Animación =======================*/}
   <div> <Animaciones   mytext= "Lista de Usuarios"      /> </div>
 
+
+
+
+
   {/*================= Botón Mostrar/Ocultar Lista ==================*/}
                 <div>
                     <button className="btn btn-primary modificar" type="button" onClick={() => { llamadoUsuario(); }}>  {show2 ? 'Mostrar Lista' : 'Ocultar Lista'} </button>

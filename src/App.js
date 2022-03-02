@@ -28,7 +28,7 @@ import CambioContraseña from "./Componentes/CambioContraseña";
 
 import Colaboradores from "./Administrator/Colaborador";
 
-import PTN_BOM from "./Administrator/PTN_BOM";
+import PTN_BOM from "./Administrator/PTN-BOM/PTN_BOM";
 import AM from "./Administrator/AM";
 import Proporcionalidad from "./Administrator/Proporcionalidad";
 import PropuestaEconomica from "./Administrator/PropuestEconomica";

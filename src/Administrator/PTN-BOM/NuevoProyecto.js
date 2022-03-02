@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import PTN from "./DatosPTN";
-import Animaciones from "../Componentes/Animaciones";
+import Animaciones from "../../Componentes/Animaciones";
 
 
 /*======== Datos que se deben Obtener de este archivo para Nuevo Proyecto ==============*/
@@ -33,7 +33,9 @@ function NuevoProyecto() {
           <tr className="titulo-tabla-usuarios">
             <th>Clave</th>
             <th>Descripción</th>
+           
             <th> Cliente </th>
+            
           </tr>
         </thead>
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import "./css/Proyectos.css";
+import "../css/Proyectos.css";
 import Table from 'react-bootstrap/Table'
 
 const listaProyectos = [

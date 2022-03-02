@@ -101,7 +101,7 @@ function AdministrarClientes() {
     <div className="contenido-usuarios">
       <div className="table-responsive">
         {/*========================== Titulo Animación =======================*/}
-        <div> <Animaciones   mytext= "Lista de Clientes"      /> </div>
+        <div> <Animaciones   mytext= "Lista de Clientes"   /> </div>
 
         {/*================= Botón Mostrar/Ocultar Lista =======================*/}
         <div>
@@ -111,7 +111,7 @@ function AdministrarClientes() {
             }}
           >
             {" "}
-            {show2 ? "Mostrar Lista" : "Ocultar Lista"}{" "}
+            {show2 ? "Mostrar Lista" : "Ocultar Lista"}
           </button>
           {show2 ? (
             <div>
