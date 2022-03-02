@@ -44,7 +44,8 @@ export const useRegistro = () => {
      const dataActulizacion = {
          rol:data.rol,
          email:data.email,
-         password:data.password   
+         password:data.password
+        //  estado_login: 1 
 
      };
      //console.log(data);

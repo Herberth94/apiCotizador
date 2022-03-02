@@ -25,8 +25,11 @@ export const useLogin = () => {
         // el URL se tiene que cambiar por la ruta donde ira a lojado la aplicación
         const respuesta = await axios.post('http://localhost:4001/api/cotizador/login',data);
         const send2= respuesta.data;
+        console.log(send2)
         cookies.set('id_usuario', send2.id_usuario , {path:"/"});
         cookies.set('rol', send2.rol, {path:"/"});
+        cookies.set('estado_login', send2.estado_login, {path:"/"});
+
         console.log(cookies.get('rol'))
         window.location.href="../Components/ValidaRol.js";
 
