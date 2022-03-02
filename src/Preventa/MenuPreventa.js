@@ -43,7 +43,7 @@ function MenuPreventa() {
 
           <li>
             <a href="/add-preventa-cliente">
-            <i class="bi bi-person-plus"></i>
+            <i className="bi bi-person-plus"></i>
               <span className="nav-text">
             Agregar Clientes
               </span>
@@ -54,7 +54,7 @@ function MenuPreventa() {
 
           <li>
             <a href="/admin-preventa-clientes">
-            <i class="bi bi-person-video2"></i>
+            <i className="bi bi-person-video2"></i>
               <span className="nav-text">
                 Administrar Clientes
               </span>
