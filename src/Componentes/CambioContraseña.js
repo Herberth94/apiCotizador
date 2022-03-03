@@ -14,9 +14,9 @@ const estado =()=>
 function CambioContraseña() {
   
 
-  console.log("este es el estado login de cambio contraseña: " );
-  console.log(estado());
-  console.log();
+  //console.log("este es el estado login de cambio contraseña: " );
+  //console.log(estado());
+  
   return (
     <>
     { estado() ?  "":(<div className="contenido-main-registro">
