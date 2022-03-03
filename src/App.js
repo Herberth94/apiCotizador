@@ -3,8 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 import "./Componentes/css/Animaciones.css";
 import "./css/Tablas.css";
-
-
 //============ Rutas Públicas ============
 import Login from './Login';
 import Footer from './Footer';
@@ -52,7 +50,10 @@ import ProporcionalidadVentas from "./Ventas/Proporcionalidad";
 import AMVentas from "./Ventas/AM";
 
 
+
 function App() {
+  
+
   return (
     <div className="App">
 

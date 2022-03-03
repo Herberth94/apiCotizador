@@ -5,13 +5,8 @@ export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
 export let i = "";
-
-
 export let validator = cookies.get('rol');
-export let estado_login = cookies.get('estado_login') === "true";
-
-console.log("este es el estado login", estado_login)
-
+ 
 // let validator = "administrador"
 // console.log(validator);
 
@@ -31,6 +26,7 @@ export function foo() {
     console.log(i); // local
 }
 foo()
+
 
 
 

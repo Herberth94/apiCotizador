@@ -12,6 +12,7 @@ function MenuPreventa() {
 
     cookies.remove('id_usuario',{path:"/"});
     cookies.remove('rol',{path:"/"});
+    cookies.remove('estado_login',{path:"/"});
     window.location.href="../Login.js";
 
 

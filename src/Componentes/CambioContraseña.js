@@ -1,13 +1,24 @@
 import React from 'react';
-import { estado_login } from '../Routes/ValidaRol';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+const estado =()=>
+{ if (cookies.get('estado_login') === "0")
+{
+  return false
 
+} else{
+  return true
+}
+}
 
 function CambioContraseña() {
 
-  console.log("este es el estado login de cambio contraseña: ", !estado_login);
+  console.log("este es el estado login de cambio contraseña: " );
+  console.log(estado());
+  console.log();
   return (
     <>
-    { !estado_login && (<div className="contenido-main-registro">
+    { estado() ?  "":(<div className="contenido-main-registro">
       <div className="scene flex">
         <section className="card-body">
           <form method="post" className="card-form" >

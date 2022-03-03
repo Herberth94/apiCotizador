@@ -33,8 +33,8 @@ async function Send (){
 
         const respuesta = await axios.post('http://localhost:4001/api/cotizador/registro',data);
         const send2= respuesta.data;
-        console.log(send2);
-        alert('Registro exitoso');
+        console.log(send2.msg);
+        alert(send2.msg);
             
         } catch (error) {
             console.log(error);

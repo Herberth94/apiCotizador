@@ -29,8 +29,7 @@ export const useLogin = () => {
         cookies.set('id_usuario', send2.id_usuario , {path:"/"});
         cookies.set('rol', send2.rol, {path:"/"});
         cookies.set('estado_login', send2.estado_login, {path:"/"});
-
-        console.log(cookies.get('rol'))
+        console.log(cookies.get('estado_login'));
         window.location.href="../Components/ValidaRol.js";
 
         //console.log(send2.id_usuario);
