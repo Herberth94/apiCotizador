@@ -112,3 +112,47 @@ color: white;
 	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+
+
+
+            
+/*=========================MEDIA QUERIES PANTALLA ANCHA================================*/
+
+@media (max-width: 1200px) {
+
+}
+
+/*=========================MEDIA QUERIES PANTALLA SM================================*/
+
+
+@media (max-width: 960px) {
+
+
+	.scene.flex.login{
+		margin-top: 40%;
+	}
+	
+
+}
+
+/*=========================MEDIA QUERIES PANTALLA EXTRA-SM================================*/
+
+@media (max-width: 768px) {
+
+	.scene.flex.login{
+		margin-top: 40%;
+	}
+	
+
+
+}
+
+/*=========================MEDIA QUERIES PANTALLA EXTRA-SM================================*/
+@media (max-width: 576px) {
+
+	.scene.flex.login{
+		margin-top: 40%;
+	}
+	
+  
+}

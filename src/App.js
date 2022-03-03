@@ -24,11 +24,12 @@ import Registro from './Administrator/RegistrarUsuarios';
 import Usuarios from "./Administrator/AdministrarUsuarios";
 import CambioContraseña from "./Componentes/CambioContraseña";
 
-import Colaboradores from "./Administrator/Colaborador";
+import Colaboradores from "./Administrator/AgregarColaborador";
 
 import PTN_BOM from "./Administrator/PTN-BOM/PTN_BOM";
-import AM from "./Administrator/AM";
-import Proporcionalidad from "./Administrator/Proporcionalidad";
+import AM from "./Administrator/AM/AmMenu";
+import Proporcionalidad from "./Administrator/Proporcionalidad/ProporcionalidadMenu";
+
 import PropuestaEconomica from "./Administrator/PropuestEconomica";
 import ExportarPDF from "./Administrator/ExportarPDF";
 

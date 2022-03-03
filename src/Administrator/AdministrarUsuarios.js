@@ -129,6 +129,7 @@ function AdministrarUsuarios() {
                                     {Object.keys(listaUsuarios).map((key) => (
                                         //checar aqui va los titulos
                                         <tr key={listaUsuarios[key].id_usuario} >
+                                            
                                             <td>{listaUsuarios[key].id_usuario}</td>
                                             <td><input className="input-name" defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={validar[0][key]} name="rol" id={listaUsuarios[key].id_usuario}></input></td>
                                             <td><input className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={validar[0][key]} name="email"></input> </td>

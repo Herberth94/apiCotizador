@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-03-2022 a las 19:25:04
+-- Tiempo de generación: 03-03-2022 a las 16:32:50
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -58,6 +58,14 @@ CREATE TABLE `categorias_c_a_sptn_ma` (
   `cat_nombre` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `categorias_c_a_sptn_ma`
+--
+
+INSERT INTO `categorias_c_a_sptn_ma` (`cat_id`, `cat_nombre`) VALUES
+(2, 'Accesorios '),
+(3, 'Capacitación');
+
 -- --------------------------------------------------------
 
 --
@@ -78,7 +86,7 @@ CREATE TABLE `cat_cat_t` (
 
 CREATE TABLE `cat_totales` (
   `ct_id` bigint(20) NOT NULL,
-  `ct_totales` bigint(20) DEFAULT NULL,
+  `ct_totales` decimal(20,3) DEFAULT NULL,
   `ct_id_moneda` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -138,6 +146,14 @@ CREATE TABLE `marca` (
   `marca_id` int(10) NOT NULL,
   `marca_nombre` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `marca`
+--
+
+INSERT INTO `marca` (`marca_id`, `marca_nombre`) VALUES
+(4, 'PTN'),
+(5, 'AZURE');
 
 -- --------------------------------------------------------
 
@@ -209,6 +225,14 @@ CREATE TABLE `proveedor` (
   `proveedor_compania` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`proveedor_id`, `proveedor_nombre`, `proveedor_telefono`, `proveedor_compania`) VALUES
+(4, 'PTN', NULL, NULL),
+(5, 'AZURE', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -233,8 +257,17 @@ CREATE TABLE `proyecto` (
   `proyecto_descripcion` text DEFAULT NULL,
   `proyecto_id_cliente` int(11) DEFAULT NULL,
   `proyecto_id_cat_c_a_sptn_ma` bigint(20) DEFAULT NULL,
-  `proyecto_fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `proyecto_fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `proyecto_fecha_modificacion` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `proyecto`
+--
+
+INSERT INTO `proyecto` (`proyecto_id`, `proyecto_clave`, `proyecto_descripcion`, `proyecto_id_cliente`, `proyecto_id_cat_c_a_sptn_ma`, `proyecto_fecha_creacion`, `proyecto_fecha_modificacion`) VALUES
+(1, '01N', NULL, NULL, NULL, '2022-03-03 00:03:56', '2022-03-03 09:25:05'),
+(2, '02N', NULL, NULL, NULL, '2022-03-03 00:03:56', '2022-03-03 09:25:05');
 
 -- --------------------------------------------------------
 
@@ -486,7 +519,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `categorias_c_a_sptn_ma`
 --
 ALTER TABLE `categorias_c_a_sptn_ma`
-  MODIFY `cat_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `cat_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_cat_t`
@@ -498,7 +531,7 @@ ALTER TABLE `cat_cat_t`
 -- AUTO_INCREMENT de la tabla `cat_totales`
 --
 ALTER TABLE `cat_totales`
-  MODIFY `ct_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `ct_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -522,13 +555,13 @@ ALTER TABLE `costos_indirectos`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `marca_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `marca_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `moneda`
 --
 ALTER TABLE `moneda`
-  MODIFY `moneda_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `moneda_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `partida`
@@ -552,25 +585,25 @@ ALTER TABLE `precio`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `proveedor_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `proveedor_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor_marca`
 --
 ALTER TABLE `proveedor_marca`
-  MODIFY `pm_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `pm_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos_cat`
 --
 ALTER TABLE `proyectos_cat`
-  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `psp`

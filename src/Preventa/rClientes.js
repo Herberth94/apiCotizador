@@ -34,7 +34,7 @@ function rClientes() {
   
   
               <div className="boton-registro">
-                <button className="card-button3" type="button">
+                <button className="card-button" type="button">
                   <span>Registrar</span>
                 </button>
               </div>
