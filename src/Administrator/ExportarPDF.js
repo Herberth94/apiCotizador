@@ -5,8 +5,6 @@ import './css/Exportar.css';
 import {imagen} from './IMG';
 
 
-
-
 class ExportarPDF extends React.Component {
 
   constructor() {
