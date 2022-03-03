@@ -20,6 +20,7 @@ function MargenGanancia() {
             <th>Costo Total</th>
             <th>Margen de Ganancia</th>
             <th>Precio de Venta</th>
+            <th>Editar</th>
         </tr>
     </thead>
     <tbody>
@@ -28,42 +29,63 @@ function MargenGanancia() {
             <td>1053.95</td>
             <td>32 %</td>
             <td>1549.926470</td>
+            <td>
+            <button className="btn btn-primary"> Editar </button>
+            </td>
         </tr>
         <tr className="color">
             <td>Partida 2</td>
             <td>132.525</td>
             <td>32 % </td>
             <td>194.889705 </td>
+            <td>
+            <button className="btn btn-primary"> Editar </button>
+            </td>
         </tr>
         <tr className="">
             <td>Capacitación</td>
             <td>0</td>
             <td>0 % </td>
             <td>0 </td>
+            <td>
+            <button className="btn btn-primary"> Editar </button>
+            </td>
         </tr>
         <tr className="">
             <td>Accesorios</td>
             <td>0</td>
             <td>0 % </td>
             <td>0 </td>
+            <td>
+            <button className="btn btn-primary"> Editar </button>
+            </td>
+
         </tr>
         <tr className="">
             <td>Servicios PTN</td>
             <td>0</td>
             <td>0 % </td>
             <td>0 </td>
+            <td>
+            <button className="btn btn-primary"> Editar </button>
+            </td>
         </tr>
         <tr className="">
             <td>Mesa de Ayuda</td>
             <td>10</td>
             <td>32 % </td>
             <td>14.70588</td>
+            <td>
+            <button className="btn btn-primary"> Editar </button>
+            </td>
         </tr>
         <tr className="total">
             <td>Total</td>
             <td>1196.475</td>
             <td>32 % </td>
             <td>1759.522058</td>
+            <td></td>
+         
         </tr>
     </tbody>
 </Table>

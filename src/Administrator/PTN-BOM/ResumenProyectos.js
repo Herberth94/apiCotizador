@@ -96,8 +96,10 @@ function Proyectos() {
          <tbody>
       {Object.keys(listaProyectos).map((key) => (    
           //checar aqui va los titulos
-        <tr key={listaProyectos[key].id_usuario} >
-            <td>{listaProyectos[key].id_usuario}</td>        
+        <tr key={listaProyectos[key].id} >
+            
+            <td>{listaProyectos[key].id}</td>   
+
             <td>{listaProyectos[key].clave}</td>  
             <td>{listaProyectos[key].descripcion}</td>  
             <td>{listaProyectos[key].status}</td>  
@@ -108,9 +110,7 @@ function Proyectos() {
        ))
       }
      
-     </tbody>
-       
-            
+     </tbody>          
                 </Table>
 
 
