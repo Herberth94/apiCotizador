@@ -61,7 +61,7 @@ export const useRegistro = () => {
      } 
     try {
 
-        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/clientes/update/${id}`,dataActulizacion);
+        const respuesta = await axios.put(`http://localhost:4001/api/cotizador/clientes/update/${id}`,dataActulizacion);
         //console.log(respuesta.data) ;
         return respuesta.data;
         //console.log(send2);
