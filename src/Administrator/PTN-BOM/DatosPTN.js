@@ -1,13 +1,108 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 import Categorias from "./Categorias";
 
+/*============== Operacions PTN BOM ==============*/
+import {precioUnitario , calcularDescuento, Total, Hola}from "./Operaciones";
+
+
+import {operaciones}  from "../../Routes/Operaciones";
+
+
+
 
 function DatosPTN() {
+
+ /*  console.log("---- Precio Unitario ----- ") */
+/*PARAMETROS   precioUnitario(precioLista, Descuento) */
+/*   console.log( precioUnitario( 100 , 10 ))
+  console.log(" ------------- ") */
+
+/*   console.log("---- Calcular Descuento ----- ") */
+/*  /*PARAMETROS  calcularDescuento(precioLista, precioUnitario ) */
+/*   console.log( calcularDescuento( 100 , 10 )) */
+/*   console.log(" ------------- ") */
+
+/*   console.log("---- Calcular Total ----- ") */
+
+ /*PARAMETROS  calcularDescuento(Cantidad , Precio Unitario); */
+ /*  console.log( Total( 1 , 90 )) */
+/*   console.log(" ------------- ")
+
+ */
+
   { /*========================== Mostrar Ocultar Tabla ==========================*/}
   const [show, setShow] = useState(true);
+
+
+/*   OPERACIONES  DATOS*/
+const { total, precio_u, descuento_1, total_1 } = operaciones();
+
+const [datos, setDatos] = useState({
+  clave: "",
+  descripcion_proyecto: "",
+  cliente: "",
+  valor_dolar: "",
+  Partida: "",
+  precio_lista: "",
+  precio_unitario: "",
+  descuento: "",
+  cantidad: "",
+});
+
+const handleInputChange = (event) => {
+  //console.log(event.target.value)
+  setDatos({
+    ...datos,
+    [event.target.name]: event.target.value,
+  });
+};
+
+useEffect(() => {
+  if (
+    datos.precio_lista.length > 0 &&
+    datos.cantidad.length > 0 &&
+    datos.descuento.length > 0 &&
+    datos.precio_unitario === ""
+  ) {
+    console.log("total:  ");
+    const Total = total(datos.precio_lista, datos.cantidad, datos.descuento);
+    console.log(Total);
+    console.log("Precio unitario :");
+    console.log(precio_u(Total, datos.cantidad));
+  }
+  if (
+    datos.precio_lista.length > 0 &&
+    datos.cantidad.length > 0 &&
+    datos.precio_unitario.length > 0 &&
+    datos.descuento === ""
+  ) {
+    console.log("Descuento: ");
+    const desc_1 = descuento_1(datos.precio_unitario, datos.precio_lista);
+    console.log(desc_1.toFixed(2));
+    console.log("total_1: ");
+    console.log(total_1(datos.cantidad, datos.precio_unitario));
+  }
+}, [
+  datos.cantidad,
+  datos.descuento,
+  datos.precio_lista,
+  datos.precio_unitario,
+  descuento_1,
+  precio_u,
+  total,
+  total_1,
+]);
+
+
+
+
+
+
+
+
 
   return (
     <div className="contenido-usuarios">
@@ -15,6 +110,8 @@ function DatosPTN() {
       <div>
         {" "}
         <Animaciones mytext="Datos PTN" />{" "}
+
+     
       </div>
 
       {/*========================== Datos Partida ==========================*/}
@@ -133,6 +230,7 @@ function DatosPTN() {
                 className="agregar"
                 type="number"
                 name="cantidad"
+                onChange={handleInputChange}
                 placeholder="Cantidad "
                 min="0"
                 step="any"
@@ -144,7 +242,8 @@ function DatosPTN() {
               <input
                 className="agregar"
                 type="number"
-                name="precio_lista"
+                name="precioList"
+                onChange={handleInputChange}
                 placeholder="Precio Lista"
                 min="0"
                 step="any"
@@ -157,7 +256,8 @@ function DatosPTN() {
               <input
                 className="agregar"
                 type="number"
-                name="precio_unitario"
+                name="precioUni"
+                onChange={handleInputChange}
                 placeholder="Precio unitario"
                 min="0"
                 step="any"
@@ -169,7 +269,8 @@ function DatosPTN() {
               <input
                 className="agregar"
                 type="number"
-                name="descuento"
+                name="desc"
+                onChange={handleInputChange}
                 placeholder="Descuento"
                 min="0"
                 step="any"
@@ -181,6 +282,8 @@ function DatosPTN() {
               <input
                 className="agregar"
                 type="text"
+                name="total"
+             
                 placeholder="Total"
                 min="0"
                 step="any"

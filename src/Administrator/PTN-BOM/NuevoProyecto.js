@@ -38,6 +38,8 @@ function NuevoProyecto() {
 
       {/*=======================  Tabla Nuevo Proyecto ======================= */}
 
+      
+
       <Table responsive id="nombreDiv">
 
         {/*======================= Titulos Tabla ======================= */}

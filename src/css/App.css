@@ -21,7 +21,7 @@
 
 body{
 
- background: #000000;
+ background: #ffffff;
   background: url('../images/Cotizador.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -64,32 +64,51 @@ input{
 }
 
 
-.titulo-proyectos h2{
-
-
-
-  font-family: 'Code Pro'; 
-  font-size: 40px;
-  font-weight: 600; 
-  color: rgb(0, 0, 0);
-  font-display: swap;
-
-
-}
-
-
+¿
 
 
 
 /* ================================== Transparencia fondo menus ==================================*/
-.contenido-usuarios{ 
-
-  background-color: rgb(255, 255, 255);
-  height: 100vh;
-  margin-top: 21px;
-
-  }
 
   .tablas{
 	  background-color: #ffffff;
   }
+
+
+
+
+              
+/*=========================MEDIA QUERIES PANTALLA ANCHA================================*/
+
+@media (max-width: 1200px) {
+
+}
+
+/*=========================MEDIA QUERIES PANTALLA SM================================*/
+
+@media (max-width: 960px) {
+
+
+  body{
+
+    background: #ffffff;
+     background: url('../images/Movil.png') no-repeat center center fixed; 
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+   
+   }
+   
+}
+
+/*=========================MEDIA QUERIES PANTALLA EXTRA-SM================================*/
+
+@media (max-width: 768px) {
+
+
+}
+/*=========================MEDIA QUERIES PANTALLA EXTRA-SM================================*/
+@media (max-width: 576px) {
+  
+}

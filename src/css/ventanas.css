@@ -36,31 +36,31 @@ LOGIN
 
 /*============== Color Placeholder ==============*/
 ::-webkit-input-placeholder {
-    color: rgba(0, 0, 0, 0.404);
+    color: rgba(0, 0, 0, 0.555);
 }
 
 /*============== Tamaño y Color de Ventanas  ==============*/
-.card-body{	
-	border: 1px solid rgb(254 254 254/ 53%);
+.card-body{
+	border: 1px solid rgba(0, 0, 0, 0.137);
 	border-radius: 15px;
-	color: white;
+	color: rgb(88, 88, 88);
 	max-width: 450px;
 	overflow: hidden;
 	padding: 0px 30px 10px 30px;
 	position: relative;
 	text-align: center;
 	z-index: 1;
-	background-color:  #86868654;
-
+	background-color:  #00000009;
+	backdrop-filter: blur(6px);
 }
 
 /*============== Estilo Input ==============*/
 .card-input {
-	background: rgba(254, 254, 254, 0.075);
-	border: 1px solid rgb(254 254 254 / 73%);
+	background: rgba(255, 255, 255, 0.822);
+	border: 1px solid rgba(0, 0, 0, 0.363);
 	border-radius: 3px;
 	box-sizing: border-box;
-	color: #000000;
+	color: #ffffff;
 	display: block;
 	font-size: 1rem;
 	letter-spacing: 0.15rem;
@@ -71,9 +71,14 @@ LOGIN
 
 .card-input:focus, .card-input:active {
 
-	border: 1px solid rgba(254, 254, 254, 0.75);
+	border: 1px solid rgba(255, 255, 255, 0.75);
 	outline: none;
+
+	background-color: #3d1152;
 }
+
+
+
 
 
 /*============== OPTIONS VENTANA ==============*/
@@ -106,7 +111,7 @@ color: white;
  
 
 .card-body h2{
-	color: #ffffff;
+	color: #000000;
 
 
 	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;

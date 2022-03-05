@@ -174,7 +174,7 @@ function Categorias() {
                     </tr>
                 </tbody>
             </Table>
-
+            <button className="btn btn-success">Agregar Datos Categoria </button>
 
         </div>
     )

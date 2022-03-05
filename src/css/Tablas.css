@@ -1,12 +1,11 @@
 
 .contenido-usuarios{
  
-    position: absolute;
-    top: 10%;
+    position: relative;
     margin-left: 60px;
     width: calc(100%  - 60px); 
+    background-color: #ffffff;
     padding: 2%;
-
     
 }
 
@@ -61,6 +60,7 @@ color: rgb(255, 255, 255);
     width: 100%;
     background-color: #ffffff;
     height: 100%;
+  
 }
 
 

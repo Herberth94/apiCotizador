@@ -31,11 +31,12 @@ IMAGEN MOVIMIENTO LOGIN
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #ffffff;
+  
     
   }
    .container .box {
-       height: 80px;
+     
+       height: 60px;
        position: relative;
        display: flex;
        justify-content: center;
