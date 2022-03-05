@@ -38,8 +38,7 @@ export const GuardarNuevoProyecto = () => {
     const enviarDatos = (event) =>{
         console.log("estos son los datos", datos)
         Send();
-        console.log("este es el send", Send)
-        // event.preventDefault();
+        event.preventDefault();
         event.target.reset();
     }
 

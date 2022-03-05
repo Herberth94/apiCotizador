@@ -21,7 +21,7 @@ const nombeProyecto = [
 function NuevoProyecto() {
 
 
-  {  /*========================== Mostrar Ocultar Tabla ==========================*/}
+   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
   const{
@@ -37,7 +37,7 @@ function NuevoProyecto() {
       <div> <Animaciones mytext="Datos Proyecto" /> </div>
 
       {/*=======================  Tabla Nuevo Proyecto ======================= */}
-
+      <form action="" method="post" onSubmit = {enviarDatos}>
       <Table responsive id="nombreDiv">
 
         {/*======================= Titulos Tabla ======================= */}
@@ -45,14 +45,13 @@ function NuevoProyecto() {
           <tr className="titulo-tabla-usuarios">
             <th>Clave</th>
             <th>Descripción</th>
-           
             <th> Cliente </th>
             
           </tr>
         </thead>
 
         <tbody>
-        {/* <form action="" method="post" onSubmit = {enviarDatos}> */}
+      
           <tr className="">
 
             {/*=======================  Clave proyecto ======================= */}
@@ -80,8 +79,6 @@ function NuevoProyecto() {
               {" "}
               <select
                 id="lista-proyectos"
-                
-               
               >
                 <option value="">Elige una opción</option>
                 <option value="lista 1">Cliente 1</option>
@@ -93,10 +90,12 @@ function NuevoProyecto() {
           </tr>
         
         </tbody>
+       
       </Table>
-
-      {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
-      <button className="btn btn-primary modificar" type="submit" onClick={() => { setShow(!show); enviarDatos()}}>  {show ? 'Empezar' : 'Ocultar Datos'}    </button>
+       {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
+     
+      <button className="btn btn-primary modificar" type="submit" onClick={() => { setShow(!show)}}>  {show ? 'Empezar' : 'Ocultar Datos'}    </button>
+      </form>
       {show ? (
         <div >
 
@@ -106,10 +105,6 @@ function NuevoProyecto() {
           <PTN />
         </div>
       )}
-
-
-
-
 
 
     </div>
