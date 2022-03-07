@@ -21,29 +21,23 @@ function MenuPreventa() {
     <div className="contenedor">
 
       <nav className="main-menu-preventa">
-        <ul>
-         <div className="name-user">
-           <li>
-            <a href="#">
+      <ul>
+          <div className="administrador-user">
+            <li>
               <i className="bi bi-person-circle fa-2x"></i>
-              <span className="nav-text">
-          Preventa
-              </span>
-            </a>
-          </li>
-        </div>
+              <span className="nav-text">Preventa</span>
+            </li>
+          </div>
+
           <li>
             <a href="/">
               <i className="fa fa-home fa-2x"></i>
-              <span className="nav-text">
-                Home
-              </span>
+              <span className="nav-text">Home</span>
             </a>
-
           </li>
 
           <li>
-            <a href="/add-preventa-cliente">
+            <a href="/agregar-cliente">
             <i className="bi bi-person-plus"></i>
               <span className="nav-text">
             Agregar Clientes
@@ -52,9 +46,17 @@ function MenuPreventa() {
 
           </li>
 
+          <li className="has-subnav">
+            <a href="/agregar-colaborador">
+              <i className="bi bi-people fa-2x"></i>
+              <span className="nav-text">Añadir Colaborador</span>
+            </a>
+          </li>
+
+
 
           <li>
-            <a href="/admin-preventa-clientes">
+            <a href="/administrar-clientes">
             <i className="bi bi-person-video2"></i>
               <span className="nav-text">
                 Administrar Clientes
@@ -64,8 +66,33 @@ function MenuPreventa() {
           </li>
 
 
+          
+          <li>
+            <a href="/administrar-colaboradores">
+            <i className="bi bi-person-video2"></i>
+              <span className="nav-text">
+                Administrar Colaboradores
+              </span>
+            </a>
+
+          </li>
+
+
+     
           <li className="has-subnav">
-            <a href="/resumen">
+            <a href="/asignar">
+              <i className="bi bi-briefcase fa-2x"></i>
+              <span className="nav-text">
+           Asignar Proyecto
+              </span>
+            </a>           
+          </li>
+
+
+
+
+          <li className="has-subnav">
+            <a href="/ptn">
               <i className="bi bi-briefcase-fill fa-2x"></i>
               <span className="nav-text">
              PTN-BOM
@@ -74,38 +101,9 @@ function MenuPreventa() {
           </li>
 
 
-          <li className="has-subnav">
-            <a href="/am">
-              <i className="bi bi-check2-circle fa-2x"></i>
-              <span className="nav-text">
-           Proyectos
-              </span>
-            </a>           
-          </li>
+     
 
 
-          
-          <li className="has-subnav">
-            <a href="/proporcionalidad">
-              <i className="bi bi-check2-circle fa-2x"></i>
-              <span className="nav-text">
-         Propuesta Económica
-              </span>
-            </a>           
-          </li>
-
-
-
-
-          <li className="has-subnav">
-            <a href="/">
-              <i className="bi bi-info-circle fa-2x"></i>
-              <span className="nav-text">
-                Información
-              </span>
-            </a>
-
-          </li>
         </ul>
 
         <ul className="logout">

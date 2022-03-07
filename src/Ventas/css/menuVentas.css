@@ -1,7 +1,4 @@
 
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 .fa-2x {
 font-size: 2em;
 }
@@ -27,8 +24,7 @@ overflow:visible;
 }
 
 .main-menu-ventas{
-
-position:absolute;
+position:fixed;
 top:0;
 bottom:0;
 height:100%;
@@ -38,16 +34,9 @@ overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
 z-index:10;
-
-
-background: #5fa2db;
+background: #6786b8bd;
 backdrop-filter: blur(10px);
-background: #38153E;
-background: #55555469;
 border: 1px solid rgba(254, 254, 254, 0.18);
-
-
-
 }
 
 .main-menu-ventas>ul {

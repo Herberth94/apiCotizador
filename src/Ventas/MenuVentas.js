@@ -22,6 +22,15 @@ function archivo() {
 
       <nav className="main-menu-ventas">
         <ul>
+
+        <div className="administrador-user">
+            <li>
+              <i className="bi bi-person-circle fa-2x"></i>
+              <span className="nav-text">Ventas</span>
+            </li>
+          </div>
+
+
           <li>
             <a href="/">
               <i className="fa fa-home fa-2x"></i>

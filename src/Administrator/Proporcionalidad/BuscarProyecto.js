@@ -7,7 +7,6 @@ import Proporcionalidad from "./Proporcionalidad";
 
 
 
-
 function BuscarProyecto() {
 
   {  /*========================== Mostrar Ocultar Tabla ==========================*/}

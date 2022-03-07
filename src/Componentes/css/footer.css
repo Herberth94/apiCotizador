@@ -1,4 +1,4 @@
-/*Version Escritorio */
+/*============== FOOTER ============== */
 
 .footer {
     position: absolute;
@@ -14,6 +14,8 @@
     position: fixed;
     bottom: 0;
   }
+
+  /*============== REDES SOCIALES============== */
   .redes-sociales h4 {
     text-align: center;
   }
@@ -39,6 +41,3 @@
     font-size: 15px;
   }
   
-  /*footer móvil página Inicio */
-  @media screen and (max-width: 960px) {
-  }

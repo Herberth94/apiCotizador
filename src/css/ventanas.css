@@ -60,7 +60,7 @@ LOGIN
 	border: 1px solid rgba(0, 0, 0, 0.363);
 	border-radius: 3px;
 	box-sizing: border-box;
-	color: #ffffff;
+	color: #000000;
 	display: block;
 	font-size: 1rem;
 	letter-spacing: 0.15rem;
@@ -74,7 +74,7 @@ LOGIN
 	border: 1px solid rgba(255, 255, 255, 0.75);
 	outline: none;
 
-	background-color: #3d1152;
+	background-color: #ffffff;
 }
 
 
@@ -113,8 +113,7 @@ color: white;
 .card-body h2{
 	color: #000000;
 
-
-	font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-weight: 400;
 }
 
 

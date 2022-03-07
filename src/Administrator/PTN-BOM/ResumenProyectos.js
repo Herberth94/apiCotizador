@@ -104,7 +104,7 @@ function Proyectos() {
             <td>{listaProyectos[key].descripcion}</td>  
             <td>{listaProyectos[key].status}</td>  
             <td><button className="btn btn-primary eliminar" > Eliminar</button></td>
-            <td><button className="btn btn-primary modificar usuarios" >Modificar</button></td> 
+            <td><button className="btn btn-primary modificar" >Modificar</button></td> 
             <td><button className="btn btn-primary detalles" >Ver más</button></td> 
         </tr>  
        ))

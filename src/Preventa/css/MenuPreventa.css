@@ -1,53 +1,26 @@
-@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
-
-@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
-.fa-2x {
-font-size: 2em;
-}
-.fa , .bi{
-position: relative;
-display: table-cell;
-width: 60px;
-height: 36px;
-text-align: center;
-vertical-align: middle;
-font-size:20px;
-color: #e2e2e2;
-}
-
-.nav-text img{
-width: 50%;
-margin-left: 8%;
-}
-
 .main-menu-preventa:hover,nav.main-menu-preventa.expanded {
 width:250px;
 overflow:visible;
 }
 
 .main-menu-preventa{
- background: #617ece;
 
-position:absolute;
+  
+position:fixed;
 top:0;
 bottom:0;
 height:100%;
 left:0;
 width:60px;
 overflow:hidden;
+
+
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
 z-index:10;
-
-
-
-
-backdrop-filter: blur(10px);
-background: #38153E;
-background: #ac13db69;
 border: 1px solid rgba(254, 254, 254, 0.18);
-
-
+backdrop-filter: blur(5px);
+background-color:  #000b8ce5;
 
 }
 
@@ -129,8 +102,8 @@ margin:0;
 padding:0;
 }
 .main-menu-preventa li:hover>a,nav.main-menu-preventa li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
-color:#fff;
-background-color:#000000;
+color:rgb(0, 0, 0);
+background-color:#ffffff71;
 }
 .area {
 float: left;
@@ -138,15 +111,14 @@ background: #e2e2e2;
 width: 100%;
 height: 100%;
 }
-@font-face {
-  font-family: 'Titillium Web';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
-}
 
 .name-user{
   background-color: rgba(34, 214, 190, 0.445);
   margin: 0;
   width: 250px;
 }
+
+.nav-text{
+  color: rgb(255, 255, 255);
+}
+

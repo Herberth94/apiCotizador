@@ -5,9 +5,8 @@ export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
 export let i = "";
-/* export let validator = cookies.get('rol');
-  */
-let validator = "administrador"
+export let validator = cookies.get('rol');
+  
 // console.log(validator);
 
 
@@ -26,8 +25,6 @@ export function foo() {
     console.log(i); // local
 }
 foo()
-
-
 
 
 

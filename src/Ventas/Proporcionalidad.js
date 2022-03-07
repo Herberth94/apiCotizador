@@ -1,10 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
 
-import './css/Proporcionalidad.css';
-
-
-
 
 function Proporcionalidad() {
     return (

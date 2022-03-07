@@ -1,6 +1,4 @@
-.nav-text{
-color: #ff0000;
-}
+
 
 
 .fa-2x {
@@ -17,10 +15,7 @@ font-size:20px;
 color: #e2e2e2;
 }
 
-.nav-text img{
-width: 50%;
-margin-left: 8%;
-}
+
 
 .main-menu:hover,nav.main-menu.expanded {
 width:250px;

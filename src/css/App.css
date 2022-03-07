@@ -1,15 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200&family=Open+Sans:wght@300&display=swap');
 
-
-@font-face {
-  font-family: 'Code Pro';
-  src: local('Code Pro Light Lowercase'), local('Code-Pro-Light-Lowercase'),
-      url('Code-Pro-Light-LC.woff2') format('woff2'),
-      url('Code-Pro-Light-LC.woff') format('woff'),
-      url('Code-Pro-Light-LC.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-}
 :root {
     --colorTextos: #0d0d0d;
   }
