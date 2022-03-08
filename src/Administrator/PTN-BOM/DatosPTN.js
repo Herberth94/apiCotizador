@@ -3,6 +3,7 @@ import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 import Categorias from "./Categorias";
+import {GuardarPartida} from '../../Routes/GuardarPartida';
 
 /*============== Operacions PTN BOM ==============*/
 import {precioUnitario , calcularDescuento, Total, Hola}from "./Operaciones";
@@ -36,72 +37,71 @@ function DatosPTN() {
   { /*========================== Mostrar Ocultar Tabla ==========================*/}
   const [show, setShow] = useState(true);
 
+//  ******* PARA GUARDAR UNA NUEVA PARTODA ********
+
+  const {
+    enviarDatos,
+    handleInputChange
+  }= GuardarPartida();
 
 /*   OPERACIONES  DATOS*/
-const { total, precio_u, descuento_1, total_1 } = operaciones();
+// const { total, precio_u, descuento_1, total_1 } = operaciones();
 
-const [datos, setDatos] = useState({
-  clave: "",
-  descripcion_proyecto: "",
-  cliente: "",
-  valor_dolar: "",
-  Partida: "",
-  precio_lista: "",
-  precio_unitario: "",
-  descuento: "",
-  cantidad: "",
-});
+// const [datos, setDatos] = useState({
+//   clave: "",
+//   descripcion_proyecto: "",
+//   cliente: "",
+//   valor_dolar: "",
+//   Partida: "",
+//   precio_lista: "",
+//   precio_unitario: "",
+//   descuento: "",
+//   cantidad: "",
+// });
 
-const handleInputChange = (event) => {
-  //console.log(event.target.value)
-  setDatos({
-    ...datos,
-    [event.target.name]: event.target.value,
-  });
-};
+// const handleInputChange = (event) => {
+//   //console.log(event.target.value)
+//   setDatos({
+//     ...datos,
+//     [event.target.name]: event.target.value,
+//   });
+// };
 
-useEffect(() => {
-  if (
-    datos.precio_lista.length > 0 &&
-    datos.cantidad.length > 0 &&
-    datos.descuento.length > 0 &&
-    datos.precio_unitario === ""
-  ) {
-    console.log("total:  ");
-    const Total = total(datos.precio_lista, datos.cantidad, datos.descuento);
-    console.log(Total);
-    console.log("Precio unitario :");
-    console.log(precio_u(Total, datos.cantidad));
-  }
-  if (
-    datos.precio_lista.length > 0 &&
-    datos.cantidad.length > 0 &&
-    datos.precio_unitario.length > 0 &&
-    datos.descuento === ""
-  ) {
-    console.log("Descuento: ");
-    const desc_1 = descuento_1(datos.precio_unitario, datos.precio_lista);
-    console.log(desc_1.toFixed(2));
-    console.log("total_1: ");
-    console.log(total_1(datos.cantidad, datos.precio_unitario));
-  }
-}, [
-  datos.cantidad,
-  datos.descuento,
-  datos.precio_lista,
-  datos.precio_unitario,
-  descuento_1,
-  precio_u,
-  total,
-  total_1,
-]);
-
-
-
-
-
-
-
+// useEffect(() => {
+//   if (
+//     datos.precio_lista.length > 0 &&
+//     datos.cantidad.length > 0 &&
+//     datos.descuento.length > 0 &&
+//     datos.precio_unitario === ""
+//   ) {
+//     console.log("total:  ");
+//     const Total = total(datos.precio_lista, datos.cantidad, datos.descuento);
+//     console.log(Total);
+//     console.log("Precio unitario :");
+//     console.log(precio_u(Total, datos.cantidad));
+//   }
+//   if (
+//     datos.precio_lista.length > 0 &&
+//     datos.cantidad.length > 0 &&
+//     datos.precio_unitario.length > 0 &&
+//     datos.descuento === ""
+//   ) {
+//     console.log("Descuento: ");
+//     const desc_1 = descuento_1(datos.precio_unitario, datos.precio_lista);
+//     console.log(desc_1.toFixed(2));
+//     console.log("total_1: ");
+//     console.log(total_1(datos.cantidad, datos.precio_unitario));
+//   }
+// }, [
+//   datos.cantidad,
+//   datos.descuento,
+//   datos.precio_lista,
+//   datos.precio_unitario,
+//   descuento_1,
+//   precio_u,
+//   total,
+//   total_1,
+// ]);
 
 
   return (
@@ -119,27 +119,32 @@ useEffect(() => {
       <div className="partidax">
         {/*========================== Nombre Partida ==========================*/}
         <br />
-        <input
-          className="agregar"
-          type="text"
-          name="Partida"
-          placeholder="ingrese Nombre Partida"
-        />
-        
-        <br />
-        <br />
+        <form action="" method="post" onSubmit = {enviarDatos}>
+          <input
+            className="agregar"
+            type="text"
+            name="partida_nombre"
+            onChange={handleInputChange}
+            placeholder="Ingrese Nombre Partida"
+          />
+          
+          <br />
+          <br />
 
-        {/*========================== Descripción Partida ==========================*/}
-        <input
-          className="agregar"
-          type="text"
-          name="Partida"
-          placeholder="ingrese Descripción Partida"
-        />
-        <br />
-        <br />
-        {/*========================== Botón Agregar Partidas ==========================*/}
-        <button className="btn btn-success">Agregar Datos Partida </button>
+          {/*========================== Descripción Partida ==========================*/}
+          <input
+            className="agregar"
+            type="text"
+            name="partida_descripcion"
+            onChange={handleInputChange}
+            placeholder="ingrese Descripción Partida"
+          />
+        
+          <br />
+          <br />
+          {/*========================== Botón Agregar Partidas ==========================*/}
+          <button className="btn btn-success" >Agregar Datos Partida </button>
+        </form>
         <br />
         <br />
       </div>
