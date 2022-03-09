@@ -7,6 +7,7 @@ import Categorias from "./Categorias";
 import { GuardarPartida } from '../../Routes/GuardarPartida';
 import { GuardarDatosServicioProducto } from '../../Routes/GuardarDatosServicioProducto';
 import { GuardarDatosPrecio } from '../../Routes/GuardarDatosPrecio';
+import { GuardarDatosMarca } from '../../Routes/GuardarDatosMarca';
 
 /*============== Operacions PTN BOM ==============*/
 import { precioUnitario, calcularDescuento, Total, Hola } from "./Operaciones";
@@ -59,6 +60,11 @@ function DatosPTN() {
     enviarDatosPrecio: enviarDatosDP,
     handleChange: handleChangeDP
   } = GuardarDatosPrecio();
+
+  const {
+    enviarDatosMarca: enviarDatosM,
+    handleChange: handleChangeM
+  } = GuardarDatosMarca();
 
 
   /*   OPERACIONES  DATOS*/
@@ -341,7 +347,8 @@ function DatosPTN() {
                 <input
                   className="agregar"
                   type="text"
-                  name="marca"
+                  name="marca_nombre"
+                  onChange={handleChangeM}
                   placeholder="Marca"
                 />
               </td>
@@ -363,7 +370,8 @@ function DatosPTN() {
                 <input
                   className="agregar"
                   type="text"
-                  name="comentarios"
+                  name="sp_comentarios"
+                  onChange={handleChangeSP}
                   placeholder="Comentarios"
                 />
               </td>
@@ -381,7 +389,7 @@ function DatosPTN() {
               </td>
               {/*======================== Agregra Datos  ==========================*/}
               <td>
-                <button className="btn btn-primary" onClick={() => { enviarDatosDP(); enviarDatosSP(); }}> Agregar</button>
+                <button className="btn btn-primary" onClick={() => { enviarDatosDP(); enviarDatosSP(); enviarDatosM(); }}> Agregar</button>
               </td>
             </tr>
           </tbody>

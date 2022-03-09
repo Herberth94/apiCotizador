@@ -8,7 +8,8 @@ export const GuardarDatosServicioProducto = () => {
             sp_descripcion: '',
             sp_meses: '',
             sp_semanas: '',
-            // sp_cantidad: ''
+            // sp_cantidad: '',
+            sp_comentarios: ''
         });
 
     const handleChange = (event) =>{
@@ -24,6 +25,7 @@ export const GuardarDatosServicioProducto = () => {
             sp_meses: datos.sp_meses,
             sp_semanas: datos.sp_semanas,
             // sp_cantidad: datos.sp_cantidad
+            sp_comentarios: datos.sp_comentarios
         };
 
         try{
