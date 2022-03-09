@@ -24,21 +24,20 @@ export const GuardarNuevoProyecto = () => {
         };
 
         try{
-            console.log("soy data",data)
             
             const respuesta = await axios.post('http://localhost:4001/api/cotizador/proyecto/agregar/1', data);
             const send2 = respuesta.data;
-            console.log("hola soy send2", send2); 
+            
             alert('Registro exitoso')
             }
             catch (error){
-            console.log("este es el error", error);
+            
             }
     }
     const enviarDatos = (event) =>{
-        console.log("estos son los datos", datos) 
+        
         Send();
-        console.log("este es el send", Send) 
+         
         event.preventDefault()
         event.target.reset();
        

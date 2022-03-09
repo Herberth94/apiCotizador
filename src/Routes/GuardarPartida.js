@@ -7,7 +7,7 @@ export const GuardarPartida = () => {
         partida_descripcion: ''
 
     });
-
+    
     const handleInputChange = (event) =>{
         setDatos({
             ...datos,[event.target.name] : event.target.value ,
@@ -22,11 +22,11 @@ export const GuardarPartida = () => {
         };
 
         try{
-            console.log("soy la data de la partida", data)
+            // console.log("soy la data de la partida", data)
 
             const respuesta = await axios.post('http://localhost:4001/api/cotizador/partida/1', data);
             const send2 = respuesta.data;
-            console.log("hola soy send2 de las partidas", send2);
+            // console.log("hola soy send2 de las partidas", send2);
             alert('Registro exitoso')
         }
         catch (error){
@@ -34,11 +34,12 @@ export const GuardarPartida = () => {
         }
     }
     const enviarDatos = (event) =>{
-        console.log("estos son los datos", datos) 
+         
         Send();
-        console.log("este es el send", Send) 
+        
         event.preventDefault()
-        event.target.reset();
+        // event.target.reset();
+       
         
     }
     
