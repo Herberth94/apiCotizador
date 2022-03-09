@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
@@ -17,6 +18,8 @@ import { operaciones } from "../../Routes/Operaciones";
 
 
 function DatosPTN() {
+  const [total, setTotal] = useState(10);
+
 
   /*  console.log("---- Precio Unitario ----- ") */
   /*PARAMETROS   precioUnitario(precioLista, Descuento) */
@@ -39,6 +42,7 @@ function DatosPTN() {
   { /*========================== Mostrar Ocultar Tabla ==========================*/ }
   const [show, setShow] = useState(true);
 
+
   //  ******* PARA GUARDAR UNA NUEVA PARTODA ********
 
   const {
@@ -56,6 +60,7 @@ function DatosPTN() {
     handleChange: handleChangeDP
   } = GuardarDatosPrecio();
 
+
   /*   OPERACIONES  DATOS*/
   // const { total, precio_u, descuento_1, total_1 } = operaciones();
 
@@ -65,55 +70,55 @@ function DatosPTN() {
   //   cliente: "",
   //   valor_dolar: "",
   //   Partida: "",
-  //   precio_lista: "",
-  //   precio_unitario: "",
-  //   descuento: "",
-  //   cantidad: "",
+  //   precio_lista: '',
+  //   precio_unitario: '',
+  //   descuento: '',
+  //   cantidad: '',
+  //   total: '',
   // });
 
   // const handleInputChange = (event) => {
-  //   //console.log(event.target.value)
   //   setDatos({
   //     ...datos,
   //     [event.target.name]: event.target.value,
   //   });
   // };
-
   // useEffect(() => {
-  //   if (
-  //     datos.precio_lista.length > 0 &&
-  //     datos.cantidad.length > 0 &&
-  //     datos.descuento.length > 0 &&
-  //     datos.precio_unitario === ""
-  //   ) {
-  //     console.log("total:  ");
-  //     const Total = total(datos.precio_lista, datos.cantidad, datos.descuento);
-  //     console.log(Total);
-  //     console.log("Precio unitario :");
-  //     console.log(precio_u(Total, datos.cantidad));
+  //   let total = '';
+  //   let precio_u = '';
+  //   if (datos.precio_unitario != '' && datos.cantidad != '') {
+  //     const total = Total(datos.precio_unitario, datos.cantidad)
+  //     setDatos({ ...datos, total: total })
+  //     if (datos.precio_lista != '') {
+  //       const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+  //       setDatos({ ...datos, descuento: desc });
+
+  //     }
   //   }
-  //   if (
-  //     datos.precio_lista.length > 0 &&
-  //     datos.cantidad.length > 0 &&
-  //     datos.precio_unitario.length > 0 &&
-  //     datos.descuento === ""
-  //   ) {
-  //     console.log("Descuento: ");
-  //     const desc_1 = descuento_1(datos.precio_unitario, datos.precio_lista);
-  //     console.log(desc_1.toFixed(2));
-  //     console.log("total_1: ");
-  //     console.log(total_1(datos.cantidad, datos.precio_unitario));
+  //   if (datos.precio_unitario == '' && datos.cantidad == '') {
+  //     setDatos({ ...datos, total: total })
   //   }
-  // }, [
-  //   datos.cantidad,
-  //   datos.descuento,
-  //   datos.precio_lista,
-  //   datos.precio_unitario,
-  //   descuento_1,
-  //   precio_u,
-  //   total,
-  //   total_1,
-  // ]);
+  //   if (datos.precio_lista != '' && datos.descuento != '') {
+  //     precio_u = precioUnitario(datos.precio_lista, datos.descuento);
+  //     const total = Total(precio_u, datos.cantidad);
+  //     setDatos({ ...datos, precio_unitario: precio_u, total: total });
+  //   }
+  // }, [datos.precio_unitario, datos.precio_lista, datos.descuento, datos.cantidad])
+
+  /*useEffect(()=>{
+    const total = Total(datos.precio_unitario,datos.cantidad);
+      setDatos({...datos,total:total});
+  },[datos.cantidad])*/
+
+  /*useEffect(()=>{
+    const precio_u= precioUnitario(datos.precio_lista,datos.descuento);
+    setDatos({...datos,precio_unitario:precio_u});
+  },[datos.precio_lista,datos.descuento])*/
+
+  /*useEffect(()=>{
+    const desc = calcularDescuento(datos.precio_lista,datos.precio_unitario);
+    setDatos({...datos,descuento:desc});
+  },[datos.precio_lista,datos.precio_unitario])*/
 
 
   return (
@@ -184,7 +189,7 @@ function DatosPTN() {
                   type="number"
                   name="sp_no_parte"
                   onChange={handleChangeSP}
-                  placeholder="No. de Parte"
+                  placeholder="No. Parte"
                 />
               </td>
               {/*========================Descripcion Producto ==========================*/}
@@ -223,7 +228,7 @@ function DatosPTN() {
               </td>
               {/*======================== Moneda ==========================*/}
               <td>
-                <select id="moneda" name="moneda" >
+                <select id="moneda" name="moneda">
                   <option value="lista 1">MXN</option>
                   <option value="lista 2">USD</option>
                 </select>
@@ -253,6 +258,7 @@ function DatosPTN() {
                   className="agregar"
                   type="number"
                   name="sp_cantidad"
+                  // value={datos.cantidad}
                   onChange={handleChangeSP}
                   placeholder="Cantidad "
                   min="0"
@@ -279,10 +285,10 @@ function DatosPTN() {
                 <input
                   className="agregar"
                   type="number"
+                  // value={datos.precio_unitario}
                   name="precio_unitario"
                   onChange={handleChangeDP}
                   placeholder="Precio unitario"
-                  min="0"
                   step="any"
                 />
               </td>
@@ -292,6 +298,7 @@ function DatosPTN() {
                 <input
                   className="agregar"
                   type="number"
+                  // value={datos.descuento}
                   name="precio_descuento"
                   onChange={handleChangeDP}
                   placeholder="Descuento"
@@ -306,16 +313,14 @@ function DatosPTN() {
                   className="agregar"
                   type="text"
                   name="total"
-
+                  // value={datos.total}
                   placeholder="Total"
-                  min="0"
                   step="any"
                 />
               </td>
             </tr>
           </tbody>
         </Table>
-
 
         {/*========================== Datos PTN ==========================*/}
         <Table responsive id="nombreDiv">
@@ -374,16 +379,14 @@ function DatosPTN() {
                   <option value="lista 3">Implementación</option>
                 </select>
               </td>
-              {/*======================== Agregar Datos  ==========================*/}
+              {/*======================== Agregra Datos  ==========================*/}
               <td>
-                <button className="btn btn-primary" onClick={()=>{enviarDatosDP();enviarDatosSP();}}> Agregar</button>
+                <button className="btn btn-primary" onClick={() => { enviarDatosDP(); enviarDatosSP(); }}> Agregar</button>
               </td>
             </tr>
           </tbody>
         </Table>
       </form>
-
-
       {/*========================== Añadir Categorias ==========================
   Solo cuando se termine el proyecto 
   */}
