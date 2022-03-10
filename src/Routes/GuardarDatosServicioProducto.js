@@ -8,7 +8,7 @@ export const GuardarDatosServicioProducto = () => {
             sp_descripcion: '',
             sp_meses: '',
             sp_semanas: '',
-            // sp_cantidad: '',
+            sp_cantidad: '',
             sp_comentarios: ''
         });
 
@@ -24,7 +24,7 @@ export const GuardarDatosServicioProducto = () => {
             sp_descripcion: datos.sp_descripcion,
             sp_meses: datos.sp_meses,
             sp_semanas: datos.sp_semanas,
-            // sp_cantidad: datos.sp_cantidad
+            sp_cantidad: datos.sp_cantidad,
             sp_comentarios: datos.sp_comentarios
         };
 

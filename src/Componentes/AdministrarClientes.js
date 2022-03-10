@@ -48,8 +48,9 @@ function AdministrarClientes() {
     const confirmacion = window.confirm(
       "¿Seguro que quieres borrar este registro?"
     );
+    console.log(dato)
     if (confirmacion) {
-      //console.log(dato);
+      console.log(dato);
       const respuesta = await axios.delete(
         `http://localhost:4001/api/cotizador/clientes/delete/${dato}`
       );
@@ -91,7 +92,7 @@ function AdministrarClientes() {
   };
   const envioData = async(datos, key) => {
     
-    //console.log(datos);
+    console.log("hola soy los datos", datos);
     if(key == '')
     {
          setShow(!show);
@@ -189,7 +190,7 @@ function AdministrarClientes() {
                           defaultValue={listaClientes[key].cliente_direccion}
                           onChange={handleInputChange}
                           disabled={validar[0][key]}
-                          name="direccion"
+                          name="cliente_direccion"
                         ></input>{" "}
                       </td>
 

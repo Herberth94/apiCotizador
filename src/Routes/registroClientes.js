@@ -4,7 +4,9 @@ import axios from 'axios';
 export const useRegistro = () => {
      const [datos,setDatos] = useState ({
           nombre_cliente: '', 
-          razon_social:''
+          razon_social:'',
+          telefono: '',
+          cliente_direccion: ''
            
    });
 
@@ -13,13 +15,16 @@ export const useRegistro = () => {
     setDatos ({
         ...datos,[event.target.name] : event.target.value ,
     })
+    console.log(datos)
 }
 
 async function Send (){
 
     const data= {
         nombre_cliente: datos.nombre_cliente,
-        razon_social: datos.razon_social
+        razon_social: datos.razon_social,
+        telefono: datos.telefono,
+        cliente_direccion: datos.cliente_direccion
     };
 
    
