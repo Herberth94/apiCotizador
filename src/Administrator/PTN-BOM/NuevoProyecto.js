@@ -4,7 +4,8 @@ import Table from "react-bootstrap/Table";
 import PTN from "./DatosPTN";
 import Animaciones from "../../Componentes/Animaciones";
 import {GuardarNuevoProyecto} from '../../Routes/GuardarNuevoProyecto';
-
+import AnimacionesCliente  from "../../Componentes/AnimacionesCliente";
+import axios from 'axios';
 
 /*======== Datos que se deben Obtener de este archivo para Nuevo Proyecto ==============*/
 const nombeProyecto = [
@@ -18,9 +19,8 @@ const nombeProyecto = [
 //   } = guardarNuevoProyecto();
 // }
  
-function NuevoProyecto() {
-
-
+function NuevoProyecto () {
+  
    /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
@@ -29,7 +29,12 @@ function NuevoProyecto() {
     enviarDatos
   } = GuardarNuevoProyecto();
 
+  var { C }= GuardarNuevoProyecto();
+  // const impClient =  () => {
+  //   console.log(C.nombre_cliente);
+  // }
 
+  /*========================== Buscar Cliente ==========================*/
   return (
 
     <div className="contenido-usuarios">
@@ -60,8 +65,8 @@ function NuevoProyecto() {
                 className="agregar"
                 type="text"
                 name="proyecto_clave"
-                onChange={handleInputChange}
-                placeholder="ingrese Clave"
+                onChange= {handleInputChange}
+                placeholder="Ingrese Clave"
               />
             </td>
             {/*======================= Descripción ======================= */}
@@ -71,22 +76,21 @@ function NuevoProyecto() {
                 type="text"
                 name="proyecto_descripcion"
                 onChange={handleInputChange}
-                placeholder="ingrese Descripción"
+                placeholder="Ingrese Descripción"
               />
             </td>
             {/*======================= Lista Clientes ======================= */}
             <td>
               {" "}
-              <select
-                id="lista-proyectos"
-              >
-                <option value="">Elige una opción</option>
-                <option value="lista 1">Cliente 1</option>
-                <option value="lista 2">Cliente 2</option>
-                <option value="lista 3">Cliente 3</option>
-              </select>
+              <input
+                className="agregar"
+                type="number"
+                name="proyecto_id_cliente"
+                onChange={handleInputChange}
+                placeholder="Ingrese el id del cliente"
+              />
+              <div> <AnimacionesCliente mytext= {`${'IPN'}`} /> </div>
             </td>
-          
           </tr>
         
         </tbody>
