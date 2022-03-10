@@ -6,6 +6,8 @@ import Animaciones from "../../Componentes/Animaciones";
 import {GuardarNuevoProyecto} from '../../Routes/GuardarNuevoProyecto';
 import AnimacionesCliente  from "../../Componentes/AnimacionesCliente";
 
+import {Ok} from '../../Routes/GuardarNuevoProyecto';
+
 
 import axios from 'axios';
 
@@ -33,7 +35,8 @@ function NuevoProyecto () {
 
   var { C }= GuardarNuevoProyecto();
   // const impClient =  () => {
-  //   console.log(C.nombre_cliente);
+    console.log("Hoala");
+
   // }
 
   /*========================== Buscar Cliente ==========================*/
@@ -52,8 +55,7 @@ function NuevoProyecto () {
           <tr className="titulo-tabla-usuarios">
             <th>Clave</th>
             <th>Descripción</th>
-            <th> Cliente </th>
-            
+            <th> Cliente </th>           
           </tr>
         </thead>
 
@@ -88,10 +90,14 @@ function NuevoProyecto () {
                 className="agregar"
                 type="number"
                 name="proyecto_id_cliente"
+
+
                 onChange={handleInputChange}
+
+
                 placeholder="Ingrese el id del cliente"
               />
-              <div> <AnimacionesCliente/> </div>
+              <div> <Ok/> </div>
             </td>
           </tr>
         

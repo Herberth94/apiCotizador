@@ -85,7 +85,6 @@ function AdministrarClientes() {
      //console.log(validar);
       
     } catch (error) {
-      
     }
    
     

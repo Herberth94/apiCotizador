@@ -1,6 +1,24 @@
 import  {useState} from 'react';
 import axios from 'axios';
 
+
+let a = "-------------";
+
+export function Ok() {
+  return (      
+      /*========= Animación de Titulos========= */
+               <div className="container">
+                    <div className="box">
+                   {/*========= Titulo Animación========= */}
+                        <div className="title">
+                            <span className="block"></span>
+                            <h1 > {a} </h1>
+                        </div>
+                    </div>
+                </div>
+  )
+}
+
 export const GuardarNuevoProyecto = () => {
     const [datos, setDatos] = useState ({
         proyecto_clave:'',
@@ -36,6 +54,8 @@ export const GuardarNuevoProyecto = () => {
               //ListaC[c].nombre_cliente;
               C.nombre_cliente = ListaC[c].nombre_cliente;
               console.log(C.nombre_cliente);
+
+              a=C.nombre_cliente;
             }        
           }
           //console.log(C.cliente_nombre);
@@ -81,6 +101,5 @@ export const GuardarNuevoProyecto = () => {
         enviarDatos,
         C
     }
-
 
 };
