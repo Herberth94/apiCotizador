@@ -5,6 +5,8 @@ import PTN from "./DatosPTN";
 import Animaciones from "../../Componentes/Animaciones";
 import {GuardarNuevoProyecto} from '../../Routes/GuardarNuevoProyecto';
 import AnimacionesCliente  from "../../Componentes/AnimacionesCliente";
+
+
 import axios from 'axios';
 
 /*======== Datos que se deben Obtener de este archivo para Nuevo Proyecto ==============*/
@@ -89,7 +91,7 @@ function NuevoProyecto () {
                 onChange={handleInputChange}
                 placeholder="Ingrese el id del cliente"
               />
-              <div> <AnimacionesCliente mytext= {`${'IPN'}`} /> </div>
+              <div> <AnimacionesCliente/> </div>
             </td>
           </tr>
         

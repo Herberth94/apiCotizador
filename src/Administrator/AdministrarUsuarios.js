@@ -136,7 +136,7 @@ function AdministrarUsuarios() {
                                             <td>{listaUsuarios[key].id_usuario}</td>
                                             <td><input className="input-name" defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={validar[0][key]} name="rol" id={listaUsuarios[key].id_usuario}></input></td>
                                             <td><input className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={validar[0][key]} name="email"></input> </td>
-                                            <td><input className="input-name" defaultValue={listaUsuarios[key].password} onChange={handleInputChange} disabled={validar[0][key]} name="password"></input> </td>
+                                            <td><button className="btn btn-primary Resetear"> Resetear </button></td>
                                             <td><button className="btn btn-primary eliminar" onClick={() => borrarUsuario(listaUsuarios[key].id_usuario)}> Eliminar </button></td>
                                             <td>  <button className="btn btn-primary modificar" type="button" onClick={() => { enable(key); envioData(listaUsuarios, keyRegistro)}}>  {show ? 'Aceptar' : 'Modificar'} </button>
                                                 {show ? (

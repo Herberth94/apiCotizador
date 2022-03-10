@@ -53,7 +53,16 @@ input{
 }
 
 
-¿
+.re-Captcha{
+  position: relative;
+
+  margin-left: auto;
+  margin-right: auto;
+
+
+
+  margin-left: 60px;
+}
 
 
 
@@ -88,6 +97,17 @@ input{
      background-size: cover;
    
    }
+
+
+
+
+   .re-Captcha{
+    margin-left: -20px;
+    width: 80%;
+  }
+
+
+   
    
 }
 
