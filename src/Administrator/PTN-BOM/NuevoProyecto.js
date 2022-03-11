@@ -10,6 +10,7 @@ import "../css/PTN_BOM.css";
 
 
 import axios from 'axios';
+import { ListGroup } from "react-bootstrap";
 
 /*======== Datos que se deben Obtener de este archivo para Nuevo Proyecto ==============*/
 const nombeProyecto = [
@@ -47,43 +48,10 @@ function NuevoProyecto () {
     proyecto_clave:'',
     proyecto_descripcion:''
   });
-  const clienteId = { proyecto_id_cliente: ''}
+  var clienteId = { proyecto_id_cliente: ''}
   const [nombreC, setNombreC] = useState('');
   const [suggestions, setSuggestions] = useState ([]);
 
-  /*==========================                       ==========================*/
-  const handleInputChange = (event) =>{
-    /*   console.log("este es el event.target.value", event.target.value) */
-        setDatos ({
-          ...datos,[event.target.name] : event.target.value ,
-        })
-  }
-
-  async function Send (){
-    const data = {
-        proyecto_clave: datos.proyecto_clave,
-        proyecto_descripcion: datos.proyecto_descripcion,
-        proyecto_id_cliente: clienteId.proyecto_id_cliente
-    };
-
-    try{
-        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/proyecto/agregar/${clienteId.proyecto_id_cliente}`, data);
-        const send2 = respuesta.data;
-
-        alert('Registro exitoso')
-        }
-        catch (error){
-        
-        }
-  }
-
-  const enviarDatos = (event) =>{
-      Send();
-      event.preventDefault()
-      event.target.reset();
-    
-  }
-  
   /*========================== Buscador del cliente ==========================*/
   useEffect (() => {
     async function listaClientes(){
@@ -114,23 +82,58 @@ function NuevoProyecto () {
 
   const onSuggestHandler = (nombreC) => {
     setNombreC(nombreC);
+    setSuggestions([]);
+    //console.log(clienteId);
+  }
+  
+  //console.log(nombreC);
+  /*==========================  ==========================*/
+  // const{
+  //   handleInputChange,
+  //   enviarDatos
+  // } = GuardarNuevoProyecto();
+  /*==========================                       ==========================*/
+  const handleInputChange = (event) =>{
+    /*   console.log("este es el event.target.value", event.target.value) */
+        setDatos ({
+          ...datos,[event.target.name] : event.target.value ,
+        })
+  }
+
+  async function Send (){
+
     //Obtención del id del cliente
     let i = Object.keys(ListaC);
     //console.log(ListaC);
     for (let c = 0; c < i.length; c++) {
       if (nombreC == ListaC[c].nombre_cliente) {
         clienteId.proyecto_id_cliente = ListaC[c].cliente_id
-        //console.log(clienteId.proyecto_id_cliente);
+        //console.log(clienteId);
       }        
     }
-    setSuggestions([]);
+    const data = {
+        proyecto_clave: datos.proyecto_clave,
+        proyecto_descripcion: datos.proyecto_descripcion,
+        proyecto_id_cliente: clienteId.proyecto_id_cliente
+    };
+
+    try{
+        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/proyecto/agregar/1`, data);
+        const send2 = respuesta.data;
+
+        alert('Registro exitoso')
+        }
+        catch (error){
+        
+        }
   }
-  /*==========================  ==========================*/
-  // const{
-  //   handleInputChange,
-  //   enviarDatos
-  // } = GuardarNuevoProyecto();
-  
+
+  const enviarDatos = (event) =>{
+      Send();
+      event.preventDefault()
+      event.target.reset();
+    
+  }
   
   return (
 
