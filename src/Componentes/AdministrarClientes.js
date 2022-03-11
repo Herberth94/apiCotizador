@@ -45,16 +45,17 @@ function AdministrarClientes() {
     //console.log(newARR)
   };
   const borrarCliente = async (dato) => {
+    console.log("este es el dato", dato)
     const confirmacion = window.confirm(
       "¿Seguro que quieres borrar este registro?"
     );
-    console.log(dato)
+   
     if (confirmacion) {
-      console.log(dato);
+      
       const respuesta = await axios.delete(
         `http://localhost:4001/api/cotizador/clientes/delete/${dato}`
       );
-      console.log(respuesta.data);
+      console.log("hola soy el undefined", respuesta.data);
       llamado();
     } else {
       llamado();
@@ -102,7 +103,7 @@ function AdministrarClientes() {
         setShow(!show);
         //(async ()=> setT(await actualizacion(datos[key])) )() 
        const respuesta = await actualizacion(datos[key]);
-       console.log(respuesta);
+      //  console.log(respuesta);
        //window.location.reload();
        actulizarPage(key);
     }
@@ -151,6 +152,7 @@ function AdministrarClientes() {
                 </thead>
                 <tbody>
                   {/*=================== Contenido Tabla Clientes =================*/}
+                
                   {Object.keys(listaClientes).map((key) => (
                     <tr key={listaClientes[key].cliente_id}>
                       <td>{listaClientes[key].cliente_id}</td>
@@ -199,12 +201,13 @@ function AdministrarClientes() {
                         <button
                           className="btn btn-primary eliminar"
                           onClick={() =>
-                            borrarCliente(listaClientes[key].id_cliente)
+                            borrarCliente(listaClientes[parseInt(key)].cliente_id)
                           }
                         >
                           {" "}
                           Eliminar
                         </button>
+                        
                       </td>
                       <td>
                         {" "}
