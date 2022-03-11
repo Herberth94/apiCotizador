@@ -8,7 +8,7 @@ export const GuardarDatosServicioProducto = () => {
             sp_descripcion: '',
             sp_meses: '',
             sp_semanas: '',
-            sp_cantidad: '',
+            // sp_cantidad: '',
             sp_comentarios: ''
         });
 

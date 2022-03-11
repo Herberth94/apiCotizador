@@ -8,14 +8,10 @@ import { GuardarPartida } from '../../Routes/GuardarPartida';
 import { GuardarDatosServicioProducto } from '../../Routes/GuardarDatosServicioProducto';
 import { GuardarDatosPrecio } from '../../Routes/GuardarDatosPrecio';
 import { GuardarDatosMarca } from '../../Routes/GuardarDatosMarca';
+import axios from 'axios';
 
 /*============== Operacions PTN BOM ==============*/
 import { precioUnitario, calcularDescuento, Total, Hola } from "./Operaciones";
-
-
-import { operaciones } from "../../Routes/Operaciones";
-
-
 
 
 function DatosPTN() {
@@ -56,10 +52,10 @@ function DatosPTN() {
     handleChange: handleChangeSP
   } = GuardarDatosServicioProducto();
 
-  const {
-    enviarDatosPrecio: enviarDatosDP,
-    handleChange: handleChangeDP
-  } = GuardarDatosPrecio();
+  // const {
+  //   enviarDatosPrecio: enviarDatosDP,
+  //   handleChange: handleChangeDP
+  // } = GuardarDatosPrecio();
 
   const {
     enviarDatosMarca: enviarDatosM,
@@ -68,48 +64,72 @@ function DatosPTN() {
 
 
   /*   OPERACIONES  DATOS*/
-  // const { total, precio_u, descuento_1, total_1 } = operaciones();
+  
 
-  // const [datos, setDatos] = useState({
-  //   clave: "",
-  //   descripcion_proyecto: "",
-  //   cliente: "",
-  //   valor_dolar: "",
-  //   Partida: "",
-  //   precio_lista: '',
-  //   precio_unitario: '',
-  //   descuento: '',
-  //   cantidad: '',
-  //   total: '',
-  // });
+  const [datos, setDatos] = useState({
+    // clave: "",
+    // descripcion_proyecto: "",
+    // cliente: "",
+    // valor_dolar: "",
+    // Partida: "",
+    precio_lista: '',
+    precio_unitario: '',
+    precio_descuento: '',
+    sp_cantidad: '',
+    total: '',
+  });
 
-  // const handleInputChange = (event) => {
-  //   setDatos({
-  //     ...datos,
-  //     [event.target.name]: event.target.value,
-  //   });
-  // };
-  // useEffect(() => {
-  //   let total = '';
-  //   let precio_u = '';
-  //   if (datos.precio_unitario != '' && datos.cantidad != '') {
-  //     const total = Total(datos.precio_unitario, datos.cantidad)
-  //     setDatos({ ...datos, total: total })
-  //     if (datos.precio_lista != '') {
-  //       const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-  //       setDatos({ ...datos, descuento: desc });
+  const handleInputChange = (event) => {
+    setDatos({
+      ...datos,
+      [event.target.name]: event.target.value,
+    });
+  };
+  useEffect(() => {
+    let total = '';
+    let precio_u = '';
+    if (datos.precio_unitario != '' && datos.sp_cantidad != '') {
+      const total = Total(datos.precio_unitario, datos.sp_cantidad)
+      setDatos({ ...datos, total: total })
+      if (datos.precio_lista != '') {
+        const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+        setDatos({ ...datos, precio_descuento: desc });
 
-  //     }
-  //   }
-  //   if (datos.precio_unitario == '' && datos.cantidad == '') {
-  //     setDatos({ ...datos, total: total })
-  //   }
-  //   if (datos.precio_lista != '' && datos.descuento != '') {
-  //     precio_u = precioUnitario(datos.precio_lista, datos.descuento);
-  //     const total = Total(precio_u, datos.cantidad);
-  //     setDatos({ ...datos, precio_unitario: precio_u, total: total });
-  //   }
-  // }, [datos.precio_unitario, datos.precio_lista, datos.descuento, datos.cantidad])
+      }
+    }
+    if (datos.precio_unitario == '' && datos.sp_cantidad == '') {
+      setDatos({ ...datos, total: total })
+    }
+    if (datos.precio_lista != '' && datos.precio_descuento != '') {
+      precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
+      const total = Total(precio_u, datos.sp_cantidad);
+      setDatos({ ...datos, precio_unitario: precio_u, total: total });
+    }
+  }, [datos.precio_unitario, datos.precio_lista, datos.precio_descuento, datos.sp_cantidad])
+
+  async function Send() {
+    const data = {
+      precio_lista: datos.precio_lista,
+      precio_unitario: datos.precio_unitario,
+      precio_descuento: datos.precio_descuento
+    };
+    console.log("este es el send de guardar datos precio", Send) 
+
+    try{
+      const respuesta = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', data);
+      const send2 = respuesta.data;
+      alert('Registro exitoso')
+      
+    }catch(error){
+
+    }
+    
+  }
+  const enviarDatosPrecio = (event)=>{
+    console.log("estos son los datos", datos) 
+    Send();
+  }
+
 
   /*useEffect(()=>{
     const total = Total(datos.precio_unitario,datos.cantidad);
@@ -264,8 +284,8 @@ function DatosPTN() {
                   className="agregar"
                   type="number"
                   name="sp_cantidad"
-                  // value={datos.cantidad}
-                  onChange={handleChangeSP}
+                  value={datos.sp_cantidad}
+                  onChange={handleInputChange}
                   placeholder="Cantidad "
                   min="0"
                   step="any"
@@ -278,7 +298,7 @@ function DatosPTN() {
                   className="agregar"
                   type="number"
                   name="precio_lista"
-                  onChange={handleChangeDP}
+                  onChange={handleInputChange}
                   placeholder="Precio Lista"
                   min="0"
                   step="any"
@@ -291,9 +311,9 @@ function DatosPTN() {
                 <input
                   className="agregar"
                   type="number"
-                  // value={datos.precio_unitario}
+                  value={datos.precio_unitario}
                   name="precio_unitario"
-                  onChange={handleChangeDP}
+                  onChange={handleInputChange}
                   placeholder="Precio unitario"
                   step="any"
                 />
@@ -304,9 +324,9 @@ function DatosPTN() {
                 <input
                   className="agregar"
                   type="number"
-                  // value={datos.descuento}
+                  value={datos.precio_descuento}
                   name="precio_descuento"
-                  onChange={handleChangeDP}
+                  onChange={handleInputChange}
                   placeholder="Descuento"
                   min="0"
                   step="any"
@@ -319,7 +339,8 @@ function DatosPTN() {
                   className="agregar"
                   type="text"
                   name="total"
-                  // value={datos.total}
+                  value={datos.total}
+                  
                   placeholder="Total"
                   step="any"
                 />
@@ -389,7 +410,8 @@ function DatosPTN() {
               </td>
               {/*======================== Agregra Datos  ==========================*/}
               <td>
-                <button className="btn btn-primary" onClick={() => { enviarDatosDP(); enviarDatosSP(); enviarDatosM(); }}> Agregar</button>
+                <button className="btn btn-primary" onClick={() => { enviarDatosSP();enviarDatosPrecio(); enviarDatosM();}}> Agregar</button>
+                {/* <button className="btn btn-primary" onClick={() => { enviarDatosDP(); enviarDatosSP(); enviarDatosM(); }}> Agregar</button> */}
               </td>
             </tr>
           </tbody>
