@@ -121,3 +121,9 @@
       background-color: rgb(255, 164, 45);
   }
  
+  .selectCliente{
+    cursor: pointer
+  }
+  .selectCliente:hover{
+    background-color: #e0e0e0;
+  }

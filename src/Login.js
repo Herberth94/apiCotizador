@@ -1,6 +1,45 @@
 import React from 'react';
 import './css/ventanas.css';
 import {useLogin} from './Routes/useLogin';
+import ReCAPTCHA from "react-google-recaptcha";
+import {passwordCaptcha} from "./Componentes/Ocultar";
+import Boton from "./Componentes/Boton";
+
+
+let change = true;
+
+
+/*  Funcion Captcha Validación Correcta */
+
+function onChange(value) {
+  /*   console.log("Captcha value:", value);
+     */
+    console.log("Validación Valida")
+     change=false
+
+     
+
+  }
+  
+  /*  Funcion Captcha Validación Incorrecta */
+  
+  function onErrored(value) {
+    /*   console.log("Captcha value:", value);
+       */
+      console.log("Validación Incorrecta")
+    
+    }
+
+
+    function mostrar() {
+     let  div = document.getElementById('flotante');
+      div.style.display = '';
+  }
+
+  function cerrar() {
+     let div = document.getElementById('flotante');
+      div.style.display = 'none';
+  }
 
 export function Login() {
 
@@ -43,13 +82,36 @@ export function Login() {
               data-type="password"
               placeholder="Ingrese Contraseña" />
 
-             {/* //============ Botón Entrar ============ */}
-  
+          
+             
+            
+            <div className="re-Captcha">
+          
+          {/*========== ReCAPTCHA Seguridad ==========*/}
+           <ReCAPTCHA
+           sitekey= {passwordCaptcha}
+           onChange={onChange}
+           onErrored={onErrored}
+           />
+         </div>
+
+
+   {/* //============ Botón Entrar ============ */}
+
+      <Boton myxt={true} />
+
+
+   {/*    
             <div className ="boton-login">
-            <button className="card-button" type="submit">
+            <button className="card-button" type="submit"  disabled={change} >
               <span>Entrar</span>
             </button>
             </div>
+
+ */}
+         
+
+
           </form>
         </section>
       </div>
