@@ -1,14 +1,26 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import "../css/Proyectos.css";
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+import axios from "axios";
 
-const listaProyectos = [
-    {id: 1, clave: 'PTN-BOM-01', descripcion: 'Prueba 1' , status: 'Aprobado'},
-    {id: 2, clave: 'PTN-BOM-02', descripcion: 'Prueba 2' , status: 'Rechazado'},
-    {id: 3, clave: 'PTN-BOM-03', descripcion: 'Prueba 3' ,status: 'Rechazado'}
-  ];
+// const listaProyectos = [
+//     {id: 1, clave: 'PTN-BOM-01', descripcion: 'Prueba 1' , status: 'Aprobado'},
+//     {id: 2, clave: 'PTN-BOM-02', descripcion: 'Prueba 2' , status: 'Rechazado'},
+//     {id: 3, clave: 'PTN-BOM-03', descripcion: 'Prueba 3' ,status: 'Rechazado'}
+//   ];
 
 function Proyectos() {
+    // aqui vamos a almacenar el arreglo de la lista de los proyectos
+    const[listaProyecto, setListaProyectos] = useState([]);
+
+    useEffect(()=>{
+        getProjects();
+    }, [])
+    const getProjects = async () =>{
+        const response = await axios.get('http://localhost:4001/api/cotizador/proyecto/view');
+        setListaProyectos(response.data.reSql)
+    };
+    console.log("esta es la data de los proyectos", listaProyecto)
     return (
         <div className="contenido-usuarios">
             <div className="table-responsive">
@@ -94,15 +106,15 @@ function Proyectos() {
                     </thead>
                                        
          <tbody>
-      {Object.keys(listaProyectos).map((key) => (    
+      {Object.keys(listaProyecto).map((key) => (    
           //checar aqui va los titulos
-        <tr key={listaProyectos[key].id} >
+        <tr key={listaProyecto[key].proyecto_id} >
             
-            <td>{listaProyectos[key].id}</td>   
+            <td>{listaProyecto[key].proyecto_id}</td>   
 
-            <td>{listaProyectos[key].clave}</td>  
-            <td>{listaProyectos[key].descripcion}</td>  
-            <td>{listaProyectos[key].status}</td>  
+            <td>{listaProyecto[key].proyecto_clave}</td>  
+            <td>{listaProyecto[key].proyecto_descripcion}</td>  
+            <td>Aprobado</td>  
             <td><button className="btn btn-primary eliminar" > Eliminar</button></td>
             <td><button className="btn btn-primary modificar" >Modificar</button></td> 
             <td><button className="btn btn-primary detalles" >Ver más</button></td> 
