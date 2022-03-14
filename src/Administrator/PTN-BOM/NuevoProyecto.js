@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import PTN from "./DatosPTN";
@@ -29,42 +29,45 @@ function NuevoProyecto () {
    /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
-  /*==========================                       ==========================*/
-  const [ListaC, setListaC] = useState ({
+  /*========================== Almacenamiento de los clientes registrados ==========================*/
+  const [ListaC, setListaC] = useState ([{
     cliente_id:'',
     nombre_cliente:'',
     razon_social:'',
     telefono:'',
     cliente_direccion:''
-  });
-  // const [ListaC2, setLisC2] = useState({
-  //   cliente_id:'',
-  //   nombre_cliente:'',
-  //   razon_social:'',
-  //   telefono:'',
-  //   cliente_direccion:''
-  // });
-  const [datos, setDatos] = useState ({
-    proyecto_clave:'',
-    proyecto_descripcion:''
-  });
+  }]);
+  /*========================== Almacenamiento del id cliente encontrado en la busqueda ==========================*/
   var clienteId = { proyecto_id_cliente: ''}
+
+  /*========================== Almacenamiento del nombre del cliente a buscar ==========================*/
   const [nombreC, setNombreC] = useState('');
+
+  /*========================== Almacenamiento de los clientes semejantes al texto introducido ==========================*/
   const [suggestions, setSuggestions] = useState ([]);
 
-  /*========================== Buscador del cliente ==========================*/
+  /*========================== Almacenamiento de los datos introducidos de un proyecto ==========================*/
+  const [datos, setDatos] = useState ([{
+    proyecto_clave:'',
+    proyecto_descripcion:''
+  }]);
+
+  /*========================== Obtención de la lista de clientes registrados ==========================*/
   useEffect (() => {
     async function listaClientes(){
       try {
         const respuesta = await axios.get("http://localhost:4001/api/cotizador/clientes/view");
         setListaC(respuesta.data.reSql);
+        //console.log('Datos directos:',respuesta.data.reSql);
+        //console.log('Datos del arreglo:',ListaC);
       } catch (error) {}
     }
+    //console.log('Datos por afuera de la función:',ListaC);
     listaClientes();
-
-
+    //console.log(ListaC);
   },[])
 
+  /*========================== Buscador de clientes ==========================*/
   const onChangeTextCliente = (nombreC) => {
     //console.log(ListaC);
     let coincidencias = [];
@@ -80,35 +83,28 @@ function NuevoProyecto () {
     //console.log(nombreC);
   }
 
+  /*========================== Obtención del cliente seleccionado ==========================*/
   const onSuggestHandler = (nombreC) => {
     setNombreC(nombreC);
     setSuggestions([]);
     //console.log(clienteId);
   }
-  
-  //console.log(nombreC);
-  /*==========================  ==========================*/
-  // const{
-  //   handleInputChange,
-  //   enviarDatos
-  // } = GuardarNuevoProyecto();
-  /*==========================                       ==========================*/
+
   const handleInputChange = (event) =>{
     /*   console.log("este es el event.target.value", event.target.value) */
         setDatos ({
           ...datos,[event.target.name] : event.target.value ,
         })
   }
-
+  
   async function Send (){
-
     //Obtención del id del cliente
     let i = Object.keys(ListaC);
     //console.log(ListaC);
     for (let c = 0; c < i.length; c++) {
       if (nombreC == ListaC[c].nombre_cliente) {
         clienteId.proyecto_id_cliente = ListaC[c].cliente_id
-        //console.log(clienteId);
+        console.log(clienteId);
       }        
     }
     const data = {
@@ -119,20 +115,18 @@ function NuevoProyecto () {
 
     try{
         const respuesta = await axios.post(`http://localhost:4001/api/cotizador/proyecto/agregar/1`, data);
-        const send2 = respuesta.data;
-
+        const getProyectoId = respuesta.data.id_proyecto;
+        //console.log(getProyectoId);
         alert('Registro exitoso')
-        }
-        catch (error){
-        
-        }
+    }catch (error){
+      alert('Registro invalido')
+    }
   }
 
   const enviarDatos = (event) =>{
       Send();
       event.preventDefault()
       event.target.reset();
-    
   }
   
   return (
@@ -187,11 +181,6 @@ function NuevoProyecto () {
                 name="nombre_cliente"
                 onChange={e => onChangeTextCliente(e.target.value)}
                 value={nombreC}
-                // onBlur={() => {
-                //   setTimeout(() => {
-                //     setSuggestions([])
-                //   }, 100);
-                // }}
                 placeholder="Ingrese el nombre del cliente"
               />
               {suggestions && suggestions.map((suggestion,i)=>
@@ -199,16 +188,14 @@ function NuevoProyecto () {
                   {suggestion.nombre_cliente}
                 </div>
               )}
-              {/* <div> <Ok/> </div> */}
             </td>
           </tr>
-        
         </tbody>
-       
       </Table>
        {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
-      <button className="btn btn-primary modificar" type="submit" onClick={() => { setShow(!show)}}>  {show ? 'Empezar' : 'Ocultar Datos'}    </button>
+      <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button>
       </form>
+      <button className="btn btn-primary modificar" type="submit" onClick={() => { setShow(!show)}}>  {show ? 'Empezar' : 'Ocultar Datos'}    </button>
       {show ? (
         <div >
 
