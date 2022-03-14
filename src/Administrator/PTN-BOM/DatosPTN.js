@@ -4,10 +4,10 @@ import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 import Categorias from "./Categorias";
-import { GuardarPartida } from '../../Routes/GuardarPartida';
-import { GuardarDatosServicioProducto } from '../../Routes/GuardarDatosServicioProducto';
-import { GuardarDatosPrecio } from '../../Routes/GuardarDatosPrecio';
-import { GuardarDatosMarca } from '../../Routes/GuardarDatosMarca';
+// import { GuardarPartida } from '../../Routes/GuardarPartida';
+// import { GuardarDatosServicioProducto } from '../../Routes/GuardarDatosServicioProducto';
+// import { GuardarDatosPrecio } from '../../Routes/GuardarDatosPrecio';
+// import { GuardarDatosMarca } from '../../Routes/GuardarDatosMarca';
 import axios from 'axios';
 
 /*============== Operacions PTN BOM ==============*/
@@ -36,61 +36,105 @@ function DatosPTN() {
   
    */
 
-  { /*========================== Mostrar Ocultar Tabla ==========================*/ }
+  /*========================== Mostrar Ocultar Tabla ==========================*/ 
   const [show, setShow] = useState(true);
+  /*======== Inserción de datos en la tabla partida ==============*/
+    /*======== Obtención de los proyectos  ==============*/
+    const [ListaProyectos, setListaProyectos] = useState ([{
+      proyecto_id:'',
+      proyecto_clave:'',
+      proyecto_descripcion:'',
+      proyecto_id_cliente:'',
+      proyecto_id_cat_c_a_sptn_ma:'',
+      proyecto_fecha_creacion:'',
+      proyecto_fecha_modificacion:''
+    }]);
 
+    const [proyectoId, setProyectoId] = useState({
+      proyecto_id:'',
+      proyecto_clave:'',
+      proyecto_descripcion:'',
+      proyecto_id_cliente:'',
+      proyecto_id_cat_c_a_sptn_ma:'',
+      proyecto_fecha_creacion:'',
+      proyecto_fecha_modificacion:''
+    });
 
-  //  ******* PARA GUARDAR UNA NUEVA PARTODA ********
+    useEffect (() => {
+      async function getProyectos(){
+        try {
+          const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
+          //console.log(resGetProyectos.data.data.pop());
+          setListaProyectos(resGetProyectos.data.data.pop());
+          console.log('ArrayP:',ListaProyectos);
+          setProyectoId(ListaProyectos.proyecto_id);
+          console.log(proyectoId.proyecto_id);
+        } catch (error) {}
+      }
+      getProyectos();
+      //setTimeout(getProyectos,2000);
+    },[])
 
-  const {
-    enviarDatos: enviarDatosGP,
-    handleInputChange: handleInputChangeGP,
-  } = GuardarPartida();
+    
 
-  const {
-    enviarDatosServicioProducto: enviarDatosSP,
-    handleChange: handleChangeSP
-  } = GuardarDatosServicioProducto();
+  const[datosPartida, setDatosPartida] = useState({
+    partida_nombre: '',
+    partida_descripcion: ''
+  });
 
-  // const {
-  //   enviarDatosPrecio: enviarDatosDP,
-  //   handleChange: handleChangeDP
-  // } = GuardarDatosPrecio();
+  const handleInputChangePartida = (event) =>{
+      setDatosPartida({
+          ...datosPartida,[event.target.name] : event.target.value ,
+      })
+  }
 
-  const {
-    enviarDatosMarca: enviarDatosM,
-    handleChange: handleChangeM
-  } = GuardarDatosMarca();
+  async function SendPartida (){
+      /*======== Obtención del id del último proyecto insertado ==============*/
+      const data = {
+          partida_nombre: datosPartida.partida_nombre,
+          partida_descripcion: datosPartida.partida_descripcion
+      };
 
+      try{
+          const respuesta = await axios.post(`http://localhost:4001/api/cotizador/partida/1, data);
+          // // ${proyectoId.proyecto_id}`, data);
+          //const getPartidaId = respuesta.data;
+          // console.log("hola soy send2 de las partidas", send2);
+          alert('Registro exitoso')
+      }
+      catch (error){
+          console.log(error.toJSON());
+      }
+  }
+  const enviarDatosPartida = (event) =>{
+      SendPartida();
+      event.preventDefault()
+      //event.target.reset();
+  }
 
+  /*======== Inserción de datos en la tabla precio ==============*/
   /*   OPERACIONES  DATOS*/
-  
-
   const [datos, setDatos] = useState({
-    // clave: "",
-    // descripcion_proyecto: "",
-    // cliente: "",
-    // valor_dolar: "",
-    // Partida: "",
     precio_lista: '',
     precio_unitario: '',
     precio_descuento: '',
     sp_cantidad: '',
-    total: '',
+    precio_total: '',
+    precio_id_moneda:''
   });
 
   const handleInputChange = (event) => {
     setDatos({
-      ...datos,
-      [event.target.name]: event.target.value,
+      ...datos,[event.target.name]: event.target.value,
     });
   };
+
   useEffect(() => {
     let total = '';
     let precio_u = '';
     if (datos.precio_unitario != '' && datos.sp_cantidad != '') {
       const total = Total(datos.precio_unitario, datos.sp_cantidad)
-      setDatos({ ...datos, total: total })
+      setDatos({ ...datos, precio_total: total })
       if (datos.precio_lista != '') {
         const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
         setDatos({ ...datos, precio_descuento: desc });
@@ -98,38 +142,155 @@ function DatosPTN() {
       }
     }
     if (datos.precio_unitario == '' && datos.sp_cantidad == '') {
-      setDatos({ ...datos, total: total })
+      setDatos({ ...datos, precio_total: total })
     }
     if (datos.precio_lista != '' && datos.precio_descuento != '') {
       precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
       const total = Total(precio_u, datos.sp_cantidad);
-      setDatos({ ...datos, precio_unitario: precio_u, total: total });
+      setDatos({ ...datos, precio_unitario: precio_u, precio_total: total });
     }
   }, [datos.precio_unitario, datos.precio_lista, datos.precio_descuento, datos.sp_cantidad])
 
-  async function Send() {
-    const data = {
-      precio_lista: datos.precio_lista,
-      precio_unitario: datos.precio_unitario,
-      precio_descuento: datos.precio_descuento
-    };
-    console.log("este es el send de guardar datos precio", Send) 
+  // async function Send() {
+  //   const dataPrecio = {
+  //     precio_lista: datos.precio_lista,
+  //     precio_unitario: datos.precio_unitario,
+  //     precio_descuento: datos.precio_descuento,
+  //     precio_total: datos.precio_total,
+  //     precio_id_moneda:''
+  //   };
+  //   //console.log("este es el send de guardar datos precio", Send) 
+  //   try{
+  //     const respuesta = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', dataPrecio);
+  //     alert('Registro exitoso')
+  //   }catch(error){
 
-    try{
-      const respuesta = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', data);
-      const send2 = respuesta.data;
-      alert('Registro exitoso')
-      
-    }catch(error){
-
-    }
+  //   }
     
+  // }
+  // const enviarDatosPrecio = (event)=>{
+  //   console.log("estos son los datos", datos) 
+  //   Send();
+  // }
+
+  /*======== Inserción de datos en la tabla proveedor ==============*/
+
+  /*======== Inserción de datos en la tabla marca ==============*/
+  const [datosMarca, setDatosMarca] = useState({
+    marca_nombre: ''
+  });
+
+  const handleInputChangeMarca = (event) => {
+      setDatosMarca({
+          ...datosMarca,[event.target.name] : event.target.value 
+      })
   }
-  const enviarDatosPrecio = (event)=>{
-    console.log("estos son los datos", datos) 
-    Send();
+  // async function SendMarca() {
+  //     const data = {
+  //         marca_nombre: datosMarca.marca_nombre,
+  //     };
+
+  //     try {
+  //         const resSP = await axios.post('http://localhost:4001/api/cotizador/marca/agregar', data);
+  //         //const send2 = respuesta.data;
+  //         alert('Registro exitoso')
+  //         }
+  //         catch (error) {
+
+  //         }
+
+  // }
+  // const enviarDatosMarca = (event) => {
+  //     SendMarca();
+  // }
+  /*======== Inserción de datos en la tabla proveedor_marca ==============*/
+  const[datosProv, setDatosProv] = useState  ({
+    proveedor_nombre: '',
+  });
+
+  const handleInputChangeProv = (event) =>{
+    setDatosProv({
+        ...datosProv, [event.target.name] : event.target.value
+    })
+  }
+  /*======== Inserción de datos en la tabla categoria ==============*/
+  const[datosCategoria, setDatosCategoria] = useState  ({
+    categoria_id: '',
+  });
+
+  const handleInputChangeCategoria = (event) =>{
+    setDatosCategoria({
+        ...datosCategoria, [event.target.name] : event.target.value
+    })
+  }
+  /*======== Inserción de datos en la tabla servicio_producto ==============*/
+  const[datosSP, setDatosSP] = useState  ({
+        sp_no_parte: '',
+        sp_descripcion: '',
+        sp_meses: '',
+        sp_semanas: '',
+        sp_cantidad: '',
+        sp_comentarios: ''
+  });
+
+  const handleInputChangeSP = (event) =>{
+      setDatosSP({
+          ...datosSP, [event.target.name] : event.target.value
+      })
   }
 
+  async function SendSP (){
+      const dataSP = {
+          sp_no_parte: datosSP.sp_no_parte,
+          sp_descripcion: datosSP.sp_descripcion,
+          sp_meses: datosSP.sp_meses,
+          sp_semanas: datosSP.sp_semanas,
+          sp_cantidad: datos.sp_cantidad,
+          sp_id_precio:'',
+          sp_id_proveedor:'',
+          sp_id_categoria:datosCategoria.categoria_id,
+          sp_comentarios: datosSP.sp_comentarios
+      };
+
+      const dataPrecio = {
+        precio_lista: datos.precio_lista,
+        precio_unitario: datos.precio_unitario,
+        precio_descuento: datos.precio_descuento,
+        precio_total: datos.precio_total,
+        precio_id_moneda: datos.precio_id_moneda
+      };
+
+      const dataProveedor = {
+        proveedor_nombre:datosProv.proveedor_nombre
+      };
+
+      const dataMarca = {
+        marca_nombre: datosMarca.marca_nombre,
+      };
+      
+      try{
+          const resPrecio = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', dataPrecio);
+          //console.log(resPrecio.data.data.insertId);
+          dataSP.sp_id_precio = resPrecio.data.data.insertId;
+          const resProv = await axios.post('http://localhost:4001/api/cotizador/proveedor/agregar', dataProveedor);
+          const proveedor_id = resProv.data.data.insertId
+          dataSP.sp_id_proveedor = proveedor_id;
+          await axios.post(`http://localhost:4001/api/cotizador/marca/agregar/${proveedor_id}`, dataMarca);
+          //console.log(dataSP.sp_id_precio);
+          const resSP = await axios.post('http://localhost:4001/api/cotizador/sp/agregar/1', dataSP);
+          //console.log(resSP.data);
+          alert('Registro exitoso')
+          }
+          catch (error){
+          console.log("este es el error", error.toJSON());
+      }
+
+  }
+  const enviarDatosSP = (event) =>{
+      SendSP();
+      event.preventDefault()
+      //event.target.reset();
+  }
 
   /*useEffect(()=>{
     const total = Total(datos.precio_unitario,datos.cantidad);
@@ -145,8 +306,6 @@ function DatosPTN() {
     const desc = calcularDescuento(datos.precio_lista,datos.precio_unitario);
     setDatos({...datos,descuento:desc});
   },[datos.precio_lista,datos.precio_unitario])*/
-
-
   return (
     <div className="contenido-usuarios">
       {/*========================== Titulos ==========================*/}
@@ -167,7 +326,7 @@ function DatosPTN() {
             className="agregar"
             type="text"
             name="partida_nombre"
-            onChange={handleInputChangeGP}
+            onChange={handleInputChangePartida}
             placeholder="Ingrese Nombre Partida"
           />
 
@@ -179,14 +338,14 @@ function DatosPTN() {
             className="agregar"
             type="text"
             name="partida_descripcion"
-            onChange={handleInputChangeGP}
+            onChange={handleInputChangePartida}
             placeholder="ingrese Descripción Partida"
           />
 
           <br />
           <br />
           {/*========================== Botón Agregar Partidas ==========================*/}
-          <button className="btn btn-success" onClick={enviarDatosGP}>Agregar Datos Partida </button>
+          <button className="btn btn-success" onClick={enviarDatosPartida}>Agregar Datos Partida</button>
         </form>
         <br />
         <br />
@@ -214,7 +373,7 @@ function DatosPTN() {
                   className="agregar"
                   type="number"
                   name="sp_no_parte"
-                  onChange={handleChangeSP}
+                  onChange={handleInputChangeSP}
                   placeholder="No. Parte"
                 />
               </td>
@@ -225,7 +384,7 @@ function DatosPTN() {
                   className="agregar"
                   type="text"
                   name="sp_descripcion"
-                  onChange={handleChangeSP}
+                  onChange={handleInputChangeSP}
                   placeholder="Descripción"
                 />
               </td>
@@ -237,7 +396,7 @@ function DatosPTN() {
                   type="number"
                   name="sp_meses"
                   min="0"
-                  onChange={handleChangeSP}
+                  onChange={handleInputChangeSP}
                   placeholder="Meses"
                 />
               </td>
@@ -248,15 +407,16 @@ function DatosPTN() {
                   type="number"
                   name="sp_semanas"
                   min="0"
-                  onChange={handleChangeSP}
+                  onChange={handleInputChangeSP}
                   placeholder="Entrega semanas"
                 />
               </td>
               {/*======================== Moneda ==========================*/}
               <td>
-                <select id="moneda" name="moneda">
-                  <option value="lista 1">MXN</option>
-                  <option value="lista 2">USD</option>
+                <select id="moneda" name="precio_id_moneda" onChange={handleInputChange}>
+                  <option value={0}></option>
+                  <option value={1}>MXN</option>
+                  <option value={2}>USD</option>
                 </select>
               </td>
             </tr>
@@ -338,9 +498,9 @@ function DatosPTN() {
                 <input
                   className="agregar"
                   type="text"
-                  name="total"
-                  value={datos.total}
-                  
+                  name="precio_total"
+                  value={datos.precio_total}
+                  readOnly
                   placeholder="Total"
                   step="any"
                 />
@@ -369,7 +529,7 @@ function DatosPTN() {
                   className="agregar"
                   type="text"
                   name="marca_nombre"
-                  onChange={handleChangeM}
+                  onChange={handleInputChangeMarca}
                   placeholder="Marca"
                 />
               </td>
@@ -380,7 +540,8 @@ function DatosPTN() {
                 <input
                   className="agregar"
                   type="text"
-                  name="provedor"
+                  name="proveedor_nombre"
+                  onChange={handleInputChangeProv}
                   placeholder="Proveedor"
                 />
               </td>
@@ -392,25 +553,25 @@ function DatosPTN() {
                   className="agregar"
                   type="text"
                   name="sp_comentarios"
-                  onChange={handleChangeSP}
+                  onChange={handleInputChangeSP}
                   placeholder="Comentarios"
                 />
               </td>
               {/*======================== Categorias ==========================*/}
               <td>
                 {" "}
-                <select id="lista-opciones">
-                  <option value="lista 1">Tecnología Principal</option>
-                  <option value="lista 2">Sub-tecnología</option>
-                  <option value="lista 3">Equipamiento</option>
-                  <option value="lista 1">Licencia</option>
-                  <option value="lista 2">Soporte</option>
-                  <option value="lista 3">Implementación</option>
+                <select id="lista-opciones" name="categoria_id" onChange={handleInputChangeCategoria}>
+                  <option value={1}>Tecnología Principal</option>
+                  <option value={2}>Sub-tecnología</option>
+                  <option value={3}>Equipamiento</option>
+                  <option value={4}>Licencia</option>
+                  <option value={5}>Soporte</option>
+                  <option value={6}>Implementación</option>
                 </select>
               </td>
               {/*======================== Agregra Datos  ==========================*/}
               <td>
-                <button className="btn btn-primary" onClick={() => { enviarDatosSP();enviarDatosPrecio(); enviarDatosM();}}> Agregar</button>
+                <button className="btn btn-primary" onClick={enviarDatosSP}> Agregar</button>
                 {/* <button className="btn btn-primary" onClick={() => { enviarDatosDP(); enviarDatosSP(); enviarDatosM(); }}> Agregar</button> */}
               </td>
             </tr>
