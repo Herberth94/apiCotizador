@@ -18,7 +18,7 @@ function Proyectos() {
     }, [])
     const getProjects = async () =>{
         const response = await axios.get('http://localhost:4001/api/cotizador/proyecto/view');
-        setListaProyectos(response.data.reSql)
+        setListaProyectos(response.data.data)
     };
     console.log("esta es la data de los proyectos", listaProyecto)
     return (
