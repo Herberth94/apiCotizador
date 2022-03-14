@@ -39,43 +39,20 @@ function DatosPTN() {
   /*========================== Mostrar Ocultar Tabla ==========================*/ 
   const [show, setShow] = useState(true);
   /*======== Inserción de datos en la tabla partida ==============*/
-    /*======== Obtención de los proyectos  ==============*/
-    const [ListaProyectos, setListaProyectos] = useState ([{
-      proyecto_id:'',
-      proyecto_clave:'',
-      proyecto_descripcion:'',
-      proyecto_id_cliente:'',
-      proyecto_id_cat_c_a_sptn_ma:'',
-      proyecto_fecha_creacion:'',
-      proyecto_fecha_modificacion:''
-    }]);
+  var ListaProyectos = {
+    proyecto_id:'',
+    proyecto_clave:'',
+    proyecto_descripcion:'',
+    proyecto_id_cliente:'',
+    proyecto_id_cat_c_a_sptn_ma:'',
+    proyecto_fecha_creacion:'',
+    proyecto_fecha_modificacion:''
+  };
 
-    const [proyectoId, setProyectoId] = useState({
-      proyecto_id:'',
-      proyecto_clave:'',
-      proyecto_descripcion:'',
-      proyecto_id_cliente:'',
-      proyecto_id_cat_c_a_sptn_ma:'',
-      proyecto_fecha_creacion:'',
-      proyecto_fecha_modificacion:''
-    });
+  var proyectoId = {
+    proyecto_id:''
+  }
 
-    useEffect (() => {
-      async function getProyectos(){
-        try {
-          const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
-          //console.log(resGetProyectos.data.data.pop());
-          setListaProyectos(resGetProyectos.data.data.pop());
-          console.log('ArrayP:',ListaProyectos);
-          setProyectoId(ListaProyectos.proyecto_id);
-          console.log(proyectoId.proyecto_id);
-        } catch (error) {}
-      }
-      getProyectos();
-      //setTimeout(getProyectos,2000);
-    },[])
-
-    
 
   const[datosPartida, setDatosPartida] = useState({
     partida_nombre: '',
@@ -89,22 +66,27 @@ function DatosPTN() {
   }
 
   async function SendPartida (){
-      /*======== Obtención del id del último proyecto insertado ==============*/
-      const data = {
-          partida_nombre: datosPartida.partida_nombre,
-          partida_descripcion: datosPartida.partida_descripcion
-      };
+      
+    const data = {
+        partida_nombre: datosPartida.partida_nombre,
+        partida_descripcion: datosPartida.partida_descripcion
+    };
 
-      try{
-          const respuesta = await axios.post(`http://localhost:4001/api/cotizador/partida/1, data);
-          // // ${proyectoId.proyecto_id}`, data);
-          //const getPartidaId = respuesta.data;
-          // console.log("hola soy send2 de las partidas", send2);
-          alert('Registro exitoso')
-      }
-      catch (error){
-          console.log(error.toJSON());
-      }
+    try{
+        /*======== Obtención del id del último proyecto insertado ==============*/
+        const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
+        ListaProyectos = resGetProyectos.data.data.pop();
+        proyectoId.proyecto_id = ListaProyectos.proyecto_id;
+
+        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/partida/${proyectoId.proyecto_id}`, data);
+        // // ${proyectoId.proyecto_id}`, data);
+        //const getPartidaId = respuesta.data;
+        // console.log("hola soy send2 de las partidas", send2);
+        alert('Registro exitoso')
+    }
+    catch (error){
+        console.log(error.toJSON());
+    }
   }
   const enviarDatosPartida = (event) =>{
       SendPartida();
@@ -151,30 +133,6 @@ function DatosPTN() {
     }
   }, [datos.precio_unitario, datos.precio_lista, datos.precio_descuento, datos.sp_cantidad])
 
-  // async function Send() {
-  //   const dataPrecio = {
-  //     precio_lista: datos.precio_lista,
-  //     precio_unitario: datos.precio_unitario,
-  //     precio_descuento: datos.precio_descuento,
-  //     precio_total: datos.precio_total,
-  //     precio_id_moneda:''
-  //   };
-  //   //console.log("este es el send de guardar datos precio", Send) 
-  //   try{
-  //     const respuesta = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', dataPrecio);
-  //     alert('Registro exitoso')
-  //   }catch(error){
-
-  //   }
-    
-  // }
-  // const enviarDatosPrecio = (event)=>{
-  //   console.log("estos son los datos", datos) 
-  //   Send();
-  // }
-
-  /*======== Inserción de datos en la tabla proveedor ==============*/
-
   /*======== Inserción de datos en la tabla marca ==============*/
   const [datosMarca, setDatosMarca] = useState({
     marca_nombre: ''
@@ -185,25 +143,8 @@ function DatosPTN() {
           ...datosMarca,[event.target.name] : event.target.value 
       })
   }
-  // async function SendMarca() {
-  //     const data = {
-  //         marca_nombre: datosMarca.marca_nombre,
-  //     };
 
-  //     try {
-  //         const resSP = await axios.post('http://localhost:4001/api/cotizador/marca/agregar', data);
-  //         //const send2 = respuesta.data;
-  //         alert('Registro exitoso')
-  //         }
-  //         catch (error) {
-
-  //         }
-
-  // }
-  // const enviarDatosMarca = (event) => {
-  //     SendMarca();
-  // }
-  /*======== Inserción de datos en la tabla proveedor_marca ==============*/
+  /*======== Inserción de datos en la tabla proveedor ==============*/
   const[datosProv, setDatosProv] = useState  ({
     proveedor_nombre: '',
   });
@@ -239,51 +180,65 @@ function DatosPTN() {
       })
   }
 
+  var ListaPartida = {
+    partida_id:'',
+    partida_nombre:'',
+    partida_descripcion:''
+  };
+
+  var partidaId = {
+    partida_id:''
+  }
+  
   async function SendSP (){
-      const dataSP = {
-          sp_no_parte: datosSP.sp_no_parte,
-          sp_descripcion: datosSP.sp_descripcion,
-          sp_meses: datosSP.sp_meses,
-          sp_semanas: datosSP.sp_semanas,
-          sp_cantidad: datos.sp_cantidad,
-          sp_id_precio:'',
-          sp_id_proveedor:'',
-          sp_id_categoria:datosCategoria.categoria_id,
-          sp_comentarios: datosSP.sp_comentarios
-      };
+    const dataSP = {
+        sp_no_parte: datosSP.sp_no_parte,
+        sp_descripcion: datosSP.sp_descripcion,
+        sp_meses: datosSP.sp_meses,
+        sp_semanas: datosSP.sp_semanas,
+        sp_cantidad: datos.sp_cantidad,
+        sp_id_precio:'',
+        sp_id_proveedor:'',
+        sp_id_categoria:datosCategoria.categoria_id,
+        sp_comentarios: datosSP.sp_comentarios
+    };
 
-      const dataPrecio = {
-        precio_lista: datos.precio_lista,
-        precio_unitario: datos.precio_unitario,
-        precio_descuento: datos.precio_descuento,
-        precio_total: datos.precio_total,
-        precio_id_moneda: datos.precio_id_moneda
-      };
+    const dataPrecio = {
+      precio_lista: datos.precio_lista,
+      precio_unitario: datos.precio_unitario,
+      precio_descuento: datos.precio_descuento,
+      precio_total: datos.precio_total,
+      precio_id_moneda: datos.precio_id_moneda
+    };
 
-      const dataProveedor = {
-        proveedor_nombre:datosProv.proveedor_nombre
-      };
+    const dataProveedor = {
+      proveedor_nombre:datosProv.proveedor_nombre
+    };
 
-      const dataMarca = {
-        marca_nombre: datosMarca.marca_nombre,
-      };
-      
-      try{
-          const resPrecio = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', dataPrecio);
-          //console.log(resPrecio.data.data.insertId);
-          dataSP.sp_id_precio = resPrecio.data.data.insertId;
-          const resProv = await axios.post('http://localhost:4001/api/cotizador/proveedor/agregar', dataProveedor);
-          const proveedor_id = resProv.data.data.insertId
-          dataSP.sp_id_proveedor = proveedor_id;
-          await axios.post(`http://localhost:4001/api/cotizador/marca/agregar/${proveedor_id}`, dataMarca);
-          //console.log(dataSP.sp_id_precio);
-          const resSP = await axios.post('http://localhost:4001/api/cotizador/sp/agregar/1', dataSP);
-          //console.log(resSP.data);
-          alert('Registro exitoso')
-          }
-          catch (error){
-          console.log("este es el error", error.toJSON());
-      }
+    const dataMarca = {
+      marca_nombre: datosMarca.marca_nombre,
+    };
+
+    try{
+        const resPrecio = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', dataPrecio);
+        //console.log(resPrecio.data.data.insertId);
+        dataSP.sp_id_precio = resPrecio.data.data.insertId;
+        const resProv = await axios.post('http://localhost:4001/api/cotizador/proveedor/agregar', dataProveedor);
+        const proveedor_id = resProv.data.data.insertId
+        dataSP.sp_id_proveedor = proveedor_id;
+        await axios.post(`http://localhost:4001/api/cotizador/marca/agregar/${proveedor_id}`, dataMarca);
+        /*======== Obtención del id de la última partida insertada ==============*/
+        const resGetPartida = await axios.get("http://localhost:4001/api/cotizador/partida/view");
+        ListaPartida = resGetPartida.data.data.pop();
+        partidaId.partida_id = ListaPartida.partida_id;
+        //console.log(dataSP.sp_id_precio);
+        const resSP = await axios.post(`http://localhost:4001/api/cotizador/sp/agregar/${partidaId.partida_id}`, dataSP);
+        //console.log(resSP.data);
+        alert('Registro exitoso')
+        }
+        catch (error){
+        console.log("este es el error", error.toJSON());
+    }
 
   }
   const enviarDatosSP = (event) =>{
@@ -561,6 +516,7 @@ function DatosPTN() {
               <td>
                 {" "}
                 <select id="lista-opciones" name="categoria_id" onChange={handleInputChangeCategoria}>
+                  <option value={0}></option>
                   <option value={1}>Tecnología Principal</option>
                   <option value={2}>Sub-tecnología</option>
                   <option value={3}>Equipamiento</option>
