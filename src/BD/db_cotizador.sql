@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-03-2022 a las 16:50:34
+-- Tiempo de generación: 15-03-2022 a las 00:49:45
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -83,27 +83,10 @@ CREATE TABLE `categorias_c_a_sptn_ma` (
 --
 
 INSERT INTO `categorias_c_a_sptn_ma` (`cat_id`, `cat_nombre`) VALUES
+(1, 'Capacitacion'),
 (2, 'Accesorios '),
-(3, 'Capacitación');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cat_cat_t`
---
-
-CREATE TABLE `cat_cat_t` (
-  `cc_id` bigint(20) NOT NULL,
-  `cc_id_cat` bigint(20) DEFAULT NULL,
-  `cc_id_cat_t` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `cat_cat_t`
---
-
-INSERT INTO `cat_cat_t` (`cc_id`, `cc_id_cat`, `cc_id_cat_t`) VALUES
-(2, 2, 4);
+(3, 'Servicios PTN'),
+(4, 'Mesa de ayuda');
 
 -- --------------------------------------------------------
 
@@ -113,17 +96,38 @@ INSERT INTO `cat_cat_t` (`cc_id`, `cc_id_cat`, `cc_id_cat_t`) VALUES
 
 CREATE TABLE `cat_totales` (
   `ct_id` bigint(20) NOT NULL,
-  `ct_totales` decimal(20,3) DEFAULT NULL,
-  `ct_id_moneda` int(10) DEFAULT NULL
+  `ct_totales_mxn` decimal(20,3) DEFAULT NULL,
+  `ct_totales_usd` decimal(20,3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `cat_totales`
 --
 
-INSERT INTO `cat_totales` (`ct_id`, `ct_totales`, `ct_id_moneda`) VALUES
-(4, '100.200', 1),
-(5, '200.000', 2);
+INSERT INTO `cat_totales` (`ct_id`, `ct_totales_mxn`, `ct_totales_usd`) VALUES
+(4, '100.200', '1.000'),
+(5, '200.000', '2.000'),
+(6, '100.000', '200.000'),
+(7, '0.000', '0.000'),
+(8, '0.000', '0.000'),
+(9, '0.000', '0.000'),
+(10, '50.000', '50.000'),
+(11, '0.000', '0.000'),
+(12, '0.000', '0.000'),
+(13, '0.000', '0.000'),
+(14, '1000.200', NULL),
+(15, '1000.200', '1000.000'),
+(16, '1000.200', '0.000'),
+(17, '1000.200', '0.000'),
+(18, '1000.200', '0.000'),
+(19, '2000.000', '500.000'),
+(20, '0.000', '0.000'),
+(21, '0.000', '0.000'),
+(22, '0.000', '0.000'),
+(23, '6000.000', '3000.000'),
+(24, '0.000', '0.000'),
+(25, '0.000', '0.000'),
+(26, '0.000', '0.000');
 
 -- --------------------------------------------------------
 
@@ -422,14 +426,37 @@ INSERT INTO `proyecto` (`proyecto_id`, `proyecto_clave`, `proyecto_descripcion`,
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `proyectos_cat`
+-- Estructura de tabla para la tabla `proyectos_cat_cat_t`
 --
 
-CREATE TABLE `proyectos_cat` (
+CREATE TABLE `proyectos_cat_cat_t` (
   `pc_id` bigint(20) NOT NULL,
   `pc_id_proyecto` bigint(20) DEFAULT NULL,
-  `pc_id_cat` bigint(20) DEFAULT NULL
+  `pc_id_cat` bigint(20) DEFAULT NULL,
+  `pc_id_cat_t` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `proyectos_cat_cat_t`
+--
+
+INSERT INTO `proyectos_cat_cat_t` (`pc_id`, `pc_id_proyecto`, `pc_id_cat`, `pc_id_cat_t`) VALUES
+(3, 1, 1, NULL),
+(4, 1, 1, NULL),
+(5, NULL, NULL, NULL),
+(6, 1, 1, NULL),
+(7, 59, 1, NULL),
+(8, 59, 2, NULL),
+(9, 59, 3, NULL),
+(10, 59, 4, NULL),
+(11, 59, 1, NULL),
+(12, 59, 2, NULL),
+(13, 59, 3, NULL),
+(14, 59, 4, NULL),
+(15, 59, 1, 23),
+(16, 59, 2, 24),
+(17, 59, 3, 25),
+(18, 59, 4, 26);
 
 -- --------------------------------------------------------
 
@@ -586,19 +613,10 @@ ALTER TABLE `categorias_c_a_sptn_ma`
   ADD PRIMARY KEY (`cat_id`);
 
 --
--- Indices de la tabla `cat_cat_t`
---
-ALTER TABLE `cat_cat_t`
-  ADD PRIMARY KEY (`cc_id`),
-  ADD KEY `fk_cc_id_cat` (`cc_id_cat`),
-  ADD KEY `fk_cc_id_cat_t` (`cc_id_cat_t`);
-
---
 -- Indices de la tabla `cat_totales`
 --
 ALTER TABLE `cat_totales`
-  ADD PRIMARY KEY (`ct_id`),
-  ADD KEY `fk_ct_id_moneda` (`ct_id_moneda`);
+  ADD PRIMARY KEY (`ct_id`);
 
 --
 -- Indices de la tabla `clientes`
@@ -677,12 +695,13 @@ ALTER TABLE `proyecto`
   ADD KEY `fk_proyecto_id_cat` (`proyecto_id_cat_c_a_sptn_ma`);
 
 --
--- Indices de la tabla `proyectos_cat`
+-- Indices de la tabla `proyectos_cat_cat_t`
 --
-ALTER TABLE `proyectos_cat`
+ALTER TABLE `proyectos_cat_cat_t`
   ADD PRIMARY KEY (`pc_id`),
   ADD KEY `fk_pc_id_proyecto` (`pc_id_proyecto`),
-  ADD KEY `fk_pc_id_cat` (`pc_id_cat`);
+  ADD KEY `fk_pc_id_cat` (`pc_id_cat`),
+  ADD KEY `fk_pc_id_cat_t` (`pc_id_cat_t`);
 
 --
 -- Indices de la tabla `psp`
@@ -735,19 +754,13 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `categorias_c_a_sptn_ma`
 --
 ALTER TABLE `categorias_c_a_sptn_ma`
-  MODIFY `cat_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `cat_cat_t`
---
-ALTER TABLE `cat_cat_t`
-  MODIFY `cc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cat_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `cat_totales`
 --
 ALTER TABLE `cat_totales`
-  MODIFY `ct_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ct_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -813,13 +826,13 @@ ALTER TABLE `proveedor_marca`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT de la tabla `proyectos_cat`
+-- AUTO_INCREMENT de la tabla `proyectos_cat_cat_t`
 --
-ALTER TABLE `proyectos_cat`
-  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `proyectos_cat_cat_t`
+  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `psp`
@@ -854,19 +867,6 @@ ALTER TABLE `usuarios_proyectos`
 --
 ALTER TABLE `am`
   ADD CONSTRAINT `fk_am_id_proyecto` FOREIGN KEY (`am_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `cat_cat_t`
---
-ALTER TABLE `cat_cat_t`
-  ADD CONSTRAINT `fk_cc_id_cat` FOREIGN KEY (`cc_id_cat`) REFERENCES `categorias_c_a_sptn_ma` (`cat_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_cc_id_cat_t` FOREIGN KEY (`cc_id_cat_t`) REFERENCES `cat_totales` (`ct_id`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `cat_totales`
---
-ALTER TABLE `cat_totales`
-  ADD CONSTRAINT `fk_ct_id_moneda` FOREIGN KEY (`ct_id_moneda`) REFERENCES `moneda` (`moneda_id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `colaboradores`
@@ -909,10 +909,11 @@ ALTER TABLE `proyecto`
   ADD CONSTRAINT `fk_proyecto_id_cliente` FOREIGN KEY (`proyecto_id_cliente`) REFERENCES `clientes` (`cliente_id`) ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `proyectos_cat`
+-- Filtros para la tabla `proyectos_cat_cat_t`
 --
-ALTER TABLE `proyectos_cat`
+ALTER TABLE `proyectos_cat_cat_t`
   ADD CONSTRAINT `fk_pc_id_cat` FOREIGN KEY (`pc_id_cat`) REFERENCES `categorias_c_a_sptn_ma` (`cat_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pc_id_cat_t` FOREIGN KEY (`pc_id_cat_t`) REFERENCES `cat_totales` (`ct_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_pc_id_proyecto` FOREIGN KEY (`pc_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`) ON UPDATE CASCADE;
 
 --
