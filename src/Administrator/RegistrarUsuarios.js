@@ -1,11 +1,7 @@
 import React from "react";
 import "./css/registroUsuarios.css";
 import {useRegistro} from '../Routes/useRegistro';
-import ReCAPTCHA from "react-google-recaptcha";
- 
-function onChange(value) {
-  console.log("Captcha value:", value);
-}
+
 
 function Registro() {
   const {  
@@ -75,12 +71,6 @@ function Registro() {
               <button className="card-button" type="submit">
                 <span>Registrar</span>
               </button>
-
-
-              <ReCAPTCHA
-    sitekey="6LduyMEeAAAAAE3Ys74WMzqQx8nlV2X1OP4NN_fn"
-    onChange={onChange}
-  />
 
 
             </div>

@@ -7,16 +7,7 @@ import "../css/PTN_BOM.css";
 // import {GuardarNuevoProyecto} from '../../Routes/GuardarNuevoProyecto';
 // import AnimacionesCliente  from "../../Componentes/AnimacionesCliente";
 // import {Ok} from '../../Routes/GuardarNuevoProyecto';
-
-
 import axios from 'axios';
-import { ListGroup } from "react-bootstrap";
-
-/*======== Datos que se deben Obtener de este archivo para Nuevo Proyecto ==============*/
-const nombeProyecto = [
-  { clave: "PTN-01", descripcion: "prueba 1", cliente: "Delfos369", fecha: "20-10-2022" }
-];
-
 // function guardarProyecto(){
 //   const{
 //     handleInputChange,
@@ -102,7 +93,7 @@ function NuevoProyecto () {
     let i = Object.keys(ListaC);
     //console.log(ListaC);
     for (let c = 0; c < i.length; c++) {
-      if (nombreC == ListaC[c].nombre_cliente) {
+      if (nombreC === ListaC[c].nombre_cliente) {
         clienteId.proyecto_id_cliente = ListaC[c].cliente_id
         console.log(clienteId);
       }        

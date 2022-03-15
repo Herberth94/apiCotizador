@@ -19,8 +19,6 @@ body{
 
 }
 
-
-
 select
 {
   height:30px;
@@ -64,8 +62,13 @@ input{
   margin-left: 60px;
 }
 
+.visible{
+  display: none;
+}
 
-
+visible2{
+  display: inline-block;
+}
 /* ================================== Transparencia fondo menus ==================================*/
 
   .tablas{

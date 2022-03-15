@@ -1,6 +1,7 @@
 import  {useState} from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import {valida}  from "../Login";
 
 const cookies =new Cookies();
 export const useLogin = () => {
@@ -36,10 +37,18 @@ export const useLogin = () => {
         alert('Información valida');
 }
     const enviarDatos = (event) => {  
-        Send();
-        event.preventDefault();
-       //guardado de datos
-        event.target.reset();
+        if(valida===true){
+            Send();
+            event.preventDefault();
+           //guardado de datos
+            event.target.reset();
+        }else{
+            event.preventDefault();
+            //guardado de datos
+             event.target.reset();
+        }
+     
+      
     }
     return {
         handleInputChange,

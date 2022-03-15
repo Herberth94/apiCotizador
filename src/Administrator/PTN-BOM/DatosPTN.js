@@ -114,19 +114,19 @@ function DatosPTN() {
   useEffect(() => {
     let total = '';
     let precio_u = '';
-    if (datos.precio_unitario != '' && datos.sp_cantidad != '') {
+    if (datos.precio_unitario !== '' && datos.sp_cantidad !== '') {
       const total = Total(datos.precio_unitario, datos.sp_cantidad)
       setDatos({ ...datos, precio_total: total })
-      if (datos.precio_lista != '') {
+      if (datos.precio_lista !== '') {
         const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
         setDatos({ ...datos, precio_descuento: desc });
 
       }
     }
-    if (datos.precio_unitario == '' && datos.sp_cantidad == '') {
+    if (datos.precio_unitario === '' && datos.sp_cantidad ==='') {
       setDatos({ ...datos, precio_total: total })
     }
-    if (datos.precio_lista != '' && datos.precio_descuento != '') {
+    if (datos.precio_lista !== '' && datos.precio_descuento !== '') {
       precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
       const total = Total(precio_u, datos.sp_cantidad);
       setDatos({ ...datos, precio_unitario: precio_u, precio_total: total });

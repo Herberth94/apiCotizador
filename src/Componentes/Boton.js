@@ -1,13 +1,12 @@
 import React from 'react'
 
+
+
+
 function Boton(props) {
   return (
-
-
-
-    
-    <div className ="boton-login">
-    <button className="card-button" type="submit"  disabled={props.mytxt} >
+    <div className={props.hola2}>
+    <button className="card-button" type="submit"  >
       <span>Entrar</span>
     </button>
     </div>

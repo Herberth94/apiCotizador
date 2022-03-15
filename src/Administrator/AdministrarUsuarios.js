@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRegistro } from '../Routes/ModificarUsuarios';
 import Table from 'react-bootstrap/Table'
 import axios from 'axios';
@@ -42,11 +42,11 @@ function AdministrarUsuarios() {
         }
         //console.log(newARR);    
         for (let y = 0; y < i.length; y++) {
-            if (y == key) {
+            if (y === key) {
                 //newARR[y]=!validar[0][y];
                 newARR[y] = !validar[0][y];
             }
-            if (y != key) {
+            if (y !== key) {
                 newARR[y] = true
             };
         }
@@ -72,7 +72,7 @@ function AdministrarUsuarios() {
         setlistaUsarios(respuesta.data.reSql);
     }
     const envioData = (datos, key) => {
-        if(key == '')
+        if(key === '')
         {
             setShow(!show);
             console.log("prueba");
@@ -92,7 +92,13 @@ function AdministrarUsuarios() {
 
   
     return (
+        
         <div className="contenido-usuarios">
+          
+
+          <div className="head">
+
+          </div>
             <div className="table-responsive">
   {/*======================= Titulo Animación =======================*/}
   <div>

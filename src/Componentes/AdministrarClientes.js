@@ -19,7 +19,6 @@ function AdministrarClientes() {
   const [keyRegistro, SetKeyregistro] = useState('');
   const [listaClientes, setlistaClientes] = useState([]);
   const [validar, setvalidar] = useState([]);
-  const [t, setT] = useState();
   
   const { actualizacion, handleInputChange  } = useRegistro();
   const enable = (key) => {
@@ -31,11 +30,11 @@ function AdministrarClientes() {
     }
     //console.log(newARR);
     for (let y = 0; y < i.length; y++) {
-      if (y == key) {
+      if (y === key) {
         //newARR[y]=!validar[0][y];
         newARR[y] = !validar[0][y];
       }
-      if (y != key) {
+      if (y !== key) {
         newARR[y] = true;
       }
     }
@@ -93,7 +92,7 @@ function AdministrarClientes() {
   const envioData = async(datos, key) => {
     
     console.log("hola soy los datos", datos);
-    if(key == '')
+    if(key === '')
     {
          setShow(!show);
        

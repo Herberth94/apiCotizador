@@ -16,16 +16,16 @@ import CostosIndirectos from "./CostosIndirectos";
 
 
 function AmMenu() {
-  {  /*========================== Mostrar Ocultar Tabla ==========================*/}
+   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
-  {  /*========================== Mostrar Ocultar Botón ==========================*/}
+   /*========================== Mostrar Ocultar Botón ==========================*/
   const [show2, setShow2] = useState(true);
 
-  {  /*========================== Mostrar Ocultar Datos Adicionales ==========================*/}
+   /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
   const [show3, setShow3] = useState(true);
 
-  {  /*========================== Mostrar Ocultar Datos Adicionales ==========================*/}
+   /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
   const [show4, setShow4] = useState(true);
 
 
