@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import "../css/Proyectos.css";
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
@@ -10,17 +10,64 @@ import axios from "axios";
 //   ];
 
 function Proyectos() {
-    // aqui vamos a almacenar el arreglo de la lista de los proyectos
-    const[listaProyecto, setListaProyectos] = useState([]);
+    /*========================== Buscador de proyectos ==========================*/
+    /*========================== Almacenamiento de proyectos a buscar ==========================*/
+    const[listaProyectos, setListaProyectos] = useState([]);
+    const[datoClave,setDatoClave] = useState('')
 
+    // const lp = useRef([{
+    //     proyecto_id:'',
+    //     proyecto_clave:'',
+    //     proyecto_descripcion:'',
+    //     nombre_cliente:'',
+    //     proyecto_fecha_creacion:''
+    // }]);
+    /*========================== Almacenamiento de los clientes semejantes al texto introducido ==========================*/
+    const [suggestions, setSuggestions] = useState([]);
+
+    const onChangeClaveProyecto = (datoClave) => {
+        setDatoClave(datoClave);
+        var coincidencias = listaProyectos.filter(clave => {
+            if(clave.proyecto_clave.toLocaleLowerCase().includes(datoClave.toLocaleLowerCase)){
+                return clave
+            }
+        })
+        console.log('Coincidencias: ',coincidencias);
+        setSuggestions(coincidencias);
+        setDatoClave(datoClave);
+    }
+    
     useEffect(()=>{
-        getProjects();
-    }, [])
-    const getProjects = async () =>{
-        const response = await axios.get('http://localhost:4001/api/cotizador/proyecto/view');
-        setListaProyectos(response.data.data)
-    };
-    console.log("esta es la data de los proyectos", listaProyecto)
+        const getProyectos = async () => {
+            try{
+                const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/view1');
+                setListaProyectos(resProy.data.data);
+                //setListaProyectos(resProy.data.data);
+                //lp = resProy.data.data;
+            }catch(error){
+                console.log(error);
+            }
+        }
+        getProyectos();
+    },[])
+    //console.log(listaProyectos);
+    // function getP(lp){
+    //     return lp
+    // };
+    /*========================== Almacenamiento de los datos de un proyecto en especifico ==========================*/
+    const[datosProyecto, setDatosProyecto] = useState([]);
+    async function getDatosProyecto(id){
+        try{
+            const resProy = await axios.get(`http://localhost:4001/api/cotizador/proyecto/view2/${id}`);
+            setDatosProyecto(resProy.data.data);
+            //setListaProyectos(resProy.data.data);
+            console.log('Datos de un proyecto:',datosProyecto);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+
     return (
         <div className="contenido-usuarios">
             <div className="table-responsive">
@@ -48,26 +95,19 @@ function Proyectos() {
                     <Table responsive id="nombreDiv">
                         <thead>
                             <tr className="titulo-tabla-usuarios">
-                                <th>Búsqueda por Atributo</th>
-                                <th>Clave</th>
+                                <th>Búsqueda por clave</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr >
                                 <td>
-                                    <select id="lista-opciones">
-                                        <option value="lista 3">Nombre Proyecto</option>
-                                        <option value="lista 1">Clave</option>
-                                        <option value="lista 2">Cliente</option>
-                                        <option value="lista 3">Fecha</option>
-                                    </select>
-                                </td>
-                                <td>
                                     <input className="agregar"
                                         type="text"
-                                        name="Ingrese Parametro"
-                                        placeholder="Búsqueda" />
+                                        name="proyecto_clave"
+                                        onChange={e => onChangeClaveProyecto(e.target.value)}
+                                        value={datoClave}
+                                        placeholder="Ingrese clave del proyecto" />
                                 </td>
                                 <td>
                                     <button className="btn btn-primary"> Buscar</button>
@@ -81,7 +121,6 @@ function Proyectos() {
       {/*============= Titulo Animación =============*/}
       <div className="container">
                     <div className="box">
-
                         <div className="title">
                             <span className="block"></span>
                             <h1 >Lista de Proyectos<span></span></h1>
@@ -98,6 +137,8 @@ function Proyectos() {
                                 <th>ID</th>
                                 <th>Clave</th>
                                 <th>Descripción</th>
+                                <th>Cliente</th>
+                                <th>Fecha de creción</th>
                                 <th>Status</th>
                                 <th>Eliminar</th>
                                 <th>Modificar</th>
@@ -105,24 +146,23 @@ function Proyectos() {
                             </tr>
                     </thead>
                                        
-         <tbody>
-      {Object.keys(listaProyecto).map((key) => (    
+    <tbody>
+      {Object.keys(listaProyectos).map((key) => (    
           //checar aqui va los titulos
-        <tr key={listaProyecto[key].proyecto_id} >
-            
-            <td>{listaProyecto[key].proyecto_id}</td>   
-
-            <td>{listaProyecto[key].proyecto_clave}</td>  
-            <td>{listaProyecto[key].proyecto_descripcion}</td>  
+        <tr key={listaProyectos[key].proyecto_id} >
+            <td>{listaProyectos[key].proyecto_id}</td>   
+            <td>{listaProyectos[key].proyecto_clave}</td>  
+            <td>{listaProyectos[key].proyecto_descripcion}</td>  
+            <td>{listaProyectos[key].nombre_cliente}</td> 
+            <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
             <td>Aprobado</td>  
-            <td><button className="btn btn-primary eliminar" > Eliminar</button></td>
-            <td><button className="btn btn-primary modificar" >Modificar</button></td> 
-            <td><button className="btn btn-primary detalles" >Ver más</button></td> 
+            <td><button className="btn btn-primary eliminar">Eliminar</button></td>
+            <td><button className="btn btn-primary modificar">Modificar</button></td> 
+            <td><button className="btn btn-primary detalles" onClick={() => {getDatosProyecto(listaProyectos[key].proyecto_id)}}>Ver más</button></td> 
         </tr>  
        ))
       }
-     
-     </tbody>          
+    </tbody>          
                 </Table>
 
 
@@ -141,8 +181,10 @@ function Proyectos() {
                 <Table responsive id="nombreDiv"  striped bordered hover size="sm">
                     <thead>
                         <tr className="titulo-tabla-usuarios">
+                            <th>Partida </th>
+                            <th>Descripción partida</th>
                             <th># Parte</th>
-                            <th>Descripción</th>
+                            <th>Descripción producto</th>
                             <th>Duración Meses</th>
                             <th>Entrega Semanas</th>
                             <th>Cantidad</th>
@@ -151,184 +193,34 @@ function Proyectos() {
                             <th>Desc(%)</th>
                             <th>Precio Total</th>
                             <th>Moneda</th>
-                            <th>Marca</th>
                             <th>Proveedor</th>
+                            <th>Marca</th>
+                            <th>Categoria</th>
+                            <th>Comentarios</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="tec-principal">
-                            <td>1</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>MXN</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-
-
-                        <tr className="subtecnologia">
-                            <td>2</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>USD</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-
-                        <tr className="equipamiento">
-                            <td>3</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>MXN</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-
-                        <tr className="licencias">
-                            <td>4</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>USD</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-
-                        <tr className="soporte">
-                            <td>6</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>MXN</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-                        <tr className="implementacion">
-                            <td>7</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>USD</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-                        <tr className="capacitacion">
-                            <td>8</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>MXN</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-                        <tr className="accesorios">
-                            <td>9</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>MXN</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-                        <tr className="soporte-ptn">
-                            <td>10</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>USD</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-                        <tr className="implementacion-ptn">
-                            <td>11</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>MXN</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-                        <tr className="mesa-ayuda-ptn">
-                            <td>12</td>
-                            <td>Prueba</td>
-                            <td>3 </td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3000 </td>
-                            <td>0</td>
-                            <td>3000 </td>
-                            <td>MXN</td>
-                            <td>Kingston</td>
-                            <td>-------</td>
-                        </tr>
-
-
-
-
+                        {Object.keys(datosProyecto).map((key) => (    
+                        //checar aqui va los titulos
+                        <tr key={datosProyecto[key].partida_nombre} >
+                            <td>{datosProyecto[key].partida_descripcion}</td>   
+                            <td>{datosProyecto[key].sp_no_parte}</td>  
+                            <td>{datosProyecto[key].sp_descripcion}</td>  
+                            <td>{datosProyecto[key].sp_meses}</td> 
+                            <td>{datosProyecto[key].sp_semanas}</td>
+                            <td>{datosProyecto[key].sp_cantidad}</td>   
+                            <td>{datosProyecto[key].precio_lista}</td>  
+                            <td>{datosProyecto[key].precio_unitario}</td>  
+                            <td>{datosProyecto[key].precio_descuento}</td> 
+                            <td>{datosProyecto[key].precio_total}</td>
+                            <td>{datosProyecto[key].moneda_nombre}</td>   
+                            <td>{datosProyecto[key].proveedor_nombre}</td>  
+                            <td>{datosProyecto[key].marca_nombre}</td>  
+                            <td>{datosProyecto[key].categoria_nombre}</td> 
+                            <td>{datosProyecto[key].sp_comentarios}</td>
+                        </tr>  
+                        ))
+                        }
                     </tbody>
                 </Table>
 
