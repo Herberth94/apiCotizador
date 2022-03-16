@@ -2,6 +2,7 @@ import React from "react";
 import "./css/registroUsuarios.css";
 import {useRegistro} from '../Routes/useRegistro';
 
+
 function Registro() {
   const {  
     handleInputChange,
@@ -70,6 +71,8 @@ function Registro() {
               <button className="card-button" type="submit">
                 <span>Registrar</span>
               </button>
+
+
             </div>
           </form>
         </section>

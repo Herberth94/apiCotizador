@@ -59,7 +59,7 @@ function Clientes() {
               <input
                 id="user2"
                 type="text"
-                name ="dirección"
+                name ="cliente_direccion"
                 onChange={handleInputChange}
                 className="card-input"
                 placeholder="Ingrese Dirección"

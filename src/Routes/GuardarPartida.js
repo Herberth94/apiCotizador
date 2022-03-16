@@ -1,50 +1,63 @@
-import  {useState} from 'react';
-import axios from 'axios';
+// import  {useState} from 'react';
+// import axios from 'axios';
 
-export const GuardarPartida = () => {
-    const[datos, setDatos] = useState({
-        partida_nombre: '',
-        partida_descripcion: ''
+// export const GuardarPartida = () => {
+//     /*======== Inserción de datos en la tabla partida ==============*/
+//     const[datosPartida, setDatosPartida] = useState({
+//         partida_nombre: '',
+//         partida_descripcion: ''
 
-    });
+//     });
+//     const handleInputChangePartida = (event) =>{
+//         setDatosPartida({
+//             ...datosPartida,[event.target.name] : event.target.value ,
+//         })
+//     }
 
-    const handleInputChange = (event) =>{
-        setDatos({
-            ...datos,[event.target.name] : event.target.value ,
-        })
-    }
+//     async function SendPartida (){
 
-    async function Send (){
+//         const data = {
+//             partida_nombre: datosPartida.partida_nombre,
+//             partida_descripcion: datosPartida.partida_descripcion
+//         };
 
-        const data = {
-            partida_nombre: datos.partida_nombre,
-            partida_descripcion: datos.partida_descripcion
-        };
+//         try{
+//             const respuesta = await axios.post('http://localhost:4001/api/cotizador/partida/1', data);
+//             const getPartidaId = respuesta.data;
+//             // console.log("hola soy send2 de las partidas", send2);
+//             alert('Registro exitoso')
+//         }
+//         catch (error){
+//             console.log("este es el error de las partidas", error);
+//         }
+//     }
+//     const enviarDatosPartida = (event) =>{
+//         SendPartida();
+//         event.preventDefault()
+//         // event.target.reset();
+//     }
+//     /*======== Inserción de datos en la tabla pp ==============*/
 
-        try{
-            console.log("soy la data de la partida", data)
+//     /*======== Inserción de datos en la tabla precio ==============*/
 
-            const respuesta = await axios.post('http://localhost:4001/api/cotizador/partida/1', data);
-            const send2 = respuesta.data;
-            console.log("hola soy send2 de las partidas", send2);
-            alert('Registro exitoso')
-        }
-        catch (error){
-            console.log("este es el error de las partidas", error);
-        }
-    }
-    const enviarDatos = (event) =>{
-        console.log("estos son los datos", datos) 
-        Send();
-        console.log("este es el send", Send) 
-        event.preventDefault()
-        event.target.reset();
-        
-    }
+//     /*======== Inserción de datos en la tabla proveedor ==============*/
+
+//     /*======== Inserción de datos en la tabla marca ==============*/
+
+//     /*======== Inserción de datos en la tabla proveedor_marca ==============*/
+
+//     /*======== Inserción de datos en la tabla categoria ==============*/
+
+//     /*======== Inserción de datos en la tabla servicio_producto ==============*/
+
+//     /*======== Inserción de datos en la tabla psp ==============*/
+
     
-    return{
-        handleInputChange,
-        enviarDatos
-    }
 
-};
+    
+//     return{
+//         handleInputChangePartida,
+//         enviarDatosPartida
+//     }
+
+// };

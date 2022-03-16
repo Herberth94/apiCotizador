@@ -29,7 +29,7 @@ import PTN_BOM from "./Administrator/PTN-BOM/PTN_BOM";
 import AM from "./Administrator/AM/AmMenu";
 import Proporcionalidad from "./Administrator/Proporcionalidad/ProporcionalidadMenu";
 
-import PropuestaEconomica from "./Administrator/PropuestEconomica";
+/* import PropuestaEconomica from "./Administrator/PropuestEconomica"; */
 import ExportarPDF from "./Administrator/ExportarPDF";
 
 
@@ -65,11 +65,10 @@ function App() {
 
         <PublicRoutes path="/" component={Login} />
         <PublicRoutes path="/" component={Footer} />
-  {/*       <PublicRoutes path="/" component={Header} />
- */}
+    
         {/*========================== Páginas Administrador ==========================*/}
 
-        <Administrador path="/" component={MenuAdministrador} />
+        <Administrador path="/" component={MenuAdministrador}  />
 
         {/* <Administrador exact path="/" component={CambioContraseña} /> */}
         

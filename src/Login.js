@@ -1,6 +1,32 @@
 import React from 'react';
 import './css/ventanas.css';
 import {useLogin} from './Routes/useLogin';
+import ReCAPTCHA from "react-google-recaptcha";
+import {passwordCaptcha} from "./Componentes/Ocultar";
+export let valida = false;
+
+
+/*  Funcion Captcha Validación Correcta */
+
+function onChange(value) {
+    console.log("Captcha value:", value);
+
+
+    if(value != null){
+      console.log("No eres un robot");
+      valida= true;
+    }else{
+          console.log("No eres un robot");
+          valida=false;
+    }
+
+  }
+
+ 
+  
+
+
+
 
 export function Login() {
 
@@ -43,13 +69,35 @@ export function Login() {
               data-type="password"
               placeholder="Ingrese Contraseña" />
 
-             {/* //============ Botón Entrar ============ */}
+          
+             
+            
+            <div className="re-Captcha">
+          
+          {/*========== ReCAPTCHA Seguridad ==========*/}
+           <ReCAPTCHA
+           sitekey= {passwordCaptcha}
+           onChange={onChange}
+       
+           />
+         </div>
+
+
+   {/* //============ Botón Entrar ============ */}
+
+   
+
   
             <div className ="boton-login">
-            <button className="card-button" type="submit">
+            <button className="card-button" type="submit"   >
               <span>Entrar</span>
             </button>
             </div>
+
+
+         
+
+
           </form>
         </section>
       </div>

@@ -21,7 +21,12 @@ export function calcularDescuento(precioLista, precioUnitario) {
             return Descuento;
 
     }
-    
+}
+
+export function calcularMonedaBOOM (precioMXN,precioUSD){
+    let valorDolar = 20.92;
+    let BOOM = (precioMXN/valorDolar) + precioUSD;
+    return BOOM;
 }
 
 
