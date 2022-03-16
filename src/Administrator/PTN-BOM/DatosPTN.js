@@ -52,18 +52,29 @@ function DatosPTN() {
    valor_dolar: "",
    Partida: "",
    precio_lista: '',
-   precio_unitario: '',
+   precio_unitario:'',
    descuento: '',
    cantidad: '',
    total:'',
  });
+ const [first, setfirst] = useState({
 
+
+  
+ })
+
+ 
 const handleInputChange = (event) => {
     setDatos({
     ...datos,
     [event.target.name]: event.target.value,
   });
  };
+
+
+
+
+
  useEffect(()=>{
    let total = '';
    let precio_u = '';

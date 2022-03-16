@@ -31,15 +31,15 @@ export const useRegistro = () => {
          //console.log(datos);
          //Send(datos,data.id_usuario);
          //console.log(data.cliente_id);
-     const respuesta = (async () =>{
-          const repuesta = await Send(data_1,data.cliente_id)
-          return repuesta;
+        const respuesta = (async () =>{
+            const repuesta = await Send(data_1,data.cliente_id)
+            return repuesta;
         }
       )()
       return respuesta;
 }
 
-    const  Send = async (data,id)=> {
+const  Send = async (data,id)=> {
         const dataActulizacion = {
             nombre_cliente:data.nombre_cliente,
             razon_social:data.razon_social,
