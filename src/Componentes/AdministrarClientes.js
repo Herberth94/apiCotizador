@@ -30,11 +30,11 @@ function AdministrarClientes() {
     }
     //console.log(newARR);
     for (let y = 0; y < i.length; y++) {
-      if (y === key) {
+      if (y === parseInt(key)) {
         //newARR[y]=!validar[0][y];
         newARR[y] = !validar[0][y];
       }
-      if (y !== key) {
+      if (y !== parseInt(key)) {
         newARR[y] = true;
       }
     }
