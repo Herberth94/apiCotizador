@@ -12,56 +12,60 @@ import axios from "axios";
 function Proyectos() {
     /*========================== Buscador de proyectos ==========================*/
     /*========================== Almacenamiento de proyectos a buscar ==========================*/
-    const[listaProyectos, setListaProyectos] = useState([]);
-    const[datoClave,setDatoClave] = useState('')
-
-    // const lp = useRef([{
-    //     proyecto_id:'',
-    //     proyecto_clave:'',
-    //     proyecto_descripcion:'',
-    //     nombre_cliente:'',
-    //     proyecto_fecha_creacion:''
-    // }]);
+    const[listaProyectos, setListaProyectos] = useState([{
+        proyecto_id:'',
+        proyecto_clave:'',
+        proyecto_descripcion:'',
+        proyecto_id_cliente:'',
+        proyecto_id_cat_c_a_sptn_ma:'',
+        proyecto_fecha_creacion:'',
+        proyecto_fecha_modificacion:''
+    }]);
+    const[suggestions,setSuggestions] = useState([]);
     /*========================== Almacenamiento de los clientes semejantes al texto introducido ==========================*/
-    const [suggestions, setSuggestions] = useState([]);
+    const[claveP,setClaveP] = useState([]);
 
-    const onChangeClaveProyecto = (datoClave) => {
-        setDatoClave(datoClave);
-        var coincidencias = listaProyectos.filter(clave => {
-            if(clave.proyecto_clave.toLocaleLowerCase().includes(datoClave.toLocaleLowerCase)){
-                return clave
-            }
-        })
-        console.log('Coincidencias: ',coincidencias);
-        setSuggestions(coincidencias);
-        setDatoClave(datoClave);
-    }
-    
-    useEffect(()=>{
-        const getProyectos = async () => {
-            try{
-                const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/view1');
-                setListaProyectos(resProy.data.data);
-                //setListaProyectos(resProy.data.data);
-                //lp = resProy.data.data;
-            }catch(error){
-                console.log(error);
-            }
+    //const [suggestions, setSuggestions] = useState([]);
+
+    const getProyectos = async () => {
+        try{
+            const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/view1');
+            setListaProyectos(resProy.data.data);
+            //setSuggestions(resProy.data.data)
+        }catch(error){
+            console.log(error);
         }
+    }
+
+    useEffect(()=>{
         getProyectos();
     },[])
-    //console.log(listaProyectos);
-    // function getP(lp){
-    //     return lp
-    // };
+        
+    const onChangeTextClaveP = (claveP) => {
+        //console.log(ListaC);
+        let coincidencias = [];
+        if(claveP.length>0){
+            setDatosProyecto([]);
+            coincidencias = listaProyectos.filter(proyecto => {
+            const regex = new RegExp(`${claveP}`, "gi");
+            return proyecto.proyecto_clave.match(regex)
+            })
+        }
+        //console.log('Coincidencias: ',coincidencias);
+        setSuggestions(coincidencias);
+        setClaveP(claveP);
+        //console.log(nombreC);
+    }
+    
     /*========================== Almacenamiento de los datos de un proyecto en especifico ==========================*/
     const[datosProyecto, setDatosProyecto] = useState([]);
+
+    /*========================== Obtención de los datos de un proyecto en especifico ==========================*/
     async function getDatosProyecto(id){
         try{
             const resProy = await axios.get(`http://localhost:4001/api/cotizador/proyecto/view2/${id}`);
             setDatosProyecto(resProy.data.data);
-            //setListaProyectos(resProy.data.data);
-            console.log('Datos de un proyecto:',datosProyecto);
+            //console.log('Datos de un proyecto:',datosProyecto);
         }catch(error){
             console.log(error);
         }
@@ -96,7 +100,6 @@ function Proyectos() {
                         <thead>
                             <tr className="titulo-tabla-usuarios">
                                 <th>Búsqueda por clave</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,12 +108,9 @@ function Proyectos() {
                                     <input className="agregar"
                                         type="text"
                                         name="proyecto_clave"
-                                        onChange={e => onChangeClaveProyecto(e.target.value)}
-                                        value={datoClave}
+                                        onChange={e => onChangeTextClaveP(e.target.value)}
+                                        value={claveP}
                                         placeholder="Ingrese clave del proyecto" />
-                                </td>
-                                <td>
-                                    <button className="btn btn-primary"> Buscar</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -147,18 +147,18 @@ function Proyectos() {
                     </thead>
                                        
     <tbody>
-      {Object.keys(listaProyectos).map((key) => (    
+      {Object.keys(suggestions).map((key) => (    
           //checar aqui va los titulos
-        <tr key={listaProyectos[key].proyecto_id} >
-            <td>{listaProyectos[key].proyecto_id}</td>   
-            <td>{listaProyectos[key].proyecto_clave}</td>  
-            <td>{listaProyectos[key].proyecto_descripcion}</td>  
-            <td>{listaProyectos[key].nombre_cliente}</td> 
-            <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
+        <tr key={suggestions[key].proyecto_id} >
+            <td>{suggestions[key].proyecto_id}</td>   
+            <td>{suggestions[key].proyecto_clave}</td>  
+            <td>{suggestions[key].proyecto_descripcion}</td>  
+            <td>{suggestions[key].nombre_cliente}</td> 
+            <td>{suggestions[key].proyecto_fecha_creacion}</td>
             <td>Aprobado</td>  
             <td><button className="btn btn-primary eliminar">Eliminar</button></td>
             <td><button className="btn btn-primary modificar">Modificar</button></td> 
-            <td><button className="btn btn-primary detalles" onClick={() => {getDatosProyecto(listaProyectos[key].proyecto_id)}}>Ver más</button></td> 
+            <td><button className="btn btn-primary detalles" onClick={() => {getDatosProyecto(suggestions[key].proyecto_id)}}>Ver más</button></td> 
         </tr>  
        ))
       }
