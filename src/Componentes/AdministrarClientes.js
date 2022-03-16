@@ -81,8 +81,8 @@ function AdministrarClientes() {
       }
      setvalidar([...validar, newValidar]);
      setlistaClientes(respuesta.data.reSql);
-     //console.log(listaClientes);
-     //console.log(validar);
+     console.log(listaClientes);
+     console.log(validar);
       
     } catch (error) {
     }
