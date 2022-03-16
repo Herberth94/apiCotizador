@@ -135,7 +135,8 @@ function NuevoProyecto () {
           <tr className="titulo-tabla-usuarios">
             <th>Clave</th>
             <th>Descripción</th>
-            <th> Cliente </th>           
+            <th> Cliente </th>    
+            <th> Añadir </th>           
           </tr>
         </thead>
 
@@ -180,11 +181,16 @@ function NuevoProyecto () {
                 </div>
               )}
             </td>
+
+
+            <td>
+                 {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
+                   <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button>
+            </td>
           </tr>
         </tbody>
       </Table>
-       {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
-      <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button>
+   
       </form>
       <button className="btn btn-primary modificar" type="submit" onClick={() => { setShow(!show)}}>  {show ? 'Empezar' : 'Ocultar Datos'}    </button>
       {show ? (

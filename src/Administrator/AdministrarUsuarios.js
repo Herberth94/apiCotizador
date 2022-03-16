@@ -21,7 +21,7 @@ function AdministrarUsuarios() {
     const [listaUsuarios, setlistaUsarios] = useState([]);
     const [validar, setvalidar] = useState([]);
     const borrarUsuario = async (dato) => {
-        const confirmacion = window.confirm("¿Seguro que quieres borrar este registro?");
+        const confirmacion = window.confirm("¿Seguro que quieres borrar este registro?" );
         if (confirmacion) {
             console.log(dato);
             const respuesta = await axios.delete(`http://localhost:4001/api/cotizador/delete/${dato}`);
@@ -76,6 +76,7 @@ function AdministrarUsuarios() {
         {
             setShow(!show);
             console.log("prueba");
+            
         }
         else{
             setShow(!show);
@@ -94,8 +95,7 @@ function AdministrarUsuarios() {
     return (
         
         <div className="contenido-usuarios">
-          
-
+        
           <div className="head">
 
           </div>
