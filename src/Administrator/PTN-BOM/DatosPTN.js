@@ -65,7 +65,7 @@ function DatosPTN() {
       })
   }
 
-  async function SendPartida (){
+  async function SendPartida (proyecto_id){
       
     const data = {
         partida_nombre: datosPartida.partida_nombre,
@@ -77,11 +77,11 @@ function DatosPTN() {
         const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
         ListaProyectos = resGetProyectos.data.data.pop();
         proyectoId.proyecto_id = ListaProyectos.proyecto_id;
-
-        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/partida/${proyectoId.proyecto_id}`, data);
-        // // ${proyectoId.proyecto_id}`, data);
-        //const getPartidaId = respuesta.data;
-        // console.log("hola soy send2 de las partidas", send2);
+        if(proyecto_id !== proyectoId.proveedor_id){
+          await axios.post(`http://localhost:4001/api/cotizador/partida/${proyecto_id}`, data);
+        }else{
+          await axios.post(`http://localhost:4001/api/cotizador/partida/${proyectoId.proyecto_id}`, data);
+        }
         alert('Registro exitoso')
     }
     catch (error){
