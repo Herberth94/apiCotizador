@@ -28,19 +28,23 @@ async function Send (){
     };
 
    
-    try {
+    if(datos.nombre_cliente !== "" && datos.razon_social !== ""){
+        try {
 
-        const respuesta = await axios.post('http://localhost:4001/api/cotizador/clientes/agregar',data);
-        const send2= respuesta.data;
-        console.log(send2);
-        alert('Registro exitoso');
-            
-        }
-    catch (error) {
-            console.log(error);
-            
-        }
-   
+            const respuesta = await axios.post('http://localhost:4001/api/cotizador/clientes/agregar',data);
+            const send2= respuesta.data;
+            console.log(send2);
+            alert('Registro exitoso');
+                
+            }
+        catch (error) {
+                console.log(error);
+                
+            }
+    }else{
+        alert('Llene El nombre del Cliente y Razón Social');
+    }
+     
 }
     const enviarDatos = (event) => {  
         Send();

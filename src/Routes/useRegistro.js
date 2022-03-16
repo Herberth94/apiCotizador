@@ -27,27 +27,44 @@ async function Send (){
        
     };
 
-    if(datos.email === datos.remail)
+    if(datos.email === datos.remail   && datos.email !== ""  )  
     {
-        try {
+        if(datos.password !== ""){
 
-        const respuesta = await axios.post('http://localhost:4001/api/cotizador/registro',data);
-        const send2= respuesta.data;
-        console.log(send2.msg);
-        alert(send2.msg);
-            
-        } catch (error) {
-            console.log(error);
-            
+            if (datos.rol !== ""){
+
+                alert('Datos Guardados Exitosamente'); 
+                try {
+                    const respuesta = await axios.post('http://localhost:4001/api/cotizador/registro',data);
+                    const send2= respuesta.data;
+                    console.log(send2.msg);
+                    alert(send2.msg);                   
+                    } catch (error) {
+                        console.log(error);
+                        
+                    }
+
+            }else{
+                alert('Seleccione un Rol'); 
+            }
+        
+        }else{
+            alert('Ingrese una contraseña');
+
+
+
         }
+      
         
     }
     else {
-        alert('Los correos ingresados NO son iguales');
+        alert('Error en la seccion de Correo, verifique que sean iguales o que no esten vacios');
     }
  
 
 }
+
+
     const enviarDatos = (event) => {  
         Send();
         event.preventDefault();
