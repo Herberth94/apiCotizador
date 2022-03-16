@@ -20,47 +20,37 @@ function NuevoProyecto () {
    /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
-  /*========================== Almacenamiento de los clientes registrados ==========================*/
-  const [ListaC, setListaC] = useState ([{
-    cliente_id:'',
-    nombre_cliente:'',
-    razon_social:'',
-    telefono:'',
-    cliente_direccion:''
-  }]);
-  /*========================== Almacenamiento del id cliente encontrado en la busqueda ==========================*/
+  /*== Almacenamiento de los clientes registrados ==*/
+  const [ListaC, setListaC] = useState ([]);
+
+  /*== Almacenamiento del id cliente encontrado en la busqueda ==*/
   var clienteId = { proyecto_id_cliente: ''}
 
-  /*========================== Almacenamiento del nombre del cliente a buscar ==========================*/
+  /*== Almacenamiento del nombre del cliente a buscar ===*/
   const [nombreC, setNombreC] = useState('');
 
-  /*========================== Almacenamiento de los clientes semejantes al texto introducido ==========================*/
+  /*== Almacenamiento de los clientes semejantes al texto introducido ==*/
   const [suggestions, setSuggestions] = useState ([]);
 
-  /*========================== Almacenamiento de los datos introducidos de un proyecto ==========================*/
+  /*=== Almacenamiento de los datos introducidos de un proyecto ==*/
   const [datos, setDatos] = useState ([{
     proyecto_clave:'',
     proyecto_descripcion:''
   }]);
 
-  /*========================== Obtención de la lista de clientes registrados ==========================*/
+  /*== Función que realiza la consulta a la tabla clientes ==*/
   useEffect (() => {
     async function listaClientes(){
       try {
         const respuesta = await axios.get("http://localhost:4001/api/cotizador/clientes/view");
         setListaC(respuesta.data.reSql);
-        //console.log('Datos directos:',respuesta.data.reSql);
-        //console.log('Datos del arreglo:',ListaC);
       } catch (error) {}
     }
-    //console.log('Datos por afuera de la función:',ListaC);
     listaClientes();
-    //console.log(ListaC);
   },[])
 
-  /*========================== Buscador de clientes ==========================*/
+  /*== Función que realiza la busqueda de los clientes semejantes a al nombre introducido ==*/
   const onChangeTextCliente = (nombreC) => {
-    //console.log(ListaC);
     let coincidencias = [];
     if(nombreC.length>0){
       coincidencias = ListaC.filter(cliente => {
@@ -68,36 +58,33 @@ function NuevoProyecto () {
         return cliente.nombre_cliente.match(regex)
       })
     }
-    //console.log('Coincidencias: ',coincidencias);
     setSuggestions(coincidencias);
     setNombreC(nombreC);
-    //console.log(nombreC);
   }
 
-  /*========================== Obtención del cliente seleccionado ==========================*/
+  /*== Función que obtiene el cliente seleccionado ==*/
   const onSuggestHandler = (nombreC) => {
     setNombreC(nombreC);
     setSuggestions([]);
-    //console.log(clienteId);
   }
 
   const handleInputChange = (event) =>{
-    /*   console.log("este es el event.target.value", event.target.value) */
         setDatos ({
           ...datos,[event.target.name] : event.target.value ,
         })
   }
-  
+
+  /*== Función que realiza la inserción del proyecto ==*/
   async function Send (){
-    //Obtención del id del cliente
+    /*== Obtención del id del cliente que se seleccionó en la búsqueda ==*/
     let i = Object.keys(ListaC);
-    //console.log(ListaC);
     for (let c = 0; c < i.length; c++) {
       if (nombreC === ListaC[c].nombre_cliente) {
         clienteId.proyecto_id_cliente = ListaC[c].cliente_id
         console.log(clienteId);
       }        
     }
+
     const data = {
         proyecto_clave: datos.proyecto_clave,
         proyecto_descripcion: datos.proyecto_descripcion,
@@ -181,8 +168,6 @@ function NuevoProyecto () {
                 </div>
               )}
             </td>
-
-
             <td>
                  {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
                    <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button>
