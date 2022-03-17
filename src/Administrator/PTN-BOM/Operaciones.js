@@ -13,14 +13,10 @@ export function precioUnitario(precioLista, Descuento) {
 /*=== Calcular Descuento  con precioLista y precioUnitario ===*/
 
 export function calcularDescuento(precioLista, precioUnitario) {
-    if(precioLista === ''){
-        return 0
-    }
-    else{
+   
         let Descuento = 100 - (precioUnitario * 100) / precioLista;
             return Descuento;
 
-    }
 }
 
 export function calcularMonedaBOOM (precioMXN,precioUSD){

@@ -111,27 +111,50 @@ function DatosPTN() {
     });
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     let total = '';
     let precio_u = '';
+    let desc_ = '';
     if (datos.precio_unitario !== '' && datos.sp_cantidad !== '') {
       const total = Total(datos.precio_unitario, datos.sp_cantidad)
       setDatos({ ...datos, precio_total: total })
-      if (datos.precio_lista !== '') {
-        const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-        setDatos({ ...datos, precio_descuento: desc });
-
-      }
+      const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+      setDatos({ ...datos, precio_descuento: desc });
     }
-    if (datos.precio_unitario === '' && datos.sp_cantidad ==='') {
-      setDatos({ ...datos, precio_total: total })
+    if (datos.precio_unitario == '' || datos.sp_cantidad =='') {
+      setDatos({ ...datos, precio_total: total , precio_descuento:desc_ })
     }
-    if (datos.precio_lista !== '' && datos.precio_descuento !== '') {
+    if (datos.precio_lista !== '' && datos.precio_descuento !== '' && datos.precio_unitario !== '') {
       precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
       const total = Total(precio_u, datos.sp_cantidad);
-      setDatos({ ...datos, precio_unitario: precio_u, precio_total: total });
+      setDatos({ ...datos, precio_unitario: precio_u , precio_total:total});
     }
-  }, [datos.precio_unitario, datos.precio_lista, datos.precio_descuento, datos.sp_cantidad])
+  },[datos.precio_unitario, datos.precio_lista, datos.precio_descuento, datos.sp_cantidad])*/
+/*================================================================================*/
+useEffect(()=>{
+  let precio_u='';
+  if (datos.precio_lista !== '' &&  datos.precio_descuento !== '' && datos.sp_cantidad !== '') {
+    precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
+    const total = Total(precio_u, datos.sp_cantidad);
+    setDatos({ ...datos, precio_unitario: precio_u , precio_total:total});
+  }
+ 
+},[datos.precio_lista,datos.precio_descuento])
+/*================================================================================*/
+useEffect(()=>{
+   let total='';
+   let desc_='';
+  if (datos.precio_unitario !== '' && datos.sp_cantidad !== '') {
+    const total = Total(datos.precio_unitario, datos.sp_cantidad)
+    setDatos({ ...datos, precio_total: total })
+   }
+   if (datos.precio_unitario == '' || datos.sp_cantidad == '') {
+    setDatos({ ...datos, precio_total: total , precio_descuento:desc_ })
+   }
+},[datos.precio_unitario,datos.sp_cantidad])
+
+
+
 
   /*======== Inserción de datos en la tabla marca ==============*/
   const [datosMarca, setDatosMarca] = useState({
@@ -402,8 +425,7 @@ function DatosPTN() {
                   value={datos.sp_cantidad}
                   onChange={handleInputChange}
                   placeholder="Cantidad "
-                  min="0"
-                  step="any"
+                  
                 />
               </td>
               {/*======================== Precio Lista ==========================*/}
@@ -413,10 +435,10 @@ function DatosPTN() {
                   className="agregar"
                   type="number"
                   name="precio_lista"
+                  value={datos.precio_lista}
                   onChange={handleInputChange}
                   placeholder="Precio Lista"
-                  min="0"
-                  step="any"
+                 
                 />
               </td>
 
