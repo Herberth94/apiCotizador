@@ -8,6 +8,12 @@ import Categorias from "./Categorias";
 // import { GuardarDatosServicioProducto } from '../../Routes/GuardarDatosServicioProducto';
 // import { GuardarDatosPrecio } from '../../Routes/GuardarDatosPrecio';
 // import { GuardarDatosMarca } from '../../Routes/GuardarDatosMarca';
+
+
+//Importar Componente Partida
+ import Partida from "./Partida";
+
+ 
 import axios from 'axios';
 
 /*============== Operacions PTN BOM ==============*/
@@ -297,6 +303,13 @@ useEffect(()=>{
 
 
       </div>
+
+
+
+  <Partida/>
+
+ 
+
 
       {/*========================== Datos Partida ==========================*/}
 
