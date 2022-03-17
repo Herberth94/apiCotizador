@@ -42,11 +42,11 @@ function AdministrarUsuarios() {
         }
         console.log(newARR);    
         for (let y = 0; y < i.length; y++) {
-            if (y === key) {
+            if (y === parseInt(key)) {
                 //newARR[y]=!validar[0][y];
                 newARR[y] = !validar[0][y];
             }
-            if (y !== key) {
+            if (y !== parseInt(key)) {
                 newARR[y] = true
             };
         }
@@ -55,15 +55,15 @@ function AdministrarUsuarios() {
         console.log("segundo array", newARR)
        
     }
+    
+    // **********reset contraseña*********
     let estado_login = 0
-    let newpassword = "123098";
-    // **********reset contraseña*********+
-    const resetearContraseña = async (id_usuario) => {
+    const resetearContraseña = async (id_usuario, email) => {
+        let newpassword = email
+        console.log("este es el email", email)
         console.log("este es el id usuario", id_usuario)
         const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/pass/${id_usuario}`, {password:newpassword, estado_login});
         alert('Reseteo de la contraseña efectuado exitosamente')
-        
-
     }
 
     const llamado = async () => {
@@ -156,9 +156,9 @@ function AdministrarUsuarios() {
                                             <td>{listaUsuarios[key].id_usuario}</td>
                                             <td><input className="input-name" defaultValue={listaUsuarios[key].rol} onChange={handleInputChange} disabled={validar[0][key]} name="rol" id={listaUsuarios[key].id_usuario}></input></td>
                                             <td><input className="input-name" defaultValue={listaUsuarios[key].email} onChange={handleInputChange} disabled={validar[0][key]} name="email"></input> </td>
-                                            <td><button className="btn btn-primary Resetear" onClick={() => resetearContraseña(listaUsuarios[key].id_usuario)}> Resetear </button></td>
+                                            <td><button className="btn btn-primary Resetear" onClick={() => resetearContraseña(listaUsuarios[key].id_usuario,listaUsuarios[key].email)}> Resetear </button></td>
                                             <td><button className="btn btn-primary eliminar" onClick={() => borrarUsuario(listaUsuarios[key].id_usuario)}> Eliminar </button></td>
-                                            <td>  <button className="btn btn-primary modificar" type="button" onClick={() => { enable(key); envioData(listaUsuarios, keyRegistro)}}>  {show ? 'Aceptar' : 'Modificar'} </button>
+                                            <td><button className="btn btn-primary modificar" type="button" onClick={() => { enable(key); envioData(listaUsuarios, keyRegistro)}}>  {show ? 'Aceptar' : 'Modificar'} </button>
                                                 {show ? (
                                                     <div >
    {/*=================== Aceptar Cambios DIV ====================*/}
