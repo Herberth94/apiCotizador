@@ -152,8 +152,12 @@ useEffect(()=>{
     setDatos({ ...datos, precio_total: total , precio_descuento:desc_ })
    }
 },[datos.precio_unitario,datos.sp_cantidad])
-
-
+/*================================================================================*/
+useEffect(()=>{
+  if(datos.precio_lista !=='' && datos.precio_unitario !==''){
+    const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+    setDatos({ ...datos, precio_descuento: desc });}
+  },[datos.precio_unitario])
 
 
   /*======== Inserción de datos en la tabla marca ==============*/
