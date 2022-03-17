@@ -40,14 +40,31 @@ function Divisa() {
         setClaveP(claveP);
     }
 
+    const [datosDivisa, setDatosDivisa] = useState({
+        am_valor_dolar: ''
+    })
+    const handleInputChange = (event) => {
+        setDatosDivisa ({
+            ...datosDivisa,[event.target.name] : event.target.value
+        })
+    }
+
     /*== Función que agrega una divisa a un proyecto en específico ==*/
     async function enviarDivisa(id){
-        // try{
-        //     const resProy = await axios.get(`http://localhost:4001/api/cotizador/proyecto/view2/${id}`);
-        //     setDatosProyecto(resProy.data.data);
-        // }catch(error){
-        //     console.log(error);
-        // }
+
+        const data = {
+            am_valor_dolar: datosDivisa.am_valor_dolar
+        };
+        console.log(id)
+        try{
+            const resProy = await axios.post(`http://localhost:4001/api/cotizador/am/agregar/${id}`,data);
+            const enviarDatos2 = resProy.data
+            console.log(enviarDatos2);
+            alert('Registro exitoso')
+            // setDatosProyecto(resProy.data.data);
+        }catch (error){
+            console.log(error.toJSON());
+        }
     }
   return (
     <div className="contenido-usuarios">
@@ -76,8 +93,9 @@ function Divisa() {
                                 <td>
                                     <input className="agregar"
                                         type="text"
-                                        name="divisa"
-                                        placeholder="Ingrese Divisa" />
+                                        name="am_valor_dolar"
+                                        placeholder="Ingrese Divisa"
+                                        onChange={handleInputChange} />
                                 </td>
                             </tr>
                         </tbody>
