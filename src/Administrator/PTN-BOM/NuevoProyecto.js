@@ -4,41 +4,29 @@ import Table from "react-bootstrap/Table";
 import PTN from "./DatosPTN";
 import Animaciones from "../../Componentes/Animaciones";
 import "../css/PTN_BOM.css";
-// import {GuardarNuevoProyecto} from '../../Routes/GuardarNuevoProyecto';
-// import AnimacionesCliente  from "../../Componentes/AnimacionesCliente";
-// import {Ok} from '../../Routes/GuardarNuevoProyecto';
 import axios from 'axios';
-// function guardarProyecto(){
-//   const{
-//     handleInputChange,
-//     enviarDatos
-//   } = guardarNuevoProyecto();
-// }
+
  
 function NuevoProyecto () {
   
    /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
-  /*== Almacenamiento de los clientes registrados ==*/
+  
+  /*=================================== Obtención de datos para el buscador de clientes ===================================*/
+  // Almacenamiento de los clientes existentes
   const [ListaC, setListaC] = useState ([]);
 
-  /*== Almacenamiento del id cliente encontrado en la busqueda ==*/
+  // Almacenamiento del id cliente encontrado en la busqueda
   var clienteId = { proyecto_id_cliente: ''}
 
-  /*== Almacenamiento del nombre del cliente a buscar ===*/
+  // Almacenamiento del nombre del cliente a buscar
   const [nombreC, setNombreC] = useState('');
 
-  /*== Almacenamiento de los clientes semejantes al texto introducido ==*/
+  // Almacenamiento de los clientes semejantes al texto introducido en el input
   const [suggestions, setSuggestions] = useState ([]);
 
-  /*=== Almacenamiento de los datos introducidos de un proyecto ==*/
-  const [datos, setDatos] = useState ([{
-    proyecto_clave:'',
-    proyecto_descripcion:''
-  }]);
-
-  /*== Función que realiza la consulta a la tabla clientes ==*/
+  // Función que realiza la consulta a la tabla clientes
   useEffect (() => {
     async function listaClientes(){
       try {
@@ -49,7 +37,7 @@ function NuevoProyecto () {
     listaClientes();
   },[])
 
-  /*== Función que realiza la busqueda de los clientes semejantes a al nombre introducido ==*/
+  // Función que realiza la busqueda de los clientes semejantes a al nombre introducido 
   const onChangeTextCliente = (nombreC) => {
     let coincidencias = [];
     if(nombreC.length>0){
@@ -62,21 +50,30 @@ function NuevoProyecto () {
     setNombreC(nombreC);
   }
 
-  /*== Función que obtiene el cliente seleccionado ==*/
+  // Función que obtiene el nombre del cliente seleccionado
   const onSuggestHandler = (nombreC) => {
     setNombreC(nombreC);
     setSuggestions([]);
   }
+  /*=======================================================================================================================*/
 
+  /*=================================== Obtención de datos para la tabla proyecto ===================================*/
+  // Almacenamiento de los datos
+  const [datos, setDatos] = useState ([{
+    proyecto_clave:'',
+    proyecto_descripcion:''
+  }]);
+
+  // Obtención de los datos introducidos en los input
   const handleInputChange = (event) =>{
         setDatos ({
           ...datos,[event.target.name] : event.target.value ,
         })
   }
 
-  /*== Función que realiza la inserción del proyecto ==*/
+  // Función que realiza la inserción del proyecto
   async function Send (){
-    /*== Obtención del id del cliente que se seleccionó en la búsqueda ==*/
+    // Obtención del id del cliente que se seleccionó en la búsqueda
     let i = Object.keys(ListaC);
     for (let c = 0; c < i.length; c++) {
       if (nombreC === ListaC[c].nombre_cliente) {
@@ -106,7 +103,8 @@ function NuevoProyecto () {
       event.preventDefault()
       event.target.reset();
   }
-  
+  /*=================================================================================================================*/
+
   return (
 
     <div className="contenido-usuarios">
