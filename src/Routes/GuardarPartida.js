@@ -1,63 +1,71 @@
-// import  {useState} from 'react';
-// import axios from 'axios';
+import axios from "axios";
+import { useState } from "react";
 
-// export const GuardarPartida = () => {
-//     /*======== Inserción de datos en la tabla partida ==============*/
-//     const[datosPartida, setDatosPartida] = useState({
-//         partida_nombre: '',
-//         partida_descripcion: ''
+export const InsertDatosPartida = () => {
+    /*=================================== Inserción de datos en la tabla partida ===================================*/
+    // Almacenamiento del último proyecto insertado
+    var listaProyectos = {
+        proyecto_id:'',
+        proyecto_clave:'',
+        proyecto_descripcion:'',
+        proyecto_id_cliente:'',
+        proyecto_fecha_creacion:'',
+        proyecto_id_cat_c_a_sptn_ma:'',
+        proyecto_fecha_modificacion:'',
+        proyecto_estatus:''
+    };
 
-//     });
-//     const handleInputChangePartida = (event) =>{
-//         setDatosPartida({
-//             ...datosPartida,[event.target.name] : event.target.value ,
-//         })
-//     }
+    // Almacenamiento del id del último proyecto insertado
+    var proyectoId = {
+        proyecto_id:''
+    };
 
-//     async function SendPartida (){
+    // Almacenamiento de los datos de una partida a insertar
+    const[datosPartida, setDatosPartida] = useState({
+        partida_nombre: '',
+        partida_descripcion: ''
+    });
 
-//         const data = {
-//             partida_nombre: datosPartida.partida_nombre,
-//             partida_descripcion: datosPartida.partida_descripcion
-//         };
+    // Función que obtiene los datos introducidos en los inputs de los datos de una partida y los guarda en el objeto de datosPartida
+    const handleInputChangePartida = (event) =>{
+        setDatosPartida({
+            ...datosPartida,[event.target.name] : event.target.value ,
+        })
+    }
 
-//         try{
-//             const respuesta = await axios.post('http://localhost:4001/api/cotizador/partida/1', data);
-//             const getPartidaId = respuesta.data;
-//             // console.log("hola soy send2 de las partidas", send2);
-//             alert('Registro exitoso')
-//         }
-//         catch (error){
-//             console.log("este es el error de las partidas", error);
-//         }
-//     }
-//     const enviarDatosPartida = (event) =>{
-//         SendPartida();
-//         event.preventDefault()
-//         // event.target.reset();
-//     }
-//     /*======== Inserción de datos en la tabla pp ==============*/
+    // Función que realiza la inserción de los datos a la tabla partida en la bd 
+    async function SendPartida (){
+        const data = {
+            partida_nombre: datosPartida.partida_nombre,
+            partida_descripcion: datosPartida.partida_descripcion
+        };
 
-//     /*======== Inserción de datos en la tabla precio ==============*/
+        try{
+            // Obtención del id del último proyecto insertado 
+            const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
+            listaProyectos = resGetProyectos.data.data.pop();
+            proyectoId.proyecto_id = listaProyectos.proyecto_id;
+            // if(proyecto_id !== proyectoId.proveedor_id){
+            // await axios.post(`http://localhost:4001/api/cotizador/partida/${proyecto_id}`, data);
+            // }else{
+            await axios.post(`http://localhost:4001/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
+            // }
+            alert('Registro exitoso')
+        }
+        catch (error){
+            console.log(error);
+        }
+    }
 
-//     /*======== Inserción de datos en la tabla proveedor ==============*/
-
-//     /*======== Inserción de datos en la tabla marca ==============*/
-
-//     /*======== Inserción de datos en la tabla proveedor_marca ==============*/
-
-//     /*======== Inserción de datos en la tabla categoria ==============*/
-
-//     /*======== Inserción de datos en la tabla servicio_producto ==============*/
-
-//     /*======== Inserción de datos en la tabla psp ==============*/
-
+    const enviarDatosPartida = (event) =>{
+        SendPartida();
+        event.preventDefault()
+        event.target.reset();
+    }
     
-
-    
-//     return{
-//         handleInputChangePartida,
-//         enviarDatosPartida
-//     }
-
-// };
+    /*==============================================================================================================*/
+    return{
+        handleInputChangePartida,
+        enviarDatosPartida
+    }
+};
