@@ -25,6 +25,8 @@ export const InsertDatosPartida = () => {
         proyecto_id:''
     };
 
+    const [pId, setPId] = useState('')
+
     // Almacenamiento de los datos de una partida a insertar
     const[datosPartida, setDatosPartida] = useState({
         partida_nombre: '',
@@ -38,14 +40,20 @@ export const InsertDatosPartida = () => {
         })
     }
 
+    function getIdProyecto(proyecto_id){
+        setPId(proyecto_id)
+        //console.log(pId);
+    }
+
     // Función que realiza la inserción de los datos a la tabla partida en la bd 
     async function SendPartida (){
         const data = {
             partida_nombre: datosPartida.partida_nombre,
             partida_descripcion: datosPartida.partida_descripcion
         };
-
+        //console.log(id);
         try{
+            //console.log(id);
             // Obtención del id del último proyecto insertado 
             const resGetProyectos = await axios.get(url + '/api/cotizador/proyecto/view');
             listaProyectos = resGetProyectos.data.data.pop();
@@ -63,14 +71,18 @@ export const InsertDatosPartida = () => {
     }
 
     const enviarDatosPartida = (event) =>{
-        SendPartida();
+        //console.log(pId);
+        SendPartida(pId);
         event.preventDefault()
         event.target.reset();
     }
+
+    
     
     /*==============================================================================================================*/
     return{
         handleInputChangePartida,
-        enviarDatosPartida
+        enviarDatosPartida,
+        getIdProyecto
     }
 };

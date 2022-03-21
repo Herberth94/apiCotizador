@@ -8,9 +8,9 @@ function Partida() {
     enviarDatosPartida
   } = InsertDatosPartida();
 
+
   return (
-  
-    <div className="partidax">
+    <div className="contenido-usuarios">
     {/*========================== Nombre Partida ==========================*/}
       <br />
       <form action="" method="post" onSubmit={enviarDatosPartida}>

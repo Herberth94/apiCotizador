@@ -5,6 +5,9 @@ import PTN from "./DatosPTN";
 import Animaciones from "../../Componentes/Animaciones";
 import "../css/PTN_BOM.css";
 import axios from 'axios';
+import Partida from "./Partida";
+import DatosSP from "./DatosSP";
+import DatosPTN from "./DatosPTN";
 
 
 import {url} from "../../Componentes/Ocultar";
@@ -17,7 +20,7 @@ function NuevoProyecto () {
   const [show, setShow] = useState(true);
 
   
-  /*=================================== Obtención de datos para el buscador de clientes ===================================*/
+  /*=================================== Buscador de clientes ===================================*/
   // Almacenamiento de los clientes existentes
   const [ListaC, setListaC] = useState ([]);
 
@@ -59,7 +62,7 @@ function NuevoProyecto () {
     setNombreC(nombreC);
     setSuggestions([]);
   }
-  /*=======================================================================================================================*/
+  /*============================================================================================*/
 
   /*=================================== Obtención de datos para la tabla proyecto ===================================*/
   // Almacenamiento de los datos
@@ -186,7 +189,7 @@ function NuevoProyecto () {
         </div>
       ) : (
         <div className="arregla">
-          <PTN />
+          <DatosPTN></DatosPTN>
         </div>
       )}
 
