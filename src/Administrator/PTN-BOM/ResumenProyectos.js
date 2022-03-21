@@ -114,6 +114,31 @@ function Proyectos() {
     /*============================================================================================================================*/
 
     /*=================================== Edición de los datos de un proyecto ===================================*/
+    /*=================================== Buscador de clientes ===================================*/
+    // Almacenamiento del nombre del cliente a buscar
+    const [nombreC, setNombreC] = useState('');
+
+    // Almacenamiento de los clientes semejantes al texto introducido en el input
+    const [suggestionsClientes, setSuggestionsClientes] = useState ([]);
+    // Función que realiza la busqueda de los clientes semejantes a al nombre introducido 
+    const onChangeTextCliente = (nombreCliente) => {
+        let coincidencias = [];
+        if(nombreCliente.length>0){
+        coincidencias = ListaC.filter(cliente => {
+            const regex = new RegExp(`${nombreCliente}`, "gi");
+            return cliente.nombre_cliente.match(regex)
+        })
+        }
+        setSuggestionsClientes(coincidencias);
+        setNombreC(nombreCliente);
+        }
+
+    // Función que obtiene el nombre del cliente seleccionado
+    const onSuggestHandler = (nombreC) => {
+        setNombreC(nombreC);
+        setSuggestionsClientes([]);
+    }
+    /*============================================================================================*/
     // Habilitar/Deshabilitar inputs
     const [habilitarP, setHabilitarP] = useState(false);
 
@@ -122,8 +147,8 @@ function Proyectos() {
 
     const {
         actualizacionProy,
-        editHandleInputChangeP,
-        editHandleInputChangePIdC
+        editHandleInputChangeP//,
+        //editHandleInputChangePIdC
     } = EditProyecto();
     
 
@@ -153,7 +178,7 @@ function Proyectos() {
             setHabilitarP(!habilitarP);
         }else{
             setHabilitarP(!habilitarP);
-            actualizacionProy(ListaC,datos[key]);
+            actualizacionProy(nombreC,ListaC,datos[key]);
             actulizarPageProy(key);
         }
         
@@ -329,9 +354,14 @@ function Proyectos() {
                                     type="text"
                                     name="nombre_cliente"
                                     disabled={validarProy[0][key]}
-                                    defaultValue={suggestionsProyecto[key].nombre_cliente}
-                                    onChange={editHandleInputChangePIdC}
+                                    value={habilitarP ? nombreC : suggestionsProyecto[key].nombre_cliente }
+                                    onChange={e => onChangeTextCliente(e.target.value)}
                                 />
+                                {suggestionsClientes && suggestionsClientes.map((suggestionCliente,i)=>
+                                        <div key={i} className="selectCliente" onClick={() => onSuggestHandler(suggestionCliente.nombre_cliente)}>
+                                          {suggestionCliente.nombre_cliente}
+                                        </div>
+                                    )}
                                 </td> 
                                 <td>{suggestionsProyecto[key].proyecto_fecha_creacion}</td>
                                 <td>{suggestionsProyecto[key].proyecto_fecha_modificacion}</td>
