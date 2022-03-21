@@ -58,7 +58,7 @@ export const InsertDatosPartida = () => {
             //}else{
                 await axios.post(`http://localhost:4001/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
             //}
-            //alert('Registro exitoso')
+            alert('Registro exitoso')
         }
         catch (error){
             console.log(error);

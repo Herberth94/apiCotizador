@@ -32,7 +32,8 @@ export const EditProyecto = () => {
         const dataProyecto_1 ={
             proyecto_clave:dataProyecto.proyecto_clave,
             proyecto_descripcion:dataProyecto.proyecto_descripcion,
-            proyecto_id_cliente:dataProyecto.proyecto_id_cliente
+            proyecto_id_cliente:dataProyecto.proyecto_id_cliente,
+            nombre_cliente: dataProyecto.nombre_cliente
         };
 
         var ListaC = [{}]
@@ -51,6 +52,10 @@ export const EditProyecto = () => {
    
     // Función que realiza la inserción del proyecto
     async function SendEditProy (cliente_id,dataP,proyecto_id){
+
+        // if(cliente_id === ''){
+            
+        // }
         const dataActualizacion ={
             proyecto_clave:dataP.proyecto_clave,
             proyecto_descripcion: dataP.proyecto_descripcion,
@@ -58,16 +63,31 @@ export const EditProyecto = () => {
         }
         
         const k = Object.keys(datosProy);
+        console.log(k);
+
         for(let keys of k){
-            if(datosProy[keys] !== ''){
-                dataActualizacion[keys]=datosProy[keys];
-                if(datosProyIdC !== ''){
-                    dataActualizacion.proyecto_id_cliente = cliente_id;
-                }
-            }    
+            if(datosProy.proyecto_clave !== '' && datosProy.proyecto_descripcion !== '' && datosProyIdC.nombre_cliente !== datosProy.nombre_cliente){
+                //console.log('Los 3 datos no son nulos');
+                dataActualizacion[keys] = datosProy[keys];
+                dataActualizacion.proyecto_id_cliente = cliente_id;
+            }else if(datosProy.proyecto_clave !== '' && datosProy.proyecto_descripcion !== '' ){
+                //console.log('proyecto_clave y proyecto_descripcion no son nulos');
+                dataActualizacion[keys] = datosProy[keys];
+            }else if(datosProy.proyecto_clave !== '' && datosProyIdC.nombre_cliente !== datosProy.nombre_cliente){
+                //console.log('proyecto_clave y nombre_cliente no son nulos');
+                dataActualizacion[keys] = datosProy[keys];
+                dataActualizacion.proyecto_id_cliente = cliente_id;
+            }else if(datosProy.proyecto_descripcion !== '' && datosProyIdC.nombre_cliente !== datosProy.nombre_cliente){
+                //console.log('proyecto_descripcion y nombre_cliente no son nulos');
+                dataActualizacion[keys] = datosProy[keys];
+                dataActualizacion.proyecto_id_cliente = cliente_id;
+            }else if(datosProyIdC.nombre_cliente !== datosProy.nombre_cliente){
+                //console.log('nombre_cliente no es nulo');
+                dataActualizacion.proyecto_id_cliente = cliente_id;
+            }
         } 
-        
         try{
+            //console.log(dataActualizacion);
             await axios.put(`http://localhost:4001/api/cotizador/proyecto/update/${proyecto_id}`, dataActualizacion);
             alert('Proyecto editado exitosamente')
 
