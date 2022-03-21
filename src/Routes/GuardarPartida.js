@@ -41,23 +41,23 @@ export const InsertDatosPartida = () => {
     }
 
     // Función que realiza la inserción de los datos a la tabla partida en la bd 
-    async function SendPartida (id){
+    async function SendPartida (){
         const data = {
             partida_nombre: datosPartida.partida_nombre,
             partida_descripcion: datosPartida.partida_descripcion
         };
-        console.log(id);
+        //console.log(id);
         try{
             //console.log(id);
             // Obtención del id del último proyecto insertado 
             const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
             listaProyectos = resGetProyectos.data.data.pop();
             proyectoId.proyecto_id = listaProyectos.proyecto_id;
-            if(id !== ''){
+            //if(id !== ''){
                 //await axios.post(`http://localhost:4001/api/cotizador/partida/${id}`, data);
-            }else{
-                //await axios.post(`http://localhost:4001/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
-            }
+            //}else{
+                await axios.post(`http://localhost:4001/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
+            //}
             //alert('Registro exitoso')
         }
         catch (error){
