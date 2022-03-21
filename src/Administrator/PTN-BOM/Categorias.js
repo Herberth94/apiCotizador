@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import Table from "react-bootstrap/Table";
 import axios from 'axios';
 
+import {url2} from "../../Componentes/Ocultar";
+
+
 function Categorias() {
     /*=================================== Obtención de datos para la tabla cat_totales ===================================*/
     /*=================================== Totales capacitación ===================================*/
@@ -108,10 +111,10 @@ function Categorias() {
             proyectoId.proyecto_id = ListaProyectos.proyecto_id;
 
             // Inserciones a las tablas cat_totales y proyectos_cat_cat_t
-            await axios.post(`http://localhost:4001/api/cotizador/catt/agregar/1/${proyectoId.proyecto_id}`,dataCapacitacon);
-            await axios.post(`http://localhost:4001/api/cotizador/catt/agregar/2/${proyectoId.proyecto_id}`,dataAccesorios);
-            await axios.post(`http://localhost:4001/api/cotizador/catt/agregar/3/${proyectoId.proyecto_id}`,dataSptn);
-            await axios.post(`http://localhost:4001/api/cotizador/catt/agregar/4/${proyectoId.proyecto_id}`,dataMA);
+            await axios.post(url2 + `/api/cotizador/catt/agregar/1/${proyectoId.proyecto_id}`,dataCapacitacon);
+            await axios.post(url2 + `/api/cotizador/catt/agregar/2/${proyectoId.proyecto_id}`,dataAccesorios);
+            await axios.post(url2 + `/api/cotizador/catt/agregar/3/${proyectoId.proyecto_id}`,dataSptn);
+            await axios.post(url2 + `/api/cotizador/catt/agregar/4/${proyectoId.proyecto_id}`,dataMA);
             alert('Registro exitoso')
         }catch (error){
         console.log("este es el error", error.toJSON());

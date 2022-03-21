@@ -5,14 +5,18 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 import Categorias from "./Categorias";
 
+
+import {url} from "../../Componentes/Ocultar";
+import {url2} from "../../Componentes/Ocultar";
+
 //Importar Componente Partida
  import Partida from "./Partida";
- 
+
  
 import axios from 'axios';
 
 /*============== Operacions PTN BOM ==============*/
-import { precioUnitario, calcularDescuento, Total, Hola } from "./Operaciones";
+import { precioUnitario, calcularDescuento, Total } from "./Operaciones";
 
 
 function DatosPTN() {
@@ -230,26 +234,26 @@ function DatosPTN() {
 
       try{
           // Inserción a la tabla precio
-          const resPrecio = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', dataPrecio);
+          const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataPrecio);
           // Obtención del precio_id de la inserción realizada
           dataSP.sp_id_precio = resPrecio.data.data.insertId;
 
           // Inserción a la tabla proveedor
-          const resProv = await axios.post('http://localhost:4001/api/cotizador/proveedor/agregar', dataProveedor);
+          const resProv = await axios.post(url + '/api/cotizador/proveedor/agregar', dataProveedor);
           // Obtención del id de la inserción reaizada
           const proveedor_id = resProv.data.data.insertId
           dataSP.sp_id_proveedor = proveedor_id;
 
           // Inserción a las tablas marca y proveedor_marca
-          await axios.post(`http://localhost:4001/api/cotizador/marca/agregar/${proveedor_id}`, dataMarca);
+          await axios.post(url2 + `/api/cotizador/marca/agregar/${proveedor_id}`, dataMarca);
       
           // Obtención del id de la última partida insertada
-          const resGetPartida = await axios.get("http://localhost:4001/api/cotizador/partida/view");
+          const resGetPartida = await axios.get(url + '/api/cotizador/partida/view');
           ListaPartida = resGetPartida.data.data.pop();
           partidaId.partida_id = ListaPartida.partida_id;
 
           // Inserción a las tablas sp y psp
-          const resSP = await axios.post(`http://localhost:4001/api/cotizador/sp/agregar/${partidaId.partida_id}`, dataSP);
+          const resSP = await axios.post(url2 + `/api/cotizador/sp/agregar/${partidaId.partida_id}`, dataSP);
 
           alert('Registro exitoso')
           }

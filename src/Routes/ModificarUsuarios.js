@@ -1,6 +1,10 @@
 import  {useState} from 'react';
 import axios from 'axios';
 
+
+import {url2} from "../Componentes/Ocultar";
+
+
 export const useRegistro = () => {
     
      const [datos,setDatos] = useState ({
@@ -53,7 +57,7 @@ export const useRegistro = () => {
      //console.log(datos);
      const prueba = Object.keys(datos);
      for(let keys of prueba){
-         if(datos[keys]!==''){
+         if(datos[keys]!=''){
              //console.log("prueba");
              //console.log(datos[keys]);
              dataActulizacion[keys]=datos[keys]
@@ -62,8 +66,9 @@ export const useRegistro = () => {
          }    
      } 
     try {
-
-        const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/${id}`,dataActulizacion);
+     /*    const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/${id}`,dataActulizacion);
+ */
+        const respuesta = await axios.put(url2 + `/api/cotizador/edit/${id}`,dataActulizacion);
         //const send2= respuesta.data;
         //console.log(send2);
         alert('Dato Actualizado');

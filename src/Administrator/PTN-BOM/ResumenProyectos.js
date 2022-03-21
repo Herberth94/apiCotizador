@@ -3,6 +3,10 @@ import "../css/Proyectos.css";
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
 
+import {url} from "../../Componentes/Ocultar";
+import {url2} from "../../Componentes/Ocultar";
+
+ 
 function Proyectos() {
     /*== Almacenamiento de todos los proyectos existentes ==*/
     const[listaProyectos, setListaProyectos] = useState([]);
@@ -17,7 +21,7 @@ function Proyectos() {
     useEffect(()=>{
         const getProyectos = async () => {
             try{
-                const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/view1');
+                const resProy = await axios.get(url + '/api/cotizador/proyecto/view1');
                 setListaProyectos(resProy.data.data);
             }catch(error){
                 console.log(error);
@@ -45,7 +49,7 @@ function Proyectos() {
     /*== Almacenamiento de todos las partidas de un proyecto en específico ==*/
     async function getDatosPartida(proyecto_id){
         try{
-            const resPP = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPP/${proyecto_id}`);
+            const resPP = await axios.get(url2 + `/api/cotizador/partida/viewPP/${proyecto_id}`);
             setListaPartidas(resPP.data.data);
         }catch(error){
             console.log(error);
@@ -58,7 +62,7 @@ function Proyectos() {
     /*== Función que realiza la consulta de los servicios_productos de una partida en específica ==*/
     async function getDatosSP(partida_id){
         try{
-            const resProy = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPSP/${partida_id}`);
+            const resProy = await axios.get( url2 + `/api/cotizador/partida/viewPSP/${partida_id}`);
             setListaSP(resProy.data.data);
         }catch(error){
             console.log(error);
@@ -71,7 +75,7 @@ function Proyectos() {
     /*== Función que realiza la consulta de los servicios_productos de una partida en específica ==*/
     async function getDatosPrecios(sp_id){
         try{
-            const resProy = await axios.get(`http://localhost:4001/api/cotizador/precio/viewSPP/${sp_id}`);
+            const resProy = await axios.get(url2 + `/api/cotizador/precio/viewSPP/${sp_id}`);
             setListaPrecios(resProy.data.data);
         }catch(error){
             console.log(error);

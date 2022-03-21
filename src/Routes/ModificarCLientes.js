@@ -1,5 +1,10 @@
 import  {useState} from 'react';
 import axios from 'axios';
+import {url2} from "../Componentes/Ocultar";
+
+
+
+
 
 export const useRegistro = () => {
    
@@ -51,7 +56,7 @@ const  Send = async (data,id)=> {
         //console.log(datos);
         const prueba = Object.keys(datos);
         for(let keys of prueba){
-            if(datos[keys]!==''){
+            if(datos[keys]!=''){
                 //console.log("prueba");
                 //console.log(datos[keys]);
                 dataActulizacion[keys]=datos[keys]
@@ -61,7 +66,7 @@ const  Send = async (data,id)=> {
      } 
     try {
 
-        const respuesta = await axios.put(`http://localhost:4001/api/cotizador/clientes/update/${id}`,dataActulizacion);
+        const respuesta = await axios.put(url2 + `/api/cotizador/clientes/update/${id}`,dataActulizacion);
         //console.log(respuesta.data) ;
         return respuesta.data;
         //console.log(send2);

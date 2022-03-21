@@ -6,6 +6,10 @@ import Animaciones from "../../Componentes/Animaciones";
 import "../css/PTN_BOM.css";
 import axios from 'axios';
 
+
+import {url} from "../../Componentes/Ocultar";
+import {url2} from "../../Componentes/Ocultar";
+
  
 function NuevoProyecto () {
   
@@ -30,7 +34,7 @@ function NuevoProyecto () {
   useEffect (() => {
     async function listaClientes(){
       try {
-        const respuesta = await axios.get("http://localhost:4001/api/cotizador/clientes/view");
+        const respuesta = await axios.get(url + '/api/cotizador/clientes/view');
         setListaC(respuesta.data.reSql);
       } catch (error) {}
     }
@@ -89,7 +93,7 @@ function NuevoProyecto () {
     };
 
     try{
-        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/proyecto/agregar/1`, data);
+        const respuesta = await axios.post(url2 + `/api/cotizador/proyecto/agregar/1`, data);
         const getProyectoId = respuesta.data.id_proyecto;
         //console.log(getProyectoId);
         alert('Registro exitoso')

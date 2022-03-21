@@ -3,6 +3,11 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
 
+
+
+
+
+
 function ResumenAM() {
   return (
     <div className="contenido-usuarios">

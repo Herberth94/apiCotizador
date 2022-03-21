@@ -5,6 +5,8 @@ import Table from "react-bootstrap/Table";
 
 import DatosPTN from "./DatosPTN";
 
+import {url} from "../../Componentes/Ocultar";
+
 function ContinuarProyecto() {
     
   {  /*========================== Mostrar Ocultar Tabla ==========================*/}
@@ -23,7 +25,7 @@ function ContinuarProyecto() {
   useEffect(()=>{
       const getProyectos = async () => {
           try{
-              const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/view1');
+              const resProy = await axios.get(url + '/api/cotizador/proyecto/view1');
               setListaProyectos(resProy.data.data);
           }catch(error){
               console.log(error);

@@ -1,5 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
+import {url} from "../Componentes/Ocultar";
+import {url2} from "../Componentes/Ocultar";
+
+
+
 
 export const InsertDatosPartida = () => {
     /*=================================== Inserción de datos en la tabla partida ===================================*/
@@ -42,13 +47,13 @@ export const InsertDatosPartida = () => {
 
         try{
             // Obtención del id del último proyecto insertado 
-            const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
+            const resGetProyectos = await axios.get(url + '/api/cotizador/proyecto/view');
             listaProyectos = resGetProyectos.data.data.pop();
             proyectoId.proyecto_id = listaProyectos.proyecto_id;
             // if(proyecto_id !== proyectoId.proveedor_id){
             // await axios.post(`http://localhost:4001/api/cotizador/partida/${proyecto_id}`, data);
             // }else{
-            await axios.post(`http://localhost:4001/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
+            await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
             // }
             alert('Registro exitoso')
         }
