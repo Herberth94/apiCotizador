@@ -116,31 +116,130 @@ function DatosSP() {
 
   /*=================================== Obtención de datos para la tabla marca ===================================*/
     // Almacenamiento de los datos
-    const [datosMarca, setDatosMarca] = useState({
-      marca_nombre: ''
-  });
+    // const [datosMarca, setDatosMarca] = useState({
+    //   marca_nombre: ''
+    // });
 
-  // Obtención de los datos introducidos en los input
-  const handleInputChangeMarca = (event) => {
-      setDatosMarca({
-          ...datosMarca,[event.target.name] : event.target.value 
-      })
-  }
+    // // Obtención de los datos introducidos en los input
+    // const handleInputChangeMarca = (event) => {
+    //     setDatosMarca({
+    //         ...datosMarca,[event.target.name] : event.target.value 
+    //     })
+    // }
   /*==============================================================================================================*/
 
   /*=================================== Obtención de datos para la tabla proveedor ===================================*/
   // Almacenamiento de los datos
-  const[datosProv, setDatosProv] = useState  ({
-      proveedor_nombre: '',
-  });
+  // const[datosProv, setDatosProv] = useState  ({
+  //     proveedor_nombre: '',
+  // });
 
-  // Obtención de los datos introducidos en los input
-  const handleInputChangeProv = (event) =>{
-      setDatosProv({
-          ...datosProv, [event.target.name] : event.target.value
-      })
-  }
+  // // Obtención de los datos introducidos en los input
+  // const handleInputChangeProv = (event) =>{
+  //     setDatosProv({
+  //         ...datosProv, [event.target.name] : event.target.value
+  //     })
+  // }
   /*==================================================================================================================*/
+
+  /*=================================== Buscador de proveedores ===================================*/
+  // Almacenamiento de los proveedores existentes
+  const [ListaProv, setListaProv] = useState ([]);
+
+  // Almacenamiento del id del proveedor encontrado en la busqueda
+  var proveedorId = {proveedor_id:''}
+
+  // Almacenamiento del nombre del proveedor a buscar
+  const [nombreProv, setNombreProv] = useState('');
+
+  // Almacenamiento de los proveedores semejantes al texto introducido en el input
+  const [suggestionsProv, setSuggestionsProv] = useState ([]);
+
+  // Función que realiza la consulta a la tabla proveedores
+  useEffect (() => {
+    async function listaProvs(){
+      try {
+        const respuesta = await axios.get("http://localhost:4001/api/cotizador/proveedor/view");
+        setListaProv(respuesta.data.data);
+      } catch (error) {}
+    }
+    listaProvs();
+  },[])
+
+  // Función que realiza la busqueda de los clientes semejantes a al nombre introducido 
+  const onChangeTextProv = (nombreProveedor) => {
+    let coincidencias = [];
+    if(nombreProveedor.length>0){
+      coincidencias = ListaProv.filter(proveedor => {
+        const regex = new RegExp(`${nombreProveedor}`, "gi");
+        return proveedor.proveedor_nombre.match(regex)
+      })
+    }
+    setSuggestionsProv(coincidencias);
+    setNombreProv(nombreProveedor);
+  }
+
+  // Función que obtiene el nombre del cliente seleccionado
+  const onSuggestHandlerProv = (nombreProveedor) => {
+    setNombreProv(nombreProveedor);
+    setSuggestionsProv([]);
+  }
+  /*============================================================================================*/
+
+  /*=================================== Buscador de marcas con respecto al proveedor seleccionado ===================================*/
+  // Almacenamiento de los proveedores existentes
+  const [listaMarca, setListaMarca] = useState ([]);
+
+  // Almacenamiento del id del proveedor encontrado en la busqueda
+  var marcaId = { marca_id:''}
+
+  // Almacenamiento del nombre del proveedor a buscar
+  const [nombreMarca, setNombreMarca] = useState('');
+
+  // Almacenamiento de los proveedores semejantes al texto introducido en el input
+  const [suggestionsMarca, setSuggestionsMarca] = useState ([]);
+
+  // Función que realiza la consulta a la tabla proveedores
+  useEffect (() => {
+    // Obtención del id del proveedor que se seleccionó en la búsqueda
+    let i = Object.keys(ListaProv);
+    for (let c = 0; c < i.length; c++) {
+      if (nombreProv === ListaProv[c].proveedor_nombre) {
+        proveedorId.proveedor_id = ListaProv[c].proveedor_id
+        console.log('proveedor id:',proveedorId);
+      }        
+    }
+    async function listaMarcas(){
+      try {
+        const respuesta = await axios.get(`http://localhost:4001/api/cotizador/provmarcas/view/${proveedorId.proveedor_id}`);
+        setListaMarca(respuesta.data.data);
+      } catch (error) {}
+    }
+    if(proveedorId.proveedor_id !== ''){
+      listaMarcas();
+    }
+  },[nombreProv])
+
+  // Función que realiza la busqueda de los clientes semejantes a al nombre introducido 
+  const onChangeTextMarca = (nombreMarca) => {
+    let coincidencias = [];
+    if(nombreMarca.length>0){
+      coincidencias = listaMarca.filter(marca => {
+        const regex = new RegExp(`${nombreMarca}`, "gi");
+        return marca.marca_nombre.match(regex)
+      })
+    }
+    setSuggestionsMarca(coincidencias);
+    setNombreMarca(nombreMarca);
+  }
+
+  // Función que obtiene el nombre del cliente seleccionado
+  const onSuggestHandlerMarca = (nombreMarca) => {
+    setNombreMarca(nombreMarca);
+    setSuggestionsMarca([]);
+  }
+  
+  /*============================================================================================*/
   
   /*=================================== Obtención de los id's de las categorias para insertar en la tabla servicio_producto ===================================*/
   // Almacenamiento de los datos
@@ -183,6 +282,7 @@ function DatosSP() {
       partida_descripcion:''
   };
 
+
   // Almacenamiento del id de la última partida insertada 
   var partidaId = {
       partida_id:''
@@ -197,26 +297,34 @@ function DatosSP() {
           sp_semanas: datosSP.sp_semanas,
           sp_cantidad: datos.sp_cantidad,
           sp_id_precio:'',
-          sp_id_proveedor:'',
           sp_id_categoria:datosCategoria.categoria_id,
           sp_comentarios: datosSP.sp_comentarios
       };
 
       const dataPrecio = {
-      precio_lista: datos.precio_lista,
-      precio_unitario: datos.precio_unitario,
-      precio_descuento: datos.precio_descuento,
-      precio_total: datos.precio_total,
-      precio_id_moneda: datos.precio_id_moneda
+        precio_lista: datos.precio_lista,
+        precio_unitario: datos.precio_unitario,
+        precio_descuento: datos.precio_descuento,
+        precio_total: datos.precio_total,
+        precio_id_moneda: datos.precio_id_moneda
       };
 
-      const dataProveedor = {
-      proveedor_nombre:datosProv.proveedor_nombre
-      };
-
-      const dataMarca = {
-      marca_nombre: datosMarca.marca_nombre,
-      };
+      // Obtención del id del proveedor que se seleccionó en la búsqueda
+    let i = Object.keys(ListaProv);
+    for (let c = 0; c < i.length; c++) {
+      if (nombreProv === ListaProv[c].proveedor_nombre) {
+        proveedorId.proveedor_id = ListaProv[c].proveedor_id
+        //console.log('proveedor id:',proveedorId);
+      }        
+    }
+      // Obtención del id de la marca que se seleccionó en la búsqueda
+      let m = Object.keys(listaMarca);
+      for (let c = 0; c < m.length; c++) {
+        if (nombreMarca === listaMarca[c].marca_nombre) {
+          marcaId.marca_id = listaMarca[c].marca_id
+          //console.log('marca id:',marcaId);
+        }        
+      }
 
       try{
           // Inserción a la tabla precio
@@ -224,27 +332,20 @@ function DatosSP() {
           // Obtención del precio_id de la inserción realizada
           dataSP.sp_id_precio = resPrecio.data.data.insertId;
 
-          // Inserción a la tabla proveedor
-          const resProv = await axios.post('http://localhost:4001/api/cotizador/proveedor/agregar', dataProveedor);
-          // Obtención del id de la inserción reaizada
-          const proveedor_id = resProv.data.data.insertId
-          dataSP.sp_id_proveedor = proveedor_id;
+          
 
-          // Inserción a las tablas marca y proveedor_marca
-          await axios.post(`http://localhost:4001/api/cotizador/marca/agregar/${proveedor_id}`, dataMarca);
-      
           // Obtención del id de la última partida insertada
           const resGetPartida = await axios.get("http://localhost:4001/api/cotizador/partida/view");
           ListaPartida = resGetPartida.data.data.pop();
           partidaId.partida_id = ListaPartida.partida_id;
 
           // Inserción a las tablas sp y psp
-          const resSP = await axios.post(`http://localhost:4001/api/cotizador/sp/agregar/${partidaId.partida_id}`, dataSP);
-
-          alert('Registro exitoso')
-          }
-          catch (error){
-          console.log("este es el error", error.toJSON());
+          const resSP = await axios.post(`http://localhost:4001/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+          
+          alert('Servico/producto registrado exitosamente')
+          }catch (error){
+          alert('Registro de Servico/producto invalido')
+          console.log(error);
       }
   }
   const enviarDatosSP = (event) =>{
@@ -417,8 +518,8 @@ function DatosSP() {
             <Table responsive id="nombreDiv">
             <thead>
                 <tr className="titulo-tabla-usuarios">
-                <th>Marca</th>
                 <th>Proveedor</th>
+                <th>Marca</th>
                 <th>Comentarios </th>
                 <th>Categoría </th>
                 <th> - </th>
@@ -426,18 +527,6 @@ function DatosSP() {
             </thead>
             <tbody>
                 <tr className="">
-                {/*======================== Marca ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="marca_nombre"
-                    onChange={handleInputChangeMarca}
-                    placeholder="Marca"
-                    />
-                </td>
-
                 {/*======================== Proveedor ==========================*/}
                 <td>
                     {" "}
@@ -445,9 +534,32 @@ function DatosSP() {
                     className="agregar"
                     type="text"
                     name="proveedor_nombre"
-                    onChange={handleInputChangeProv}
+                    onChange={e => onChangeTextProv(e.target.value)}
+                    value={nombreProv}
                     placeholder="Proveedor"
                     />
+                    {suggestionsProv && suggestionsProv.map((suggestionProv,i)=>
+                      <div key={i} className="selectCliente" onClick={() => onSuggestHandlerProv(suggestionProv.proveedor_nombre)}>
+                      {suggestionProv.proveedor_nombre}
+                      </div>
+                    )}
+                </td>
+                {/*======================== Marca ==========================*/}
+                <td>
+                    {" "}
+                    <input
+                    className="agregar"
+                    type="text"
+                    name="marca_nombre"
+                    onChange={e => onChangeTextMarca(e.target.value)}
+                    value={nombreMarca}
+                    placeholder="Marca"
+                    />
+                    {suggestionsMarca && suggestionsMarca.map((suggestionMarca,i)=>
+                      <div key={i} className="selectCliente" onClick={() => onSuggestHandlerMarca(suggestionMarca.marca_nombre)}>
+                      {suggestionMarca.marca_nombre}
+                      </div>
+                    )}
                 </td>
 
                 {/*======================== Comentarios ==========================*/}
