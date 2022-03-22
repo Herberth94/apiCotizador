@@ -1,6 +1,8 @@
 import  {useState} from 'react';
 import axios from 'axios';
 
+import {url} from "../Componentes/Ocultar";
+
 export const useRegistro = () => {
      const [datos,setDatos] = useState ({
           nombre_cliente: '', 
@@ -31,7 +33,7 @@ async function Send (){
     if(datos.nombre_cliente !== "" && datos.razon_social !== ""){
         try {
 
-            const respuesta = await axios.post('http://localhost:4001/api/cotizador/clientes/agregar',data);
+            const respuesta = await axios.post(url +'/api/cotizador/clientes/agregar',data);
             const send2= respuesta.data;
             console.log(send2);
             alert('Registro exitoso');

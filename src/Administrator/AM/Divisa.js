@@ -4,6 +4,12 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
 
+
+import {url2} from "../../Componentes/Ocultar";
+import {url} from "../../Componentes/Ocultar";
+
+
+
 function Divisa() {
     /*== Almacenamiento de todos los proyectos existentes ==*/
     const[listaProyectos, setListaProyectos] = useState([]);
@@ -18,7 +24,7 @@ function Divisa() {
     useEffect(()=>{
         const getProyectos = async () => {
             try{
-                const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/view1');
+                const resProy = await axios.get(url + '/api/cotizador/proyecto/view1');
                 setListaProyectos(resProy.data.data);
             }catch(error){
                 console.log(error);
@@ -57,7 +63,7 @@ function Divisa() {
         };
         console.log(id)
         try{
-            const resProy = await axios.post(`http://localhost:4001/api/cotizador/am/agregar/${id}`,data);
+            const resProy = await axios.post(url2 + `/api/cotizador/am/agregar/${id}`,data);
             const enviarDatos2 = resProy.data
             console.log(enviarDatos2);
             alert('Registro exitoso')

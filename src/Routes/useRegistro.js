@@ -1,5 +1,8 @@
 import  {useState} from 'react';
 import axios from 'axios';
+import {url} from "../Componentes/Ocultar";
+
+
 
 export const useRegistro = () => {
      const [datos,setDatos] = useState ({
@@ -27,20 +30,22 @@ async function Send (){
        
     };
 
-    if(datos.email === datos.remail   && datos.email !== ""  )  
+    if(datos.email == datos.remail   && datos.email != ""  )  
     {
-        if(datos.password !== ""){
+        if(datos.password != ""){
 
-            if (datos.rol !== ""){
+            if (datos.rol != ""){
 
-                alert('Datos Guardados Exitosamente'); 
+           
                 try {
-                    const respuesta = await axios.post('http://localhost:4001/api/cotizador/registro',data);
+                    const respuesta = await axios.post(url + '/api/cotizador/registro',data);
                     const send2= respuesta.data;
                     console.log(send2.msg);
-                    alert(send2.msg);                   
+                    alert(send2.msg);    
+                    alert('Datos Guardados Exitosamente');                
                     } catch (error) {
                         console.log(error);
+                    alert('No se Guardo el registro, verifique los datos');    
                         
                     }
 
@@ -58,7 +63,7 @@ async function Send (){
         
     }
     else {
-        alert('Error en la seccion de Correo, verifique que sean iguales o que no esten vacios');
+        alert('Error en la seccion de Correo, verifique que sean iguales o que no esten vacios los datos');
     }
  
 
