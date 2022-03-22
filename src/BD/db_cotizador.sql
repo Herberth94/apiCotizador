@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-03-2022 a las 01:11:13
+-- Tiempo de generación: 22-03-2022 a las 05:50:46
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -105,33 +105,10 @@ CREATE TABLE `cat_totales` (
 --
 
 INSERT INTO `cat_totales` (`ct_id`, `ct_totales_mxn`, `ct_totales_usd`) VALUES
-(4, '100.200', '1.000'),
-(5, '200.000', '2.000'),
-(6, '100.000', '200.000'),
-(7, '0.000', '0.000'),
-(8, '0.000', '0.000'),
-(9, '0.000', '0.000'),
-(10, '50.000', '50.000'),
-(11, '0.000', '0.000'),
-(12, '0.000', '0.000'),
-(13, '0.000', '0.000'),
-(14, '1000.200', NULL),
-(15, '1000.200', '1000.000'),
-(16, '1000.200', '0.000'),
-(17, '1000.200', '0.000'),
-(18, '1000.200', '0.000'),
-(19, '2000.000', '500.000'),
-(20, '0.000', '0.000'),
-(21, '0.000', '0.000'),
-(22, '0.000', '0.000'),
-(23, '6000.000', '3000.000'),
-(24, '0.000', '0.000'),
-(25, '0.000', '0.000'),
-(26, '0.000', '0.000'),
-(27, '100.000', '20.000'),
-(28, '0.000', '0.000'),
-(29, '0.000', '0.000'),
-(30, '0.000', '0.000');
+(39, '100.000', '100.000'),
+(40, '200.000', '200.000'),
+(41, NULL, '300.000'),
+(42, '400.000', '400.000');
 
 -- --------------------------------------------------------
 
@@ -193,7 +170,7 @@ CREATE TABLE `costos_indirectos` (
 --
 
 CREATE TABLE `marca` (
-  `marca_id` int(10) NOT NULL,
+  `marca_id` bigint(20) NOT NULL,
   `marca_nombre` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -202,19 +179,11 @@ CREATE TABLE `marca` (
 --
 
 INSERT INTO `marca` (`marca_id`, `marca_nombre`) VALUES
-(4, 'PTN'),
-(5, 'AZURE'),
-(6, 'Kingston'),
-(7, 'PT'),
-(8, 'King'),
-(9, ''),
-(10, ''),
-(11, ''),
-(12, ''),
-(13, ''),
-(14, ''),
-(15, 'Kingston '),
-(16, 'Kingston ');
+(18, 'HP'),
+(19, 'acer'),
+(20, 'samsung'),
+(21, 'Motorola'),
+(22, 'ESPRIT');
 
 -- --------------------------------------------------------
 
@@ -252,17 +221,8 @@ CREATE TABLE `partida` (
 --
 
 INSERT INTO `partida` (`partida_id`, `partida_nombre`, `partida_descripcion`) VALUES
-(1, 'partida 1', 'kdhoihwehd'),
-(2, 'jbkjbjkbkj', 'jdbkjbfdjkibfdk'),
-(3, 'Partida 1', ''),
-(4, 'Partida 2', ''),
-(5, 'pp4', ''),
-(6, 'pp5', ''),
-(7, 'p7', ''),
-(8, 'p8', ''),
-(9, 'p9', ''),
-(10, 'Partida 1', 'Partida 1'),
-(11, 'Partida 2', 'Partida 2');
+(16, 'Partida 2_1', 'Partida 1 del proyecto 2'),
+(21, 'Partida 4', 'Partida 4');
 
 -- --------------------------------------------------------
 
@@ -281,8 +241,8 @@ CREATE TABLE `pp` (
 --
 
 INSERT INTO `pp` (`pp_id`, `pp_id_proyecto`, `pp_id_partida`) VALUES
-(10, 61, 10),
-(11, 61, 11);
+(16, 63, 16),
+(24, 62, 21);
 
 -- --------------------------------------------------------
 
@@ -304,32 +264,13 @@ CREATE TABLE `precio` (
 --
 
 INSERT INTO `precio` (`precio_id`, `precio_lista`, `precio_unitario`, `precio_descuento`, `precio_total`, `precio_id_moneda`) VALUES
-(23, '400.000', NULL, NULL, NULL, NULL),
-(25, '100.000', '80.000', 20, '0.000', NULL),
-(26, '0.000', '20.000', 0, '0.000', NULL),
-(27, '0.000', '0.000', 0, '0.000', NULL),
-(28, '0.000', '50.000', 99.9, '100.000', NULL),
-(29, '100.000', '80.000', 20, '160.000', NULL),
-(30, '0.000', '100.000', 0, '200.000', NULL),
-(31, '0.000', '500.000', 0, '1500.000', 1),
-(32, '500.000', '400.000', 20, '1200.000', 1),
-(33, '0.000', '100.000', 0, '300.000', 2),
-(34, '0.000', '50.000', 0, '150.000', 2),
-(35, '0.000', '100.000', 0, '400.000', 2),
-(36, '0.000', '200.000', 0, '600.000', 1),
-(37, '0.000', '0.000', 0, '0.000', 1),
-(38, '0.000', '0.000', 0, '0.000', 1),
-(39, '0.000', '100.000', 0, '200.000', 1),
-(40, '0.000', '200.000', 0, '400.000', 2),
-(41, '0.000', '2.000', 0, '20.000', 1),
-(42, '0.000', '0.000', 0, '0.000', 1),
-(43, '0.000', '0.000', 0, '0.000', 1),
-(44, '0.000', '0.000', 0, '0.000', 1),
-(45, '0.000', '0.000', 0, '0.000', 1),
-(46, '0.000', '0.000', 0, '0.000', 1),
-(47, '0.000', '0.000', 0, '0.000', 2),
-(48, '100.000', '80.000', 20, '160.000', 1),
-(49, '100.000', '80.000', 20, '240.000', 1);
+(54, '5000.000', '4000.000', 20, '20000.000', 1),
+(55, '10000.000', '8000.000', 20, '32000.000', 2),
+(59, '10.000', '0.000', 0, '0.000', 1),
+(60, '100.000', '0.000', 0, '0.000', 1),
+(61, '10000.000', '0.000', 0, '0.000', 1),
+(62, '200.000', '0.000', 0, '0.000', 2),
+(63, '0.000', '0.000', 0, '0.000', 1);
 
 -- --------------------------------------------------------
 
@@ -338,7 +279,7 @@ INSERT INTO `precio` (`precio_id`, `precio_lista`, `precio_unitario`, `precio_de
 --
 
 CREATE TABLE `proveedor` (
-  `proveedor_id` int(10) NOT NULL,
+  `proveedor_id` bigint(20) NOT NULL,
   `proveedor_nombre` varchar(100) DEFAULT NULL,
   `proveedor_telefono` bigint(15) DEFAULT NULL,
   `proveedor_email` varchar(100) DEFAULT NULL
@@ -349,19 +290,8 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`proveedor_id`, `proveedor_nombre`, `proveedor_telefono`, `proveedor_email`) VALUES
-(4, 'PTN', NULL, NULL),
-(5, 'AZURE', NULL, NULL),
-(6, 'PTN', NULL, NULL),
-(7, 'PT', NULL, NULL),
-(8, 'pt', NULL, NULL),
-(9, '', NULL, NULL),
-(10, '', NULL, NULL),
-(11, '', NULL, NULL),
-(12, '', NULL, NULL),
-(13, '', NULL, NULL),
-(14, '', NULL, NULL),
-(15, 'PTN', NULL, NULL),
-(16, 'PT', NULL, NULL);
+(18, 'PTN', NULL, NULL),
+(19, 'delfos', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -370,9 +300,9 @@ INSERT INTO `proveedor` (`proveedor_id`, `proveedor_nombre`, `proveedor_telefono
 --
 
 CREATE TABLE `proveedor_marca` (
-  `pm_id` int(10) NOT NULL,
-  `pm_id_proveedor` int(10) DEFAULT NULL,
-  `pm_id_marca` int(10) DEFAULT NULL
+  `pm_id` bigint(20) NOT NULL,
+  `pm_id_proveedor` bigint(20) DEFAULT NULL,
+  `pm_id_marca` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -380,17 +310,11 @@ CREATE TABLE `proveedor_marca` (
 --
 
 INSERT INTO `proveedor_marca` (`pm_id`, `pm_id_proveedor`, `pm_id_marca`) VALUES
-(15, 6, 6),
-(16, 7, 7),
-(17, 8, 8),
-(18, 9, 9),
-(19, 10, 10),
-(20, 11, 11),
-(21, 12, 12),
-(22, 13, 13),
-(23, 14, 14),
-(24, 15, 15),
-(25, 16, 16);
+(1, 18, 18),
+(2, 18, 19),
+(3, 18, 20),
+(4, 19, 21),
+(5, 19, 22);
 
 -- --------------------------------------------------------
 
@@ -403,7 +327,6 @@ CREATE TABLE `proyecto` (
   `proyecto_clave` varchar(255) DEFAULT NULL,
   `proyecto_descripcion` text DEFAULT NULL,
   `proyecto_id_cliente` int(11) DEFAULT NULL,
-  `proyecto_id_cat_c_a_sptn_ma` bigint(20) DEFAULT NULL,
   `proyecto_fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `proyecto_fecha_modificacion` datetime NOT NULL DEFAULT current_timestamp(),
   `proyecto_estatus` varchar(50) DEFAULT NULL
@@ -413,13 +336,9 @@ CREATE TABLE `proyecto` (
 -- Volcado de datos para la tabla `proyecto`
 --
 
-INSERT INTO `proyecto` (`proyecto_id`, `proyecto_clave`, `proyecto_descripcion`, `proyecto_id_cliente`, `proyecto_id_cat_c_a_sptn_ma`, `proyecto_fecha_creacion`, `proyecto_fecha_modificacion`, `proyecto_estatus`) VALUES
-(39, 'PP2', 'PP2', 1, NULL, '2022-03-12 01:40:29', '2022-03-11 19:40:29', NULL),
-(40, 'PP3', '', 4, NULL, '2022-03-12 05:23:28', '2022-03-11 23:23:28', NULL),
-(41, 'PP4', 'jdnkjcsnkjcdn', 7, NULL, '2022-03-13 02:15:49', '2022-03-12 20:15:49', NULL),
-(42, 'PP4', 'jdnkjcsnkjcdn', 1, NULL, '2022-03-13 02:28:26', '2022-03-12 20:28:26', NULL),
-(43, 'PP4', 'jdnkjcsnkjcdn', 6, NULL, '2022-03-13 02:30:32', '2022-03-12 20:30:32', NULL),
-(61, 'Proyecto 1', 'Proyecto 1', 6, NULL, '2022-03-15 13:23:44', '2022-03-15 07:23:44', NULL);
+INSERT INTO `proyecto` (`proyecto_id`, `proyecto_clave`, `proyecto_descripcion`, `proyecto_id_cliente`, `proyecto_fecha_creacion`, `proyecto_fecha_modificacion`, `proyecto_estatus`) VALUES
+(62, 'PP12', 'Proyecto', 9, '2022-03-22 04:30:11', '2022-03-17 20:09:32', NULL),
+(63, 'PP2', 'Proyecto 2', 1, '2022-03-21 16:34:38', '2022-03-18 10:18:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -433,6 +352,16 @@ CREATE TABLE `proyectos_cat_cat_t` (
   `pc_id_cat` bigint(20) DEFAULT NULL,
   `pc_id_cat_t` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `proyectos_cat_cat_t`
+--
+
+INSERT INTO `proyectos_cat_cat_t` (`pc_id`, `pc_id_proyecto`, `pc_id_cat`, `pc_id_cat_t`) VALUES
+(31, 62, 1, 39),
+(32, 62, 2, 40),
+(33, 62, 3, 41),
+(34, 62, 4, 42);
 
 -- --------------------------------------------------------
 
@@ -451,21 +380,8 @@ CREATE TABLE `psp` (
 --
 
 INSERT INTO `psp` (`psp_id`, `psp_id_partida`, `psp_id_sp`) VALUES
-(1, NULL, 1009),
-(2, NULL, 1010),
-(3, NULL, 1011),
-(4, 1, 1012),
-(5, 1, 1013),
-(6, 1, 1014),
-(7, 1, 1015),
-(8, 1, 1016),
-(9, 1, 1017),
-(10, 1, 1018),
-(11, 1, 1021),
-(12, 1, 1022),
-(15, 9, 1026),
-(16, 10, 1027),
-(17, 11, 1028);
+(33, 21, 1032),
+(34, 21, 1033);
 
 -- --------------------------------------------------------
 
@@ -481,7 +397,6 @@ CREATE TABLE `servicio_producto` (
   `sp_semanas` float DEFAULT NULL,
   `sp_cantidad` int(10) DEFAULT NULL,
   `sp_id_precio` bigint(20) DEFAULT NULL,
-  `sp_id_proveedor` int(10) DEFAULT NULL,
   `sp_id_categoria` int(10) DEFAULT NULL,
   `sp_comentarios` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -490,26 +405,30 @@ CREATE TABLE `servicio_producto` (
 -- Volcado de datos para la tabla `servicio_producto`
 --
 
-INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_meses`, `sp_semanas`, `sp_cantidad`, `sp_id_precio`, `sp_id_proveedor`, `sp_id_categoria`, `sp_comentarios`) VALUES
-(1007, 0, '', 0, 0, 0, NULL, NULL, NULL, ''),
-(1008, 50, '', 0, 0, 0, NULL, NULL, NULL, ''),
-(1009, 50, '', 0, 0, 0, NULL, NULL, NULL, ''),
-(1010, 60, '', 0, 0, 0, NULL, NULL, NULL, ''),
-(1011, 70, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1012, 70, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1013, 70, '', 0, 0, 0, NULL, NULL, NULL, ''),
-(1014, 70, '', 0, 0, 0, NULL, NULL, NULL, ''),
-(1015, 70, '', 0, 0, 0, NULL, NULL, NULL, ''),
-(1016, 70, '', 0, 0, 0, NULL, NULL, NULL, ''),
-(1017, 70, '', 0, 0, 0, NULL, 4, 1, ''),
-(1018, 180, '', 0, 0, 0, 38, 4, 1, ''),
-(1021, 0, '', 0, 0, 0, 41, 8, 2, ''),
-(1022, 0, '', 0, 0, 10, 42, 9, 3, ''),
-(1024, 8000, '', 0, 0, 0, 45, 12, 2, ''),
-(1025, 900, '', 0, 0, 0, 46, 13, 1, ''),
-(1026, 1, '', 0, 0, 0, 47, 14, 6, ''),
-(1027, 50, 'partida 1', 20, 3, 2, 48, 15, 1, 'kldnklnfdnfk'),
-(1028, 80, 'partida 2', 20, 3, 3, 49, 16, 2, 'kldnklnfdnfk');
+INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_meses`, `sp_semanas`, `sp_cantidad`, `sp_id_precio`, `sp_id_categoria`, `sp_comentarios`) VALUES
+(1032, 25, 'SP22', 8, 10, 4, 54, 4, 'ndjbshjbdhj'),
+(1033, 31, 'Partida 5', 3, 5, 4, 55, 5, 'jgfidjgoigdfj');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sp_proveedor_marca`
+--
+
+CREATE TABLE `sp_proveedor_marca` (
+  `sppm_id` int(10) NOT NULL,
+  `sppm_id_sp` bigint(20) DEFAULT NULL,
+  `sppm_id_proveedor` bigint(20) DEFAULT NULL,
+  `sppm_id_marca` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `sp_proveedor_marca`
+--
+
+INSERT INTO `sp_proveedor_marca` (`sppm_id`, `sppm_id_sp`, `sppm_id_proveedor`, `sppm_id_marca`) VALUES
+(27, 1033, 19, 18),
+(28, 1032, 19, 21);
 
 -- --------------------------------------------------------
 
@@ -531,7 +450,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id_usuario`, `rol`, `email`, `password`, `estado_login`) VALUES
 (1, 'administrador', 'car@gmail', '', 0),
-(5, 'preventa', 'HUCA@gmail', '1234', 0);
+(5, 'preventa', 'HUCA@gmail.com', '1234', 0);
 
 -- --------------------------------------------------------
 
@@ -550,12 +469,8 @@ CREATE TABLE `usuarios_proyectos` (
 --
 
 INSERT INTO `usuarios_proyectos` (`up_id`, `up_id_usuario`, `up_id_proyecto`) VALUES
-(34, 1, 39),
-(35, 1, 40),
-(36, 1, 41),
-(37, 1, 42),
-(38, 1, 43),
-(51, 1, 61);
+(52, 1, 62),
+(53, 1, 63);
 
 --
 -- Índices para tablas volcadas
@@ -651,16 +566,15 @@ ALTER TABLE `proveedor`
 --
 ALTER TABLE `proveedor_marca`
   ADD PRIMARY KEY (`pm_id`),
-  ADD KEY `fk_p_m_id_proveedor` (`pm_id_proveedor`),
-  ADD KEY `fk_p_m_id_marca` (`pm_id_marca`);
+  ADD KEY `fk_pm_id_proveedor` (`pm_id_proveedor`),
+  ADD KEY `fk_pm_id_marca` (`pm_id_marca`);
 
 --
 -- Indices de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
   ADD PRIMARY KEY (`proyecto_id`),
-  ADD KEY `fk_proyecto_id_cliente` (`proyecto_id_cliente`),
-  ADD KEY `fk_proyecto_id_cat` (`proyecto_id_cat_c_a_sptn_ma`);
+  ADD KEY `fk_proyecto_id_cliente` (`proyecto_id_cliente`);
 
 --
 -- Indices de la tabla `proyectos_cat_cat_t`
@@ -685,8 +599,16 @@ ALTER TABLE `psp`
 ALTER TABLE `servicio_producto`
   ADD PRIMARY KEY (`sp_id`),
   ADD KEY `fk_sp_id_precio` (`sp_id_precio`),
-  ADD KEY `fk_sp_id_proveedor` (`sp_id_proveedor`),
   ADD KEY `fk_sp_id_categoria` (`sp_id_categoria`);
+
+--
+-- Indices de la tabla `sp_proveedor_marca`
+--
+ALTER TABLE `sp_proveedor_marca`
+  ADD PRIMARY KEY (`sppm_id`),
+  ADD KEY `fk_sppm_id_sp` (`sppm_id_sp`),
+  ADD KEY `fk_sppm_id_proveedor` (`sppm_id_proveedor`),
+  ADD KEY `fk_sppm_id_marca` (`sppm_id_marca`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -728,7 +650,7 @@ ALTER TABLE `categorias_c_a_sptn_ma`
 -- AUTO_INCREMENT de la tabla `cat_totales`
 --
 ALTER TABLE `cat_totales`
-  MODIFY `ct_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ct_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -752,7 +674,7 @@ ALTER TABLE `costos_indirectos`
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `marca_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `marca_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `moneda`
@@ -764,55 +686,61 @@ ALTER TABLE `moneda`
 -- AUTO_INCREMENT de la tabla `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `partida_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `partida_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `pp`
 --
 ALTER TABLE `pp`
-  MODIFY `pp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `pp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
 --
 ALTER TABLE `precio`
-  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `proveedor_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `proveedor_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor_marca`
 --
 ALTER TABLE `proveedor_marca`
-  MODIFY `pm_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `pm_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos_cat_cat_t`
 --
 ALTER TABLE `proyectos_cat_cat_t`
-  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `psp`
 --
 ALTER TABLE `psp`
-  MODIFY `psp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `psp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
-  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1029;
+  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1046;
+
+--
+-- AUTO_INCREMENT de la tabla `sp_proveedor_marca`
+--
+ALTER TABLE `sp_proveedor_marca`
+  MODIFY `sppm_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -824,7 +752,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios_proyectos`
 --
 ALTER TABLE `usuarios_proyectos`
-  MODIFY `up_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `up_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Restricciones para tablas volcadas
@@ -853,8 +781,8 @@ ALTER TABLE `costos_indirectos`
 -- Filtros para la tabla `pp`
 --
 ALTER TABLE `pp`
-  ADD CONSTRAINT `fk_pp_id_partida` FOREIGN KEY (`pp_id_partida`) REFERENCES `partida` (`partida_id`),
-  ADD CONSTRAINT `fk_pp_id_proyecto` FOREIGN KEY (`pp_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`);
+  ADD CONSTRAINT `fk_pp_id_partida` FOREIGN KEY (`pp_id_partida`) REFERENCES `partida` (`partida_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_pp_id_proyecto` FOREIGN KEY (`pp_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `precio`
@@ -866,14 +794,13 @@ ALTER TABLE `precio`
 -- Filtros para la tabla `proveedor_marca`
 --
 ALTER TABLE `proveedor_marca`
-  ADD CONSTRAINT `fk_p_m_id_marca` FOREIGN KEY (`pm_id_marca`) REFERENCES `marca` (`marca_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_p_m_id_proveedor` FOREIGN KEY (`pm_id_proveedor`) REFERENCES `proveedor` (`proveedor_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_pm_id_marca` FOREIGN KEY (`pm_id_marca`) REFERENCES `marca` (`marca_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pm_id_proveedor` FOREIGN KEY (`pm_id_proveedor`) REFERENCES `proveedor` (`proveedor_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  ADD CONSTRAINT `fk_proyecto_id_cat` FOREIGN KEY (`proyecto_id_cat_c_a_sptn_ma`) REFERENCES `categorias_c_a_sptn_ma` (`cat_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_proyecto_id_cliente` FOREIGN KEY (`proyecto_id_cliente`) REFERENCES `clientes` (`cliente_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -889,15 +816,22 @@ ALTER TABLE `proyectos_cat_cat_t`
 --
 ALTER TABLE `psp`
   ADD CONSTRAINT `fk_psp_id_partida` FOREIGN KEY (`psp_id_partida`) REFERENCES `partida` (`partida_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_psp_id_sp` FOREIGN KEY (`psp_id_sp`) REFERENCES `servicio_producto` (`sp_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_psp_id_sp` FOREIGN KEY (`psp_id_sp`) REFERENCES `servicio_producto` (`sp_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
   ADD CONSTRAINT `fk_sp_id_categoria` FOREIGN KEY (`sp_id_categoria`) REFERENCES `categoria` (`categoria_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sp_id_precio` FOREIGN KEY (`sp_id_precio`) REFERENCES `precio` (`precio_id`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_sp_id_proveedor` FOREIGN KEY (`sp_id_proveedor`) REFERENCES `proveedor` (`proveedor_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_sp_id_precio` FOREIGN KEY (`sp_id_precio`) REFERENCES `precio` (`precio_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `sp_proveedor_marca`
+--
+ALTER TABLE `sp_proveedor_marca`
+  ADD CONSTRAINT `fk_sppm_id_marca` FOREIGN KEY (`sppm_id_marca`) REFERENCES `marca` (`marca_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sppm_id_proveedor` FOREIGN KEY (`sppm_id_proveedor`) REFERENCES `proveedor` (`proveedor_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_sppm_id_sp` FOREIGN KEY (`sppm_id_sp`) REFERENCES `servicio_producto` (`sp_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios_proyectos`

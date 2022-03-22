@@ -46,7 +46,6 @@ function AdministrarClientes() {
     setvalidar([newARR]);
     SetKeyregistro(key);
     //console.log(newARR)
-    window.location.reload(false);
   };
   const borrarCliente = async (dato) => {
     console.log("este es el dato", dato)
@@ -104,7 +103,7 @@ function AdministrarClientes() {
         //(async ()=> setT(await actualizacion(datos[key])) )() 
        const respuesta = await actualizacion(datos[key]);
       //  console.log(respuesta);
-       //window.location.reload();
+      window.location.reload();
        actulizarPage(key);
     }
   };
