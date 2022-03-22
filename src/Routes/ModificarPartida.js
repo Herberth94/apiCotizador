@@ -1,6 +1,14 @@
 import  {useState} from 'react';
 import axios from 'axios';
 
+
+
+import {url2} from "../Componentes/Ocultar";
+
+
+
+
+
 export const EditPartida = () => {
 
     const [datos,setDatos] = useState ({
@@ -38,7 +46,7 @@ export const EditPartida = () => {
         
         try {
             
-            await axios.put(`http://localhost:4001/api/cotizador/partida/update/${id}`,dataActualizacion);
+            await axios.put(url2 + `/api/cotizador/partida/update/${id}`,dataActualizacion);
             alert('Partida editada exitosamente');
                 
             } catch (error) {

@@ -3,7 +3,7 @@ import React from 'react'
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
-import { partidasUnicas2, descripcionGeneral2, margenGanancia, precioVenta } from "./OperacionesAM";
+import { partidasUnicas2, descripcionGeneral2, monedaPTN, margenGanancia, precioVenta } from "./OperacionesAM";
 
 
 
@@ -22,6 +22,7 @@ function MargenGanancia() {
                     <tr className="titulo-tabla-usuarios">
                         <th>Nombre Partida</th>
                         <th>Descripción General </th>
+                        <th>Costo </th>
                         <th>Margen de Ganancia %</th>
                         <th>Precio Venta</th>
                         <th>Editar</th>
@@ -35,8 +36,12 @@ function MargenGanancia() {
                             <td>{partidasUnicas2[key]}</td>
 
                             {/*================= Descripcion General Partida ==================*/}
-                            <td>{partidasUnicas2[key]}</td>
-                            {/*================= Total MXN ==================*/}
+                            <td>{descripcionGeneral2[key]}</td>
+                            {/*================= Costo Total ==================*/}
+                            <td>{monedaPTN[key]}</td>
+
+
+
                             <td>{margenGanancia[key]}</td>
                             {/*================= Total USD ==================*/}
 

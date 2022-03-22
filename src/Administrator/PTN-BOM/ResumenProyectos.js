@@ -6,10 +6,6 @@ import { EditProyecto } from '../../Routes/ModificarProyectos';
 import { EditPartida } from '../../Routes/ModificarPartida';
 import { EditSP } from '../../Routes/ModificarSP';
 
-import {url} from "../../Componentes/Ocultar";
-import {url2} from "../../Componentes/Ocultar";
-
- 
 function Proyectos() {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
     const[show,setShow] = useState(true);// Lista de partidas
@@ -34,7 +30,13 @@ function Proyectos() {
     useEffect(()=>{
         const getProyectos = async () => {
             try{
-                const resProy = await axios.get(url + '/api/cotizador/proyecto/view1');
+                const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/view1');
+                const newValidarProy = [];
+                let i = Object.keys(resProy.data.data);
+                for (let x = 0; x < i.length; x++) {
+                    newValidarProy[x] = true;
+                }
+                setvalidarProy([...validarProy, newValidarProy])
                 setListaProyectos(resProy.data.data);
                 const resC = await axios.get("http://localhost:4001/api/cotizador/clientes/view");
                 setListaC(resC.data.reSql);
@@ -66,8 +68,14 @@ function Proyectos() {
     // Función que realiza la consulta a la tabla partida
     async function getDatosPartida(proyecto_id){
         try{
-            const resPP = await axios.get(url2 + `/api/cotizador/partida/viewPP/${proyecto_id}`);
-            setListaPartidas(resPP.data.data);
+            const resPP = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPP/${proyecto_id}`);
+            const newValidarPartida = [];
+                let i = Object.keys(resPP.data.data);
+                for (let x = 0; x < i.length; x++) {
+                    newValidarPartida[x] = true;
+                }
+                setvalidarPartida([...validarPartida, newValidarPartida])
+                setListaPartidas(resPP.data.data);
         }catch(error){
             console.log(error);
         }
@@ -87,8 +95,17 @@ function Proyectos() {
     async function getDatosSP(partida_id){
         
         try{
-            const resProy = await axios.get( url2 + `/api/cotizador/partida/viewPSP/${partida_id}`);
-            setListaSP(resProy.data.data);
+            const resPSP = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPSP/${partida_id}`);
+            const newValidarSP = [];
+                let i = Object.keys(resPSP.data.data);
+                for (let x = 0; x < i.length; x++) {
+                    newValidarSP[x] = true;
+                }
+            setvalidarSP([...validarSP, newValidarSP])
+            setListaSP(resPSP.data.data);
+            
+            const respuesta = await axios.get("http://localhost:4001/api/cotizador/proveedor/view");
+            setListaProv(respuesta.data.data);
         }catch(error){
             console.log(error);
         }
@@ -102,8 +119,8 @@ function Proyectos() {
     // Función que realiza la consulta a la tabla precios
     async function getDatosPrecios(sp_id){
         try{
-            const resProy = await axios.get(url2 + `/api/cotizador/precio/viewSPP/${sp_id}`);
-            setListaPrecios(resProy.data.data);
+            const resPrecSP = await axios.get(`http://localhost:4001/api/cotizador/precio/viewSPP/${sp_id}`);
+            setListaPrecios(resPrecSP.data.data);
         }catch(error){
             console.log(error);
         }

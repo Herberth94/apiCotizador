@@ -3,6 +3,8 @@
 //Obtener y Condicionar si existe Valor del Dolar en caso de que no, sustituir por 0
 //Falta agregar buscardor que extraiga el AM del proyecto de cada Usuario
 
+import PTN_BOM from "../PTN-BOM/PTN_BOM";
+
 
 /* PTN 1
  */
@@ -64,6 +66,10 @@ var valorDolar = 20;
 var data = [];
 var data2 = [];
 
+export var categoriaTotalBom = [];
+export var namecategorie = [];
+
+
 for (const value of datosPTN) {
   //  console.log(value.nombrePartida);
   /*============= Sumatoria por Partida =================================*/
@@ -78,9 +84,18 @@ export const partidasUnicas = data.filter((valor, indice) => {
 });
 
 
-export const partidasUnicas2 = partidasUnicas;
 
 export const descripcionGeneral = data2.filter((valor, indice) => {
+  return data2.indexOf(valor) === indice;
+});
+
+
+export var partidasUnicas2 = data.filter((valor, indice) => {
+  return data.indexOf(valor) === indice;
+});
+
+
+export const descripcionGeneral2 = data2.filter((valor, indice) => {
   return data2.indexOf(valor) === indice;
 });
 /*============= Sumar Totales por Partida ===============================*/
@@ -132,6 +147,7 @@ for (var i = 0; i < partidasUnicas.length; i++) {
 
 
 export var monedaPTN = [];
+export var monedaPTN2= [];
 
 for (var i = 0; i < totalMXN.length; i++) {
   console.log(i);
@@ -142,8 +158,10 @@ for (var i = 0; i < totalMXN.length; i++) {
 
       let okay = totalMXN[i] / valorDolar + totalUSD[i];
       monedaPTN.push(okay);
+      monedaPTN2.push(okay);
   } else {
       monedaPTN.push(totalUSD[i]);
+      monedaPTN2.push(totalUSD[i]);
   }
 }
 
@@ -151,46 +169,63 @@ var sumatoriaMXN2 = 0;
 var sumatoriaUSD2 = 0;
 var totalBom = 0;
 
+
+
+
+
+
 ////////Sumatoria Total
 for (var i = 0; i < partidasUnicas.length; i++) {
   sumatoriaMXN2 += totalMXN[i];
   sumatoriaUSD2 += totalUSD[i];
-  totalBom += monedaPTN[i];
+  totalBom += monedaPTN2[i];
 }
 
 totalMXN.push(sumatoriaMXN2);
 totalUSD.push(sumatoriaUSD2);
-monedaPTN.push(totalBom);
+
+
+monedaPTN2.push(totalBom);
 
 sumatoriaUSD2 = 0;
 sumatoriaMXN2 = 0;
 totalBom = 0;
 
-console.log("TOTAL MONEDA BOM");
-console.log(monedaPTN);
 
 
 
 
 
-export var categoriaTotalBom = [];
 
-export const namecategorie = [];
+console.log("--------------------");
+
+
+
 
 for (var j = 0; j < categoriasPTN.length; j++) {
 
-  namecategorie.push(categoriasPTN.nombreCategoria)
+  namecategorie.push(categoriasPTN[j].nombreCategoria)
   if(categoriasPTN.Moneda === "MXN"){
 
-    categoriaTotalBom.push( (categoriasPTN.totalC[i] / valorDolar));
+    categoriaTotalBom.push( (categoriasPTN[i].totalC / valorDolar));
 
   }else{
  
-    categoriaTotalBom.push(categoriasPTN[i]);
+    categoriaTotalBom.push(categoriasPTN[i].totalC);
   }
 
 
 }
+
+
+
+console.log("TOTAL MONEDA BOM --------------------");
+
+console.log(categoriaTotalBom)
+
+monedaPTN=monedaPTN.concat(categoriaTotalBom);
+
+
 
 
 partidasUnicas.push("-----");
@@ -198,9 +233,16 @@ descripcionGeneral.push("Total");
 
 
 
-const array3 = partidasUnicas2.concat(namecategorie);
 
-console.log(array3);
+partidasUnicas2=partidasUnicas2.concat(namecategorie);
+partidasUnicas2.push("Total");
+
+
+console.log("-----------mhjhb---------------------------");
+console.log(categoriasPTN.nombreCategoria)
+ console.log(partidasUnicas2);
+console.log("-------------,jbkjb-------------------------");
+
 
 
 
@@ -230,8 +272,11 @@ export var margenGanancia = [];
 
 
 ////////Sumatoria Total
-for (var i = 0; i < monedaPTN.length + 4 ; i++) {
+for (var i = 0; i < partidasUnicas2.length - 1 ; i++) {
 margenGanancia.push(32);
+
+
+
 }
 
 console.log(margenGanancia);
@@ -244,19 +289,63 @@ export var precioVenta = [];
 for (var i = 0; i <monedaPTN.length  ; i++) {
 
   var  k = ( 100 - margenGanancia[i]) / 100 ;
-
-  
   var  ab = (monedaPTN[i] / k)  ;
-
   console.log("NNNN  ", k);
-
-
    precioVenta.push(ab);
 
 }
 
+var totalPrecioVenta = 0;
 
 console.log(precioVenta);
+
+for (var i = 0; i <precioVenta.length  ; i++) {
+
+totalPrecioVenta += precioVenta[i];
+
+}
+precioVenta.push(totalPrecioVenta);
+
+
+
+
+/////////////Costos Indirectos
+
+
+
+export var totalIndirecto = [];
+var calculaIndirecto = 0;
+
+var toIndirecto = 0;
+
+
+
+
+export let costosIndirectos = ["Comisiones", "Riesgo" , "Fianza", "Seguros y Fletes" , "Costos Administrativos"];
+
+
+costosIndirectos.push("Total");
+export let equivale = [2 , 1 , 5 , 1 , 4];
+
+
+for (var i = 0; i <costosIndirectos.length -1 ; i++) {
+
+   calculaIndirecto =  (equivale[i]/ 100) * totalPrecioVenta;
+  totalIndirecto.push(calculaIndirecto);
+
+  toIndirecto += calculaIndirecto;
+  }
+
+  totalIndirecto.push( toIndirecto);
+
+
+  toIndirecto=0;
+totalPrecioVenta = 0;
+
+
+
+
+
 
 
 

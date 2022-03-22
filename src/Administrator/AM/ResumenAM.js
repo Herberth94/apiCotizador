@@ -2,7 +2,7 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
-import {partidasUnicas, descripcionGeneral, totalMXN, totalUSD, monedaPTN} from "./OperacionesAM";
+import {partidasUnicas, descripcionGeneral, totalMXN, totalUSD, monedaPTN2} from "./OperacionesAM";
 
 
 function ResumenAM() {
@@ -41,7 +41,7 @@ function ResumenAM() {
 
                             {/*================= Total Moneda Bom ==================*/}
 
-                            <td>{monedaPTN[key]}</td>
+                            <td>{monedaPTN2[key]}</td>
                         </tr>
                     ))}
                 </tbody>

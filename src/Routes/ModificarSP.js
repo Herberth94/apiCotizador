@@ -1,6 +1,15 @@
 import  {useState} from 'react';
 import axios from 'axios';
 
+
+
+import {url} from "../Componentes/Ocultar";
+import {url2} from "../Componentes/Ocultar";
+
+
+
+
+
 export const EditSP = () => {
      /*=================================== Edición de los datos de un proyecto ===================================*/
     // Almacenamiento de los nuevos datos de proyecto_clave y proyecto_descripcion
@@ -86,19 +95,19 @@ export const EditSP = () => {
             if(proveedor_id !== dataSP.proveedor_id && proveedor_id !== '' && marca_id !== dataSP.marca_id && marca_id !== ''){
                 // console.log(proveedor_id);
                 // console.log(marca_id);
-                await axios.put(`http://localhost:4001/api/cotizador/sp/edit/${sp_id}/${proveedor_id}/${marca_id}`, dataActualizacion);
+                await axios.put(url2 + `/api/cotizador/sp/edit/${sp_id}/${proveedor_id}/${marca_id}`, dataActualizacion);
             }else if(proveedor_id === dataSP.proveedor_id && marca_id !== dataSP.marca_id && marca_id !== ''){
                 // console.log(dataSP.proveedor_id);
                 // console.log(marca_id);
-                await axios.put(`http://localhost:4001/api/cotizador/sp/edit/${sp_id}/${dataSP.proveedor_id}/${marca_id}`, dataActualizacion);
+                await axios.put(url2 +`/api/cotizador/sp/edit/${sp_id}/${dataSP.proveedor_id}/${marca_id}`, dataActualizacion);
             }else if (proveedor_id === '' && marca_id === ''){
                 // console.log(dataSP.proveedor_id);
                 // console.log(dataSP.marca_id);
-                await axios.put(`http://localhost:4001/api/cotizador/sp/edit/${sp_id}/${dataSP.proveedor_id}/${dataSP.marca_id}`, dataActualizacion);
+                await axios.put(url2 + `/api/cotizador/sp/edit/${sp_id}/${dataSP.proveedor_id}/${dataSP.marca_id}`, dataActualizacion);
             }else if (proveedor_id === dataSP.proveedor_id && marca_id === dataSP.marca_id){
                 // console.log(dataSP.proveedor_id);
                 // console.log(dataSP.marca_id);
-                await axios.put(`http://localhost:4001/api/cotizador/sp/edit/${sp_id}/${dataSP.proveedor_id}/${dataSP.marca_id}`, dataActualizacion);
+                await axios.put(url2 + `/api/cotizador/sp/edit/${sp_id}/${dataSP.proveedor_id}/${dataSP.marca_id}`, dataActualizacion);
             }
             alert('Servicio/Producto editado exitosamente')
 

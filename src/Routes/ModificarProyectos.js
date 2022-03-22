@@ -1,6 +1,15 @@
 import  {useState} from 'react';
 import axios from 'axios';
 
+
+
+import {url} from "../Componentes/Ocultar";
+import {url2} from "../Componentes/Ocultar";
+
+
+
+
+
 export const EditProyecto = () => {
      /*=================================== Edición de los datos de un proyecto ===================================*/
     // Almacenamiento de los nuevos datos de proyecto_clave y proyecto_descripcion
@@ -85,7 +94,7 @@ export const EditProyecto = () => {
         } 
         try{
             //console.log(dataActualizacion);
-            await axios.put(`http://localhost:4001/api/cotizador/proyecto/update/${proyecto_id}`, dataActualizacion);
+            await axios.put(url2 + `/api/cotizador/proyecto/update/${proyecto_id}`, dataActualizacion);
             alert('Proyecto editado exitosamente')
 
         }catch (error){
