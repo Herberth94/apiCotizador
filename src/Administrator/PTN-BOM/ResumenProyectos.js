@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import axios from "axios";
 import { EditProyecto } from '../../Routes/ModificarProyectos';
 import { EditPartida } from '../../Routes/ModificarPartida';
+import { EditSP } from '../../Routes/ModificarSP';
 
 function Proyectos() {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
@@ -86,12 +87,25 @@ function Proyectos() {
     // Almacenamiento del los servicios_productos
     const[listaSP, setListaSP] = useState([]);
 
-    // Función que realiza la consulta a la tabla  servicio_producto
+    // Almacenamiento de los proveedores existentes para el buscador
+    const [ListaProv, setListaProv] = useState ([]);
+
+
+    // Función que realiza la consulta a las tablas servicio_producto y proveedores
     async function getDatosSP(partida_id){
         
         try{
-            const resProy = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPSP/${partida_id}`);
-            setListaSP(resProy.data.data);
+            const resPSP = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPSP/${partida_id}`);
+            const newValidarSP = [];
+                let i = Object.keys(resPSP.data.data);
+                for (let x = 0; x < i.length; x++) {
+                    newValidarSP[x] = true;
+                }
+            setvalidarSP([...validarSP, newValidarSP])
+            setListaSP(resPSP.data.data);
+            
+            const respuesta = await axios.get("http://localhost:4001/api/cotizador/proveedor/view");
+            setListaProv(respuesta.data.data);
         }catch(error){
             console.log(error);
         }
@@ -105,8 +119,8 @@ function Proyectos() {
     // Función que realiza la consulta a la tabla precios
     async function getDatosPrecios(sp_id){
         try{
-            const resProy = await axios.get(`http://localhost:4001/api/cotizador/precio/viewSPP/${sp_id}`);
-            setListaPrecios(resProy.data.data);
+            const resPrecSP = await axios.get(`http://localhost:4001/api/cotizador/precio/viewSPP/${sp_id}`);
+            setListaPrecios(resPrecSP.data.data);
         }catch(error){
             console.log(error);
         }
@@ -246,7 +260,7 @@ function Proyectos() {
         let cSP = Object.keys(listaSP);
         for(let c = 0; c < cSP;c++){
             try {
-                await axios.delete(`http://localhost:4001/api/cotizador/partida/delete/${listaSP[c].sp_id_precio}`);
+                await axios.delete(`http://localhost:4001/api/cotizador/precio/delete/${listaSP[c].sp_id_precio}`);
             } catch (error) {}
         }
         try{
@@ -256,6 +270,153 @@ function Proyectos() {
         } catch (error) {}
     }
     /*============================================================================================================================*/
+
+    /*=================================== Edición de los datos de un servicio/producto ===================================*/
+    /*=================================== Buscadores ===================================*/
+    /*=================================== Buscador de proveedores ===================================*/
+    // Almacenamiento del id del proveedor encontrado en la busqueda
+    var proveedorId = {proveedor_id:''}
+
+    // Almacenamiento del nombre del proveedor a buscar
+    const [nombreProv, setNombreProv] = useState('');
+
+    // Almacenamiento de los proveedores semejantes al texto introducido en el input
+    const [suggestionsProv, setSuggestionsProv] = useState ([]);
+
+    // Función que realiza la busqueda de los clientes semejantes a al nombre introducido 
+    const onChangeTextProv = (nombreProveedor) => {
+        let coincidencias = [];
+        if(nombreProveedor.length>0){
+        coincidencias = ListaProv.filter(proveedor => {
+            const regex = new RegExp(`${nombreProveedor}`, "gi");
+            return proveedor.proveedor_nombre.match(regex)
+        })
+        }
+        setSuggestionsProv(coincidencias);
+        setNombreProv(nombreProveedor);
+    }
+
+    // Función que obtiene el nombre del cliente seleccionado
+    const onSuggestHandlerProv = (nombreProveedor) => {
+        setNombreProv(nombreProveedor);
+        setSuggestionsProv([]);
+    }
+    /*============================================================================================*/
+
+    /*=================================== Buscador de marcas con respecto al proveedor seleccionado ===================================*/
+    // Almacenamiento de los proveedores existentes
+    const [listaMarca, setListaMarca] = useState ([]);
+
+    // Almacenamiento del nombre del proveedor a buscar
+    const [nombreMarca, setNombreMarca] = useState('');
+
+    // Almacenamiento de los proveedores semejantes al texto introducido en el input
+    const [suggestionsMarca, setSuggestionsMarca] = useState ([]);
+
+    // Función que realiza la consulta a la tabla proveedores
+    useEffect (() => {
+        // Obtención del id del proveedor que se seleccionó en la búsqueda
+        let i = Object.keys(ListaProv);
+        for (let c = 0; c < i.length; c++) {
+        if (nombreProv === ListaProv[c].proveedor_nombre) {
+            proveedorId.proveedor_id = ListaProv[c].proveedor_id
+            console.log('proveedor id:',proveedorId);
+        }        
+        }
+        async function listaMarcas(){
+        try {
+            const respuesta = await axios.get(`http://localhost:4001/api/cotizador/provmarcas/view/${proveedorId.proveedor_id}`);
+            setListaMarca(respuesta.data.data);
+        } catch (error) {}
+        }
+        if(proveedorId.proveedor_id !== ''){
+        listaMarcas();
+        }
+    },[nombreProv])
+
+    // Función que realiza la busqueda de los clientes semejantes a al nombre introducido 
+    const onChangeTextMarca = (nombreMarca) => {
+        let coincidencias = [];
+        if(nombreMarca.length>0){
+        coincidencias = listaMarca.filter(marca => {
+            const regex = new RegExp(`${nombreMarca}`, "gi");
+            return marca.marca_nombre.match(regex)
+        })
+        }
+        setSuggestionsMarca(coincidencias);
+        setNombreMarca(nombreMarca);
+    }
+
+    // Función que obtiene el nombre del cliente seleccionado
+    const onSuggestHandlerMarca = (nombreMarca) => {
+        setNombreMarca(nombreMarca);
+        setSuggestionsMarca([]);
+    }
+    
+    /*============================================================================================*/
+
+    /*==================================================================================*/
+    // Habilitar/Deshabilitar inputs
+    const [habilitarSP, setHabilitarSP] = useState(false);
+
+    const [keyRegistroSP, SetKeyregistroSP] = useState('');
+    const [validarSP, setvalidarSP] = useState([]);
+
+    const {
+        actualizacionSP,
+        editHandleInputChangeSP
+    } = EditSP();
+    
+
+    const enableSP = (key) => {
+        const newARR = [];
+        //console.log(validar);
+        let i = Object.keys(listaSP);
+        for (let x = 0; x < i.length; x++) {
+            newARR[x] = validarSP[0][x];
+        }
+        //console.log(newARR);    
+        for (let y = 0; y < i.length; y++) {
+            if (y === parseInt(key)) {
+                newARR[y] = !validarSP[0][y];
+            }
+            if (y !== parseInt(key)) {
+                newARR[y] = true
+            };
+        }
+        setvalidarSP([newARR]);
+        SetKeyregistroSP(key);
+    }
+
+    const envioDataSP = (datos, key) => {
+        if(key === ''){
+            setHabilitarSP(!habilitarSP);
+        }else{
+            setHabilitarSP(!habilitarSP);
+            actualizacionSP(nombreProv, ListaProv,nombreMarca,listaMarca,datos[key]);
+            actulizarPageSP(key);
+        }
+        
+    }
+
+    const actulizarPageSP = (key) => {
+        enableSP(key);
+    }
+    /*====================================================================================================================*/
+
+    
+    /*=================================== Eliminación de un servicio/producto junto con sus precios ===================================*/
+    /*=================================================================================================================================*/
+    async function SendDeleteSP(id){
+        //console.log(id);
+        try {
+            await axios.delete(`http://localhost:4001/api/cotizador/precio/delete/${id}`);
+            alert('Servicio/producto eliminado exitosamente')
+        } catch (error) {
+            alert('Eliminación del Servicio/producto invalido')
+        }
+    }
+    /*=================================================================================================================================*/
 
     return (
         <div className="contenido-usuarios">
@@ -502,17 +663,124 @@ function Proyectos() {
                                                 <tbody>
                                                     {Object.keys(listaSP).map((key) => (    
                                                     <tr key={listaSP[key].sp_id} >
-                                                        <td>{listaSP[key].sp_no_parte}</td>  
-                                                        <td>{listaSP[key].sp_descripcion}</td>  
-                                                        <td>{listaSP[key].sp_meses}</td> 
-                                                        <td>{listaSP[key].sp_semanas}</td>
-                                                        <td>{listaSP[key].sp_cantidad}</td>     
-                                                        <td>{listaSP[key].proveedor_nombre}</td>  
-                                                        <td>{listaSP[key].marca_nombre}</td>  
-                                                        <td>{listaSP[key].categoria_nombre}</td> 
-                                                        <td>{listaSP[key].sp_comentarios}</td>
-                                                        <td><button className="btn btn-primary eliminar">Eliminar</button></td>
-                                                        <td><button className="btn btn-primary modificar">Modificar</button></td> 
+                                                        <td>
+                                                            <input
+                                                            className="input-name" 
+                                                            defaultValue={listaSP[key].sp_no_parte} 
+                                                            disabled={validarSP[0][key]} 
+                                                            onChange={editHandleInputChangeSP}
+                                                            name="sp_no_parte" 
+                                                            ></input>
+                                                        </td> 
+                                                        <td>
+                                                            <input
+                                                            className="input-name" 
+                                                            defaultValue={listaSP[key].sp_descripcion} 
+                                                            disabled={validarSP[0][key]} 
+                                                            onChange={editHandleInputChangeSP}
+                                                            name="sp_descripcion" 
+                                                            ></input>
+                                                        </td>
+                                                        <td>
+                                                            <input
+                                                            className="input-name" 
+                                                            defaultValue={listaSP[key].sp_meses} 
+                                                            disabled={validarSP[0][key]} 
+                                                            onChange={editHandleInputChangeSP}
+                                                            name="sp_meses" 
+                                                            ></input>
+                                                        </td>
+                                                        <td>
+                                                            <input
+                                                            className="input-name" 
+                                                            defaultValue={listaSP[key].sp_semanas} 
+                                                            disabled={validarSP[0][key]} 
+                                                            onChange={editHandleInputChangeSP}
+                                                            name="sp_semanas" 
+                                                            ></input>
+                                                        </td>
+                                                        <td>
+                                                            <input
+                                                            className="input-name" 
+                                                            defaultValue={listaSP[key].sp_cantidad} 
+                                                            disabled={validarSP[0][key]} 
+                                                            onChange={editHandleInputChangeSP}
+                                                            name="sp_cantidad" 
+                                                            ></input>
+                                                        </td>
+                                                        <td>
+                                                            {" "}
+                                                            <input
+                                                            className="agregar"
+                                                            type="text"
+                                                            name="proveedor_nombre"
+                                                            onChange={e => onChangeTextProv(e.target.value)}
+                                                            value={habilitarSP ? nombreProv : listaSP[key].proveedor_nombre}
+                                                            disabled={validarSP[0][key]} 
+                                                            placeholder="Proveedor"
+                                                            />
+                                                            {suggestionsProv && suggestionsProv.map((suggestionProv,i)=>
+                                                            <div key={i} className="selectCliente" onClick={() => onSuggestHandlerProv(suggestionProv.proveedor_nombre)}>
+                                                            {suggestionProv.proveedor_nombre}
+                                                            </div>
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {" "}
+                                                            <input
+                                                            className="agregar"
+                                                            type="text"
+                                                            name="marca_nombre"
+                                                            onChange={e => onChangeTextMarca(e.target.value)}
+                                                            value={habilitarSP ? nombreMarca : listaSP[key].marca_nombre}
+                                                            disabled={validarSP[0][key]} 
+                                                            placeholder="Marca"
+                                                            />
+                                                            {suggestionsMarca && suggestionsMarca.map((suggestionMarca,i)=>
+                                                            <div key={i} className="selectCliente" onClick={() => onSuggestHandlerMarca(suggestionMarca.marca_nombre)}>
+                                                            {suggestionMarca.marca_nombre}
+                                                            </div>
+                                                            )}
+                                                        </td>
+                                                        <td>
+                                                            {" "}
+                                                            <select 
+                                                            id="lista-opciones" 
+                                                            name="sp_id_categoria" 
+                                                            defaultValue={listaSP[key].sp_id_categoria} 
+                                                            disabled={validarSP[0][key]} 
+                                                            onChange={editHandleInputChangeSP}>
+                                                                <option value={0}></option>
+                                                                <option value={1}>Tecnología Principal</option>
+                                                                <option value={2}>Sub-tecnología</option>
+                                                                <option value={3}>Equipamiento</option>
+                                                                <option value={4}>Licencia</option>
+                                                                <option value={5}>Soporte</option>
+                                                                <option value={6}>Implementación</option>
+                                                            </select>
+                                                        </td> 
+                                                        <td>
+                                                            <input
+                                                            className="input-name" 
+                                                            defaultValue={listaSP[key].sp_comentarios} 
+                                                            disabled={validarSP[0][key]} 
+                                                            onChange={editHandleInputChangeSP}
+                                                            name="sp_comentarios" 
+                                                            ></input>
+                                                        </td>
+                                                        <td>
+                                                            <button 
+                                                            className="btn btn-primary eliminar"
+                                                            onClick={()=>{SendDeleteSP(listaSP[key].sp_id_precio)}}
+                                                            >Eliminar </button>
+                                                        </td>
+                                                        <td>
+                                                        <button 
+                                                            className="btn btn-primary modificar" 
+                                                            onClick={()=>{enableSP(key); envioDataSP(listaSP,keyRegistroSP)}}
+                                                            >{habilitarSP ? "Aceptar" : "Modificar"}
+                                                            </button> 
+                                                        </td> 
                                                         <td>
                                                             <button 
                                                             className="btn btn-primary detalles" 
@@ -544,7 +812,6 @@ function Proyectos() {
                                                                 <th>Desc(%)</th>
                                                                 <th>Precio Total</th>
                                                                 <th>Moneda</th>
-                                                                <th>Eliminar</th>
                                                                 <th>Modificar</th>
                                                             </tr>
                                                             </thead>
@@ -557,7 +824,6 @@ function Proyectos() {
                                                                     <td>{listaPrecios[key].precio_descuento}</td> 
                                                                     <td>{listaPrecios[key].precio_total}</td>
                                                                     <td>{listaPrecios[key].moneda_nombre}</td>
-                                                                    <td><button className="btn btn-primary eliminar">Eliminar</button></td>
                                                                     <td><button className="btn btn-primary modificar">Modificar</button></td>    
                                                                 </tr>  
                                                                 ))
