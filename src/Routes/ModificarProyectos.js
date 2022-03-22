@@ -85,8 +85,8 @@ export const EditProyecto = () => {
         } 
         try{
             console.log(dataActualizacion);
-            //await axios.put(`http://localhost:4001/api/cotizador/proyecto/update/${proyecto_id}`, dataActualizacion);
-            //alert('Proyecto editado exitosamente')
+            await axios.put(`http://localhost:4001/api/cotizador/proyecto/update/${proyecto_id}`, dataActualizacion);
+            alert('Proyecto editado exitosamente')
 
         }catch (error){
             alert('Edición de proyecto invalido')
