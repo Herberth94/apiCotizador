@@ -63,7 +63,7 @@ export const useRegistro = () => {
      } 
     try {
 
-        const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/${id}`,dataActulizacion);
+        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/edit/${id}`,dataActulizacion);
         //const send2= respuesta.data;
         //console.log(send2);
         alert('Dato Actualizado');

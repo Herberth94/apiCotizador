@@ -32,18 +32,19 @@ function AdministrarUsuarios() {
         }
     };
 
-    const enable = (key) => {
+   const enable = (key) => {
         const newARR = [];
         //console.log(validar);
+        console.log(key);
         let i = Object.keys(listaUsuarios);
         for (let x = 0; x < i.length; x++) {
 
             newARR[x] = validar[0][x];
         }
+        console.log("primer array:")
         console.log(newARR);    
         for (let y = 0; y < i.length; y++) {
             if (y === parseInt(key)) {
-                //newARR[y]=!validar[0][y];
                 newARR[y] = !validar[0][y];
             }
             if (y !== parseInt(key)) {
@@ -57,8 +58,9 @@ function AdministrarUsuarios() {
     }
     
     // **********reset contraseña*********
-    let estado_login = 0
+    
     const resetearContraseña = async (id_usuario, email) => {
+        let estado_login = 0
         let newpassword = email
         console.log("este es el email", email)
         console.log("este es el id usuario", id_usuario)
@@ -94,6 +96,7 @@ function AdministrarUsuarios() {
         }
         else{
             setShow(!show);
+            console.log(datos)
             console.log(key);
             actualizacion(datos[key]);
             //window.location.reload();
