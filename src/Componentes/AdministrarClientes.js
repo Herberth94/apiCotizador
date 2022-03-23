@@ -10,13 +10,13 @@ import {url2} from "../Componentes/Ocultar";
 
 
 function AdministrarClientes() {
-  
-    /*========================== Mostrar Ocultar Tabla ==========================*/
-  
+
+  /*========================== Mostrar Ocultar Tabla ==========================*/
+
   const [show, setShow] = useState(false);
-  
-    /*========================== Mostrar Ocultar Botón ==========================*/
-  
+
+  /*========================== Mostrar Ocultar Botón ==========================*/
+
   const [show2, setShow2] = useState(true);
   const [keyRegistro, SetKeyregistro] = useState('');
   const [listaClientes, setlistaClientes] = useState([]);
@@ -52,7 +52,7 @@ function AdministrarClientes() {
     const confirmacion = window.confirm(
       "¿Seguro que quieres borrar este registro?"
     );
-   
+
     if (confirmacion) {
       
       const respuesta = await axios.delete(   url2 + `/api/cotizador/clientes/delete/${dato}` );
@@ -65,7 +65,7 @@ function AdministrarClientes() {
   const llamado = async () => {  const respuesta = await axios.get(  url + '/api/cotizador/clientes/view' );
     setlistaClientes(respuesta.data.reSql);
   };
-  
+
   const llamadoCliente = async () => {
     setShow2(!show2);
     const newValidar = [];
@@ -76,7 +76,7 @@ function AdministrarClientes() {
 
       let i = await  Object.keys(respuesta.data.reSql);
       for (let x = 0; x < i.length; x++) {
-         newValidar[x] = true;
+        newValidar[x] = true;
       }
 
 
@@ -87,21 +87,20 @@ function AdministrarClientes() {
       
     } catch (error) {
     }
-   
-    
+
+
   };
-  const envioData = async(datos, key) => {
-    
+  const envioData = async (datos, key) => {
+
     console.log("hola soy los datos", datos);
-    if(key === '')
-    {
-         setShow(!show);
-       
+    if (key === '') {
+      setShow(!show);
+
     }
-    else{
-        setShow(!show);
-        //(async ()=> setT(await actualizacion(datos[key])) )() 
-       const respuesta = await actualizacion(datos[key]);
+    else {
+      setShow(!show);
+      //(async ()=> setT(await actualizacion(datos[key])) )() 
+      const respuesta = await actualizacion(datos[key]);
       //  console.log(respuesta);
       window.location.reload();
        actulizarPage(key);
@@ -115,7 +114,7 @@ function AdministrarClientes() {
     <div className="contenido-usuarios">
       <div className="table-responsive">
         {/*========================== Titulo Animación =======================*/}
-        <div> <Animaciones   mytext= "Lista de Clientes"   /> </div>
+        <div> <Animaciones mytext="Lista de Clientes" /> </div>
 
         {/*================= Botón Mostrar/Ocultar Lista =======================*/}
         <div>
@@ -136,7 +135,7 @@ function AdministrarClientes() {
               {/*=================== Botón Mostrar Lista DIV =====================*/}
               <br />
               {/*===================     Tabla Clientes   ========================*/}
-              <Table responsive striped bordered hover size="sm"  className="tablas">
+              <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>
                   {/*=================== Titulos Tabla Clientes ===================*/}
                   <tr className="titulo-tabla-usuarios">
@@ -151,7 +150,7 @@ function AdministrarClientes() {
                 </thead>
                 <tbody>
                   {/*=================== Contenido Tabla Clientes =================*/}
-                
+
                   {Object.keys(listaClientes).map((key) => (
                     <tr key={listaClientes[key].cliente_id}>
                       <td>{listaClientes[key].cliente_id}</td>
@@ -164,7 +163,7 @@ function AdministrarClientes() {
                           name="nombre_cliente"
                         ></input>
                       </td>
-{/*================= Razón Social ==================*/}
+                      {/*================= Razón Social ==================*/}
                       <td>
                         <input
                           className="input-name"
@@ -174,7 +173,7 @@ function AdministrarClientes() {
                           name="razon_social"
                         ></input>{" "}
                       </td>
- {/*================= Teléfono ==================*/}
+                      {/*================= Teléfono ==================*/}
                       <td>
                         <input
                           className="input-name"
@@ -184,8 +183,8 @@ function AdministrarClientes() {
                           name="telefono"
                         ></input>{" "}
                       </td>
- {/*================= Dirección==================*/}
-                       <td>
+                      {/*================= Dirección==================*/}
+                      <td>
                         <input
                           className="input-name"
                           defaultValue={listaClientes[key].cliente_direccion}
@@ -195,7 +194,7 @@ function AdministrarClientes() {
                         ></input>{" "}
                       </td>
 
- {/*================= Borrar Cliente ==================*/}
+                      {/*================= Borrar Cliente ==================*/}
                       <td>
                         <button
                           className="btn btn-primary eliminar"
@@ -206,7 +205,7 @@ function AdministrarClientes() {
                           {" "}
                           Eliminar
                         </button>
-                        
+
                       </td>
                       <td>
                         {" "}

@@ -85,7 +85,7 @@ function App() {
 
         <Preventa path="/" component={MenuPreventa} />
         {/* oooo */}
-        <Preventa exact path="/" component={CambioContraseña} />
+        <Preventa path="/" component={CambioContraseña} />
 
         <Preventa path="/agregar-cliente" component={Clientes} />
         <Preventa path="/administrar-clientes" component={AdministrarClientes } />
@@ -98,7 +98,7 @@ function App() {
         {/*========================== Páginas Ventas ==========================*/}
         <Venta path="/" component={MenuVentas} />
         {/* oooo */}
-        <Venta exact  path="/" component={CambioContraseña} />
+        <Venta path="/" component={CambioContraseña} />
         <Venta path="/am2" component={AMVentas} />
         <Venta path="/proporcionalidad" component={ProporcionalidadVentas} />
 

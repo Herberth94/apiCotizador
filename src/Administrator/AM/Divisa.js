@@ -69,7 +69,7 @@ function Divisa() {
             alert('Registro exitoso')
             // setDatosProyecto(resProy.data.data);
         }catch (error){
-            console.log(error.toJSON());
+            console.log(error);
         }
     }
   return (
@@ -145,7 +145,7 @@ function Divisa() {
                         ))}
                     </tbody>          
                 </Table>
-                </div>
+            </div>
 
 
     </div>
