@@ -5,6 +5,8 @@ import { useRegistro } from "../Routes/ModificarCLientes";
 import Animaciones from "../Componentes/Animaciones";
 
 
+import {url} from "../Componentes/Ocultar";
+import {url2} from "../Componentes/Ocultar";
 
 
 function AdministrarClientes() {
@@ -18,9 +20,11 @@ function AdministrarClientes() {
   const [show2, setShow2] = useState(true);
   const [keyRegistro, SetKeyregistro] = useState('');
   const [listaClientes, setlistaClientes] = useState([]);
+  
   const [validar, setvalidar] = useState([]);
   
   const { actualizacion, handleInputChange  } = useRegistro();
+
   const enable = (key) => {
     const newARR = [];
     //console.log(validar);
@@ -30,11 +34,11 @@ function AdministrarClientes() {
     }
     //console.log(newARR);
     for (let y = 0; y < i.length; y++) {
-      if (y === parseInt(key)) {
+      if (y == parseInt(key)) {
         //newARR[y]=!validar[0][y];
         newARR[y] = !validar[0][y];
       }
-      if (y !== parseInt(key)) {
+      if (y != parseInt(key)) {
         newARR[y] = true;
       }
     }
@@ -51,19 +55,14 @@ function AdministrarClientes() {
    
     if (confirmacion) {
       
-      const respuesta = await axios.delete(
-        `http://localhost:4001/api/cotizador/clientes/delete/${dato}`
-      );
+      const respuesta = await axios.delete(   url2 + `/api/cotizador/clientes/delete/${dato}` );
       console.log("hola soy el undefined", respuesta.data);
       llamado();
     } else {
       llamado();
     }
   };
-  const llamado = async () => {
-    const respuesta = await axios.get(
-      "http://localhost:4001/api/cotizador/clientes/view"
-    );
+  const llamado = async () => {  const respuesta = await axios.get(  url + '/api/cotizador/clientes/view' );
     setlistaClientes(respuesta.data.reSql);
   };
   
@@ -71,14 +70,16 @@ function AdministrarClientes() {
     setShow2(!show2);
     const newValidar = [];
     try {
-      const respuesta = await axios.get(
-        "http://localhost:4001/api/cotizador/clientes/view"
-      );
+      const respuesta = await axios.get( url + '/api/cotizador/clientes/view');
       //console.log(respuesta.data.reSql);
+
+
       let i = await  Object.keys(respuesta.data.reSql);
       for (let x = 0; x < i.length; x++) {
          newValidar[x] = true;
       }
+
+
      setvalidar([...validar, newValidar]);
      setlistaClientes(respuesta.data.reSql);
      console.log(listaClientes);
@@ -102,7 +103,7 @@ function AdministrarClientes() {
         //(async ()=> setT(await actualizacion(datos[key])) )() 
        const respuesta = await actualizacion(datos[key]);
       //  console.log(respuesta);
-       //window.location.reload();
+      window.location.reload();
        actulizarPage(key);
     }
   };

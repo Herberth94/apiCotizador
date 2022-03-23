@@ -2,6 +2,9 @@ import  {useState} from 'react';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import {valida}  from "../Login";
+import {url} from "../Componentes/Ocultar";
+
+
 
 const cookies =new Cookies();
 export const useLogin = () => {
@@ -24,7 +27,7 @@ export const useLogin = () => {
     };
     
         // el URL se tiene que cambiar por la ruta donde ira a lojado la aplicación
-        const respuesta = await axios.post('http://localhost:4001/api/cotizador/login',data);
+        const respuesta = await axios.post( url + '/api/cotizador/login',data);
         const send2= respuesta.data;
         console.log(send2)
         cookies.set('id_usuario', send2.id_usuario , {path:"/"});

@@ -11,7 +11,7 @@ let  auth = true;
 if(i=== "null"){
 
   auth = true;
-  console.log("authhss  s")
+  console.log("No valido")
   
 }else{
   auth = false;
@@ -26,7 +26,7 @@ const PublicRoutes = ({component:Component, ...rest}) => {
 console.log("Usuario No Encontrado")
 
 return (  
-    <Route {...rest}>{auth? <Component/> : <Redirect to ="/hjhj"/>}   </Route>     
+    <Route {...rest}>{auth? <Component/> : <Redirect to ="/no-found"/>}   </Route>     
   )
     } else{
         console.log("Usuario logueado")
