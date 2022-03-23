@@ -22,19 +22,17 @@ function CambioContraseña() {
       ...datos, [event.target.name]: event.target.value
     })
   }
-  // const id_usuario = cookies.get('id_usuario')
-  // const id = JSON.stringify(id_usuario)
-  // console.log(id)
-
-  async function Send(id) {
-    console.log("soy el id adentro del send",id)
+  const id = cookies.get('id_usuario')
+  
+  async function Send() {
+    console.log("soy el id adentro del send", id)
     const data = {
       password: datos.password,
       estado_login: 1
     };
     if (datos.password === datos.repassword && datos.email !== "") {
       try {
-        const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/pass/1`, data)
+        const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/pass/${id}`, data)
         const send2 = respuesta.data;
         console.log(send2)
 
