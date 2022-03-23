@@ -4,6 +4,11 @@ import axios from "axios";
 import { useRegistro } from "../Routes/ModificarCLientes";
 import Animaciones from "../Componentes/Animaciones";
 
+import Cookies from 'universal-cookie';
+
+
+const cookies = new Cookies();
+let validatorid = cookies.get('id_usuario');
 
 
 
@@ -58,9 +63,9 @@ function AdministrarColaboradores() {
   };
   const llamado = async () => {
     const respuesta = await axios.get(
-      "http://localhost:4001/api/cotizador/colaboradores/view"
+      `http://localhost:4001/api/cotizador/colaboradores/view/${validatorid}`
     );
-    setlistaClientes(respuesta.data);
+    setlistaClientes(respuesta.data.data);
     console.log("soy la respuesta data del llamado", respuesta.data)
   };
   
@@ -69,10 +74,10 @@ function AdministrarColaboradores() {
     const newValidar = [];
     try {
       const respuesta = await axios.get(
-        "http://localhost:4001/api/cotizador/colaboradores/view"
+        `http://localhost:4001/api/cotizador/colaboradores/view/${validatorid}`
       );
       console.log("soy la respuesta data del llamadoCliente", respuesta.data.data);
-      let i = await  Object.keys(respuesta.data);
+      let i = await  Object.keys(respuesta.data.data);
       for (let x = 0; x < i.length; x++) {
          newValidar[x] = true;
       }
@@ -147,8 +152,8 @@ function AdministrarColaboradores() {
                 <tbody>
                   {/*=================== Contenido Tabla Clientes =================*/}
                   {Object.keys(listaClientes).map((key) => (
-                    <tr key={listaClientes[key].id_usuario}>
-                      <td>{listaClientes[key].id_usuario}</td>
+                    <tr key={listaClientes[key].colab_id}>
+                      <td>{listaClientes[key].colab_id}</td>
                       <td>
                         <input
                           className="input-name"
