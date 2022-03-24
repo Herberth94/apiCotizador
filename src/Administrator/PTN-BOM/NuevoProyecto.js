@@ -8,7 +8,11 @@ import axios from 'axios';
 import Partida from "./Partida";
 import DatosSP from "./DatosSP";
 import DatosPTN from "./DatosPTN";
+import Cookies from 'universal-cookie';
 
+//Obtención del id del usuario con sesión activa
+const cookies = new Cookies();
+export let validatorid = cookies.get('id_usuario');
  
 function NuevoProyecto () {
   
@@ -92,10 +96,11 @@ function NuevoProyecto () {
     };
 
     try{
-        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/proyecto/agregar/1`, data);
-        const getProyectoId = respuesta.data.id_proyecto;
-        //console.log(getProyectoId);
-        alert('Registro exitoso')
+      //console.log('Este es el id del usuario activo:', validatorid);
+      const respuesta = await axios.post(`http://localhost:4001/api/cotizador/proyecto/agregar/${validatorid}`, data);
+      const getProyectoId = respuesta.data.id_proyecto;
+      console.log(getProyectoId);
+      alert('Registro exitoso')
     }catch (error){
       alert('Registro invalido')
     }

@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
+import Cookies from "universal-cookie";
 import {url} from "../Componentes/Ocultar";
 import {url2} from "../Componentes/Ocultar";
 
-
+//Obtención del id del usuario con sesión activa
+const cookies = new Cookies();
+let validatorid = cookies.get('id_usuario');
 
 
 export const InsertDatosPartida = () => {
@@ -53,9 +56,8 @@ export const InsertDatosPartida = () => {
         };
         //console.log(id);
         try{
-            //console.log(id);
-            // Obtención del id del último proyecto insertado 
-            const resGetProyectos = await axios.get(url + '/api/cotizador/proyecto/view');
+            // Obtención del id del último proyecto insertado del usuario activo
+            const resGetProyectos = await axios.get(url + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
             listaProyectos = resGetProyectos.data.data.pop();
             proyectoId.proyecto_id = listaProyectos.proyecto_id;
             // if(proyecto_id !== proyectoId.proveedor_id){

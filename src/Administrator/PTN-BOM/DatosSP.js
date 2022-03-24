@@ -3,10 +3,14 @@ import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones"; 
 import axios from 'axios';
+import Cookies from "universal-cookie";
 
 /*============== Operacions PTN BOM ==============*/
 import { precioUnitario, calcularDescuento, Total, Hola } from "./Operaciones";
 
+//Obtención del id del usuario con sesión activa
+const cookies = new Cookies();
+let validatorid = cookies.get('id_usuario');
 
 function DatosSP() {
   const [total, setTotal] = useState(10);
@@ -334,13 +338,13 @@ function DatosSP() {
 
           
 
-          // Obtención del id de la última partida insertada
-          const resGetPartida = await axios.get("http://localhost:4001/api/cotizador/partida/view");
+          // Obtención del id de la última partida insertada del ultimo proyecto insertado del usuario que esta activo
+          const resGetPartida = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPU/${validatorid}`);
           ListaPartida = resGetPartida.data.data.pop();
           partidaId.partida_id = ListaPartida.partida_id;
 
-          // Inserción a las tablas sp y psp
-          const resSP = await axios.post(`http://localhost:4001/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+          // Inserción a las tablas sp , psp, y sp_proveedor_marcas
+          await axios.post(`http://localhost:4001/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
           
           alert('Servico/producto registrado exitosamente')
           }catch (error){

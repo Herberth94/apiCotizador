@@ -3,7 +3,10 @@ import Table from "react-bootstrap/Table";
 import axios from 'axios';
 
 import {url2} from "../../Componentes/Ocultar";
+import Cookies from 'universal-cookie';
 
+const cookies = new Cookies();
+let validatorid = cookies.get('id_usuario');
 
 function Categorias() {
     /*=================================== Obtención de datos para la tabla cat_totales ===================================*/
@@ -47,7 +50,7 @@ function Categorias() {
     // Obtención de los datos introducidos en los input
     const handleInputChangeSptn = (event) =>{
         setDatosSptn({
-            ...setDatosSptn, [event.target.name] : event.target.value
+            ...datosSptn, [event.target.name] : event.target.value
         })
     }
     /*=============================================================================================*/
@@ -73,7 +76,7 @@ function Categorias() {
         const dataCapacitacon = {
             ct_totales_mxn:datosCapacitacion.ct_totales_mxn,
             ct_totales_usd:datosCapacitacion.ct_totales_usd
-          };
+        };
 
         const dataAccesorios = {
           ct_totales_mxn:datosAccesorios.ct_totales_mxn,
@@ -85,10 +88,10 @@ function Categorias() {
             ct_totales_usd:datosSptn.ct_totales_usd
           };
           
-          const dataMA = {
+        const dataMA = {
             ct_totales_mxn:datosMA.ct_totales_mxn,
             ct_totales_usd:datosMA.ct_totales_usd
-          };
+        };
         
           var ListaProyectos = {
             proyecto_id:'',
@@ -104,9 +107,13 @@ function Categorias() {
             proyecto_id:''
           }
 
+          const dataEstatus = {
+              proyecto_estatus: 'En revision'
+          }
+
         try{
             // Obtención del id del último proyecto insertado
-            const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
+            const resGetProyectos = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
             ListaProyectos = resGetProyectos.data.data.pop();
             proyectoId.proyecto_id = ListaProyectos.proyecto_id;
 
@@ -115,9 +122,11 @@ function Categorias() {
             await axios.post(url2 + `/api/cotizador/catt/agregar/2/${proyectoId.proyecto_id}`,dataAccesorios);
             await axios.post(url2 + `/api/cotizador/catt/agregar/3/${proyectoId.proyecto_id}`,dataSptn);
             await axios.post(url2 + `/api/cotizador/catt/agregar/4/${proyectoId.proyecto_id}`,dataMA);
-            alert('Registro exitoso')
+            await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
+            alert('Finalización de proyecto exitoso')
+            alert('El proyecto entro a estatus en revisón')
         }catch (error){
-        console.log("este es el error", error.toJSON());
+        console.log("este es el error", error);
         }
     }
 
@@ -201,7 +210,7 @@ function Categorias() {
                                     type="number"
                                     name="ct_totales_mxn"
                                     onChange={handleInputChangeSptn}
-                                    placeholder="TotalServicios PTN MXN"
+                                    placeholder="Total Servicios PTN MXN"
                                 />
                             </td>
 
