@@ -15,6 +15,7 @@ function AdministrarUsuarios() {
     const {actualizacion} = useRegistro();
     const [first, setfirst] = useState(false)
     const [listaUsuarios, setlistaUsarios] = useState([]);
+
     const borrarUsuario = async (dato) => {
         console.log("borrar");
         console.log(dato);
@@ -39,16 +40,13 @@ function AdministrarUsuarios() {
     }
 
     const envioData = (datos, key,data) => {
-            if(first){
-                console.log(datos[key])
-                console.log(data)
-                actualizacion(datos[key],data);
-
-            }
-            
-            
-            ////window.location.reload();
-            //actulizarPage(key);
+        if(first){
+            console.log(datos[key])
+            console.log(data)
+            actualizacion(datos[key],data);
+        }
+        //window.location.reload();
+        //actulizarPage(key);
     }
     
     /*=================== Leer todos los usuarios registrados  =================*/
@@ -78,23 +76,22 @@ function AdministrarUsuarios() {
                     <button className="btn btn-primary modificar" type="button" onClick={()=>llamadoUsuario()} >  {show2 ? 'Mostrar Lista' : 'Ocultar Lista'} </button>
                     {show2 ? (
                         <div >
-   {/*=================== Ocultar Lista DIV  =====================*/}
+                        {/*=================== Ocultar Lista DIV  =====================*/}
                         </div>
                     ) : (
                         <div >
-  {/*=================== Botón Mostrar Lista DIV====================*/}
+                        {/*=================== Botón Mostrar Lista DIV====================*/}
                             <br />
-  {/*===================     Tabla Usuarios    ====================*/}
-                                <div> 
-                                    <CrudUsuarios 
-                                        usuarios={listaUsuarios} 
-                                        borrar={borrarUsuario} 
-                                        setfirst={setfirst}
-                                        resetearContraseña={resetearContraseña}
-                                        envioData = {envioData}
-                                    />
-                                </div>
-                           
+                            {/*===================     Tabla Usuarios    ====================*/}
+                            <div> 
+                                <CrudUsuarios 
+                                    usuarios={listaUsuarios} 
+                                    borrar={borrarUsuario} 
+                                    setfirst={setfirst}
+                                    resetearContraseña={resetearContraseña}
+                                    envioData = {envioData}
+                                />
+                            </div>         
                         </div>
                     )}
                 </div>
