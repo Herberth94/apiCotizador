@@ -4,7 +4,13 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 import { url, url2 } from "../../Componentes/Ocultar";
 
-import {partidasUnicas, descripcionGeneral, totalMXN, totalUSD, monedaPTN2} from "./OperacionesAM";
+import {
+    partidasUnicas, 
+    descripcionGeneral, 
+    totalMXN, 
+    totalUSD, 
+    monedaPTN2,  
+    GetDatosProyecto} from "./OperacionesAM";
 
 function ResumenAM() {
     //Habilitar/Deshabilitar tabla del resumen AM
@@ -24,7 +30,7 @@ function ResumenAM() {
     useEffect(()=>{
         const getProyectos = async () => {
             try{
-                const resProy = await axios.get(url + '/api/cotizador/proyecto/view1');
+                const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
             }catch(error){
                 console.log(error);
@@ -48,22 +54,9 @@ function ResumenAM() {
     /*=======================================================================================================*/
 
     
-    /*=============================== Función que consulta los datos de un proyeco para el resumen AM ===============================*/
-    // Almacenamiento de datos
-    const [totalesP,setTotalesP] = useState([]);
+    const {consultarTotalesP} = GetDatosProyecto();
 
-    async function consultarTotalesP(id){
-        //console.log(id)
-        try{
-            const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
-            setTotalesP(resProy.data.data);
-            
-        }catch (error){
-            console.log(error);
-        }
-        console.log(totalesP);
-    }
-    /*===============================================================================================================================*/
+    
     return (
         <div className="contenido-usuarios">
             <div>
