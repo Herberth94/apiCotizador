@@ -1,8 +1,4 @@
 
-//Arreglo Necesario Para obtener AM
-//Obtener y Condicionar si existe Valor del Dolar en caso de que no, sustituir por 0
-//Falta agregar buscardor que extraiga el AM del proyecto de cada Usuario
-
 import axios from "axios";
 import { useState } from "react";
 import { url2 } from "../../Componentes/Ocultar";
@@ -33,51 +29,59 @@ export const GetDatosProyecto = () => {
   }
 }
 
-/* PTN 1
- */
+
+
 
 const datosPTN = [
   {
-      nombrePartida: "Partida 1",
-      DesPartida: "P 1",
-      Moneda: "USD",
-      Total: 250,
+    nombrePartida: "Switches",
+    DesPartida: "P 1",
+    Moneda: 2,
+    Total: 730.30,
   },
   {
-      nombrePartida: "Partida 2",
-      DesPartida: "P 2",
-      Moneda: "USD",
-      Total: 1300,
+    nombrePartida: "Routers",
+    DesPartida: "P 2",
+    Moneda: 2,
+    Total: 1030.30,
   },
 
   {
-      nombrePartida: "Partida 3",
-      DesPartida: "P 3",
-      Moneda: "USD",
-      Total: 1600,
+    nombrePartida: "Servidores PTN",
+    DesPartida: "P 3",
+    Moneda: 2,
+    Total: 1050,
   },
+  {
+    nombrePartida: "Consultoria",
+    DesPartida: "P q",
+    Moneda: 2,
+    Total: 250,
+  },
+
 ];
 /////////////////////////////////////////////////////////////////////////////////
 const categoriasPTN = [
   {
-      nombreCategoria: "Capacitación",
-      Moneda: "USD",
-      totalC: 250,
+    nombreCategoria: "Capacitación",
+    Moneda: 2,
+    totalC: 1100,
   },
   {
     nombreCategoria: "Accesorios",
-    Moneda: "USD",
-    totalC: 250,
+    Moneda: 2,
+    totalC: 550,
   },
   {
     nombreCategoria: "Servicios PTN",
-    Moneda: "USD",
-    totalC: 250,
+    Moneda: 2,
+    totalC: 252.53,
   },
 
-  { nombreCategoria: "Mesa de Ayuda",
-  Moneda: "USD",
-  totalC: 250,
+  {
+    nombreCategoria: "Mesa de Ayuda",
+    Moneda: 2,
+    totalC: 1500,
   },
 ];
 
@@ -88,13 +92,15 @@ const categoriasPTN = [
 
 var valorDolar = 20;
 
-/////////////////////////////////////////////////////////////////////////////////
+///////////////////////////NUEVO//////////////////////////////////////////////////////
 
 var data = [];
 var data2 = [];
+var dataCategoria = [];
+var monedaAM = [];
+
 
 export var categoriaTotalBom = [];
-export var namecategorie = [];
 
 
 for (const value of datosPTN) {
@@ -102,6 +108,14 @@ for (const value of datosPTN) {
   /*============= Sumatoria por Partida =================================*/
   data.push(value.nombrePartida);
   data2.push(value.DesPartida);
+}
+
+
+for (const value of categoriasPTN) {
+  //  console.log(value.nombrePartida);
+  /*============= Sumatoria por Partida =================================*/
+  dataCategoria.push(value.nombreCategoria);
+  monedaAM.push(value.totalC)
 }
 
 /*============= Eliminar Valores Repetidos ===============================*/
@@ -141,25 +155,29 @@ var sumatoriaUSD = 0;
 
 for (var i = 0; i < partidasUnicas.length; i++) {
   for (var j = 0; j < datosPTN.length; j++) {
-      //Sumatoria por Partidas por Separado por Monedas
-      if (partidasUnicas[i] === datosPTN[j].nombrePartida) {
-          console.log("-------------------------------");
-          console.log("Partidas Iguales");
-          console.log(datosPTN[j].nombrePartida, " = ", partidasUnicas[i]);
-          contador++;
-          console.log("Contador ", contador);
+    //Sumatoria por Partidas por Separado por Monedas
+    if (partidasUnicas[i] === datosPTN[j].nombrePartida) {
+      console.log("-------------------------------");
+      console.log("Partidas Iguales");
+      console.log(datosPTN[j].nombrePartida, " = ", partidasUnicas[i]);
+      contador++;
+      console.log("Contador ", contador);
 
-          if (datosPTN[j].Moneda === "MXN") {
-              sumatoriaMXN += datosPTN[j].Total;
-          } else if (datosPTN[j].Moneda === "USD") {
-              sumatoriaUSD += datosPTN[j].Total;
-          }
-
-          console.log("------------------------------");
-      } else {
-          contador = 0;
+      if (datosPTN[j].Moneda === 1) {
+        sumatoriaMXN += datosPTN[j].Total;
+      } else if (datosPTN[j].Moneda === 2) {
+        sumatoriaUSD += datosPTN[j].Total;
       }
+
+      console.log("------------------------------");
+    } else {
+      contador = 0;
+    }
   }
+
+
+
+
 
   console.log("-------------SUMATORIA DE MONEDAS--------------------------");
   totalMXN.push(sumatoriaMXN);
@@ -172,29 +190,67 @@ for (var i = 0; i < partidasUnicas.length; i++) {
   console.log("Total USD = ", totalUSD);
 }
 
-
+//Arreglos Finales Export
 export var monedaPTN = [];
-export var monedaPTN2= [];
+export var monedaPTN2 = [];
+export var prov = [];
+export var listaProv = [];
+export var desFabrica = [];
+export var costoPTN = [];
+export var margenDirecto = [];
+export var margenGanancia = [];
+export var Cantidad = [];
+export var descuentoCliente = [];
+export var totalIndirecto = [];
+export var precioVenta = [];
+
+export var precioVenta2 = [];
+
+
+export var proporcional = [];
+export var proporcionalMesaAyuda = [];
+
+export var TOTAL = [];
+
+
+
+
+var calculaIndirecto = 0;
+var toIndirecto = 0;
+
+
+
+
+var sumatoriaMXN2 = 0;
+var sumatoriaUSD2 = 0;
+var totalBom = 0;
+
+
+export var totalCategorias = 0;
+export var precioFinalVenta = 0;
+export var costoSinIndirectos=0;
+export var costoFianalProyecto=0;
+
+
+
+
+
 
 for (var i = 0; i < totalMXN.length; i++) {
   console.log(i);
   console.log(totalMXN[i]);
 
   if (totalMXN[i] !== 0) {
-      console.log("Pasar a dolar");
+    console.log("Pasar a dolar");
 
-      let okay = totalMXN[i] / valorDolar + totalUSD[i];
-      monedaPTN.push(okay);
-      monedaPTN2.push(okay);
+    let okay = totalMXN[i] / valorDolar + totalUSD[i];
+    monedaPTN.push(okay);
+    monedaPTN2.push(okay);
   } else {
-      monedaPTN.push(totalUSD[i]);
-      monedaPTN2.push(totalUSD[i]);
+    monedaPTN.push(totalUSD[i]);
+    monedaPTN2.push(totalUSD[i]);
   }
 }
-
-var sumatoriaMXN2 = 0;
-var sumatoriaUSD2 = 0;
-var totalBom = 0;
 
 
 
@@ -219,57 +275,146 @@ sumatoriaMXN2 = 0;
 totalBom = 0;
 
 
-
-
-
-
-
-console.log("--------------------");
-
-
-
-
-for (var j = 0; j < categoriasPTN.length; j++) {
-
-  namecategorie.push(categoriasPTN[j].nombreCategoria)
-  if(categoriasPTN.Moneda === "MXN"){
-
-    categoriaTotalBom.push( (categoriasPTN[i].totalC / valorDolar));
-
-  }else{
- 
-    categoriaTotalBom.push(categoriasPTN[i].totalC);
-  }
-
-
-}
-
-
-
-console.log("TOTAL MONEDA BOM --------------------");
-
-console.log(categoriaTotalBom)
-
-monedaPTN=monedaPTN.concat(categoriaTotalBom);
-
+// Cncatenar Moneda Partidas y Categorias
+monedaPTN = monedaPTN.concat(monedaAM);
+prov = monedaPTN;
 
 
 
 partidasUnicas.push("-----");
 descripcionGeneral.push("Total");
 
-
-
-
-partidasUnicas2=partidasUnicas2.concat(namecategorie);
+partidasUnicas2 = partidasUnicas2.concat(dataCategoria);
 partidasUnicas2.push("Total");
 
 
-console.log("-----------mhjhb---------------------------");
-console.log(categoriasPTN.nombreCategoria)
- console.log(partidasUnicas2);
-console.log("-------------,jbkjb-------------------------");
 
+
+////////Sumatoria Total
+for (var i = 0; i < partidasUnicas2.length - 1; i++) {
+  margenGanancia.push(32);
+
+  // Se Agregan los Valores de
+  //Descuento Cliente
+  //Cantidad
+  //Descuento Fabriaca
+  descuentoCliente.push(0);
+  Cantidad.push(1);
+  desFabrica.push(0);
+}
+
+  var totallistaprov=0;
+for (var i = 0; i < prov.length; i++) {
+  listaProv.push(prov[i] * Cantidad[i]);
+  var m = 1 - (desFabrica[i] / 100);
+  costoPTN.push(prov[i] * m);
+}
+
+
+
+//Calcular Precio Venta
+for (var i = 0; i < monedaPTN.length; i++) {
+  var x = monedaPTN[i] * (100 - descuentoCliente[i]) / 100;
+  var k = (100 - margenGanancia[i]) / 100;
+  var z = x / k;
+  precioVenta.push(z);
+
+}
+
+
+
+
+var sumatoria =0 ;
+for (var i = 0; i < partidasUnicas.length -1; i++) {
+  var x = monedaPTN[i] * (100 - descuentoCliente[i]) / 100;
+  var k = (100 - margenGanancia[i]) / 100;
+  var z = x / k;
+  sumatoria += z;
+  precioVenta2.push(z);
+
+}
+precioVenta2.push(sumatoria);
+sumatoria = 0;
+
+
+
+
+var totalPrecioVenta = 0;
+var totalprov =0;
+var totalCostoPTN =0;
+
+
+///Obtener el Total de las Categorias
+for (var i = partidasUnicas.length -1; i < precioVenta.length; i++) {
+
+  console.log(precioVenta[i]);
+  totalCategorias += precioVenta[i];
+}
+
+for (var i = 0; i < precioVenta.length; i++) {
+
+  totalPrecioVenta += precioVenta[i];
+  totallistaprov += listaProv[i];
+  totalprov += prov[i];
+  totalCostoPTN += costoPTN[i];
+
+}
+precioVenta.push(totalPrecioVenta);
+prov.push(totalprov);
+listaProv.push(totallistaprov);
+costoPTN.push(totalCostoPTN);
+
+
+totalprov =0;
+totallistaprov =0;
+totalCostoPTN=0;
+
+
+
+for (var i = 0; i < precioVenta.length - 1; i++) {
+
+
+  var c = 1 - ((costoPTN[i] / precioVenta[i]));
+  c = c * 100;
+  c = Math.round(c)
+
+  margenDirecto.push(c);
+}
+
+/////////////Costos Indirectos
+
+
+
+
+
+
+export let costosIndirectos = ["Comisiones", "Riesgo", "Fianza", "Seguros y Fletes", "Costos Administrativos"];
+
+
+costosIndirectos.push("Total");
+export let equivale = [2, 1, 5, 1, 4];
+
+
+for (var i = 0; i < costosIndirectos.length - 1; i++) {
+
+  calculaIndirecto = (equivale[i] / 100) * totalPrecioVenta;
+  totalIndirecto.push(calculaIndirecto);
+
+  toIndirecto += calculaIndirecto;
+}
+
+totalIndirecto.push(toIndirecto);
+
+
+toIndirecto = 0;
+totalPrecioVenta = 0;
+
+
+let final = precioVenta.length;
+let final2 = totalIndirecto.length;
+precioFinalVenta = precioVenta[final -1 ];
+costoSinIndirectos = costoPTN[final -1];
+costoFianalProyecto = (costoPTN[final -1 ] + totalIndirecto[final2 -1]);
 
 
 
@@ -285,93 +430,37 @@ console.log("-------------,jbkjb-------------------------");
 /////////////////// Margen de Ganancia
 
 
+let final3 =  precioVenta2.length -1;
+
+
+var prop2 = 0;
+for (var i = 0; i < precioVenta2.length - 1  ; i++) {
+  var prop = precioVenta2[i] / precioVenta2[final3 ] ;
+  prop = prop * 100;
+  prop2 += prop;
+  proporcional.push(prop);
+
+}
+proporcional.push(prop2);
+prop2=0;
+
+console.log("***********************************");
 
 
 
+////////////////
 
-
-
-
-
-
-
-export var margenGanancia = [];
-
-
-////////Sumatoria Total
-for (var i = 0; i < partidasUnicas2.length - 1 ; i++) {
-margenGanancia.push(32);
-
+for (var i = 0; i < partidasUnicas.length  ; i++) {
+  var tot= totalCategorias *  proporcional[i] ;
+  proporcionalMesaAyuda.push(tot/100);
 
 
 }
 
-console.log(margenGanancia);
-
-//Precio Venta
-
-export var precioVenta = [];
-
-
-for (var i = 0; i <monedaPTN.length  ; i++) {
-
-  var  k = ( 100 - margenGanancia[i]) / 100 ;
-  var  ab = (monedaPTN[i] / k)  ;
-  console.log("NNNN  ", k);
-   precioVenta.push(ab);
-
+for (var i = 0; i < partidasUnicas.length  ; i++) {
+  var h = proporcionalMesaAyuda[i] + precioVenta2[i];
+  TOTAL.push(h);
 }
-
-var totalPrecioVenta = 0;
-
-console.log(precioVenta);
-
-for (var i = 0; i <precioVenta.length  ; i++) {
-
-totalPrecioVenta += precioVenta[i];
-
-}
-precioVenta.push(totalPrecioVenta);
-
-
-
-
-/////////////Costos Indirectos
-
-
-
-export var totalIndirecto = [];
-var calculaIndirecto = 0;
-
-var toIndirecto = 0;
-
-
-
-export let costosIndirectos = ["Comisiones", "Riesgo" , "Fianza", "Seguros y Fletes" , "Costos Administrativos"];
-
-
-costosIndirectos.push("Total");
-export let equivale = [2 , 1 , 5 , 1 , 4];
-
-
-for (var i = 0; i <costosIndirectos.length -1 ; i++) {
-
-   calculaIndirecto =  (equivale[i]/ 100) * totalPrecioVenta;
-  totalIndirecto.push(calculaIndirecto);
-
-  toIndirecto += calculaIndirecto;
-  }
-
-  totalIndirecto.push( toIndirecto);
-
-
-  toIndirecto=0;
-totalPrecioVenta = 0;
-
-
-
-
-
 
 
 

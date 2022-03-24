@@ -42,7 +42,7 @@ function AmMenu() {
           <tr className="titulo-tabla-usuarios">
             <th>Divisa</th>
             <th>Resumen AM</th>
-            <th>Margen de Ganacia</th>
+            <th>AM Completo</th>
             <th>Costos Indirectos</th>
           </tr>
         </thead>

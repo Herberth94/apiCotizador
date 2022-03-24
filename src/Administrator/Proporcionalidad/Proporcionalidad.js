@@ -2,6 +2,10 @@ import React from 'react'
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
+import {TOTAL, proporcional ,  proporcionalMesaAyuda,  partidasUnicas,  monedaPTN2,descuentoCliente, monedaPTN, margenGanancia, precioVenta2 } from "../AM/OperacionesAM";
+
+
+
 function Proporcionalidad() {
   return (
     
@@ -10,105 +14,64 @@ function Proporcionalidad() {
 
 <div> <Animaciones mytext="Resumen Categorias" /> </div>
  
- <Table responsive id="nombreDiv">
-                <thead>
-                    <tr className="azul" >
-                        <th>Categoria</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className= "par" >
-                        <td>Capacitación</td>
-                        <td>160003</td>
-                    </tr>
-                    <tr className="color impar">
-                        <td>Accesorios</td>
-                        <td>80807</td>
-                    </tr>
-                    <tr className="par">
-                        <td>Servicios PTN</td>
-                        <td>371.36</td>
-                    </tr>
-                    <tr className="impar">
-                        <td>Mesa de Ayuda</td>
-                        <td>371.36</td>
-                    </tr>
-                    <tr className="total">
-                        <td>Total</td>
-                        <td>263572.36</td>
-                    </tr>
-
-                </tbody>
-            </Table>
 
             <div> <Animaciones mytext="Proporcionalmente" /> </div>
 
+            <Table responsive striped bordered hover size="sm" className="tablas">
+                <thead>
+                    {/*=================== Titulos Tabla Clientes ===================*/}
+                    <tr className="titulo-tabla-usuarios">
+                        <th>Descripción</th>
+                        <th > Precio Venta </th>
+                        <th>  % </th>
+                        <th>Proporcional MESA DE AYUDA </th>
+                        <th>TOTAL</th>
+                        <th>TOTAL MENSUAL</th>
+                        <th>Financiamiento</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {/*=================== Contenido Tabla Clientes =================*/}
 
-            <Table responsive id="nombreDiv">
-                    <thead>
-                        <tr className="azul">
-                            <th>Descripción</th>
-                            <th>PRECIO VENTA</th>
-                            <th>%</th>
-                            <th>Proporcionar MESA DE AYUDA</th>
-                            <th>TOTAL</th>                      
+                    {Object.keys(partidasUnicas).map((key) => (
+                        <tr key={partidasUnicas[key]}>
+                            
+                            {/*================= Descripción  ==================*/}
+
+                            <td>{partidasUnicas[key]}</td>
+
+
+                            <td>{"$ "}{precioVenta2[key]}</td>
+                            {/*================= Precio Venta ==================*/}
+                            <td className="verde" >{proporcional[key]} {" % "}  </td>
+
+                          {/*=================  % ==================*/}
+                      
+
+                         {/*================= Proporcional Mesa de Ayuda==================*/}
+                            <td>{ proporcionalMesaAyuda[key]} {" $"}</td>
+
+                            {/*================= Total ==================*/}
+
+                            <td className="azul">{TOTAL[key]} {" $ "}</td>
+
+                  {/*================= Total Mensual ==================*/}
+                  <td className="azul"> {" $ "}</td>
+
+                    {/*================= Financiamiento ==================*/}
+                            <td>{"######"}</td>
+                                {/*================= eDITARF==================*/}   
+                            <td>
+
+                                <button className="btn btn-primary"> Editar </button>
+
+
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="par">
-                            <td>Swithches</td>
-                            <td>1073.98</td>
-                            <td>24% </td>
-                            <td>1193</td>
-                            <td>2267.93</td>
-                        
-
-                        </tr>
-
-                        <tr className="impar">
-                            <td>Routers</td>
-                            <td>1073.98</td>
-                            <td>24% </td>
-                            <td>1193</td>
-                            <td>2267.93</td>
-                       
-
-                        </tr>
-
-                        <tr className="par">
-                            <td>Servidores</td>
-                            <td>1073.98</td>
-                            <td>24% </td>
-                            <td>1193</td>
-                            <td>2267.93</td>
-                          
-
-                        </tr>
-
-
-                        <tr className="impar">
-                            <td>Consultoría</td>
-                            <td>1073.98</td>
-                            <td>24% </td>
-                            <td>1193</td>
-                            <td>2267.93</td>
-                         
-
-                        </tr>
-
-
-                        <tr className="total">
-                            <td>Totales</td>
-                            <td>1073.98</td>
-                            <td>24% </td>
-                            <td>1193</td>
-                            <td>2267.93</td>
-                           
-
-                        </tr>
-                    </tbody>
-                </Table>
+                    ))}
+                </tbody>
+            </Table>
 
 
 
