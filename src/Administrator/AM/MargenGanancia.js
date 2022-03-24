@@ -21,10 +21,14 @@ function MargenGanancia() {
                     {/*=================== Titulos Tabla Clientes ===================*/}
                     <tr className="titulo-tabla-usuarios">
                         <th>Nombre Partida</th>
-                        <th>Descripción General </th>
-                        <th>Costo </th>
+                        <th>Lista cl </th>
+                        <th>Desc. Cliente % </th>
+                        <th>Precio Venta </th>
                         <th>Margen de Ganancia %</th>
-                        <th>Precio Venta</th>
+                        <th>Precio Lista</th>
+                        <th>Cantidad</th>
+                        <th>Lista Prov</th>
+                        <th>Margen Directo %</th>
                         <th>Editar</th>
                     </tr>
                 </thead>
@@ -40,15 +44,23 @@ function MargenGanancia() {
                             {/*================= Costo Total ==================*/}
                             <td>{monedaPTN[key]}</td>
 
-
-
+                          {/*================= Descuento Cliente ==================*/}
                             <td>{margenGanancia[key]}</td>
-                            {/*================= Total USD ==================*/}
+
+                         {/*================= Margen Ganancia==================*/}
+                            <td>{margenGanancia[key]}</td>
+
+                            {/*================= Precio Venta==================*/}
+
+                            <td>{precioVenta[key]}</td>
+                            <td>{precioVenta[key]}</td>
 
                             <td>{precioVenta[key]}</td>
 
-                            {/*================= Total Moneda Bom ==================*/}
+                            <td>{precioVenta[key]}</td>
 
+
+                            
                             <td>
 
                                 <button className="btn btn-primary"> Editar </button>

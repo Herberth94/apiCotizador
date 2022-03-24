@@ -320,7 +320,6 @@ var toIndirecto = 0;
 
 
 
-
 export let costosIndirectos = ["Comisiones", "Riesgo" , "Fianza", "Seguros y Fletes" , "Costos Administrativos"];
 
 

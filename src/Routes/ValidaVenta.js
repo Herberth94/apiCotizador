@@ -5,7 +5,9 @@ import {i} from './ValidaRol';
 
 //Validacion de Usuario Administrador
 
-
+function actualizapage(){
+  window.location.href="";
+}
 
 let  auth = true;
 
@@ -25,7 +27,9 @@ console.log("Hola Venta")
 
 return (
     
-    <Route {...rest}>{auth? <Component/> : <Redirect to ="/"/>}   </Route>  
+    <Route {...rest}>{auth? <Component/> : <Redirect to ="../"/>}   </Route>  
+
+    
       
   )
     }else{

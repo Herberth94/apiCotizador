@@ -85,7 +85,7 @@ function App() {
 
         <Preventa path="/" component={MenuPreventa} />
         {/* oooo */}
-        <Preventa path="/" component={CambioContraseña} />
+        <Preventa exact path ="/" component={CambioContraseña} />
 
         <Preventa path="/agregar-cliente" component={Clientes} />
         <Preventa path="/administrar-clientes" component={AdministrarClientes } />
