@@ -3,8 +3,35 @@
 //Obtener y Condicionar si existe Valor del Dolar en caso de que no, sustituir por 0
 //Falta agregar buscardor que extraiga el AM del proyecto de cada Usuario
 
+import axios from "axios";
+import { useState } from "react";
+import { url2 } from "../../Componentes/Ocultar";
 import PTN_BOM from "../PTN-BOM/PTN_BOM";
 
+
+
+export const GetDatosProyecto = () => {
+  /*=============================== Función que consulta los datos de un proyeco para el resumen AM ===============================*/
+    // Almacenamiento de datos
+    const [totalesP,setTotalesP] = useState([]);
+
+    async function consultarTotalesP(id){
+        //console.log(id)
+        try{
+            const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
+            setTotalesP(resProy.data.data);
+            
+        }catch (error){
+            console.log(error);
+        }
+        
+    }
+    /*===============================================================================================================================*/
+    console.log(totalesP);
+  return{
+    consultarTotalesP
+  }
+}
 
 /* PTN 1
  */
