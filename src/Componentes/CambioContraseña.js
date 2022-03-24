@@ -24,7 +24,7 @@ function CambioContraseña() {
   }
   const id = cookies.get('id_usuario')
   
-  async function Send() {
+  async function Send (){
     console.log("soy el id adentro del send", id)
     const data = {
       password: datos.password,
@@ -32,11 +32,11 @@ function CambioContraseña() {
     };
     if (datos.password === datos.repassword && datos.email !== "") {
       try {
-        const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/pass/${id}`, data)
+        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/edit/pass/${id}`, data)
         const send2 = respuesta.data;
         console.log(send2)
 
-        alert('Datos Guardados Existosamente')
+        alert('Contraseña actualizada')
       } catch (error) {
         console.log(error)
       }
@@ -44,6 +44,12 @@ function CambioContraseña() {
       alert("Las contraseñas no coinciden");
     }
 
+
+  }
+  const enviarDatos = (event) =>{
+    Send();
+    event.preventDefault();
+    event.target.reset();
   }
 
  
@@ -56,32 +62,34 @@ function CambioContraseña() {
       {estado() ? "" : (<div className="contenido-main-registro">
         <div className="scene flex">
           <section className="card-body">
-            <form method="put" className="card-form" onSubmit={Send} >
+            <form action='' method="post" className="card-form" onSubmit={enviarDatos} >
               <h2 >
                 <span>Actualizar Contraseña</span>
               </h2>
-              <label htmlFor="user" className=" label">
+              <label htmlFor="password" className=" label">
                 Contraseña Nueva
               </label>
               <input
-                id="user"
-                type="text"
+                id="password"
+                type="password"
                 name='password'
                 onChange={handleInputChange}
                 className="card-input"
                 placeholder="Ingrese Contraseña Nueva"
+                data-type="password"
               />
 
-              <label htmlFor="user2" className=" label">
+              <label htmlFor="password" className=" label">
                 Repetir Contraseña
               </label>
               <input
-                id="user2"
-                type="text"
+                id="password2"
+                type="password"
                 name="repassword"
                 onChange={handleInputChange}
                 className="card-input"
                 placeholder="Repita la Contraseña"
+                data-type="password"
               />
 
               <div className="boton-registro">
