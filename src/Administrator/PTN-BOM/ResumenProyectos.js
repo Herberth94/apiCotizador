@@ -5,6 +5,13 @@ import axios from "axios";
 import { EditProyecto } from '../../Routes/ModificarProyectos';
 import { EditPartida } from '../../Routes/ModificarPartida';
 import { EditSP } from '../../Routes/ModificarSP';
+import Cookies from 'universal-cookie';
+
+//Obtención del id del usuario con sesión activa
+const cookies = new Cookies();
+//Obtención del rol del usuario con sesión activa
+let validatorrol = cookies.get('rol');
+let validatorid = cookies.get('id_usuario');
 
 function Proyectos() {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
@@ -13,7 +20,7 @@ function Proyectos() {
     const[show3,setShow3] = useState(true);// Lista de precios
     /*==================================================================================================================*/
 
-    /*======================================== Buscador de proyectos ========================================*/
+/*======================================== Buscador de proyectos ========================================*/
     // Almacenamiento de todos los proyectos existentes
     const[listaProyectos, setListaProyectos] = useState([]);
 
@@ -30,14 +37,28 @@ function Proyectos() {
     useEffect(()=>{
         const getProyectos = async () => {
             try{
-                const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/view1');
-                const newValidarProy = [];
-                let i = Object.keys(resProy.data.data);
-                for (let x = 0; x < i.length; x++) {
-                    newValidarProy[x] = true;
+                //console.log('Este es el id del usuario activo:', validatorid);
+                //console.log('Este es el rol del usuario activo:', validatorrol)
+                if(validatorrol === "administrador"){
+                    const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/viewadmin');
+                    const newValidarProy = [];
+                    let i = Object.keys(resProy.data.data);
+                    for (let x = 0; x < i.length; x++) {
+                        newValidarProy[x] = true;
+                    }
+                    setvalidarProy([...validarProy, newValidarProy])
+                    setListaProyectos(resProy.data.data);
+                }else{
+                    const resProy = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                    const newValidarProy = [];
+                    let i = Object.keys(resProy.data.data);
+                    for (let x = 0; x < i.length; x++) {
+                        newValidarProy[x] = true;
+                    }
+                    setvalidarProy([...validarProy, newValidarProy])
+                    setListaProyectos(resProy.data.data);
                 }
-                setvalidarProy([...validarProy, newValidarProy])
-                setListaProyectos(resProy.data.data);
+                
                 const resC = await axios.get("http://localhost:4001/api/cotizador/clientes/view");
                 setListaC(resC.data.reSql);
             }catch(error){
@@ -103,7 +124,6 @@ function Proyectos() {
                 }
             setvalidarSP([...validarSP, newValidarSP])
             setListaSP(resPSP.data.data);
-            
             const respuesta = await axios.get("http://localhost:4001/api/cotizador/proveedor/view");
             setListaProv(respuesta.data.data);
         }catch(error){
@@ -120,6 +140,12 @@ function Proyectos() {
     async function getDatosPrecios(sp_id){
         try{
             const resPrecSP = await axios.get(`http://localhost:4001/api/cotizador/precio/viewSPP/${sp_id}`);
+            const newValidarPrecio = [];
+                let i = Object.keys(resPrecSP.data.data);
+                for (let x = 0; x < i.length; x++) {
+                    newValidarPrecio[x] = true;
+                }
+            setvalidarPrecio([...validarPrecio, newValidarPrecio])
             setListaPrecios(resPrecSP.data.data);
         }catch(error){
             console.log(error);
@@ -417,7 +443,54 @@ function Proyectos() {
         }
     }
     /*=================================================================================================================================*/
+    /*=================================== Edición de los datos de un precio ===================================*/
+    // Habilitar/Deshabilitar inputs
+    const [habilitarPrecio, setHabilitarPrecio] = useState(false);
 
+    const [keyRegistroPrecio, SetKeyregistroPrecio] = useState('');
+    const [validarPrecio, setvalidarPrecio] = useState([]);
+
+    // const {
+    //     actualizacionPar,
+    //     handleInputChangePartida
+    // } = EditPartida();
+    
+
+    const enablePrecio = (key) => {
+        const newARR = [];
+        //console.log(validar);
+        let i = Object.keys(listaPrecios);
+        for (let x = 0; x < i.length; x++) {
+            newARR[x] = validarPrecio[0][x];
+        }
+        //console.log(newARR);    
+        for (let y = 0; y < i.length; y++) {
+            if (y === parseInt(key)) {
+                newARR[y] = !validarPrecio[0][y];
+            }
+            if (y !== parseInt(key)) {
+                newARR[y] = true
+            };
+        }
+        setvalidarPrecio([newARR]);
+        SetKeyregistroPrecio(key);
+    }
+
+    const envioDataPrecio = (datos, key) => {
+        if(key === ''){
+            setHabilitarPrecio(!habilitarPrecio);   
+        }else{
+            setHabilitarPrecio(!habilitarPrecio);
+            //actualizacionPrecio(datos[key]);
+            actualizarPagePrecio(key);
+        }
+        
+    }
+
+    const actualizarPagePrecio = (key) => {
+        enablePrecio(key);
+    }
+    /*===========================================================================================================*/
     return (
         <div className="contenido-usuarios">
             <div className="table-responsive">
@@ -818,13 +891,63 @@ function Proyectos() {
 
                                                             <tbody>
                                                                 {Object.keys(listaPrecios).map((key) => (    
-                                                                <tr key={listaPrecios[key].precio_id} >  
-                                                                    <td>{listaPrecios[key].precio_lista}</td>  
-                                                                    <td>{listaPrecios[key].precio_unitario}</td>  
-                                                                    <td>{listaPrecios[key].precio_descuento}</td> 
-                                                                    <td>{listaPrecios[key].precio_total}</td>
-                                                                    <td>{listaPrecios[key].moneda_nombre}</td>
-                                                                    <td><button className="btn btn-primary modificar">Modificar</button></td>    
+                                                                <tr key={listaPrecios[key].precio_id}>
+                                                                    <td>
+                                                                        <input
+                                                                        className="input-name" 
+                                                                        defaultValue={listaPrecios[key].precio_lista} 
+                                                                        disabled={validarPrecio[0][key]} 
+                                                                        //onChange={}
+                                                                        name="precio_lista" 
+                                                                        ></input>  
+                                                                    </td> 
+                                                                    <td>
+                                                                        <input
+                                                                        className="input-name" 
+                                                                        defaultValue={listaPrecios[key].precio_unitario} 
+                                                                        disabled={validarPrecio[0][key]} 
+                                                                        //onChange={}
+                                                                        name="precio_unitario" 
+                                                                        ></input>  
+                                                                    </td>  
+                                                                    <td>
+                                                                        <input
+                                                                        className="input-name" 
+                                                                        defaultValue={listaPrecios[key].precio_descuento} 
+                                                                        disabled={validarPrecio[0][key]} 
+                                                                        //onChange={}
+                                                                        name="precio_descuento" 
+                                                                        ></input>  
+                                                                    </td> 
+                                                                    <td>
+                                                                        <input
+                                                                        className="input-name" 
+                                                                        defaultValue={listaPrecios[key].precio_total} 
+                                                                        disabled={validarPrecio[0][key]} 
+                                                                        //onChange={}
+                                                                        name="precio_total" 
+                                                                        ></input>  
+                                                                    </td> 
+                                                                    <td>
+                                                                        <select 
+                                                                        id="lista-opciones" 
+                                                                        name="precio_id_moneda" 
+                                                                        defaultValue={listaPrecios[key].precio_id_moneda} 
+                                                                        disabled={validarPrecio[0][key]} 
+                                                                        //onChange={editHandleInputChangeSP}
+                                                                        >
+                                                                            <option value={0}></option>
+                                                                            <option value={1}>MXN</option>
+                                                                            <option value={2}>USD</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button 
+                                                                        className="btn btn-primary modificar"
+                                                                        onClick={()=>{enablePrecio(key); envioDataPrecio(listaPrecios,keyRegistroPrecio)}}
+                                                                        >{habilitarPrecio ? "Aceptar" : "Modificar"}
+                                                                        </button>
+                                                                    </td>    
                                                                 </tr>  
                                                                 ))
                                                                 }
