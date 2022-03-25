@@ -24,7 +24,7 @@ function AdministrarUsuarios() {
         const confirmacion = window.confirm("¿Seguro que quieres borrar este registro?" );
         if (confirmacion) {
             console.log(dato);
-            const respuesta = await axios.delete(`http://localhost:4001/api/cotizador/delete/${dato}`);
+            const respuesta = await axios.delete(`http://localhost/node/api/cotizador/delete/${dato}`);
             console.log(respuesta.data);
             llamado();
         } else {
@@ -62,19 +62,19 @@ function AdministrarUsuarios() {
         let newpassword = email
         console.log("este es el email", email)
         console.log("este es el id usuario", id_usuario)
-        const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/pass/${id_usuario}`, {password:newpassword, estado_login});
+        const respuesta = await axios.put(`http://20.200.100.210/node/api/cotizador/edit/pass/${id_usuario}`, {password:newpassword, estado_login});
         alert('Reseteo de la contraseña efectuado exitosamente')
     }
 
     const llamado = async () => {
-        const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
+        const respuesta = await axios.get('http://20.200.100.210/node/api/cotizador/registro');
         setlistaUsarios(respuesta.data.reSql);
         
     }
     const llamadoUsuario = async () => {
         setShow2(!show2);
         const newValidar = [];
-        const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
+        const respuesta = await axios.get('http://20.200.100.210/node/api/cotizador/registro');
         let i = Object.keys(respuesta.data.reSql);
         for (let x = 0; x < i.length; x++) {
             newValidar[x] = true;
