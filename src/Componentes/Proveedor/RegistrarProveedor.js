@@ -1,11 +1,16 @@
 import React from 'react'
+import { InsertDatosProvedor } from '../../Routes/GuardarProveedor'
 
 function RegistrarProveedor() {
+
+  const {handleInputChange,enviarDatosProv} = InsertDatosProvedor();
+
+
   return (
     <div className="contenido-main-registro">
         <div className="scene flex">
           <section className="card-body">
-            <form  method="post" className="card-form"/*  onSubmit = {enviarDatos} */>
+            <form  method="post" className="card-form" onSubmit = {enviarDatosProv}>
                 {/*========= Registrar Clientes========= */}
               <h2 >  <span>Registrar Proveedor</span> </h2>
    {/*========= Nombre Cliente========= */}
@@ -15,9 +20,9 @@ function RegistrarProveedor() {
               <input
                 id="user"
                 type="text"
-                name='nombre_proveedor'
+                name='proveedor_nombre'
                 className="card-input"
-                o/* nChange={handleInputChange} */
+                onChange={handleInputChange} 
                 placeholder="Ingrese Nombre del Proveedor"
               />
     {/*========= Razón Social ========= */}
@@ -27,8 +32,8 @@ function RegistrarProveedor() {
               <input
                 id="user2"
                 type="number"
-                name ="telefono"
-               /*  onChange={handleInputChange} */
+                name ="proveedor_telefono"
+                onChange={handleInputChange} 
                 className="card-input"
                 placeholder="Ingrese Teléfono"
               />
@@ -40,8 +45,8 @@ function RegistrarProveedor() {
               <input
                 id="user2"
                 type="email"
-                name ="correo"
-              /*   onChange={handleInputChange} */
+                name ="proveedor_email"
+                onChange={handleInputChange}
                 className="card-input"
                 placeholder="Ingrese Correo Electronico"
               />
