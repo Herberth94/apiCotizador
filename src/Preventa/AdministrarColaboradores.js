@@ -4,6 +4,11 @@ import axios from "axios";
 import { useRegistro } from "../Routes/ModificarCLientes";
 import Animaciones from "../Componentes/Animaciones";
 
+import Cookies from 'universal-cookie';
+
+
+const cookies = new Cookies();
+let validatorid = cookies.get('id_usuario');
 
 
 
@@ -48,8 +53,8 @@ function AdministrarColaboradores() {
       "¿Seguro que quieres borrar este registro?"
     );
     if (confirmacion) {
-      //console.log(dato);
-      const respuesta = await axios.delete(`http://localhost:4001/api/cotizador/clientes/delete/${dato}` );
+      console.log(dato);
+      const respuesta = await axios.delete(`http://localhost:4001/api/cotizador/colaboradores/delete/${dato}` );
       console.log(respuesta.data);
       llamado();
     } else {
@@ -58,9 +63,10 @@ function AdministrarColaboradores() {
   };
   const llamado = async () => {
     const respuesta = await axios.get(
-      "http://localhost:4001/api/cotizador/clientes/view"
+      `http://localhost:4001/api/cotizador/colaboradores/view/${validatorid}`
     );
-    setlistaClientes(respuesta.data.reSql);
+    setlistaClientes(respuesta.data.data);
+    console.log("soy la respuesta data del llamado", respuesta.data)
   };
   
   const llamadoCliente = async () => {
@@ -68,17 +74,17 @@ function AdministrarColaboradores() {
     const newValidar = [];
     try {
       const respuesta = await axios.get(
-        "http://localhost:4001/api/cotizador/clientes/view"
+        `http://localhost:4001/api/cotizador/colaboradores/view/${validatorid}`
       );
-      //console.log(respuesta.data.reSql);
-      let i = await  Object.keys(respuesta.data.reSql);
+      console.log("soy la respuesta data del llamadoCliente", respuesta.data.data);
+      let i = await  Object.keys(respuesta.data.data);
       for (let x = 0; x < i.length; x++) {
          newValidar[x] = true;
       }
      setvalidar([...validar, newValidar]);
-     setlistaClientes(respuesta.data.reSql);
-     //console.log(listaClientes);
-     //console.log(validar);
+     setlistaClientes(respuesta.data.data);
+     console.log("soy lista clientes", listaClientes);
+     console.log("soy validar", validar);
       
     } catch (error) {
       
@@ -138,7 +144,7 @@ function AdministrarColaboradores() {
                   <tr className="titulo-tabla-usuarios">
                     <th>ID</th>
                     <th>Colaborador</th>
-                    <th>Fecha</th>
+                    <th>Clave Proyecto</th>
                     <th>Eliminar</th>
                     <th>Modificar</th>
                   </tr>
@@ -146,12 +152,12 @@ function AdministrarColaboradores() {
                 <tbody>
                   {/*=================== Contenido Tabla Clientes =================*/}
                   {Object.keys(listaClientes).map((key) => (
-                    <tr key={listaClientes[key].cliente_id}>
-                      <td>{listaClientes[key].cliente_id}</td>
+                    <tr key={listaClientes[key].colab_id}>
+                      <td>{listaClientes[key].colab_id}</td>
                       <td>
                         <input
                           className="input-name"
-                          defaultValue={listaClientes[key].nombre_cliente}
+                          defaultValue={listaClientes[key].email}
                           onChange={handleInputChange}
                           disabled={validar[0][key]}
                           name="nombre_cliente"
@@ -161,7 +167,7 @@ function AdministrarColaboradores() {
                       <td>
                         <input
                           className="input-name"
-                          defaultValue={listaClientes[key].razon_social}
+                          defaultValue={listaClientes[key].proyecto_clave}
                           onChange={handleInputChange}
                           disabled={validar[0][key]}
                           name="razon_social"
@@ -175,7 +181,7 @@ function AdministrarColaboradores() {
                         <button
                           className="btn btn-primary eliminar"
                           onClick={() =>
-                            borrarCliente(listaClientes[key].id_cliente)
+                            borrarCliente(listaClientes[key].id_usuario)
                           }
                         >
                           {" "}

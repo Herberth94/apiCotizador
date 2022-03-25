@@ -24,6 +24,8 @@ import Registro from './Administrator/RegistrarUsuarios';
 import Usuarios from "./Administrator/AdministrarUsuarios";
 import CambioContraseña from "./Componentes/CambioContraseña";
 
+import RegistrarProveedor from "./Administrator/RegistrarProveedor";
+
 
 import PTN_BOM from "./Administrator/PTN-BOM/PTN_BOM";
 import AM from "./Administrator/AM/AmMenu";
@@ -74,6 +76,9 @@ function App() {
         
         <Administrador exact path="/registrar" component={Registro} />
         <Administrador exact path="/registrar-cliente" component={Clientes} />
+        <Administrador exact path="/registrar-proveedor" component={RegistrarProveedor} />
+
+   
         <Administrador exact path="/usuarios" component={Usuarios} />
         <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />
         <Administrador exact path="/ptn" component={PTN_BOM} />
@@ -85,7 +90,7 @@ function App() {
 
         <Preventa path="/" component={MenuPreventa} />
         {/* oooo */}
-        <Preventa exact path="/" component={CambioContraseña} />
+        <Preventa exact path ="/" component={CambioContraseña} />
 
         <Preventa path="/agregar-cliente" component={Clientes} />
         <Preventa path="/administrar-clientes" component={AdministrarClientes } />
@@ -98,7 +103,7 @@ function App() {
         {/*========================== Páginas Ventas ==========================*/}
         <Venta path="/" component={MenuVentas} />
         {/* oooo */}
-        <Venta exact  path="/" component={CambioContraseña} />
+        <Venta path="/" component={CambioContraseña} />
         <Venta path="/am2" component={AMVentas} />
         <Venta path="/proporcionalidad" component={ProporcionalidadVentas} />
 

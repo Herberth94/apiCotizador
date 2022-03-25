@@ -1,97 +1,82 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Table from "react-bootstrap/Table";
 import axios from 'axios';
 
-import {calcularMonedaBOOM} from "./Operaciones";
-/*======== Datos que se deben Obtener de este archivo  ==============*/
+import {url2} from "../../Componentes/Ocultar";
+import Cookies from 'universal-cookie';
 
-const nombreCategorias = [
-    {categoria: "Accesorios", totalMXN: 100, totalUSD: 5 , total: 10},
-    {categoria: "Mesa de Ayuda", totalUSD: 5,totalUSD: 5 , total: 10},
-    {categoria: "Servicios PTN", totalMXN: 200 , totalUSD: 5 , total: 10},
-    {categoria: "Capacitacion", totalMXN: 200 , totalUSD: 5 , total: 10},
-  ];
-
-
-
+const cookies = new Cookies();
+let validatorid = cookies.get('id_usuario');
 
 function Categorias() {
+    /*=================================== Obtención de datos para la tabla cat_totales ===================================*/
+    /*=================================== Totales capacitación ===================================*/
+    // Almacenamiento de los totales
     const [datosCapacitacion,setDatosCapacitacion] = useState({
         ct_totales_mxn:'',
         ct_totales_usd:''
     });
 
-    const [datosAccesorios,setDatosAccesorios] = useState({
-        ct_totales_mxn:'',
-        ct_totales_usd:''
-    });
-
-    const [datosSptn,setDatosSptn] = useState({
-        ct_totales_mxn:'',
-        ct_totales_usd:''
-    });
-
-    const [datosMA,setDatosMA] = useState({
-        ct_totales_mxn:'',
-        ct_totales_usd:''
-    });
-
+    // Obtención de los datos introducidos en los input
     const handleInputChangeCapacitacion = (event) =>{
         setDatosCapacitacion({
             ...datosCapacitacion, [event.target.name] : event.target.value
         })
     }
+    /*============================================================================================*/
 
+    /*=================================== Totales accesorios ===================================*/
+    // Almacenamiento de los totales
+    const [datosAccesorios,setDatosAccesorios] = useState({
+        ct_totales_mxn:'',
+        ct_totales_usd:''
+    });
+
+    // Obtención de los datos introducidos en los input
     const handleInputChangeAccesorios = (event) =>{
         setDatosAccesorios({
             ...datosAccesorios, [event.target.name] : event.target.value
         })
     }
+    /*==========================================================================================*/
 
+    /*=================================== Totales servicios ptn ===================================*/
+    // Almacenamiento de los totales
+    const [datosSptn,setDatosSptn] = useState({
+        ct_totales_mxn:'',
+        ct_totales_usd:''
+    });
+
+    // Obtención de los datos introducidos en los input
     const handleInputChangeSptn = (event) =>{
         setDatosSptn({
-            ...setDatosSptn, [event.target.name] : event.target.value
+            ...datosSptn, [event.target.name] : event.target.value
         })
     }
+    /*=============================================================================================*/
 
+    /*=================================== Totales mesa de ayuda ===================================*/
+    // Almacenamiento de los totales
+    const [datosMA,setDatosMA] = useState({
+        ct_totales_mxn:'',
+        ct_totales_usd:''
+    });
+
+    // Obtención de los datos introducidos en los input
     const handleInputChangeMA = (event) =>{
         setDatosMA({
             ...datosMA, [event.target.name] : event.target.value
         })
     }
+    /*=============================================================================================*/
+    /*====================================================================================================================*/
 
-    //Cálculo de la moneda boom, por defecto se utilizara el valor del dolar = 20.92
-    const [datosMBOOM, setDatosBoom] = useState ({
-        bCapacitacion:'',
-        bAccesorios:'',
-        bSPTN:'',
-        bMA:''
-    })
-    // useEffect(() => {
-    //     let totalBOOM = '';
-    //     if(datosCapacitacion.ct_totales_mxn != '' && datosCapacitacion.ct_totales_usd != ''){
-    //         totalBOOM = calcularMonedaBOOM(datosCapacitacion.ct_totales_mxn,datosCapacitacion.ct_totales_usd)
-    //         setDatosBoom({...datosMBOOM, bCapacitacion:totalBOOM})
-    //     }
-    //     if(datosAccesorios.ct_totales_mxn != '' && datosAccesorios.ct_totales_usd != ''){
-    //         totalBOOM = calcularMonedaBOOM(datosAccesorios.ct_totales_mxn,datosAccesorios.ct_totales_usd)
-    //         setDatosBoom({...datosMBOOM, bAccesorios:totalBOOM})
-    //     }
-    //     if(datosSptn.ct_totales_mxn != '' && datosSptn.ct_totales_usd != ''){
-    //         totalBOOM = calcularMonedaBOOM(datosSptn.ct_totales_mxn,datosSptn.ct_totales_usd)
-    //         setDatosBoom({...datosMBOOM, bSPTN:totalBOOM})
-    //     }
-    //     if(datosMA.ct_totales_mxn != '' && datosMA.ct_totales_usd != ''){
-    //         totalBOOM = calcularMonedaBOOM(datosMA.ct_totales_mxn,datosMA.ct_totales_usd)
-    //         setDatosBoom({...datosMBOOM, bMA:totalBOOM})
-    //     }
-    // },[datosCapacitacion.ct_totales_mxn,datosCapacitacion.ct_totales_usd,datosAccesorios.ct_totales_mxn,datosAccesorios.ct_totales_usd,
-    // datosSptn.ct_totales_mxn,datosSptn.ct_totales_usd,datosMA.ct_totales_mxn,datosMA.ct_totales_usd])
+    /*============================= Inserción de datos en las tablas cat_totales y proyectos_cat_cat_t =============================*/
     async function SendCategorias (){
         const dataCapacitacon = {
             ct_totales_mxn:datosCapacitacion.ct_totales_mxn,
             ct_totales_usd:datosCapacitacion.ct_totales_usd
-          };
+        };
 
         const dataAccesorios = {
           ct_totales_mxn:datosAccesorios.ct_totales_mxn,
@@ -103,10 +88,10 @@ function Categorias() {
             ct_totales_usd:datosSptn.ct_totales_usd
           };
           
-          const dataMA = {
+        const dataMA = {
             ct_totales_mxn:datosMA.ct_totales_mxn,
             ct_totales_usd:datosMA.ct_totales_usd
-          };
+        };
         
           var ListaProyectos = {
             proyecto_id:'',
@@ -122,197 +107,154 @@ function Categorias() {
             proyecto_id:''
           }
 
+          const dataEstatus = {
+              proyecto_estatus: 'En revision'
+          }
+
         try{
-            /*======== Obtención del id del último proyecto insertado ==============*/
-            const resGetProyectos = await axios.get("http://localhost:4001/api/cotizador/proyecto/view");
+            // Obtención del id del último proyecto insertado
+            const resGetProyectos = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
             ListaProyectos = resGetProyectos.data.data.pop();
             proyectoId.proyecto_id = ListaProyectos.proyecto_id;
 
-            const resCatCap = await axios.post(`http://localhost:4001/api/cotizador/catt/agregar/1/${proyectoId.proyecto_id}`,dataCapacitacon);
-            const resCatAcc = await axios.post(`http://localhost:4001/api/cotizador/catt/agregar/2/${proyectoId.proyecto_id}`,dataAccesorios);
-            const resCatSPTN = await axios.post(`http://localhost:4001/api/cotizador/catt/agregar/3/${proyectoId.proyecto_id}`,dataSptn);
-            const resCatMA = await axios.post(`http://localhost:4001/api/cotizador/catt/agregar/4/${proyectoId.proyecto_id}`,dataMA);
-            alert('Registro exitoso')
-            }
-            catch (error){
-            console.log("este es el error", error.toJSON());
+            // Inserciones a las tablas cat_totales y proyectos_cat_cat_t
+            await axios.post(url2 + `/api/cotizador/catt/agregar/1/${proyectoId.proyecto_id}`,dataCapacitacon);
+            await axios.post(url2 + `/api/cotizador/catt/agregar/2/${proyectoId.proyecto_id}`,dataAccesorios);
+            await axios.post(url2 + `/api/cotizador/catt/agregar/3/${proyectoId.proyecto_id}`,dataSptn);
+            await axios.post(url2 + `/api/cotizador/catt/agregar/4/${proyectoId.proyecto_id}`,dataMA);
+            await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
+            alert('Finalización de proyecto exitoso')
+            alert('El proyecto entro a estatus en revisón')
+        }catch (error){
+        console.log("este es el error", error);
         }
-    
-      }
-      const enviarDatosCategorias = (event) =>{
+    }
+
+      const envariDatosCatt = (event) =>{
           SendCategorias();
           event.preventDefault()
-          //event.target.reset();
+          event.target.reset();
       }
+    /*==============================================================================================================================*/
+
     return (
         <div className="contenido-usuarios">
-  {/*========================== Categorias ==========================*/}
-            <Table responsive id="nombreDiv">
-                <thead>
-   {/*========================== Titulos Tabla ==========================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>Categoría</th>
-                        <th>Total MXN</th>
-                        <th>Total USD </th>
-                        <th>Total Moneda BOM </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className="">
-                        <td> Capacitación</td>
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="number"
-                                name="ct_totales_mxn"
-                                onChange={handleInputChangeCapacitacion}
-                                placeholder="Total capacitación MXN"
-                            />
-                        </td>
+            <form action="" method="post" onSubmit = {envariDatosCatt}>
+                <Table responsive id="nombreDiv">
+                    <thead>
+                        {/*========================== Titulos Tabla ==========================*/}
+                        <tr className="titulo-tabla-usuarios">
+                            <th>Categoría</th>
+                            <th>Total MXN</th>
+                            <th>Total USD </th>
+                        </tr>
+                    </thead>
+                    {/*========================== Totales capacitación ==========================*/}
+                    <tbody>
+                        <tr className="">
+                            <td> Capacitación</td>
+                            <td>
+                                {" "}
+                                <input
+                                    className="agregar"
+                                    type="number"
+                                    name="ct_totales_mxn"
+                                    onChange={handleInputChangeCapacitacion}
+                                    placeholder="Total capacitación MXN"
+                                />
+                            </td>
 
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="number"
-                                name="ct_totales_usd"
-                                onChange={handleInputChangeCapacitacion}
-                                placeholder="Total capacitación USD"
-                            />
-                        </td>
+                            <td>
+                                {" "}
+                                <input
+                                    className="agregar"
+                                    type="number"
+                                    name="ct_totales_usd"
+                                    onChange={handleInputChangeCapacitacion}
+                                    placeholder="Total capacitación USD"
+                                />
+                            </td>
+                        </tr>
+                        {/*========================== Totales accesorios ==========================*/}
+                        <tr className="">
+                            <td> Accesorios</td>
+                            <td>
+                                {" "}
+                                <input
+                                    className="agregar"
+                                    type="number"
+                                    name="ct_totales_mxn"
+                                    onChange={handleInputChangeAccesorios}
+                                    placeholder="Total Accesorios MXN"
+                                />
+                            </td>
 
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="text"
-                                name="bapacitacion" 
-                                // readonly
-                                // value={datosMBOOM.bCapacitacion}
-                                placeholder="Moneda BOM"
-                                step="any"
-                            />
-                        </td>
-                    </tr>
+                            <td>
+                                {" "}
+                                <input
+                                    className="agregar"
+                                    type="number"
+                                    name="ct_totales_usd"
+                                    onChange={handleInputChangeAccesorios}
+                                    placeholder="Total Accesorios USD"
+                                />
+                            </td>
+                        </tr>
+                        {/*========================== Totales servicios ptn ==========================*/}
+                        <tr className="">
+                            <td> Servicios PTN</td>
+                            <td>
+                                {" "}
+                                <input
+                                    className="agregar"
+                                    type="number"
+                                    name="ct_totales_mxn"
+                                    onChange={handleInputChangeSptn}
+                                    placeholder="Total Servicios PTN MXN"
+                                />
+                            </td>
 
-                    <tr className="">
-                        <td> Accesorios</td>
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="number"
-                                name="ct_totales_mxn"
-                                onChange={handleInputChangeAccesorios}
-                                placeholder="Total Accesorios MXN"
-                            />
-                        </td>
+                            <td>
+                                {" "}
+                                <input
+                                    className="agregar"
+                                    type="number"
+                                    name="ct_totales_usd"
+                                    onChange={handleInputChangeSptn}
+                                    placeholder="Total Servicios PTN USD"
+                                />
+                            </td>
 
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="number"
-                                name="ct_totales_usd"
-                                onChange={handleInputChangeAccesorios}
-                                placeholder="Total Accesorios USD"
-                            />
-                        </td>
+                        </tr>
+                        {/*========================== Totales mesa de ayuda ==========================*/}
+                        <tr className="">
+                            <td> Mesa de Ayuda</td>
+                            <td>
+                                {" "}
+                                <input
+                                    className="agregar"
+                                    type="number"
+                                    name="ct_totales_mxn"
+                                    onChange={handleInputChangeMA}
+                                    placeholder="Total Mesa de Ayuda MXN"
+                                />
+                            </td>
 
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="text"
-                                name="bAccesorios"
-                                //readOnly
-                                //value={datosMBOOM.bAccesorios}
-                                placeholder="Moneda BOM"
-                                step="any"
-                            />
-                        </td>
-                    </tr>
-
-                    <tr className="">
-                        <td> Servicios PTN</td>
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="number"
-                                name="ct_totales_mxn"
-                                onChange={handleInputChangeSptn}
-                                placeholder="TotalServicios PTN MXN"
-                            />
-                        </td>
-
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="number"
-                                name="ct_totales_usd"
-                                onChange={handleInputChangeSptn}
-                                placeholder="Total Servicios PTN USD"
-                            />
-                        </td>
-
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="text"
-                                name="bSPTN"
-                                //readOnly
-                                //value={datosMBOOM.bSPTN}
-                                placeholder="Moneda BOM"
-                                step="any"
-                            />
-                        </td>
-                    </tr>
-
-                    <tr className="">
-                        <td> Mesa de Ayuda</td>
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="number"
-                                name="ct_totales_mxn"
-                                onChange={handleInputChangeMA}
-                                placeholder="Total Mesa de Ayuda MXN"
-                            />
-                        </td>
-
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="number"
-                                name="ct_totales_usd"
-                                onChange={handleInputChangeMA}
-                                placeholder="Total Mesa de Ayuda USD"
-                            />
-                        </td>
-
-                        <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="text"
-                                name="bMA"
-                                //readonly
-                                //value={datosMBOOM.bMA}
-                                placeholder="Moneda BOM"
-                                step="any"
-                            />
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
-            <button className="btn btn-success" onClick={enviarDatosCategorias}>Agregar Datos Categoria </button>
-
+                            <td>
+                                {" "}
+                                <input
+                                    className="agregar"
+                                    type="number"
+                                    name="ct_totales_usd"
+                                    onChange={handleInputChangeMA}
+                                    placeholder="Total Mesa de Ayuda USD"
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </Table>
+                <button className="btn btn-success">Agregar Datos Categoria </button>
+            </form>
         </div>
     )
 }
