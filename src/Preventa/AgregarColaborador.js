@@ -30,6 +30,12 @@ function Colaborador() {
     // Almacenamiento del email introducido
     const[emailU,setEmailU] = useState([]);
 
+    // Almacenamiento del estado del id_usuario
+    const[idUsuariosState, setIdUsuarios] = useState();
+
+    // Almacenamiento del id_proyecto
+    const[idProyectoState, setIdProyecto] = useState();
+
     // Función que realiza la consulta a la tabla proyecto
     useEffect(()=>{
         const getProyectos = async () => {
@@ -37,12 +43,15 @@ function Colaborador() {
                 if(validatorrol === "administrador"){
                     const resProy = await axios.get(url +'/api/cotizador/proyecto/viewadmin');
                     setListaProyectos(resProy.data.data);
+                    console.log(resProy.data.data)
                 }else{
                     const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                     setListaProyectos(resProy.data.data);
+                    console.log("hola soy el else del getproyectos", resProy.data.data)
                 }
                 const users = await axios.get(url +'/api/cotizador/registro');
                 setListaUsuarios(users.data.reSql);
+                console.log("hola soy el users data", users.data.reSql)
                 
             }catch(error){
                 console.log(error);
@@ -66,9 +75,12 @@ function Colaborador() {
     }
 
     // Función que obtiene la clave del proyecto seleccionado
-    const onSuggestHandlerProyecto = (clave) => {
+    const onSuggestHandlerProyecto = (clave, proyecto_id) => {
       setClaveP(clave);
       setSuggestionsProyectos([]);
+      setIdProyecto(proyecto_id)
+      console.log("id_proyecto: ", proyecto_id)
+      console.log("hola soy la clave del proyecto", clave)
     }
 
     // Función que realiza la busqueda de los usuarios semejantes al email introducido
@@ -85,9 +97,11 @@ function Colaborador() {
     }
 
     // Función que obtiene el email del usuario seleccionado
-    const onSuggestHandlerEmail = (email) => {
+    const onSuggestHandlerEmail = (email, id_usuario) => {
       setEmailU(email);
       setSuggestionsUsuarios([]);
+      setIdUsuarios(id_usuario);
+      console.log("id usuario dentro del onsuggest",id_usuario)
     }
 
     // Almacenamiento del id cliente encontrado en la busqueda
@@ -95,15 +109,35 @@ function Colaborador() {
 
     // Función que realiza la inserción del colaborador 
     async function Send (){
-      // Obtención del id del cliente que se seleccionó en la búsqueda
+
+      const mandarInformacion ={
+        colab_id_usuario: idUsuariosState,
+        colab_id_proyecto: idProyectoState
+      }
+      //Obtención del id del cliente que se seleccionó en la búsqueda
       // let i = Object.keys(listaProyectos);
       // for (let c = 0; c < i.length; c++) {
       //   if (claveP === listaProyectos[c].proyecto_clave) {
       //     proyectoId.proyecto_id = listaProyectos[c].proyecto__id
-      //     console.log(proyectoId);
+      //     console.log("id del proyecto escogido", proyectoId);
       //   }        
       // }
-    }  
+
+      // let u = Object.keys(listaUsuarios);
+      // for (let c = 0; c < i.length; c++) {
+      //   if (emailU === listaUsuarios[c].email)
+
+      // }
+      try{
+        const respuesta = await axios.post('http://localhost:4001/api/cotizador/colaboradores/insert', mandarInformacion);
+        const send2 = respuesta.mandarInformacion;
+        alert('Colaborador agregado exitosamente')
+      }catch(error){
+        console.log(error)
+      }
+      
+    }
+      
   /*=======================================================================================================*/
 
     return (
@@ -127,7 +161,7 @@ function Colaborador() {
                 placeholder="Ingrese Correo del Colaborador"
               />
               {suggestionsUsuarios &&suggestionsUsuarios.map((suggestionU,i)=>
-                <div key={i} className="selectCliente" onClick={() => onSuggestHandlerEmail(suggestionU.email)}>
+                <div key={i} className="selectCliente" onClick={() => onSuggestHandlerEmail(suggestionU.email, suggestionU.id_usuario)}>
                 {suggestionU.email}
               </div>
               )}
@@ -146,7 +180,7 @@ function Colaborador() {
                 placeholder="Ingrese Clave del Proyecto"
               />
               {suggestionsProyecto &&suggestionsProyecto.map((suggestionP,i)=>
-                <div key={i} className="selectCliente" onClick={() => onSuggestHandlerProyecto(suggestionP.proyecto_clave)}>
+                <div key={i} className="selectCliente" onClick={() => onSuggestHandlerProyecto(suggestionP.proyecto_clave, suggestionP.proyecto_id)}>
                 {suggestionP.proyecto_clave}
               </div>
               )}
@@ -183,9 +217,9 @@ function Colaborador() {
                 </button>
               </div>
             </form>
-            <button className="card-button" onClick={() => {Send()}}>
+            {/* <button className="card-button" onClick={() => {Send()}}>
                   <span>Agregar al Proyecto</span>
-                </button>
+                </button> */}
           </section>
         </div>
       </div>
