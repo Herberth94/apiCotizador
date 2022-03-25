@@ -4,7 +4,11 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../Componentes/Animaciones";
 
 
-function RegistrarProveedor() {
+import RegistrarProveedor from "../Componentes/Proveedor/RegistrarProveedor";
+import RegistrarMarcas from "../Componentes/Proveedor/RegistrarMarcas";
+
+
+function MenuProveedor() {
 
 
         //Habilitar/Deshabilitar tabla del resumen AM
@@ -48,7 +52,7 @@ function RegistrarProveedor() {
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-
+             <RegistrarProveedor/>
           </div>
         )}
       </td>
@@ -69,7 +73,7 @@ function RegistrarProveedor() {
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-  
+            <RegistrarMarcas/>
           </div>
         )}
       </td>
@@ -112,4 +116,4 @@ function RegistrarProveedor() {
   )
 }
 
-export default RegistrarProveedor
+export default MenuProveedor

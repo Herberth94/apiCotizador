@@ -24,7 +24,7 @@ import Registro from './Administrator/RegistrarUsuarios';
 import Usuarios from "./Administrator/AdministrarUsuarios";
 import CambioContraseña from "./Componentes/CambioContraseña";
 
-import RegistrarProveedor from "./Administrator/RegistrarProveedor";
+import MenuProveedor from "./Administrator/MenuProveedor";
 
 
 import PTN_BOM from "./Administrator/PTN-BOM/PTN_BOM";
@@ -76,7 +76,7 @@ function App() {
         
         <Administrador exact path="/registrar" component={Registro} />
         <Administrador exact path="/registrar-cliente" component={Clientes} />
-        <Administrador exact path="/registrar-proveedor" component={RegistrarProveedor} />
+        <Administrador exact path="/registrar-proveedor" component={MenuProveedor} />
 
    
         <Administrador exact path="/usuarios" component={Usuarios} />

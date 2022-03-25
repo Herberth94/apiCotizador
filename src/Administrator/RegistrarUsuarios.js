@@ -35,7 +35,7 @@ function Registro() {
             </label>
             <input
               id="user"
-              type="text"
+              type="email"
               name ="email"
               onChange={handleInputChange}
               className="card-input"
