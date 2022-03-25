@@ -8,14 +8,20 @@ import PTN_BOM from "../PTN-BOM/PTN_BOM";
 
 export const GetDatosProyecto = () => {
   /*=============================== Función que consulta los datos de un proyeco para el resumen AM ===============================*/
-    // Almacenamiento de datos
+    // Almacenamiento de los totales de las partidas
     const [totalesP,setTotalesP] = useState([]);
+
+    // Almacenamiento de los totales de las categorías
+    const [totalesC,setTotalesC] = useState([]);
 
     async function consultarTotalesP(id){
         //console.log(id)
         try{
             const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
             setTotalesP(resProy.data.data);
+
+            const resProyCats = await axios.get(url2 + `/api/cotizador/catt/view/${id}`);
+            setTotalesC(resProyCats.data.data);
             
         }catch (error){
             console.log(error);
@@ -24,6 +30,7 @@ export const GetDatosProyecto = () => {
     }
     /*===============================================================================================================================*/
     console.log(totalesP);
+    console.log(totalesC);
   return{
     consultarTotalesP
   }
