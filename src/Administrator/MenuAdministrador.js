@@ -44,6 +44,13 @@ function archivo() {
           </li>
 
           <li className="has-subnav">
+            <a href="/registrar-proveedor">
+              <i className="bi bi-person-plus fa-2x"></i>
+              <span className="nav-text">Registrar Proveedores</span>
+            </a>
+          </li>
+
+          <li className="has-subnav">
             <a href="/usuarios">
               <i className="bi bi-person-video2"></i>
               <span className="nav-text">Administrar Usuarios</span>

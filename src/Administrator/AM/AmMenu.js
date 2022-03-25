@@ -42,7 +42,6 @@ function AmMenu() {
           <tr className="titulo-tabla-usuarios">
             <th>Divisa</th>
             <th>Resumen AM</th>
-            <th>AM Completo</th>
             <th>Costos Indirectos</th>
           </tr>
         </thead>
@@ -87,27 +86,6 @@ function AmMenu() {
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
                 <ResumenAM/>
-                </div>
-              )}
-            </td>
-
-            <td>
-              <button
-                className="btn btn-primary modificar"
-                type="button"
-                onClick={() => {
-                  setShow3(!show3);
-                }}
-              >
-                {" "}
-                {show3 ? "Ver" : "Ocultar "}{" "}
-              </button>
-              {show3 ? (
-                <div></div>
-              ) : (
-                <div className="arregla">
-                  {/*========================== Llamado al Componente ==========================*/}
-              <MargenGanancia/>
                 </div>
               )}
             </td>
