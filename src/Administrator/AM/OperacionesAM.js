@@ -306,7 +306,7 @@ for (var i = 0; i < partidasUnicas2.length - 1; i++) {
   //Cantidad
   //Descuento Fabriaca
   descuentoCliente.push(0);
-  Cantidad.push(1);
+  Cantidad.push(2);
   desFabrica.push(0);
 }
 

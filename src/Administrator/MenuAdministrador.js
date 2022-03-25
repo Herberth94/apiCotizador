@@ -30,40 +30,50 @@ function archivo() {
             </a>
           </li>
           <li className="has-subnav">
-            <a href="/registrar">
-              <i className="bi bi-person-plus fa-2x"></i>
-              <span className="nav-text">Registrar Usuarios</span>
+            <a href="/menu-usuarios">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">Menú Usuarios</span>
             </a>
           </li>
 
           <li className="has-subnav">
-            <a href="/registrar-cliente">
-              <i className="bi bi-person-plus fa-2x"></i>
-              <span className="nav-text">Registrar Cliente</span>
+            <a href="/menu-clientes">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">Menú Clientes</span>
             </a>
           </li>
 
           <li className="has-subnav">
-            <a href="/registrar-proveedor">
-              <i className="bi bi-person-plus fa-2x"></i>
-              <span className="nav-text">Registrar Proveedores</span>
+            <a href="/menu-proveedores">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">Menú Proveedores</span>
+            </a>
+          </li>
+          
+
+
+          <li className="has-subnav">
+            <a href="/menu-colaboradores">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">Menú Colaboradores</span>
             </a>
           </li>
 
-          <li className="has-subnav">
+
+        {/*   <li className="has-subnav">
             <a href="/usuarios">
               <i className="bi bi-person-video2"></i>
               <span className="nav-text">Administrar Usuarios</span>
             </a>
           </li>
-
-          <li className="has-subnav">
+ */}
+       {/*    <li className="has-subnav">
             <a href="/administrar-clientes">
               <i className="bi bi-person-video2"></i>
               <span className="nav-text">Administrar Clientes</span>
             </a>
           </li>
-
+ */}
           {/*======================== Preventa==========================*/}
 
           <li className="has-subnav">

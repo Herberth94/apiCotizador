@@ -16,7 +16,7 @@ function Registro() {
         <section className="card-body">
           <form  action="" method="post" className="card-form" onSubmit = {enviarDatos}>
             <h2 >
-              <span>Registrar Usuario</span>
+              <span>Registrar Usuarios</span>
             </h2>
             <label htmlFor="rol">Tipo rol: </label>
 

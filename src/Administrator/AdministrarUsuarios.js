@@ -70,6 +70,15 @@ function AdministrarUsuarios() {
        const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
        setlistaUsarios(respuesta.data.reSql);
     }
+
+    const envioData = async (datos, key, data) => {
+        if(first){
+          console.log(datos[key])
+          console.log(data)
+          actualizacion(datos[key],data);
+        }
+      };
+      
   return (
         
         <div className="contenido-usuarios">
