@@ -35,7 +35,7 @@ export const CrudUsuarios = (props) => {
         key = parseInt(key);
         const newArr =[] 
         let u = Object.keys(props.usuarios);
-        u = u.length + 1;
+        u = u.length;
         for (let i = 0 ; i < u ; i++){
             if(i === key){
                 newArr[i]=!enable[i];

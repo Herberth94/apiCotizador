@@ -35,7 +35,7 @@ export const CrudClientes = (props) => {
         key = parseInt(key);
         const newArr =[] 
         let c = Object.keys(props.clientes);
-        c = c.length + 1;
+        c = c.length;
         for (let i = 0 ; i < c ; i++){
             if(i === key){
                 newArr[i]=!enable[i];
