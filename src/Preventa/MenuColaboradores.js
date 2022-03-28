@@ -4,33 +4,31 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../Componentes/Animaciones";
 
 
-import RegistrarProveedor from "../Componentes/Proveedor/RegistrarProveedor";
-import RegistrarMarcas from "../Componentes/Proveedor/RegistrarMarcas";
+import RegistrarColaboradores from "./AgregarColaborador";
+import AdministrarColaboradores from "./AdministrarColaboradores";
 
 
-function MenuProveedor() {
+function MenuColaboradores() {
 
 
         //Habilitar/Deshabilitar tabla del resumen AM
         const [show, setShow] = useState(true)
         const [show2, setShow2] = useState(true)
-        const [show3, setShow3] = useState(true)
   return (
  
  
  <div className="contenido-usuarios">
 
 
-<Animaciones mytext= " Menú Proveedores" />
+<Animaciones mytext= " Menú Clientes" />
 
 {/*========================== Tabla  Categorias ==========================*/}
 <Table responsive id="nombreDiv">
   {/*========================== Titulos Tabla ==========================*/}
   <thead>
     <tr className="titulo-tabla-usuarios">
-      <th>Registrar Proveedor</th>
-      <th>Registrar Marcas </th>
-      <th>Administrar Proveedores </th>
+      <th>Registrar Colaboradores</th>
+      <th>Administrar Colaboradores </th>
     </tr>
   </thead>
   <tbody>
@@ -52,7 +50,7 @@ function MenuProveedor() {
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-             <RegistrarProveedor/>
+             <RegistrarColaboradores/>
           </div>
         )}
       </td>
@@ -66,45 +64,17 @@ function MenuProveedor() {
           }}
         >
           {" "}
-          {show2 ? "Registrar" : "Ocultar"}{" "}
+          {show2 ? "Administrar" : "Ocultar"}{" "}
         </button>
         {show2 ? (
           <div></div>
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-            <RegistrarMarcas/>
+            < AdministrarColaboradores/>
           </div>
         )}
       </td>
-
-      <td>
-
-        {/*   Checar componente */}
-        <button
-          className="btn btn-primary modificar"
-          type="button"
-          onClick={() => {
-            setShow3(!show3);
-          }}
-        >
-          {" "}
-          {show3 ? "Administrar" : "Ocultar"}{" "}
-        </button>
-        {show3 ? (
-          <div></div>
-        ) : (
-          <div className="arregla">
-            {/*========================== Llamado al Componente ==========================*/}
-  
-          </div>
-        )}
-      </td>
-
-
-
-
-
     </tr>
   </tbody>
 </Table>
@@ -116,4 +86,4 @@ function MenuProveedor() {
   )
 }
 
-export default MenuProveedor
+export default MenuColaboradores

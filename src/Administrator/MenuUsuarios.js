@@ -4,11 +4,11 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../Componentes/Animaciones";
 
 
-import RegistrarProveedor from "../Componentes/Proveedor/RegistrarProveedor";
-import RegistrarMarcas from "../Componentes/Proveedor/RegistrarMarcas";
+import RegistrarUsuarios   from "./RegistrarUsuarios";
+import AdministrarUsuarios from "./AdministrarUsuarios";
 
 
-function MenuProveedor() {
+function MenuUsuarios() {
 
 
         //Habilitar/Deshabilitar tabla del resumen AM
@@ -21,16 +21,15 @@ function MenuProveedor() {
  <div className="contenido-usuarios">
 
 
-<Animaciones mytext= " Menú Proveedores" />
+<Animaciones mytext= " Menú Usuarios " />
 
 {/*========================== Tabla  Categorias ==========================*/}
 <Table responsive id="nombreDiv">
   {/*========================== Titulos Tabla ==========================*/}
   <thead>
     <tr className="titulo-tabla-usuarios">
-      <th>Registrar Proveedor</th>
-      <th>Registrar Marcas </th>
-      <th>Administrar Proveedores </th>
+      <th>Registrar Usuarios</th>
+      <th>Administrar Usuarios </th>
     </tr>
   </thead>
   <tbody>
@@ -52,7 +51,7 @@ function MenuProveedor() {
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-             <RegistrarProveedor/>
+             < RegistrarUsuarios />
           </div>
         )}
       </td>
@@ -66,41 +65,19 @@ function MenuProveedor() {
           }}
         >
           {" "}
-          {show2 ? "Registrar" : "Ocultar"}{" "}
+          {show2 ? "Administrar" : "Ocultar"}{" "}
         </button>
         {show2 ? (
           <div></div>
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-            <RegistrarMarcas/>
+            <AdministrarUsuarios/>
           </div>
         )}
       </td>
 
-      <td>
-
-        {/*   Checar componente */}
-        <button
-          className="btn btn-primary modificar"
-          type="button"
-          onClick={() => {
-            setShow3(!show3);
-          }}
-        >
-          {" "}
-          {show3 ? "Administrar" : "Ocultar"}{" "}
-        </button>
-        {show3 ? (
-          <div></div>
-        ) : (
-          <div className="arregla">
-            {/*========================== Llamado al Componente ==========================*/}
-  
-          </div>
-        )}
-      </td>
-
+     
 
 
 
@@ -116,4 +93,4 @@ function MenuProveedor() {
   )
 }
 
-export default MenuProveedor
+export default MenuUsuarios
