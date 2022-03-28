@@ -8,7 +8,7 @@ const cookies = new Cookies();
 let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
-
+console.log("soy el id del usuario", validatorid)
 function Colaborador() {
 
 /*======================================== Buscadores de proyectos y usuarios ========================================*/
@@ -107,12 +107,24 @@ function Colaborador() {
     // Almacenamiento del id cliente encontrado en la busqueda
     var proyectoId = { proyecto_id: ''}
 
+    const [passwordState, setPassword] = useState({
+      password: '',
+    })
+
+    const handleInputChange = (event) => {
+      setPassword({
+        ...passwordState, [event.target.name]: event.target.value
+      })
+    }
+
     // Función que realiza la inserción del colaborador 
     async function Send (){
 
       const mandarInformacion ={
         colab_id_usuario: idUsuariosState,
-        colab_id_proyecto: idProyectoState
+        colab_id_proyecto: idProyectoState,
+        password: passwordState, 
+        validatorid
       }
       //Obtención del id del cliente que se seleccionó en la búsqueda
       // let i = Object.keys(listaProyectos);
@@ -121,12 +133,6 @@ function Colaborador() {
       //     proyectoId.proyecto_id = listaProyectos[c].proyecto__id
       //     console.log("id del proyecto escogido", proyectoId);
       //   }        
-      // }
-
-      // let u = Object.keys(listaUsuarios);
-      // for (let c = 0; c < i.length; c++) {
-      //   if (emailU === listaUsuarios[c].email)
-
       // }
       try{
         const respuesta = await axios.post('http://localhost:4001/api/cotizador/colaboradores/insert', mandarInformacion);
@@ -187,29 +193,18 @@ function Colaborador() {
                                 
   
   
-              <label htmlFor="user2" className=" label">
+              <label htmlFor="password" className=" label">
                 Contraseña 
               </label>
               <input
                 id="user2"
-                type="text"
-                name ="contraseña"
+                type="password"
+                name ="password"
+                onChange={handleInputChange}
                 className="card-input"
                 placeholder="Ingrese su Contraseña"
+                data-type="password"
               />
-  
-
-  <label htmlFor="user2" className=" label">
-              Repetir Contraseña
-              </label>
-              <input
-                id="user2"
-                type="number"
-                name ="rcontraseña"
-                className="card-input"
-                placeholder="Repita la Contraseña"
-              />
-  
   
               <div className="boton-registro">
                 <button className="card-button" type="submit" onClick={() => {Send()}}>
