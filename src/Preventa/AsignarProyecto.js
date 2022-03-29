@@ -108,10 +108,11 @@ function AsignarProyecto() {
   // Almacenamiento del id cliente encontrado en la busqueda
   var proyectoId = { proyecto_id: '' }
 
+  //almacenamiento del password 
   const [passwordState, setPassword] = useState({
     password: '',
   })
-
+//almacenamiento del password ingresado por el usuario
   const handleInputChange = (event) => {
     setPassword({
       ...passwordState, [event.target.name]: event.target.value
@@ -120,7 +121,7 @@ function AsignarProyecto() {
 
   // Función que realiza la inserción del colaborador 
   async function Send() {
-
+    // informacion que se manda al endpoint para ser guardada
     const mandarInformacion = {
       up_id_usuario: idUsuariosState,
       up_id_proyecto: idProyectoState,
@@ -129,7 +130,7 @@ function AsignarProyecto() {
     }
 
     try {
-      const respuesta = await axios.post('http://localhost:4001/api/cotizador/proyecto/insertUsuariosProyectos', mandarInformacion);
+      const respuesta = await axios.post(url + '/api/cotizador/proyecto/insertUsuariosProyectos', mandarInformacion);
       const send2 = respuesta.mandarInformacion;
       // para que al hacer submit del form se vuelva a poner en blanco el formulario y se puedan seguir asignando nuevos proyectos
       setPassword({
