@@ -11,39 +11,8 @@ import {url2} from "../Componentes/Ocultar";
 
 
 export const EditSP = () => {
-     /*=================================== Edición de los datos de un proyecto ===================================*/
-    // Almacenamiento de los nuevos datos de proyecto_clave y proyecto_descripcion
-    const [datosSP, setDatosSP] = useState([{
-        sp_no_parte:'',
-        sp_descripcion:'',
-        sp_meses:'',
-        sp_semanas: '',
-        sp_cantidad:'',
-        sp_id_categoria:'',
-        sp_comentarios:''
-    }])
-
-    // Obtención de los datos introducidos de proyecto_clave y proyecto_descripcion en los input´s
-    const editHandleInputChangeSP = (event) =>{
-        setDatosSP ({
-          ...datosSP,[event.target.name] : event.target.value ,
-        })
-    }
-
     
-
-    const actualizacionSP = (nombreProv, dataProv, nombreMarca, dataMarca,dataSP)=>{
-        const dataSP_1 ={
-            sp_no_parte:dataSP.sp_no_parte,
-            sp_descripcion:dataSP.sp_descripcion,
-            sp_meses:dataSP.sp_meses,
-            sp_semanas:dataSP.sp_semanas,
-            sp_cantidad:dataSP.sp_cantidad,
-            sp_id_categoria:dataSP.sp_id_categoria,
-            sp_comentarios:dataSP.sp_comentarios,
-            proveedor_id: dataSP.proveedor_id,
-            marca_id:dataSP.marca_id
-        };
+    const actualizacionSP = (nombreProv, dataProv, nombreMarca, dataMarca, data,newData)=>{
 
         var listaProv = [{}]
         listaProv = dataProv;
@@ -69,25 +38,24 @@ export const EditSP = () => {
             }
         }
         //console.log(proveedorId.proveedor_id);
-        SendEditProy(proveedorId.proveedor_id, marcaId.marca_id, dataSP_1,dataSP.sp_id) 
+        SendEditProy(proveedorId.proveedor_id, marcaId.marca_id,data,newData,data.sp_id) 
    }
    
     // Función que realiza la inserción del proyecto
-    async function SendEditProy (proveedor_id, marca_id, dataSP,sp_id){
+    async function SendEditProy (proveedor_id, marca_id, dataSP,newDataSP,sp_id){
         const dataActualizacion ={
                 sp_no_parte:dataSP.sp_no_parte,
                 sp_descripcion:dataSP.sp_descripcion,
                 sp_meses:dataSP.sp_meses,
                 sp_semanas:dataSP.sp_semanas,
-                sp_cantidad:dataSP.sp_cantidad,
                 sp_id_categoria:dataSP.sp_id_categoria,
                 sp_comentarios:dataSP.sp_comentarios
         }
         //console.log(dataSP.proveedor_id);
-        const k = Object.keys(datosSP);
+        const k = Object.keys(newDataSP);
         for(let keys of k){
-            if(datosSP[keys] !== ''){
-                dataActualizacion[keys] = datosSP[keys];
+            if(newDataSP[keys] !== ''){
+                dataActualizacion[keys] = newDataSP[keys];
             }
         }
         try{
@@ -112,13 +80,13 @@ export const EditSP = () => {
             alert('Servicio/Producto editado exitosamente')
 
         }catch (error){
+            console.log(error);
             alert('Edición del servivio/producto invalido')
         }
     }
 
     /*===========================================================================================================*/
     return {
-        actualizacionSP,
-        editHandleInputChangeSP
+        actualizacionSP
     }
 };
