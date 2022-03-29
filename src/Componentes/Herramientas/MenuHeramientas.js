@@ -24,8 +24,8 @@ function MenuHeramientas() {
       {/*========================== Titulos Tabla ==========================*/}
       <thead>
         <tr className="titulo-tabla-usuarios">
-          <th>Calculara de Descuento  )</th>
-          <th>------ </th>
+          <th>Calculara de Descuento % </th>
+        {/*   <th>------ </th> */}
         </tr>
       </thead>
       <tbody>
@@ -52,26 +52,7 @@ function MenuHeramientas() {
             )}
           </td>
     
-          <td>
-            <button
-              className="btn btn-primary modificar"
-              type="button"
-              onClick={() => {
-                setShow2(!show2);
-              }}
-            >
-              {" "}
-              {show2 ? "Calcular" : "Ocultar"}{" "}
-            </button>
-            {show2 ? (
-              <div></div>
-            ) : (
-              <div className="arregla">
-                {/*========================== Llamado al Componente ==========================*/}
-           
-              </div>
-            )}
-          </td>
+    
         </tr>
       </tbody>
     </Table>

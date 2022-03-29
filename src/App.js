@@ -6,15 +6,11 @@ import "./css/Tablas.css";
 //============ Rutas Públicas ============
 import Login from './Login';
 import Footer from './Componentes/Footer';
-import Header from './Componentes/Header';
-
 //============ Rutas Private Públicas ============
 import PublicRoutes from "./Routes/PublicRoutes";
 
 //============ Rutas Private Públicas ============
 import MenuClientes from "./Componentes/MenuClientes";
-import Clientes from "./Componentes/RegistrarClientes";
-
 //============ Rutas Private Administrador ============
 import Administrador from "./Routes/ValidaAdministrador";
 import MenuHeramientas from "./Componentes/Herramientas/MenuHeramientas";
@@ -50,8 +46,6 @@ import Venta from "./Routes/ValidaVenta";
 
 //============ Ventas  Páginas Private  ============
 import MenuVentas from "./Ventas/MenuVentas";
-import ProporcionalidadVentas from "./Ventas/Proporcionalidad";
-import AMVentas from "./Ventas/AM";
 import AsignarProyecto from "./Preventa/AsignarProyecto";
 import { calcularDescuento } from "./Administrator/PTN-BOM/Operaciones";
 
@@ -118,7 +112,6 @@ function App() {
 
      
         <Venta exact path="/am" component={AM} />
-        <Venta exact path="/proporcionalidad" component={Proporcionalidad} />
         <Venta exact path="/propuesta-economica" component={ExportarPDF} />
 
 

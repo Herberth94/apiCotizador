@@ -2,7 +2,7 @@ import React from 'react'
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
-import {TOTAL, proporcional ,  proporcionalMesaAyuda,  partidasUnicas,  monedaPTN2,descuentoCliente, monedaPTN, margenGanancia, precioVenta2 } from "../AM/OperacionesAM";
+import {TOTAL, proporcional ,  proporcionalMesaAyuda,  partidasUnicas,  precioVenta2 , totalMensual , financiamiento} from "../AM/OperacionesAM";
 
 
 
@@ -56,10 +56,10 @@ function Proporcionalidad() {
                             <td className="azul">{TOTAL[key]} {" $ "}</td>
 
                   {/*================= Total Mensual ==================*/}
-                  <td className="azul"> {" $ "}</td>
+                  <td className="azul"> {totalMensual[key]}{" $ "}</td>
 
                     {/*================= Financiamiento ==================*/}
-                            <td>{"######"}</td>
+                            <td>{financiamiento[key]}</td>
                                 {/*================= eDITARF==================*/}   
                             <td>
 

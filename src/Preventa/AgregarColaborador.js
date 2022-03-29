@@ -135,7 +135,7 @@ function Colaborador() {
       //   }        
       // }
       try{
-        const respuesta = await axios.post('http://localhost:4001/api/cotizador/colaboradores/insert', mandarInformacion);
+        const respuesta = await axios.post(url + '/api/cotizador/colaboradores/insert', mandarInformacion);
         const send2 = respuesta.mandarInformacion;
         alert('Colaborador agregado exitosamente')
       }catch(error){

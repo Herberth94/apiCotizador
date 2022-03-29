@@ -16,7 +16,9 @@ GetDatosProyecto
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
-let validatorrol = cookies.get('rol');
+//let validatorrol = cookies.get('rol');
+
+let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
@@ -172,7 +174,7 @@ function ResumenAM() {
                                     <td> {precioVenta[key]} {"$"}</td>
 
                                     {/*================= Margen Ganancia==================*/}
-                                        <td>{" % "} {margenGanancia[key]} </td>
+                                        <td>{margenGanancia[key]}   {" % "} </td>
 
                                         {/*================= PrecioLista Unitario ==================*/}
 
