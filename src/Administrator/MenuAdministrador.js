@@ -103,9 +103,22 @@ function archivo() {
           <li className="has-subnav">
             <a href="/propuesta-economica">
               <i className="bi bi-briefcase fa-2x"></i>
-              <span className="nav-text">Propuesta Ecónomica</span>
+              <span className="nav-text">Propuesta Económica</span>
             </a>
           </li>
+
+
+
+          <li className="has-subnav">
+            <a href="/calculadora">
+              <i className="bi bi-calculator-fill"></i>
+              <span className="nav-text">Herramientas</span>
+            </a>
+          </li>
+
+
+
+
           {/*======================== Salir ==========================*/}
         </ul>
         <ul className="logout">

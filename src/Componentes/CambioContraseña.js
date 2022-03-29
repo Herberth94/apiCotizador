@@ -1,6 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Cookies from 'universal-cookie';
+
+
+
+import {url2} from "../Componentes/Ocultar";
+
+
 const cookies = new Cookies();
 const estado = () => {
   if (cookies.get('estado_login') === "0") {
@@ -32,7 +38,7 @@ function CambioContraseña() {
     };
     if (datos.password === datos.repassword && datos.email !== "") {
       try {
-        const respuesta = await axios.post(`http://localhost:4001/api/cotizador/edit/pass/${id}`, data)
+        const respuesta = await axios.post(url2 + `/api/cotizador/edit/pass/${id}`, data)
         const send2 = respuesta.data;
         console.log(send2)
 

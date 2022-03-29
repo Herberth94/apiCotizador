@@ -37,45 +37,31 @@ function MenuPreventa() {
           </li>
 
           <li>
-            <a href="/agregar-cliente">
-            <i className="bi bi-person-plus"></i>
+            <a href="/menu-clientes">
+            <i className="bi bi-list"></i>
               <span className="nav-text">
-            Agregar Clientes
+               Menú Clientes
               </span>
             </a>
 
           </li>
 
           <li className="has-subnav">
-            <a href="/agregar-colaborador">
-              <i className="bi bi-people fa-2x"></i>
-              <span className="nav-text">Añadir Colaborador</span>
+            <a href="/menu-colaboradores">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">Menú Colaboradores</span>
             </a>
           </li>
 
 
-
-          <li>
-            <a href="/administrar-clientes">
-            <i className="bi bi-person-video2"></i>
-              <span className="nav-text">
-                Administrar Clientes
-              </span>
+          <li className="has-subnav">
+            <a href="/menu-proveedores">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">Menú Proveedores</span>
             </a>
-
           </li>
 
 
-          
-          <li>
-            <a href="/administrar-colaboradores">
-            <i className="bi bi-person-video2"></i>
-              <span className="nav-text">
-                Administrar Colaboradores
-              </span>
-            </a>
-
-          </li>
 
 
      
@@ -96,6 +82,16 @@ function MenuPreventa() {
               <i className="bi bi-briefcase-fill fa-2x"></i>
               <span className="nav-text">
              PTN-BOM
+              </span>
+            </a>           
+          </li>
+
+
+          <li className="has-subnav">
+            <a href="/calculadora">
+              <i className="bi bi-calculator-fill"></i>
+              <span className="nav-text">
+             calculadora
               </span>
             </a>           
           </li>

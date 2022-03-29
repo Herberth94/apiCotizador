@@ -2,7 +2,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { url2 } from "../../Componentes/Ocultar";
-import PTN_BOM from "../PTN-BOM/PTN_BOM";
 
 
 
@@ -210,16 +209,13 @@ export var Cantidad = [];
 export var descuentoCliente = [];
 export var totalIndirecto = [];
 export var precioVenta = [];
-
 export var precioVenta2 = [];
-
-
 export var proporcional = [];
 export var proporcionalMesaAyuda = [];
-
 export var TOTAL = [];
 
 
+let decimal = 3;
 
 
 var calculaIndirecto = 0;
@@ -324,7 +320,15 @@ for (var i = 0; i < monedaPTN.length; i++) {
   var x = monedaPTN[i] * (100 - descuentoCliente[i]) / 100;
   var k = (100 - margenGanancia[i]) / 100;
   var z = x / k;
-  precioVenta.push(z);
+
+
+
+ /*  var m = Number((Math.abs(z) * 100).toPrecision());
+  var f = Math.round(m) / 100 * Math.sign(z);
+     */
+
+    z = z.toFixed(decimal)
+    precioVenta.push(z);
 
 }
 
@@ -346,7 +350,7 @@ sumatoria = 0;
 
 
 
-var totalPrecioVenta = 0;
+let totalPrecioVenta = 0;
 var totalprov =0;
 var totalCostoPTN =0;
 
@@ -359,14 +363,22 @@ for (var i = partidasUnicas.length -1; i < precioVenta.length; i++) {
 }
 
 for (var i = 0; i < precioVenta.length; i++) {
+  
+console.log("....... ", precioVenta[i])
+  totalPrecioVenta += parseFloat(precioVenta[i]);
 
-  totalPrecioVenta += precioVenta[i];
+  console.log("---" ,  totalPrecioVenta)
   totallistaprov += listaProv[i];
   totalprov += prov[i];
   totalCostoPTN += costoPTN[i];
 
 }
+
+totalPrecioVenta = totalPrecioVenta.toFixed(decimal);
+
 precioVenta.push(totalPrecioVenta);
+
+
 prov.push(totalprov);
 listaProv.push(totallistaprov);
 costoPTN.push(totalCostoPTN);
@@ -472,6 +484,61 @@ for (var i = 0; i < partidasUnicas.length  ; i++) {
 
 
 
+// tasa % 
+// pago = meses
+// valor actual = precio total venta
+//futuro = 0
+
+
+
+function NPER(tasa, pago, present, future, type) {
+  // Initialize type
+  var type = (typeof type === 'undefined') ? 0 : type;
+
+  // Initialize future value
+  var future = (typeof future === 'undefined') ? 0 : future;
+
+  // Evaluate rate and periods (TODO: replace with secure expression evaluator)
+ tasa= eval(tasa);
+
+  // Return number of periods
+  var num = pago * (1 + tasa * type) - future * tasa;
+  var den = (present * tasa + pago * (1 + tasa * type));
+  return Math.log(num / den) / Math.log(1 + tasa);
+}
+
+
+console.log("--------------------------------------------------------")
+console.log("NPER   ");
+console.log(NPER (.10, 10  ,  776.37, 0));
+
+
+var a = 0;
+
+
+// co = Monto  precio de venta
+var co = 776.37;
+
+
+// n =  Años de financiamiento
+var n = 1;
+
+// Pagos Anuales default
+var m = 12;
+
+// ti = Tasa Interes
+var ti = 10 ;
+
+
+// Tipo de interés fraccionado (del periodo)
+var im = ti / m / 100;
+
+var im2 = Math.pow((1 + im), -(m * n));
+
+// Cuota Cap. + Int.
+a = (co * im) / (1 - im2);
+
+console.log("Cuota Cap + Int: " + a.toFixed(3));
 
 
 

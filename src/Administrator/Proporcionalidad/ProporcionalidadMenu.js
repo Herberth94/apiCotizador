@@ -6,6 +6,8 @@ import Animaciones from "../../Componentes/Animaciones";
 
 import BuscarProyecto from "./BuscarProyecto"
 
+import Financiamiento from "./Financiamiento";
+
 
 
 
@@ -36,7 +38,7 @@ function ProporcionalidadMenu() {
           <tr className="titulo-tabla-usuarios">
         
             <th>Resumen</th>
-            <th>Status Proyectos</th>
+            <th>Financiamiento</th>
     
           </tr>
         </thead>
@@ -80,7 +82,7 @@ function ProporcionalidadMenu() {
               ) : (
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
-            
+                  <Financiamiento/>
                 </div>
               )}
             </td>

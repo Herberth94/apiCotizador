@@ -12,8 +12,7 @@ function Proporcionalidad() {
     
     <div className="contenido-usuarios">
 
-<div> <Animaciones mytext="Resumen Categorias" /> </div>
- 
+
 
             <div> <Animaciones mytext="Proporcionalmente" /> </div>
 

@@ -2,6 +2,11 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { InsertDatosMarca } from '../../Routes/GuardarMarca';
 
+
+
+import {url, url2} from "../../Componentes/Ocultar";
+
+
 function RegistrarMarcas() {
   /*=================================== Buscador de proveedores ===================================*/
     
@@ -20,7 +25,7 @@ function RegistrarMarcas() {
         
         try{
             
-            const respuesta = await axios.get("http://localhost:4001/api/cotizador/proveedor/view");
+            const respuesta = await axios.get(url + "/api/cotizador/proveedor/view");
             setListaProv(respuesta.data.data);
         }catch(error){
             console.log(error);

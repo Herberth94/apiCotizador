@@ -17,6 +17,7 @@ import Clientes from "./Componentes/RegistrarClientes";
 
 //============ Rutas Private Administrador ============
 import Administrador from "./Routes/ValidaAdministrador";
+import MenuHeramientas from "./Componentes/Herramientas/MenuHeramientas";
 
 //============ Administrador Páginas Private Administrador ============
 import MenuAdministrador from "./Administrator/MenuAdministrador";
@@ -43,7 +44,6 @@ import Preventa from "./Routes/ValidaPreventa";
 //============ Preventas Páginas Private Ventas ============
 import MenuPreventa from "./Preventa/MenuPreventa";
 import MenuColaboradores from "./Preventa/MenuColaboradores";
-import AdministrarColaboradores from "./Preventa/AdministrarColaboradores";
 
 //============ Ventas Private  ============
 import Venta from "./Routes/ValidaVenta";
@@ -53,6 +53,7 @@ import MenuVentas from "./Ventas/MenuVentas";
 import ProporcionalidadVentas from "./Ventas/Proporcionalidad";
 import AMVentas from "./Ventas/AM";
 import AsignarProyecto from "./Preventa/AsignarProyecto";
+import { calcularDescuento } from "./Administrator/PTN-BOM/Operaciones";
 
 
   
@@ -83,7 +84,7 @@ function App() {
       
    
        
-       
+        <Administrador exact path="/calculadora" component={MenuHeramientas} />
         <Administrador exact path="/ptn" component={PTN_BOM} />
         <Administrador exact path="/propuesta-economica" component={ExportarPDF} />
         <Administrador exact path="/am" component={AM} />
@@ -95,20 +96,35 @@ function App() {
         {/* oooo */}
         <Preventa exact path ="/" component={CambioContraseña} />
 
-        <Preventa path="/agregar-cliente" component={Clientes} />
-        <Preventa path="/administrar-clientes" component={MenuClientes} />
-        <Preventa exact path="/agregar-colaborador" component={MenuColaboradores} />
-        <Preventa path="/administrar-colaboradores" component={AdministrarColaboradores } />
+        <Preventa path="/menu-clientes" component={MenuClientes} />
+        <Preventa exact path="/menu-colaboradores" component={MenuColaboradores} />
+        <Preventa exact path="/menu-proveedores" component={MenuProveedor} />
+
+
+
         <Preventa path="/asignar" component={AsignarProyecto} />
         <Preventa path="/ptn" component={ PTN_BOM} />
+        <Preventa path="/calculadora" component={MenuHeramientas} />
+
+
 
 
         {/*========================== Páginas Ventas ==========================*/}
         <Venta path="/" component={MenuVentas} />
-        {/* oooo */}
-        <Venta path="/" component={CambioContraseña} />
-        <Venta path="/am2" component={AMVentas} />
-        <Venta path="/proporcionalidad" component={ProporcionalidadVentas} />
+        <Venta exact path="/" component={CambioContraseña} />
+        <Venta exact path="/menu-clientes" component={MenuClientes} />
+        <Venta path="/menu-proveedores" component={MenuProveedor} />
+   
+
+     
+        <Venta exact path="/am" component={AM} />
+        <Venta exact path="/proporcionalidad" component={Proporcionalidad} />
+        <Venta exact path="/propuesta-economica" component={ExportarPDF} />
+
+
+        <Venta path="/calculadora" component={MenuHeramientas} />
+
+
 
 
       </Router>

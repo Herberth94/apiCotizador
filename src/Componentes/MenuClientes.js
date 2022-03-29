@@ -7,7 +7,6 @@ import Animaciones from "../Componentes/Animaciones";
 import RegistrarClientes from "./RegistrarClientes";
 import AdministrarClientes from "./AdministrarClientes";
 
-
 function MenuClientes() {
 
 

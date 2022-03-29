@@ -166,7 +166,7 @@ function ResumenAM() {
                                         {/*================= Descripcion General Partida ==================*/}
                                         <td> {" $ "} {monedaPTN[key]}</td>
                                         {/*================= Descuento Cliente ==================*/}
-                                        <td className="amarillo" >{" % "} {descuentoCliente[key]}   </td>
+                                        <td className="amarillo" >{ descuentoCliente[key]}  {" % "}   </td>
 
                                     {/*================= Precio Venta ==================*/}
                                     <td> {precioVenta[key]} {"$"}</td>
@@ -185,7 +185,7 @@ function ResumenAM() {
                                         <td>{" $ "} {listaProv[key]}</td>
 
 
-                                        <td>{" % "} {desFabrica[key]}</td>
+                                        <td> {desFabrica[key]}  {" % "} </td>
                                     {/*================= Cost PTN ==================*/}
                                         <td className="verde">{" $ "} {costoPTN[key]}  </td>
 

@@ -1,9 +1,5 @@
 import  {useState} from 'react';
 import axios from 'axios';
-
-
-
-import {url} from "../Componentes/Ocultar";
 import {url2} from "../Componentes/Ocultar";
 
 

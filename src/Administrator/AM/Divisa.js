@@ -5,9 +5,7 @@ import Animaciones from "../../Componentes/Animaciones";
 
 
 
-import {url2} from "../../Componentes/Ocultar";
-import {url} from "../../Componentes/Ocultar";
-
+import {url, url2} from "../../Componentes/Ocultar";
 
 
 function Divisa() {

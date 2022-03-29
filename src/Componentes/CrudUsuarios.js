@@ -3,6 +3,9 @@
 import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
 
+
+
+
 export const CrudUsuarios = (props) => {
     const [activar, setActivar] = useState(true)
     const [data,setData] = useState ({

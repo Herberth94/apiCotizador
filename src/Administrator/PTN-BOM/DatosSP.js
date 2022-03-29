@@ -6,7 +6,7 @@ import axios from 'axios';
 import Cookies from "universal-cookie";
 
 /*============== Operacions PTN BOM ==============*/
-import { precioUnitario, calcularDescuento, Total, Hola } from "./Operaciones";
+import { precioUnitario, calcularDescuento, Total} from "./Operaciones";
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();

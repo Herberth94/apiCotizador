@@ -41,21 +41,47 @@ function archivo() {
 
           </li>
 
+
+          
           <li className="has-subnav">
-            <a href="/resumen">
-              <i className="bi bi-briefcase-fill fa-2x"></i>
+            <a href="/menu-clientes">
+              <i className="bi bi-list"></i>
               <span className="nav-text">
-            Resumen PTN-BOM
+            Menú Clientes
               </span>
             </a>           
           </li>
 
 
           <li className="has-subnav">
+            <a href="/menu-proveedores">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">
+            Menú Proveedores
+              </span>
+            </a>           
+          </li>
+
+
+
+
+
+
+          <li className="has-subnav">
             <a href="/am">
+              <i className="bi bi-briefcase-fill fa-2x"></i>
+              <span className="nav-text">
+          AM
+              </span>
+            </a>           
+          </li>
+
+
+          <li className="has-subnav">
+            <a href="/proporcionalidad">
               <i className="bi bi-check2-circle fa-2x"></i>
               <span className="nav-text">
-            AM
+        Proporcionalidad
               </span>
             </a>           
           </li>
@@ -63,10 +89,10 @@ function archivo() {
 
           
           <li className="has-subnav">
-            <a href="/proporcionalidad">
+            <a href="/propuesta-economica">
               <i className="bi bi-check2-circle fa-2x"></i>
               <span className="nav-text">
-         Proporcionalidad
+         Propuesta Económica
               </span>
             </a>           
           </li>
@@ -75,10 +101,10 @@ function archivo() {
 
 
           <li className="has-subnav">
-            <a href="/">
-              <i className="bi bi-info-circle fa-2x"></i>
+            <a href="/calculadora">
+              <i className="bi bi-calculator-fill"></i>
               <span className="nav-text">
-                Información
+              calculadora
               </span>
             </a>
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import { InsertDatosProvedor } from '../../Routes/GuardarProveedor'
 
+
+
 function RegistrarProveedor() {
 
   const {handleInputChange,enviarDatosProv} = InsertDatosProvedor();
