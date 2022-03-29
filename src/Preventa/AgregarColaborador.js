@@ -137,6 +137,7 @@ function Colaborador() {
     try {
       const respuesta = await axios.post('http://localhost:4001/api/cotizador/colaboradores/insert', mandarInformacion);
       const send2 = respuesta.mandarInformacion;
+      // para que al hacer submit del form se vuelva a poner en blanco el formulario y se puedan seguir asignando nuevos proyectos
       setPassword({
         password: '',
       })
