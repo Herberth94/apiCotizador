@@ -8,6 +8,7 @@ import {url2} from "../Componentes/Ocultar";
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
 
+let pId;
 
 export const InsertDatosPartida = () => {
     /*=================================== Inserción de datos en la tabla partida ===================================*/
@@ -28,8 +29,6 @@ export const InsertDatosPartida = () => {
         proyecto_id:''
     };
 
-    const [pId, setPId] = useState('')
-
     // Almacenamiento de los datos de una partida a insertar
     const[datosPartida, setDatosPartida] = useState({
         partida_nombre: '',
@@ -43,29 +42,31 @@ export const InsertDatosPartida = () => {
         })
     }
 
-    function getIdProyecto(proyecto_id){
-        setPId(proyecto_id)
-        //console.log(pId);
+    function getIdP (proyecto_id){
+        pId = proyecto_id;
     }
-
     // Función que realiza la inserción de los datos a la tabla partida en la bd 
     async function SendPartida (){
         const data = {
             partida_nombre: datosPartida.partida_nombre,
             partida_descripcion: datosPartida.partida_descripcion
         };
-        //console.log(id);
         try{
             // Obtención del id del último proyecto insertado del usuario activo
-            const resGetProyectos = await axios.get(url + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+            const resGetProyectos = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
             listaProyectos = resGetProyectos.data.data.pop();
             proyectoId.proyecto_id = listaProyectos.proyecto_id;
-            // if(proyecto_id !== proyectoId.proveedor_id){
-            // await axios.post(`http://localhost:4001/api/cotizador/partida/${proyecto_id}`, data);
-            // }else{
-            await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
-            // }
-            alert('Registro exitoso')
+
+            if(pId !== proyectoId.proveedor_id && pId!== ''){
+                await axios.post(url2 +`/api/cotizador/partida/${pId}`, data);
+                //console.log(pId);
+                alert('Registro exitoso')
+            }else{
+                await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
+                //console.log(proyectoId.proyecto_id);
+                alert('Registro exitoso')
+            }
+            
         }
         catch (error){
             console.log(error);
@@ -74,17 +75,15 @@ export const InsertDatosPartida = () => {
 
     const enviarDatosPartida = (event) =>{
         //console.log(pId);
-        SendPartida(pId);
+        SendPartida();
         event.preventDefault()
         event.target.reset();
     }
-
-    
-    
     /*==============================================================================================================*/
+
     return{
         handleInputChangePartida,
         enviarDatosPartida,
-        getIdProyecto
+        getIdP
     }
 };
