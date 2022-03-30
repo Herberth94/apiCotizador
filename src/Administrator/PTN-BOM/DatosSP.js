@@ -381,7 +381,7 @@ function DatosSP() {
                 <td>
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     name="sp_no_parte"
                     onChange={handleInputChangeSP}
                     placeholder="No. Parte"

@@ -284,6 +284,7 @@ export const CrudSp = (props) => {
                 <Table responsive id="nombreDiv"  striped bordered hover size="sm">
                     <thead>
                         <tr className="titulo-tabla-usuarios">
+                            <th>ID</th>
                             <th># Parte</th>
                             <th>Descripción</th>
                             <th>Duración Meses</th>
@@ -301,6 +302,16 @@ export const CrudSp = (props) => {
                         <tbody>
                             {Object.keys(props.sp).map((key) => (    
                             <tr key={props.sp[key].sp_id} >
+
+                               <td>
+                                    <input
+                                    className="input-name" 
+                                    defaultValue={key} 
+                                    disabled={enable[key]} 
+                                    onChange={handleInputChange}
+                                    name="sp_no_parte" 
+                                    ></input>
+                                </td> 
                                 <td>
                                     <input
                                     className="input-name" 
