@@ -210,7 +210,7 @@ export const CrudSp = (props) => {
         // Función que obtiene el nombre del cliente seleccionado
         const onSuggestHandlerMarca = (nM, key) => {
             key = parseInt(key);
-            let i = Object.keys(props.sp)
+            let i = Object.keys(listaMarca)
             i = i.length;
             const arrayNombresMarca = []
             for(let c = 0 ; c < i ;c++){
@@ -235,6 +235,7 @@ export const CrudSp = (props) => {
                 await axios.delete(`http://localhost:4001/api/cotizador/precio/delete/${id}`);
                 alert('Servicio/producto eliminado exitosamente')
             } catch (error) {
+                console.log(error);
                 alert('Eliminación del Servicio/producto invalido')
             }
         }
@@ -264,11 +265,11 @@ export const CrudSp = (props) => {
         
         const envioDataPrecio = (datacant, data, key, newdata) => {
             if(first){
-                console.log('Old Cantidad:',data[key].sp_cantidad);
-                console.log('New Cantidad:',datacant);
-                console.log('Old Data Precio:',data[key]);
-                console.log('New Data Precio:',newdata);
-                //actualizacionPrecio(datacant, data[key], newdata);
+                // console.log('Old Cantidad:',data[key].sp_cantidad);
+                // console.log('New Cantidad:',datacant);
+                // console.log('Old Data Precio:',data[key]);
+                // console.log('New Data Precio:',newdata);
+                actualizacionPrecio(datacant, data[key], newdata);
             }
         }
         /*=========================================================================*/
@@ -355,7 +356,7 @@ export const CrudSp = (props) => {
                                     type="text"
                                     name="proveedor_nombre"
                                     onChange={e => onChangeTextProv(e.target.value, key)}
-                                    defaultValue={nombreProv[key]}
+                                    value={nombreProv[key]}
                                     disabled={enable[key]} 
                                     placeholder="Proveedor"
                                     />
@@ -376,7 +377,7 @@ export const CrudSp = (props) => {
                                     type="text"
                                     name="marca_nombre"
                                     onChange={e => onChangeTextMarca(e.target.value,key)}
-                                    defaultValue={nombreMarca[key]}
+                                    value={nombreMarca[key]}
                                     disabled={enable[key]} 
                                     placeholder="Marca"
                                     />

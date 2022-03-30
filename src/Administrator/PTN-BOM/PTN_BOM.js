@@ -8,6 +8,9 @@ import Animaciones from "../../Componentes/Animaciones";
 import NuevoProyecto from "./NuevoProyecto";
 import ContinuarProyecto from "./ContinuarProyecto";
 import Proyectos from "./ResumenProyectos";
+import { InsertDatosPartida } from '../../Routes/GuardarPartida';
+import { getIdPar } from './DatosSP';
+import { getIdP1 } from "./Categorias";
 
 function PTN_BOM() {
   {
@@ -25,6 +28,8 @@ function PTN_BOM() {
   }
   const [show3, setShow3] = useState(true);
 
+  const {getIdP} = InsertDatosPartida();
+  
   return (
     <div className="contenido-usuarios">
       {/*======================= Titulo Animación =======================*/}
@@ -49,6 +54,9 @@ function PTN_BOM() {
                 className="btn btn-primary modificar"
                 type="button"
                 onClick={() => {
+                  getIdP('');
+                  getIdPar('');
+                  getIdP1('');
                   setShow(!show);
                 }}
               >

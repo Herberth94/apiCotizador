@@ -28,7 +28,7 @@ export const CrudPrecios = (props) => {
                 ...dataCantidad,[event.target.name]:event.target.value,
             })
         }
-
+        
         const [enable, setenable] = useState([]);
         const [datos, Setdatos] = useState();
 
@@ -69,6 +69,7 @@ export const CrudPrecios = (props) => {
             <Table responsive id="nombreDiv"  striped bordered hover size="sm">
                 <thead>
                     <tr className="titulo-tabla-usuarios">
+                        <th>ID</th>
                         <th>Cantidad</th>
                         <th>Precio Lista</th>
                         <th>Precio Unitario</th>
@@ -82,6 +83,7 @@ export const CrudPrecios = (props) => {
                     <tbody>
                         {Object.keys(props.precios).map((key) => (    
                         <tr key={props.precios[key].precio_id}>
+                            <td>{props.precios[key].precio_id}</td>
                             <td>
                                 <input
                                 className="input-name" 
@@ -122,8 +124,10 @@ export const CrudPrecios = (props) => {
                                 <input
                                 className="input-name" 
                                 defaultValue={props.precios[key].precio_total} 
-                                disabled={true}
-                                readOnly
+                                //disabled={true}
+                                //readOnly
+                                disabled={enable[key]} 
+                                onChange={handleInputChange}
                                 name="precio_total" 
                                 ></input>  
                             </td> 
