@@ -114,19 +114,20 @@ export const CrudProyectos = (props) => {
             }
             setNombreC(arrayNombresC);
 
-            const arraySC = [];
-            for(let c = 0 ; c < i ; c++){
-                arraySC[c] = coincidencias;
-            }
-            setScInput(arraySC);
+            // const arraySC = [];
+            // for(let c = 0 ; c < i ; c++){
+            //     arraySC[c] = coincidencias;
+            // }
+            // setScInput(arraySC);
 
-            console.log('clientes de cada input:',arraySC);
+            //console.log('clientes de cada input:',arraySC);
             //setNombreC1(nombreCliente);
             //console.log('nombres clientes:',nombreC);
         }
 
         // Función que obtiene el nombre del cliente seleccionado
         const onSuggestHandler = (nC, key) => {
+            //console.log(nC);
             key = parseInt(key);
             let i = Object.keys(props.suggestionsP)
             i = i.length;
@@ -227,17 +228,16 @@ export const CrudProyectos = (props) => {
                                     type="text"
                                     name="nombre_cliente"
                                     disabled={enable[key]}
-                                    defaultValue={nombreC[key]}
-                                    //value={nombreC}
+                                    value={nombreC[key]}
                                     onChange={e => onChangeTextCliente(e.target.value,key)}
                                     />
                                     {Object.keys(suggestionsClientes).map((i)=>
                                     <div 
-                                    key={sCInput[key][i].cliente_id}
+                                    key={i}
                                     className="selectCliente" 
-                                    onClick={() => onSuggestHandler(sCInput[key][i].nombre_cliente, key)}
+                                    onClick={() => onSuggestHandler(suggestionsClientes[i].nombre_cliente, key)}
                                     >
-                                        {sCInput[key][i].nombre_cliente}
+                                        {suggestionsClientes[i].nombre_cliente}
                                     </div>
                                     )}
                                 </td> 
