@@ -10,6 +10,7 @@ import ContinuarProyecto from "./ContinuarProyecto";
 import Proyectos from "./ResumenProyectos";
 import { InsertDatosPartida } from '../../Routes/GuardarPartida';
 import { getIdPar } from './DatosSP';
+import { getIdP1 } from "./Categorias";
 
 function PTN_BOM() {
   {
@@ -55,6 +56,7 @@ function PTN_BOM() {
                 onClick={() => {
                   getIdP('');
                   getIdPar('');
+                  getIdP1('');
                   setShow(!show);
                 }}
               >

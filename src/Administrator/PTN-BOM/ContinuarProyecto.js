@@ -8,8 +8,9 @@ import Partida from "./Partida";
 import DatosSP from "./DatosSP";
 import Categorias from "./Categorias";
 import Animaciones from '../../Componentes/Animaciones';
-import { InsertDatosPartida } from '../../Routes/GuardarPartida';
-import { getIdPar } from './DatosSP';
+import {InsertDatosPartida} from '../../Routes/GuardarPartida';
+import {getIdPar} from './DatosSP';
+import {getIdP1} from './Categorias';
 import {url} from "../../Componentes/Ocultar";
 
 
@@ -28,6 +29,7 @@ function ContinuarProyecto() {
   const [show2, setShow2] = useState(true);// Agregar partida
   const [show3, setShow3] = useState(true);// Lista de las partidas de un proyecto
   const [show4, setShow4] = useState(true);// Continuar una partida
+  const [show5, setShow5] = useState(true);// Categorias/Finalizar proyecto
   /*=====================================================================*/
 
   /*======================================== Buscador de proyectos ========================================*/
@@ -130,6 +132,7 @@ function ContinuarProyecto() {
               <th>Fecha de creción</th>
               <th>Estatus</th>
               <th>Continuar</th>
+              <th>Finalizar</th>
             </tr>
           </thead>
                               
@@ -152,6 +155,17 @@ function ContinuarProyecto() {
                         setShow(!show);}}
                       > 
                         {show ? 'Continuar' : 'Ocultar Proyecto'} 
+                      </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn btn-primary modificar" 
+                      type="button" 
+                      onClick={() => {
+                        getIdP1(suggestions[key].proyecto_id);
+                        setShow5(!show5);}}
+                      > 
+                        {show5 ? 'Finalizar proyecto' : 'Ocultar Proyecto'} 
                       </button>
                   </td>
               </tr>  
@@ -276,7 +290,14 @@ function ContinuarProyecto() {
               </div>
               
       )}
-
+      {show5 ? (
+        <div></div>
+      ):(
+        <div  className="arregla"> 
+          {/*======================== Llamar al componente Categorias ==========================*/}
+          <Categorias />
+        </div>
+      )}
       
     </div>
 

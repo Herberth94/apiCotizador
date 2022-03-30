@@ -8,6 +8,12 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
 
+let pId;
+
+export function getIdP1 (proyecto_id){
+  pId = proyecto_id;
+}
+
 function Categorias() {
     /*=================================== Obtención de datos para la tabla cat_totales ===================================*/
     /*=================================== Totales capacitación ===================================*/
@@ -118,13 +124,26 @@ function Categorias() {
             proyectoId.proyecto_id = ListaProyectos.proyecto_id;
 
             // Inserciones a las tablas cat_totales y proyectos_cat_cat_t
-            await axios.post(url2 + `/api/cotizador/catt/agregar/1/${proyectoId.proyecto_id}`,dataCapacitacon);
-            await axios.post(url2 + `/api/cotizador/catt/agregar/2/${proyectoId.proyecto_id}`,dataAccesorios);
-            await axios.post(url2 + `/api/cotizador/catt/agregar/3/${proyectoId.proyecto_id}`,dataSptn);
-            await axios.post(url2 + `/api/cotizador/catt/agregar/4/${proyectoId.proyecto_id}`,dataMA);
-            await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
-            alert('Finalización de proyecto exitoso')
-            alert('El proyecto entro a estatus en revisón')
+            if(pId !== proyectoId.proyect && pId !== ''){
+                //console.log(pId);
+                await axios.post(url2 + `/api/cotizador/catt/agregar/1/${pId}`,dataCapacitacon);
+                await axios.post(url2 + `/api/cotizador/catt/agregar/2/${pId}`,dataAccesorios);
+                await axios.post(url2 + `/api/cotizador/catt/agregar/3/${pId}`,dataSptn);
+                await axios.post(url2 + `/api/cotizador/catt/agregar/4/${pId}`,dataMA);
+                await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${pId}`,dataEstatus);
+                alert('Finalización de proyecto exitoso');
+                alert('El proyecto entro a estatus: En revisón');
+            }else{
+                //console.log(proyectoId.proyecto_id);
+                await axios.post(url2 + `/api/cotizador/catt/agregar/1/${proyectoId.proyecto_id}`,dataCapacitacon);
+                await axios.post(url2 + `/api/cotizador/catt/agregar/2/${proyectoId.proyecto_id}`,dataAccesorios);
+                await axios.post(url2 + `/api/cotizador/catt/agregar/3/${proyectoId.proyecto_id}`,dataSptn);
+                await axios.post(url2 + `/api/cotizador/catt/agregar/4/${proyectoId.proyecto_id}`,dataMA);
+                await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
+                alert('Finalización de proyecto exitoso');
+                alert('El proyecto entro a estatus en revisón');
+            }
+
         }catch (error){
         console.log("este es el error", error);
         }
