@@ -2,17 +2,15 @@ import  {useState} from 'react';
 import axios from 'axios';
 import {url2} from "../../Componentes/Ocultar";
 
-export const useRegistro2 = () => {
+export const useRegistro3 = () => {
    
-    const actualizacion2 = (data,datos)=>{
-        Send(data,data.proveedor_id, datos)        
+    const actualizacion = (data,datos)=>{
+        Send(data,data.marca_id, datos)        
     }
 
     const  Send = async (data,id,datos)=> {
         const dataActualizacion ={
-            proveedor_nombre:data.proveedor_nombre,
-            proveedor_telefono:data.proveedor_telefono,
-            proveedor_email:data.proveedor_email
+            marca_nombre: data.marca_nombre
         };
             console.log(data);
             console.log(id);
@@ -27,7 +25,7 @@ export const useRegistro2 = () => {
         try {
             //const respuesta = await axios.put(url2 + `/api/cotizador/clientes/update/${id}`,dataActulizacion);
             //console.log(respuesta.data) ;
-            const respuesta = await axios.post(url2 + `/api/cotizador/proveedor/edit/${id}`,dataActualizacion);
+            const respuesta = await axios.post(url2 + `/api/cotizador/marca/edit/${id}`,dataActualizacion);
             return respuesta.data;
             //console.log(send2);
             //alert('Dato Actualizado');
@@ -38,6 +36,6 @@ export const useRegistro2 = () => {
             }
     }
     return {
-            actualizacion2   
+            actualizacion   
         }
 };

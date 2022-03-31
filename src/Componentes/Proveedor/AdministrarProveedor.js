@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import Animaciones from "../../Componentes/Animaciones";
 import { useRegistro2 } from "./ModificarProveedor";
-
+import { useRegistro3 } from "./modificarMarcas";
 import {url} from "../../Componentes/Ocultar";
 import {url2} from "../../Componentes/Ocultar";
 import { CrudProveedores } from "./CRUDProveedores";
