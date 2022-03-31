@@ -7,6 +7,8 @@ import Cookies from "universal-cookie";
 
 /*============== Operacions PTN BOM ==============*/
 import { precioUnitario, calcularDescuento, Total} from "./Operaciones";
+import ModalPtnDatos from "../../Componentes/ModalPtnDatos";
+
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
@@ -14,6 +16,8 @@ let validatorid = cookies.get('id_usuario');
 
 function DatosSP() {
   const [total, setTotal] = useState(10);
+  const [modalShow, setModalShow] = useState(false);
+
 
 
   /*  console.log("---- Precio Unitario ----- ") */
@@ -362,6 +366,14 @@ function DatosSP() {
   return (
 
     <div className="contenido-usuarios">
+        <button type="button" className="btn btn-primary" onClick={() => setModalShow(true)} >
+          Ver partidas agregadas
+        </button><br/><br/>
+        <ModalPtnDatos
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        />
+      
         {/*========================== Tabla Datos PTN ==========================*/}
         <form action="" method="post" onSubmit={enviarDatosSP}>
             <Table responsive id="nombreDiv">

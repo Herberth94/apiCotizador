@@ -4,8 +4,6 @@ import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
 
 
-
-
 export const CrudUsuarios = (props) => {
     const [activar, setActivar] = useState(true)
     const [data,setData] = useState ({
@@ -74,16 +72,15 @@ export const CrudUsuarios = (props) => {
                             <td>{props.usuarios[key].id_usuario}</td>
                             <td><input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input></td>
                             <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
-                            <td><button className="btn btn-primary Resetear" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > Resetear </button></td>
+                            <td><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > Resetear </button></td>
                             <td>
                                 <button 
                                 className="btn btn-primary eliminar" 
-                                onClick={()=>props.borrar(props.usuarios[key].id_usuario)} 
-                                > 
-                                Eliminar 
+                                type="button"
+                                onClick={()=>props.borrar(props.usuarios[key].id_usuario)}>Eliminar 
                                 </button>
                             </td>
-                            {/*=================== Button modificar cliente ====================*/}
+                            {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
                             <td>
                                 <button 
                                     className="btn btn-primary modificar" type="button"

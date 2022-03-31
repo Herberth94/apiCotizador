@@ -24,7 +24,7 @@ function AdministrarUsuarios() {
         const confirmacion = window.confirm("¿Seguro que quieres borrar este registro?" );
         if (confirmacion) {
             console.log(dato);
-            const respuesta = await axios.delete(`http://localhost/node/api/cotizador/delete/${dato}`);
+            const respuesta = await axios.delete(`http://localhost:4001/api/cotizador/delete/${dato}`);
             console.log(respuesta.data);
             llamado();
         } else {
@@ -71,6 +71,8 @@ function AdministrarUsuarios() {
     const llamado = async () =>{
        const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
        setlistaUsarios(respuesta.data.reSql);
+       setShow(show)
+
     }
 
     const envioData = async (datos, key, data) => {
