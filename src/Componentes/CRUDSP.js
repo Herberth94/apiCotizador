@@ -7,6 +7,10 @@ import { EditPrecio } from '../Routes/ModificarPrecio';
 import { CrudPrecios } from './CRUDPrecios';
 
 
+import {url, url2} from "./Ocultar"
+
+
+
 export const CrudSp = (props) => {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
     const[show,setShow] = useState(true);// Lista de precios
@@ -152,7 +156,7 @@ export const CrudSp = (props) => {
             }
             try {
                 if(proveedorId.proveedor_id !== ''){
-                    const respuesta = await axios.get(`http://localhost:4001/api/cotizador/provmarcas/view/${proveedorId.proveedor_id}`);
+                    const respuesta = await axios.get(url2 + `/api/cotizador/provmarcas/view/${proveedorId.proveedor_id}`);
                     setListaMarca(respuesta.data.data);
                 }
             } catch (error) {console.log(error);}
@@ -232,7 +236,7 @@ export const CrudSp = (props) => {
         async function SendDeleteSP(id){
             //console.log(id);
             try {
-                await axios.delete(`http://localhost:4001/api/cotizador/precio/delete/${id}`);
+                await axios.delete(url2 + `/api/cotizador/precio/delete/${id}`);
                 alert('Servicio/producto eliminado exitosamente')
             } catch (error) {
                 console.log(error);
@@ -250,7 +254,7 @@ export const CrudSp = (props) => {
         // Función que realiza la consulta a la tabla precios
         async function getDatosPrecios(sp_id){
             try{
-                const resPrecSP = await axios.get(`http://localhost:4001/api/cotizador/precio/viewSPP/${sp_id}`);
+                const resPrecSP = await axios.get(url2 + `/api/cotizador/precio/viewSPP/${sp_id}`);
                 setListaPrecios(resPrecSP.data.data);
             }catch(error){
                 console.log(error);

@@ -5,6 +5,8 @@ import { EditSP } from '../Routes/ModificarSP';
 import Animaciones from './Animaciones';
 import { CrudSp } from './CRUDSP';
 
+import {url, url2} from "./Ocultar";
+
 export const CrudPartidas = (props) => {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
     const[show,setShow] = useState(true);// Lista de servicios/productos
@@ -90,9 +92,9 @@ export const CrudPartidas = (props) => {
         // Función que realiza la consulta a las tablas servicio_producto y proveedores
         async function getDatosSP(partida_id){
             try{
-                const resPSP = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPSP/${partida_id}`);
+                const resPSP = await axios.get(url2 +`/api/cotizador/partida/viewPSP/${partida_id}`);
                 setListaSP(resPSP.data.data);
-                const respuesta = await axios.get("http://localhost:4001/api/cotizador/proveedor/view");
+                const respuesta = await axios.get(url +"/api/cotizador/proveedor/view");
                 setListaProv(respuesta.data.data);
             }catch(error){
                 console.log(error);

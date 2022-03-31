@@ -9,6 +9,9 @@ import Animaciones from '../../Componentes/Animaciones';
 import {CrudProyectos} from '../../Componentes/CRUDProyectos';
 
 
+import {url, url2} from "../../Componentes/Ocultar";
+
+
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
 let validatorrol = cookies.get('rol');
@@ -34,14 +37,14 @@ function Proyectos() {
         const getProyectos = async () => {
             try{
                 if(validatorrol === "administrador"){
-                    const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/viewadmin');
+                    const resProy = await axios.get(url +'/api/cotizador/proyecto/viewadmin');
                     setListaProyectos(resProy.data.data);
                 }else{
-                    const resProy = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                    const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                     setListaProyectos(resProy.data.data);
                 }
                 
-                const resC = await axios.get("http://localhost:4001/api/cotizador/clientes/view");
+                const resC = await axios.get(url + "/api/cotizador/clientes/view");
                 setListaC(resC.data.reSql);
             }catch(error){console.log(error);}
         }

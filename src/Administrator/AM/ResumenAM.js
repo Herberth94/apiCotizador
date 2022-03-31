@@ -90,8 +90,8 @@ const ResumenAM = () => {
         }catch (error){
             console.log(error);
         }
-        console.log('Partidas',totalesPartidas);
-        console.log('Categorias',totalCategorias);
+       // console.log('Partidas',totalesPartidas);
+        //console.log('Categorias',totalCategorias);
     }
     /*===============================================================================================================================*/
     

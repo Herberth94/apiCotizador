@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { useState } from "react";
 import { url2 } from "../../Componentes/Ocultar";

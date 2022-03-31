@@ -11,7 +11,7 @@ import Animaciones from '../../Componentes/Animaciones';
 import {InsertDatosPartida} from '../../Routes/GuardarPartida';
 import {getIdPar} from './DatosSP';
 import {getIdP1} from './Categorias';
-import {url} from "../../Componentes/Ocultar";
+import {url, url2} from "../../Componentes/Ocultar";
 
 
 const cookies = new Cookies();
@@ -47,10 +47,10 @@ function ContinuarProyecto() {
       const getProyectos = async () => {
           try{
             if(validatorrol === "administrador"){
-              const resProy = await axios.get('http://localhost:4001/api/cotizador/proyecto/viewadmin');
+              const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
               setListaProyectos(resProy.data.data);
           }else{
-              const resProy = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+              const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
               setListaProyectos(resProy.data.data);
           }
           }catch(error){
@@ -81,7 +81,7 @@ function ContinuarProyecto() {
   //Almacenamiento de todos las partidas de un proyecto en específico
   async function getDatosPartida(proyecto_id){
       try{
-          const resPP = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPP/${proyecto_id}`);
+          const resPP = await axios.get(url2 + `/api/cotizador/partida/viewPP/${proyecto_id}`);
           setListaPartidas(resPP.data.data);
       }catch(error){
           console.log(error);
