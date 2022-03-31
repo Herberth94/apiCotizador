@@ -17,7 +17,7 @@ const Preventa= ({component:Component, ...rest}) => {
     <ValidaRol />
 
     if( i==="preventa"){
-console.log("Hola Venta")
+//console.log("Hola Venta")
 
 return (
     
@@ -25,7 +25,7 @@ return (
       
   )
     }else{
-        console.log("No soy  de Preventa")
+    //    console.log("No soy  de Preventa")
 
     }
     return (null )
