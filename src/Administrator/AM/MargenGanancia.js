@@ -9,8 +9,7 @@ import { url, url2 } from '../../Componentes/Ocultar';
 import { partidasUnicas2, Cantidad,descuentoCliente, monedaPTN, prov, listaProv,desFabrica, costoPTN, margenGanancia, precioVenta , margenDirecto ,
 precioFinalVenta,
 costoSinIndirectos,
-costoFianalProyecto,
-GetDatosProyecto
+costoFianalProyecto
 } from "./OperacionesAM";
 
 
@@ -68,7 +67,7 @@ function MargenGanancia() {
     }
     /*=======================================================================================================*/
 
-    const {consultarTotalesP} = GetDatosProyecto();
+    //const {consultarTotalesP} = GetDatosProyecto();
     
     return (
 
@@ -125,7 +124,7 @@ function MargenGanancia() {
                                 <td>
                                     <button 
                                     className="btn btn-primary" 
-                                    onClick={() => {consultarTotalesP(suggestions[key].proyecto_id);setShow(!show)}}
+                                    // onClick={() => {consultarTotalesP(suggestions[key].proyecto_id);setShow(!show)}}
                                     >{show ? 'Ver mas':'Ocultar proyecto'}</button>
                                 </td> 
                             </tr>  
