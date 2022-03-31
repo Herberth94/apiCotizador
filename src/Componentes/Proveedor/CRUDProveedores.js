@@ -1,6 +1,8 @@
 import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
-
+import axios from "axios";
+import {url} from "../../Componentes/Ocultar";
+import {url2} from "../../Componentes/Ocultar";
 export const CrudProveedores = (props) => {
     const [activar, setActivar] = useState(true)
 
@@ -18,6 +20,13 @@ export const CrudProveedores = (props) => {
     //console.log(props.usuarios);
     const [enable, setenable] = useState([])
     const [datos, Setdatos] = useState()
+
+    const llamadoMarca = async () => {
+       // console.log("soy el proveedor_id", proveedor_id)
+        try {
+            const respuestaMarca =  await axios.get(url2 + `/api/cotizador/provmarcas/view/25`)
+        } catch(error){console.log(error)}
+    }
 
     useEffect(() => {
         Setdatos(props.clientes); 
@@ -61,6 +70,7 @@ export const CrudProveedores = (props) => {
                             <th>Teléfono</th>
                             <th>Email</th>
                             <th>Modificar</th>
+                            <th>Ver Marcas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,6 +122,19 @@ export const CrudProveedores = (props) => {
                                 >{activar ? 'Modificar' : 'Aceptar'}
                                 </button>
                             </td>
+                            <td>
+                                {" "}
+                                <button
+                                    className="btn btn-primary modificar"
+                                    type="button"
+                                    onClick={() => {
+                                        llamadoMarca()
+   
+                                    }}
+                                >{activar ? 'Ver marcas' : 'Ocultar'}
+                                </button>
+                            </td>
+
                             </tr>
                         ))}
                     </tbody>
