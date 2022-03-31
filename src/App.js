@@ -31,6 +31,9 @@ import AM from "./Administrator/AM/AmMenu";
 import Proporcionalidad from "./Administrator/Proporcionalidad/ProporcionalidadMenu";
 
 /* import PropuestaEconomica from "./Administrator/PropuestEconomica"; */
+
+import PropuestaEconomica from "./Administrator/PropuestEconomica";
+
 import ExportarPDF from "./Administrator/ExportarPDF";
 
 
@@ -80,7 +83,7 @@ function App() {
        
         <Administrador exact path="/calculadora" component={MenuHeramientas} />
         <Administrador exact path="/ptn" component={PTN_BOM} />
-        <Administrador exact path="/propuesta-economica" component={ExportarPDF} />
+        <Administrador exact path="/propuesta-economica" component={PropuestaEconomica} />
         <Administrador exact path="/am" component={AM} />
         <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
 
