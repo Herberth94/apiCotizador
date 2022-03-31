@@ -24,6 +24,12 @@ LOGIN
        top: 15%;
   }
 
+  .contenido-main-registro.login {	
+
+	margin-left:0px;
+}
+
+
   .contenido-main-registro.contraseña{
     top: 35%;
   }

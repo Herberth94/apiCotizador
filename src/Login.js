@@ -23,9 +23,6 @@ function onChange(value) {
   }
 
  
-  
-
-
 
 
 export function Login() {
@@ -39,8 +36,9 @@ export function Login() {
 
            /* //============ Login ============ */
            
-    <div className="container-portada">
-      <div className="scene flex login">
+
+       <div className="contenido-main-registro login">
+      <div className="scene flex">
 
         <section className="card-body">
           <form action="" method="post" id="form" className="card-form" onSubmit = {enviarDatos}>
