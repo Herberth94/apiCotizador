@@ -20,9 +20,7 @@ export function getIdPar (partida_id){
 
 
 function DatosSP() {
-  const [total, setTotal] = useState(10);
-
-
+  
   /*  console.log("---- Precio Unitario ----- ") */
   /*PARAMETROS   precioUnitario(precioLista, Descuento) */
   /*   console.log( precioUnitario( 100 , 10 ))

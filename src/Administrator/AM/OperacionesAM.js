@@ -2,6 +2,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { url2 } from "../../Componentes/Ocultar";
+import { Total } from "../PTN-BOM/Operaciones";
+
 
 
 export const GetDatosProyecto = () => {
@@ -27,8 +29,8 @@ export const GetDatosProyecto = () => {
         
     }
     /*===============================================================================================================================*/
-  //  console.log(totalesP);
-  //  console.log(totalesC);
+    console.log(totalesP);
+    console.log(totalesC);
   return{
     consultarTotalesP
   }
