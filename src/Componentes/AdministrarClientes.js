@@ -5,8 +5,7 @@ import { useRegistro } from "../Routes/ModificarCLientes";
 import Animaciones from "../Componentes/Animaciones";
 
 
-import {url} from "../Componentes/Ocultar";
-import {url2} from "../Componentes/Ocultar";
+import {url,url2 } from "../Componentes/Ocultar";
 import { CrudClientes } from "./CRUDClientes";
 
 

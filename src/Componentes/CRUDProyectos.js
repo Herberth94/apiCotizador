@@ -6,6 +6,8 @@ import Animaciones from './Animaciones';
 import { EditPartida } from '../Routes/ModificarPartida';
 import { CrudPartidas } from './CRUDPartidas';
 
+import {url, url2} from "./Ocultar";
+
 export const CrudProyectos = (props) => {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
     const[show,setShow] = useState(true);// Lista de partidas
@@ -155,7 +157,7 @@ export const CrudProyectos = (props) => {
         // Función que realiza la consulta a la tabla partida
         async function getDatosPartida(proyecto_id){
             try{
-                const resPP = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPP/${proyecto_id}`);
+                const resPP = await axios.get(url2 + `/api/cotizador/partida/viewPP/${proyecto_id}`);
                     setListaPartidas(resPP.data.data);
             }catch(error){
                 console.log(error);

@@ -12,9 +12,6 @@ import CostosIndirectos from "./CostosIndirectos";
 
 
 
-
-
-
 function AmMenu() {
    /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
