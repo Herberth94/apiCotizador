@@ -75,7 +75,7 @@ function ProporcionalidadMenu() {
                 }}
               >
                 {" "}
-                {show2 ? "Ver" : "Ocultar"}{" "}
+                {show2 ? "Registrar Datos " : "Ocultar"}{" "}
               </button>
               {show2 ? (
                 <div></div>

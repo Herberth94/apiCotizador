@@ -3,10 +3,9 @@ import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../Componentes/Animaciones";
 
-
 import RegistrarProveedor from "../Componentes/Proveedor/RegistrarProveedor";
 import RegistrarMarcas from "../Componentes/Proveedor/RegistrarMarcas";
-
+import AdministrarProveedor from "../Componentes/Proveedor/AdministrarProveedor";
 
 function MenuProveedor() {
 
@@ -96,7 +95,7 @@ function MenuProveedor() {
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-  
+            <AdministrarProveedor />
           </div>
         )}
       </td>

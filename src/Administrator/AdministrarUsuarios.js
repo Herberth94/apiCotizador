@@ -4,6 +4,9 @@ import axios from 'axios';
 import Animaciones from "../Componentes/Animaciones";
 import { CrudUsuarios } from "../Componentes/CrudUsuarios";
 
+import {url, url2} from "../Componentes/Ocultar";
+
+
 
 
 
@@ -16,6 +19,8 @@ function AdministrarUsuarios() {
 
     const {actualizacion} = useRegistro();
     const [first, setfirst] = useState(false)
+
+    
     const [listaUsuarios, setlistaUsarios] = useState([]);
 
     const borrarUsuario = async (dato) => {
@@ -24,7 +29,7 @@ function AdministrarUsuarios() {
         const confirmacion = window.confirm("¿Seguro que quieres borrar este registro?" );
         if (confirmacion) {
             console.log(dato);
-            const respuesta = await axios.delete(`http://localhost:4001/api/cotizador/delete/${dato}`);
+            const respuesta = await axios.delete(url2 + `/api/cotizador/delete/${dato}`);
             console.log(respuesta.data);
             llamado();
         } else {
@@ -39,7 +44,7 @@ function AdministrarUsuarios() {
         let newpassword = email
         console.log("este es el email", email)
         console.log("este es el id usuario", id_usuario)
-        const respuesta = await axios.put(`http://20.200.100.210/node/api/cotizador/edit/pass/${id_usuario}`, {password:newpassword, estado_login});
+        const respuesta = await axios.put(url2 + `/api/cotizador/edit/pass/${id_usuario}`, {password:newpassword, estado_login});
         alert('Reseteo de la contraseña efectuado exitosamente')
     }
 
@@ -62,14 +67,14 @@ function AdministrarUsuarios() {
     
     /*=================== Leer todos los usuarios registrados  =================*/
     const llamadoUsuario = async () =>{
-       const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
+       const respuesta = await axios.get(url + '/api/cotizador/registro');
        setlistaUsarios(respuesta.data.reSql);
        setShow2(!show2)
        setShow(!show)
     }
     /*==========================================================================*/
     const llamado = async () =>{
-       const respuesta = await axios.get('http://localhost:4001/api/cotizador/registro');
+       const respuesta = await axios.get(url + '/api/cotizador/registro');
        setlistaUsarios(respuesta.data.reSql);
        setShow(show)
 

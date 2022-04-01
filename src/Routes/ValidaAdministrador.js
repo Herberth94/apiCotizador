@@ -21,7 +21,7 @@ const Administrador = ({component:Component, ...rest}) => {
     <ValidaRol />
     
     if( i=== "administrador"){
-console.log("Hola Admin")
+//console.log("Hola Admin")
 
 return (
     
@@ -29,7 +29,7 @@ return (
       
   )
     }else{
-        console.log("No soy Admin")
+   //     console.log("No soy Admin")
 
     }
     return (null )

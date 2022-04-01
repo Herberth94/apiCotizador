@@ -5,8 +5,8 @@ export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
 export let i = "";
-//export let validator = cookies.get('rol');
-export let validator = 'administrador';
+export let validator = cookies.get('rol');
+//export let validator = 'administrador';
 
 // console.log(validator);
 
@@ -23,7 +23,7 @@ export function foo() {
         i = "null";
 
     }
-    console.log(i); // local
+   // console.log(i); // local
 }
 foo()
 
@@ -34,7 +34,7 @@ export default class ValidaUsuario extends React.Component {
         
 
         if(this.state.rol[0]=== "admin"){
-            console.log("soy admin");
+         //   console.log("soy admin");
 
             authAdmin1 =false;
 
@@ -44,7 +44,7 @@ export default class ValidaUsuario extends React.Component {
                 </div>
             )
         }else if  (this.state.rol[0]=== "preventa"){
-            console.log("Soy Preventa");
+        //    console.log("Soy Preventa");
             authPreventa1=true;
             return(
                 <div>
@@ -52,7 +52,7 @@ export default class ValidaUsuario extends React.Component {
                 </div>
             )
         }else if  (this.state.rol[0]=== "venta"){
-            console.log("Soy de Ventas");
+         //   console.log("Soy de Ventas");
             authVenta1=true;
             return(
                 <div>

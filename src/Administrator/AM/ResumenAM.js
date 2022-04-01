@@ -10,18 +10,23 @@ import { partidasUnicas2, Cantidad,descuentoCliente, monedaPTN, prov, listaProv,
 precioFinalVenta,
 costoSinIndirectos,
 costoFianalProyecto,
-GetDatosProyecto
-} from "./OperacionesAM";
+getTotalesP,
+totalCategorias,
+totalesPartidas
+} from "./OperacionesAM.js";
 
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
-let validatorrol = cookies.get('rol');
+//let validatorrol = cookies.get('rol');
+
+let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
 
-function ResumenAM() {
+
+const ResumenAM = () => {
 
     //Habilitar/Deshabilitar tabla del resumen AM
     const [show, setShow] = useState(true)
@@ -35,6 +40,12 @@ function ResumenAM() {
     
     /*== Almacenamiento de la clave introducida del proyecto ==*/
     const[claveP,setClaveP] = useState([]);
+
+    // Almacenamiento de los totales de las partidas
+    const [totalesP,setTotalesP] = useState([]);
+      
+    // Almacenamiento de los totales de las categorías
+    const [totalesC,setTotalesC] = useState([]);
 
     /*== Función que realiza la consulta a la tabla proyectos ==*/
     useEffect(()=>{
@@ -67,8 +78,26 @@ function ResumenAM() {
         setClaveP(claveP);
     }
     /*=======================================================================================================*/
-
-    const {consultarTotalesP} = GetDatosProyecto();
+    
+    
+    /*=============================== Función que consulta los datos de un proyeco para el resumen AM ===============================*/  
+    async function consultarTotalesP(id){          //console.log(id)
+        try{
+            const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
+            setTotalesP(resProy.data.data);
+            const resProyCats = await axios.get(url2 + `/api/cotizador/catt/view/${id}`);
+            setTotalesC(resProyCats.data.data);    
+        }catch (error){
+            console.log(error);
+        }
+     /*   console.log('Partidas',totalesPartidas);
+        console.log('Categorias',totalCategorias); */
+    }
+    /*===============================================================================================================================*/
+    
+    getTotalesP(totalesP,totalesC);
+    
+    //const {consultarTotalesP} = GetDatosProyecto();
     
     return (
 
@@ -125,7 +154,9 @@ function ResumenAM() {
                                 <td>
                                     <button 
                                     className="btn btn-primary" 
-                                    onClick={() => {consultarTotalesP(suggestions[key].proyecto_id);setShow(!show)}}
+                                    onClick={() => {
+                                        consultarTotalesP(suggestions[key].proyecto_id);
+                                        setShow(!show);}}
                                     >{show ? 'Ver mas':'Ocultar proyecto'}</button>
                                 </td> 
                             </tr>  
@@ -137,6 +168,7 @@ function ResumenAM() {
                 <div></div>
             ):(
                 <div className="arregla">
+                    
                     <div className="contenido-usuarios">
                         <Table responsive striped bordered hover size="sm" className="tablas">
                             <thead>
@@ -172,7 +204,7 @@ function ResumenAM() {
                                     <td> {precioVenta[key]} {"$"}</td>
 
                                     {/*================= Margen Ganancia==================*/}
-                                        <td>{" % "} {margenGanancia[key]} </td>
+                                        <td>{margenGanancia[key]}   {" % "} </td>
 
                                         {/*================= PrecioLista Unitario ==================*/}
 
@@ -222,8 +254,6 @@ function ResumenAM() {
                                             <td className='azul'>{costoSinIndirectos}</td>    
                                             <td className='verde'>{costoFianalProyecto}</td>      
                                             </tr >
-
-                                    
                                 </tbody>
                             </Table>
                         </div>

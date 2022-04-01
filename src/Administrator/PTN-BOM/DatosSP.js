@@ -4,6 +4,8 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones"; 
 import axios from 'axios';
 import Cookies from "universal-cookie";
+import {url, url2} from "../../Componentes/Ocultar";
+
 
 /*============== Operacions PTN BOM ==============*/
 import { precioUnitario, calcularDescuento, Total} from "./Operaciones";
@@ -14,12 +16,15 @@ import ModalPtnDatos from "../../Componentes/ModalPtnDatos";
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
 
-function DatosSP() {
-  const [total, setTotal] = useState(10);
+let parId;
+
+export function getIdPar (partida_id){
+  parId = partida_id;
+}
+
+
+function DatosSP({clave}) {
   const [modalShow, setModalShow] = useState(false);
-
-
-
   /*  console.log("---- Precio Unitario ----- ") */
   /*PARAMETROS   precioUnitario(precioLista, Descuento) */
   /*   console.log( precioUnitario( 100 , 10 ))
@@ -40,6 +45,7 @@ function DatosSP() {
 
   /*=================================== Obtención de datos en la tabla precio ===================================*/
   // Almacenamiento de los datos
+  
   const [datos, setDatos] = useState({
     precio_lista: '',
     precio_unitario: '',
@@ -54,6 +60,11 @@ function DatosSP() {
       ...datos,[event.target.name]: event.target.value,
     });
   };
+  const [clavep, setclavep] = useState()
+  useEffect(() => {
+    setclavep(clave)
+    
+  }, [])
   
   /*useEffect(() => {
     let total = '';
@@ -167,7 +178,7 @@ function DatosSP() {
   useEffect (() => {
     async function listaProvs(){
       try {
-        const respuesta = await axios.get("http://localhost:4001/api/cotizador/proveedor/view");
+        const respuesta = await axios.get(url + "/api/cotizador/proveedor/view");
         setListaProv(respuesta.data.data);
       } catch (error) {}
     }
@@ -219,7 +230,7 @@ function DatosSP() {
     }
     async function listaMarcas(){
       try {
-        const respuesta = await axios.get(`http://localhost:4001/api/cotizador/provmarcas/view/${proveedorId.proveedor_id}`);
+        const respuesta = await axios.get(url2 + `/api/cotizador/provmarcas/view/${proveedorId.proveedor_id}`);
         setListaMarca(respuesta.data.data);
       } catch (error) {}
     }
@@ -336,21 +347,27 @@ function DatosSP() {
 
       try{
           // Inserción a la tabla precio
-          const resPrecio = await axios.post('http://localhost:4001/api/cotizador/precio/agregar', dataPrecio);
+          const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataPrecio);
           // Obtención del precio_id de la inserción realizada
           dataSP.sp_id_precio = resPrecio.data.data.insertId;
 
-          
-
           // Obtención del id de la última partida insertada del ultimo proyecto insertado del usuario que esta activo
-          const resGetPartida = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPU/${validatorid}`);
+          const resGetPartida = await axios.get(url2 + `/api/cotizador/partida/viewPU/${validatorid}`);
           ListaPartida = resGetPartida.data.data.pop();
           partidaId.partida_id = ListaPartida.partida_id;
 
-          // Inserción a las tablas sp , psp, y sp_proveedor_marcas
-          await axios.post(`http://localhost:4001/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+          //Inserción a las tablas sp , psp, y sp_proveedor_marcas
+          if(parId !== partidaId.partida_id && parId !== '' ){
+            //console.log(parId);
+            await axios.post(url2 + `/api/cotizador/sp/agregar/${parId}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+            //console.log('Despues de la insersión:', parId);
+            alert('Servico/producto registrado exitosamente')
+          }else{
+            //console.log(partidaId.partida_id);
+            await axios.post(url2 + `/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+            alert('Servico/producto registrado exitosamente')
+          }
           
-          alert('Servico/producto registrado exitosamente')
           }catch (error){
           alert('Registro de Servico/producto invalido')
           console.log(error);
@@ -361,17 +378,26 @@ function DatosSP() {
       event.preventDefault()
       event.target.reset();
   }
-  /*===============================================================================================================================================================*/
+  
+  const [proyecto_id, Setproyecto_id] = useState([])
+  const lista = async (clave) =>{
+    console.log(clave)
+    const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
+    Setproyecto_id(respuesta.data.reSql)
+ }
+  /*==========================================onHide={() => setModalShow(false)}=====================================================================================================================*/
   
   return (
 
     <div className="contenido-usuarios">
-        <button type="button" className="btn btn-primary" onClick={() => setModalShow(true)} >
+        <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true); lista (clave)}} >
           Ver partidas agregadas
         </button><br/><br/>
         <ModalPtnDatos
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        proyecto_id={proyecto_id}
+        onHide={() => setModalShow(false)}  
+       
         />
       
         {/*========================== Tabla Datos PTN ==========================*/}
@@ -393,7 +419,7 @@ function DatosSP() {
                 <td>
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     name="sp_no_parte"
                     onChange={handleInputChangeSP}
                     placeholder="No. Parte"

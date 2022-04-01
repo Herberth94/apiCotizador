@@ -23,7 +23,7 @@ const Venta= ({component:Component, ...rest}) => {
     <ValidaRol />
 
     if( i==="venta"){
-console.log("Hola Venta")
+//console.log("Hola Venta")
 
 return (
     
@@ -33,7 +33,7 @@ return (
       
   )
     }else{
-        console.log("No soy  de Ventas")
+        //console.log("No soy  de Ventas")
 
     }
     return (null )

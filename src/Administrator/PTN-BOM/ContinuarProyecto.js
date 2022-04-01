@@ -2,45 +2,58 @@ import axios from 'axios';
 import React from 'react'
 import { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
-
+import Cookies from 'universal-cookie';
 // Componentes
 import Partida from "./Partida";
 import DatosSP from "./DatosSP";
 import Categorias from "./Categorias";
-import { InsertDatosPartida } from '../../Routes/GuardarPartida';
 import Animaciones from '../../Componentes/Animaciones';
+import {InsertDatosPartida} from '../../Routes/GuardarPartida';
+import {getIdPar} from './DatosSP';
+import {getIdP1} from './Categorias';
+import {url, url2} from "../../Componentes/Ocultar";
 
-import {url} from "../../Componentes/Ocultar";
+
+const cookies = new Cookies();
+//Obtención del rol del usuario con sesión activa
+let validatorrol = cookies.get('rol');
+//Obtención del id del usuario con sesión activa
+let validatorid = cookies.get('id_usuario');
+
+export var proyectoIdCont;
 
 function ContinuarProyecto() {
     
-  {  /*========================== Mostrar/Ocultar menú agregar/continuar partida ==========================*/}
-  const [show, setShow] = useState(true);
+  /*========================== Mostrar/Ocultar ==========================*/
+  const [show, setShow] = useState(true); // Menú agregar/continuar partida 
+  const [show2, setShow2] = useState(true);// Agregar partida
+  const [show3, setShow3] = useState(true);// Lista de las partidas de un proyecto
+  const [show4, setShow4] = useState(true);// Continuar una partida
+  const [show5, setShow5] = useState(true);// Categorias/Finalizar proyecto
+  /*=====================================================================*/
+  const [id, setid] = useState([]);
 
-  {  /*========================== Mostrar/Ocultar agregar partida ==========================*/}
-  const [show2, setShow2] = useState(true);
-
-  {  /*========================== Mostrar/Ocultar lista de las partidas de un proyecto==========================*/}
-  const [show3, setShow3] = useState(true);
-
-  {  /*========================== Mostrar/Ocultar continuar una partida ==========================*/}
-  const [show4, setShow4] = useState(true);
-
-  /*== Almacenamiento de todos los proyectos existentes ==*/
+  /*======================================== Buscador de proyectos ========================================*/
+  //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
 
-  /*== Almacenamiento de los proyectos que tienen la clave semejante a la instroducida ==*/
+  //Almacenamiento de los proyectos que tienen la clave semejante a la instroducida
   const[suggestions,setSuggestions] = useState([]);
   
-  /*== Almacenamiento de la clave introducida del proyecto ==*/
+  // Almacenamiento de la clave introducida del proyecto 
   const[claveP,setClaveP] = useState([]);
 
-  /*== Función que realiza la consulta a la tabla proyectos ==*/
+  // Función que realiza la consulta a la tabla proyectos 
   useEffect(()=>{
       const getProyectos = async () => {
           try{
-              const resProy = await axios.get(url + '/api/cotizador/proyecto/view1');
+            if(validatorrol === "administrador"){
+              const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
               setListaProyectos(resProy.data.data);
+          }else{
+              const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+              setListaProyectos(resProy.data.data);
+          }
           }catch(error){
               console.log(error);
           }
@@ -60,23 +73,25 @@ function ContinuarProyecto() {
       setSuggestions(coincidencias);
       setClaveP(claveP);
   }
+  /*=======================================================================================================*/
 
-  /*== Almacenamiento de las partidas de un proyecto en especifico ==*/
+  /*======================================== Lista de partidas ========================================*/
+  // Almacenamiento de las partidas de un proyecto en especifico
   const[listaPartidas, setListaPartidas] = useState([]);
     
-  /*== Almacenamiento de todos las partidas de un proyecto en específico ==*/
+  //Almacenamiento de todos las partidas de un proyecto en específico
   async function getDatosPartida(proyecto_id){
       try{
-          const resPP = await axios.get(`http://localhost:4001/api/cotizador/partida/viewPP/${proyecto_id}`);
+          const resPP = await axios.get(url2 + `/api/cotizador/partida/viewPP/${proyecto_id}`);
           setListaPartidas(resPP.data.data);
       }catch(error){
           console.log(error);
       }
+      proyectoIdCont = proyecto_id;
   }
-
-  
-    const {getIdProyecto} = InsertDatosPartida();
-  
+  //console.log('Varible global proyecto id:', proyectoIdCont);
+  const {getIdP} = InsertDatosPartida();
+  /*===================================================================================================*/
 
   return (
     /*==================== Continuar Proyecto ====================*/
@@ -118,6 +133,7 @@ function ContinuarProyecto() {
               <th>Fecha de creción</th>
               <th>Estatus</th>
               <th>Continuar</th>
+              <th>Finalizar</th>
             </tr>
           </thead>
                               
@@ -134,9 +150,25 @@ function ContinuarProyecto() {
                     <button 
                       className="btn btn-primary modificar" 
                       type="button" 
-                      onClick={() => {getIdProyecto(suggestions[key].proyecto_id);getDatosPartida(suggestions[key].proyecto_id); setShow(!show);}}
-                      // getIdProyecto(suggestions[key].proyecto_id);
-                      > {show ? 'Continuar' : 'Ocultar Proyecto'} </button>
+                      onClick={() => {
+                        getIdP(suggestions[key].proyecto_id);
+                        getDatosPartida(suggestions[key].proyecto_id); 
+                        setid(suggestions[key].proyecto_id);
+                        setShow(!show);}}
+                      > 
+                        {show ? 'Continuar' : 'Ocultar Proyecto'} 
+                      </button>
+                  </td>
+                  <td>
+                    <button 
+                      className="btn btn-primary modificar" 
+                      type="button" 
+                      onClick={() => {
+                        getIdP1(suggestions[key].proyecto_id);
+                        setShow5(!show5);}}
+                      > 
+                        {show5 ? 'Finalizar proyecto' : 'Ocultar Proyecto'} 
+                      </button>
                   </td>
               </tr>  
           ))}
@@ -163,7 +195,9 @@ function ContinuarProyecto() {
                     <button 
                       className="btn btn-primary modificar" 
                       type="button" 
-                      onClick={() => { setShow2(!show2) ;}}
+                      onClick={() => { 
+                        getIdPar('');
+                        setShow2(!show2) ;}}
                       >{show2 ? 'Agregar' : 'Ocultar'} </button>
                   </td>
                   <td>
@@ -192,7 +226,10 @@ function ContinuarProyecto() {
                 </div>
                 {/*========================== Llamado a los Componentes ==========================*/} 
                 <Partida></Partida>
-                <DatosSP></DatosSP>
+                            
+                <DatosSP  clave={id} />
+                
+               
               </div>
       )}
 
@@ -229,7 +266,9 @@ function ContinuarProyecto() {
                                   <td>
                                     <button 
                                     className="btn btn-primary modificar" 
-                                    onClick={() => {setShow4(!show4);}}
+                                    onClick={() => {
+                                      getIdPar(listaPartidas[key].partida_id);
+                                      setShow4(!show4);}}
                                     >  {show4 ? 'Continuar' : 'Ocultar Partida'} </button>
                                   </td> 
                               </tr>  
@@ -256,7 +295,14 @@ function ContinuarProyecto() {
               </div>
               
       )}
-
+      {show5 ? (
+        <div></div>
+      ):(
+        <div  className="arregla"> 
+          {/*======================== Llamar al componente Categorias ==========================*/}
+          <Categorias />
+        </div>
+      )}
       
     </div>
 

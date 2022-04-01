@@ -4,6 +4,9 @@ import axios from "axios";
 import { useRegistro } from "../Routes/ModificarCLientes";
 import Animaciones from "../Componentes/Animaciones";
 
+import {url2} from "../Componentes/Ocultar";
+
+
 import Cookies from 'universal-cookie';
 
 
@@ -54,7 +57,7 @@ function AdministrarColaboradores() {
     );
     if (confirmacion) {
       console.log(dato);
-      const respuesta = await axios.delete(`http://localhost:4001/api/cotizador/colaboradores/delete/${dato}` );
+      const respuesta = await axios.delete(url2 +`/api/cotizador/colaboradores/delete/${dato}` );
       console.log(respuesta.data);
       llamado();
     } else {
@@ -62,8 +65,7 @@ function AdministrarColaboradores() {
     }
   };
   const llamado = async () => {
-    const respuesta = await axios.get(
-      `http://localhost:4001/api/cotizador/colaboradores/view/${validatorid}`
+    const respuesta = await axios.get( url2 + `/api/cotizador/colaboradores/view/${validatorid}`
     );
     setlistaClientes(respuesta.data.data);
     console.log("soy la respuesta data del llamado", respuesta.data)
@@ -73,8 +75,7 @@ function AdministrarColaboradores() {
     setShow2(!show2);
     const newValidar = [];
     try {
-      const respuesta = await axios.get(
-        `http://localhost:4001/api/cotizador/colaboradores/view/${validatorid}`
+      const respuesta = await axios.get(url2 + `/api/cotizador/colaboradores/view/${validatorid}`
       );
       console.log("soy la respuesta data del llamadoCliente", respuesta.data.data);
       let i = await  Object.keys(respuesta.data.data);

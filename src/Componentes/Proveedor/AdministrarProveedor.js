@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import Table from "react-bootstrap/Table";
 import axios from "axios";
-import { useRegistro } from "../Routes/ModificarCLientes";
-import Animaciones from "../Componentes/Animaciones";
+import Animaciones from "../../Componentes/Animaciones";
+import { useRegistro2 } from "./ModificarProveedor";
+
+import {url} from "../../Componentes/Ocultar";
+import {url2} from "../../Componentes/Ocultar";
+import { CrudProveedores } from "./CRUDProveedores";
 
 
-import {url,url2 } from "../Componentes/Ocultar";
-import { CrudClientes } from "./CRUDClientes";
 
-
-function AdministrarClientes() {
+function AdministrarProveedor() {
 
   /*========================== Mostrar Ocultar Tabla ==========================*/
 
@@ -20,7 +21,7 @@ function AdministrarClientes() {
   const [show2, setShow2] = useState(true);
   
   const [listaClientes, setlistaClientes] = useState([]);
-  const {actualizacion} = useRegistro();
+  const {actualizacion} = useRegistro2();
   const [first, setfirst] = useState(false);
   
   const borrarCliente = async (dato) => {
@@ -31,7 +32,7 @@ function AdministrarClientes() {
 
     if (confirmacion) {
       
-      const respuesta = await axios.delete(   url2 + `/api/cotizador/clientes/delete/${dato}` );
+      const respuesta = await axios.delete( url2 + `/api/cotizador/clientes/delete/${dato}` );
       console.log("hola soy el undefined", respuesta.data);
       llamado();
     } else {
@@ -39,22 +40,23 @@ function AdministrarClientes() {
     }
   };
 
-  const llamado = async () => {  const respuesta = await axios.get(  url + '/api/cotizador/clientes/view' );
-    setlistaClientes(respuesta.data.reSql);
+  const llamado = async () => {  const respuesta = await axios.get( url + '/api/cotizador/proveedor/view');
+    setlistaClientes(respuesta.data.data);
+    console.log("hola soy el llamado.resprov", respuesta.data.data)
   };
 
   const llamadoCliente = async () => {
     try {
-      const respuesta = await axios.get( url + '/api/cotizador/clientes/view');
-      //console.log(respuesta.data.reSql);
-      setlistaClientes(respuesta.data.reSql);
+      const respuesta = await axios.get( url + '/api/cotizador/proveedor/view');
+      console.log("hola soy la respuesta data", respuesta.data.data);
+      setlistaClientes(respuesta.data.data);
     } catch (error) { console.log(error);}
     setShow2(!show2);
   };
   const envioData = async (datos, key, data) => {
     if(first){
-      console.log(datos[key])
-      console.log(data)
+      console.log("hola soy el datos[key]",datos[key])
+      console.log("hola soy el envio data", data)
       actualizacion(datos[key],data);
     }
   };
@@ -65,7 +67,7 @@ function AdministrarClientes() {
       <div className="head"></div>
       <div className="table-responsive">
         {/*========================== Titulo Animación =======================*/}
-        <div> <Animaciones mytext="Lista de Clientes" /> </div>
+        <div> <Animaciones mytext="Lista de Proveedores" /> </div>
 
         {/*================= Botón Mostrar/Ocultar Lista =======================*/}
         <div>
@@ -85,7 +87,7 @@ function AdministrarClientes() {
             <div>
               {/*=================== Botón Mostrar Lista DIV =====================*/}
               <br />
-              <CrudClientes
+              <CrudProveedores
                 clientes={listaClientes} 
                 borrar={borrarCliente} 
                 setfirst={setfirst}
@@ -99,4 +101,4 @@ function AdministrarClientes() {
   );
 }
 
-export default AdministrarClientes;
+export default AdministrarProveedor;

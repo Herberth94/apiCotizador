@@ -1,15 +1,16 @@
-import React ,{useEffect} from 'react';
+import React ,{useEffect, useState} from 'react';
+import Table from "react-bootstrap/Table";
 import {Modal , Button} from "react-bootstrap";
+import axios from 'axios';
+import {url2} from "../Componentes/Ocultar";
+   
+import ResumenAM from '../Administrator/AM/ResumenAM';
 
 const ModalPtnDatos = (props) => {
-
-  useEffect(() => {
-    
-   
-    }
-  , [])
-  
-  return (
+   console.log(props.proyecto_id);
+ 
+         
+   return (
     <>
     <Modal
       {...props}
@@ -20,16 +21,41 @@ const ModalPtnDatos = (props) => {
     >
     <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-         Datos de partida
+         Datos de Partidas
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+        <Table responsive  striped bordered hover size="sm">
+          <thead>
+            <tr className="titulo-tabla-usuarios">
+              <th>partida_nombre</th>
+              <th>Partida_descripcion</th>
+              <th> N° parte</th>
+              <th>Meses</th>
+              <th>Semanas</th>
+              <th>Cantidad</th>
+              <th>Categoria</th>
+              <th>Total</th>
+              <th>Moneda</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+          {Object.keys(props.proyecto_id).map((key) => (    
+              <tr key={props.proyecto_id[key].partida_nombre} >
+                  <td>{props.proyecto_id[key].partida_nombre}</td>   
+                  <td>{props.proyecto_id[key].partida_descripcion}</td>   
+                  <td>{props.proyecto_id[key].sp_no_parte}</td>  
+                  <td>{props.proyecto_id[key].sp_meses}</td>  
+                  <td>{props.proyecto_id[key].sp_semanas}</td> 
+                  <td>{props.proyecto_id[key].sp_cantidad}</td>
+                  <td>{props.proyecto_id[key].categoria_nombre}</td>
+                  <td>{props.proyecto_id[key].precio_total}</td>
+                  <td>{props.proyecto_id[key].moneda_nombre}</td>      
+              </tr>))}        
+          </tbody>            
+        </Table>
+        
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>

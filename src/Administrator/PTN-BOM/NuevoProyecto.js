@@ -10,6 +10,10 @@ import DatosSP from "./DatosSP";
 import DatosPTN from "./DatosPTN";
 import Cookies from 'universal-cookie';
 
+
+import {url, url2} from "../../Componentes/Ocultar";
+
+
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
 export let validatorid = cookies.get('id_usuario');
@@ -37,7 +41,7 @@ function NuevoProyecto () {
   useEffect (() => {
     async function listaClientes(){
       try {
-        const respuesta = await axios.get("http://localhost:4001/api/cotizador/clientes/view");
+        const respuesta = await axios.get(url + "/api/cotizador/clientes/view");
         setListaC(respuesta.data.reSql);
       } catch (error) {}
     }
@@ -97,7 +101,7 @@ function NuevoProyecto () {
 
     try{
       //console.log('Este es el id del usuario activo:', validatorid);
-      const respuesta = await axios.post(`http://localhost:4001/api/cotizador/proyecto/agregar/${validatorid}`, data);
+      const respuesta = await axios.post(url2 + `/api/cotizador/proyecto/agregar/${validatorid}`, data);
       const getProyectoId = respuesta.data.id_proyecto;
       console.log(getProyectoId);
       alert('Registro exitoso')

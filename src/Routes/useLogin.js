@@ -34,10 +34,10 @@ export const useLogin = () => {
         cookies.set('rol', send2.rol, {path:"/"});
         cookies.set('estado_login', send2.estado_login, {path:"/"});
         console.log(cookies.get('estado_login'));
-        window.location.href="../Components/ValidaRol.js";
+        window.location.href="../";
 
         //console.log(send2.id_usuario);
-        alert('Información valida');
+        //alert('Información valida');
 }
     const enviarDatos = (event) => {  
         if(valida===true){
