@@ -1,3 +1,3 @@
 # Diagrama relacional
 
-[![DR-Cotizador.png](https://i.postimg.cc/8kxBzTxS/DR-Cotizador.png)](https://postimg.cc/qgXCmHkb)
+[![DR-Cotizador.png](https://i.postimg.cc/6pHgqKpV/DR-Cotizador.png)](https://postimg.cc/rDrQZvWz)
