@@ -6,7 +6,7 @@ import {passwordCaptcha} from "../Componentes/Ocultar";
 
 
 let dis = true;
-
+console.log("prueba")
 /*  Funcion Captcha Validación Correcta */
 
 function onChange(value) {

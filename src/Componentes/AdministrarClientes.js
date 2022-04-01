@@ -53,8 +53,8 @@ function AdministrarClientes() {
   };
   const envioData = async (datos, key, data) => {
     if(first){
-      console.log(datos[key])
-      console.log(data)
+      console.log("envioDta Proveedores:",datos[key])
+      console.log("data Proveedores: ", data)
       actualizacion(datos[key],data);
     }
   };

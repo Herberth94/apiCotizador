@@ -3,7 +3,7 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import Animaciones from "../../Componentes/Animaciones";
 import { useRegistro2 } from "./ModificarProveedor";
-
+import { useRegistro3 } from "./modificarMarcas";
 import {url} from "../../Componentes/Ocultar";
 import {url2} from "../../Componentes/Ocultar";
 import { CrudProveedores } from "./CRUDProveedores";
@@ -23,22 +23,6 @@ function AdministrarProveedor() {
   const [listaClientes, setlistaClientes] = useState([]);
   const {actualizacion} = useRegistro2();
   const [first, setfirst] = useState(false);
-  
-  const borrarCliente = async (dato) => {
-    //console.log("este es el dato", dato)
-    const confirmacion = window.confirm(
-      "¿Seguro que quieres borrar este registro?"
-    );
-
-    if (confirmacion) {
-      
-      const respuesta = await axios.delete( url2 + `/api/cotizador/clientes/delete/${dato}` );
-      console.log("hola soy el undefined", respuesta.data);
-      llamado();
-    } else {
-      llamado();
-    }
-  };
 
   const llamado = async () => {  const respuesta = await axios.get( url + '/api/cotizador/proveedor/view');
     setlistaClientes(respuesta.data.data);
@@ -60,7 +44,7 @@ function AdministrarProveedor() {
       actualizacion(datos[key],data);
     }
   };
-  
+
 
   return (
     <div className="contenido-usuarios">
@@ -74,7 +58,7 @@ function AdministrarProveedor() {
           <button className="btn btn-primary modificar" type="button"
             onClick={() => {
               llamadoCliente();
-            }}
+                      }}
           >
             {" "}
             {show2 ? "Mostrar Lista" : "Ocultar Lista"}
@@ -89,7 +73,6 @@ function AdministrarProveedor() {
               <br />
               <CrudProveedores
                 clientes={listaClientes} 
-                borrar={borrarCliente} 
                 setfirst={setfirst}
                 envioData = {envioData}
               />

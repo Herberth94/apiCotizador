@@ -1,11 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Table from "react-bootstrap/Table";
+import Cookies from 'universal-cookie';
 import Animaciones from "../../Componentes/Animaciones";
-
-
-
 import {url, url2} from "../../Componentes/Ocultar";
+import { EditDivisa } from '../../Routes/ModificarDivisa';
+const cookies = new Cookies();
+//Obtención del rol del usuario con sesión activa
+let validatorrol = cookies.get('rol');
+//Obtención del id del usuario con sesión activa
+let validatorid = cookies.get('id_usuario');
+
+
 
 
 function Divisa() {
@@ -18,18 +24,23 @@ function Divisa() {
     /*== Almacenamiento de la clave introducida del proyecto ==*/
     const[claveP,setClaveP] = useState([]);
 
+    const getProyectos = async () => {
+        try{
+            if(validatorrol === "administrador"){
+                const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
+                setListaProyectos(resProy.data.data);
+            }else{
+                const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                setListaProyectos(resProy.data.data);
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
     /*== Función que realiza la consulta a la tabla proyectos ==*/
     useEffect(()=>{
-        const getProyectos = async () => {
-            try{
-                const resProy = await axios.get(url + '/api/cotizador/proyecto/view1');
-                setListaProyectos(resProy.data.data);
-            }catch(error){
-                console.log(error);
-            }
-        }
         getProyectos();
-    },[])
+    },[claveP])
     
     /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
     const onChangeTextClaveP = (claveP) => {
@@ -44,32 +55,67 @@ function Divisa() {
         setClaveP(claveP);
     }
 
-    const [datosDivisa, setDatosDivisa] = useState({
-        am_valor_dolar: ''
-    })
-    const handleInputChange = (event) => {
-        setDatosDivisa ({
-            ...datosDivisa,[event.target.name] : event.target.value
-        })
-    }
+    const {actualizacionDivisa} = EditDivisa();
 
-    /*== Función que agrega una divisa a un proyecto en específico ==*/
-    async function enviarDivisa(id){
+    const [firts, setFirts] = useState (false);
 
-        const data = {
-            am_valor_dolar: datosDivisa.am_valor_dolar
-        };
-        console.log(id)
-        try{
-            const resProy = await axios.post(url2 + `/api/cotizador/am/agregar/${id}`,data);
-            const enviarDatos2 = resProy.data
-            console.log(enviarDatos2);
-            alert('Registro exitoso')
-            // setDatosProyecto(resProy.data.data);
-        }catch (error){
-            console.log(error);
+    function EnviarDivisa(data, key, newdata){
+        if(firts){
+            // console.log('Old Data:',data[key]);
+            // console.log('New Data:',newdata);
+            actualizacionDivisa(data[key],newdata);
         }
     }
+    /*================================================== Divisa ==================================================*/
+        /*========================= Editar =========================*/
+        const [activar, setActivar] = useState(true)
+
+        const [data,setData] = useState ({
+            proyecto_valor_dolar:''     
+        });
+
+        const handleInputChange = (event) => {
+            setData ({
+            ...data,[event.target.name] : event.target.value ,
+        })
+        }
+
+        const [enable, setenable] = useState([]);
+        const [datos, Setdatos] = useState();
+        const [newdata, setNewData] = useState([]);
+        
+
+        useEffect(() => {
+            Setdatos(suggestions); 
+        },[suggestions]);
+
+
+        useEffect(() => {
+            let i = Object.keys(suggestions)
+            i = i.length
+            //console.log(i)
+
+            setenable(Array(i).fill(true)); 
+        },[suggestions])
+
+        
+        const habilitar = (key) =>{
+            key = parseInt(key);
+            const newArr = [] 
+            let p = Object.keys(suggestions);
+            p = p.length;
+            for (let i = 0 ; i < p ; i++){
+                if(i === key){
+                    newArr[i]=!enable[i];
+                }
+                if(i !== key){
+                    newArr[i]=true;
+                }
+            }   
+            setenable(newArr);        
+        }
+        /*==========================================================*/
+    /*============================================================================================================*/
   return (
     <div className="contenido-usuarios">
             {/*======================= Titulo Animación =======================*/}
@@ -81,7 +127,6 @@ function Divisa() {
                         <thead>
                             <tr className="azul">
                                 <th>Clave Proyecto</th>
-                                <th>Valor Dolar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,26 +139,12 @@ function Divisa() {
                                         value={claveP}
                                         placeholder="Clave Proyecto" />
                                 </td>
-                                <td>
-                                    <input className="agregar"
-                                        type="text"
-                                        name="am_valor_dolar"
-                                        placeholder="Ingrese Divisa"
-                                        onChange={handleInputChange} />
-                                </td>
                             </tr>
                         </tbody>
                     </Table>
                     {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-                <div className="container">
-                    <div className="box">
-                        <div className="title">
-                            <span className="block"></span>
-                            <h1 >Lista de Proyectos<span></span></h1>
-                        </div>
-                    </div>
-                </div>
+                <div> <Animaciones mytext="Proyectos" /> </div>
 
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
@@ -124,10 +155,12 @@ function Divisa() {
                             <th>Cliente</th>
                             <th>Fecha de creción</th>
                             <th>Estatus</th>
-                            <th>Agregar divisa</th>
+                            <th>Valor dolar</th>
+                            <th>Plazo meses</th>
+                            <th>Divisa</th>
+                            
                         </tr>
-                    </thead>
-                                       
+                    </thead>         
                     <tbody>
                         {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
@@ -138,7 +171,29 @@ function Divisa() {
                                 <td>{suggestions[key].nombre_cliente}</td> 
                                 <td>{suggestions[key].proyecto_fecha_creacion}</td>
                                 <td>{suggestions[key].proyecto_estatus}</td> 
-                                <td><button className="btn btn-primary" onClick={() => {enviarDivisa(suggestions[key].proyecto_id)}}>Agregar</button></td> 
+                                <td>
+                                    <input 
+                                    className="input-name" 
+                                    defaultValue={suggestions[key].proyecto_valor_dolar} 
+                                    disabled={enable[key]} 
+                                    onChange={handleInputChange}
+                                    name="proyecto_valor_dolar" 
+                                    ></input>
+                                </td>
+                                <td>{suggestions[key].proyecto_plazo_meses}</td> 
+                                <td>
+                                    <button 
+                                    className="btn btn-primary" 
+                                    onClick={() => {
+                                        EnviarDivisa(datos,key,data);
+                                        habilitar(key);
+                                        setActivar(!activar)
+                                        setFirts(activar)
+                                    }}
+                                    >
+                                        {activar ? "Modificar":"Aceptar"}
+                                    </button>
+                                </td> 
                             </tr>  
                         ))}
                     </tbody>          
