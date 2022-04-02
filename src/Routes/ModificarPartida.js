@@ -41,11 +41,10 @@ export const EditPartida = () => {
         } 
         
         try {
-            //console.log(dataActualizacion);
+            // console.log(dataActualizacion);
             await axios.put(url2 + `/api/cotizador/partida/update/${id}`,dataActualizacion);
-            alert('Partida editada exitosamente');
-                
-            } catch (error) {
+            alert('Partida editada exitosamente'); 
+            }catch (error){
                 alert('Edición de Partida invalido');
                 console.log(error);
             }

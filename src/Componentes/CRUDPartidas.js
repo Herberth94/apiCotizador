@@ -63,19 +63,29 @@ export const CrudPartidas = (props) => {
 
         /*=================================== Eliminación de una partida y sus servicios/productos ===================================*/
         async function SendDeletePartida(id){
-            // getDatosSP(id);
-            // //console.log(listaSP);
-            // let cSP = Object.keys(listaSP);
-            // for(let c = 0; c < cSP;c++){
-            //     try {
-            //         await axios.delete(`http://localhost:4001/api/cotizador/precio/delete/${listaSP[c].sp_id_precio}`);
-            //     } catch (error) {}
-            // }
-            // try{
-            //     await axios.delete(`http://localhost:4001/api/cotizador/partida/delete/${id}`);
-            //     alert('Partida eliminada exitosamene');
-                
-            // } catch (error) {}
+            getDatosSP(id);
+            //console.log(listaSP);
+            const confirmacion = window.confirm("¿Seguro que quieres borrar esta Partida?" );
+
+            if(confirmacion){
+                let cSP = Object.keys(listaSP);
+                for(let c = 0; c < cSP;c++){
+                    try {
+                        await axios.delete(`http://localhost:4001/api/cotizador/precio/delete/${listaSP[c].sp_id_precio}`);
+                        setShow(!show);
+                    } catch (error) {}
+                }
+                try{
+                    await axios.delete(`http://localhost:4001/api/cotizador/partida/delete/${id}`);
+                    alert('Partida eliminada exitosamene');
+                } catch (error) {
+                    console.log(error);
+                    alert('Eliminación de partida invalido')
+                }
+            }else{
+
+            }
+            
         }
         /*============================================================================================================================*/
     /*==============================================================================================================*/
