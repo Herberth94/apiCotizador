@@ -72,7 +72,8 @@ function NuevoProyecto () {
   // Almacenamiento de los datos
   const [datos, setDatos] = useState ([{
     proyecto_clave:'',
-    proyecto_descripcion:''
+    proyecto_descripcion:'',
+    proyecto_plazo_meses:''
   }]);
 
   // Obtención de los datos introducidos en los input
@@ -96,7 +97,8 @@ function NuevoProyecto () {
     const data = {
         proyecto_clave: datos.proyecto_clave,
         proyecto_descripcion: datos.proyecto_descripcion,
-        proyecto_id_cliente: clienteId.proyecto_id_cliente
+        proyecto_id_cliente: clienteId.proyecto_id_cliente,
+        proyecto_plazo_meses: datos.proyecto_plazo_meses
     };
 
     try{
@@ -132,7 +134,8 @@ function NuevoProyecto () {
           <tr className="titulo-tabla-usuarios">
             <th>Clave</th>
             <th>Descripción</th>
-            <th> Cliente </th>    
+            <th> Cliente </th>  
+            <th> Plazo Meses </th>  
             <th> Añadir </th>           
           </tr>
         </thead>
@@ -177,6 +180,16 @@ function NuevoProyecto () {
                   {suggestion.nombre_cliente}
                 </div>
               )}
+            </td>
+            {/*======================= Plazo meses ======================= */}
+            <td>
+              <input
+                className="agregar"
+                type="text"
+                name="proyecto_plazo_meses"
+                onChange={handleInputChange}
+                placeholder="Ingrese Plazo Meses"
+              />
             </td>
             <td>
                  {/*=======================  Boton Empezar Nuevo proyecto ======================= */}

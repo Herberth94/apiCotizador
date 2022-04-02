@@ -39,7 +39,7 @@ function DatosPTN() {
           }}
           >
           {" "}
-          {show ? "Finalizar" : "Ocultar Categorias"}{" "}
+          {show ? "Agregar categorias" : "Ocultar Categorias"}{" "}
           </button>
 
           {show ? (
