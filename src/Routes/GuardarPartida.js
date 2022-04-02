@@ -84,6 +84,7 @@ export const InsertDatosPartida = () => {
     return{
         handleInputChangePartida,
         enviarDatosPartida,
-        getIdP
+        getIdP,
+        datosPartida
     }
 };

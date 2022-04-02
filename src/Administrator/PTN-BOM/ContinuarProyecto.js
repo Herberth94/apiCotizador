@@ -31,8 +31,7 @@ function ContinuarProyecto() {
   const [show4, setShow4] = useState(true);// Continuar una partida
   const [show5, setShow5] = useState(true);// Categorias/Finalizar proyecto
   /*=====================================================================*/
-  const [id, setid] = useState([]);
-
+  
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
@@ -153,7 +152,6 @@ function ContinuarProyecto() {
                       onClick={() => {
                         getIdP(suggestions[key].proyecto_id);
                         getDatosPartida(suggestions[key].proyecto_id); 
-                        setid(suggestions[key].proyecto_id);
                         setShow(!show);}}
                       > 
                         {show ? 'Continuar' : 'Ocultar Proyecto'} 
@@ -227,7 +225,7 @@ function ContinuarProyecto() {
                 {/*========================== Llamado a los Componentes ==========================*/} 
                 <Partida></Partida>
                             
-                <DatosSP  clave={id} />
+                <DatosSP/>
                 
                
               </div>
