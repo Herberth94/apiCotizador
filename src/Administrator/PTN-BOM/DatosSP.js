@@ -393,7 +393,7 @@ function DatosSP({clave}) {
         <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true); lista (clave)}} >
           Ver partidas agregadas
         </button><br/><br/>
-        <ModalPtnDatos
+       <ModalPtnDatos
         show={modalShow}
         proyecto_id={proyecto_id}
         onHide={() => setModalShow(false)}  

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
+import {Partida_catalogo} from '../../Componentes/totalPartida'
 import Table from "react-bootstrap/Table";
 import Cookies from 'universal-cookie';
 import Animaciones from "../../Componentes/Animaciones";
@@ -15,19 +15,15 @@ totalCategorias,
 totalesPartidas
 } from "./OperacionesAM.js";
 
-
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
 //let validatorrol = cookies.get('rol');
-
 let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
-
-
-
 const ResumenAM = () => {
-
+    const { getTotal_Cat , totalesPartidas1 } = Partida_catalogo()
+    
     //Habilitar/Deshabilitar tabla del resumen AM
     const [show, setShow] = useState(true)
 
@@ -63,6 +59,7 @@ const ResumenAM = () => {
             }
         }
         getProyectos();
+       
     },[])
     
     /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
@@ -85,17 +82,20 @@ const ResumenAM = () => {
         try{
             const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
             setTotalesP(resProy.data.data);
-            const resProyCats = await axios.get(url2 + `/api/cotizador/catt/view/${id}`);
-            setTotalesC(resProyCats.data.data);    
+            /*const resProyCats = await axios.get(url2 + `/api/cotizador/catt/view/${id}`);
+            setTotalesC(resProyCats.data.data);*/
+            getTotal_Cat(resProy.data.data);
+            console.log('Partidas',resProy.data.data);
+            console.log(totalesPartidas1)
         }catch (error){
             console.log(error);
         }
-        console.log('Partidas',totalesPartidas);
-        console.log('Categorias',totalCategorias);
+        
+        //console.log('Categorias',totalCategorias);
     }
     /*===============================================================================================================================*/
     
-    getTotalesP(totalesP,totalesC);
+    
     
     //const {consultarTotalesP} = GetDatosProyecto();
     

@@ -1,16 +1,23 @@
+import  {useState} from 'react';
+import  { Partida_catalogo }   from '../../Componentes/totalPartida'
 export let totalesPartidas;
 export let totalesCategorias
 //console.log(tProy);
-export function getTotalesP (tP,tC){
-  totalesPartidas = tP;
-  totalCategorias = tC;
-   console.log(totalesPartidas);
-  console.log(totalesCategorias);
+
+const prueba1 =()=>{
+  const {totalesPartidas1 }=Partida_catalogo()
+  console.log(totalesPartidas1);
 }
 
+export function getTotalesP (tP){
+  //totalesPartidas = tP;
+   //totalCategorias = tC;
+   //console.log(tP);
+  //console.log(totalesCategorias);
+  return {
 
-
-
+}
+}
 
 
 const datosPTN = [
