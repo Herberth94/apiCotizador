@@ -388,10 +388,10 @@ for (var i = 0; i < precioVenta.length; i++) {
 /*============= Obtener Total Categorias ===============================*/
 
     for (var i = partidasUnicas.length -1; i < precioVenta.length -1; i++) {
-      console.log(precioVenta[i]);
+     // console.log(precioVenta[i]);
       totalCategorias += parseFloat(precioVenta[i]);
     }
-    console.log("Total Categorias",  totalCategorias )
+   // console.log("Total Categorias",  totalCategorias )
 
 
 

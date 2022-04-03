@@ -13,7 +13,7 @@ costoFianalProyecto,
 getTotalesP,
 totalCategorias,
 totalesPartidas
-} from "./OperacionesAM.js";
+} from "../../Componentes/OperacionesAM";
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -79,8 +79,8 @@ const ResumenAM = () => {
             getTotalPar(resProy.data.data);
             getTotalCats(resProyCats.data.data);
             //console.log('Partidas',resProy.data.data);
-            console.log(totalesPartidas1)
-            console.log(totalesCategorias1);
+            //console.log(totalesPartidas1)
+         //   console.log(totalesCategorias1);
         }catch (error){
             console.log(error);
         }
