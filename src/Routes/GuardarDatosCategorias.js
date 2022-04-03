@@ -30,7 +30,7 @@ export const InsertDatosCats = () => {
         })
     }
 
-    function getIdP (proyecto_id){
+    function getIdP1 (proyecto_id){
         pId = proyecto_id;
     }
     // Función que realiza la inserción de los datos a la tabla partida en la bd 
@@ -81,7 +81,7 @@ export const InsertDatosCats = () => {
                 data.cd_id_precio = resPrecio.data.data.insertId;
                 await axios.post(url2 + `/api/cotizador/catd/agregar/${proyectoId.proyecto_id}`,data);
                 //console.log(pId);
-                alert('Datos agregados de una categoria exitosamente');
+                alert('Se agregaron los datos de una categoria correctamente');
             }else{
                 //console.log(data);
                 //console.log(dataP);
@@ -93,12 +93,12 @@ export const InsertDatosCats = () => {
                 data.cd_id_precio = resPrecio.data.data.insertId;
                 await axios.post(url2 + `/api/cotizador/catd/agregar/${proyectoId.proyecto_id}`,data);
                 //console.log(pId);
-                alert('Los datos de la categoria se agregaron correctamente');
+                alert('Se agregaron los datos de una categoría correctamente');
             }
         }
         catch (error){
             console.log(error);
-            alert('Los datos de la categoria se agregaron correctamente');
+            alert('Error al agregar los datos de una categoría');
         }
     }
 
@@ -128,11 +128,22 @@ export const InsertDatosCats = () => {
             proyectoId.proyecto_id = ListaProyectos.proyecto_id;
 
             if(pId !== proyectoId.proyect && pId !== ''){
-                await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
+                //ci/agregar/:proyecto_id
+                await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${pId}`,dataEstatus);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/1/2/${pId}`);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/2/1/${pId}`);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/3/5/${pId}`);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/4/1/${pId}`);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/5/4/${pId}`);
                 alert('Se finalizó el proyecto correctamente');
                 alert('El proyecto entro al estatus: En revisón');
             }else{
                 await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/1/2/${proyectoId.proyecto_id}`);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/2/1/${proyectoId.proyecto_id}`);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/3/5/${proyectoId.proyecto_id}`);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/4/1/${proyectoId.proyecto_id}`);
+                await axios.post(url2 + `/api/cotizador/ci/agregar/5/4/${proyectoId.proyecto_id}`);
                 alert('Se finalizó el proyecto correctamente');
                 alert('El proyecto entro al estatus: En revisón');
             }
@@ -153,7 +164,7 @@ export const InsertDatosCats = () => {
     return{
         handleInputChange,
         enviarDatos,
-        getIdP,
+        getIdP1,
         finalizarProy
     }
 };

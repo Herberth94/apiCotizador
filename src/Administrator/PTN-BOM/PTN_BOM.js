@@ -10,7 +10,7 @@ import ContinuarProyecto from "./ContinuarProyecto";
 import Proyectos from "./ResumenProyectos";
 import { InsertDatosPartida } from '../../Routes/GuardarPartida';
 import { getIdPar } from './DatosSP';
-import { getIdP1 } from "./Categorias";
+import { InsertDatosCats } from "../../Routes/GuardarDatosCategorias";
 
 
 import MenuResumen from "./MenuResumen";
@@ -32,6 +32,7 @@ function PTN_BOM() {
   const [show3, setShow3] = useState(true);
 
   const {getIdP} = InsertDatosPartida();
+  const {getIdP1} = InsertDatosCats();
   
   return (
     <div className="contenido-usuarios">
@@ -61,6 +62,8 @@ function PTN_BOM() {
                   getIdPar('');
                   getIdP1('');
                   setShow(!show);
+                  setShow2(true);
+                  setShow3(true);
                 }}
               >
                 {" "}
@@ -82,6 +85,8 @@ function PTN_BOM() {
                 type="button"
                 onClick={() => {
                   setShow2(!show2);
+                  setShow(true);
+                  setShow3(true);
                 }}
               >
                 {" "}
@@ -103,6 +108,8 @@ function PTN_BOM() {
                 type="button"
                 onClick={() => {
                   setShow3(!show3);
+                  setShow(true);
+                  setShow2(true);
                 }}
               >
                 {" "}
