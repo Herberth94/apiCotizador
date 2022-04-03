@@ -82,8 +82,8 @@ const ResumenAM = () => {
         try{
             const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
             setTotalesP(resProy.data.data);
-            /*const resProyCats = await axios.get(url2 + `/api/cotizador/catt/view/${id}`);
-            setTotalesC(resProyCats.data.data);*/
+            const resProyCats = await axios.get(url2 + `/api/cotizador/catd/view/${id}`);
+            setTotalesC(resProyCats.data.data);
             getTotal_Cat(resProy.data.data);
             console.log('Partidas',resProy.data.data);
             console.log(totalesPartidas1)
