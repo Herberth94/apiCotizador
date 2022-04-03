@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-04-2022 a las 23:20:30
+-- Tiempo de generación: 03-04-2022 a las 23:19:30
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -32,9 +32,20 @@ CREATE TABLE `am` (
   `am_id_partida` bigint(20) DEFAULT NULL,
   `am_desc_cliente` float DEFAULT 0,
   `am_margen_ganancia` float DEFAULT 32,
-  `am_cantidad` bigint(20) DEFAULT 1,
+  `am_cantidad` int(10) DEFAULT 1,
   `am_descuento_fabrica` float DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `am`
+--
+
+INSERT INTO `am` (`am_id`, `am_id_partida`, `am_desc_cliente`, `am_margen_ganancia`, `am_cantidad`, `am_descuento_fabrica`) VALUES
+(5, 25, 0, 32, 1, 0),
+(6, 27, 0, 32, 1, 0),
+(7, 29, 0, 32, 1, 0),
+(8, 30, 0, 32, 1, 0),
+(9, 31, 0, 32, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -113,9 +124,9 @@ CREATE TABLE `categorias_datos` (
   `cd_id_cats` bigint(20) DEFAULT NULL,
   `cd_no_parte` text DEFAULT NULL,
   `cd_descripcion` text DEFAULT NULL,
-  `cd_meses` int(20) DEFAULT NULL,
-  `cd_semanas` int(20) DEFAULT NULL,
-  `cd_cantidad` int(20) DEFAULT NULL,
+  `cd_meses` int(3) DEFAULT NULL,
+  `cd_semanas` int(3) DEFAULT NULL,
+  `cd_cantidad` int(3) DEFAULT NULL,
   `cd_id_precio` bigint(20) DEFAULT NULL,
   `cd_comentarios` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -243,7 +254,14 @@ INSERT INTO `partida` (`partida_id`, `partida_nombre`, `partida_descripcion`) VA
 (27, 'Servidores VMS', 'Servidores VMS'),
 (29, 'Servidores Control de Acceso', 'Servidores Control de Acceso'),
 (30, 'Equipo de Cómputo y comunicación', 'Equipo de Cómputo y comunicación'),
-(31, 'Mantenimiento preventivo', 'Mantenimiento preventivo');
+(31, 'Mantenimiento preventivo', 'Mantenimiento preventivo'),
+(41, 'partida 1', 'partida 1'),
+(42, 'partida 2', 'partida 2'),
+(43, 'partida 1', 'partida 1'),
+(44, 'partida 2', 'partida 2'),
+(45, 'partida 1', 'partida 1'),
+(46, 'Partida 3', 'Partida 3'),
+(47, 'Partida 3', 'Partida 3');
 
 -- --------------------------------------------------------
 
@@ -418,8 +436,8 @@ CREATE TABLE `proporcionalidad` (
   `pd_id` bigint(20) NOT NULL,
   `pd_id_proyecto` bigint(20) NOT NULL,
   `pd_tasa_interes` float NOT NULL,
-  `pd_año_financiamiento` int(10) NOT NULL,
-  `pd_pagos_anuales` int(10) NOT NULL
+  `pd_año_financiamiento` int(2) NOT NULL,
+  `pd_pagos_anuales` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -502,7 +520,7 @@ CREATE TABLE `proyecto` (
   `proyecto_fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `proyecto_fecha_modificacion` datetime NOT NULL DEFAULT current_timestamp(),
   `proyecto_estatus` varchar(50) DEFAULT NULL,
-  `proyecto_plazo_meses` bigint(20) DEFAULT NULL,
+  `proyecto_plazo_meses` int(3) DEFAULT NULL,
   `proyecto_valor_dolar` decimal(20,3) NOT NULL DEFAULT 1.000
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -511,8 +529,8 @@ CREATE TABLE `proyecto` (
 --
 
 INSERT INTO `proyecto` (`proyecto_id`, `proyecto_clave`, `proyecto_descripcion`, `proyecto_id_cliente`, `proyecto_fecha_creacion`, `proyecto_fecha_modificacion`, `proyecto_estatus`, `proyecto_plazo_meses`, `proyecto_valor_dolar`) VALUES
-(70, 'pp', 'prueba', 13, '2022-03-29 20:08:04', '2022-03-29 14:08:04', NULL, NULL, '1.000'),
-(71, 'FO-ING-01', '1658-BOM1', 13, '2022-03-30 09:54:18', '2022-03-29 14:27:12', 'En revision', NULL, '1.000');
+(70, 'pp', 'prueba', 13, '2022-04-03 02:53:30', '2022-03-29 14:08:04', NULL, NULL, '20.000'),
+(71, 'FO-ING-01', '1658-BOM1', 13, '2022-04-03 21:03:53', '2022-03-29 14:27:12', '', NULL, '1.000');
 
 -- --------------------------------------------------------
 
@@ -670,9 +688,9 @@ CREATE TABLE `servicio_producto` (
   `sp_id` bigint(20) NOT NULL,
   `sp_no_parte` varchar(255) DEFAULT NULL,
   `sp_descripcion` varchar(255) DEFAULT NULL,
-  `sp_meses` float DEFAULT NULL,
-  `sp_semanas` float DEFAULT NULL,
-  `sp_cantidad` int(10) DEFAULT NULL,
+  `sp_meses` int(3) DEFAULT NULL,
+  `sp_semanas` int(3) DEFAULT NULL,
+  `sp_cantidad` int(3) DEFAULT NULL,
   `sp_id_precio` bigint(20) DEFAULT NULL,
   `sp_id_categoria` int(10) DEFAULT NULL,
   `sp_comentarios` text DEFAULT NULL
@@ -1160,7 +1178,7 @@ ALTER TABLE `usuarios_proyectos`
 -- AUTO_INCREMENT de la tabla `am`
 --
 ALTER TABLE `am`
-  MODIFY `am_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `am_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -1184,7 +1202,7 @@ ALTER TABLE `categorias_c_a_sptn_ma`
 -- AUTO_INCREMENT de la tabla `categorias_datos`
 --
 ALTER TABLE `categorias_datos`
-  MODIFY `cd_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `cd_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
@@ -1202,7 +1220,7 @@ ALTER TABLE `colaboradores`
 -- AUTO_INCREMENT de la tabla `costos_indirectos`
 --
 ALTER TABLE `costos_indirectos`
-  MODIFY `ci_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ci_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -1220,19 +1238,19 @@ ALTER TABLE `moneda`
 -- AUTO_INCREMENT de la tabla `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `partida_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `partida_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `pp`
 --
 ALTER TABLE `pp`
-  MODIFY `pp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `pp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
 --
 ALTER TABLE `precio`
-  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
+  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT de la tabla `proporcionalidad`
@@ -1256,13 +1274,13 @@ ALTER TABLE `proveedor_marca`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos_cat_d`
 --
 ALTER TABLE `proyectos_cat_d`
-  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `pc_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
 
 --
 -- AUTO_INCREMENT de la tabla `psp`
@@ -1292,7 +1310,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios_proyectos`
 --
 ALTER TABLE `usuarios_proyectos`
-  MODIFY `up_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `up_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Restricciones para tablas volcadas
@@ -1361,8 +1379,8 @@ ALTER TABLE `proyecto`
 -- Filtros para la tabla `proyectos_cat_d`
 --
 ALTER TABLE `proyectos_cat_d`
-  ADD CONSTRAINT `fk_pc_id_cat_d` FOREIGN KEY (`pc_id_cat_d`) REFERENCES `categorias_datos` (`cd_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_pc_id_proyecto` FOREIGN KEY (`pc_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_pc_id_cat_d` FOREIGN KEY (`pc_id_cat_d`) REFERENCES `categorias_datos` (`cd_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pc_id_proyecto` FOREIGN KEY (`pc_id_proyecto`) REFERENCES `proyecto` (`proyecto_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `psp`
