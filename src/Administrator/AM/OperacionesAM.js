@@ -5,8 +5,9 @@ export let totalesCategorias
 //console.log(tProy);
 
 const prueba1 =()=>{
-  const {totalesPartidas1 }=Partida_catalogo()
+  const {totalesPartidas1,totalesCategorias1 }=Partida_catalogo()
   console.log(totalesPartidas1);
+  console.log(totalesCategorias1);
 }
 
 export function getTotalesP (tP){

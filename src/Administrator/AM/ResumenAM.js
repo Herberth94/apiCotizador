@@ -22,7 +22,7 @@ let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 const ResumenAM = () => {
-    const { getTotal_Cat , totalesPartidas1 } = Partida_catalogo()
+    const { getTotalPar, getTotalCats , totalesPartidas1, totalesCategorias1} = Partida_catalogo()
     
     //Habilitar/Deshabilitar tabla del resumen AM
     const [show, setShow] = useState(true)
@@ -36,12 +36,6 @@ const ResumenAM = () => {
     
     /*== Almacenamiento de la clave introducida del proyecto ==*/
     const[claveP,setClaveP] = useState([]);
-
-    // Almacenamiento de los totales de las partidas
-    const [totalesP,setTotalesP] = useState([]);
-      
-    // Almacenamiento de los totales de las categorías
-    const [totalesC,setTotalesC] = useState([]);
 
     /*== Función que realiza la consulta a la tabla proyectos ==*/
     useEffect(()=>{
@@ -81,12 +75,12 @@ const ResumenAM = () => {
     async function consultarTotalesP(id){          //console.log(id)
         try{
             const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
-            setTotalesP(resProy.data.data);
-            /*const resProyCats = await axios.get(url2 + `/api/cotizador/catt/view/${id}`);
-            setTotalesC(resProyCats.data.data);*/
-            getTotal_Cat(resProy.data.data);
-            console.log('Partidas',resProy.data.data);
+            const resProyCats = await axios.get(url2 + `/api/cotizador/catd/view/${id}`);
+            getTotalPar(resProy.data.data);
+            getTotalCats(resProyCats.data.data);
+            //console.log('Partidas',resProy.data.data);
             console.log(totalesPartidas1)
+            console.log(totalesCategorias1);
         }catch (error){
             console.log(error);
         }
