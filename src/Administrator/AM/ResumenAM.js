@@ -9,10 +9,7 @@ import { url, url2 } from '../../Componentes/Ocultar';
 import { partidasUnicas2, Cantidad,descuentoCliente, monedaPTN, prov, listaProv,desFabrica, costoPTN, margenGanancia, precioVenta , margenDirecto ,
 precioFinalVenta,
 costoSinIndirectos,
-costoFianalProyecto,
-getTotalesP,
-totalCategorias,
-totalesPartidas
+costoFianalProyecto
 } from "./OperacionesAM.js";
 
 const cookies = new Cookies();
@@ -22,7 +19,7 @@ let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 const ResumenAM = () => {
-    const { getTotalPar, getTotalCats , totalesPartidas1, totalesCategorias1} = Partida_catalogo()
+    const { getTotalPar, getTotalCats,getPorcentajesCI,totalesPartidas1, totalesCategorias1,porcentajesCI} = Partida_catalogo()
     
     //Habilitar/Deshabilitar tabla del resumen AM
     const [show, setShow] = useState(true)
@@ -75,12 +72,17 @@ const ResumenAM = () => {
     async function consultarTotalesP(id){          //console.log(id)
         try{
             const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
-            const resProyCats = await axios.get(url2 + `/api/cotizador/catd/view/${id}`);
             getTotalPar(resProy.data.data);
+
+            const resProyCats = await axios.get(url2 + `/api/cotizador/catd/view/${id}`);
             getTotalCats(resProyCats.data.data);
+
+            const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
+            getPorcentajesCI(resCI.data.data);
             //console.log('Partidas',resProy.data.data);
-            console.log(totalesPartidas1)
-            console.log(totalesCategorias1);
+            console.log('Partidas:',totalesPartidas1)
+            console.log('Categorias:',totalesCategorias1);
+            console.log('Costos indirectos', porcentajesCI);
         }catch (error){
             console.log(error);
         }
@@ -194,10 +196,10 @@ const ResumenAM = () => {
                                         {/*================= Descuento Cliente ==================*/}
                                         <td className="amarillo" >{ descuentoCliente[key]}  {" % "}   </td>
 
-                                    {/*================= Precio Venta ==================*/}
-                                    <td> {precioVenta[key]} {"$"}</td>
+                                        {/*================= Precio Venta ==================*/}
+                                        <td> {precioVenta[key]} {"$"}</td>
 
-                                    {/*================= Margen Ganancia==================*/}
+                                        {/*================= Margen Ganancia==================*/}
                                         <td>{margenGanancia[key]}   {" % "} </td>
 
                                         {/*================= PrecioLista Unitario ==================*/}
