@@ -19,7 +19,7 @@ let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 const ResumenAM = () => {
-    const { getTotalPar, getTotalCats,getPorcentajesCI,totalesPartidas1, totalesCategorias1,porcentajesCI} = Partida_catalogo()
+    const { getTotalPar,getPorcentajesPar,getTotalCats,getPorcentajesCats,getDivisaProy,getPorcentajesCI} = Partida_catalogo()
     
     //Habilitar/Deshabilitar tabla del resumen AM
     const [show, setShow] = useState(true)
@@ -71,18 +71,24 @@ const ResumenAM = () => {
     /*=============================== Función que consulta los datos de un proyeco para el resumen AM ===============================*/  
     async function consultarTotalesP(id){          //console.log(id)
         try{
-            const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
-            getTotalPar(resProy.data.data);
+            const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
+            getTotalPar(resTotPar.data.data);
 
-            const resProyCats = await axios.get(url2 + `/api/cotizador/catd/view/${id}`);
-            getTotalCats(resProyCats.data.data);
+            const resAMPar = await axios.get(url2 + `/api/cotizador/am/viewAMPartidas/${id}`);
+            getPorcentajesPar(resAMPar.data.data);
+
+            const resTotCats = await axios.get(url2 + `/api/cotizador/am/viewTotalesCategorias/${id}`);
+            getTotalCats(resTotCats.data.data);
+
+            const resAMCats = await axios.get(url2 + `/api/cotizador/am/viewAMCategorias/${id}`);
+            getPorcentajesCats(resAMCats.data.data);
+
+            const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${id}`);
+            getDivisaProy(dProy.data.data);
 
             const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
             getPorcentajesCI(resCI.data.data);
-            //console.log('Partidas',resProy.data.data);
-            console.log('Partidas:',totalesPartidas1)
-            console.log('Categorias:',totalesCategorias1);
-            console.log('Costos indirectos', porcentajesCI);
+
         }catch (error){
             console.log(error);
         }
