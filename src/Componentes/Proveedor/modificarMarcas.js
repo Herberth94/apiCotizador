@@ -1,4 +1,4 @@
-import  {useState} from 'react';
+
 import axios from 'axios';
 import {url2} from "../../Componentes/Ocultar";
 
@@ -12,9 +12,9 @@ export const useRegistro3 = () => {
         const dataActualizacion ={
             marca_nombre: data.marca_nombre
         };
-            console.log(data);
-            console.log(id);
-            console.log(datos);
+           // console.log(data);
+          //  console.log(id);
+           // console.log(datos);
         const prueba = Object.keys(datos);
             for(let keys of prueba){
                 if(datos[keys]!=''){

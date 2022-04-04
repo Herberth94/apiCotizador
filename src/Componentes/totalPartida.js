@@ -20,7 +20,7 @@ export const Partida_catalogo = () => {
 
     const getTotalPar = (tP) =>{
         setotalesPartidas1(tP);
-         console.log('Partidas:',totalesPartidas1);
+         console.log('',totalesPartidas1);
          dataPartida = tP ;
          
         
@@ -32,19 +32,23 @@ export const Partida_catalogo = () => {
 
         dataCategoria= tC;
 
-      
-         console.log('Categorias:',totalesCategorias1);
+        obtenPartidasUnicas(dataPartida,dataCategoria);
+        
 
         };
     const getPorcentajesPar = (pPar) => {setPorcentajesPartidas(pPar); console.log('AM partidas',porcentajesPartidas);};
     const getPorcentajesCats = (pCats) => {setPorcentajesCategorias(pCats); console.log('AM categorias',porcentajesCategorias);};
-    const getDivisaProy = (pDiv) => {setDivisaProy(pDiv); console.log('Divisa:',divisaProy);};
+    const getDivisaProy = (pDiv) => {
+        setDivisaProy(pDiv); 
+        console.log('Divisa x:',divisaProy);
+    
+    };
     const getPorcentajesCI = (pCI) =>{setPorcentajesCI(pCI); console.log('Cotos indirectos:',porcentajesCI);};
 
   
  return {
-     getTotalPar,
      getTotalCats,
+     getTotalPar,
      getPorcentajesPar,
      getPorcentajesCats,
      getPorcentajesCI,

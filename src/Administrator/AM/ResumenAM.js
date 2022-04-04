@@ -6,11 +6,13 @@ import Cookies from 'universal-cookie';
 import Animaciones from "../../Componentes/Animaciones";
 import { url, url2 } from '../../Componentes/Ocultar';
 
-import { partidasUnicas2, Cantidad,descuentoCliente, monedaPTN, prov, listaProv,desFabrica, costoPTN, margenGanancia, precioVenta , margenDirecto ,
+import {  Cantidad,descuentoCliente,  prov, listaProv,desFabrica, costoPTN, margenGanancia, precioVenta , margenDirecto ,
 precioFinalVenta,
 costoSinIndirectos,
-costoFianalProyecto
-} from "./OperacionesAM.js";
+costoFianalProyecto,
+datosCompletosAM,
+datosCompletosTotal
+} from "../../Componentes/OperacionesAM";
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -18,8 +20,15 @@ const cookies = new Cookies();
 let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
+
 const ResumenAM = () => {
-    const { getTotalPar,getPorcentajesPar,getTotalCats,getPorcentajesCats,getDivisaProy,getPorcentajesCI} = Partida_catalogo()
+    const { 
+        getTotalPar,
+        getPorcentajesPar,
+        getTotalCats,
+        getPorcentajesCats,
+        getDivisaProy,
+        getPorcentajesCI} = Partida_catalogo();
     
     //Habilitar/Deshabilitar tabla del resumen AM
     const [show, setShow] = useState(true)
@@ -101,12 +110,17 @@ const ResumenAM = () => {
     
     //const {consultarTotalesP} = GetDatosProyecto();
     
+    //const {consultarTotalesP} = GetDatosProyecto();
+    
     return (
 
         <div className="contenido-usuarios">
 
             <div> <Animaciones mytext="AM COMPLETO" /> </div>
             <div className="busqueda-proyectos">
+              
+              
+              
                     <Table responsive id="nombreDiv">
                         <thead>
                             <tr className="azul">
@@ -126,6 +140,11 @@ const ResumenAM = () => {
                             </tr>
                         </tbody>
                     </Table>
+
+
+
+
+
                     {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
                 <div> <Animaciones mytext="Proyectos " /> </div>
@@ -157,7 +176,10 @@ const ResumenAM = () => {
                                     <button 
                                     className="btn btn-primary" 
                                     onClick={() => {
+                                    
                                         consultarTotalesP(suggestions[key].proyecto_id);
+
+                                        
                                         setShow(!show);}}
                                     >{show ? 'Ver mas':'Ocultar proyecto'}</button>
                                 </td> 
@@ -251,10 +273,10 @@ const ResumenAM = () => {
                                 </thead>
                                 <tbody>
                                     {/*=================== Contenido Tabla Clientes =================*/}
-                                            <tr >
-                                            <td className='amarillo'> {" $ "} {precioFinalVenta } </td>  
-                                            <td className='azul'>{" $ "} {costoSinIndirectos}</td>    
-                                            <td className='verde'>{" $ "} {costoFianalProyecto}</td>      
+                                            <tr > 
+                                            <td className='amarillo'> {" $ "}{precioFinalVenta } {"USD"}</td>  
+                                            <td className='azul'>{" $ "} {costoSinIndirectos}  {"USD"}</td>    
+                                            <td className='verde'>{" $ "} {costoFianalProyecto} {"USD"}   </td>      
                                             </tr >
                                 </tbody>
                             </Table>

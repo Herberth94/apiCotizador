@@ -10,7 +10,7 @@ import { partidasUnicas2, Cantidad,descuentoCliente, monedaPTN, prov, listaProv,
 precioFinalVenta,
 costoSinIndirectos,
 costoFianalProyecto
-} from "./OperacionesAM";
+} from "../../Componentes/OperacionesAM";
 
 
 const cookies = new Cookies();

@@ -9,6 +9,8 @@ import ResumenAM from "./ResumenAM";
 import MargenGanancia from "./MargenGanancia";
 import CostosIndirectos from "./CostosIndirectos";
 
+import BuscadorInteligente from "./BuscadorInteligente";
+
 
 
 
@@ -105,7 +107,10 @@ function AmMenu() {
               ) : (
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
-                <CostosIndirectos/>
+    {/*           <CostosIndirectos/> */}
+   < BuscadorInteligente/>
+
+
                 </div>
               )}
             </td>

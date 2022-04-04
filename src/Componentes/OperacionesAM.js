@@ -261,6 +261,8 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= []){
                     sumatoriaUSD = 0;
                     }
  
+                    console.log(totalMXN);
+                    console.log(totalUSD);
 
                     for (var i = 0; i < totalMXN.length; i++) {
                         if (totalMXN[i] !== 0) {
@@ -275,7 +277,7 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= []){
                 
                       
 
-console.log(monedaPTN);
+//console.log(monedaPTN);
 
 
                                         
@@ -317,7 +319,7 @@ console.log(monedaPTN);
                           }
                       
                       
-console.log(totalCategoriasUSD);
+//console.log(totalCategoriasUSD);
 
 concatenaDatos(partidasUnicas, categoriasUnicas, monedaPTN, totalCategoriasUSD);
     return datosPTN;
@@ -347,9 +349,9 @@ for (var i = 0; i < datosCompletosTotal.length; i++) {
 
 datosCompletosTotal.push(suma);
 suma = 0; 
-console.log(datosCompletosAM);
+/* console.log(datosCompletosAM);
 console.log(datosCompletosTotal);
-
+ */
 //Llenar Datos
 
 for (var i = 0; i < datosCompletosTotal.length ; i++) {
@@ -371,7 +373,7 @@ for (var i = 0; i < datosCompletosTotal.length ; i++) {
   let suma = prov[i] * Cantidad[i];
 
     listaProv.push(suma.toFixed(decimal));
-   console.log("kk ",suma)
+  
   }
 
   for (var i = 0; i <  listaProv.length; i++) {
@@ -455,7 +457,7 @@ for (var i = 0; i < datosCompletosTotal.length - 1; i++) {
 let precio =  precioVenta[precioVenta.length-1];
 precioFinalVenta = precio;
 
-console.log("precio  ",  precio)
+/* console.log("precio  ",  precio) */
 
 for (var i = 0; i < costosIndirectos.length - 1; i++) {
     calculaIndirecto = (equivale[i] / 100) * precio;
@@ -466,7 +468,7 @@ for (var i = 0; i < costosIndirectos.length - 1; i++) {
 
   for (var i = 0; i <  totalIndirecto.length ; i++) {
     toIndirecto += totalIndirecto[i];
-    console.log(toIndirecto)
+/*     console.log(toIndirecto) */
   }
 
   totalIndirecto.push(toIndirecto);

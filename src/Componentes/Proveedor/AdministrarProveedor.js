@@ -39,8 +39,8 @@ function AdministrarProveedor() {
   };
   const envioData = async (datos, key, data) => {
     if(first){
-      console.log("hola soy el datos[key]",datos[key])
-      console.log("hola soy el envio data", data)
+   //   console.log("hola soy el datos[key]",datos[key])
+    //  console.log("hola soy el envio data", data)
       actualizacion2(datos[key],data);
     }
   };
