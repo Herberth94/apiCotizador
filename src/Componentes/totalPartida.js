@@ -3,15 +3,19 @@ import  {useState} from 'react';
 export const Partida_catalogo = () => {
 
     const [totalesPartidas1,setotalesPartidas1] = useState ({});
-    const getTotal_Cat=(tP)=>{
+    const [totalesCategorias1,setotalesCategorias1] = useState ({});
+
+    const getTotalPar=(tP)=>{
         setotalesPartidas1(tP);
-        console.log("prueba")
+        //console.log("prueba")
     }
-    const prueba =()=>{
-       
+    const getTotalCats =(tC)=>{
+        setotalesCategorias1(tC);
     }
  return {
-     getTotal_Cat,
-     totalesPartidas1
+     getTotalPar,
+     getTotalCats,
+     totalesPartidas1,
+     totalesCategorias1
    }
 };
