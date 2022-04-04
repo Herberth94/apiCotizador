@@ -47,12 +47,19 @@ export const CrudProveedores = (props) => {
     const [enable2, setenable2] = useState([])
     const [datos, Setdatos] = useState()
 
-    const llamadoMarca = async (id) => {
-       console.log("soy el proveedor_id", id)
+    useEffect(()=>{
+        console.log("se actualiza")
+    },[estadoListaMarcas])
+
+    
+
+    const llamadoMarca = async (idFila) => {
+       console.log("soy el proveedor_id", idFila)
         try {
-            const respuestaMarca =  await axios.get(url2 + `/api/cotizador/provmarcas/view/${id}`)
-            setListaMarcas(respuestaMarca.data.data)
-            // console.log(respuestaMarca.data.data)
+            const respuestaMarca =  await axios.get(url2 + `/api/cotizador/provmarcas/view/${idFila}`)
+            setListaMarcas((prep)=>{return respuestaMarca.data.data})
+            // setListaMarcas(respuestaMarca.data.data)
+            console.log("soy la resouestadatdata",respuestaMarca.data.data)
             console.log("soy la lista marcas estadoListadoMarcas:", estadoListaMarcas)
         } catch(error){console.log(error)}
         
@@ -87,6 +94,7 @@ export const CrudProveedores = (props) => {
         setenable(newArr);
     }
     const habilitar2 = (key) =>{
+        console.log("key:",key)
         key = parseInt(key);
         const newArr =[] 
         let c = Object.keys(estadoListaMarcas);
@@ -162,6 +170,12 @@ export const CrudProveedores = (props) => {
                                     onClick={() => {
                                     props.envioData(datos,key,data); 
                                     habilitar(key); 
+                                    setData({
+                                        proveedor_nombre: '', 
+                                        proveedor_telefono:'',
+                                        proveedor_email:'',
+                                               
+                                    })
                                     props.setfirst(activar) ; 
                                     setActivar(!activar)
                                     }}
