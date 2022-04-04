@@ -2,7 +2,9 @@ import React from 'react'
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
-import {TOTAL, proporcional ,  proporcionalMesaAyuda,  partidasUnicas,  precioVenta2 , totalMensual , financiamiento} from "../AM/OperacionesAM";
+import {TOTAL, proporcional ,  proporcionalMesaAyuda,  partidasUnicas,  precioVenta2 ,
+     totalMensual , financiamiento} 
+     from "../../Componentes/OperacionesAM";
 
 
 

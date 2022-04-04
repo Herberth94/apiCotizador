@@ -25,8 +25,8 @@ function AdministrarPropuesta() {
 <thead>
 <tr className="titulo-tabla-usuarios">
 <th>Propuestas</th>
-<th> Validar</th>
-<th>Imprimir</th>
+<th> Cancelar</th>
+<th>Validar</th>
 <th>Imprimir</th>
 
 </tr>
@@ -55,31 +55,11 @@ function AdministrarPropuesta() {
 )}
 </td>
 
-<td>
-<button
-  className="btn btn-primary modificar"
-  type="button"
-  onClick={() => {
-    setShow2(!show2);
-  }}
->
-  {" "}
-  {show2 ? "Administrar" : "Ocultar"}{" "}
-</button>
-{show2 ? (
-  <div></div>
-) : (
-  <div className="arregla">
-    {/*========================== Llamado al Componente ==========================*/}
- 
-  </div>
-)}
-</td>
-
-
 
 
 <td>
+
+<button className="btn btn-danger" type="button"> Cancelar </button>
 
 
 </td>
@@ -87,6 +67,14 @@ function AdministrarPropuesta() {
 
 <td>
 
+<button className="btn btn-primary" type="button"> Aceptar </button>
+
+
+</td>
+
+
+<td>
+<ExportarPDF/>
 </td>
 
 

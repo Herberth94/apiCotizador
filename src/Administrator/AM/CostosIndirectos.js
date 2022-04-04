@@ -2,7 +2,7 @@ import React from 'react'
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
-import {costosIndirectos, equivale,  totalIndirecto} from "./OperacionesAM";
+import {costosIndirectos, equivale,  totalIndirecto} from "../../Componentes/OperacionesAM";
 
 
 
@@ -31,10 +31,10 @@ function CostosIndirectos() {
                     {Object.keys(costosIndirectos).map((key) => (
                         <tr key={costosIndirectos[key]}>
                                 {/*================= Descripción==================*/}
-                            <td>{costosIndirectos[key]}</td>
+                            <td>{costosIndirectos[key]}    </td>
 
                             {/*================= Equivale ==================*/}
-                            <td>{equivale[key]}</td>
+                            <td className="editar">{equivale[key]}  {" % "}</td>
                             {/*================= Total Indirecto ==================*/}
                             <td>{ totalIndirecto[key]}</td>
                             {/*================= Editar==================*/}

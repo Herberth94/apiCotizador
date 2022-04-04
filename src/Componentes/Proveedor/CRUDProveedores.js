@@ -1,7 +1,6 @@
 import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
 import axios from "axios";
-import {url} from "../../Componentes/Ocultar";
 import {url2} from "../../Componentes/Ocultar";
 import { useRegistro3 } from './modificarMarcas';
 export const CrudProveedores = (props) => {
@@ -21,8 +20,8 @@ export const CrudProveedores = (props) => {
 
     const envioData2 = async (dataMarca, key, datos) => {
         if(first2){
-            console.log("hola soy el datos[key]",datos[key])
-            console.log("hola soy el envio data", dataMarca)
+        //    console.log("hola soy el datos[key]",datos[key])
+         //   console.log("hola soy el envio data", dataMarca)
             actualizacion2(datos[key],data);
 
         }
@@ -185,7 +184,7 @@ export const CrudProveedores = (props) => {
                             <td>
                                 {" "}
                                 <button
-                                    className="btn btn-primary modificar"
+                                    className="btn btn-primary "
                                     type="button"
                                     onClick={() => {
                                         llamadoMarca(props.clientes[key].proveedor_id);
