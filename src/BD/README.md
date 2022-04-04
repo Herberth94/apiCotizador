@@ -1,2 +1,2 @@
 # Diagrama relacional
-[![DR-Cotizador.png](https://i.postimg.cc/MTLnVhH5/DR-Cotizador.png)](https://postimg.cc/CBjMVrjn)
+[![DR-Cotizador.png](https://i.postimg.cc/C5sYrmWf/DR-Cotizador.png)](https://postimg.cc/GTtZHJ3c)
