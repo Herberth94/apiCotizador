@@ -130,7 +130,7 @@ function Proyectos() {
                             }}
                             >
                             {" "}
-                            {show7 ? "ver" : "Ocultar"}{" "}
+                            {show7 ? "Ver" : "Ocultar"}{" "}
                             </button>
                         </td>
                     </tr>
