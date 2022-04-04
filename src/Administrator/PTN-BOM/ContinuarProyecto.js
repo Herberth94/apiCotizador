@@ -56,7 +56,9 @@ function ContinuarProyecto() {
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
               }else if(show7 === false){
-                //Aqui va la ruta de colaboradores
+                const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/view/${validatorid}`);
+                setListaProyectos(resProy.data.data)
+                console.log(listaProyectos)
               }
               
           }
