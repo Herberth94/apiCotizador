@@ -12,7 +12,9 @@ costoSinIndirectos,
 costoFianalProyecto,
 getTotalesP,
 totalCategorias,
-totalesPartidas
+totalesPartidas,
+datosCompletosAM,
+datosCompletosTotal
 } from "../../Componentes/OperacionesAM";
 
 const cookies = new Cookies();
@@ -185,35 +187,35 @@ const ResumenAM = () => {
                             <tbody>
                                 {/*=================== Contenido Tabla Clientes =================*/}
 
-                                {Object.keys(partidasUnicas2).map((key) => (
-                                    <tr key={partidasUnicas2[key]}>
-                                        <td>{partidasUnicas2[key]}</td>
+                                {Object.keys(datosCompletosAM).map((key) => (
+                                    <tr key={datosCompletosAM[key]}>
+                                        <td>{datosCompletosAM[key]}</td>
 
                                         {/*================= Descripcion General Partida ==================*/}
-                                        <td> {" $ "} {monedaPTN[key]}</td>
+                                        <td> {" $ "} {datosCompletosTotal[key]}</td>
                                         {/*================= Descuento Cliente ==================*/}
-                                        <td className="amarillo" >{ descuentoCliente[key]}  {" % "}   </td>
+                                        <td className="editar" >{ descuentoCliente[key]}  {" % "}   </td>
 
                                     {/*================= Precio Venta ==================*/}
-                                    <td> {precioVenta[key]} {"$"}</td>
+                                    <td> {"$"} {precioVenta[key]} </td>
 
                                     {/*================= Margen Ganancia==================*/}
-                                        <td>{margenGanancia[key]}   {" % "} </td>
+                                        <td  className="editar" >{margenGanancia[key]}   {" % "} </td>
 
                                         {/*================= PrecioLista Unitario ==================*/}
 
-                                        <td className="azul">{" $ "} {prov[key]}</td>
+                                        <td>{" $ "} {prov[key]}</td>
 
                                 {/*================= Cantidad ==================*/}
-                                        <td>{Cantidad[key]}</td>
+                                        <td className="editar">{Cantidad[key]}</td>
 
 
                                         <td>{" $ "} {listaProv[key]}</td>
 
 
-                                        <td> {desFabrica[key]}  {" % "} </td>
+                                        <td  className="editar"> {desFabrica[key]}  {" % "} </td>
                                     {/*================= Cost PTN ==================*/}
-                                        <td className="verde">{" $ "} {costoPTN[key]}  </td>
+                                        <td >{" $ "} {costoPTN[key]}  </td>
 
 
                                         <td>{margenDirecto[key] } {" % "}</td>
@@ -244,9 +246,9 @@ const ResumenAM = () => {
                                 <tbody>
                                     {/*=================== Contenido Tabla Clientes =================*/}
                                             <tr >
-                                            <td className='amarillo'> {precioFinalVenta } </td>  
-                                            <td className='azul'>{costoSinIndirectos}</td>    
-                                            <td className='verde'>{costoFianalProyecto}</td>      
+                                            <td className='amarillo'> {" $ "} {precioFinalVenta } </td>  
+                                            <td className='azul'>{" $ "} {costoSinIndirectos}</td>    
+                                            <td className='verde'>{" $ "} {costoFianalProyecto}</td>      
                                             </tr >
                                 </tbody>
                             </Table>

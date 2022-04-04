@@ -1,4 +1,5 @@
 import  {useState} from 'react';
+
 import {obtenPartidasUnicas} from "../Componentes/OperacionesAM";
 
 
@@ -18,11 +19,13 @@ export const Partida_catalogo = () => {
          dataPartida = tP ;
          
         
-        obtenPartidasUnicas(dataPartida,dataCategoria);
+         obtenPartidasUnicas(dataPartida,dataCategoria);
     }
     const getTotalCats =(tC)=>{
         setotalesCategorias1(tC);
         dataCategoria= tC;
+
+      
 
     }
  return {
