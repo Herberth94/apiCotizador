@@ -19,6 +19,9 @@ let validatorrol = cookies.get('rol');
 let validatorid = cookies.get('id_usuario');
 
 function Proyectos() {
+
+    const [show6,setShow6] = useState(true);//Lista de proyectos del usuario activo
+    const [show7,setShow7] = useState(true);//Lista de proyectos en los que colabora el usuario activo
 /*======================================== Buscador de proyectos ========================================*/
     // Almacenamiento de todos los proyectos existentes
     const[listaProyectos, setListaProyectos] = useState([]);
@@ -40,16 +43,22 @@ function Proyectos() {
                     const resProy = await axios.get(url +'/api/cotizador/proyecto/viewadmin');
                     setListaProyectos(resProy.data.data);
                 }else{
-                    const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-                    setListaProyectos(resProy.data.data);
+                    if(show6 === false){
+                        const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                        setListaProyectos(resProy.data.data);
+                      }else if(show7 === false){
+                        //Aqui va la ruta de colaboradores colaboradores/view/
+                        const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/view/${validatorid}`);
+                        setListaProyectos(resProy.data.data);
+                      }
                 }
-                
                 const resC = await axios.get(url + "/api/cotizador/clientes/view");
                 setListaC(resC.data.reSql);
             }catch(error){console.log(error);}
         }
+        console.log('Proyectos:',listaProyectos);
         getProyectos();
-    },[])
+    },[show6,show7])
     
     // Función que realiza la busqueda de los proyectos semejantes a la clave introducida 
     const onChangeTextClaveP = (claveP) => {
@@ -87,12 +96,53 @@ function Proyectos() {
     /*===========================================================================================================*/
     return (
         <div className="contenido-usuarios">
+            <Table responsive id="nombreDiv">
+                {/*========================== Titulos Tabla ==========================*/}
+                <thead>
+                    <tr className="titulo-tabla-usuarios">
+                        <th>Mis Proyectos</th>
+                        <th>Otros Proyectos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr className="">
+                        {/*========================== Divisa ==========================*/}
+                        <td>
+                            <button
+                            className="btn btn-primary modificar"
+                            type="button"
+                            onClick={() => {
+                            setShow6(!show6);
+                            setShow7(true);
+                            }}
+                            >
+                            {" "}
+                            {show6 ? "Ver " : "Ocultar"}{" "}
+                            </button>
+                        </td>
+                        <td>
+                            <button
+                            className="btn btn-primary modificar"
+                            type="button"
+                            onClick={() => {
+                            setShow7(!show7);
+                            setShow6(true);
+                            }}
+                            >
+                            {" "}
+                            {show7 ? "ver" : "Ocultar"}{" "}
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </Table>
             <div className="table-responsive">
                 {/*============= Titulo Animación =============*/}
                 <Animaciones mytext="Buscar proyectos" />
 
                 {/*********Búsqueda de Lista de Proyectos por Clave ********/}
                 <div className="busqueda-proyectos">
+
                     <Table responsive id="nombreDiv">
                         <thead>
                             <tr className="titulo-tabla-usuarios">
