@@ -9,10 +9,7 @@ import { url, url2 } from '../../Componentes/Ocultar';
 import { partidasUnicas2, Cantidad,descuentoCliente, monedaPTN, prov, listaProv,desFabrica, costoPTN, margenGanancia, precioVenta , margenDirecto ,
 precioFinalVenta,
 costoSinIndirectos,
-costoFianalProyecto,
-getTotalesP,
-totalCategorias,
-totalesPartidas
+costoFianalProyecto
 } from "./OperacionesAM.js";
 
 const cookies = new Cookies();
@@ -22,7 +19,7 @@ let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 const ResumenAM = () => {
-    const { getTotalPar, getTotalCats , totalesPartidas1, totalesCategorias1} = Partida_catalogo()
+    const { getTotalPar,getPorcentajesPar,getTotalCats,getPorcentajesCats,getDivisaProy,getPorcentajesCI} = Partida_catalogo()
     
     //Habilitar/Deshabilitar tabla del resumen AM
     const [show, setShow] = useState(true)
@@ -74,13 +71,24 @@ const ResumenAM = () => {
     /*=============================== Función que consulta los datos de un proyeco para el resumen AM ===============================*/  
     async function consultarTotalesP(id){          //console.log(id)
         try{
-            const resProy = await axios.get(url2 + `/api/cotizador/am/viewAM/${id}`);
-            const resProyCats = await axios.get(url2 + `/api/cotizador/catd/view/${id}`);
-            getTotalPar(resProy.data.data);
-            getTotalCats(resProyCats.data.data);
-            //console.log('Partidas',resProy.data.data);
-            console.log(totalesPartidas1)
-            console.log(totalesCategorias1);
+            const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
+            getTotalPar(resTotPar.data.data);
+
+            const resAMPar = await axios.get(url2 + `/api/cotizador/am/viewAMPartidas/${id}`);
+            getPorcentajesPar(resAMPar.data.data);
+
+            const resTotCats = await axios.get(url2 + `/api/cotizador/am/viewTotalesCategorias/${id}`);
+            getTotalCats(resTotCats.data.data);
+
+            const resAMCats = await axios.get(url2 + `/api/cotizador/am/viewAMCategorias/${id}`);
+            getPorcentajesCats(resAMCats.data.data);
+
+            const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${id}`);
+            getDivisaProy(dProy.data.data);
+
+            const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
+            getPorcentajesCI(resCI.data.data);
+
         }catch (error){
             console.log(error);
         }
@@ -194,10 +202,10 @@ const ResumenAM = () => {
                                         {/*================= Descuento Cliente ==================*/}
                                         <td className="amarillo" >{ descuentoCliente[key]}  {" % "}   </td>
 
-                                    {/*================= Precio Venta ==================*/}
-                                    <td> {precioVenta[key]} {"$"}</td>
+                                        {/*================= Precio Venta ==================*/}
+                                        <td> {precioVenta[key]} {"$"}</td>
 
-                                    {/*================= Margen Ganancia==================*/}
+                                        {/*================= Margen Ganancia==================*/}
                                         <td>{margenGanancia[key]}   {" % "} </td>
 
                                         {/*================= PrecioLista Unitario ==================*/}

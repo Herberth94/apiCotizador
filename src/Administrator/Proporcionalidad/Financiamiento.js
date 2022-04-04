@@ -1,66 +1,99 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import Table from "react-bootstrap/Table";
+import {url, url2} from "../../Componentes/Ocultar";
 
-function Financiamiento() {
+function Financiamiento(prop) {
+  const idProyecto = prop.propIdProyecto
+  console.log("este es el idProyecto en financiamiento",idProyecto)
+
+ // Almacenamiento de los datos
+  const [datosProporcionalidad, setDatosProporcionalidad] = useState({
+    pd_tasa_interes:'',
+    pd_anio_financiamiento:'',
+    pd_pagos_anuales:''
+
+  })
+  // Función que obtiene los datos introducidos en los inputs 
+  const handleInputChange = (event) =>{
+    setDatosProporcionalidad({
+        ...datosProporcionalidad,[event.target.name] : event.target.value ,
+    })
+  }
+  // Función que realiza la inserción de los datos a la tabla proporcionalidad en la bd 
+
+  async function SendProporcionalidad(){
+    console.log(idProyecto)
+    const data = {
+      pd_tasa_interes:datosProporcionalidad.pd_tasa_interes,
+      pd_anio_financiamiento:datosProporcionalidad.pd_anio_financiamiento,
+      pd_pagos_anuales:datosProporcionalidad.pd_pagos_anuales
+    };
+    try{
+      await axios.post(url2 +  `/api/cotizador/proporcionalidad/insert/${idProyecto}`,data);
+      alert('Registro exitoso')
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   return (
-    <div className="contenido-usuarios">
+    <div className="arregla">
 
-<Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
-                    {/*=================== Titulos Tabla Clientes ===================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>Tasa de Interes</th>
-                        <th>Años de Financiamiento</th>
-                        <th>Pagos Anuales</th>
-                        <th>Editar</th>
- 
-                    </tr>
-                </thead>
-                <tbody>
-                    {/*=================== Contenido Tabla Clientes =================*/}
+      <div className="contenido-usuarios">
 
-                  
-                        <tr >
-                                {/*================= Descripción==================*/}
-                            <td>
-                          <input>
-                          
-                          </input>
+        <Table responsive striped bordered hover size="sm" className="tablas">
+          <thead>
+            {/*=================== Titulos Tabla Clientes ===================*/}
+            <tr className="titulo-tabla-usuarios">
+              <th>Tasa de Interes</th>
+              <th>Años de Financiamiento</th>
+              <th>Pagos Anuales</th>
+              <th>Agregar</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {/*=================== Contenido Tabla Clientes =================*/}
 
 
-                            </td>
+            <tr >
+              {/*================= Años de Financiamiento ==================*/}
+              <td>
+                <input onChange={handleInputChange} 
+                type="text"
+                name='pd_tasa_interes'></input>
+              </td>
 
-                            {/*================= Equivale ==================*/}
-                            <td>
+              {/*================= Pagos Anuales ==================*/}
+              <td>
+                <input onChange={handleInputChange} 
+                type="text"
+                name='pd_anio_financiamiento'>
+                </input>
+              </td>
+              {/*================= Pagos Anuales ==================*/}
+              <td>
+                <input onChange={handleInputChange} 
+                type="text"
+                name='pd_pagos_anuales'>
+                </input>
+              </td>
+              {/*================= Agregar==================*/}
+              <td>
+                <button onClick={SendProporcionalidad} className="btn btn-primary"> Agregar </button>
+              </td>
 
-                            <input>
-                          
-                          </input>
-                            </td>
-                            {/*================= Total Indirecto ==================*/}
-                            <td>
+            </tr>
 
-
-                            <input>
-                          
-                          </input>
-                            </td>
-                            {/*================= Editar==================*/}
-
-                            
-                            <td>
-                                <button className="btn btn-primary"> Editar </button>
-                            </td>
-
-                        </tr>
-
-                </tbody>
-            </Table>
+          </tbody>
+        </Table>
 
 
 
 
-        
+
+      </div>
     </div>
   )
 }

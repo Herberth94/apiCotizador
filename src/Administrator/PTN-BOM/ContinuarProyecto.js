@@ -10,7 +10,7 @@ import Categorias from "./Categorias";
 import Animaciones from '../../Componentes/Animaciones';
 import {InsertDatosPartida} from '../../Routes/GuardarPartida';
 import {getIdPar} from './DatosSP';
-import {getIdP1} from './Categorias';
+import {InsertDatosCats} from '../../Routes/GuardarDatosCategorias';
 import {url, url2} from "../../Componentes/Ocultar";
 
 
@@ -90,6 +90,7 @@ function ContinuarProyecto() {
   }
   //console.log('Varible global proyecto id:', proyectoIdCont);
   const {getIdP} = InsertDatosPartida();
+  const {getIdP1} = InsertDatosCats();
   /*===================================================================================================*/
 
   return (
