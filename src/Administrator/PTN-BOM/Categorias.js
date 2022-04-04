@@ -11,12 +11,6 @@ import { precioUnitario, calcularDescuento, Total} from "./Operaciones";
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
 
-let pId;
-
-export function getIdP1 (proyecto_id){
-  pId = proyecto_id;
-}
-
 function Categorias() {
     /*=================================== Obtención de datos en la tabla precio ===================================*/
     // Almacenamiento de los datos

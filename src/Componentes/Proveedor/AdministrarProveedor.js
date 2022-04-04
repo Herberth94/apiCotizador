@@ -21,7 +21,7 @@ function AdministrarProveedor() {
   const [show2, setShow2] = useState(true);
   
   const [listaClientes, setlistaClientes] = useState([]);
-  const {actualizacion} = useRegistro2();
+  const {actualizacion2} = useRegistro2();
   const [first, setfirst] = useState(false);
 
   const llamado = async () => {  const respuesta = await axios.get( url + '/api/cotizador/proveedor/view');
@@ -41,7 +41,7 @@ function AdministrarProveedor() {
     if(first){
       console.log("hola soy el datos[key]",datos[key])
       console.log("hola soy el envio data", data)
-      actualizacion(datos[key],data);
+      actualizacion2(datos[key],data);
     }
   };
 
