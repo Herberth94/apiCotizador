@@ -25,11 +25,13 @@ export var proyectoIdCont;
 function ContinuarProyecto() {
     
   /*========================== Mostrar/Ocultar ==========================*/
-  const [show, setShow] = useState(true); // Menú agregar/continuar partida 
-  const [show2, setShow2] = useState(true);// Agregar partida
-  const [show3, setShow3] = useState(true);// Lista de las partidas de un proyecto
-  const [show4, setShow4] = useState(true);// Continuar una partida
-  const [show5, setShow5] = useState(true);// Categorias/Finalizar proyecto
+  const [show,setShow] = useState(true); // Menú agregar/continuar partida 
+  const [show2,setShow2] = useState(true);// Agregar partida
+  const [show3,setShow3] = useState(true);// Lista de las partidas de un proyecto
+  const [show4,setShow4] = useState(true);// Continuar una partida
+  const [show5,setShow5] = useState(true);// Categorias/Finalizar proyecto
+  const [show6,setShow6] = useState(true);//Lista de proyectos del usuario activo
+  const [show7,setShow7] = useState(true);//Lista de proyectos en los que colabora el usuario activo
   /*=====================================================================*/
   
   /*======================================== Buscador de proyectos ========================================*/
@@ -50,15 +52,20 @@ function ContinuarProyecto() {
               const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
               setListaProyectos(resProy.data.data);
           }else{
-              const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-              setListaProyectos(resProy.data.data);
+              if(show6 === false){
+                const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                setListaProyectos(resProy.data.data);
+              }else if(show7 === false){
+                //Aqui va la ruta de colaboradores
+              }
+              
           }
           }catch(error){
               console.log(error);
           }
       }
       getProyectos();
-  },[])
+  },[show6,show7])
   
   /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
   const onChangeTextClaveP = (claveP) => {
@@ -96,6 +103,46 @@ function ContinuarProyecto() {
   return (
     /*==================== Continuar Proyecto ====================*/
     <div  className="contenido-usuarios">
+      <Table responsive id="nombreDiv">
+          {/*========================== Titulos Tabla ==========================*/}
+          <thead>
+              <tr className="titulo-tabla-usuarios">
+                  <th>Mis Proyectos</th>
+                  <th>Otros Proyectos</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr className="">
+                  {/*========================== Divisa ==========================*/}
+                  <td>
+                      <button
+                      className="btn btn-primary modificar"
+                      type="button"
+                      onClick={() => {
+                      setShow6(!show6);
+                      setShow7(true);
+                      }}
+                      >
+                      {" "}
+                      {show6 ? "Ver " : "Ocultar"}{" "}
+                      </button>
+                  </td>
+                  <td>
+                      <button
+                      className="btn btn-primary modificar"
+                      type="button"
+                      onClick={() => {
+                      setShow7(!show7);
+                      setShow6(true);
+                      }}
+                      >
+                      {" "}
+                      {show7 ? "ver" : "Ocultar"}{" "}
+                      </button>
+                  </td>
+              </tr>
+          </tbody>
+      </Table>
       <Table responsive id="nombreDiv">
         <thead>
           <tr className="titulo-tabla-usuarios">
