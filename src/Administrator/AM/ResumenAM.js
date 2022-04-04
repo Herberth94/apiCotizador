@@ -22,14 +22,16 @@ let validatorrol ="administrador";
 let validatorid = cookies.get('id_usuario');
 
 const ResumenAM = () => {
+
     const { 
         getTotalPar,
         getPorcentajesPar,
         getTotalCats,
         getPorcentajesCats,
         getDivisaProy,
-        getPorcentajesCI} = Partida_catalogo();
-    
+        getPorcentajesCI,
+        getFinanciamieno} = Partida_catalogo();
+
     //Habilitar/Deshabilitar tabla del resumen AM
     const [show, setShow] = useState(true)
 
@@ -98,6 +100,8 @@ const ResumenAM = () => {
             const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
             getPorcentajesCI(resCI.data.data);
 
+            const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
+            getFinanciamieno(resdF.data.data);
         }catch (error){
             console.log(error);
         }
