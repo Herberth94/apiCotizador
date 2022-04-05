@@ -12,9 +12,6 @@ import { InsertDatosPartida } from '../../Routes/GuardarPartida';
 import { getIdPar } from './DatosSP';
 import { InsertDatosCats } from "../../Routes/GuardarDatosCategorias";
 
-
-import MenuResumen from "./MenuResumen";
-
 function PTN_BOM() {
   {
     /*========================== Mostrar Ocultar Tabla ==========================*/
@@ -120,7 +117,7 @@ function PTN_BOM() {
               ) : (
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
-                  <MenuResumen />
+                  <Proyectos />
                 </div>
               )}
             </td>

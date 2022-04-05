@@ -5,12 +5,15 @@ import Animaciones from './Animaciones';
 
 import { EditPartida } from '../Routes/ModificarPartida';
 import { CrudPartidas } from './CRUDPartidas';
+import { CrudCategorias } from './CRUDCategorias';
 
 import {url, url2} from "./Ocultar";
 
 export const CrudProyectos = (props) => {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
-    const[show,setShow] = useState(true);// Lista de partidas
+    const[show,setShow] = useState(true); //Menu resumen
+    const[show2,setShow2] = useState(true); //Lista de partidas
+    const[show3,setShow3] = useState(true); //Lista de categorias
 
     /*================================================== Proyectos ==================================================*/
         /*========================= Editar =========================*/
@@ -33,8 +36,8 @@ export const CrudProyectos = (props) => {
         const [nombreC, setNombreC] = useState([]);
         // Almacenamiento de los clientes semejantes al texto introducido en el input
         const [suggestionsClientes, setSuggestionsClientes] = useState ([]);
-        //
-        const [sCInput, setScInput] = useState([]);
+
+        //const [sCInput, setScInput] = useState([]);
 
         useEffect(() => {
             Setdatos(props.suggestionsP); 
@@ -178,6 +181,35 @@ export const CrudProyectos = (props) => {
         /*=========================================================================*/
     /*==============================================================================================================*/
 
+    /*================================================== Categorias ==================================================*/
+        /*========================= Resumen - Categorias de un proyecto =========================*/
+        // Almacenamiento de los datos de las categorias
+        const[listaCategorias, setListaCategorias] = useState([]);
+        
+        // Función que realiza la consulta a la tabla partida
+        async function getDatosCats(proyecto_id){
+            try{
+                const resCtsP = await axios.get(url2 + `/api/cotizador/dcats/view/${proyecto_id}`);
+                    setListaCategorias(resCtsP.data.data);
+            }catch(error){
+                console.log(error);
+            }
+        }
+        /*=====================================================================================*/
+
+        /*========================= Envío de nuevos datos =========================*/
+        const [first1,setfirst1] = useState(false);
+
+        //const {actualizacionPar} = EditPartida();
+        
+        const envioDataCategorias = (data, key, newdata) => {
+            if(first){
+                //actualizacionPar(data[key], newdata);
+            }
+        }
+        /*=========================================================================*/
+    /*==============================================================================================================*/
+
 
     return (
         <div>
@@ -262,27 +294,94 @@ export const CrudProyectos = (props) => {
                                 <td>
                                     <button 
                                     className="btn btn-primary detalles" 
-                                    onClick={() => { getDatosPartida(props.suggestionsP[key].proyecto_id); setShow(!show)}}
+                                    onClick={() => { 
+                                        getDatosPartida(props.suggestionsP[key].proyecto_id); 
+                                        getDatosCats(props.suggestionsP[key].proyecto_id);
+                                        setShow(!show)}}
                                     >
-                                        {show ? 'Ver partidas' : 'Ocultar partidas'}
+                                        {show ? 'Ver más' : 'Ocultar partidas'}
                                     </button>
                                 </td> 
                             </tr>  
                         ))}
                     </tbody>          
                 </Table>
-                <Animaciones mytext="Resumen BOM" />
                 {show ? (
                     <div></div>
                 ):(
-                    <div>
-                    {/*=================== Botón Mostrar Lista DIV =====================*/}
-                    <br />
-                        <CrudPartidas
-                        partidas={listaPartidas}
-                        setfirst={setfirst}
-                        envioDataPar={envioDataPartida}
-                        />    
+                    <div className='arregla'>
+                        <div className='contenido-usuarios'>
+                            <div className="table-responsive">
+                                <div>
+                                    <Animaciones mytext="Resumen" /> 
+                                </div>
+                                <Table responsive id="nombreDiv">
+                                    {/*========================== Titulos Tabla ==========================*/}
+                                    <thead>
+                                        <tr className="titulo-tabla-usuarios">
+                                            <th>Resumen  Partidas</th>
+                                            <th>Resumen Categorias</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr className="">
+                                            {/*========================== Divisa ==========================*/}
+                                            <td>
+                                                <button
+                                                className="btn btn-primary modificar"
+                                                type="button"
+                                                onClick={() => {
+                                                setShow2(!show2);
+                                                }}
+                                                >
+                                                {" "}
+                                                {show2 ? "Ver " : "Ocultar"}{" "}
+                                                </button>
+                                                {show2 ? (
+                                                <div></div>
+                                                ) : (
+                                                    <div className='arregla'>
+                                                        <div className='contenido-usuarios'>
+                                                            {/*=================== Botón Mostrar Lista DIV =====================*/}
+                                                            <br />
+                                                            <CrudPartidas
+                                                            partidas={listaPartidas}
+                                                            setfirst={setfirst}
+                                                            envioDataPar={envioDataPartida}
+                                                            />   
+                                                        </div> 
+                                                    </div>
+                                                )}
+                                            </td>
+                                            <td>
+                                                <button
+                                                className="btn btn-primary modificar"
+                                                type="button"
+                                                onClick={() => {
+                                                setShow3(!show3);
+                                                }}
+                                                >
+                                                {" "}
+                                                {show3 ? "ver" : "Ocultar"}{" "}
+                                                </button>
+                                                {show3 ? (
+                                                <div></div>
+                                                ) : (
+                                                <div className="arregla">
+                                                    <div className='contenido-usuarios'>
+                                                    {/*========================== Llamado al Componente ==========================*/}
+                                                    <CrudCategorias
+                                                    dcats={listaCategorias}
+                                                    />
+                                                    </div>
+                                                </div>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </div>
+                        </div>
                     </div>
                 )}
             {/* </form> */}

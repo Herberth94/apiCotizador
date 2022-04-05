@@ -54,67 +54,6 @@ function BuscadorProyectoFinanciamiento() {
         setSuggestions(coincidencias);
         setClaveP(claveP);
     }
-
-    // const { actualizacionDivisa } = EditDivisa();
-
-    // const [firts, setFirts] = useState(false);
-
-    // function EnviarDivisa(data, key, newdata) {
-    //     if (firts) {
-    //         // console.log('Old Data:',data[key]);
-    //         // console.log('New Data:',newdata);
-    //         actualizacionDivisa(data[key], newdata);
-    //     }
-    // }
-    // /*================================================== Divisa ==================================================*/
-    // /*========================= Editar =========================*/
-    // const [activar, setActivar] = useState(true)
-
-    // const [data, setData] = useState({
-    //     proyecto_valor_dolar: ''
-    // });
-
-    // const handleInputChange = (event) => {
-    //     setData({
-    //         ...data, [event.target.name]: event.target.value,
-    //     })
-    // }
-
-    // const [enable, setenable] = useState([]);
-    // const [datos, Setdatos] = useState();
-    // const [newdata, setNewData] = useState([]);
-
-
-    // useEffect(() => {
-    //     Setdatos(suggestions);
-    // }, [suggestions]);
-
-
-    // useEffect(() => {
-    //     let i = Object.keys(suggestions)
-    //     i = i.length
-    //     //console.log(i)
-
-    //     setenable(Array(i).fill(true));
-    // }, [suggestions])
-
-
-    // const habilitar = (key) => {
-    //     key = parseInt(key);
-    //     const newArr = []
-    //     let p = Object.keys(suggestions);
-    //     p = p.length;
-    //     for (let i = 0; i < p; i++) {
-    //         if (i === key) {
-    //             newArr[i] = !enable[i];
-    //         }
-    //         if (i !== key) {
-    //             newArr[i] = true;
-    //         }
-    //     }
-    //     setenable(newArr);
-    // }
-    /*==========================================================*/
     /*============================================================================================================*/
     return (
         <div className="contenido-usuarios">
