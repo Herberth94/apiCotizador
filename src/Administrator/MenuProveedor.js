@@ -41,6 +41,8 @@ function MenuProveedor() {
           type="button"
           onClick={() => {
             setShow(!show);
+            setShow2(true);
+            setShow3(true);
           }}
         >
           {" "}
@@ -62,6 +64,8 @@ function MenuProveedor() {
           type="button"
           onClick={() => {
             setShow2(!show2);
+            setShow(true);
+            setShow3(true);
           }}
         >
           {" "}
@@ -85,6 +89,8 @@ function MenuProveedor() {
           type="button"
           onClick={() => {
             setShow3(!show3);
+            setShow(true);
+            setShow2(true);
           }}
         >
           {" "}
@@ -99,11 +105,6 @@ function MenuProveedor() {
           </div>
         )}
       </td>
-
-
-
-
-
     </tr>
   </tbody>
 </Table>
