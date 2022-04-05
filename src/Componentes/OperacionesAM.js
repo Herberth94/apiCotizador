@@ -48,7 +48,8 @@ export let totalUSD = [];
 export let totalMXN2 = [];
 export let totalUSD2 = [];
 // Moneda Unificada Categoria USD
-let totalCategoriasUSD = [];
+export let totalCategoriasUSD = [];
+export let totalCategoriasUSD2 = [];
 
 
 let contador = 0;
@@ -274,9 +275,7 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= []){
                           monedaPTN2.push(totalUSD[i].toFixed(decimal));
                         }
                       }
-                
-                      
-
+                   
 //console.log(monedaPTN);
 
 
@@ -318,8 +317,12 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= []){
                             }
                           }
                       
-                      
-//console.log(totalCategoriasUSD);
+      totalCategoriasUSD2 = totalCategoriasUSD   ;    
+      
+      sumatoriaMXN2 = 0;
+      sumatoriaUSD2 = 0;
+
+
 
 concatenaDatos(partidasUnicas, categoriasUnicas, monedaPTN, totalCategoriasUSD);
     return datosPTN;
@@ -493,8 +496,94 @@ final();
 
 function final(){
 
-   
 
+  partidasUnicas.push("Total ")
+/*============= Precio Venta 2 Proporcionalmente ===============================*/
+var sumatoria =0 ;
+for (var i = 0; i < partidasUnicas.length - 1; i++) {
+  var x = monedaPTN[i] * (100 - descuentoCliente[i]) / 100;
+  var k = (100 - margenGanancia[i]) / 100;
+  var z = x / k;
+  sumatoria += z;
+  precioVenta2.push(z.toFixed(decimal) );
+}
+precioVenta2.push(sumatoria.toFixed(decimal));
+sumatoria = 0;
+
+
+  let final3 =  precioVenta2.length -1;
+  var prop2 = 0;
+
+
+  for (var i = 0; i < precioVenta2.length - 1  ; i++) {
+    var prop = precioVenta2[i] / precioVenta2[final3 ] ;
+    prop = prop *100;
+    prop2 += prop;
+    proporcional.push(prop.toFixed(decimal));
+
+  }
+  proporcional.push(prop2.toFixed(decimal));
+  prop2=0;
+
+  
+/*============= Obtener Total Categorias ===============================*/
+
+  for (var i = partidasUnicas.length -1; i < precioVenta.length -1; i++) {
+   // console.log(precioVenta[i]);
+    totalCategorias += parseFloat(precioVenta[i]);
+  }
+//  console.log("Total Categorias",  totalCategorias )
+
+
+
+
+
+for (var i = 0; i < partidasUnicas.length  ; i++) {
+
+var   tot = totalCategorias *  (proporcional[i] / 100 );
+proporcionalMesaAyuda.push(tot.toFixed(decimal));
+
+}
+
+var  h = 0;
+/*============= Proporcional Mesa De Ayuda ===============================*/
+for (var i = 0; i < partidasUnicas.length  ; i++) {
+h =  parseFloat( proporcionalMesaAyuda[i])   + parseFloat(precioVenta2[i]);
+TOTAL.push(h);
+
+}
+            
+            //bien 4
+            
+            
+            
+            /*============= Financiamiento ===============================*/
+            var a = 0;
+            // n =  Años de financiamiento
+            var n = 1;
+            // Pagos Anuales default
+            var m = 12;
+            // ti = Tasa Interes
+            var ti = 20 ;
+            
+            for (var i = 0; i < TOTAL.length  ; i++) {
+            // tasa % 
+            // pago = meses
+            // valor actual = precio total venta
+            //futuro = 0
+            // co = Monto  precio de venta
+            var co = TOTAL[i];
+            // Tipo de interés fraccionado (del periodo)
+            var im = ti / m / 100;
+            var im2 = Math.pow((1 + im), -(m * n));
+            // Cuota Cap. + Int.
+            a = (co * im) / (1 - im2);
+            //console.log("Cuota Cap + Int: " + a.toFixed(3));
+            
+            financiamiento.push(a.toFixed(decimal))
+            }
+            
+            
 /*============= Total Mensual===============================*/
 
 for (var i = 0; i < TOTAL.length  ; i++) {
@@ -502,39 +591,27 @@ for (var i = 0; i < TOTAL.length  ; i++) {
       totalMensual.push(j.toFixed(decimal));
     }
     
-    
-    
-    //bien 4
-    
-    
-    
-    /*============= Financiamiento ===============================*/
-    var a = 0;
-    // n =  Años de financiamiento
-    var n = 1;
-    // Pagos Anuales default
-    var m = 12;
-    // ti = Tasa Interes
-    var ti = 20 ;
-    
-    for (var i = 0; i < TOTAL.length  ; i++) {
-    // tasa % 
-    // pago = meses
-    // valor actual = precio total venta
-    //futuro = 0
-    // co = Monto  precio de venta
-    var co = TOTAL[i];
-    // Tipo de interés fraccionado (del periodo)
-    var im = ti / m / 100;
-    var im2 = Math.pow((1 + im), -(m * n));
-    // Cuota Cap. + Int.
-    a = (co * im) / (1 - im2);
-    //console.log("Cuota Cap + Int: " + a.toFixed(3));
-    
-    financiamiento.push(a.toFixed(decimal))
-    }
-    
-    
+    console.log("Catg ", categoriasUnicas)
+    categoriasUnicas.push(" Total ")
+
+    let cos = 0;
 
 
+
+
+
+
+
+
+    for (var i = 0; i < totalCategoriasUSD2.length  ; i++) {
+      
+        cos +=  parseFloat(totalCategoriasUSD2[i]);
+     
+
+        }
+        totalCategoriasUSD2.push(cos)
+       cos = 0;
+
+
+       console.log("cccc  ", totalCategoriasUSD2);
 }

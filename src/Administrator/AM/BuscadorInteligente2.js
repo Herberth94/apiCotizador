@@ -5,7 +5,14 @@ import Animaciones from "../../Componentes/Animaciones";
 import { url, url2 } from '../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../Componentes/totalPartida'
-import CostosIndirectos from './CostosIndirectos';
+
+import Proporcionalidad from "../Proporcionalidad/Proporcionalidad";
+import Categorias from '../Proporcionalidad/Categorias';
+
+
+
+
+
 
 
 const cookies = new Cookies();
@@ -16,7 +23,7 @@ let validatorrol ="administrador";
 let validatorid = cookies.get('id_usuario');
 
 
-function BuscadorInteligente() {
+function BuscadorInteligente2() {
 
     const { 
         getTotalPar,
@@ -107,8 +114,7 @@ async function consultarTotalesP(id){          //console.log(id)
     <div className="contenido-usuarios">
 
 
-  {/*   <div> <Animaciones mytext="Buscador Inteligente" /> </div>
- */}
+
 
             <div className="busqueda-proyectos">
               
@@ -177,7 +183,8 @@ async function consultarTotalesP(id){          //console.log(id)
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
     {/*           <CostosIndirectos/> */}
-   < CostosIndirectos/>
+    <Categorias/>
+   < Proporcionalidad/>
 
 
                 </div>
@@ -202,4 +209,4 @@ async function consultarTotalesP(id){          //console.log(id)
   )
 }
 
-export default BuscadorInteligente
+export default BuscadorInteligente2

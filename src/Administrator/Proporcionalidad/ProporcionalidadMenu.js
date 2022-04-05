@@ -10,6 +10,8 @@ import Financiamiento from "./Financiamiento";
 import BuscadorProyectoFinanciamiento from "./BuscadorProyectoFinanciamiento"
 
 
+import BuscadorInteligente2 from "../AM/BuscadorInteligente2";
+
 
 function ProporcionalidadMenu() {
   {  /*========================== Mostrar Ocultar Tabla ==========================*/}
@@ -61,7 +63,7 @@ function ProporcionalidadMenu() {
               ) : (
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
-                <BuscarProyecto/>
+                <BuscadorInteligente2/>
                 </div>
               )}
             </td>
