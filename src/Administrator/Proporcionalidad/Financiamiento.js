@@ -1,100 +1,95 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import Table from "react-bootstrap/Table";
-import {url, url2} from "../../Componentes/Ocultar";
+import { url, url2 } from "../../Componentes/Ocultar";
 
 function Financiamiento(prop) {
   const idProyecto = prop.propIdProyecto
-  console.log("este es el idProyecto en financiamiento",idProyecto)
+  console.log("este es el idProyecto en financiamiento", idProyecto)
 
- // Almacenamiento de los datos
+  // Almacenamiento de los datos
   const [datosProporcionalidad, setDatosProporcionalidad] = useState({
-    pd_tasa_interes:'',
-    pd_anio_financiamiento:'',
-    pd_pagos_anuales:''
+    pd_tasa_interes: '',
+    pd_anio_financiamiento: '',
+    pd_pagos_anuales: ''
 
   })
   // Función que obtiene los datos introducidos en los inputs 
-  const handleInputChange = (event) =>{
+  const handleInputChange = (event) => {
     setDatosProporcionalidad({
-        ...datosProporcionalidad,[event.target.name] : event.target.value ,
+      ...datosProporcionalidad, [event.target.name]: event.target.value,
     })
   }
   // Función que realiza la inserción de los datos a la tabla proporcionalidad en la bd 
 
-  async function SendProporcionalidad(){
+  async function SendProporcionalidad() {
     console.log(idProyecto)
     const data = {
-      pd_tasa_interes:datosProporcionalidad.pd_tasa_interes,
-      pd_anio_financiamiento:datosProporcionalidad.pd_anio_financiamiento,
-      pd_pagos_anuales:datosProporcionalidad.pd_pagos_anuales
+      pd_tasa_interes: datosProporcionalidad.pd_tasa_interes,
+      pd_anio_financiamiento: datosProporcionalidad.pd_anio_financiamiento,
+      pd_pagos_anuales: datosProporcionalidad.pd_pagos_anuales
     };
-    try{
-      await axios.post(url2 +  `/api/cotizador/proporcionalidad/insert/${idProyecto}`,data);
+    try {
+      await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${idProyecto}`, data);
       alert('Registro exitoso')
-    }catch(error){
+    } catch (error) {
       console.log(error)
     }
   }
 
   return (
-    <div className="arregla">
-
-      <div className="contenido-usuarios">
-
-        <Table responsive striped bordered hover size="sm" className="tablas">
-          <thead>
-            {/*=================== Titulos Tabla Clientes ===================*/}
-            <tr className="titulo-tabla-usuarios">
-              <th>Tasa de Interes</th>
-              <th>Años de Financiamiento</th>
-              <th>Pagos Anuales</th>
-              <th>Agregar</th>
-
-            </tr>
-          </thead>
-          <tbody>
-            {/*=================== Contenido Tabla Clientes =================*/}
 
 
-            <tr >
-              {/*================= Años de Financiamiento ==================*/}
-              <td>
-                <input onChange={handleInputChange} 
+    <div className="contenido-usuarios">
+
+      <Table responsive striped bordered hover size="sm" className="tablas">
+        <thead>
+          {/*=================== Titulos Tabla Clientes ===================*/}
+          <tr className="titulo-tabla-usuarios">
+            <th>Tasa de Interes</th>
+            <th>Años de Financiamiento</th>
+            <th>Pagos Anuales</th>
+            <th>Agregar</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {/*=================== Contenido Tabla Clientes =================*/}
+
+
+          <tr >
+            {/*================= Años de Financiamiento ==================*/}
+            <td>
+              <input onChange={handleInputChange}
                 type="text"
                 name='pd_tasa_interes'></input>
-              </td>
+            </td>
 
-              {/*================= Pagos Anuales ==================*/}
-              <td>
-                <input onChange={handleInputChange} 
+            {/*================= Pagos Anuales ==================*/}
+            <td>
+              <input onChange={handleInputChange}
                 type="text"
                 name='pd_anio_financiamiento'>
-                </input>
-              </td>
-              {/*================= Pagos Anuales ==================*/}
-              <td>
-                <input onChange={handleInputChange} 
+              </input>
+            </td>
+            {/*================= Pagos Anuales ==================*/}
+            <td>
+              <input onChange={handleInputChange}
                 type="text"
                 name='pd_pagos_anuales'>
-                </input>
-              </td>
-              {/*================= Agregar==================*/}
-              <td>
-                <button onClick={SendProporcionalidad} className="btn btn-primary"> Agregar </button>
-              </td>
+              </input>
+            </td>
+            {/*================= Agregar==================*/}
+            <td>
+              <button onClick={SendProporcionalidad} className="btn btn-primary"> Agregar </button>
+            </td>
 
-            </tr>
+          </tr>
 
-          </tbody>
-        </Table>
-
-
-
-
-
-      </div>
+        </tbody>
+      </Table>
     </div>
+
   )
 }
 
