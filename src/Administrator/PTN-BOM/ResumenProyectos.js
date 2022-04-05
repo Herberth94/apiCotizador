@@ -56,7 +56,7 @@ function Proyectos() {
                 setListaC(resC.data.reSql);
             }catch(error){console.log(error);}
         }
-        console.log('Proyectos:',listaProyectos);
+        //console.log('Proyectos:',listaProyectos);
         getProyectos();
     },[show6,show7])
     
@@ -142,7 +142,6 @@ function Proyectos() {
 
                 {/*********Búsqueda de Lista de Proyectos por Clave ********/}
                 <div className="busqueda-proyectos">
-
                     <Table responsive id="nombreDiv">
                         <thead>
                             <tr className="titulo-tabla-usuarios">
