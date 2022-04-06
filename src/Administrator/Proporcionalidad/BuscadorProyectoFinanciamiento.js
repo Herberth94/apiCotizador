@@ -123,14 +123,6 @@ function BuscadorProyectoFinanciamiento() {
                                         {" "}
                                         {show2 ? "Agregar Datos Financiamiento" : "Ocultar"}{" "}
                                     </button>
-                                    {show2 ? (
-                                    <div></div>
-                                    ) : (
-                                        <div className="arregla">
-                                            {/*========================== Llamado al Componente ==========================*/}
-                                            <Financiamiento propIdProyecto={idAsignado} />
-                                        </div>
-                                    )}
 
                                 </td>
                                 <td>
@@ -144,19 +136,31 @@ function BuscadorProyectoFinanciamiento() {
                                         {" "}
                                         {show ? "Modificar Datos Financiamiento" : "Ocultar"}{" "}
                                     </button>
-                                    {show ? (
-                                        <div></div>
-                                    ) : (
-                                        <div className="arregla">
-                                            {/*========================== Llamado al Componente ==========================*/}
-                                            <ModificarFinanciamiento propIdProyecto={idAsignado} />
-                                        </div>
-                                    )}
+
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
+                {show ? (
+                    <div></div>
+                ) : (
+                    <div className="arregla">
+                        <br />
+                        {/*========================== Llamado al Componente modificar financiamiento ==========================*/}
+                        <ModificarFinanciamiento propIdProyecto={idAsignado} />
+                    </div>
+                )}
+                {show2 ? (
+                    <div></div>
+                ) : (
+                    <div className="arregla">
+                        <br />
+                        {/*========================== Llamado al Componente agregar financiamiento==========================*/}
+                        <Financiamiento propIdProyecto={idAsignado} />
+                    </div>
+                )}
+
                 {/* {idAsignado !== null ? <Financiamiento propIdProyecto={idAsignado} /> : null} */}
                 {/* {idAsignado !== null ? <ModificarFinanciamiento propIdProyecto={idAsignado} /> : null} */}
             </div>
