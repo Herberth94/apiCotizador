@@ -48,7 +48,7 @@ function Proyectos() {
                         setListaProyectos(resProy.data.data);
                       }else if(show7 === false){
                         //Aqui va la ruta de colaboradores colaboradores/view/
-                        const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/view/${validatorid}`);
+                        const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
                         setListaProyectos(resProy.data.data);
                       }
                 }
