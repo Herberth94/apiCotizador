@@ -4,7 +4,7 @@ import axios from "axios";
 
 //Componentes
 import {url2} from "../../Componentes/Ocultar";
-import { EditMarcas } from './ModificarMarcas';
+import { EditMarcas } from '../../Routes/ModificarMarcas';
 import { CrudMarcas } from './CRUDMarcas';
 
 export const CrudProveedores = (props) => {

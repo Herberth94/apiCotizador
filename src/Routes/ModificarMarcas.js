@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import {url2} from "../Ocultar";
+import {url2} from "../Componentes/Ocultar";
 
 export const EditMarcas = () => {
    

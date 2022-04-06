@@ -490,7 +490,7 @@ function DatosSP( ) {
             <thead>
                 <tr className="titulo-tabla-usuarios">
                 <th>Cantidad</th>
-                <th>Precio Lista</th>
+                <th>Precio Lista Unitario </th>
                 <th>Precio Unitario</th>
                 <th> Descuento (%)</th>
                 <th> Total </th>

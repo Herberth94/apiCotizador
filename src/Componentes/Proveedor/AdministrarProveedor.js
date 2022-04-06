@@ -4,7 +4,7 @@ import axios from "axios";
 import Animaciones from "../../Componentes/Animaciones";
 
 //Componentes
-import { EditProvs} from "./ModificarProveedor";
+import {EditProvs} from "../../Routes/ModificarProveedor";
 import {url,url2} from "../../Componentes/Ocultar";
 import { CrudProveedores } from "./CRUDProveedores";
 
