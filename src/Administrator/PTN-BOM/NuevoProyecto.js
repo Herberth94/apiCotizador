@@ -1,16 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
-import PTN from "./DatosPTN";
-import Animaciones from "../../Componentes/Animaciones";
-import "../css/PTN_BOM.css";
 import axios from 'axios';
-import Partida from "./Partida";
-import DatosSP from "./DatosSP";
-import DatosPTN from "./DatosPTN";
 import Cookies from 'universal-cookie';
 
-
+//Componentes
+import Animaciones from "../../Componentes/Animaciones";
+import "../css/PTN_BOM.css";
+import DatosPTN from "./DatosPTN";
 import {url, url2} from "../../Componentes/Ocultar";
 
 
@@ -82,7 +79,6 @@ function NuevoProyecto () {
           ...datos,[event.target.name] : event.target.value ,
         })
   }
-
   // Función que realiza la inserción del proyecto
   async function Send (){
     // Obtención del id del cliente que se seleccionó en la búsqueda
@@ -102,13 +98,38 @@ function NuevoProyecto () {
     };
 
     try{
-      //console.log('Este es el id del usuario activo:', validatorid);
-      const respuesta = await axios.post(url2 + `/api/cotizador/proyecto/agregar/${validatorid}`, data);
-      const getProyectoId = respuesta.data.id_proyecto;
-      console.log(getProyectoId);
-      alert('Registro exitoso')
+      /*=================================== Inserción de proyecto con condicionante ===================================*/
+      //Consulta de los usuarios registrados
+      const resUsers = await axios.get(url + '/api/cotizador/registro');
+      let i = Object.keys(resUsers.data.reSql);
+      i = parseInt(i.length);
+
+      let notFound;//Variable que confirma que el usuario no esta registrado 
+      let newArray = [];//Arreglo que se llena el numero de veces que no coinciden los id´s
+      
+      //Recorrido y comparación entre los usuarios registrados en la bd y el usuario activo
+      for(let cont = 0 ; cont < i; cont++){
+        if(validatorid !== '' && parseInt(validatorid) === parseInt(resUsers.data.reSql[cont].id_usuario)){
+          await axios.post(url2 + `/api/cotizador/proyecto/agregar/${validatorid}`, data);
+          alert('Se registro el Proyecto exitosamente');
+        }else if(validatorid === '' || parseInt(validatorid) !== parseInt(resUsers.data.reSql[cont].id_usuario)){
+          newArray[cont] = true;
+        }
+      }
+      //Filtro para extraer los datos que se han llenado con true
+      let i1 = newArray.filter(nA => true);
+      i1 = i1.length;
+      //Comparación del numero de usuarios registrados en la bd con el numero de usuarios no encontrados
+      if(i1 === i){
+        notFound = true;
+      }
+      if(notFound){
+        alert('Error al registrar el Proyecto')
+        alert('El usuario que esta activo no se encuentra registrado');
+      }
+    /*===============================================================================================================*/
     }catch (error){
-      alert('Registro invalido')
+      alert('Registro invalido del Proyecto')
     }
   }
 
