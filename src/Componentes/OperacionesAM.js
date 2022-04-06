@@ -203,7 +203,7 @@ totalCategorias = 0;
 
 
 
-export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= [] ,  costosIndi  = []){
+export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= [] ,  costosIndi  = [] , dataFinancia = []  ){
 
 
     limpiaDatos();
@@ -571,22 +571,24 @@ var  h = 0;
 /*============= Proporcional Mesa De Ayuda ===============================*/
 for (var i = 0; i < partidasUnicas.length  ; i++) {
 h =  parseFloat( proporcionalMesaAyuda[i])   + parseFloat(precioVenta2[i]);
+
+h = h.toFixed(decimal);
 TOTAL.push(h);
 
 }
             
             //bien 4
             
-            
-            
+    
+     
             /*============= Financiamiento ===============================*/
-            var a = 0;
+            let a = 0;
             // n =  Años de financiamiento
-            var n = 1;
+            let n = 1;
             // Pagos Anuales default
-            var m = 12;
+            let m = 12;
             // ti = Tasa Interes
-            var ti = 20 ;
+            let ti = 20 ;
             
             for (var i = 0; i < TOTAL.length  ; i++) {
             // tasa % 
@@ -594,10 +596,10 @@ TOTAL.push(h);
             // valor actual = precio total venta
             //futuro = 0
             // co = Monto  precio de venta
-            var co = TOTAL[i];
+            let co = TOTAL[i];
             // Tipo de interés fraccionado (del periodo)
-            var im = ti / m / 100;
-            var im2 = Math.pow((1 + im), -(m * n));
+            let im = ti / m / 100;
+            let im2 = Math.pow((1 + im), -(m * n));
             // Cuota Cap. + Int.
             a = (co * im) / (1 - im2);
             //console.log("Cuota Cap + Int: " + a.toFixed(3));

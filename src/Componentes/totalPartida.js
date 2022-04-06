@@ -1,8 +1,6 @@
 import  {useState} from 'react';
 
 import {obtenPartidasUnicas} from "../Componentes/OperacionesAM";
-import {datosAdicionales} from "../Componentes/OperacionesAM";
-
 
 
 
@@ -10,6 +8,7 @@ export let dataPartida = [];
 export let dataCategoria = [];
 export let dolar =  [];
 export let dataIndirectos =  [];
+export let dataFinanciamiento =  [];
 export let dol = 0;
 
 
@@ -42,7 +41,7 @@ export const Partida_catalogo = () => {
    
       
         dolar = pDiv;
-        obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos) ;
+        obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ) ;
 
       // console.log("dollar , " , dolar)
     };
@@ -52,16 +51,21 @@ export const Partida_catalogo = () => {
         setPorcentajesCI(pCI);
         dataIndirectos = pCI;
 
-        obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos) ;
+        obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos ) ;
 
       
       /*   console.log('Cotos indirectos:',   dataIndirectos); */
         };
 
     const getFinanciamieno = (dF) =>{
-        setdFinanciamiento(dF);
+        setdFinanciamiento(dF); 
+         dataFinanciamiento  = dF;
+         obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos ) ;
 
-         console.log('Datos financiamineto',dF);
+         console.log(' Datos financiamineto   ',dF);
+
+
+         
         }
 
         const getTotalPar = (tP) =>{
@@ -70,7 +74,7 @@ export const Partida_catalogo = () => {
              dataPartida = tP ;
         
             
-             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos );
+             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos  );
     
             };
         const getTotalCats = (tC) => {
@@ -78,7 +82,7 @@ export const Partida_catalogo = () => {
     
             dataCategoria= tC;
     
-            obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos );
+            obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos  );
             
     
             };
