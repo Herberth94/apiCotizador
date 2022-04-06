@@ -4,6 +4,7 @@ import Table from "react-bootstrap/Table";
 import Cookies from 'universal-cookie';
 import Animaciones from "../../Componentes/Animaciones";
 import Financiamiento from './Financiamiento';
+import ModificarFinanciamiento from './ModificarFinanciamiento';
 import { url, url2 } from "../../Componentes/Ocultar";
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -22,7 +23,12 @@ function BuscadorProyectoFinanciamiento() {
     /*== Almacenamiento de la clave introducida del proyecto ==*/
     const [claveP, setClaveP] = useState([]);
     // Almacenamiento del ID asignado 
-    const [idAsignado, setIdAsignado] = useState(null);
+    const [idAsignado, setIdAsignado] = useState();
+
+    //Habilitar/Deshabilitar tabla del financiamiento
+    const [show, setShow] = useState(true)
+    const [show2, setShow2] = useState(true)
+
 
     const getProyectos = async () => {
         try {
@@ -94,6 +100,7 @@ function BuscadorProyectoFinanciamiento() {
                             <th>Cliente</th>
                             <th>Fecha de creción</th>
                             <th>Financiamiento</th>
+                            <th>Modificar Financiamiento</th>
 
                         </tr>
                     </thead>
@@ -110,16 +117,52 @@ function BuscadorProyectoFinanciamiento() {
                                         className="btn btn-primary"
                                         onClick={() => {
                                             setIdAsignado(suggestions[key].proyecto_id)
-                                        
+                                            setShow2(!show2);
                                         }}
-                                    > Agregar Datos Financiamiento
+                                    >
+                                        {" "}
+                                        {show2 ? "Agregar Datos Financiamiento" : "Ocultar"}{" "}
                                     </button>
+
+                                </td>
+                                <td>
+                                    <button
+                                        className="btn btn-primary"
+                                        onClick={() => {
+                                            setIdAsignado(suggestions[key].proyecto_id)
+                                            setShow(!show);
+                                        }}
+                                    >
+                                        {" "}
+                                        {show ? "Modificar Datos Financiamiento" : "Ocultar"}{" "}
+                                    </button>
+
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
-                {idAsignado !== null ? <Financiamiento propIdProyecto = {idAsignado}/> : null}
+                {show ? (
+                    <div></div>
+                ) : (
+                    <div className="arregla">
+                        <br />
+                        {/*========================== Llamado al Componente modificar financiamiento ==========================*/}
+                        <ModificarFinanciamiento propIdProyecto={idAsignado} />
+                    </div>
+                )}
+                {show2 ? (
+                    <div></div>
+                ) : (
+                    <div className="arregla">
+                        <br />
+                        {/*========================== Llamado al Componente agregar financiamiento==========================*/}
+                        <Financiamiento propIdProyecto={idAsignado} />
+                    </div>
+                )}
+
+                {/* {idAsignado !== null ? <Financiamiento propIdProyecto={idAsignado} /> : null} */}
+                {/* {idAsignado !== null ? <ModificarFinanciamiento propIdProyecto={idAsignado} /> : null} */}
             </div>
 
 
