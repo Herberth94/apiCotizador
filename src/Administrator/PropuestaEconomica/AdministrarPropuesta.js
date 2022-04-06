@@ -12,22 +12,15 @@ import { url2 } from '../../Componentes/Ocultar';
 function AdministrarPropuesta() {
   const [show, setShow] = useState(true)
   const [show2, setShow2] = useState(true)
-  // const [validarProyecto, setValidarProyecto]=useState({
-  //   proyecto_estatus: 'Validado'
-  // })
-  const [rechazarProyecto, setRechazarProyecto]=useState('')
 
-  const validarProyecto2= "Validado";
-  const rechazarProyecto2 = "Rechazado";
-
+  // cambio de estatus en el la base de datos del proyecto seleccionado a validado
   async function cambioEstatusProyectoValidad(){
     try{
       const data = {
-        proyecto_estatus: rechazarProyecto
+        proyecto_estatus: 'Validado'
       }
-      console.log(data.proyecto_estatus)
-      console.log(rechazarProyecto)
-      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/76`, data);
+      console.log(data)
+      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/75`, data);
       const send2 = respuesta.data
       console.log(send2)
       alert("Estatus del proyecto actualizado")
@@ -35,20 +28,20 @@ function AdministrarPropuesta() {
       console.log(error)
     }
   }
-
-  // async function cambioEstatusProyectoRechazado(){
-  //   try{
-  //     const data = {
-  //       proyecto_estatus: 'Rechazado'
-  //     }
-  //     const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/76`, data);
-  //     const send2 = respuesta.data
-  //     console.log(send2)
-  //     alert("Estatus del proyecto actualizado")
-  //   } catch(error){
-  //     console.log(error)
-  //   }
-  // }
+  // cambio de estatus en el la base de datos del proyecto seleccionado a rechazado
+  async function cambioEstatusProyectoRechazado(){
+    try{
+      const data = {
+        proyecto_estatus: 'Rechazado'
+      }
+      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/75`, data);
+      const send2 = respuesta.data
+      console.log(send2)
+      alert("Estatus del proyecto actualizado")
+    } catch(error){
+      console.log(error)
+    }
+  }
 
   return (
     <div className="contenido-usuarios">
@@ -99,7 +92,7 @@ function AdministrarPropuesta() {
 
               <td>
 
-                <button className="btn btn-danger" onClick={()=>{ setRechazarProyecto(rechazarProyecto2);cambioEstatusProyectoValidad()}} type="button"> Rechazar </button>
+                <button className="btn btn-danger" onClick={()=>{cambioEstatusProyectoRechazado()}} type="button"> Rechazar </button>
 
 
               </td>
@@ -107,7 +100,7 @@ function AdministrarPropuesta() {
 
               <td>
 
-                <button className="btn btn-primary" onClick={()=>{setRechazarProyecto(validarProyecto2);cambioEstatusProyectoValidad()}} type="button"> Validar </button>
+                <button className="btn btn-primary" onClick={()=>{cambioEstatusProyectoValidad()}} type="button"> Validar </button>
 
 
               </td>
