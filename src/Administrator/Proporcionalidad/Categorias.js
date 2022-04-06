@@ -13,9 +13,9 @@ function Categorias() {
     
     <div className="contenido-usuarios">
 
+       <br/>
 
-
-            <div> <Animaciones mytext="Categorias " /> </div>
+            <div> <Animaciones mytext="Resumen Categorias" /> </div>
  
             <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>

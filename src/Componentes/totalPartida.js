@@ -1,11 +1,16 @@
 import  {useState} from 'react';
 
 import {obtenPartidasUnicas} from "../Componentes/OperacionesAM";
+import {datosAdicionales} from "../Componentes/OperacionesAM";
+
 
 
 
 export let dataPartida = [];
 export let dataCategoria = [];
+export let dolar =  [];
+export let dataIndirectos =  [];
+export let dol = 0;
 
 
 
@@ -19,34 +24,64 @@ export const Partida_catalogo = () => {
     const [porcentajesCI,setPorcentajesCI] = useState ([]);
     const [dFinanciamiento, setdFinanciamiento] = useState([]);
 
-    const getTotalPar = (tP) =>{
-        setotalesPartidas1(tP);
-         console.log('',totalesPartidas1);
-         dataPartida = tP ;
-         
+
+    const getPorcentajesPar = (pPar) => {
         
-         obtenPartidasUnicas(dataPartida,dataCategoria);
-
-        };
-    const getTotalCats = (tC) => {
-        setotalesCategorias1(tC);
-
-        dataCategoria= tC;
-
-        obtenPartidasUnicas(dataPartida,dataCategoria);
+        setPorcentajesPartidas(pPar);     
+        console.log('AM partidas',porcentajesPartidas);
+    };
+    const getPorcentajesCats = (pCats) => {
         
-
+        setPorcentajesCategorias(pCats);
+         console.log('AM categorias',porcentajesCategorias);
         };
-    const getPorcentajesPar = (pPar) => {setPorcentajesPartidas(pPar); console.log('AM partidas',porcentajesPartidas);};
-    const getPorcentajesCats = (pCats) => {setPorcentajesCategorias(pCats); console.log('AM categorias',porcentajesCategorias);};
+   
+      /*========================   Valor Dolar ======================== */
     const getDivisaProy = (pDiv) => {
         setDivisaProy(pDiv); 
-        console.log('Divisa x:',divisaProy);
-    
-    };
-    const getPorcentajesCI = (pCI) =>{setPorcentajesCI(pCI); console.log('Cotos indirectos:',porcentajesCI);};
-    const getFinanciamieno = (dF) =>{setdFinanciamiento(dF); console.log('Datos financiamineto',dFinanciamiento);}
+   
+      
+        dolar = pDiv;
+        obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos) ;
 
+      // console.log("dollar , " , dolar)
+    };
+
+
+    const getPorcentajesCI = (pCI) =>{
+        setPorcentajesCI(pCI);
+        dataIndirectos = pCI;
+
+        obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos) ;
+
+      
+      /*   console.log('Cotos indirectos:',   dataIndirectos); */
+        };
+
+    const getFinanciamieno = (dF) =>{
+        setdFinanciamiento(dF);
+
+         console.log('Datos financiamineto',dF);
+        }
+
+        const getTotalPar = (tP) =>{
+            setotalesPartidas1(tP);
+    
+             dataPartida = tP ;
+        
+            
+             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos );
+    
+            };
+        const getTotalCats = (tC) => {
+            setotalesCategorias1(tC);
+    
+            dataCategoria= tC;
+    
+            obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos );
+            
+    
+            };
 
   
  return {
@@ -57,11 +92,12 @@ export const Partida_catalogo = () => {
      getPorcentajesCI,
      getDivisaProy,
      getFinanciamieno,
-     totalesPartidas1,
-     totalesCategorias1,
+     divisaProy,
      porcentajesPartidas,
      porcentajesCategorias,
      porcentajesCI,
-     dFinanciamiento
+     dFinanciamiento,
+     totalesPartidas1,
+     totalesCategorias1
    }
 };

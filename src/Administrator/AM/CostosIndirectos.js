@@ -2,6 +2,8 @@ import React from 'react'
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
+
+
 import {costosIndirectos, equivale,  totalIndirecto} from "../../Componentes/OperacionesAM";
 
 
