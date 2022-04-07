@@ -210,9 +210,9 @@ export const CrudProyectos = (props) => {
 
         const {actualizacionCats} = EditCats();
         
-        const envioDataCats = (data, key, newdata) => {
+        const envioDataCats = (estado,data, key, newdata) => {
             if(first1){
-                actualizacionCats(data[key], newdata);
+                actualizacionCats(estado,data[key], newdata);
             }
         }
         /*=========================================================================*/

@@ -6,80 +6,68 @@ import {precioUnitario, calcularDescuento, Total} from "../Administrator/PTN-BOM
 import {url2} from "../Componentes/Ocultar";
 
 export const EditPrecio = () => {
-    // const [newPrecios, setNewPrecios] = useState({
-    //     precio_lista: '',
-    //     precio_unitario: '',
-    //     precio_descuento: '',
-    //     sp_cantidad: '',
-    //     precio_total: '',
-    //     precio_id_moneda:''
-    // }); 
-
-    // const [newCantidad, setNewCantidad] = useState({
-    //     sp_cantidad:''
-    // }); 
-
-    const actualizacionPrecio = (estado,newcant,data,newdata)=>{
-        // if(newdata.precio_lista !== data.precio_lista && newdata.precio_lista !== ''&& 
-        //     newdata.precio_descuento !== data.precio_descuento && newdata.precio_descuento !== ''&&
-        //     newcant.sp_cantidad !== data.sp_cantidad && newcant.sp_cantidad !== ''
-        // ){
-        //     let precio_u = precioUnitario(newdata.precio_lista,newdata.precio_descuento);
-        //     let total = Total(precio_u,newcant.sp_cantidad)
-        //     setNewPrecios({...newPrecios, precio_lista:newdata.precio_lista, precio_unitario:precio_u, precio_total:total,
-        //      });
-        // }else if( newdata.precio_unitario !== data.precio_unitario && newdata.precio_unitario !== ''
-
-
-        // ){
-
-        // }
-        //console.log(newPrecios);
-        SendUpdatePrecio(estado,newcant, data,data.precio_id, data.sp_id, newdata)      
+    const actualizacionPrecio = (estado,data,newdata)=>{
+        if(estado){
+            SendUpdatePrecio(estado,data,data.precio_id, data.sp_id, newdata)  
+        }else{
+            SendUpdatePrecio(estado,data,data.precio_id, data.cd_id, newdata)
+        }
+            
     }
 
-    async function SendUpdatePrecio (newcant, data, precio_id, sp_id, newdata){
-        //console.log(data.precio_id_moneda);
-        // const dataActualizacion = {
-        //     precio_lista: newPrecios.precio_lista, 
-        //     precio_unitario:newPrecios.precio_unitario,
-        //     precio_descuento:newPrecios.precio_descuento,
-        //     precio_total:newPrecios.precio_total,
-        //     precio_id_moneda:newPrecios.precio_id_moneda
-        // };
+    async function SendUpdatePrecio (estado,data, precio_id, id, newdata){
 
-        const dataActualizacion = {
+        const dataActualizacion1 = {
             precio_lista: data.precio_lista, 
             precio_unitario:data.precio_unitario,
             precio_descuento:data.precio_descuento,
             precio_total:data.precio_total,
             precio_id_moneda:data.precio_id_moneda
         };
-        const dataActualizacion1 = {
-            sp_cantidad:data.sp_cantidad
+        const dataActualizacion2= {
+            sp_cantidad:''
+        };
+
+        const dataActualizacion3= {
+            cd_cantidad:''
         };
 
         const k = Object.keys(newdata);
-        const k1 = Object.keys(newcant);
         for(let keys of k){
             if(newdata[keys] !== ''){
-                dataActualizacion[keys] = newdata[keys];
+                dataActualizacion1[keys] = newdata[keys];
             }
-            
         }
-        for(let keys of k1){
-            if(newcant[keys] !== ''){
-                dataActualizacion1[keys] = newcant[keys];
+
+        if(estado){
+            if(newdata.cantidad !== '' && newdata.cantidad !== data.sp_cantidad){
+                dataActualizacion2.sp_cantidad = newdata.cantidad
+            }else{
+                dataActualizacion2.sp_cantidad = data.sp_cantidad
+            }
+        }else{
+            if(newdata.cantidad !== '' && newdata.cantidad !== data.cd_cantidad){
+                dataActualizacion3.cd_cantidad = newdata.cantidad
+            }else{
+                dataActualizacion3.cd_cantidad = data.cd_cantidad
             }
         }
          
         try {
-            console.log(dataActualizacion);
+            console.log('Precios:',dataActualizacion1);
+            if(estado){
+                console.log('Cantidad_sp:',dataActualizacion2);
+                await axios.post(url2 + `/api/cotizador/precio/edit/${precio_id}`,dataActualizacion1);
+                await axios.post(url2 + `/api/cotizador/sp/editCant/${id}`,dataActualizacion2);
+                alert('Precio editado exitosamente');
+            }else{
+                console.log('Cantidad_cd:',dataActualizacion3);
+                await axios.post(url2 + `/api/cotizador/precio/edit/${precio_id}`,dataActualizacion1);
+                await axios.post(url2 + `/api/cotizador/catd/editCant/${id}`,dataActualizacion3);
+                alert('Precio editado exitosamente');           
+            }
             // console.log(dataActualizacion1);
             // console.log(id);
-            await axios.post(url2 + `/api/cotizador/precio/edit/${precio_id}`,dataActualizacion);
-            await axios.post(url2 + `/api/cotizador/sp/editCant/${sp_id}`,dataActualizacion1);
-            alert('Precio editado exitosamente');
             } catch (error) {
             console.log(error);
             alert('Edición de precio invalido');
