@@ -203,7 +203,7 @@ totalCategorias = 0;
 
 
 
-export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= [] ,  costosIndi  = [] , dataFinancia = []  ){
+export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= [] ,  costosIndi  = [] , dataPorcentajes = [] ,  dataPorcentajesC = [] ){
 
 
     limpiaDatos();
@@ -214,13 +214,36 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= 
     valorDolar = 1;
     }
 
+            for (var i = 0; i <  costosIndi.length ; i++) {
+              costosIndirectos.push(costosIndi[i].cci_nombre);
+              equivale.push(costosIndi[i].ci_porcentaje);
+              }
+       
+        
+/// Llenar Arreglo Porcentajes Partidas
 
-        for (var i = 0; i <  costosIndi.length ; i++) {
-            costosIndirectos.push(costosIndi[i].cci_nombre);
-            equivale.push(costosIndi[i].ci_porcentaje);
-            }
-     
-      
+              for (var i = 0; i <  dataPorcentajes.length ; i++) {       
+                margenGanancia.push(dataPorcentajes[i].am_margen_ganancia);
+                descuentoCliente.push(dataPorcentajes[i].am_desc_cliente);
+                Cantidad.push(dataPorcentajes[i].am_cantidad);
+                desFabrica.push(dataPorcentajes[i].am_descuento_fabrica);
+                }
+
+                        
+/// Llenar Arreglo Porcentajes Categorias
+
+              for (var i = 0; i <  dataPorcentajesC.length ; i++) {       
+                margenGanancia.push(dataPorcentajesC[i].amc_margen_ganancia);
+                descuentoCliente.push(dataPorcentajesC[i].amc_desc_cliente);
+                Cantidad.push(dataPorcentajesC[i].amc_cantidad);
+                desFabrica.push(dataPorcentajesC[i].amc_desc_fabrica);
+                }
+         
+                margenGanancia.push(32);
+                descuentoCliente.push(0);
+                Cantidad.push(0);
+                desFabrica.push(0);
+         
        
        
    
@@ -377,12 +400,14 @@ console.log(datosCompletosTotal);
  */
 //Llenar Datos
 
-for (var i = 0; i < datosCompletosTotal.length ; i++) {
+
+//data porcentajes 
+/* for (var i = 0; i < datosCompletosTotal.length ; i++) {
     margenGanancia.push(32);
     descuentoCliente.push(0);
     Cantidad.push(1);
     desFabrica.push(0);
-  }
+  } */
 
   prov = datosCompletosTotal;
 

@@ -13,7 +13,7 @@ function CostosIndirectos() {
   return (
       
     <div className="contenido-usuarios">
-
+  <br/>   
    <div> <Animaciones mytext="Costos Indirectos" /> </div>
 
    <Table responsive striped bordered hover size="sm" className="tablas">
