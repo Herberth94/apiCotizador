@@ -20,7 +20,7 @@ function AdministrarPropuesta() {
         proyecto_estatus: 'Validado'
       }
       console.log(data)
-      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/75`, data);
+      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/72`, data);
       const send2 = respuesta.data
       console.log(send2)
       alert("Estatus del proyecto actualizado")
@@ -34,7 +34,7 @@ function AdministrarPropuesta() {
       const data = {
         proyecto_estatus: 'Rechazado'
       }
-      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/75`, data);
+      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/73`, data);
       const send2 = respuesta.data
       console.log(send2)
       alert("Estatus del proyecto actualizado")
