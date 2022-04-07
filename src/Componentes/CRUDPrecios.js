@@ -8,25 +8,23 @@ export const CrudPrecios = (props) => {
         /*========================= Editar =========================*/
         const [activar, setActivar] = useState(true)
 
-        const [data,setData] = useState ({
-            precio_lista:'',
-            precio_unitario:'',
-            precio_descuento:'',
-            precio_total:'',
-            precio_id_moneda:''     
-        });
-
-        const [dataCantidad,setDataCantidad] = useState ({
-            sp_cantidad:''    
-        });
+        const [data,setData] = useState ([]);
+        const [data1, setData1] = useState([]);
 
         const handleInputChange = (event) => {
             setData ({
                 ...data,[event.target.name] : event.target.value ,
             })
-            setDataCantidad({
-                ...dataCantidad,[event.target.name]:event.target.value,
-            })
+            if(props.estado){
+                // setDataCantidad({
+                //     ...dataCantidad,[event.target.name]:event.target.value,
+                // })
+            }else{
+                // setDataCantidad1({
+                //     ...dataCantidad1,[event.target.name]:event.target.value,
+                //})
+            }
+            
         }
         
         const [enable, setenable] = useState([]);
@@ -42,6 +40,11 @@ export const CrudPrecios = (props) => {
             i = i.length
             //console.log(i)
             setenable(Array(i).fill(true)); 
+            if(props.estado){
+                for(let c = 0 ; c < i ; c++ ){
+
+                }
+            }
         },[props.precios])
 
         
@@ -87,10 +90,10 @@ export const CrudPrecios = (props) => {
                             <td>
                                 <input
                                 className="input-name" 
-                                defaultValue={props.precios[key].sp_cantidad} 
+                                placeholder={props.estado ? props.precios[key].sp_cantidad : props.precios[key].cd_cantidad} 
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
-                                name="sp_cantidad" 
+                                name={props.estado ? "sp_cantidad" : "cd_cantidad"}
                                 ></input>
                             </td>
                             <td>
@@ -125,9 +128,9 @@ export const CrudPrecios = (props) => {
                                 className="input-name" 
                                 defaultValue={props.precios[key].precio_total} 
                                 //disabled={true}
-                                //readOnly
+                                readOnly
                                 disabled={enable[key]} 
-                                onChange={handleInputChange}
+                                //onChange={handleInputChange}
                                 name="precio_total" 
                                 ></input>  
                             </td> 
@@ -148,10 +151,10 @@ export const CrudPrecios = (props) => {
                                 <button 
                                 className="btn btn-primary modificar"
                                 onClick={()=>{
-                                    habilitar(key); 
-                                    props.envioDataPrecio(dataCantidad, datos, key, data);
-                                    setActivar(!activar);
-                                    props.setfirst(activar);
+                                    //habilitar(key); 
+                                    //props.envioDataPrecio( datos, key, data);
+                                    //setActivar(!activar);
+                                    //props.setfirst(activar);
                                 }}
                                 >
                                     {activar ? "Modificar" : "Aceptar"}

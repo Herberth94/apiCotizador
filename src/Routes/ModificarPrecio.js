@@ -19,7 +19,7 @@ export const EditPrecio = () => {
     //     sp_cantidad:''
     // }); 
 
-    const actualizacionPrecio = (newcant,data,newdata)=>{
+    const actualizacionPrecio = (estado,newcant,data,newdata)=>{
         // if(newdata.precio_lista !== data.precio_lista && newdata.precio_lista !== ''&& 
         //     newdata.precio_descuento !== data.precio_descuento && newdata.precio_descuento !== ''&&
         //     newcant.sp_cantidad !== data.sp_cantidad && newcant.sp_cantidad !== ''
@@ -35,7 +35,7 @@ export const EditPrecio = () => {
 
         // }
         //console.log(newPrecios);
-        SendUpdatePrecio(newcant, data,data.precio_id, data.sp_id, newdata)      
+        SendUpdatePrecio(estado,newcant, data,data.precio_id, data.sp_id, newdata)      
     }
 
     async function SendUpdatePrecio (newcant, data, precio_id, sp_id, newdata){
