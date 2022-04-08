@@ -9,7 +9,7 @@ import Animaciones from "../../Componentes/Animaciones";
  import Categorias from "./Categorias";
  
 
-function DatosPTN() {
+function DatosPTN(props) {
   
   /*========================== Mostrar Ocultar Tabla ==========================*/ 
   const [show, setShow] = useState(true);
@@ -27,7 +27,7 @@ function DatosPTN() {
         <Partida/>
       {/*========================== Tabla Datos PTN ==========================*/}
       
-        <DatosSP/>
+        <DatosSP clave={props.clave}/>
         {/*========================== Añadir Categorias ==========================
         Solo cuando se termine el proyecto */}
         <div className="contenido-usuarios">

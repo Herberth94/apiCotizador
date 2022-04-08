@@ -382,13 +382,20 @@ function DatosSP({clave} ) {
       event.target.reset();
      
   }
-  
+
   const [modalShow1, setModalShow1] = useState(true)
   const [proyecto_id, Setproyecto_id] = useState([])
   const lista = async (clave) =>{
     console.log(clave);
-    const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
-    Setproyecto_id(respuesta.data.reSql)
+    try {
+      const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
+      Setproyecto_id(respuesta.data.reSql)
+    
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
     
     
  }

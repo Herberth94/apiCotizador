@@ -33,7 +33,7 @@ function NuevoProyecto () {
 
   // Almacenamiento de los clientes semejantes al texto introducido en el input
   const [suggestions, setSuggestions] = useState ([]);
-
+  const [clavep ,setclavep] = useState([])
   // Función que realiza la consulta a la tabla clientes
   useEffect (() => {
     async function listaClientes(){
@@ -110,7 +110,8 @@ function NuevoProyecto () {
       //Recorrido y comparación entre los usuarios registrados en la bd y el usuario activo
       for(let cont = 0 ; cont < i; cont++){
         if(validatorid !== '' && parseInt(validatorid) === parseInt(resUsers.data.reSql[cont].id_usuario)){
-          await axios.post(url2 + `/api/cotizador/proyecto/agregar/${validatorid}`, data);
+         const clave = await axios.post(url2 + `/api/cotizador/proyecto/agregar/${validatorid}`, data);
+         setclavep(clave.data.id_proyecto);
           alert('Se registro el Proyecto exitosamente');
         }else if(validatorid === '' || parseInt(validatorid) !== parseInt(resUsers.data.reSql[cont].id_usuario)){
           newArray[cont] = true;
@@ -228,7 +229,7 @@ function NuevoProyecto () {
         </div>
       ) : (
         <div className="arregla">
-          <DatosPTN></DatosPTN>
+          <DatosPTN  clave = {clavep}/>
         </div>
       )}
 
