@@ -30,8 +30,10 @@ function Financiamiento(prop) {
       pd_pagos_anuales: datosProporcionalidad.pd_pagos_anuales
     };
     try {
-      await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${idProyecto}`, data);
-      alert('Registro exitoso')
+      const respuesa = await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${idProyecto}`, data);
+      const respuestaBack = respuesa.data.msg
+      console.log(respuestaBack)
+      alert(respuestaBack)
     } catch (error) {
       console.log(error)
     }

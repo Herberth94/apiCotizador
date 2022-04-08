@@ -16,8 +16,8 @@ function ModificarFinanciamiento(prop) {
         async function llamadiListaFinanciamiento() {
             try {
                 const respuesta = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${idProyecto}`)
-                setListaFinanciamiento(respuesta.data.data)
-                console.log(respuesta.data.data)
+                setListaFinanciamiento(respuesta.data.data[0])
+                console.log("este es el lista financiaamiento en el useeefect",respuesta.data.data[0])
 
             } catch (error) {
                 console.log(error)
@@ -26,32 +26,36 @@ function ModificarFinanciamiento(prop) {
         llamadiListaFinanciamiento();
     }, [])
 
-    const [datosProporcionalidad, setDatosProporcionalidad] = useState({
-        pd_tasa_interes: '',
-        pd_anio_financiamiento: '',
-        pd_pagos_anuales: ''
-    
-      })
-      // Función que obtiene los datos introducidos en los inputs 
-      const handleInputChange = (event) => {
-        setDatosProporcionalidad({
-          ...datosProporcionalidad, [event.target.name]: event.target.value,
+
+
+    // const [datosProporcionalidad, setDatosProporcionalidad] = useState({
+    //     pd_tasa_interes: '',
+    //     pd_anio_financiamiento: '',
+    //     pd_pagos_anuales: ''
+
+    //   })
+    // Función que obtiene los datos introducidos en los inputs 
+    const handleInputChange = (event) => {
+        console.log("listaFinanciamiento", listaFinanciamiento)
+        setListaFinanciamiento({
+            ...listaFinanciamiento, [event.target.name]: event.target.value,
         })
-      }
-      // Función que realiza la inserción de los datos a la tabla proporcionalidad en la bd 
-    
-    async function SendProporcionalidadModificada(){
+    }
+    // Función que realiza la inserción de los datos a la tabla proporcionalidad en la bd 
+
+    async function SendProporcionalidadModificada() {
         console.log(idProyecto)
         const data = {
-          pd_tasa_interes: datosProporcionalidad.pd_tasa_interes,
-          pd_anio_financiamiento: datosProporcionalidad.pd_anio_financiamiento,
-          pd_pagos_anuales: datosProporcionalidad.pd_pagos_anuales
+            pd_tasa_interes: listaFinanciamiento.pd_tasa_interes,
+            pd_anio_financiamiento: listaFinanciamiento.pd_anio_financiamiento,
+            pd_pagos_anuales: listaFinanciamiento.pd_pagos_anuales
         };
         try {
-          await axios.put(url2 + `/api/cotizador/proporcionalidad/update/${idProyecto}`, data);
-          alert('Actualización de datos de proporcionalidad exitoso')
+            const respuestaUpdate = await axios.put(url2 + `/api/cotizador/proporcionalidad/update/${idProyecto}`, data);
+            const respuestaUpdateBack = respuestaUpdate.data.msg
+            alert(respuestaUpdateBack)
         } catch (error) {
-          console.log(error)
+            console.log(error)
         }
 
     }
@@ -73,17 +77,16 @@ function ModificarFinanciamiento(prop) {
                     </tr>
                 </thead>
                 <tbody>
-                    {Object.keys(listaFinanciamiento).map((key) =>(
-                        <tr key={listaFinanciamiento[key].pd_id}>
+                        <tr key={listaFinanciamiento.pd_id}>
                             {/*================= ID ==================*/}
                             <td>
-                                {listaFinanciamiento[key].pd_id}    
+                                {listaFinanciamiento.pd_id}
                             </td>
                             {/*================= Años de Financiamiento ==================*/}
                             <td>
                                 <input
-                                    onChange={handleInputChange} 
-                                    defaultValue={listaFinanciamiento[key].pd_tasa_interes}
+                                    onChange={handleInputChange}
+                                    defaultValue={listaFinanciamiento.pd_tasa_interes}
                                     type="text"
                                     name='pd_tasa_interes'></input>
                             </td>
@@ -91,8 +94,8 @@ function ModificarFinanciamiento(prop) {
                             {/*================= Pagos Anuales ==================*/}
                             <td>
                                 <input
-                                    onChange={handleInputChange} 
-                                    defaultValue={listaFinanciamiento[key].pd_anio_financiamiento}
+                                    onChange={handleInputChange}
+                                    defaultValue={listaFinanciamiento.pd_anio_financiamiento}
                                     type="text"
                                     name='pd_anio_financiamiento'>
                                 </input>
@@ -100,8 +103,8 @@ function ModificarFinanciamiento(prop) {
                             {/*================= Pagos Anuales ==================*/}
                             <td>
                                 <input
-                                    onChange={handleInputChange} 
-                                    defaultValue={listaFinanciamiento[key].pd_anio_financiamiento}
+                                    onChange={handleInputChange}
+                                    defaultValue={listaFinanciamiento.pd_anio_financiamiento}
                                     type="text"
                                     name='pd_pagos_anuales'>
                                 </input>
@@ -112,8 +115,6 @@ function ModificarFinanciamiento(prop) {
                             </td>
 
                         </tr>
-                    ))}
-
                 </tbody>
             </Table>
         </div>
