@@ -382,13 +382,14 @@ function DatosSP({clave} ) {
       event.target.reset();
      
   }
-  const [modalShow1, setModalShow1] = useState(false)
+  
+  const [modalShow1, setModalShow1] = useState(true)
   const [proyecto_id, Setproyecto_id] = useState([])
   const lista = async (clave) =>{
     console.log(clave);
     const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
     Setproyecto_id(respuesta.data.reSql)
-
+    
     
  }
  console.log(clave);
@@ -398,7 +399,7 @@ function DatosSP({clave} ) {
   return (
 
     <div className="contenido-usuarios">
-        <button type="button" className="btn btn-primary" onClick={() => {lista (70)}} >
+        <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true);lista (clave)}} >
           Ver partidas agregadas
         </button><br/><br/>
       {modalShow && modalShow1 ?   
