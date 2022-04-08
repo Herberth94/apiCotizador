@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-04-2022 a las 07:26:01
+-- Tiempo de generación: 09-04-2022 a las 01:05:08
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -41,7 +41,7 @@ CREATE TABLE `am` (
 --
 
 INSERT INTO `am` (`am_id`, `am_id_partida`, `am_desc_cliente`, `am_margen_ganancia`, `am_cantidad`, `am_descuento_fabrica`) VALUES
-(17, 25, 0, 32, 1, 0),
+(17, 25, 10, 10, 10, 10),
 (18, 27, 0, 32, 1, 0),
 (19, 29, 0, 32, 1, 0),
 (20, 30, 0, 32, 1, 0),
@@ -49,7 +49,10 @@ INSERT INTO `am` (`am_id`, `am_id_partida`, `am_desc_cliente`, `am_margen_gananc
 (22, 46, 0, 32, 1, 0),
 (23, 47, 0, 32, 1, 0),
 (24, 48, 0, 32, 1, 0),
-(25, 49, 0, 32, 1, 0);
+(25, 49, 0, 32, 1, 0),
+(26, 50, 0, 32, 1, 0),
+(27, 51, 0, 32, 1, 0),
+(28, 52, 0, 32, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -74,7 +77,7 @@ CREATE TABLE `am_cats` (
 INSERT INTO `am_cats` (`amc_id`, `amc_id_proyecto`, `amc_id_cats`, `amc_desc_cliente`, `amc_margen_ganancia`, `amc_cantidad`, `amc_desc_fabrica`) VALUES
 (2, 81, 1, 0, 32, 1, 0),
 (3, 81, 2, 0, 32, 1, 0),
-(4, 81, 3, 0, 32, 1, 0),
+(4, 81, 3, 6, 6, 6, 6),
 (5, 81, 4, 0, 32, 1, 0),
 (6, 71, 1, 0, 32, 1, 0),
 (7, 71, 2, 0, 32, 1, 0),
@@ -170,8 +173,8 @@ CREATE TABLE `categorias_datos` (
 --
 
 INSERT INTO `categorias_datos` (`cd_id`, `cd_id_cats`, `cd_no_parte`, `cd_descripcion`, `cd_meses`, `cd_semanas`, `cd_cantidad`, `cd_id_precio`, `cd_comentarios`) VALUES
-(115, 1, '', 'Capacitacion de fabricante para dos peronas', 0, 0, 1, 199, ''),
-(116, 2, '', 'Herramienta y accesorios de montaje', 0, 0, 1, 200, ''),
+(115, 1, 'jdnkjndjkd', 'Capacitacion de fabricante para dos peronas', 2, 3, 2, 199, 'hnbnmb'),
+(116, 2, 'nknkjnkds', 'Herramienta y accesorios de montaje', 5, 6, 1, 200, 'jbkj'),
 (117, 3, '', 'Instalacion y Configuracion', 0, 0, 1, 201, ''),
 (118, 4, '', 'Mesa de ayuda por 1 año', 0, 0, 1, 202, '');
 
@@ -207,6 +210,17 @@ CREATE TABLE `colaboradores` (
   `colab_id_usuario` bigint(20) NOT NULL,
   `colab_id_proyecto` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `colaboradores`
+--
+
+INSERT INTO `colaboradores` (`colab_id`, `colab_id_usuario`, `colab_id_proyecto`) VALUES
+(1, 13, 71),
+(2, 13, 81),
+(3, 11, 81),
+(5, 13, 86),
+(7, 1, 89);
 
 -- --------------------------------------------------------
 
@@ -323,7 +337,10 @@ INSERT INTO `partida` (`partida_id`, `partida_nombre`, `partida_descripcion`) VA
 (46, 'Switches', 'Switches'),
 (47, 'Routers', 'Routers'),
 (48, 'Servidores', 'Servidores'),
-(49, 'Consultoria', 'Consultoria');
+(49, 'Consultoria', 'Consultoria'),
+(50, 'pp1', 'pp1'),
+(51, 'PP1', 'PP1'),
+(52, 'p1p10', 'p1p10');
 
 -- --------------------------------------------------------
 
@@ -355,7 +372,10 @@ INSERT INTO `pp` (`pp_id`, `pp_id_proyecto`, `pp_id_partida`) VALUES
 (49, 81, 46),
 (50, 81, 47),
 (51, 81, 48),
-(52, 81, 49);
+(52, 81, 49),
+(53, 88, 50),
+(54, 100, 51),
+(55, 101, 52);
 
 -- --------------------------------------------------------
 
@@ -506,10 +526,12 @@ INSERT INTO `precio` (`precio_id`, `precio_lista`, `precio_unitario`, `precio_de
 (196, '850.000', '850.000', 0, '850.000', 2),
 (197, '200.000', '200.000', 0, '200.000', 2),
 (198, '250.000', '250.000', 0, '250.000', 2),
-(199, '1100.000', '1100.000', 0, '1100.000', 2),
+(199, '2000.000', '2000.000', 0, '4000.000', 2),
 (200, '550.000', '550.000', 0, '550.000', 2),
 (201, '5000.000', '5000.000', 0, '5000.000', 1),
-(202, '1500.000', '1500.000', 0, '1500.000', 2);
+(202, '1500.000', '1500.000', 0, '1500.000', 2),
+(203, '1000.000', '980.000', 2, '4900.000', 1),
+(204, '200.000', '196.000', 2, '1960.000', 1);
 
 -- --------------------------------------------------------
 
@@ -521,9 +543,17 @@ CREATE TABLE `proporcionalidad` (
   `pd_id` bigint(20) NOT NULL,
   `pd_id_proyecto` bigint(20) NOT NULL,
   `pd_tasa_interes` float NOT NULL,
-  `pd_año_financiamiento` int(2) NOT NULL,
+  `pd_anio_financiamiento` int(2) NOT NULL,
   `pd_pagos_anuales` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `proporcionalidad`
+--
+
+INSERT INTO `proporcionalidad` (`pd_id`, `pd_id_proyecto`, `pd_tasa_interes`, `pd_anio_financiamiento`, `pd_pagos_anuales`) VALUES
+(2, 71, 5, 5, 5),
+(3, 70, 17, 17, 17);
 
 -- --------------------------------------------------------
 
@@ -543,15 +573,15 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`proveedor_id`, `proveedor_nombre`, `proveedor_telefono`, `proveedor_email`) VALUES
-(26, 'INCOMEX ', 0, ''),
+(26, 'INCOMEX ', 55, 'compuS@gmail.com'),
 (27, 'SYSCOM', 0, ''),
 (28, 'TECH DATA', 0, ''),
 (29, 'SYNNEX', 0, ''),
 (30, 'FS', 0, ''),
-(31, 'COMPUSOLUCIONES', 0, ''),
+(31, 'COMPUSOLUCIONES', 55555, 'compuS@gmail'),
 (32, 'XWEB', 0, ''),
 (33, 'Cruatech', 0, ''),
-(34, 'PTN', 0, '');
+(34, 'PTN', 6666, 'ptn@palotinto');
 
 -- --------------------------------------------------------
 
@@ -602,8 +632,8 @@ CREATE TABLE `proyecto` (
   `proyecto_clave` varchar(255) DEFAULT NULL,
   `proyecto_descripcion` text DEFAULT NULL,
   `proyecto_id_cliente` int(11) DEFAULT NULL,
-  `proyecto_fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `proyecto_fecha_modificacion` datetime NOT NULL DEFAULT current_timestamp(),
+  `proyecto_fecha_creacion` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `proyecto_fecha_modificacion` timestamp NOT NULL DEFAULT current_timestamp(),
   `proyecto_estatus` varchar(50) DEFAULT NULL,
   `proyecto_plazo_meses` int(3) DEFAULT NULL,
   `proyecto_valor_dolar` decimal(20,3) NOT NULL DEFAULT 1.000
@@ -614,13 +644,23 @@ CREATE TABLE `proyecto` (
 --
 
 INSERT INTO `proyecto` (`proyecto_id`, `proyecto_clave`, `proyecto_descripcion`, `proyecto_id_cliente`, `proyecto_fecha_creacion`, `proyecto_fecha_modificacion`, `proyecto_estatus`, `proyecto_plazo_meses`, `proyecto_valor_dolar`) VALUES
-(70, 'pp', 'prueba', 13, '2022-03-29 20:08:04', '2022-03-29 14:08:04', NULL, NULL, '1.000'),
-(71, 'FO-ING-01', '1658-BOM1', 13, '2022-03-30 09:54:18', '2022-03-29 14:27:12', 'En revision', NULL, '1.000'),
-(75, 'rtr', 'rrr', 13, '2022-04-02 03:08:11', '2022-04-01 21:08:11', NULL, 11, '1.000'),
-(76, 'eee', 'eee', 13, '2022-04-02 03:13:33', '2022-04-01 21:13:33', NULL, 1, '1.000'),
-(78, 'qw', 'qwqw', 13, '2022-04-02 03:17:52', '2022-04-01 21:17:52', NULL, 10, '1.000'),
-(80, 'qqq', 'qq', 13, '2022-04-02 03:25:12', '2022-04-01 21:25:12', NULL, 1, '1.000'),
-(81, 'FO-ING-01-BOM- PRUEBA', 'PRUEBA 1 ', 13, '2022-04-02 09:22:29', '2022-04-02 03:11:46', 'En revision', 12, '1.000');
+(70, 'pp', 'prueba', 13, '2022-03-29 14:08:04', '2022-03-29 20:08:04', NULL, NULL, '1.000'),
+(71, 'FO-ING-01', '1658-BOM1', 13, '2022-03-30 03:54:18', '2022-03-29 20:27:12', 'En revision', NULL, '1.000'),
+(75, 'rtr', 'rrr', 13, '2022-04-01 21:08:11', '2022-04-02 03:08:11', NULL, 11, '1.000'),
+(76, 'eee', 'eee', 13, '2022-04-01 21:13:33', '2022-04-02 03:13:33', NULL, 1, '1.000'),
+(78, 'qw', 'qwqw', 13, '2022-04-01 21:17:52', '2022-04-02 03:17:52', NULL, 10, '1.000'),
+(80, 'qqq', 'qq', 13, '2022-04-01 21:25:12', '2022-04-02 03:25:12', NULL, 1, '1.000'),
+(81, 'FO-ING-01-BOM- PRUEBA', 'PRUEBA 1 ', 13, '2022-04-07 12:30:52', '2022-04-02 09:11:46', 'En revision', 12, '20.000'),
+(82, 'Prueba UM', 'PUM', 13, '2022-04-04 14:42:40', '2022-04-04 19:42:40', NULL, 12, '1.000'),
+(83, 'Prueba 1', 'jnfjksndjkfns', 13, '2022-04-05 18:33:32', '2022-04-05 23:33:32', NULL, 12, '1.000'),
+(84, 'Prueba 5', 'jnjnkjnn', 13, '2022-04-05 23:58:39', '2022-04-06 04:58:39', NULL, 12, '1.000'),
+(85, 'pp', 'jdfjkdbfb', 13, '2022-04-06 00:55:05', '2022-04-06 05:55:05', NULL, 12, '1.000'),
+(86, 'pp1', 'pp1', 13, '2022-04-06 11:48:22', '2022-04-06 16:48:22', NULL, 4, '1.000'),
+(87, 'pp2', 'pp2', 13, '2022-04-06 11:48:39', '2022-04-06 16:48:39', NULL, 5, '1.000'),
+(88, 'pp3', 'pp3', 13, '2022-04-06 11:48:49', '2022-04-06 16:48:49', NULL, 2, '1.000'),
+(89, 'pp', 'pp', 13, '2022-04-06 12:18:41', '2022-04-06 17:18:41', NULL, 12, '1.000'),
+(100, 'Proyecto prueba 5', 'pp5', 13, '2022-04-08 17:09:33', '2022-04-08 22:09:33', NULL, 45, '1.000'),
+(101, 'Proyecto 10', 'pp10', 13, '2022-04-08 17:48:23', '2022-04-08 22:48:23', NULL, 25, '1.000');
 
 -- --------------------------------------------------------
 
@@ -786,7 +826,9 @@ INSERT INTO `psp` (`psp_id`, `psp_id_partida`, `psp_id_sp`) VALUES
 (164, 47, 1173),
 (165, 48, 1174),
 (166, 48, 1175),
-(167, 49, 1176);
+(167, 49, 1176),
+(168, 45, 1177),
+(169, 51, 1178);
 
 -- --------------------------------------------------------
 
@@ -811,7 +853,7 @@ CREATE TABLE `servicio_producto` (
 --
 
 INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_meses`, `sp_semanas`, `sp_cantidad`, `sp_id_precio`, `sp_id_categoria`, `sp_comentarios`) VALUES
-(1048, 'Q6075-E', 'Q6075-E Axis PTZ Camera', 0, 0, 53, 70, 3, ''),
+(1048, 'Q6075-E', 'Q6075-E Axis PTZ Camera', 0, 0, NULL, 70, 3, ''),
 (1049, 'Q6075-SE', 'Q6075-SE Axis PTZ Camera', 0, 0, 2, 71, 3, ''),
 (1050, 'Q6315-LE', 'Q6315-LE Axis PTZ Camera', 0, 0, 10, 72, 3, ''),
 (1051, 'Q1615-LE Mk III', 'Q1615-LE Mk III Axis Fixed Camera', 0, 0, 58, 73, 3, ''),
@@ -869,7 +911,7 @@ INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_m
 (1103, 'CNS-INST-BASE', 'OceanStor SNS3664', 0, 0, 2, 125, 3, ''),
 (1104, 'CNS-INST-BASE', 'Storage Equipment-OceanStor 5300 V5 (2020 new)', 0, 0, 1, 126, 3, ''),
 (1105, 'CNS-INST-BASE', 'Storage Equipment-OceanStor 5300 V5 (2020 new)-Technical Support Service', 0, 0, 1, 127, 5, ''),
-(1106, 'CNS-INST-BASE', 'OceanStor SNS3664-Installation Service', 0, 0, 2, 128, 6, ''),
+(1106, 'CNS-INST-BASE', 'OceanStor SNS3664-Installation Service', 0, 0, NULL, 128, 6, ''),
 (1107, 'CNS-INST-BASE', 'Storage-Converged storage Planning, Design and ', 0, 0, 1, 129, 6, ''),
 (1108, 'SWS-DV', 'OnGuard Video Security Server Software License', 0, 0, 2, 130, 4, ''),
 (1109, 'SWS-LAS', 'Lenel Archive Server License', 0, 0, 2, 131, 4, ''),
@@ -939,7 +981,9 @@ INSERT INTO `servicio_producto` (`sp_id`, `sp_no_parte`, `sp_descripcion`, `sp_m
 (1173, '03', 'Fuentes', 0, 0, 1, 195, 3, ''),
 (1174, '01', 'Servidor', 0, 0, 1, 196, 3, ''),
 (1175, '02', 'Soporte de Fabricante', 0, 0, 1, 197, 5, ''),
-(1176, '01', 'Soporte de Fabricante', 0, 0, 1, 198, 5, '');
+(1176, '01', 'Soporte de Fabricante', 0, 0, 1, 198, 5, ''),
+(1177, 'skdnkdndsk', 'kdmkldkld', 0, 0, 5, 203, 3, 'mmsmjnkjkj'),
+(1178, '20', '', 0, 0, 10, 204, 2, '');
 
 -- --------------------------------------------------------
 
@@ -953,6 +997,133 @@ CREATE TABLE `sp_proveedor_marca` (
   `sppm_id_proveedor` bigint(20) DEFAULT NULL,
   `sppm_id_marca` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `sp_proveedor_marca`
+--
+
+INSERT INTO `sp_proveedor_marca` (`sppm_id`, `sppm_id_sp`, `sppm_id_proveedor`, `sppm_id_marca`) VALUES
+(43, 1048, 26, 26),
+(44, 1049, 26, 26),
+(45, 1050, 26, 26),
+(46, 1051, 26, 26),
+(47, 1052, 26, 26),
+(48, 1053, 26, 26),
+(49, 1054, 26, 26),
+(50, 1055, 26, 26),
+(51, 1056, 26, 26),
+(52, 1057, 26, 26),
+(53, 1058, 26, 26),
+(54, 1059, 26, 26),
+(55, 1060, 26, 26),
+(56, 1061, 26, 26),
+(57, 1062, 26, 26),
+(58, 1063, 26, 26),
+(59, 1064, 26, 26),
+(60, 1065, 26, 26),
+(61, 1066, 26, 26),
+(62, 1067, 26, 26),
+(63, 1068, 26, 26),
+(64, 1069, 26, 26),
+(65, 1070, 26, 26),
+(66, 1071, 27, 27),
+(67, 1072, 27, 27),
+(68, 1073, 27, 27),
+(69, 1074, 27, 28),
+(70, 1075, 27, 28),
+(71, 1076, 27, 43),
+(72, 1077, 27, 43),
+(73, 1078, 27, 31),
+(74, 1079, 28, 40),
+(75, 1080, 29, 33),
+(76, 1081, 28, 40),
+(77, 1082, 28, 40),
+(78, 1083, 28, 40),
+(79, 1084, 27, 30),
+(80, 1085, 30, 36),
+(81, 1086, 30, 36),
+(82, 1087, 28, 40),
+(83, 1088, 28, 40),
+(84, 1089, 28, 40),
+(85, 1090, 28, 40),
+(86, 1091, 28, 40),
+(87, 1092, 30, 36),
+(88, 1093, 30, 36),
+(89, 1094, 30, 36),
+(90, 1095, 30, 36),
+(91, 1096, 30, 36),
+(92, 1097, 30, 36),
+(93, 1098, 30, 36),
+(94, 1099, 30, 36),
+(95, 1100, 30, 36),
+(96, 1101, 31, 37),
+(97, 1102, 31, 37),
+(98, 1103, 32, 42),
+(99, 1104, 32, 42),
+(100, 1105, 32, 42),
+(101, 1106, 32, 42),
+(102, 1107, 32, 42),
+(103, 1108, 33, 39),
+(104, 1109, 33, 39),
+(105, 1110, 33, 39),
+(106, 1111, 33, 39),
+(107, 1112, 33, 39),
+(108, 1113, 33, 39),
+(109, 1114, 28, 40),
+(110, 1115, 28, 40),
+(111, 1116, 28, 40),
+(112, 1117, 28, 40),
+(113, 1118, 28, 40),
+(114, 1119, 28, 40),
+(115, 1120, 28, 40),
+(116, 1121, 28, 40),
+(117, 1122, 28, 40),
+(118, 1123, 28, 40),
+(119, 1124, 28, 40),
+(120, 1125, 28, 40),
+(121, 1126, 28, 40),
+(122, 1127, 28, 40),
+(123, 1128, 28, 40),
+(124, 1129, 28, 40),
+(125, 1130, 28, 40),
+(126, 1131, 28, 40),
+(127, 1132, 31, 41),
+(128, 1133, 31, 41),
+(129, 1134, 31, 41),
+(130, 1135, 31, 41),
+(131, 1136, 31, 37),
+(132, 1137, 31, 37),
+(133, 1138, 31, 37),
+(134, 1139, 32, 42),
+(135, 1140, 32, 42),
+(136, 1141, 32, 42),
+(137, 1142, 32, 42),
+(138, 1143, 32, 42),
+(139, 1144, 32, 42),
+(140, 1145, 27, 43),
+(141, 1146, 27, 43),
+(142, 1147, 27, 43),
+(143, 1148, 27, 29),
+(144, 1149, 27, 29),
+(145, 1150, 27, 29),
+(146, 1151, 27, 29),
+(147, 1152, 27, 29),
+(148, 1153, 34, 25),
+(149, 1154, 34, 25),
+(150, 1155, 34, 25),
+(151, 1156, 34, 25),
+(152, 1157, 34, 25),
+(153, 1158, 34, 25),
+(154, 1159, 34, 25),
+(155, 1160, 34, 25),
+(156, 1161, 34, 25),
+(157, 1162, 34, 25),
+(158, 1163, 34, 25),
+(159, 1164, 34, 25),
+(160, 1165, 34, 25),
+(161, 1166, 34, 25),
+(162, 1177, 28, 40),
+(163, 1178, 34, 25);
 
 -- --------------------------------------------------------
 
@@ -976,8 +1147,8 @@ INSERT INTO `usuarios` (`id_usuario`, `rol`, `email`, `password`, `estado_login`
 (1, 'administrador', 'carlos@delfos369.com', '$2a$12$01AiKJWTCOyfNVywcZfTFuGXkF3NgRcDrjkyxp003oN7jbLoiAqD2', 1),
 (11, 'preventa', 'oscar@delfos369.com', '$2a$12$01AiKJWTCOyfNVywcZfTFuGXkF3NgRcDrjkyxp003oN7jbLoiAqD2', 1),
 (12, 'venta', 'brenda@delfos369.com', '$2a$10$1cjZbWujzFUOmaux3GFXA.3iEaECUrV9bnC5liq9YWSfG0Gqxdwve', 1),
-(13, 'preventa', 'malaika@delfos369.com', '$2a$10$hGYpGJvTmwMa0chv/ucZguUjs2Lx0V/wWTgHjzxSFATS8oS13oSyS', 0),
-(14, 'preventa', 'preventa@palotinto.com', '$2a$10$iE8Yd8ClJ3aljrLdiAG1POCWR6yxJMYDDlOJhczqIMeV8.GSTT246', 1);
+(13, 'preventa', 'malaika@delfos369.com', '$2a$10$9IAONZc8Z7evCK5Va7fkJ.Z3wSR9V0HmdKvJ5/QKHuqdpPpVP5/c6', 1),
+(14, 'preventa', 'preventa@palotinto.com', '$2a$10$LLKi.Y55EAIXyYIzz752KeGuxTzRokyB6XekeBzzOCVbYNdXHUgK2', 1);
 
 -- --------------------------------------------------------
 
@@ -1002,7 +1173,16 @@ INSERT INTO `usuarios_proyectos` (`up_id`, `up_id_usuario`, `up_id_proyecto`) VA
 (62, 1, 76),
 (63, 1, 78),
 (64, 1, 80),
-(65, 14, 81);
+(65, 14, 81),
+(66, 13, 82),
+(68, 1, 84),
+(69, 1, 85),
+(70, 11, 86),
+(71, 11, 87),
+(72, 11, 88),
+(73, 11, 89),
+(74, 1, 100),
+(75, 1, 101);
 
 --
 -- Índices para tablas volcadas
@@ -1187,7 +1367,7 @@ ALTER TABLE `usuarios_proyectos`
 -- AUTO_INCREMENT de la tabla `am`
 --
 ALTER TABLE `am`
-  MODIFY `am_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `am_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `am_cats`
@@ -1229,7 +1409,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de la tabla `colaboradores`
 --
 ALTER TABLE `colaboradores`
-  MODIFY `colab_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `colab_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `costos_indirectos`
@@ -1253,25 +1433,25 @@ ALTER TABLE `moneda`
 -- AUTO_INCREMENT de la tabla `partida`
 --
 ALTER TABLE `partida`
-  MODIFY `partida_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `partida_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT de la tabla `pp`
 --
 ALTER TABLE `pp`
-  MODIFY `pp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `pp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `precio`
 --
 ALTER TABLE `precio`
-  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+  MODIFY `precio_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=205;
 
 --
 -- AUTO_INCREMENT de la tabla `proporcionalidad`
 --
 ALTER TABLE `proporcionalidad`
-  MODIFY `pd_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `pd_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
@@ -1289,7 +1469,7 @@ ALTER TABLE `proveedor_marca`
 -- AUTO_INCREMENT de la tabla `proyecto`
 --
 ALTER TABLE `proyecto`
-  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `proyecto_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos_cat_d`
@@ -1301,31 +1481,31 @@ ALTER TABLE `proyectos_cat_d`
 -- AUTO_INCREMENT de la tabla `psp`
 --
 ALTER TABLE `psp`
-  MODIFY `psp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `psp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=170;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio_producto`
 --
 ALTER TABLE `servicio_producto`
-  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1177;
+  MODIFY `sp_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1179;
 
 --
 -- AUTO_INCREMENT de la tabla `sp_proveedor_marca`
 --
 ALTER TABLE `sp_proveedor_marca`
-  MODIFY `sppm_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+  MODIFY `sppm_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_usuario` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios_proyectos`
 --
 ALTER TABLE `usuarios_proyectos`
-  MODIFY `up_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `up_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- Restricciones para tablas volcadas
