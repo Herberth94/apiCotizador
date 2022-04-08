@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
+
+//Componentes
 import Animaciones from './Animaciones';
+import { precioUnitario, calcularDescuento, Total} from "../Administrator/PTN-BOM/Operaciones";
 
 export const CrudPrecios = (props) => {
     /*================================================== Partidas ==================================================*/
@@ -9,23 +12,17 @@ export const CrudPrecios = (props) => {
         const [activar, setActivar] = useState(true)
 
         const [data,setData] = useState ({
-            precio_lista:'',
+            cantidad:'',
+            precio_lista:'', 
             precio_unitario:'',
             precio_descuento:'',
             precio_total:'',
-            precio_id_moneda:''     
-        });
-
-        const [dataCantidad,setDataCantidad] = useState ({
-            sp_cantidad:''    
+            precio_id_moneda:''
         });
 
         const handleInputChange = (event) => {
             setData ({
                 ...data,[event.target.name] : event.target.value ,
-            })
-            setDataCantidad({
-                ...dataCantidad,[event.target.name]:event.target.value,
             })
         }
         
@@ -58,9 +55,61 @@ export const CrudPrecios = (props) => {
                     newArr[i]=true;
                 }
             }   
-            setenable(newArr);        
+            setenable(newArr); 
+
+            setActivar(!activar);
+            if(activar === true){   
+                if(props.estado){
+                    setData ({
+                        ...data, cantidad: props.precios[key].sp_cantidad,
+                                precio_lista:props.precios[key].precio_lista, 
+                                precio_unitario:props.precios[key].precio_unitario,
+                                precio_descuento:props.precios[key].precio_descuento,
+                                precio_total:props.precios[key].precio_total  
+                    })
+                }else{
+                    setData ({
+                        ...data, cantidad: props.precios[key].cd_cantidad,
+                                precio_lista:props.precios[key].precio_lista, 
+                                precio_unitario:props.precios[key].precio_unitario,
+                                precio_descuento:props.precios[key].precio_descuento,
+                                precio_total:props.precios[key].precio_total  
+                    })
+                }  
+            }  
         }
         /*==========================================================*/
+
+        /*=================================== Operaciones de los datos de los precios ===================================*/
+  useEffect(()=>{
+    let precio_u='';
+    if (data.precio_lista !== '' &&  data.precio_descuento !== '' && data.cantidad !== '') {
+      precio_u = precioUnitario(data.precio_lista, data.precio_descuento);
+      const total = Total(precio_u, data.cantidad);
+      setData({ ...data, precio_unitario: precio_u , precio_total:total});
+    }
+  
+  },[data.precio_lista,data.precio_descuento])
+  /*================================================================================*/
+  useEffect(()=>{
+    let total='';
+    let desc_='';
+    if (data.precio_unitario !== '' && data.cantidad !== '') {
+      const total = Total(data.precio_unitario, data.cantidad)
+      setData({ ...data, precio_total: total })
+    }
+    if (data.precio_unitario == '' || data.cantidad == '') {
+      setData({ ...data, precio_total: total , precio_descuento:desc_ })
+    }
+  },[data.precio_unitario,data.cantidad])
+  /*================================================================================*/
+  useEffect(()=>{
+    if(data.precio_lista !=='' && data.precio_unitario !==''){
+      const desc = calcularDescuento(data.precio_lista, data.precio_unitario);
+      setData({ ...data, precio_descuento: desc });}
+    },[data.precio_unitario])
+    
+  /*===================================================================================================================*/
         
     return (
         <div>
@@ -86,17 +135,22 @@ export const CrudPrecios = (props) => {
                             <td>{props.precios[key].precio_id}</td>
                             <td>
                                 <input
-                                className="input-name" 
-                                defaultValue={props.precios[key].sp_cantidad} 
+                                className="input-name"
+                                type="number" 
+                                placeholder={activar ? 
+                                    (props.estado ? props.precios[key].sp_cantidad : props.precios[key].cd_cantidad) : ""}
+                                value={data.cantidad}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
-                                name="sp_cantidad" 
+                                name="cantidad"
                                 ></input>
                             </td>
                             <td>
                                 <input
-                                className="input-name" 
-                                defaultValue={props.precios[key].precio_lista} 
+                                className="input-name"
+                                type="number" 
+                                placeholder={activar ? props.precios[key].precio_lista : ""} 
+                                value={data.precio_lista}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_lista" 
@@ -104,8 +158,10 @@ export const CrudPrecios = (props) => {
                             </td> 
                             <td>
                                 <input
-                                className="input-name" 
-                                defaultValue={props.precios[key].precio_unitario} 
+                                className="input-name"
+                                type="number" 
+                                placeholder={activar ? props.precios[key].precio_unitario : ""} 
+                                value={data.precio_unitario}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_unitario" 
@@ -113,8 +169,10 @@ export const CrudPrecios = (props) => {
                             </td>  
                             <td>
                                 <input
-                                className="input-name" 
-                                defaultValue={props.precios[key].precio_descuento} 
+                                className="input-name"
+                                type="number" 
+                                placeholder={activar ? props.precios[key].precio_descuento : ""} 
+                                value={data.precio_descuento}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_descuento" 
@@ -123,11 +181,12 @@ export const CrudPrecios = (props) => {
                             <td>
                                 <input
                                 className="input-name" 
-                                defaultValue={props.precios[key].precio_total} 
+                                placeholder={props.precios[key].precio_total} 
+                                value={data.precio_total}
                                 //disabled={true}
-                                //readOnly
-                                disabled={enable[key]} 
-                                onChange={handleInputChange}
+                                readOnly
+                                disabled={true} 
+                                //onChange={handleInputChange}
                                 name="precio_total" 
                                 ></input>  
                             </td> 
@@ -135,7 +194,7 @@ export const CrudPrecios = (props) => {
                                 <select 
                                 id="lista-opciones" 
                                 name="precio_id_moneda" 
-                                defaultValue={props.precios[key].precio_id_moneda} 
+                                value={props.precios[key].precio_id_moneda} 
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 >
@@ -149,8 +208,7 @@ export const CrudPrecios = (props) => {
                                 className="btn btn-primary modificar"
                                 onClick={()=>{
                                     habilitar(key); 
-                                    props.envioDataPrecio(dataCantidad, datos, key, data);
-                                    setActivar(!activar);
+                                    props.envioDataPrecio(props.estado,datos, key, data);
                                     props.setfirst(activar);
                                 }}
                                 >

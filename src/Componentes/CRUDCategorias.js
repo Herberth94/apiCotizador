@@ -1,22 +1,32 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
+import { EditPrecio } from '../Routes/ModificarPrecio';
 import Animaciones from './Animaciones';
+import { CrudPrecios } from './CRUDPrecios';
 
-import { EditPartida } from '../Routes/ModificarPartida';
-import { CrudPartidas } from './CRUDPartidas';
-
+//Componentes
 import {url, url2} from "./Ocultar";
 
 export const CrudCategorias = (props) => {
+
+    const [activar, setActivar] = useState([]);
+    const [textBModificar,setTextBModificar] = useState([]);
+    const [textBVer,setTextBVer] = useState([]);
+    const [show,setShow] = useState([]);
+    const [show2,setShow2] = useState(true);
+    const [show3,setShow3] = useState(true);
     
     /*================================================== Categorias ==================================================*/
         /*========================= Editar =========================*/
-        const [activar, setActivar] = useState(true);
 
         const [data,setData] = useState ({
-            proyecto_clave:'',
-            proyecto_descripcion:''        
+          cd_id_cats:'',
+          cd_no_parte:'',
+          cd_descripcion:'',
+          cd_meses:'',
+          cd_semanas:'',
+          cd_comentarios:'',     
         });
 
         const handleInputChange = (event) => {
@@ -25,46 +35,112 @@ export const CrudCategorias = (props) => {
         })
         }
         //console.log(props.usuarios);
-        const [enable, setenable] = useState([])
-        const [datos, Setdatos] = useState()
+        const [enable, setenable] = useState([]);
+        const [datos, Setdatos] = useState([]);
 
         useEffect(() => {
-            Setdatos(props.dcats); 
-            console.log(props.dcats);
+            Setdatos(props.dcats);
         },[props.dcats]);
 
 
         useEffect(() => {
             let i = Object.keys(props.dcats)
             i = i.length
-            //console.log(i)
-
             setenable(Array(i).fill(true));
-            
+            setActivar(Array(i).fill(true));
+            setShow(Array(i).fill(true));
+            setTextBModificar(Array(i).fill('Modificar'));
+            setTextBVer(Array(i).fill('Mostrar'));
         },[props.dcats])
-
-        
+    
         const habilitar = (key) =>{
             key = parseInt(key);
             const newArr =[] 
-            let p = Object.keys(props.dcats);
-            p = p.length;
-            for (let i = 0 ; i < p ; i++){
+            const newArr2 = [];
+            const newArr3 = [];
+            let c = Object.keys(props.dcats);
+            c = c.length;
+            for (let i = 0 ; i < c ; i++){
                 if(i === key){
-                    newArr[i]=!enable[i];
+                    newArr[i] = !enable[i];
+                    if(enable[i] === false){
+                        newArr2[i] = 'Modificar';
+                    }else{
+                        newArr2[i] = 'Aceptar';
+                    }
+                    newArr3[i] = !activar[i];
                 }
                 if(i !== key){
                     newArr[i]=true;
+                    newArr2[i] = 'Modificar';
+                    newArr3[i]=true;
                 }
-
+    
             }   
             setenable(newArr);
-
+            setTextBModificar(newArr2);
+            setActivar(newArr3);
+        }
+    
+        const habilitar2 = (key) =>{
+            key = parseInt(key);
+            const newArr =[];
+            const newArr2 = [];
+            let c = Object.keys(props.dcats);
+            c = c.length;
+            for (let i = 0 ; i < c ; i++){
+                if(i === key){
+                    newArr[i] = !show[i];
+                    setShow2(!show2);
+                    if(show[i] === false){
+                        newArr2[i] = 'Mostrar';
+                    }else{
+                        newArr2[i] = 'Ocultar';
+                    }
+                }
+                if(i !== key){
+                    newArr[i]=true;
+                    newArr2[i] = 'Mostrar';
+                }
+            }   
+            setShow(newArr);
+            setTextBVer(newArr2);
         }
         /*==========================================================*/
-
     /*==============================================================================================================*/
+    
+    /*================================================== Precios ==================================================*/
+        /*========================= Resumen deL precio de un servicio/producto =========================*/
+        // Almacenamiento del precio 
+        const[listaPrecios, setListaPrecios] = useState([]);
 
+        // Función que realiza la consulta a la tabla precios
+        async function getDatosPrecios(cd_id){
+            try{
+                const resPrecSP = await axios.get(url2 + `/api/cotizador/precio/viewCatsDP/${cd_id}`);
+                setListaPrecios(resPrecSP.data.data);
+            }catch(error){
+                console.log(error);
+            }
+        }
+        /*==============================================================================================*/
+
+        /*========================= Envío de nuevos datos =========================*/
+        const [first,setfirst] = useState(false);
+
+        const {actualizacionPrecio} = EditPrecio();
+        
+        const envioDataPrecio = (estado, data, key, newdata) => {
+            if(first){
+                // console.log('Old Cantidad:',data[key].sp_cantidad);
+                // console.log('New Cantidad:',datacant);
+                // console.log('Old Data Precio:',data[key]);
+                // console.log('New Data Precio:',newdata);
+                actualizacionPrecio(estado, data[key], newdata);
+            }
+        }
+        /*=========================================================================*/
+    /*=============================================================================================================*/
 
     return (
         <div>
@@ -84,7 +160,7 @@ export const CrudCategorias = (props) => {
                             <th>Entrega Semanas</th>
                             <th>Comentarios</th>
                             <th>Modificar</th>
-                            <th>Detalles</th>
+                            <th>Precios</th>
                         </tr>
                     </thead>
                                     
@@ -93,21 +169,27 @@ export const CrudCategorias = (props) => {
                             <tr key={props.dcats[key].cd_id} >
                                 <td>{props.dcats[key].cd_id}</td>  
                                 <td>
-                                    <input 
-                                    className="input-name" 
-                                    defaultValue={props.dcats[key].cat_nombre} 
+                                    {" "}
+                                    <select 
+                                    id="lista-opciones" 
+                                    name="cd_id_cats" 
+                                    defaultValue={props.dcats[key].cd_id_cats} 
                                     disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="proyecto_clave" 
-                                    ></input>
-                                </td>   
+                                    onChange={handleInputChange}>
+                                        <option value={0}></option>
+                                        <option value={1}>Capacitación</option>
+                                        <option value={2}>Accesorios</option>
+                                        <option value={3}>Servicios PTN</option>
+                                        <option value={4}>Mesa de Ayuda</option>
+                                    </select>
+                                </td> 
                                 <td>
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_no_parte} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
-                                    name="proyecto_descripcion" 
+                                    name="cd_no_parte" 
                                     ></input>
                                 </td>  
                                 <td>
@@ -116,7 +198,7 @@ export const CrudCategorias = (props) => {
                                     defaultValue={props.dcats[key].cd_descripcion} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
-                                    name="proyecto_descripcion" 
+                                    name="cd_descripcion" 
                                     ></input>
                                 </td> 
                                 <td>
@@ -125,7 +207,7 @@ export const CrudCategorias = (props) => {
                                     defaultValue={props.dcats[key].cd_meses} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
-                                    name="proyecto_descripcion" 
+                                    name="cd_meses" 
                                     ></input>
                                 </td>   
                                 <td>
@@ -134,7 +216,7 @@ export const CrudCategorias = (props) => {
                                     defaultValue={props.dcats[key].cd_semanas} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
-                                    name="proyecto_descripcion" 
+                                    name="cd_semanas" 
                                     ></input>
                                 </td>  
                                 <td>
@@ -143,39 +225,51 @@ export const CrudCategorias = (props) => {
                                     defaultValue={props.dcats[key].cd_comentarios} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
-                                    name="proyecto_descripcion" 
+                                    name="cd_comentarios" 
                                     ></input>
                                 </td>  
                                 <td>
                                     <button 
                                     className="btn btn-primary modificar" 
                                     onClick={()=>{
-                                        //props.envioDataP(activar,nombreC,props.clientes,datos,key,data);
+                                        props.envioData(datos,key,data);
                                         habilitar(key); 
-                                        //props.setfirts(activar) ;
-                                        setActivar(!activar)
+                                        props.setfirst(activar[key]);
                                     }}
                                     >
-                                        {activar ? "Modificar":"Aceptar"}
+                                        {textBModificar[key]}
                                     </button> 
                                 </td> 
                                 <td>
                                     <button 
-                                    className="btn btn-primary modificar" 
+                                    className="btn btn-primary detalles" 
                                     onClick={()=>{
-                                        //props.envioDataP(activar,nombreC,props.clientes,datos,key,data);
-                                        //habilitar(key); 
-                                        //props.setfirts(activar) ;
-                                        //setActivar(!activar)
+                                        getDatosPrecios(props.dcats[key].cd_id); 
+                                        setShow3(!show3);
+                                        habilitar2(key);
                                     }}
                                     >
-                                        {activar ? "Ver precios":"Ocultar precios"}
+                                        {textBVer[key]}
                                     </button> 
                                 </td>
                             </tr>  
                         ))}
                     </tbody>          
                 </Table>
+                {show3 ? (
+                    <div></div>
+                ):(
+                    <div>
+                    {/*=================== Botón Mostrar Lista DIV =====================*/}
+                    <br />
+                        <CrudPrecios
+                        precios={listaPrecios}
+                        setfirst={setfirst}
+                        envioDataPrecio={envioDataPrecio}
+                        estado={false}
+                        />    
+                    </div>
+                )}
             {/* </form> */}
         </div>
     )

@@ -56,15 +56,12 @@ function ContinuarProyecto() {
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
               }else if(show7 === false){
-                const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/view/${validatorid}`);
+                const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
                 setListaProyectos(resProy.data.data)
                 console.log(listaProyectos)
               }
-              
           }
-          }catch(error){
-              console.log(error);
-          }
+          }catch(error){console.log(error);}
       }
       getProyectos();
   },[show6,show7])

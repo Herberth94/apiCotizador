@@ -42,7 +42,7 @@ async function Send (){
                     const send2= respuesta.data;
                     console.log(send2.msg);
                     alert(send2.msg);    
-                    alert('Datos Guardados Exitosamente');                
+                                    
                     } catch (error) {
                         console.log(error);
                     alert('No se Guardo el registro, verifique los datos');    
@@ -63,7 +63,7 @@ async function Send (){
         
     }
     else {
-        alert('Error en la seccion de Correo, verifique que sean iguales o que no esten vacios los datos');
+        alert('Error en la sección de Correo, verifique que sean iguales o que no esten vacíos los datos');
     }
  
 

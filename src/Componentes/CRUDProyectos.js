@@ -3,11 +3,14 @@ import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
 import Animaciones from './Animaciones';
 
+//Componentes
+import {url, url2} from "./Ocultar";
 import { EditPartida } from '../Routes/ModificarPartida';
+import { EditCats } from '../Routes/ModificarCategorias';
 import { CrudPartidas } from './CRUDPartidas';
 import { CrudCategorias } from './CRUDCategorias';
 
-import {url, url2} from "./Ocultar";
+let pId;
 
 export const CrudProyectos = (props) => {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
@@ -149,6 +152,11 @@ export const CrudProyectos = (props) => {
             //setNombreC(nombreC);
             setSuggestionsClientes([]);
         }
+
+        function getIdP (proyecto_id){
+            pId = proyecto_id;
+            //console.log(pId);
+        }
         /*============================================================================================*/
     /*===============================================================================================================*/
 
@@ -189,7 +197,7 @@ export const CrudProyectos = (props) => {
         // Función que realiza la consulta a la tabla partida
         async function getDatosCats(proyecto_id){
             try{
-                const resCtsP = await axios.get(url2 + `/api/cotizador/dcats/view/${proyecto_id}`);
+                const resCtsP = await axios.get(url2 + `/api/cotizador/catd/view/${proyecto_id}`);
                     setListaCategorias(resCtsP.data.data);
             }catch(error){
                 console.log(error);
@@ -200,11 +208,11 @@ export const CrudProyectos = (props) => {
         /*========================= Envío de nuevos datos =========================*/
         const [first1,setfirst1] = useState(false);
 
-        //const {actualizacionPar} = EditPartida();
+        const {actualizacionCats} = EditCats();
         
-        const envioDataCategorias = (data, key, newdata) => {
-            if(first){
-                //actualizacionPar(data[key], newdata);
+        const envioDataCats = (estado,data, key, newdata) => {
+            if(first1){
+                actualizacionCats(estado,data[key], newdata);
             }
         }
         /*=========================================================================*/
@@ -225,7 +233,7 @@ export const CrudProyectos = (props) => {
                             <th>Clave</th>
                             <th>Descripción</th>
                             <th>Cliente</th>
-                            <th>Fecha de creción</th>
+                            <th>Fecha de creación</th>
                             <th>Fecha de modificación</th>
                             <th>Estatus</th>
                             <th>Modificar</th>
@@ -295,8 +303,7 @@ export const CrudProyectos = (props) => {
                                     <button 
                                     className="btn btn-primary detalles" 
                                     onClick={() => { 
-                                        getDatosPartida(props.suggestionsP[key].proyecto_id); 
-                                        getDatosCats(props.suggestionsP[key].proyecto_id);
+                                        getIdP(props.suggestionsP[key].proyecto_id);
                                         setShow(!show)}}
                                     >
                                         {show ? 'Ver más' : 'Ocultar partidas'}
@@ -331,7 +338,9 @@ export const CrudProyectos = (props) => {
                                                 className="btn btn-primary modificar"
                                                 type="button"
                                                 onClick={() => {
+                                                getDatosPartida(pId); 
                                                 setShow2(!show2);
+                                                setShow3(true);
                                                 }}
                                                 >
                                                 {" "}
@@ -358,7 +367,9 @@ export const CrudProyectos = (props) => {
                                                 className="btn btn-primary modificar"
                                                 type="button"
                                                 onClick={() => {
-                                                setShow3(!show3);
+                                                    getDatosCats(pId);
+                                                    setShow3(!show3);
+                                                    setShow2(true);
                                                 }}
                                                 >
                                                 {" "}
@@ -372,6 +383,8 @@ export const CrudProyectos = (props) => {
                                                     {/*========================== Llamado al Componente ==========================*/}
                                                     <CrudCategorias
                                                     dcats={listaCategorias}
+                                                    setfirst={setfirst1}
+                                                    envioData={envioDataCats}
                                                     />
                                                     </div>
                                                 </div>

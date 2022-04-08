@@ -134,18 +134,34 @@ function Colaborador() {
     //     console.log("id del proyecto escogido", proyectoId);
     //   }        
     // }
-    try {
-      const respuesta = await axios.post(url + '/api/cotizador/colaboradores/insert', mandarInformacion);
-      const send2 = respuesta.mandarInformacion;
-      // para que al hacer submit del form se vuelva a poner en blanco el formulario y se puedan seguir asignando nuevos proyectos
-      setPassword({
-        password: '',
-      })
-      setClaveP([])
-      setEmailU([])
-      alert('Colaborador agregado exitosamente')
-    } catch (error) {
-      console.log(error)
+    console.log("soy el idUsuariosState", idUsuariosState)
+    console.log("soy el idproyecto", idProyectoState)
+    console.log("soy password", passwordState)
+    if (idUsuariosState !== undefined) {
+      if (idProyectoState !== undefined) {
+        if (passwordState !== '') {
+          try {
+            const respuesta = await axios.post(url + '/api/cotizador/colaboradores/insert', mandarInformacion);
+            const send2 = respuesta.data.msg;
+            console.log("send2: ", send2)
+            // para que al hacer submit del form se vuelva a poner en blanco el formulario y se puedan seguir asignando nuevos proyectos
+            setPassword({
+              password: '',
+            })
+            setClaveP([])
+            setEmailU([])
+            alert(send2)
+          } catch (error) {
+            console.log(error)
+          }
+        } else {
+          alert('¡ERROR! Debes ingresar tu contraseña')
+        }
+      } else {
+        alert('¡ERROR! Ingresa la clave del proyecto al que quieres añadir un colaborador')
+      }
+    } else {
+      alert("¡ERROR! Debes completar todos los campos")
     }
 
   }
@@ -156,69 +172,69 @@ function Colaborador() {
     <div className="contenido-main-registro">
       <div className="scene flex">
         <section className="card-body">
-          
-            <h2 >
-              <span>Agregrar Colaborador</span>
-            </h2>
-            <label htmlFor="user" className=" label">
-              Correo del Colaborador
-            </label>
-            <input
-              id="user"
-              type="text"
-              name='email'
-              className="card-input"
-              value={emailU}
-              onChange={e => onChangeTextEmail(e.target.value)}
-              placeholder="Ingrese Correo del Colaborador"
-            />
-            {suggestionsUsuarios && suggestionsUsuarios.map((suggestionU, i) =>
-              <div key={i} className="selectCliente" onClick={() => onSuggestHandlerEmail(suggestionU.email, suggestionU.id_usuario)}>
-                {suggestionU.email}
-              </div>
-            )}
 
-
-            <label htmlFor="user" className=" label">
-              Clave del Proyecto
-            </label>
-            <input
-              id="user"
-              type="text"
-              name='proyecto_clave'
-              className="card-input"
-              value={claveP}
-              onChange={e => onChangeTextClaveP(e.target.value)}
-              placeholder="Ingrese Clave del Proyecto"
-            />
-            {suggestionsProyecto && suggestionsProyecto.map((suggestionP, i) =>
-              <div key={i} className="selectCliente" onClick={() => onSuggestHandlerProyecto(suggestionP.proyecto_clave, suggestionP.proyecto_id)}>
-                {suggestionP.proyecto_clave}
-              </div>
-            )}
-
-
-
-            <label htmlFor="password" className=" label">
-              Contraseña
-            </label>
-            <input
-              id="user2"
-              type="password"
-              name="password"
-              onChange={handleInputChange}
-              className="card-input"
-              placeholder="Ingrese su Contraseña"
-              data-type="password"
-              value={passwordState.password}
-            />
-
-            <div className="boton-registro">
-              <button className="card-button" onClick={(event) => { Send(); event.preventDefault() }}>
-                <span>Agregar al Proyecto</span>
-              </button>
+          <h2 >
+            <span>Agregrar Colaborador</span>
+          </h2>
+          <label htmlFor="user" className=" label">
+            Correo del Colaborador
+          </label>
+          <input
+            id="user"
+            type="text"
+            name='email'
+            className="card-input"
+            value={emailU}
+            onChange={e => onChangeTextEmail(e.target.value)}
+            placeholder="Ingrese Correo del Colaborador"
+          />
+          {suggestionsUsuarios && suggestionsUsuarios.map((suggestionU, i) =>
+            <div key={i} className="selectCliente" onClick={() => onSuggestHandlerEmail(suggestionU.email, suggestionU.id_usuario)}>
+              {suggestionU.email}
             </div>
-          
+          )}
+
+
+          <label htmlFor="user" className=" label">
+            Clave del Proyecto
+          </label>
+          <input
+            id="user"
+            type="text"
+            name='proyecto_clave'
+            className="card-input"
+            value={claveP}
+            onChange={e => onChangeTextClaveP(e.target.value)}
+            placeholder="Ingrese Clave del Proyecto"
+          />
+          {suggestionsProyecto && suggestionsProyecto.map((suggestionP, i) =>
+            <div key={i} className="selectCliente" onClick={() => onSuggestHandlerProyecto(suggestionP.proyecto_clave, suggestionP.proyecto_id)}>
+              {suggestionP.proyecto_clave}
+            </div>
+          )}
+
+
+
+          <label htmlFor="password" className=" label">
+            Contraseña
+          </label>
+          <input
+            id="user2"
+            type="password"
+            name="password"
+            onChange={handleInputChange}
+            className="card-input"
+            placeholder="Ingrese su Contraseña"
+            data-type="password"
+            value={passwordState.password}
+          />
+
+          <div className="boton-registro">
+            <button className="card-button" onClick={(event) => { Send(); event.preventDefault() }}>
+              <span>Agregar al Proyecto</span>
+            </button>
+          </div>
+
         </section>
       </div>
     </div>

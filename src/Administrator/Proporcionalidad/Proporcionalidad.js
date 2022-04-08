@@ -16,8 +16,8 @@ function Proporcionalidad() {
 
 
 
-            <div> <Animaciones mytext="Proporcionalmente" /> </div>
-
+            <div> <Animaciones mytext="Resumen Proporcionalmente" /> </div>
+ 
             <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>
                     {/*=================== Titulos Tabla Clientes ===================*/}

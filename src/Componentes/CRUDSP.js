@@ -267,13 +267,13 @@ export const CrudSp = (props) => {
 
         const {actualizacionPrecio} = EditPrecio();
         
-        const envioDataPrecio = (datacant, data, key, newdata) => {
+        const envioDataPrecio = (estado,data, key, newdata) => {
             if(first){
                 // console.log('Old Cantidad:',data[key].sp_cantidad);
                 // console.log('New Cantidad:',datacant);
                 // console.log('Old Data Precio:',data[key]);
                 // console.log('New Data Precio:',newdata);
-                actualizacionPrecio(datacant, data[key], newdata);
+                actualizacionPrecio(estado,data[key], newdata);
             }
         }
         /*=========================================================================*/
@@ -307,7 +307,7 @@ export const CrudSp = (props) => {
                         <tbody>
                             {Object.keys(props.sp).map((key) => (    
                             <tr key={props.sp[key].sp_id} >
-
+                                <td>{props.sp[key].sp_id}</td>
                                <td>
                                     <input
                                     className="input-name" 
@@ -316,16 +316,7 @@ export const CrudSp = (props) => {
                                     onChange={handleInputChange}
                                     name="sp_no_parte" 
                                     ></input>
-                                </td> 
-                                <td>
-                                    <input
-                                    className="input-name" 
-                                    defaultValue={props.sp[key].sp_no_parte} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="sp_no_parte" 
-                                    ></input>
-                                </td> 
+                                </td>  
                                 <td>
                                     <input
                                     className="input-name" 
@@ -462,6 +453,7 @@ export const CrudSp = (props) => {
                         precios={listaPrecios}
                         setfirst={setfirst}
                         envioDataPrecio={envioDataPrecio}
+                        estado={true}
                         />    
                     </div>
                 )}
