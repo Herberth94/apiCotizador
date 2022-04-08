@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-04-2022 a las 01:05:08
+-- Tiempo de generación: 09-04-2022 a las 01:08:56
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -188,7 +188,7 @@ CREATE TABLE `clientes` (
   `cliente_id` int(11) NOT NULL,
   `nombre_cliente` varchar(50) NOT NULL,
   `razon_social` varchar(50) NOT NULL,
-  `telefono` bigint(10) DEFAULT NULL,
+  `telefono` text DEFAULT NULL,
   `cliente_direccion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -197,7 +197,7 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`cliente_id`, `nombre_cliente`, `razon_social`, `telefono`, `cliente_direccion`) VALUES
-(13, 'Delfos369', 'S.A. de C.V.', 55, 'Santa fe');
+(13, 'Delfos369', 'S.A. de C.V.', '55', 'Santa fe');
 
 -- --------------------------------------------------------
 
@@ -564,7 +564,7 @@ INSERT INTO `proporcionalidad` (`pd_id`, `pd_id_proyecto`, `pd_tasa_interes`, `p
 CREATE TABLE `proveedor` (
   `proveedor_id` bigint(20) NOT NULL,
   `proveedor_nombre` varchar(100) DEFAULT NULL,
-  `proveedor_telefono` bigint(15) DEFAULT NULL,
+  `proveedor_telefono` text DEFAULT NULL,
   `proveedor_email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -573,15 +573,15 @@ CREATE TABLE `proveedor` (
 --
 
 INSERT INTO `proveedor` (`proveedor_id`, `proveedor_nombre`, `proveedor_telefono`, `proveedor_email`) VALUES
-(26, 'INCOMEX ', 55, 'compuS@gmail.com'),
-(27, 'SYSCOM', 0, ''),
-(28, 'TECH DATA', 0, ''),
-(29, 'SYNNEX', 0, ''),
-(30, 'FS', 0, ''),
-(31, 'COMPUSOLUCIONES', 55555, 'compuS@gmail'),
-(32, 'XWEB', 0, ''),
-(33, 'Cruatech', 0, ''),
-(34, 'PTN', 6666, 'ptn@palotinto');
+(26, 'INCOMEX ', '55', 'compuS@gmail.com'),
+(27, 'SYSCOM', '0', ''),
+(28, 'TECH DATA', '0', ''),
+(29, 'SYNNEX', '0', ''),
+(30, 'FS', '0', ''),
+(31, 'COMPUSOLUCIONES', '55555', 'compuS@gmail'),
+(32, 'XWEB', '0', ''),
+(33, 'Cruatech', '0', ''),
+(34, 'PTN', '6666', 'ptn@palotinto');
 
 -- --------------------------------------------------------
 
