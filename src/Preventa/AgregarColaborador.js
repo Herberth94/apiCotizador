@@ -155,13 +155,13 @@ function Colaborador() {
             console.log(error)
           }
         } else {
-          alert('¡ERROR!, Debes ingresar tu contraseña')
+          alert('¡ERROR! Debes ingresar tu contraseña')
         }
       } else {
-        alert('¡ERROR!, Ingresa el proyecto al que quieres añadir un colaborador')
+        alert('¡ERROR! Ingresa la clave del proyecto al que quieres añadir un colaborador')
       }
     } else {
-      alert("¡ERROR!, Debes completar todos los campos")
+      alert("¡ERROR! Debes completar todos los campos")
     }
 
   }
