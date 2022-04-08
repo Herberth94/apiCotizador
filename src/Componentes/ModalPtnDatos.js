@@ -26,10 +26,13 @@ const ModalPtnDatos = (props) => {
       </Modal.Header>
       <Modal.Body>
         <Table responsive  striped bordered hover size="sm">
-          <thead>
+        <thead>
             <tr className="titulo-tabla-usuarios">
+              <th>partida_nombre</th>
+              <th>Partida_descripcion</th>
               <th> N° parte</th>
-              <th> Descripción</th>
+              <th>Meses</th>
+              <th>Semanas</th>
               <th>Cantidad</th>
               <th>Categoria</th>
               <th>Total</th>
@@ -37,21 +40,20 @@ const ModalPtnDatos = (props) => {
             </tr>
           </thead>
           <tbody>
-          {Object.keys(props.proyecto_id).map((key) => (    
-                            //checar aqui va los titulos
-                            <tr key={props.proyecto_id[key].proyecto_id} >
-                                <td>{props.proyecto_id[key].sp_no_parte}</td>
-                                <td>{props.proyecto_id[key].sp_descripcion}</td>
-                                <td>{props.proyecto_id[key].sp_cantidad}</td>
-                                <td>{props.proyecto_id[key].sp_id_categoria}</td> 
-                                <td>{props.proyecto_id[key].precio_total}</td> 
-                                <td>{props.proyecto_id[key].moneda}</td>    
-                                
-                            </tr>
-                                   
-                        ))}
-         
-          </tbody>            
+        
+        {Object.keys(props.proyecto_id).map((key) => (    
+            <tr key={props.proyecto_id[key].sp_id} >
+                <td>{props.proyecto_id[key].partida_nombre}</td>   
+                <td>{props.proyecto_id[key].partida_descripcion}</td>   
+                <td>{props.proyecto_id[key].sp_no_parte}</td>  
+                <td>{props.proyecto_id[key].sp_meses}</td>  
+                <td>{props.proyecto_id[key].sp_semanas}</td> 
+                <td>{props.proyecto_id[key].sp_cantidad}</td>
+                <td>{props.proyecto_id[key].categoria_nombre}</td>
+                <td>{props.proyecto_id[key].precio_total}</td>
+                <td>{props.proyecto_id[key].moneda_nombre}</td>      
+            </tr>))}        
+        </tbody>            
         </Table>
         
       </Modal.Body>

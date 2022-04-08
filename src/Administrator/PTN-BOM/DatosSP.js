@@ -24,8 +24,9 @@ export function getIdPar (partida_id){
 }
 
 
-function DatosSP( ) {
-  let lista2 =[]
+function DatosSP({clave} ) {
+  console.log(clave);
+  
   const [modalShow, setModalShow] = useState(false);
   /*  console.log("---- Precio Unitario ----- ") */
   /*PARAMETROS   precioUnitario(precioLista, Descuento) */
@@ -62,7 +63,11 @@ function DatosSP( ) {
       ...datos,[event.target.name]: event.target.value,
     });
   };
-  
+  const [clavep, setclavep] = useState()
+  useEffect(() => {
+    setclavep(clave)
+    
+  }, [])
   
   /*useEffect(() => {
     let total = '';
@@ -375,43 +380,35 @@ function DatosSP( ) {
       SendSP();
       event.preventDefault()
       event.target.reset();
-      lista();
-  }
-  const dataSP = {
-    sp_no_parte: datosSP.sp_no_parte,
-    sp_descripcion: datosSP.sp_descripcion,
-    sp_cantidad: datos.sp_cantidad,
-    precio_total:datos.precio_total,
-    sp_id_categoria:datosCategoria.categoria_id,
-    moneda: datos.precio_id_moneda == '1'? 'MXN':'USD',
-    sp_comentarios: datosSP.sp_comentarios
-};
-
-  
-  const [proyecto_id, Setproyecto_id] = useState([])
- 
-  const lista =  () =>{
-    Setproyecto_id([ ...proyecto_id,dataSP]
      
-    )
-   
+  }
+  const [modalShow1, setModalShow1] = useState(false)
+  const [proyecto_id, Setproyecto_id] = useState([])
+  const lista = async (clave) =>{
+    console.log(clave);
+    const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
+    Setproyecto_id(respuesta.data.reSql)
+
     
  }
-  /*==========================================onHide={() => setModalShow(false)}=====================================================================================================================*/
+ console.log(clave);
+ 
+  /*===============================================================================================================================================================*/
   
   return (
 
     <div className="contenido-usuarios">
-        <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true); }} >
+        <button type="button" className="btn btn-primary" onClick={() => {lista (70)}} >
           Ver partidas agregadas
         </button><br/><br/>
-      {modalShow &&
+      {modalShow && modalShow1 ?   
       <ModalPtnDatos
       show={modalShow}
       proyecto_id={proyecto_id}
       onHide={() => setModalShow(false)}  
      
-      />} 
+      />
+         :  ''  } 
       
         {/*========================== Tabla Datos PTN ==========================*/}
         <form action="" method="post" onSubmit={enviarDatosSP}>

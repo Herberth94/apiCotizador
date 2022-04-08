@@ -33,7 +33,7 @@ function ContinuarProyecto() {
   const [show6,setShow6] = useState(true);//Lista de proyectos del usuario activo
   const [show7,setShow7] = useState(true);//Lista de proyectos en los que colabora el usuario activo
   /*=====================================================================*/
-  
+  const [id, setid] = useState([]);
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
@@ -86,7 +86,6 @@ function ContinuarProyecto() {
   /*======================================== Lista de partidas ========================================*/
   // Almacenamiento de las partidas de un proyecto en especifico
   const[listaPartidas, setListaPartidas] = useState([]);
-    
   //Almacenamiento de todos las partidas de un proyecto en específico
   async function getDatosPartida(proyecto_id){
       try{
@@ -202,6 +201,7 @@ function ContinuarProyecto() {
                       onClick={() => {
                         getIdP(suggestions[key].proyecto_id);
                         getDatosPartida(suggestions[key].proyecto_id); 
+                        setid(suggestions[key].proyecto_id);
                         setShow(!show);}}
                       > 
                         {show ? 'Continuar' : 'Ocultar Proyecto'} 
@@ -213,6 +213,7 @@ function ContinuarProyecto() {
                       type="button" 
                       onClick={() => {
                         getIdP1(suggestions[key].proyecto_id);
+                        setid(suggestions[key].proyecto_id);
                         setShow5(!show5);}}
                       > 
                         {show5 ? 'Finalizar proyecto' : 'Ocultar Proyecto'} 
@@ -275,7 +276,7 @@ function ContinuarProyecto() {
                 {/*========================== Llamado a los Componentes ==========================*/} 
                 <Partida></Partida>
                             
-                <DatosSP/>
+                <DatosSP clave={id}/>
                 
                
               </div>
@@ -336,7 +337,7 @@ function ContinuarProyecto() {
                               <Animaciones mytext="Datos Servicios/Productos" />{" "}
                               </div>
                           {/*========================== Llamado al Componente ==========================*/} 
-                            <DatosSP></DatosSP>
+                            <DatosSP clave={id}/>
                           </div>
                   )}
                 </div>
