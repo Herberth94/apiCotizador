@@ -70,76 +70,68 @@ function BuscadorInteligente() {
     }
     setSuggestions(coincidencias);
     setClaveP(claveP);
-}
-
-async function consultarTotalesP(id){          //console.log(id)
-    try{
-        const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
-        getTotalPar(resTotPar.data.data);
-
-        const resAMPar = await axios.get(url2 + `/api/cotizador/am/viewAMPartidas/${id}`);
-        getPorcentajesPar(resAMPar.data.data);
-
-        const resTotCats = await axios.get(url2 + `/api/cotizador/am/viewTotalesCategorias/${id}`);
-        getTotalCats(resTotCats.data.data);
-
-        const resAMCats = await axios.get(url2 + `/api/cotizador/am/viewAMCategorias/${id}`);
-        getPorcentajesCats(resAMCats.data.data);
-
-        const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${id}`);
-        getDivisaProy(dProy.data.data);
-
-        const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
-        getPorcentajesCI(resCI.data.data);
-
-    }catch (error){
-        console.log(error);
     }
-    
-    //console.log('Categorias',totalCategorias);
-}
+
+
+    const[pCI, setPCI] = useState([]);
+
+    async function consultarTotalesP(id){          //console.log(id)
+        try{
+            const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
+            getTotalPar(resTotPar.data.data);
+
+            const resAMPar = await axios.get(url2 + `/api/cotizador/am/viewAMPartidas/${id}`);
+            getPorcentajesPar(resAMPar.data.data);
+
+            const resTotCats = await axios.get(url2 + `/api/cotizador/am/viewTotalesCategorias/${id}`);
+            getTotalCats(resTotCats.data.data);
+
+            const resAMCats = await axios.get(url2 + `/api/cotizador/am/viewAMCategorias/${id}`);
+            getPorcentajesCats(resAMCats.data.data);
+
+            const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${id}`);
+            getDivisaProy(dProy.data.data);
+
+            const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
+            getPorcentajesCI(resCI.data.data);
+            setPCI(resCI.data.data);
+
+        }catch (error){
+            console.log(error);
+        }//console.log('Categorias',totalCategorias);
+    }
 
 
 
   return (
-
-
     <div className="contenido-usuarios">
-
-
-  {/*   <div> <Animaciones mytext="Buscador Inteligente" /> </div>
- */}
-
-            <div className="busqueda-proyectos">
-              
-              
-              
-                    <Table responsive id="nombreDiv">
-                        <thead>
-                            <tr className="azul">
-                                <th>Clave Proyecto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <td>
-                                <input className="agregar"
-                                        type="text"
-                                        name="proyecto_clave"
-                                        onChange={e => onChangeTextClaveP(e.target.value)}
-                                        value={claveP}
-                                        placeholder="Ingresa la clave del Proyecto" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-
-                                   {/*============= Titulo Animación =============*/}
-                <div> <Animaciones mytext="Proyectos " /> </div>
-
-<Table responsive  striped bordered hover size="sm">
-    <thead>
-        <tr className="titulo-tabla-usuarios">
+    {/*   <div> <Animaciones mytext="Buscador Inteligente" /> </div>*/}
+    <div className="busqueda-proyectos">
+        <Table responsive id="nombreDiv">
+            <thead>
+                <tr className="azul">
+                    <th>Clave Proyecto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                    <td>
+                        <input 
+                        className="agregar"
+                        type="text"
+                        name="proyecto_clave"
+                        onChange={e => onChangeTextClaveP(e.target.value)}
+                        value={claveP}
+                        placeholder="Ingresa la clave del Proyecto" />
+                    </td>
+                </tr>
+            </tbody>
+        </Table>
+        {/*============= Titulo Animación =============*/}
+        <div> <Animaciones mytext="Proyectos " /> </div>
+        <Table responsive  striped bordered hover size="sm">
+            <thead>
+            <tr className="titulo-tabla-usuarios">
             <th>ID</th>
             <th>Clave</th>
             <th>Descripción</th>
@@ -147,57 +139,43 @@ async function consultarTotalesP(id){          //console.log(id)
             <th>Fecha de creción</th>
             <th>Estatus</th>
             <th>Resumen AM</th>
-        </tr>
-    </thead>
-                       
-    <tbody>
-        {Object.keys(suggestions).map((key) => (    
+            </tr>
+            </thead>
+                    
+            <tbody>
+            {Object.keys(suggestions).map((key) => (    
             //checar aqui va los titulos
             <tr key={suggestions[key].proyecto_id} >
-                <td>{suggestions[key].proyecto_id}</td>   
-                <td>{suggestions[key].proyecto_clave}</td>  
-                <td>{suggestions[key].proyecto_descripcion}</td>  
-                <td>{suggestions[key].nombre_cliente}</td> 
-                <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                <td>{suggestions[key].proyecto_estatus}</td> 
-                <td>
-                    <button 
-                    className="btn btn-primary" 
-                    onClick={() => {
-                    
-                       consultarTotalesP(suggestions[key].proyecto_id);
-
-                        
-                        setShow(!show);}}
-                    >{show ? 'Ver mas':'Ocultar proyecto'}</button>
-
-{show ? (
-                <div></div>
-              ) : (
-                <div className="arregla">
-                  {/*========================== Llamado al Componente ==========================*/}
-    {/*           <CostosIndirectos/> */}
-   < CostosIndirectos/>
-
-
-                </div>
-              )}
-                </td> 
+            <td>{suggestions[key].proyecto_id}</td>   
+            <td>{suggestions[key].proyecto_clave}</td>  
+            <td>{suggestions[key].proyecto_descripcion}</td>  
+            <td>{suggestions[key].nombre_cliente}</td> 
+            <td>{suggestions[key].proyecto_fecha_creacion}</td>
+            <td>{suggestions[key].proyecto_estatus}</td> 
+            <td>
+                <button 
+                className="btn btn-primary" 
+                onClick={() => {
+                    consultarTotalesP(suggestions[key].proyecto_id);
+                    setShow(!show);}}
+                >{show ? 'Ver mas':'Ocultar proyecto'}</button>
+            </td> 
             </tr>  
-        ))}
-    </tbody>          
-</Table>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    
+            ))}
+            </tbody>          
+        </Table>
+        {show ? (
+            <div></div>
+        ) : (
+            <div className="arregla">
+                {/*========================== Llamado al Componente ==========================*/}
+                {/*           <CostosIndirectos/> */}
+                < CostosIndirectos
+                    ci={pCI}
+                />
+            </div>
+        )}
+        </div>            
     </div>
   )
 }

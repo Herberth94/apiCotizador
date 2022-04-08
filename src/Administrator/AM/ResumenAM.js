@@ -156,6 +156,12 @@ const ResumenAM = () => {
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
                     newArr2[i] = 'Modificar';
+                    setData({
+                        ...data, desc_cliente : '',
+                        margen_ganancia:'',
+                        cantidad:'',
+                        desc_fabrica:''
+                      })
                     // if(data.des_cliente !== ''){
                     //     descuentoCliente[key] = data.des_cliente;
                     // }else if(data.margen_ganancia !== ''){
