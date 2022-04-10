@@ -166,7 +166,7 @@ function AdministrarColaboradores() {
                     <td>{suggestions[key].proyecto_plazo_meses}</td> 
                     <td>
                       <button 
-                        className="btn btn-primary modificar" 
+                        className="btn btn-primary Ver" 
                         type="button" 
                         onClick={() => {
                           habilitar2(key);

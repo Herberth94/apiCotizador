@@ -24,7 +24,7 @@ import MenuUsuarios from './Administrator/MenuUsuarios';
 import CambioContraseña from "./Componentes/CambioContraseña";
 
 import MenuProveedor from "./Administrator/MenuProveedor";
-
+import MenuVentas2 from "./Preventa/MenuVentas";
 
 import PTN_BOM from "./Administrator/PTN-BOM/PTN_BOM";
 import AM from "./Administrator/AM/AmMenu";
@@ -86,6 +86,7 @@ function App() {
         <Administrador exact path="/propuesta-economica" component={PropuestaEconomica} />
         <Administrador exact path="/am" component={AM} />
         <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
+        <Administrador path="/asignar-proyecto" component={MenuVentas2} />
 
         {/*========================== Páginas Preventa ==========================*/}
 

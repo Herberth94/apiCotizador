@@ -65,14 +65,20 @@ function Clientes() {
                 placeholder="Ingrese Dirección"
               />
     {/*========= Botón Registrar ========= */}
-              <div className="boton-registro">
-                <button className="card-button" type="submit">
+              <div className="boton-login">
+                <button className="login" type="submit">
                   <span>Registrar</span>
                 </button>
               </div>
             </form>
           </section>
         </div>
+
+        <br/>
+        <br/>
+
+
+
       </div>
     )
 }

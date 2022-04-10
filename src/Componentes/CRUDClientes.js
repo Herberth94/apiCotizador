@@ -61,7 +61,7 @@ export const CrudClientes = (props) => {
                             <th>Razón Social</th>
                             <th>Teléfono</th>
                             <th>Dirección</th>
-                            <th>Eliminar</th>
+                    {/*         <th>Eliminar</th> */}
                             <th>Modificar</th>
                         </tr>
                     </thead>
@@ -111,7 +111,7 @@ export const CrudClientes = (props) => {
                             </td>
 
                             {/*================= Borrar Cliente ==================*/}
-                            <td>
+                           {/*  <td>
                                 <button
                                 className="btn btn-primary eliminar"
                                 onClick={() => props.borrar(props.clientes[key].cliente_id)
@@ -121,11 +121,11 @@ export const CrudClientes = (props) => {
                                 Eliminar
                                 </button>
 
-                            </td>
+                            </td> */}
                             <td>
                                 {" "}
                                 <button
-                                    className="btn btn-primary modificar"
+                                    className="btn btn-primary Mod"
                                     type="button"
                                     onClick={() => {
                                     props.envioData(datos,key,data); 
@@ -141,6 +141,8 @@ export const CrudClientes = (props) => {
                     </tbody>
                 </Table>
             </form>
+
+            <br/>
         </div>
     )
 }

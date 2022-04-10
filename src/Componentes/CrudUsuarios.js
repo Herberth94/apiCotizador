@@ -60,7 +60,7 @@ export const CrudUsuarios = (props) => {
                         <th>Administrador</th>
                         <th>Correo</th>
                         <th>Contraseña</th>
-                        <th>Eliminar</th>
+                     {/*    <th>Eliminar</th> */}
                         <th>Modificar</th>
                     </tr>
                 </thead>
@@ -73,17 +73,17 @@ export const CrudUsuarios = (props) => {
                             <td><input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input></td>
                             <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
                             <td><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > Resetear </button></td>
-                            <td>
+   {/*                          <td>
                                 <button 
                                 className="btn btn-primary eliminar" 
                                 type="button"
                                 onClick={()=>props.borrar(props.usuarios[key].id_usuario)}>Eliminar 
                                 </button>
-                            </td>
+                            </td> */}
                             {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
                             <td>
                                 <button 
-                                    className="btn btn-primary modificar" type="button"
+                                    className="btn btn-primary Mod" type="button"
                                     onClick={()=>
                                     {props.envioData(datos,key,data) ; habilitar(key); props.setfirst(activar) ; setActivar(!activar)}}
                                     >{activar ? 'Modificar' : 'Aceptar'}  

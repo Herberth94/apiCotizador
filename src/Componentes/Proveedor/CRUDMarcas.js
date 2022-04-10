@@ -90,7 +90,7 @@ export const CrudMarcas = (props) => {
                         <td>
                             {" "}
                             <button
-                                className="btn btn-primary modificar"
+                                className="btn btn-primary Mod"
                                 type="button"
                                 onClick={() => {
                                 habilitar(key);

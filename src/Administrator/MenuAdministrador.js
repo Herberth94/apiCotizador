@@ -52,13 +52,7 @@ function archivo() {
           
 
 
-          <li className="has-subnav">
-            <a href="/menu-colaboradores">
-              <i className="bi bi-list"></i>
-              <span className="nav-text">Menú Colaboradores</span>
-            </a>
-          </li>
-
+  
 
         {/*   <li className="has-subnav">
             <a href="/usuarios">
@@ -76,12 +70,31 @@ function archivo() {
  */}
           {/*======================== Preventa==========================*/}
 
+
+          <li className="has-subnav">
+            <a href="/menu-colaboradores">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">Menú Colaboradores</span>
+            </a>
+          </li>
+
+                    
+          <li className="has-subnav">
+            <a href="/asignar-proyecto">
+              <i className="bi bi-list"></i>
+              <span className="nav-text">Menú Ventas</span>
+            </a>
+          </li>
+
+
+
           <li className="has-subnav">
             <a href="/ptn">
               <i className="bi bi-file-earmark-spreadsheet fa-2x"></i>
               <span className="nav-text">PTN BOM Cotizaciones</span>
             </a>
           </li>
+
 
    
           {/*======================== Venta ==========================*/}

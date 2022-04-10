@@ -171,7 +171,7 @@ export const CrudProveedores = (props) => {
                         <td>
                             {" "}
                             <button
-                                className="btn btn-primary modificar"
+                                className="btn btn-primary Mod"
                                 type="button"
                                 onClick={() => {
                                 props.envioData(datos,key,data); 
@@ -185,7 +185,7 @@ export const CrudProveedores = (props) => {
                         <td>
                             {" "}
                             <button
-                                className="btn btn-primary "
+                                className="btn btn-primary Ver "
                                 type="button"
                                 onClick={() => {
                                     llamadoMarca(props.proveedores[key].proveedor_id);

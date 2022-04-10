@@ -38,6 +38,8 @@ export function Login() {
            
 
        <div className="contenido-main-registro login">
+
+         
       <div className="scene flex">
 
         <section className="card-body">
@@ -87,17 +89,20 @@ export function Login() {
 
   
             <div className ="boton-login">
-            <button className="card-button" type="submit"   >
+            <br></br>
+            <button className="login" type="submit"   >    
               <span>Entrar</span>
             </button>
             </div>
-
-
-         
-
-
           </form>
         </section>
+      </div>
+
+
+      <div>
+
+
+        
       </div>
    </div>
 
