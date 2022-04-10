@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 
 //Componentes
 import Animaciones from './Animaciones';
-import { precioUnitario, calcularDescuento, Total} from "../Administrator/PTN-BOM/Operaciones";
+import { precioUnitario, calcularDescuento, Total} from "../Preventa/PTN-BOM/Operaciones/Operaciones";
 
 export const CrudPrecios = (props) => {
     /*================================================== Partidas ==================================================*/

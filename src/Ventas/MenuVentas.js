@@ -1,5 +1,5 @@
 import React from 'react'
-import './css/menuVentas.css';
+import "../css/menuVentas.css"
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();

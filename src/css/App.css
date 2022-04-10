@@ -125,6 +125,16 @@ button.login {
  }
 
 
+
+ .btn.btn-primary.PDF{
+background-color: rgb(134, 0, 0);
+ }
+
+ .btn.btn-primary.PDF:hover{
+  background-color: rgb(189, 0, 0);
+   }
+  
+
 select
 {
   height:30px;

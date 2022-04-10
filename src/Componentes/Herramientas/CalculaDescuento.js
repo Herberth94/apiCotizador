@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import { precioUnitario, calcularDescuento, Total} from "../../Administrator/PTN-BOM/Operaciones";
+import { precioUnitario, calcularDescuento, Total} from "../../Preventa/PTN-BOM/Operaciones/Operaciones";
 
 
 function CalculaDescuento() {
@@ -62,28 +62,17 @@ function CalculaDescuento() {
 <Table responsive id="nombreDiv">
             <thead>
                 <tr className="titulo-tabla-usuarios">
-                <th>Cantidad</th>
-                <th>Precio Lista</th>
+              
+                <th>Precio Lista Unitario</th>
                 <th>Precio Unitario</th>
                 <th> Descuento (%)</th>
+                <th>Cantidad</th>
                 <th> Total </th>
                 </tr>
             </thead>
             <tbody>
                 <tr className="">
-                {/*======================== Cantidad ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="number"
-                    name="sp_cantidad"
-                    value={datos.sp_cantidad}
-                    onChange={handleInputChange}
-                    placeholder="Cantidad "
-                    
-                    />
-                </td>
+       
                 {/*======================== Precio Lista ==========================*/}
                 <td>
                     {" "}
@@ -123,6 +112,21 @@ function CalculaDescuento() {
                     placeholder="Descuento"
                     min="0"
                     step="any"
+                    />
+                </td>
+
+
+                {/*======================== Cantidad ==========================*/}
+                         <td>
+                    {" "}
+                    <input
+                    className="agregar"
+                    type="number"
+                    name="sp_cantidad"
+                    value={datos.sp_cantidad}
+                    onChange={handleInputChange}
+                    placeholder="Cantidad "
+                    
                     />
                 </td>
                 {/*======================== Total ==========================*/}
