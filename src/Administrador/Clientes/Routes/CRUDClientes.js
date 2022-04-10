@@ -2,7 +2,14 @@ import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
 
 export const CrudClientes = (props) => {
-    const [activar, setActivar] = useState(true)
+    /*========================== Mostrar/Ocultar ==========================*/
+    const [activar, setActivar] = useState([]);
+    const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
+    /*=====================================================================*/
+
+    /*========================== Habilitar/Deshabilitar ==========================*/
+    const [enable, setenable] = useState([]);//Inputs
+    /*============================================================================*/
 
     const [data,setData] = useState ({
         nombre_cliente: '', 
@@ -10,13 +17,13 @@ export const CrudClientes = (props) => {
         telefono:'',
         cliente_direccion:''        
     });
+
     const handleInputChange = (event) => {
         setData ({
           ...data,[event.target.name] : event.target.value ,
       })
-  }
-    //console.log(props.usuarios);
-    const [enable, setenable] = useState([])
+    }
+    
     const [datos, Setdatos] = useState()
 
     useEffect(() => {
@@ -26,26 +33,44 @@ export const CrudClientes = (props) => {
     useEffect(() => {
         let i = Object.keys(props.clientes)
          i = i.length
-        //console.log(i)
+        setActivar(Array(i).fill(true));
+        setTextBModificar(Array(i).fill('Modificar'));
         setenable ( Array(i).fill(true));
-        //console.log(enable);
     },[])
 
     const habilitar = (key) =>{
         key = parseInt(key);
         const newArr =[] 
+        const newArr2 = [];
+        const newArr3 = [];
         let c = Object.keys(props.clientes);
         c = c.length;
         for (let i = 0 ; i < c ; i++){
             if(i === key){
-                newArr[i]=!enable[i];
+                newArr[i] = !enable[i];
+                if(enable[i] === false){
+                    newArr2[i] = 'Modificar';
+                    setData({
+                        ...data,nombre_cliente: '', 
+                                razon_social:'',
+                                telefono:'',
+                                cliente_direccion:''   
+                      })
+                }else{
+                    newArr2[i] = 'Aceptar';
+                }
+                newArr3[i] = !activar[i];
             }
             if(i !== key){
                 newArr[i]=true;
+                newArr2[i] = 'Modificar';
+                newArr3[i]=true;
             }
 
         }   
         setenable(newArr);
+        setTextBModificar(newArr2);
+        setActivar(newArr3);
     }
 
     return (
@@ -109,19 +134,6 @@ export const CrudClientes = (props) => {
                                 name="cliente_direccion"
                                 ></input>{" "}
                             </td>
-
-                            {/*================= Borrar Cliente ==================*/}
-                           {/*  <td>
-                                <button
-                                className="btn btn-primary eliminar"
-                                onClick={() => props.borrar(props.clientes[key].cliente_id)
-                                }
-                                >
-                                {" "}
-                                Eliminar
-                                </button>
-
-                            </td> */}
                             <td>
                                 {" "}
                                 <button
@@ -130,10 +142,9 @@ export const CrudClientes = (props) => {
                                     onClick={() => {
                                     props.envioData(datos,key,data); 
                                     habilitar(key); 
-                                    props.setfirst(activar) ; 
-                                    setActivar(!activar)
+                                    props.setfirst(activar[key]) ; 
                                     }}
-                                >{activar ? 'Modificar' : 'Aceptar'}
+                                >{textBModificar[key]}
                                 </button>
                             </td>
                             </tr>

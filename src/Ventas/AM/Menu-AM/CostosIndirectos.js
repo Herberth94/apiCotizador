@@ -30,7 +30,7 @@ function CostosIndirectos(props) {
         setenable(Array(i).fill(true));
         setActivar(Array(i).fill(true));
         setTextBModificar(Array(i).fill('Modificar'));
-        console.log('Porcentajes CI%:',props.ci);
+        //console.log('Porcentajes CI%:',props.ci);
     },[costosIndirectos])
 
     const habilitar = (key) =>{
