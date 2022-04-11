@@ -55,20 +55,6 @@ console.log(validaOperacion);
 
       //OBTENER TOTALES
 
-//checar
-           /*===================================================================================================================*/
-           useEffect(()=>{
-            let precio_u='';
-            if (datos.precio_lista !== '' &&  datos.precio_descuento !== '') {
-              precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
-              const total = Total(precio_u, datos.sp_cantidad);
-              setDatos({ ...datos, precio_total:total});
-            }
-          
-          },[datos.precio_lista,datos.precio_descuento, datos.sp_cantidad ])
-    
-
-
 
       
       
