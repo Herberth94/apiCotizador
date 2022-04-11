@@ -6,8 +6,6 @@ import RegistrarClientes from "./RegistrarClientes";
 import AdministrarClientes from "./AdministrarClientes";
 
 function MenuClientes() {
-
-
         //Habilitar/Deshabilitar tabla del resumen AM
         const [show, setShow] = useState(true)
         const [show2, setShow2] = useState(true)
@@ -37,6 +35,7 @@ function MenuClientes() {
           type="button"
           onClick={() => {
             setShow(!show);
+            setShow2(true);
           }}
         >
           {" "}
@@ -58,6 +57,7 @@ function MenuClientes() {
           type="button"
           onClick={() => {
             setShow2(!show2);
+            setShow(true);
           }}
         >
           {" "}
