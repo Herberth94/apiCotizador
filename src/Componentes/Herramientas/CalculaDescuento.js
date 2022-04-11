@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
-import { precioUnitario, calcularDescuento, Total} from "../../Administrator/PTN-BOM/Operaciones";
+import { precioUnitario, calcularDescuento, Total} from "../../Preventa/PTN-BOM/Operaciones/Operaciones";
 
 
+let validaOperacion = false;
 function CalculaDescuento() {
+
+function checa(){
+console.log("Holaal");
+validaOperacion = !validaOperacion;
+console.log(validaOperacion);
+}
+
 
     const [datos, setDatos] = useState({
         precio_lista: '',
@@ -22,36 +30,47 @@ function CalculaDescuento() {
   
       
 
-      useEffect(()=>{
-        let precio_u='';
-        if (datos.precio_lista !== '' &&  datos.precio_descuento !== '' && datos.sp_cantidad !== '') {
-          precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
-          const total = Total(precio_u, datos.sp_cantidad);
-          setDatos({ ...datos, precio_unitario: precio_u , precio_total:total});
-        }
-      
-      },[datos.precio_lista,datos.precio_descuento])
+///CALCULAR DESCUENTO
       /*================================================================================*/
       useEffect(()=>{
-        let total='';
-        let desc_='';
-        if (datos.precio_unitario !== '' && datos.sp_cantidad !== '') {
-          const total = Total(datos.precio_unitario, datos.sp_cantidad)
-          setDatos({ ...datos, precio_total: total })
-        }
-        if (datos.precio_unitario == '' || datos.sp_cantidad == '') {
-          setDatos({ ...datos, precio_total: total , precio_descuento:desc_ })
-        }
-      },[datos.precio_unitario,datos.sp_cantidad])
-      /*================================================================================*/
-      useEffect(()=>{
-        if(datos.precio_lista !=='' && datos.precio_unitario !==''){
+
+        if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
           const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
           setDatos({ ...datos, precio_descuento: desc });}
+
         },[datos.precio_unitario])
-        
+
+
+///CALCULAR PRECIO UNITARIO
       /*===================================================================================================================*/
-  
+      useEffect(()=>{
+        let precio_u='';
+        if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
+          precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
+       
+          setDatos({ ...datos, precio_unitario: precio_u});
+        }
+      
+      },[datos.precio_descuento])
+
+      //OBTENER TOTALES
+
+//checar
+           /*===================================================================================================================*/
+           useEffect(()=>{
+            let precio_u='';
+            if (datos.precio_lista !== '' &&  datos.precio_descuento !== '') {
+              precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
+              const total = Total(precio_u, datos.sp_cantidad);
+              setDatos({ ...datos, precio_total:total});
+            }
+          
+          },[datos.precio_lista,datos.precio_descuento, datos.sp_cantidad ])
+    
+
+
+
+      
       
 
   return (
@@ -62,6 +81,7 @@ function CalculaDescuento() {
 <Table responsive id="nombreDiv">
             <thead>
                 <tr className="titulo-tabla-usuarios">
+                <th>Función</th>
                 <th>Cantidad</th>
                 <th>Precio Lista</th>
                 <th>Precio Unitario</th>
@@ -73,10 +93,20 @@ function CalculaDescuento() {
                 <tr className="">
                 {/*======================== Cantidad ==========================*/}
                 <td>
+                <label className="switch">
+  <input type="checkbox" id="checa"     onClick={checa}/>
+  <span className="slider"></span>
+</label>
+                    
+                  
+                </td>
+               
+               
+                <td>
                     {" "}
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     name="sp_cantidad"
                     value={datos.sp_cantidad}
                     onChange={handleInputChange}
@@ -89,7 +119,7 @@ function CalculaDescuento() {
                     {" "}
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     name="precio_lista"
                     value={datos.precio_lista}
                     onChange={handleInputChange}
@@ -103,7 +133,7 @@ function CalculaDescuento() {
                     {" "}
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     value={datos.precio_unitario}
                     name="precio_unitario"
                     onChange={handleInputChange}
@@ -116,7 +146,7 @@ function CalculaDescuento() {
                     {" "}
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     value={datos.precio_descuento}
                     name="precio_descuento"
                     onChange={handleInputChange}

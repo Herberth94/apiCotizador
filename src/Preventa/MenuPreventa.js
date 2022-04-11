@@ -1,5 +1,5 @@
 import React from 'react'
-import './css/MenuPreventa.css';
+import '../css/MenuPreventa.css';
 
 import Cookies from 'universal-cookie';
 

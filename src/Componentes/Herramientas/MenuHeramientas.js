@@ -4,7 +4,7 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 
 import CalculaDescuento from './CalculaDescuento';
-
+import pdf from "../../Componentes/Manual_Usuario.pdf"
 
 
 function MenuHeramientas() {
@@ -25,6 +25,7 @@ function MenuHeramientas() {
       <thead>
         <tr className="titulo-tabla-usuarios">
           <th>Calculara de Descuento % </th>
+          <th>Manual de Usuario </th>
         {/*   <th>------ </th> */}
         </tr>
       </thead>
@@ -33,7 +34,7 @@ function MenuHeramientas() {
           {/*========================== Divisa ==========================*/}
           <td>
             <button
-              className="btn btn-primary modificar"
+              className="btn btn-primary Mod"
               type="button"
               onClick={() => {
                 setShow(!show);
@@ -51,6 +52,20 @@ function MenuHeramientas() {
               </div>
             )}
           </td>
+
+
+          <td>
+
+          <form method="get" action={pdf}>
+          <button    className="btn btn-primary PDF" > Descargar PDF
+
+       <span></span>
+          </button>
+         </form>
+           
+          
+          </td>
+    
     
     
         </tr>

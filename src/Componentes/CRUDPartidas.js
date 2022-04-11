@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
 import Table from 'react-bootstrap/Table'
-import { EditSP } from '../Routes/ModificarSP';
+import { EditSP } from '../Preventa/PTN-BOM/Routes/ModificarSP';
 import Animaciones from './Animaciones';
 import { CrudSp } from './CRUDSP';
 

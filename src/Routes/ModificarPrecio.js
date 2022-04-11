@@ -1,8 +1,6 @@
 import  {useState} from 'react';
 import axios from 'axios';
-
-
-import {precioUnitario, calcularDescuento, Total} from "../Administrator/PTN-BOM/Operaciones";
+import {precioUnitario, calcularDescuento, Total} from "../Preventa/PTN-BOM/Operaciones/Operaciones";
 import {url2} from "../Componentes/Ocultar";
 
 export const EditPrecio = () => {
