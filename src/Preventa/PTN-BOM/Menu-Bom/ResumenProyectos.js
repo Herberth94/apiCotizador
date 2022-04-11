@@ -111,7 +111,7 @@ function Proyectos() {
                             onClick={() => {
                             setShow(!show);
                             setShow1(true);
-                            setShow2(false);
+                            show ? setShow2(false):setShow2(true);
                             }}
                             >
                             {" "}
@@ -125,7 +125,7 @@ function Proyectos() {
                             onClick={() => {
                             setShow1(!show1);
                             setShow(true);
-                            setShow2(false);
+                            show1 ? setShow2(false):setShow2(true);
                             }}
                             >
                             {" "}

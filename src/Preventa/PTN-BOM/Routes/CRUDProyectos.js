@@ -57,6 +57,7 @@ export const CrudProyectos = (props) => {
             let i = Object.keys(props.suggestionsP)
             i = i.length
             setenable(Array(i).fill(true));
+            setShow4(Array(i).fill(true));
             setActivar(Array(i).fill(true));
             setTextBModificar(Array(i).fill('Modificar'));
             setTextBVer(Array(i).fill('Mostrar'));
@@ -257,9 +258,9 @@ export const CrudProyectos = (props) => {
 
         const {actualizacionCats} = EditCats();
         
-        const envioDataCats = (estado,data, key, newdata) => {
+        const envioDataCats = (data, key, newdata) => {
             if(first1){
-                actualizacionCats(estado,data[key], newdata);
+                actualizacionCats(data[key], newdata);
             }
         }
         /*=========================================================================*/

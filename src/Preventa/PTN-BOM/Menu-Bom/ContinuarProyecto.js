@@ -225,8 +225,7 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow6(!show6);
                       setShow7(true);
-                      setShow8(!show8);
-                      {show6 ? setShow8(false):setShow8(true)}
+                      show6 ? setShow8(false):setShow8(true);
                       }}
                       >
                       {" "}
@@ -240,8 +239,7 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow7(!show7);
                       setShow6(true);
-                      setShow8(!show8);
-                      {show7 ? setShow8(false):setShow8(true)}
+                      show7 ? setShow8(false):setShow8(true);
                       }}
                       >
                       {" "}
