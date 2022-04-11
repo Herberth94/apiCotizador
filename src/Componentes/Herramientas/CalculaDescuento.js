@@ -7,9 +7,9 @@ let validaOperacion = false;
 function CalculaDescuento() {
 
 function checa(){
-console.log("Holaal");
+
 validaOperacion = !validaOperacion;
-console.log(validaOperacion);
+
 }
 
 
@@ -53,6 +53,9 @@ console.log(validaOperacion);
         if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
           precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
           const total = Total(precio_u, datos.sp_cantidad);
+          if( datos.precio_descuento < 0 || datos.precio_descuento > 100 ){
+          // alert("Advertencia Porcentaje Invalido")
+          }
           setDatos({ ...datos, precio_total:total,precio_unitario:precio_u});
         }
       

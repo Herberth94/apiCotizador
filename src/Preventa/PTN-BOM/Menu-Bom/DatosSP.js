@@ -14,6 +14,7 @@ const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
 
 let parId;
+let validaOperacion = false;
 
 export function getIdPar (partida_id){
   parId = partida_id;
@@ -21,6 +22,14 @@ export function getIdPar (partida_id){
 
 
 function DatosSP({clave} ) {
+
+
+
+  function checa(){
+
+    validaOperacion = !validaOperacion;
+    
+    }
   console.log(clave);
   
   const [modalShow, setModalShow] = useState(false);
@@ -80,80 +89,50 @@ function DatosSP({clave} ) {
     }
   },[datos.precio_unitario, datos.precio_lista, datos.precio_descuento, datos.sp_cantidad])*/
 
-  /*=================================== Operaciones de los datos de la tabla precio ===================================*/
-  useEffect(()=>{
-    let precio_u='';
-    if (datos.precio_lista !== '' &&  datos.precio_descuento !== '' && datos.sp_cantidad !== '') {
-      precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
-      const total = Total(precio_u, datos.sp_cantidad);
-      setDatos({ ...datos, precio_unitario: precio_u , precio_total:total});
-    }
-  
-  },[datos.precio_lista,datos.precio_descuento])
-  /*================================================================================*/
-  useEffect(()=>{
-    let total='';
-    let desc_='';
-    if (datos.precio_unitario !== '' && datos.sp_cantidad !== '') {
-      const total = Total(datos.precio_unitario, datos.sp_cantidad)
-      setDatos({ ...datos, precio_total: total })
-    }
-    if (datos.precio_unitario == '' || datos.sp_cantidad == '') {
-      setDatos({ ...datos, precio_total: total , precio_descuento:desc_ })
-    }
-  },[datos.precio_unitario,datos.sp_cantidad])
-  /*================================================================================*/
-  useEffect(()=>{
-    if(datos.precio_lista !=='' && datos.precio_unitario !==''){
-      const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-      setDatos({ ...datos, precio_descuento: desc });}
-    },[datos.precio_unitario])
-    
-  /*===================================================================================================================*/
-  
+///CALCULAR DESCUENTO
+      /*================================================================================*/
+      useEffect(()=>{
 
-  /*useEffect(()=>{
-    const total = Total(datos.precio_unitario,datos.cantidad);
-      setDatos({...datos,total:total});
-  },[datos.cantidad])*/
+        if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
+          const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+          const total = Total(datos.precio_unitario,datos.sp_cantidad)
+          setDatos({ ...datos,precio_total:total, precio_descuento: desc });}
+       
+        if(datos.precio_lista === '' || datos.precio_unitario === ''){
+          setDatos({ ...datos,precio_descuento:''});
+        }
 
-  /*useEffect(()=>{
-    const precio_u= precioUnitario(datos.precio_lista,datos.descuento);
-    setDatos({...datos,precio_unitario:precio_u});
-  },[datos.precio_lista,datos.descuento])*/
+        },[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario])
 
-  /*useEffect(()=>{
-    const desc = calcularDescuento(datos.precio_lista,datos.precio_unitario);
-    setDatos({...datos,descuento:desc});
-  },[datos.precio_lista,datos.precio_unitario])*/
 
-  /*=================================== Obtención de datos para la tabla marca ===================================*/
-    // Almacenamiento de los datos
-    // const [datosMarca, setDatosMarca] = useState({
-    //   marca_nombre: ''
-    // });
+///CALCULAR PRECIO UNITARIO
+      /*===================================================================================================================*/
+      useEffect(()=>{
+        let precio_u='';
+        if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
+          precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
+          const total = Total(precio_u, datos.sp_cantidad);
+          if( datos.precio_descuento < 0 || datos.precio_descuento > 100 ){
+          // alert("Advertencia Porcentaje Invalido")
+          }
+          setDatos({ ...datos, precio_total:total,precio_unitario:precio_u});
+        }
+      
+      },[datos.precio_descuento,datos.precio_lista,datos.sp_cantidad])
 
-    // // Obtención de los datos introducidos en los input
-    // const handleInputChangeMarca = (event) => {
-    //     setDatosMarca({
-    //         ...datosMarca,[event.target.name] : event.target.value 
-    //     })
-    // }
-  /*==============================================================================================================*/
+      //OBTENER TOTALES
 
-  /*=================================== Obtención de datos para la tabla proveedor ===================================*/
-  // Almacenamiento de los datos
-  // const[datosProv, setDatosProv] = useState  ({
-  //     proveedor_nombre: '',
-  // });
+//checar
+           /*===================================================================================================================*/
+           useEffect(()=>{
 
-  // // Obtención de los datos introducidos en los input
-  // const handleInputChangeProv = (event) =>{
-  //     setDatosProv({
-  //         ...datosProv, [event.target.name] : event.target.value
-  //     })
-  // }
-  /*==================================================================================================================*/
+            if(datos.precio_unitario === '' || datos.sp_cantidad === ''){
+              setDatos({ ...datos,precio_total:''});
+            } 
+          
+          },[,datos.precio_unitario,datos.sp_cantidad])
+      
+/*===========================================================================*/
 
   /*=================================== Buscador de proveedores ===================================*/
   // Almacenamiento de los proveedores existentes
@@ -482,26 +461,49 @@ function DatosSP({clave} ) {
 
             {/*======================== Tabla Números ==========================*/}
 
-            <Table responsive id="nombreDiv">
+        
+<Table responsive id="nombreDiv">
             <thead>
                 <tr className="titulo-tabla-usuarios">
-             
-                <th>Precio Lista Unitario </th>
+                <th>Función</th>
+                <th>Cantidad</th>
+                <th>Precio Lista</th>
                 <th>Precio Unitario</th>
                 <th> Descuento (%)</th>
-                <th>Cantidad</th>
                 <th> Total </th>
                 </tr>
             </thead>
             <tbody>
                 <tr className="">
-          
+                {/*======================== Cantidad ==========================*/}
+                <td>
+                <label className="switch">
+  <input type="checkbox" id="checa"     onClick={checa}/>
+  <span className="slider"></span>
+</label>
+                    
+                  
+                </td>
+               
+               
+                <td>
+                    {" "}
+                    <input
+                    className="agregar"
+                    type="text"
+                    name="sp_cantidad"
+                    value={datos.sp_cantidad}
+                    onChange={handleInputChange}
+                    placeholder="Cantidad "
+                    
+                    />
+                </td>
                 {/*======================== Precio Lista ==========================*/}
                 <td>
                     {" "}
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     name="precio_lista"
                     value={datos.precio_lista}
                     onChange={handleInputChange}
@@ -515,7 +517,7 @@ function DatosSP({clave} ) {
                     {" "}
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     value={datos.precio_unitario}
                     name="precio_unitario"
                     onChange={handleInputChange}
@@ -528,27 +530,13 @@ function DatosSP({clave} ) {
                     {" "}
                     <input
                     className="agregar"
-                    type="number"
+                    type="text"
                     value={datos.precio_descuento}
                     name="precio_descuento"
                     onChange={handleInputChange}
                     placeholder="Descuento"
                     min="0"
                     step="any"
-                    />
-                </td>
-
-                      {/*======================== Cantidad ==========================*/}
-                      <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="number"
-                    name="sp_cantidad"
-                    value={datos.sp_cantidad}
-                    onChange={handleInputChange}
-                    placeholder="Cantidad "
-                    
                     />
                 </td>
                 {/*======================== Total ==========================*/}
@@ -567,6 +555,7 @@ function DatosSP({clave} ) {
                 </tr>
             </tbody>
             </Table>
+
 
             {/*========================== Datos PTN ==========================*/}
             <Table responsive id="nombreDiv">
