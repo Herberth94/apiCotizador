@@ -63,12 +63,7 @@ function DatosSP({clave} ) {
       ...datos,[event.target.name]: event.target.value,
     });
   };
-  const [clavep, setclavep] = useState()
-  useEffect(() => {
-    setclavep(clave)
     
-  }, [])
-  
   /*useEffect(() => {
     let total = '';
     let precio_u = '';
@@ -393,7 +388,7 @@ function DatosSP({clave} ) {
     
       
     } catch (error) {
-      console.log(error);
+      console.log(error)
       
     }
     
