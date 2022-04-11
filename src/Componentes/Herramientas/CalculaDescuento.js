@@ -14,11 +14,11 @@ console.log(validaOperacion);
 
 
     const [datos, setDatos] = useState({
-        precio_lista: '',
-        precio_unitario: '',
+        precio_lista:'',
+        precio_unitario:'',
         precio_descuento: '',
-        sp_cantidad: '',
-        precio_total: '',
+        sp_cantidad:'',
+        precio_total:'',
         precio_id_moneda:''
       });
       
@@ -36,9 +36,14 @@ console.log(validaOperacion);
 
         if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
           const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-          setDatos({ ...datos, precio_descuento: desc });}
+          const total = Total(datos.precio_unitario,datos.sp_cantidad)
+          setDatos({ ...datos,precio_total:total, precio_descuento: desc });}
+       
+        if(datos.precio_lista === '' || datos.precio_unitario === ''){
+          setDatos({ ...datos,precio_descuento:''});
+        }
 
-        },[datos.precio_unitario])
+        },[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario])
 
 
 ///CALCULAR PRECIO UNITARIO
@@ -47,16 +52,23 @@ console.log(validaOperacion);
         let precio_u='';
         if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
           precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
-       
-          setDatos({ ...datos, precio_unitario: precio_u});
+          const total = Total(precio_u, datos.sp_cantidad);
+          setDatos({ ...datos, precio_total:total,precio_unitario:precio_u});
         }
       
-      },[datos.precio_descuento])
+      },[datos.precio_descuento,datos.precio_lista,datos.sp_cantidad])
 
       //OBTENER TOTALES
 
+//checar
+           /*===================================================================================================================*/
+           useEffect(()=>{
 
-      
+            if(datos.precio_unitario === '' || datos.sp_cantidad === ''){
+              setDatos({ ...datos,precio_total:''});
+            } 
+          
+          },[,datos.precio_unitario,datos.sp_cantidad])
       
 
   return (
