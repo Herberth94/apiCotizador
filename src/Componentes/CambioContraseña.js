@@ -98,8 +98,8 @@ function CambioContraseña() {
                 data-type="password"
               />
 
-              <div className="boton-registro">
-                <button className="card-button" type="submit">
+              <div className="boton-login">
+                <button className="login" type="submit">
                   <span>Actualizar</span>
                 </button>
               </div>
