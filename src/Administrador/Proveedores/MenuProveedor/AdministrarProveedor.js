@@ -14,9 +14,6 @@ function AdministrarProveedor() {
   /*======================================== Buscador de proveedores ========================================*/
   //Almacenamiento de todos los proveedores existentes
   const[listaProv, setListaProv] = useState([]);
-
-  //Almacenamiento de los proveedores que tienen el nombre semejante al instroducido
-  const[suggestions,setSuggestions] = useState([]);
   
   // Almacenamiento de la clave introducida del proyecto 
   const[nombreProv,setNombreProv] = useState([]);
@@ -31,11 +28,17 @@ function AdministrarProveedor() {
     }
   }
 
-  const [actualizarProvs,setActualizarProvs] = useState(false);
+  //const [actualizarProvs,setActualizarProvs] = useState(false);
 
   useEffect(()=>{
       getProvs();
-  },[actualizarProvs])
+  },[])
+
+  useEffect(()=>{
+    if(nombreProv === ''){
+      getProvs();
+    }
+},[nombreProv])
   
   //Función que realiza la busqueda de los proveedores semejantes al nombre e introducido
   const onChangeTextNombreProv = (nProv) => {
@@ -46,7 +49,7 @@ function AdministrarProveedor() {
           return proveedor.proveedor_nombre.match(regex)
           })
       }
-      setSuggestions(coincidencias);
+      setListaProv(coincidencias);
       setNombreProv(nProv);
   }
   /*=======================================================================================================*/
@@ -94,10 +97,10 @@ function AdministrarProveedor() {
               {/*=================== Botón Mostrar Lista DIV =====================*/}
               <br />
               <CrudProveedores
-                proveedores={suggestions} 
+                proveedores={listaProv} 
                 setfirst={setfirst}
                 envioData={envioData}
-                setActualizarProvs={setActualizarProvs}
+                //setActualizarProvs={setActualizarProvs}
               />
             </div>
       </div>      

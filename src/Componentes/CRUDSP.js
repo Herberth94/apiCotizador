@@ -12,13 +12,20 @@ import {url, url2} from "./Ocultar"
 
 
 export const CrudSp = (props) => {
-    /*======================================== Habilitar/Deshabilitar secciones ========================================*/
-    const[show,setShow] = useState(true);// Lista de precios
+    /*======================================== Habilitar/Deshabilitar ========================================*/
+    const [enable, setenable] = useState([]);//Inputs
+    /*==================================================================================================================*/
+
+    /*========================== Mostrar/Ocultar ==========================*/
+    const [show,setShow] = useState(true);// Tabla de precios
+    const [activar, setActivar] = useState([]);
+    const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
+    const [textBVer,setTextBVer] = useState([]);// Texto de los botones de mostrar
+    const [show1,setShow1] = useState([]);
+    /*=====================================================================*/
 
     /*================================================== SP ==================================================*/
         /*========================= Editar =========================*/
-        const [activar, setActivar] = useState(true);
-
         const [data,setData] = useState ({
             sp_no_parte:'',
             sp_descripcion:'',
@@ -33,9 +40,8 @@ export const CrudSp = (props) => {
             ...data,[event.target.name] : event.target.value ,
         })
         }
-        //console.log(props.usuarios);
-        const [enable, setenable] = useState([])
-        const [datos, Setdatos] = useState()
+
+        const [datos, Setdatos] = useState();
         // Almacenamiento del nombre del proveedor a buscar
         const [nombreProv, setNombreProv] = useState([]);
         // Almacenamiento del nombre del proveedor a buscar
@@ -50,9 +56,11 @@ export const CrudSp = (props) => {
         useEffect(() => {
             let i = Object.keys(props.sp)
             i = i.length
-            //console.log(i)
-
             setenable(Array(i).fill(true));
+            setActivar(Array(i).fill(true));
+            setShow1(Array(i).fill(true));
+            setTextBModificar(Array(i).fill('Modificar'));
+            setTextBVer(Array(i).fill('Mostrar'));
 
             const arrayNombresProv = []
             for(let c = 0 ; c < i ;c++){
@@ -70,24 +78,45 @@ export const CrudSp = (props) => {
         
         const habilitar = (key) =>{
             key = parseInt(key);
-            const newArr =[] 
-            let p = Object.keys(props.sp);
-            p = p.length;
-            for (let i = 0 ; i < p ; i++){
+            const newArr =[];
+            const newArr2 = [];
+            const newArr3 = [];
+            let c1 = Object.keys(props.sp);
+            c1 = c1.length;
+            for (let i = 0 ; i < c1 ; i++){
                 if(i === key){
-                    newArr[i]=!enable[i];
+                    newArr[i] = !enable[i];
+                    if(enable[i] === false){
+                        newArr2[i] = 'Modificar';
+                        setData({
+                            ...data,sp_no_parte:'',
+                                    sp_descripcion:'',
+                                    sp_meses:'',
+                                    sp_semanas: '',
+                                    sp_id_categoria:'',
+                                    sp_comentarios:''  
+                        })
+                    }else{
+                        newArr2[i] = 'Aceptar';
+                        listaMarcas(props.sp[key].proveedor_nombre);
+                    }
+                    newArr3[i] = !activar[i];
                 }
                 if(i !== key){
-                    newArr[i]=true;
+                    newArr[i] = true;
+                    newArr2[i] = 'Modificar';
+                    newArr3[i] = true;
                 }
-
+    
             }   
             setenable(newArr);
+            setTextBModificar(newArr2);
+            setActivar(newArr3);
 
             const arrayNombresProv = [];
             const arrayNombresMarca = []
             if (activar === true){
-                for(let c = 0 ; c < p ;c++){
+                for(let c = 0 ; c < c1 ;c++){
                     if(c === key){
                         arrayNombresProv[c] = '';
                     }else{
@@ -96,7 +125,7 @@ export const CrudSp = (props) => {
                 }
                 setNombreProv(arrayNombresProv);
 
-                for(let c = 0 ; c < p ;c++){
+                for(let c = 0 ; c < c1 ;c++){
                     if(c === key){
                         arrayNombresMarca[c] = '';
                     }else{
@@ -104,9 +133,32 @@ export const CrudSp = (props) => {
                     }
                 }
                 setNombreMarca(arrayNombresMarca);
-            }
-            
-            
+            } 
+        }
+
+        const habilitar1 = (key) =>{
+            key = parseInt(key);
+            const newArr =[];
+            const newArr2 = [];
+            let c = Object.keys(props.sp);
+            c = c.length;
+            for (let i = 0 ; i < c ; i++){
+                if(i === key){
+                    newArr[i] = !show1[i];
+                    setShow(!show);
+                    if(show1[i] === false){
+                        newArr2[i] = 'Mostrar';
+                    }else{
+                        newArr2[i] = 'Ocultar';
+                    }
+                }
+                if(i !== key){
+                    newArr[i]=true;
+                    newArr2[i] = 'Mostrar';
+                }
+            }   
+            setShow1(newArr);
+            setTextBVer(newArr2);
         }
         /*==========================================================*/
 
@@ -178,6 +230,7 @@ export const CrudSp = (props) => {
             }
             setNombreProv(arrayNombresProv);
             listaMarcas(nP);
+            
             //console.log(listaMarca);
             setSuggestionsProv([]);
         }
@@ -194,8 +247,9 @@ export const CrudSp = (props) => {
             coincidencias = listaMarca.filter(marca => {
                 const regex = new RegExp(`${nM}`, "gi");
                 return marca.marca_nombre.match(regex)
-            })
+                })
             }
+
             setSuggestionsMarca(coincidencias);
             key = parseInt(key);
             let i = Object.keys(props.sp)
@@ -269,10 +323,6 @@ export const CrudSp = (props) => {
         
         const envioDataPrecio = (estado,data, key, newdata) => {
             if(first){
-                // console.log('Old Cantidad:',data[key].sp_cantidad);
-                // console.log('New Cantidad:',datacant);
-                // console.log('Old Data Precio:',data[key]);
-                // console.log('New Data Precio:',newdata);
                 actualizacionPrecio(estado,data[key], newdata);
             }
         }
@@ -300,7 +350,7 @@ export const CrudSp = (props) => {
                             <th>Comentarios</th>
                             <th>Eliminar</th>
                             <th>Modificar</th>
-                            <th>Detalles</th>
+                            <th>Precios</th>
                         </tr>
                         </thead>
 
@@ -311,7 +361,7 @@ export const CrudSp = (props) => {
                                <td>
                                     <input
                                     className="input-name" 
-                                    defaultValue={key} 
+                                    defaultValue={props.sp[key].sp_no_parte} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_no_parte" 
@@ -424,18 +474,20 @@ export const CrudSp = (props) => {
                                     onClick={()=>{
                                         habilitar(key); 
                                         props.envioDataSP(nombreProv, props.proveedores,nombreMarca, listaMarca, data, key, datos);
-                                        props.setfirst(activar);
-                                        setActivar(!activar)
+                                        props.setfirst(activar[key]);
                                     }}
-                                    >{activar ? "Modificar":"Aceptar"}
+                                    >{textBModificar[key]}
                                     </button> 
                                 </td> 
                                 <td>
                                     <button 
                                     className="btn btn-primary detalles" 
-                                    onClick={() => {getDatosPrecios(props.sp[key].sp_id); setShow(!show);}}
+                                    onClick={() => {
+                                        getDatosPrecios(props.sp[key].sp_id); 
+                                        habilitar1(key);
+                                    }}
                                     >
-                                        {show ? 'Ver precios' : 'Ocultar precios'}
+                                        {textBVer[key]}
                                     </button>
                                 </td>
                             </tr>  
