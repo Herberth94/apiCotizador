@@ -9,11 +9,19 @@ import {url, url2} from "./Ocultar";
 
 export const CrudPartidas = (props) => {
     /*======================================== Habilitar/Deshabilitar secciones ========================================*/
-    const[show,setShow] = useState(true);// Lista de servicios/productos
+    const[show,setShow] = useState(true);//Tabla servicios/productos
+    const [enable, setenable] = useState([]);//Inputs
+    /*==================================================================================================================*/
+
+    /*========================== Mostrar/Ocultar ==========================*/
+    const [activar, setActivar] = useState([]);
+    const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
+    const [textBVer,setTextBVer] = useState([]);// Texto de los botones de mostrar
+    const [show1,setShow1] = useState([]);
+    /*=====================================================================*/
 
     /*================================================== Partidas ==================================================*/
         /*========================= Editar =========================*/
-        const [activar, setActivar] = useState(true)
 
         const [data,setData] = useState ({
             partida_nombre:'',
@@ -26,8 +34,7 @@ export const CrudPartidas = (props) => {
         })
         }
 
-        const [enable, setenable] = useState([])
-        const [datos, Setdatos] = useState()
+        const [datos, Setdatos] = useState();
         
 
         useEffect(() => {
@@ -36,28 +43,72 @@ export const CrudPartidas = (props) => {
 
 
         useEffect(() => {
-            let i = Object.keys(props.partidas)
-            i = i.length
-            //console.log(i)
-
+            let i = Object.keys(props.partidas);
+            i = i.length;
             setenable(Array(i).fill(true)); 
+            setActivar(Array(i).fill(true));
+            setShow1(Array(i).fill(true));
+            setTextBModificar(Array(i).fill('Modificar'));
+            setTextBVer(Array(i).fill('Mostrar'));
         },[props.partidas])
 
         
         const habilitar = (key) =>{
             key = parseInt(key);
-            const newArr = [] 
-            let p = Object.keys(props.partidas);
-            p = p.length;
-            for (let i = 0 ; i < p ; i++){
+            const newArr =[];
+            const newArr2 = [];
+            const newArr3 = [];
+            let c = Object.keys(props.partidas);
+            c = c.length;
+            for (let i = 0 ; i < c ; i++){
                 if(i === key){
-                    newArr[i]=!enable[i];
+                    newArr[i] = !enable[i];
+                    if(enable[i] === false){
+                        newArr2[i] = 'Modificar';
+                        setData({
+                            ...data,partida_nombre:'',
+                                    partida_descripcion:''  
+                        })
+                    }else{
+                        newArr2[i] = 'Aceptar';
+                    }
+                    newArr3[i] = !activar[i];
+                }
+                if(i !== key){
+                    newArr[i] = true;
+                    newArr2[i] = 'Modificar';
+                    newArr3[i] = true;
+                }
+    
+            }   
+            setenable(newArr);
+            setTextBModificar(newArr2);
+            setActivar(newArr3);
+        }
+    
+        const habilitar1 = (key) =>{
+            key = parseInt(key);
+            const newArr =[];
+            const newArr2 = [];
+            let c = Object.keys(props.partidas);
+            c = c.length;
+            for (let i = 0 ; i < c ; i++){
+                if(i === key){
+                    newArr[i] = !show1[i];
+                    setShow(!show);
+                    if(show1[i] === false){
+                        newArr2[i] = 'Mostrar';
+                    }else{
+                        newArr2[i] = 'Ocultar';
+                    }
                 }
                 if(i !== key){
                     newArr[i]=true;
+                    newArr2[i] = 'Mostrar';
                 }
             }   
-            setenable(newArr);        
+            setShow1(newArr);
+            setTextBVer(newArr2);
         }
         /*==========================================================*/
 
@@ -119,12 +170,6 @@ export const CrudPartidas = (props) => {
 
         const envioDataSp = (nP, dataProv, nM, dataM,newdata, key, data) => {
             if(first){
-                // console.log('Proveedor:',nP[key]);
-                // console.log('Proveedores:', dataProv);
-                // console.log('Marca:',nM[key]);
-                // console.log('Marcas:', dataM);
-                // console.log('NewData:',newdata);
-                // console.log('OldData:',data[key]);
                 actualizacionSP(nP[key],dataProv,nM[key],dataM,data[key], newdata);
             }
         }
@@ -143,7 +188,7 @@ export const CrudPartidas = (props) => {
                             <th>Descripción</th>
                             <th>Eliminar</th>
                             <th>Modificar</th>
-                            <th>Detalles</th>
+                            <th>Servicios/Productos</th>
                         </tr>
                     </thead>
                                     
@@ -182,17 +227,20 @@ export const CrudPartidas = (props) => {
                                     onClick={()=>{
                                         habilitar(key); 
                                         props.envioDataPar(datos, key, data);
-                                        props.setfirst(activar);
-                                        setActivar(!activar)}}
-                                    >{activar ? "Modificar" : "Aceptar"}
+                                        props.setfirst(activar[key]);;
+                                    }}
+                                    >{textBModificar[key]}
                                     </button> 
                                 </td> 
                                 <td>
                                     <button 
                                     className="btn btn-primary detalles" 
-                                    onClick={() => {getDatosSP(props.partidas[key].partida_id);setShow(!show)}}
+                                    onClick={() => {
+                                        habilitar1(key);
+                                        getDatosSP(props.partidas[key].partida_id);
+                                    }}
                                     >
-                                        {show ? 'Ver SP' : 'Ocultar SP'}
+                                        {textBVer[key]}
                                     </button>
                                 </td> 
                             </tr>  

@@ -8,14 +8,10 @@ import { CrudClientes } from "../Routes/CRUDClientes";
 
 function AdministrarClientes() {
 
-  /*========================== Mostrar Ocultar Tabla ==========================*/
+  /*========================== Mostrar/Ocultar =========================*/
+  const [show, setShow] = useState(true);//Boton mostrar lista de clientes
+  /*====================================================================*/
 
-  const [show, setShow] = useState(false);
-
-  /*========================== Mostrar Ocultar Botón ==========================*/
-
-  const [show2, setShow2] = useState(true);
-  
   const [listaClientes, setlistaClientes] = useState([]);
   const {actualizacion} = useRegistro();
   const [first, setfirst] = useState(false);
@@ -43,15 +39,13 @@ function AdministrarClientes() {
   const llamadoCliente = async () => {
     try {
       const respuesta = await axios.get( url + '/api/cotizador/clientes/view');
-      //console.log(respuesta.data.reSql);
       setlistaClientes(respuesta.data.reSql);
     } catch (error) { console.log(error);}
-    setShow2(!show2);
+    setShow(!show);
   };
+
   const envioData = async (datos, key, data) => {
     if(first){
-      console.log("envioDta Proveedores:",datos[key])
-      console.log("data Proveedores: ", data)
       actualizacion(datos[key],data);
     }
   };
@@ -72,9 +66,9 @@ function AdministrarClientes() {
             }}
           >
             {" "}
-            {show2 ? "Mostrar Lista" : "Ocultar Lista"}
+            {show ? "Mostrar Lista" : "Ocultar Lista"}
           </button>
-          {show2 ? (
+          {show ? (
             <div>
               {/*=================== Ocultar Lista DIV  =========================*/}
             </div>

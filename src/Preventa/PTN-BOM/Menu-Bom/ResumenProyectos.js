@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import "../css/Proyectos.css";
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
-import { EditProyecto } from '../Routes/ModificarProyectos';
-import { EditSP } from '../Routes/ModificarSP';
 import Cookies from 'universal-cookie';
+
+//Componentes
+import "../css/Proyectos.css";
 import Animaciones from '../../../Componentes/Animaciones';
 import {CrudProyectos} from '../Routes/CRUDProyectos';
+import { EditProyecto } from '../Routes/ModificarProyectos';
 import {url, url2} from "../../../Componentes/Ocultar";
 
 
@@ -18,9 +19,15 @@ let validatorid = cookies.get('id_usuario');
 
 function Proyectos() {
 
-    const [show6,setShow6] = useState(true);//Lista de proyectos del usuario activo
-    const [show7,setShow7] = useState(true);//Lista de proyectos en los que colabora el usuario activo
-/*======================================== Buscador de proyectos ========================================*/
+    /*========================== Mostrar/Ocultar ==========================*/
+    //Condicionales para almacenar datos
+    const [show,setShow] = useState(true);//Lista de proyectos del usuario activo
+    const [show1,setShow1] = useState(true);//Lista de proyectos en los que colabora el usuario activo
+
+    const [show2,setShow2] = useState(true);//Tabla de proyectos
+    /*=====================================================================*/
+
+    /*======================================== Buscador de proyectos ========================================*/
     // Almacenamiento de todos los proyectos existentes
     const[listaProyectos, setListaProyectos] = useState([]);
 
@@ -41,11 +48,10 @@ function Proyectos() {
                     const resProy = await axios.get(url +'/api/cotizador/proyecto/viewadmin');
                     setListaProyectos(resProy.data.data);
                 }else{
-                    if(show6 === false){
+                    if(show === false){
                         const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                         setListaProyectos(resProy.data.data);
-                      }else if(show7 === false){
-                        //Aqui va la ruta de colaboradores colaboradores/view/
+                      }else if(show1 === false){
                         const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
                         setListaProyectos(resProy.data.data);
                       }
@@ -56,7 +62,7 @@ function Proyectos() {
         }
         //console.log('Proyectos:',listaProyectos);
         getProyectos();
-    },[show6,show7])
+    },[show,show1])
     
     // Función que realiza la busqueda de los proyectos semejantes a la clave introducida 
     const onChangeTextClaveP = (claveP) => {
@@ -77,14 +83,7 @@ function Proyectos() {
     
     const {actualizacionProy} = EditProyecto();
 
-    const envioDataProy =  (activar,cliente, dataCliente, data, key, newdata) => {
-        //console.log(data[key])
-        // console.log(newdata)
-        // console.log(dataCliente);
-        // console.log(cliente);
-        //actualizacionProy(cliente,dataCliente,data[key],newdata);
-        //actualizacionProy(cliente,dataCliente,data[key],newdata);
-        setfirst(activar);
+    const envioDataProy =  (cliente, dataCliente, data, key, newdata) => {
         if(first){
             actualizacionProy(cliente[key],dataCliente,data[key],newdata);
         } 
@@ -110,12 +109,13 @@ function Proyectos() {
                             className="btn btn-primary modificar"
                             type="button"
                             onClick={() => {
-                            setShow6(!show6);
-                            setShow7(true);
+                            setShow(!show);
+                            setShow1(true);
+                            setShow2(false);
                             }}
                             >
                             {" "}
-                            {show6 ? "Ver " : "Ocultar"}{" "}
+                            {show ? "Mostrar" : "Ocultar"}{" "}
                             </button>
                         </td>
                         <td>
@@ -123,18 +123,22 @@ function Proyectos() {
                             className="btn btn-primary modificar"
                             type="button"
                             onClick={() => {
-                            setShow7(!show7);
-                            setShow6(true);
+                            setShow1(!show1);
+                            setShow(true);
+                            setShow2(false);
                             }}
                             >
                             {" "}
-                            {show7 ? "Ver" : "Ocultar"}{" "}
+                            {show1 ? "Mostrar" : "Ocultar"}{" "}
                             </button>
                         </td>
                     </tr>
                 </tbody>
             </Table>
-            <div className="table-responsive">
+            {show2 ? (
+                <div></div>
+            ):(
+                <div className="table-responsive">
                 {/*============= Titulo Animación =============*/}
                 <Animaciones mytext="Buscar proyectos" />
 
@@ -171,6 +175,7 @@ function Proyectos() {
                     />    
                 </div>
             </div>
+            )}
         </div>
     );
 }

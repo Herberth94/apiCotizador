@@ -5,20 +5,28 @@ import Table from 'react-bootstrap/Table'
 
 
 export const CrudUsuarios = (props) => {
-    const [activar, setActivar] = useState(true)
+
+    /*========================== Mostrar/Ocultar ==========================*/
+    const [activar, setActivar] = useState([]);
+    const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
+    /*=====================================================================*/
+
+    /*========================== Habilitar/Deshabilitar ==========================*/
+    const [enable, setenable] = useState([]);//Inputs
+    /*============================================================================*/
+
     const [data,setData] = useState ({
         rol: '', 
         email  :'',
         password:''         
     });
+
     const handleInputChange = (event) => {
         setData ({
           ...data,[event.target.name] : event.target.value ,
       })
-  }
+    }
 
-    //console.log(props.usuarios);
-    const [enable, setenable] = useState([])
     const [datos, Setdatos] = useState()
     useEffect(() => {
         Setdatos(props.usuarios); 
@@ -27,26 +35,44 @@ export const CrudUsuarios = (props) => {
     useEffect(() => {
         let i = Object.keys(props.usuarios)
          i = i.length
-        //console.log(i)
+        setenable (Array(i).fill(true));
+        setActivar(Array(i).fill(true));
+        setTextBModificar(Array(i).fill('Modificar'));
         setenable ( Array(i).fill(true));
-        //console.log(enable);
     },[])
 
     const habilitar = (key) =>{
         key = parseInt(key);
         const newArr =[] 
-        let u = Object.keys(props.usuarios);
-        u = u.length;
-        for (let i = 0 ; i < u ; i++){
+        const newArr2 = [];
+        const newArr3 = [];
+        let c = Object.keys(props.usuarios);
+        c = c.length;
+        for (let i = 0 ; i < c ; i++){
             if(i === key){
-                newArr[i]=!enable[i];
+                newArr[i] = !enable[i];
+                if(enable[i] === false){
+                    newArr2[i] = 'Modificar';
+                    setData({
+                        ...data,rol: '', 
+                                email:'',
+                                password:''  
+                      })
+                }else{
+                    newArr2[i] = 'Aceptar';
+                }
+                newArr3[i] = !activar[i];
             }
             if(i !== key){
                 newArr[i]=true;
+                newArr2[i] = 'Modificar';
+                newArr3[i]=true;
             }
 
         }   
         setenable(newArr);
+        setTextBModificar(newArr2);
+        setActivar(newArr3);
     }
 
   return (
@@ -84,9 +110,12 @@ export const CrudUsuarios = (props) => {
                             <td>
                                 <button 
                                     className="btn btn-primary Mod" type="button"
-                                    onClick={()=>
-                                    {props.envioData(datos,key,data) ; habilitar(key); props.setfirst(activar) ; setActivar(!activar)}}
-                                    >{activar ? 'Modificar' : 'Aceptar'}  
+                                    onClick={()=>{
+                                        props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
+                                    }}
+                                    >{textBModificar[key]}  
                                 </button>
                             <div >
                         </div>

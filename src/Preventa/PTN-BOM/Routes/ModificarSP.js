@@ -5,29 +5,27 @@ export const EditSP = () => {
     
     const actualizacionSP = (nombreProv, dataProv, nombreMarca, dataMarca, data,newData)=>{
 
-        var listaProv = [{}]
-        listaProv = dataProv;
+        // var listaProv = [{}]
+        // listaProv = dataProv;
         const proveedorId = {proveedor_id:''}
-        let i = Object.keys(listaProv);
-        if(nombreProv !== dataProv.proveedor_nombre){
-            for (let c = 0; c < i.length; c++) {
-                if (nombreProv === listaProv[c].proveedor_nombre){
-                    proveedorId.proveedor_id = listaProv[c].proveedor_id;
-                }
+        let i = Object.keys(dataProv);
+        for (let c = 0; c < i.length; c++) {
+            if (nombreProv === dataProv[c].proveedor_nombre){
+                proveedorId.proveedor_id = dataProv[c].proveedor_id;
             }
         }
+       
 
-        var listaMarca = [{}]
-        listaMarca = dataMarca;
+        // var listaMarca = [{}]
+        // listaMarca = dataMarca;
         const marcaId = {marca_id:''}
-        let m = Object.keys(listaMarca);
-        if(nombreProv !== dataProv.marca_nombre){
-            for (let c = 0; c < m.length; c++) {
-                if (nombreMarca === listaMarca[c].marca_nombre){
-                    marcaId.marca_id= listaMarca[c].marca_id;
-                }
+        let m = Object.keys(dataMarca);
+        for (let c = 0; c < m.length; c++) {
+            if (nombreMarca === dataMarca[c].marca_nombre){
+                marcaId.marca_id= dataMarca[c].marca_id;
             }
         }
+        
         //console.log(proveedorId.proveedor_id);
         SendEditProy(proveedorId.proveedor_id, marcaId.marca_id,data,newData,data.sp_id) 
    }
@@ -50,7 +48,9 @@ export const EditSP = () => {
             }
         }
         try{
-            console.log(dataActualizacion);
+            //console.log(dataActualizacion);
+            console.log(proveedor_id);
+            console.log(marca_id);
             if(proveedor_id !== dataSP.proveedor_id && proveedor_id !== '' && marca_id !== dataSP.marca_id && marca_id !== ''){
                 // console.log(proveedor_id);
                 // console.log(marca_id);
@@ -58,7 +58,7 @@ export const EditSP = () => {
             }else if(proveedor_id === dataSP.proveedor_id && marca_id !== dataSP.marca_id && marca_id !== ''){
                 // console.log(dataSP.proveedor_id);
                 // console.log(marca_id);
-                await axios.posy(url2 +`/api/cotizador/sp/edit/${sp_id}/${dataSP.proveedor_id}/${marca_id}`, dataActualizacion);
+                await axios.post(url2 +`/api/cotizador/sp/edit/${sp_id}/${dataSP.proveedor_id}/${marca_id}`, dataActualizacion);
             }else if (proveedor_id === '' && marca_id === ''){
                 // console.log(dataSP.proveedor_id);
                 // console.log(dataSP.marca_id);

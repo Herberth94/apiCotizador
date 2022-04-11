@@ -4,8 +4,14 @@ import Table from 'react-bootstrap/Table'
 
 export const CrudMarcas = (props) => {
 
+    /*========================== Mostrar/Ocultar ==========================*/
     const [activar, setActivar] = useState([]);
-    const [textBModificar,setTextBModificar] = useState([]);
+    const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
+    /*=====================================================================*/
+
+    /*========================== Habilitar/Deshabilitar ==========================*/
+    const [enable, setenable] = useState([]);//Inputs
+    /*============================================================================*/
 
     const [data,setData] = useState ({
         marca_nombre:''  
@@ -16,7 +22,6 @@ export const CrudMarcas = (props) => {
       })
     }
 
-    const [enable, setenable] = useState([]);
     const [datos, setDatos] = useState([]);
 
     useEffect(() => {
@@ -43,6 +48,9 @@ export const CrudMarcas = (props) => {
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
                     newArr2[i] = 'Modificar';
+                    setData({
+                        ...data,marca_nombre:''
+                    })
                 }else{
                     newArr2[i] = 'Aceptar';
                 }
@@ -53,6 +61,7 @@ export const CrudMarcas = (props) => {
                 newArr2[i] = 'Modificar';
                 newArr3[i]=true;
             }
+
         }   
         setenable(newArr);
         setTextBModificar(newArr2);
