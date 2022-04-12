@@ -4,6 +4,7 @@ import Table from "react-bootstrap/Table";
 import axios from 'axios';
 import Cookies from "universal-cookie";
 import {url, url2} from "../../../Componentes/Ocultar";
+import { pEstatus1 } from "./ContinuarProyecto";
 /*============== Operacions PTN BOM ==============*/
 import { precioUnitario, calcularDescuento, Total} from "../Operaciones/Operaciones";
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
@@ -318,7 +319,12 @@ function DatosSP({clave} ) {
         }        
       }
 
-      try{
+      if(pEstatus1 === 'En revision'){
+        alert('No se puede continuar el Proyecto porque se encuentra En revision')
+      }else if(pEstatus1 === 'Aceptado'){
+          alert('No se puede continuar el Proyecto porque ha sido Aceptado')
+      }else{
+        try{
           // Inserción a la tabla precio
           const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataPrecio);
           // Obtención del precio_id de la inserción realizada
@@ -340,10 +346,10 @@ function DatosSP({clave} ) {
             await axios.post(url2 + `/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
             alert('Servico/producto registrado exitosamente')
           }
-          
-          }catch (error){
-          alert('Registro de Servico/producto invalido')
-          console.log(error);
+        }catch (error){
+        alert('Registro de Servico/producto invalido')
+        console.log(error);
+        }
       }
   }
   const enviarDatosSP = (event) =>{

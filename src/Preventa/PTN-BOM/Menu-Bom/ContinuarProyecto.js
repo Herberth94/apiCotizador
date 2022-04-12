@@ -20,7 +20,9 @@ let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
-export var proyectoIdCont;
+export let proyectoIdCont;
+export let pEstatus1;
+
 
 function ContinuarProyecto() {
     
@@ -91,6 +93,11 @@ function ContinuarProyecto() {
   /*======================================== Lista de partidas ========================================*/
   // Almacenamiento de las partidas de un proyecto en especifico
   const[listaPartidas, setListaPartidas] = useState([]);
+
+  function getProyEstatus(st){
+    pEstatus1 = st;
+  }
+
   //Almacenamiento de todos las partidas de un proyecto en específico
   async function getDatosPartida(proyecto_id){
       try{
@@ -100,6 +107,14 @@ function ContinuarProyecto() {
           console.log(error);
       }
       proyectoIdCont = proyecto_id;
+      let i = Object.keys(suggestions);
+      i = i.length;
+      for(let c = 0 ; c < i ; c++){
+        if(proyecto_id === suggestions[c].proyecto_id){
+          getProyEstatus(suggestions[c].proyecto_estatus);
+        }
+      }
+      //console.log(pEstatus1); 
   }
   //console.log('Varible global proyecto id:', proyectoIdCont);
   const {getIdP} = InsertDatosPartida();
@@ -329,6 +344,7 @@ function ContinuarProyecto() {
                           type="button" 
                           onClick={() => {
                             getIdP1(suggestions[key].proyecto_id);
+                            getDatosPartida(suggestions[key].proyecto_id); 
                             setid(suggestions[key].proyecto_id);
                             habilitar1(key);
                             }}
