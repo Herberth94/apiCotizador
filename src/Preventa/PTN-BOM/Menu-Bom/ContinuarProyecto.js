@@ -20,7 +20,9 @@ let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
-export var proyectoIdCont;
+export let proyectoIdCont;
+export let pEstatus1;
+
 
 function ContinuarProyecto() {
     
@@ -32,7 +34,15 @@ function ContinuarProyecto() {
   const [show5,setShow5] = useState(true);// Categorias/Finalizar proyecto
   const [show6,setShow6] = useState(true);//Lista de proyectos del usuario activo
   const [show7,setShow7] = useState(true);//Lista de proyectos en los que colabora el usuario activo
+  const [show8,setShow8] = useState(true);//Buscador de proyectos
+  const [show9,setShow9] = useState([]);
+  const [textBVer,setTextBVer] = useState([]);// Texto de los botones de continuar proyecto
+  const [show10,setShow10] = useState([]);
+  const [textBVer1,setTextBVer1] = useState([]);// Texto de los botones de finalizar proyecto
+  const [show11,setShow11] = useState([]);
+  const [textBVer2,setTextBVer2] = useState([]);// Texto de los botones de finalizar proyecto
   /*=====================================================================*/
+
   const [id, setid] = useState([]);
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
@@ -83,6 +93,11 @@ function ContinuarProyecto() {
   /*======================================== Lista de partidas ========================================*/
   // Almacenamiento de las partidas de un proyecto en especifico
   const[listaPartidas, setListaPartidas] = useState([]);
+
+  function getProyEstatus(st){
+    pEstatus1 = st;
+  }
+
   //Almacenamiento de todos las partidas de un proyecto en específico
   async function getDatosPartida(proyecto_id){
       try{
@@ -92,11 +107,117 @@ function ContinuarProyecto() {
           console.log(error);
       }
       proyectoIdCont = proyecto_id;
+      let i = Object.keys(suggestions);
+      i = i.length;
+      for(let c = 0 ; c < i ; c++){
+        if(proyecto_id === suggestions[c].proyecto_id){
+          getProyEstatus(suggestions[c].proyecto_estatus);
+        }
+      }
+      //console.log(pEstatus1); 
   }
   //console.log('Varible global proyecto id:', proyectoIdCont);
   const {getIdP} = InsertDatosPartida();
   const {getIdP1} = InsertDatosCats();
   /*===================================================================================================*/
+  useEffect(() => {
+    let i = Object.keys(suggestions)
+    i = i.length
+    setShow9(Array(i).fill(true));
+    setTextBVer(Array(i).fill('Continuar'));
+    setShow10(Array(i).fill(true));
+    setTextBVer1(Array(i).fill('Finalizar'));
+  },[suggestions])
+
+  useEffect(() => {
+    let i = Object.keys(listaPartidas)
+    i = i.length
+    setShow11(Array(i).fill(true));
+    setTextBVer2(Array(i).fill('Continuar'));
+  },[listaPartidas])
+
+  const habilitar = (key) =>{
+    setShow5(true);
+    key = parseInt(key);
+    const newArr =[];
+    const newArr2 = [];
+    let c = Object.keys(suggestions);
+    c = c.length;
+    setTextBVer1(Array(c).fill('Finalizar'));
+    for (let i = 0 ; i < c ; i++){
+        if(i === key){
+            newArr[i] = !show9[i];
+            setShow(!show);
+            if(show9[i] === false){
+                newArr2[i] = 'Continuar';
+                setShow2(true);
+                setShow3(true);
+                setShow4(true);
+            }else{
+                newArr2[i] = 'Ocultar';
+            }
+        }
+        if(i !== key){
+            newArr[i]=true;
+            newArr2[i] = 'Continuar';
+        }
+    }   
+    setShow9(newArr);
+    setTextBVer(newArr2);
+  }
+
+  const habilitar1 = (key) =>{
+    setShow(true);
+    key = parseInt(key);
+    const newArr =[];
+    const newArr2 = [];
+    let c = Object.keys(suggestions);
+    c = c.length;
+    setTextBVer(Array(c).fill('Continuar'));
+    for (let i = 0 ; i < c ; i++){
+        if(i === key){
+            newArr[i] = !show10[i];
+            setShow5(!show5);
+            if(show10[i] === false){
+                newArr2[i] = 'Finalizar';
+
+            }else{
+                newArr2[i] = 'Ocultar';
+            }
+        }
+        if(i !== key){
+            newArr[i]=true;
+            newArr2[i] = 'Finalizar';
+        }
+    }   
+    setShow10(newArr);
+    setTextBVer1(newArr2);
+  }
+
+  const habilitar2 = (key) =>{
+    key = parseInt(key);
+    const newArr =[];
+    const newArr2 = [];
+    let c = Object.keys(listaPartidas);
+    c = c.length;
+    for (let i = 0 ; i < c ; i++){
+        if(i === key){
+            newArr[i] = !show11[i];
+            setShow4(!show4);
+            if(show11[i] === false){
+                newArr2[i] = 'Continuar';
+            }else{
+                newArr2[i] = 'Ocultar';
+            }
+        }
+        if(i !== key){
+            newArr[i]=true;
+            newArr2[i] = 'Continuar';
+        }
+    }   
+    setShow11(newArr);
+    setTextBVer2(newArr2);
+  }
 
   return (
     /*==================== Continuar Proyecto ====================*/
@@ -119,10 +240,11 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow6(!show6);
                       setShow7(true);
+                      show6 ? setShow8(false):setShow8(true);
                       }}
                       >
                       {" "}
-                      {show6 ? "Ver " : "Ocultar"}{" "}
+                      {show6 ? "Mostrar" : "Ocultar"}{" "}
                       </button>
                   </td>
                   <td>
@@ -132,94 +254,112 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow7(!show7);
                       setShow6(true);
+                      show7 ? setShow8(false):setShow8(true);
                       }}
                       >
                       {" "}
-                      {show7 ? "Ver" : "Ocultar"}{" "}
+                      {show7 ? "Mostrar" : "Ocultar"}{" "}
                       </button>
                   </td>
               </tr>
           </tbody>
       </Table>
-      <Table responsive id="nombreDiv">
-        <thead>
-          <tr className="titulo-tabla-usuarios">
-            <th>Clave</th>
-          </tr>
-        </thead>
+      {show8 ? (
+        <div></div>
+      ):(
+      <div className="table-responsive">
+        {/*============= Titulo Animación =============*/}
+        <Animaciones mytext="Buscar proyectos" />
 
-        <tbody>
-          <tr className="">
-            <td>
-                <input className="agregar"
-                type="text"
-                name="proyecto_clave"
-                onChange={e => onChangeTextClaveP(e.target.value)}
-                value={claveP}
-                placeholder="Ingrese clave del proyecto" />
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-      {/****************************Lista de los Proyectos Creados ****************************************/}
-      {/*============= Titulo Animación =============*/}
-      <div>
-        {" "}
-        <Animaciones mytext="Lista de Proyectos" />{" "}
+        <div className="busqueda-proyectos">
+          <Table responsive id="nombreDiv">
+            <thead>
+              <tr className="titulo-tabla-usuarios">
+                <th>Clave</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr className="">
+                <td>
+                    <input className="agregar"
+                    type="text"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    placeholder="Ingrese clave del proyecto" />
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          {/****************************Lista de los Proyectos Creados ****************************************/}
+          {/*============= Titulo Animación =============*/}
+          <div>
+            {" "}
+            <Animaciones mytext="Lista de Proyectos" />{" "}
+          </div>
+
+          <Table responsive  striped bordered hover size="sm">
+              <thead>
+                <tr className="titulo-tabla-usuarios">
+                  <th>ID</th>
+                  <th>Clave</th>
+                  <th>Descripción</th>
+                  <th>Cliente</th>
+                  <th>Fecha de creación</th>
+                  <th>Fecha de modificación</th>
+                  <th>Estatus</th>
+                  <th>Continuar</th>
+                  <th>Finalizar</th>
+                </tr>
+              </thead>
+                                  
+              <tbody>
+              {Object.keys(suggestions).map((key) => (    
+                  <tr key={suggestions[key].proyecto_id} >
+                      <td>{suggestions[key].proyecto_id}</td>   
+                      <td>{suggestions[key].proyecto_clave}</td>  
+                      <td>{suggestions[key].proyecto_descripcion}</td>  
+                      <td>{suggestions[key].nombre_cliente}</td> 
+                      <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                      <td>{suggestions[key].proyecto_fecha_modificacion}</td>
+                      <td>{suggestions[key].proyecto_estatus}</td>  
+                      <td>
+                        <button 
+                          className="btn btn-primary modificar" 
+                          type="button" 
+                          onClick={() => {
+                            getIdP(suggestions[key].proyecto_id);
+                            getDatosPartida(suggestions[key].proyecto_id); 
+                            setid(suggestions[key].proyecto_id);
+                            habilitar(key);
+                            }}
+                          > 
+                            {textBVer[key]} 
+                          </button>
+                      </td>
+                      <td>
+                        <button 
+                          className="btn btn-primary modificar" 
+                          type="button" 
+                          onClick={() => {
+                            getIdP1(suggestions[key].proyecto_id);
+                            getDatosPartida(suggestions[key].proyecto_id); 
+                            setid(suggestions[key].proyecto_id);
+                            habilitar1(key);
+                            }}
+                          > 
+                            {textBVer1[key]} 
+                          </button>
+                      </td>
+                  </tr>  
+              ))}
+              </tbody>          
+          </Table>
+        </div>
       </div>
+      )}
 
-      <Table responsive  striped bordered hover size="sm">
-          <thead>
-            <tr className="titulo-tabla-usuarios">
-              <th>ID</th>
-              <th>Clave</th>
-              <th>Descripción</th>
-              <th>Cliente</th>
-              <th>Fecha de creción</th>
-              <th>Estatus</th>
-              <th>Continuar</th>
-              <th>Finalizar</th>
-            </tr>
-          </thead>
-                              
-          <tbody>
-          {Object.keys(suggestions).map((key) => (    
-              <tr key={suggestions[key].proyecto_id} >
-                  <td>{suggestions[key].proyecto_id}</td>   
-                  <td>{suggestions[key].proyecto_clave}</td>  
-                  <td>{suggestions[key].proyecto_descripcion}</td>  
-                  <td>{suggestions[key].nombre_cliente}</td> 
-                  <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                  <td>{suggestions[key].proyecto_estatus}</td>  
-                  <td>
-                    <button 
-                      className="btn btn-primary modificar" 
-                      type="button" 
-                      onClick={() => {
-                        getIdP(suggestions[key].proyecto_id);
-                        getDatosPartida(suggestions[key].proyecto_id); 
-                        setid(suggestions[key].proyecto_id);
-                        setShow(!show);}}
-                      > 
-                        {show ? 'Continuar' : 'Ocultar Proyecto'} 
-                      </button>
-                  </td>
-                  <td>
-                    <button 
-                      className="btn btn-primary modificar" 
-                      type="button" 
-                      onClick={() => {
-                        getIdP1(suggestions[key].proyecto_id);
-                        setid(suggestions[key].proyecto_id);
-                        setShow5(!show5);}}
-                      > 
-                        {show5 ? 'Finalizar proyecto' : 'Ocultar Proyecto'} 
-                      </button>
-                  </td>
-              </tr>  
-          ))}
-          </tbody>          
-      </Table>
               {/* <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show) ;   }}>  {show ? 'Continuar' : 'Ocultar Proyecto'}    </button> */}
       {show ? (
         <div >
@@ -243,14 +383,19 @@ function ContinuarProyecto() {
                       type="button" 
                       onClick={() => { 
                         getIdPar('');
-                        setShow2(!show2) ;}}
+                        setShow2(!show2);
+                        setShow3(true);
+                      }}
                       >{show2 ? 'Agregar' : 'Ocultar'} </button>
                   </td>
                   <td>
                     <button 
                       className="btn btn-primary modificar" 
                       type="button" 
-                      onClick={() => { setShow3(!show3) ;}}
+                      onClick={() => { 
+                        setShow3(!show3);
+                        setShow2(true);
+                      }}
                       >{show3 ? 'Continuar' : 'Ocultar'} </button>
                   </td>
               </tr>  
@@ -259,12 +404,8 @@ function ContinuarProyecto() {
       )}
 
       {show2 ? (
-              <div >
-
-
-              </div>
-            ) : (
-              
+              <div ></div>
+      ) : (
               <div  className="arregla"> 
                 <div className="contenido-usuarios">
                   {" "}
@@ -274,17 +415,12 @@ function ContinuarProyecto() {
                 <Partida></Partida>
                             
                 <DatosSP clave={id}/>
-                
-               
               </div>
       )}
 
       {show3 ? (
-              <div >
-
-
-              </div>
-            ) : ( 
+              <div ></div>
+      ) : ( 
               <div className="arregla"> 
                 <div className="contenido-usuarios">
                 <div>
@@ -314,8 +450,9 @@ function ContinuarProyecto() {
                                     className="btn btn-primary modificar" 
                                     onClick={() => {
                                       getIdPar(listaPartidas[key].partida_id);
-                                      setShow4(!show4);}}
-                                    >  {show4 ? 'Continuar' : 'Ocultar Partida'} </button>
+                                      habilitar2(key);
+                                    }}
+                                    >  {textBVer2[key]} </button>
                                   </td> 
                               </tr>  
                           ))}

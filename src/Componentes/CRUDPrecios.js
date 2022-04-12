@@ -139,7 +139,7 @@ export const CrudPrecios = (props) => {
                                 type="number" 
                                 placeholder={activar ? 
                                     (props.estado ? props.precios[key].sp_cantidad : props.precios[key].cd_cantidad) : ""}
-                                value={data.cantidad}
+                                defaultValue={data.cantidad}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="cantidad"
@@ -150,7 +150,7 @@ export const CrudPrecios = (props) => {
                                 className="input-name"
                                 type="number" 
                                 placeholder={activar ? props.precios[key].precio_lista : ""} 
-                                value={data.precio_lista}
+                                defaultValue={data.precio_lista}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_lista" 
@@ -161,7 +161,7 @@ export const CrudPrecios = (props) => {
                                 className="input-name"
                                 type="number" 
                                 placeholder={activar ? props.precios[key].precio_unitario : ""} 
-                                value={data.precio_unitario}
+                                defaultValue={data.precio_unitario}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_unitario" 
@@ -172,7 +172,7 @@ export const CrudPrecios = (props) => {
                                 className="input-name"
                                 type="number" 
                                 placeholder={activar ? props.precios[key].precio_descuento : ""} 
-                                value={data.precio_descuento}
+                                defaultValue={data.precio_descuento}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_descuento" 
@@ -182,7 +182,7 @@ export const CrudPrecios = (props) => {
                                 <input
                                 className="input-name" 
                                 placeholder={props.precios[key].precio_total} 
-                                value={data.precio_total}
+                                defaultValue={data.precio_total}
                                 //disabled={true}
                                 readOnly
                                 disabled={true} 
@@ -194,7 +194,7 @@ export const CrudPrecios = (props) => {
                                 <select 
                                 id="lista-opciones" 
                                 name="precio_id_moneda" 
-                                value={props.precios[key].precio_id_moneda} 
+                                defaultValue={props.precios[key].precio_id_moneda} 
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 >

@@ -7,12 +7,17 @@ import { EditMarcas } from '../Routes/ModificarMarcas';
 import { CrudMarcas } from './CRUDMarcas';
 
 export const CrudProveedores = (props) => {
-
+    /*========================== Mostrar/Ocultar ==========================*/
     const [activar, setActivar] = useState([]);
-    const [textBModificar,setTextBModificar] = useState([]);
-    const [textBVer,setTextBVer] = useState([]);
+    const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
+    const [textBVer,setTextBVer] = useState([]);// Texto de los botones de mostrar
     const [show,setShow] = useState([]);
     const [show2,setShow2] = useState(true);
+    /*=====================================================================*/
+
+    /*========================== Habilitar/Deshabilitar ==========================*/
+    const [enable, setenable] = useState([]);//Inputs
+    /*============================================================================*/
 
     const [data,setData] = useState ({
         proveedor_nombre: '', 
@@ -20,13 +25,13 @@ export const CrudProveedores = (props) => {
         proveedor_email:'',
                
     });
+
     const handleInputChange = (event) => {
         setData ({
           ...data,[event.target.name] : event.target.value
       })
     }
 
-    const [enable, setenable] = useState([]);
     const [datos, Setdatos] = useState();
 
     useEffect(() => {
@@ -40,7 +45,7 @@ export const CrudProveedores = (props) => {
         setActivar(Array(i).fill(true));
         setShow(Array(i).fill(true));
         setTextBModificar(Array(i).fill('Modificar'));
-        setTextBVer(Array(i).fill('Ver marcas'));
+        setTextBVer(Array(i).fill('Mostrar'));
     },[props.proveedores])
 
     const habilitar = (key) =>{
@@ -55,6 +60,11 @@ export const CrudProveedores = (props) => {
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
                     newArr2[i] = 'Modificar';
+                    setData({
+                        ...data,proveedor_nombre: '', 
+                                proveedor_telefono:'',
+                                proveedor_email:'',
+                    })
                 }else{
                     newArr2[i] = 'Aceptar';
                 }
@@ -83,14 +93,14 @@ export const CrudProveedores = (props) => {
                 newArr[i] = !show[i];
                 setShow2(!show2);
                 if(show[i] === false){
-                    newArr2[i] = 'Ver marcas';
+                    newArr2[i] = 'Mostrar';
                 }else{
                     newArr2[i] = 'Ocultar';
                 }
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Ver marcas';
+                newArr2[i] = 'Mostrar';
             }
         }   
         setShow(newArr);
@@ -129,7 +139,7 @@ export const CrudProveedores = (props) => {
                         <th>Teléfono</th>
                         <th>Email</th>
                         <th>Modificar</th>
-                        <th>Ver Marcas</th>
+                        <th>Marcas</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -173,10 +183,10 @@ export const CrudProveedores = (props) => {
                                 className="btn btn-primary Mod"
                                 type="button"
                                 onClick={() => {
-                                props.envioData(datos,key,data); 
                                 habilitar(key); 
+                                props.envioData(datos,key,data); 
                                 props.setfirst(activar[key]);
-                                props.setActualizarProvs(activar[key]);
+                                //props.setActualizarProvs(activar[key]);
                                 }}
                             >{textBModificar[key]}
                             </button>

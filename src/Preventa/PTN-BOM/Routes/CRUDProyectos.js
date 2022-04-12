@@ -11,17 +11,25 @@ import { CrudPartidas } from '../../../Componentes/CRUDPartidas';
 import { CrudCategorias } from '../../../Componentes/CRUDCategorias';
 
 let pId;
+export let pEstatus;
 
 export const CrudProyectos = (props) => {
-    /*======================================== Habilitar/Deshabilitar secciones ========================================*/
+    /*======================================== Habilitar/Deshabilitar ========================================*/
+    const [enable, setenable] = useState([]);// Inputs
+    const [activar, setActivar] = useState([]);
+    /*=========================================================================================================*/
+
+    /*========================== Mostrar/Ocultar ==========================*/
     const[show,setShow] = useState(true); //Menu resumen
     const[show2,setShow2] = useState(true); //Lista de partidas
     const[show3,setShow3] = useState(true); //Lista de categorias
+    const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
+    const [show4,setShow4] = useState([]);
+    const [textBVer,setTextBVer] = useState([]);// Texto de los botones de mostrar
+    /*=====================================================================*/
 
     /*================================================== Proyectos ==================================================*/
         /*========================= Editar =========================*/
-        const [activar, setActivar] = useState(true);
-
         const [data,setData] = useState ({
             proyecto_clave:'',
             proyecto_descripcion:''        
@@ -30,11 +38,10 @@ export const CrudProyectos = (props) => {
         const handleInputChange = (event) => {
             setData ({
             ...data,[event.target.name] : event.target.value ,
-        })
+            })
         }
-        //console.log(props.usuarios);
-        const [enable, setenable] = useState([])
-        const [datos, Setdatos] = useState()
+
+        const [datos, Setdatos] = useState();
         // Almacenamiento del nombre del cliente a buscar
         const [nombreC, setNombreC] = useState([]);
         // Almacenamiento de los clientes semejantes al texto introducido en el input
@@ -43,17 +50,18 @@ export const CrudProyectos = (props) => {
         //const [sCInput, setScInput] = useState([]);
 
         useEffect(() => {
-            Setdatos(props.suggestionsP); 
+            Setdatos(props.suggestionsP);
         },[props.suggestionsP]);
 
 
         useEffect(() => {
             let i = Object.keys(props.suggestionsP)
             i = i.length
-            //console.log(i)
-
             setenable(Array(i).fill(true));
-
+            setShow4(Array(i).fill(true));
+            setActivar(Array(i).fill(true));
+            setTextBModificar(Array(i).fill('Modificar'));
+            setTextBVer(Array(i).fill('Mostrar'));
             const arrayNombresC = []
             //console.log(enable);
             for(let c = 0 ; c < i ;c++){
@@ -68,18 +76,34 @@ export const CrudProyectos = (props) => {
         const habilitar = (key) =>{
             key = parseInt(key);
             const newArr =[] 
+            const newArr2 = [];
+            const newArr3 = [];
             let p = Object.keys(props.suggestionsP);
             p = p.length;
             for (let i = 0 ; i < p ; i++){
                 if(i === key){
-                    newArr[i]=!enable[i];
+                    newArr[i] = !enable[i];
+                    if(enable[i] === false){
+                        newArr2[i] = 'Modificar';
+                        setData({
+                            ...data,proyecto_clave:'',
+                                    proyecto_descripcion:''  
+                        })
+                    }else{
+                        newArr2[i] = 'Aceptar';
+                    }
+                    newArr3[i] = !activar[i];
                 }
                 if(i !== key){
                     newArr[i]=true;
+                    newArr2[i] = 'Modificar';
+                    newArr3[i]=true;
                 }
 
             }   
             setenable(newArr);
+            setTextBModificar(newArr2);
+            setActivar(newArr3);
 
             const arrayNombresC = [];
 
@@ -94,6 +118,31 @@ export const CrudProyectos = (props) => {
                 }
                 setNombreC(arrayNombresC);
             }
+        }
+
+        const habilitar1 = (key) =>{
+            key = parseInt(key);
+            const newArr =[];
+            const newArr2 = [];
+            let c = Object.keys(props.suggestionsP);
+            c = c.length;
+            for (let i = 0 ; i < c ; i++){
+                if(i === key){
+                    newArr[i] = !show4[i];
+                    setShow(!show);
+                    if(show4[i] === false){
+                        newArr2[i] = 'Mostrar';
+                    }else{
+                        newArr2[i] = 'Ocultar';
+                    }
+                }
+                if(i !== key){
+                    newArr[i]=true;
+                    newArr2[i] = 'Mostrar';
+                }
+            }   
+            setShow4(newArr);
+            setTextBVer(newArr2);
         }
         /*==========================================================*/
 
@@ -152,14 +201,26 @@ export const CrudProyectos = (props) => {
             //setNombreC(nombreC);
             setSuggestionsClientes([]);
         }
+        function getProyEstatus(st){
+            pEstatus = st;
+        }
 
         function getIdP (proyecto_id){
             pId = proyecto_id;
-            //console.log(pId);
+            let i = Object.keys(props.suggestionsP);
+            i = i.length;
+            for(let c = 0; c < i ; c++){
+                if(pId === props.suggestionsP[c].proyecto_id){
+                    getProyEstatus(props.suggestionsP[c].proyecto_estatus)
+                }
+            }
+            console.log(pEstatus);
         }
+
+    
         /*============================================================================================*/
     /*===============================================================================================================*/
-
+    
     /*================================================== Partidas ==================================================*/
         /*========================= Resumen - Partidas de un proyecto =========================*/
         // Almacenamiento de las partidas
@@ -210,9 +271,9 @@ export const CrudProyectos = (props) => {
 
         const {actualizacionCats} = EditCats();
         
-        const envioDataCats = (estado,data, key, newdata) => {
+        const envioDataCats = (data, key, newdata) => {
             if(first1){
-                actualizacionCats(estado,data[key], newdata);
+                actualizacionCats(data[key], newdata);
             }
         }
         /*=========================================================================*/
@@ -290,13 +351,12 @@ export const CrudProyectos = (props) => {
                                     <button 
                                     className="btn btn-primary modificar" 
                                     onClick={()=>{
-                                        props.envioDataP(activar,nombreC,props.clientes,datos,key,data);
+                                        props.envioDataP(nombreC,props.clientes,datos,key,data);
                                         habilitar(key); 
-                                        //props.setfirts(activar) ;
-                                        setActivar(!activar)
+                                        props.setfirst(activar[key]);
                                     }}
                                     >
-                                        {activar ? "Modificar":"Aceptar"}
+                                        {textBModificar[key]}
                                     </button> 
                                 </td> 
                                 <td>
@@ -304,9 +364,10 @@ export const CrudProyectos = (props) => {
                                     className="btn btn-primary detalles" 
                                     onClick={() => { 
                                         getIdP(props.suggestionsP[key].proyecto_id);
-                                        setShow(!show)}}
+                                        habilitar1(key);
+                                    }}
                                     >
-                                        {show ? 'Ver más' : 'Ocultar partidas'}
+                                        {textBVer[key]}
                                     </button>
                                 </td> 
                             </tr>  
@@ -326,7 +387,7 @@ export const CrudProyectos = (props) => {
                                     {/*========================== Titulos Tabla ==========================*/}
                                     <thead>
                                         <tr className="titulo-tabla-usuarios">
-                                            <th>Resumen  Partidas</th>
+                                            <th>Resumen Partidas</th>
                                             <th>Resumen Categorias</th>
                                         </tr>
                                     </thead>
@@ -344,7 +405,7 @@ export const CrudProyectos = (props) => {
                                                 }}
                                                 >
                                                 {" "}
-                                                {show2 ? "Ver " : "Ocultar"}{" "}
+                                                {show2 ? "Mostrar" : "Ocultar"}{" "}
                                                 </button>
                                                 {show2 ? (
                                                 <div></div>
@@ -373,7 +434,7 @@ export const CrudProyectos = (props) => {
                                                 }}
                                                 >
                                                 {" "}
-                                                {show3 ? "ver" : "Ocultar"}{" "}
+                                                {show3 ? "Mostrar" : "Ocultar"}{" "}
                                                 </button>
                                                 {show3 ? (
                                                 <div></div>

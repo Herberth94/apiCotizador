@@ -65,6 +65,14 @@ export const CrudCategorias = (props) => {
                     newArr[i] = !enable[i];
                     if(enable[i] === false){
                         newArr2[i] = 'Modificar';
+                        setData({
+                            ...data,cd_id_cats:'',
+                                    cd_no_parte:'',
+                                    cd_descripcion:'',
+                                    cd_meses:'',
+                                    cd_semanas:'',
+                                    cd_comentarios:'',  
+                        })
                     }else{
                         newArr2[i] = 'Aceptar';
                     }
@@ -132,10 +140,6 @@ export const CrudCategorias = (props) => {
         
         const envioDataPrecio = (estado, data, key, newdata) => {
             if(first){
-                // console.log('Old Cantidad:',data[key].sp_cantidad);
-                // console.log('New Cantidad:',datacant);
-                // console.log('Old Data Precio:',data[key]);
-                // console.log('New Data Precio:',newdata);
                 actualizacionPrecio(estado, data[key], newdata);
             }
         }

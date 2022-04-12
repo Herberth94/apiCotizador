@@ -9,17 +9,15 @@ function limpiar(){
 export function precioUnitario(precioLista, Descuento) {
 
     limpiar();
-    pUnitario = parseFloat((precioLista * Descuento) / 100);
+    pUnitario = parseFloat(( parseFloat(precioLista) *  parseFloat(Descuento)) / 100);
     pUnitario = precioLista - pUnitario;
-  
-
     return pUnitario;
 
-
-
-
-
  
+}
+
+function oprop (props){
+let a = props.canti * props.canti2;
 }
 
 
@@ -27,10 +25,9 @@ export function precioUnitario(precioLista, Descuento) {
 
 export function calcularDescuento(precioLista, precioUnitario) {
     limpiar();
-       Descuento = parseFloat(100 - (precioUnitario * 100) / precioLista);
+       Descuento = parseFloat(100 - ( parseFloat(precioUnitario) * 100) /  parseFloat(precioLista));
 
-    
-    
+    Descuento = Descuento.toFixed(3)
             return Descuento;
 
 }

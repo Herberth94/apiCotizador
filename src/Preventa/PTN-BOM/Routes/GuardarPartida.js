@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import Cookies from "universal-cookie";
-import {url2} from "../../../Componentes/Ocultar";
+import { url2 } from "../../../Componentes/Ocultar";
+import { pEstatus1 } from "../Menu-Bom/ContinuarProyecto";
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
@@ -50,26 +51,33 @@ export const InsertDatosPartida = () => {
             partida_nombre: datosPartida.partida_nombre,
             partida_descripcion: datosPartida.partida_descripcion
         };
-        try{
-            // Obtención del id del último proyecto insertado del usuario activo
-            const resGetProyectos = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-            listaProyectos = resGetProyectos.data.data.pop();
-            proyectoId.proyecto_id = listaProyectos.proyecto_id;
 
-            if(pId !== proyectoId.proveedor_id && pId!== ''){
-                await axios.post(url2 +`/api/cotizador/partida/${pId}`, data);
-                //console.log(pId);
-                alert('Registro exitoso')
-            }else{
-                await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
-                //console.log(proyectoId.proyecto_id);
-                alert('Registro exitoso')
+        if(pEstatus1 === 'En revision'){
+            alert('No se puede continuar el Proyecto porque se encuentra En revision')
+        }else if(pEstatus1 === 'Aceptado'){
+            alert('No se puede continuar el Proyecto porque ha sido Aceptado')
+        }else{
+            try{
+                // Obtención del id del último proyecto insertado del usuario activo
+                const resGetProyectos = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                listaProyectos = resGetProyectos.data.data.pop();
+                proyectoId.proyecto_id = listaProyectos.proyecto_id;
+    
+                if(pId !== proyectoId.proveedor_id && pId!== ''){
+                    await axios.post(url2 +`/api/cotizador/partida/${pId}`, data);
+                    //console.log(pId);
+                    alert('Registro exitoso')
+                }else{
+                    await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
+                    //console.log(proyectoId.proyecto_id);
+                    alert('Registro exitoso')
+                }
+                
+            }catch (error){
+                console.log(error);
             }
-            
         }
-        catch (error){
-            console.log(error);
-        }
+        
     }
 
     const enviarDatosPartida = (event) =>{
