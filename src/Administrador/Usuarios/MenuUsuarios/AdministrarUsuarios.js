@@ -41,7 +41,8 @@ function AdministrarUsuarios() {
         console.log("este es el email", email)
         console.log("este es el id usuario", id_usuario)
         const respuesta = await axios.post(url2 + `/api/cotizador/edit/pass/${id_usuario}`, {password:newpassword, estado_login});
-        alert('Reseteo de la contraseña efectuado exitosamente')
+        const respuestaBack = respuesta.data.msg
+        alert(respuestaBack)
     }
 
 

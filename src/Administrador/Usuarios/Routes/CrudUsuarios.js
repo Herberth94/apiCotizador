@@ -9,7 +9,8 @@ export const CrudUsuarios = (props) => {
     const [data,setData] = useState ({
         rol: '', 
         email  :'',
-        password:''         
+        password:'',
+        estado_login: 0        
     });
     const handleInputChange = (event) => {
         setData ({

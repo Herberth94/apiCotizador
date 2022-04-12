@@ -36,9 +36,9 @@ export const useRegistro = () => {
      /*    const respuesta = await axios.put(`http://localhost:4001/api/cotizador/edit/${id}`,dataActulizacion);
  */
         const respuesta = await axios.post(url2 +`/api/cotizador/edit/${id}`,dataActulizacion);
-        const send2= respuesta.data;
+        const send2= respuesta.data.msg;
         console.log(send2);
-        //alert('Dato Actualizado');
+        alert(send2);
            
         } catch (error) {
            console.log(error);

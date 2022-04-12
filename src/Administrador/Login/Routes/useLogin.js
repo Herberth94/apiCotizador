@@ -26,7 +26,7 @@ export const useLogin = () => {
             password : datos.password       
     };
     
-        // el URL se tiene que cambiar por la ruta donde ira a lojado la aplicación
+        // el URL se tiene que cambiar por la ruta donde ira alojado la aplicación
         const respuesta = await axios.post( url + '/api/cotizador/login',data);
         const send2= respuesta.data;
         console.log(send2)

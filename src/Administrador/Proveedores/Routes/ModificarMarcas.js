@@ -21,8 +21,10 @@ export const EditMarcas = () => {
         } 
 
         try {
-            await axios.post(url2 + `/api/cotizador/marca/edit/${id}`,dataActualizacion);
-            alert('Marca actualizada');
+            const respuesta = await axios.post(url2 + `/api/cotizador/marca/edit/${id}`,dataActualizacion);
+            const respuestaBack = respuesta.data.msg;
+            console.log(respuestaBack);
+            alert(respuestaBack);  
             } catch (error) {
                 console.log(error); 
                 alert('Error al actualizar la Marca');  

@@ -23,8 +23,10 @@ export const EditProvs = () => {
         } 
 
         try {
-            await axios.post(url2 + `/api/cotizador/proveedor/edit/${id}`,dataActualizacion);
-            alert('Proveedor actualizado');
+            const respuesta = await axios.post(url2 + `/api/cotizador/proveedor/edit/${id}`,dataActualizacion);
+            const respuestaBack = respuesta.data.msg;
+            console.log(respuestaBack);
+            alert(respuestaBack);  
         } catch (error) {
             console.log(error);
             alert('Error al actualizar el Proveedor');

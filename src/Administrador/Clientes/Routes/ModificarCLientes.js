@@ -29,10 +29,9 @@ export const useRegistro = () => {
             //const respuesta = await axios.put(url2 + `/api/cotizador/clientes/update/${id}`,dataActulizacion);
             //console.log(respuesta.data) ;
             const respuesta = await axios.post(url2 + `/api/cotizador/clientes/update/${id}`,dataActualizacion);
-            return respuesta.data;
-            //console.log(send2);
-            //alert('Dato Actualizado');
-                
+            const respuestaBack = respuesta.data.msg;
+            console.log(respuestaBack);
+            alert(respuestaBack);    
             } catch (error) {
             console.log(error);
                 

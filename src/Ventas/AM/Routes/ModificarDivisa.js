@@ -24,8 +24,9 @@ export const EditDivisa = () => {
         try {
             // console.log(dataActualizacion);
             // console.log(proyecto_id);
-            await axios.put(url2 + `/api/cotizador/proyecto/updateDiv/${proyecto_id}`,dataActualizacion);
-            alert('Divisa editada exitosamente');
+            const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateDiv/${proyecto_id}`,dataActualizacion);
+            const send2= respuesta.data.msg;
+            alert(send2);
             } catch (error) {
             console.log(error);
             alert('Edición de Divisa invalido');
