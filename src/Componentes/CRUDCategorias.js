@@ -138,9 +138,9 @@ export const CrudCategorias = (props) => {
 
         const {actualizacionPrecio} = EditPrecio();
         
-        const envioDataPrecio = (data, key, newdata) => {
+        const envioDataPrecio = (estado, data, key, newdata) => {
             if(first){
-                actualizacionPrecio(props.estado, data[key], newdata);
+                actualizacionPrecio(estado, data[key], newdata);
             }
         }
         /*=========================================================================*/

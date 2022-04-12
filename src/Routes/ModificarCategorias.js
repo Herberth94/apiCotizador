@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 import {url2} from "../Componentes/Ocultar";
-
+import {pEstatus} from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
 
 export const EditCats = () => {
     
@@ -26,14 +26,20 @@ export const EditCats = () => {
                 dataActualizacion[keys] = newData[keys];
             }
         }
-        try{
-            //console.log(dataActualizacion);
-            await axios.post(url2 + `/api/cotizador/catd/edit/${cd_id}`, dataActualizacion);
-            alert('Datos de una categoria editados exitosamente')
 
-        }catch (error){
-            console.log(error);
-            alert('Error al editar los datos de una Categoria')
+        if(pEstatus === 'En revision'){
+            alert('El proyecto no puede ser editado porque se encuentra En revision')
+        }else if(pEstatus === 'Aceptado'){
+            alert('El proyecto no puede ser editado porque ha sido Aceptado')
+        }else{
+            try{
+                //console.log(dataActualizacion);
+                await axios.post(url2 + `/api/cotizador/catd/edit/${cd_id}`, dataActualizacion);
+                alert('Datos de una categoria editados exitosamente');
+            }catch (error){
+                console.log(error);
+                alert('Error al editar los datos de una Categoria');
+            }
         }
     }
 

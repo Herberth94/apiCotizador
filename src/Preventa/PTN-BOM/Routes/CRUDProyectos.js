@@ -11,6 +11,7 @@ import { CrudPartidas } from '../../../Componentes/CRUDPartidas';
 import { CrudCategorias } from '../../../Componentes/CRUDCategorias';
 
 let pId;
+export let pEstatus;
 
 export const CrudProyectos = (props) => {
     /*======================================== Habilitar/Deshabilitar ========================================*/
@@ -200,14 +201,26 @@ export const CrudProyectos = (props) => {
             //setNombreC(nombreC);
             setSuggestionsClientes([]);
         }
+        function getProyEstatus(st){
+            pEstatus = st;
+        }
 
         function getIdP (proyecto_id){
             pId = proyecto_id;
-            //console.log(pId);
+            let i = Object.keys(props.suggestionsP);
+            i = i.length;
+            for(let c = 0; c < i ; c++){
+                if(pId === props.suggestionsP[c].proyecto_id){
+                    getProyEstatus(props.suggestionsP[c].proyecto_estatus)
+                }
+            }
+            console.log(pEstatus);
         }
+
+    
         /*============================================================================================*/
     /*===============================================================================================================*/
-
+    
     /*================================================== Partidas ==================================================*/
         /*========================= Resumen - Partidas de un proyecto =========================*/
         // Almacenamiento de las partidas

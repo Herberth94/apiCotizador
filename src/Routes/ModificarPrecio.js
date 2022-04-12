@@ -1,7 +1,6 @@
-import  {useState} from 'react';
 import axios from 'axios';
-import {precioUnitario, calcularDescuento, Total} from "../Preventa/PTN-BOM/Operaciones/Operaciones";
 import {url2} from "../Componentes/Ocultar";
+import {pEstatus} from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
 
 export const EditPrecio = () => {
     const actualizacionPrecio = (estado,data,newdata)=>{
@@ -51,25 +50,33 @@ export const EditPrecio = () => {
             }
         }
          
-        try {
-            console.log('Precios:',dataActualizacion1);
-            if(estado){
-                console.log('Cantidad_sp:',dataActualizacion2);
-                await axios.post(url2 + `/api/cotizador/precio/edit/${precio_id}`,dataActualizacion1);
-                await axios.post(url2 + `/api/cotizador/sp/editCant/${id}`,dataActualizacion2);
-                alert('Precio editado exitosamente');
-            }else{
-                console.log('Cantidad_cd:',dataActualizacion3);
-                await axios.post(url2 + `/api/cotizador/precio/edit/${precio_id}`,dataActualizacion1);
-                await axios.post(url2 + `/api/cotizador/catd/editCant/${id}`,dataActualizacion3);
-                alert('Precio editado exitosamente');           
-            }
-            // console.log(dataActualizacion1);
-            // console.log(id);
+        if(pEstatus === 'En revision'){
+            alert('El proyecto no puede ser editado porque se encuentra En revision')
+        }else if(pEstatus === 'Aceptado'){
+            alert('El proyecto no puede ser editado porque ha sido Aceptado')
+        }else{
+            try {
+                //console.log('Precios:',dataActualizacion1);
+                if(estado){
+                    //console.log('Cantidad_sp:',dataActualizacion2);
+                    await axios.post(url2 + `/api/cotizador/precio/edit/${precio_id}`,dataActualizacion1);
+                    await axios.post(url2 + `/api/cotizador/sp/editCant/${id}`,dataActualizacion2);
+                    alert('Precio editado exitosamente');
+                }else{
+                    //console.log('Cantidad_cd:',dataActualizacion3);
+                    await axios.post(url2 + `/api/cotizador/precio/edit/${precio_id}`,dataActualizacion1);
+                    await axios.post(url2 + `/api/cotizador/catd/editCant/${id}`,dataActualizacion3);
+                    alert('Precio editado exitosamente');           
+                }
+                // console.log(dataActualizacion1);
+                // console.log(id);
             } catch (error) {
             console.log(error);
             alert('Edición de precio invalido');
             }
+        }
+
+
     }
     return {
         actualizacionPrecio

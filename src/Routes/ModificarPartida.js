@@ -4,30 +4,15 @@ import axios from 'axios';
 
 
 import {url2} from "../Componentes/Ocultar";
-
-
-
-
+import { pEstatus } from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
 
 export const EditPartida = () => {
-
-//     const [datos,setDatos] = useState ({
-//           partida_nombre: '', 
-//           partida_descripcion:''
-//     });
-
-//    const handleInputChangePartida = (event) => {
-//           setDatos ({
-//             ...datos,[event.target.name] : event.target.value ,
-//         })
-//     }
 
     const actualizacionPar = (data,newdata)=>{
         SendUpdatePartida(data,data.partida_id,newdata)      
     }
 
     async function SendUpdatePartida (data,id,newdata){
-        //console.log(datos);
         const dataActualizacion = {
             partida_nombre:data.partida_nombre, 
             partida_descripcion:data.partida_descripcion
@@ -40,14 +25,20 @@ export const EditPartida = () => {
             }    
         } 
         
-        try {
-            // console.log(dataActualizacion);
-            await axios.put(url2 + `/api/cotizador/partida/update/${id}`,dataActualizacion);
-            alert('Partida editada exitosamente'); 
+
+        if(pEstatus === 'En revision'){
+            alert('El proyecto no puede ser editado porque se encuentra En revision')
+        }else if(pEstatus === 'Aceptado'){
+            alert('El proyecto no puede ser editado porque ha sido Aceptado')
+        }else{
+            try {
+                await axios.put(url2 + `/api/cotizador/partida/update/${id}`,dataActualizacion);
+                alert('Partida editada exitosamente'); 
             }catch (error){
                 alert('Edición de Partida invalido');
                 console.log(error);
             }
+        } 
     }
     return {
         actualizacionPar
