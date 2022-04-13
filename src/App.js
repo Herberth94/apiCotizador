@@ -96,7 +96,7 @@ function App() {
 
 
 
-        <Preventa path="/asignar" component={AsignarProyecto} />
+        <Preventa path="/asignar" component={MenuVentas2} />
         <Preventa path="/ptn" component={ PTN_BOM} />
         <Preventa path="/calculadora" component={MenuHeramientas} />
 

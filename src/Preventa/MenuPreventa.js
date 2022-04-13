@@ -67,9 +67,9 @@ function MenuPreventa() {
      
           <li className="has-subnav">
             <a href="/asignar">
-              <i className="bi bi-briefcase fa-2x"></i>
+              <i className="bi bi-list"></i>
               <span className="nav-text">
-           Asignar Proyecto
+            Menú ventas
               </span>
             </a>           
           </li>
