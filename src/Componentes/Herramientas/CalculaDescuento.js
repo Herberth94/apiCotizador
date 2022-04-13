@@ -95,11 +95,9 @@ validaOperacion = !validaOperacion;
                 {/*======================== Cantidad ==========================*/}
                 <td>
                 <label className="switch">
-  <input type="checkbox" id="checa"     onClick={checa}/>
-  <span className="slider"></span>
-</label>
-                    
-                  
+                <input type="checkbox" id="checa"     onClick={checa}/>
+                <span className="slider"></span>
+                </label>   
                 </td>
                
                

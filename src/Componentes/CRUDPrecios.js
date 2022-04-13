@@ -6,6 +6,8 @@ import Table from 'react-bootstrap/Table'
 import Animaciones from './Animaciones';
 import { precioUnitario, calcularDescuento, Total} from "../Preventa/PTN-BOM/Operaciones/Operaciones";
 
+let validaOperacion = false;
+
 export const CrudPrecios = (props) => {
     /*================================================== Partidas ==================================================*/
         /*========================= Editar =========================*/
@@ -80,37 +82,55 @@ export const CrudPrecios = (props) => {
         }
         /*==========================================================*/
 
-        /*=================================== Operaciones de los datos de los precios ===================================*/
-  useEffect(()=>{
-    let precio_u='';
-    if (data.precio_lista !== '' &&  data.precio_descuento !== '' && data.cantidad !== '') {
-      precio_u = precioUnitario(data.precio_lista, data.precio_descuento);
-      const total = Total(precio_u, data.cantidad);
-      setData({ ...data, precio_unitario: precio_u , precio_total:total});
-    }
-  
-  },[data.precio_lista,data.precio_descuento])
-  /*================================================================================*/
-  useEffect(()=>{
-    let total='';
-    let desc_='';
-    if (data.precio_unitario !== '' && data.cantidad !== '') {
-      const total = Total(data.precio_unitario, data.cantidad)
-      setData({ ...data, precio_total: total })
-    }
-    if (data.precio_unitario == '' || data.cantidad == '') {
-      setData({ ...data, precio_total: total , precio_descuento:desc_ })
-    }
-  },[data.precio_unitario,data.cantidad])
-  /*================================================================================*/
-  useEffect(()=>{
-    if(data.precio_lista !=='' && data.precio_unitario !==''){
-      const desc = calcularDescuento(data.precio_lista, data.precio_unitario);
-      setData({ ...data, precio_descuento: desc });}
-    },[data.precio_unitario])
-    
-  /*===================================================================================================================*/
+    function checa(){
+
+        validaOperacion = !validaOperacion;
         
+    }
+            
+///CALCULAR DESCUENTO
+      /*================================================================================*/
+      useEffect(()=>{
+
+        if(data.precio_lista !=='' && data.precio_unitario !==''  && validaOperacion === false){
+          const desc = calcularDescuento(data.precio_lista, data.precio_unitario);
+          const total = Total(data.precio_unitario,data.cantidad)
+          setData({ ...data,precio_total:total, precio_descuento: desc });}
+       
+        if(data.precio_lista === '' || data.precio_unitario === ''){
+          setData({ ...data,precio_descuento:''});
+        }
+
+        },[data.cantidad,data.precio_lista,data.precio_unitario])
+
+
+///CALCULAR PRECIO UNITARIO
+      /*===================================================================================================================*/
+      useEffect(()=>{
+        let precio_u='';
+        if (data.precio_lista !== '' &&  data.precio_descuento !== ''  &&  validaOperacion ===true) {
+          precio_u = precioUnitario(data.precio_lista, data.precio_descuento);
+          const total = Total(precio_u, data.cantidad);
+          if( data.precio_descuento < 0 || data.precio_descuento > 100 ){
+          // alert("Advertencia Porcentaje Invalido")
+          }
+          setData({ ...data, precio_total:total,precio_unitario:precio_u});
+        }
+      
+      },[data.precio_descuento,data.precio_lista,data.cantidad])
+
+      //OBTENER TOTALES
+
+//checar
+           /*===================================================================================================================*/
+           useEffect(()=>{
+
+            if(data.precio_unitario === '' || data.cantidad === ''){
+              setData({ ...data,precio_total:''});
+            } 
+          
+          },[,data.precio_unitario,data.cantidad])
+
     return (
         <div>
            {/* <form> */}
@@ -119,6 +139,7 @@ export const CrudPrecios = (props) => {
                 <thead>
                     <tr className="titulo-tabla-usuarios">
                         <th>ID</th>
+                        <th>Función</th>
                         <th>Cantidad</th>
                         <th>Precio Lista</th>
                         <th>Precio Unitario</th>
@@ -134,12 +155,18 @@ export const CrudPrecios = (props) => {
                         <tr key={props.precios[key].precio_id}>
                             <td>{props.precios[key].precio_id}</td>
                             <td>
+                                <label className="switch">
+                                <input type="checkbox" id="checa"     onClick={checa}/>
+                                <span className="slider"></span>
+                                </label>   
+                            </td>
+                            <td>
                                 <input
                                 className="input-name"
                                 type="number" 
                                 placeholder={activar ? 
                                     (props.estado ? props.precios[key].sp_cantidad : props.precios[key].cd_cantidad) : ""}
-                                defaultValue={data.cantidad}
+                                value={data.cantidad}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="cantidad"
@@ -150,7 +177,7 @@ export const CrudPrecios = (props) => {
                                 className="input-name"
                                 type="number" 
                                 placeholder={activar ? props.precios[key].precio_lista : ""} 
-                                defaultValue={data.precio_lista}
+                                value={data.precio_lista}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_lista" 
@@ -161,7 +188,7 @@ export const CrudPrecios = (props) => {
                                 className="input-name"
                                 type="number" 
                                 placeholder={activar ? props.precios[key].precio_unitario : ""} 
-                                defaultValue={data.precio_unitario}
+                                value={data.precio_unitario}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_unitario" 
@@ -172,7 +199,7 @@ export const CrudPrecios = (props) => {
                                 className="input-name"
                                 type="number" 
                                 placeholder={activar ? props.precios[key].precio_descuento : ""} 
-                                defaultValue={data.precio_descuento}
+                                value={data.precio_descuento}
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="precio_descuento" 
@@ -182,7 +209,7 @@ export const CrudPrecios = (props) => {
                                 <input
                                 className="input-name" 
                                 placeholder={props.precios[key].precio_total} 
-                                defaultValue={data.precio_total}
+                                value={data.precio_total}
                                 //disabled={true}
                                 readOnly
                                 disabled={true} 
@@ -194,7 +221,7 @@ export const CrudPrecios = (props) => {
                                 <select 
                                 id="lista-opciones" 
                                 name="precio_id_moneda" 
-                                defaultValue={props.precios[key].precio_id_moneda} 
+                                value={props.precios[key].precio_id_moneda} 
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 >
