@@ -85,9 +85,11 @@ export const InsertDatosCats = () => {
                     const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataP);
                     // Obtención del precio_id de la inserción realizada
                     data.cd_id_precio = resPrecio.data.data.insertId;
-                    await axios.post(url2 + `/api/cotizador/catd/agregar/${proyectoId.proyecto_id}`,data);
+                    const respuesta = await axios.post(url2 + `/api/cotizador/catd/agregar/${proyectoId.proyecto_id}`,data);
                     //console.log(pId);
-                    alert('Se agregaron los datos de una categoria correctamente');
+                    const respuestaBack = respuesta.data.msg;
+                    alert(respuestaBack);
+                    // alert('Se agregaron los datos de una categoria correctamente');
                 }else{
                     //console.log(data);
                     //console.log(dataP);
@@ -97,14 +99,16 @@ export const InsertDatosCats = () => {
                     const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataP);
                     // Obtención del precio_id de la inserción realizada
                     data.cd_id_precio = resPrecio.data.data.insertId;
-                    await axios.post(url2 + `/api/cotizador/catd/agregar/${proyectoId.proyecto_id}`,data);
+                    const respuesta2 = await axios.post(url2 + `/api/cotizador/catd/agregar/${proyectoId.proyecto_id}`,data);
                     //console.log(pId);
-                    alert('Se agregaron los datos de una categoría correctamente');
+                    const respuestaBack2 = respuesta2.data.msg;
+                    alert(respuestaBack2);
+                    // alert('Se agregaron los datos de una categoría correctamente');
                 }
             }
             catch (error){
                 console.log(error);
-                alert('Error al agregar los datos de una categoría');
+                alert('Error al agregar los datos de una categoría, asegurate de seleccionar el tipo de categoría y moneda');
             }
         }
     }

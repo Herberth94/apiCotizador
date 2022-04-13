@@ -337,17 +337,21 @@ function DatosSP({clave} ) {
 
           //Inserción a las tablas sp , psp, y sp_proveedor_marcas
           if(parId !== partidaId.partida_id && parId !== '' ){
-            //console.log(parId);
-            await axios.post(url2 + `/api/cotizador/sp/agregar/${parId}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
-            //console.log('Despues de la insersión:', parId);
-            alert('Servico/producto registrado exitosamente')
+            console.log(parId);
+            const respuesta = await axios.post(url2 + `/api/cotizador/sp/agregar/${parId}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+            console.log('Despues de la insersión:', parId);
+            const respuestaBack = respuesta.data.msg
+            console.log(respuestaBack)
+            alert(respuestaBack)
           }else{
-            //console.log(partidaId.partida_id);
-            await axios.post(url2 + `/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
-            alert('Servico/producto registrado exitosamente')
+            console.log("else",partidaId.partida_id);
+            const respuesta = await axios.post(url2 + `/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+            const respuestaBack = respuesta.data.msg
+            console.log(respuestaBack)
+            alert(respuestaBack)
           }
         }catch (error){
-        alert('Registro de Servico/producto invalido')
+        alert('Registro de Servicio/producto invalido, revisa que hayas seleccionado correctamente el proveedor y la marca, y el tipo de moneda y categoría')
         console.log(error);
         }
       }

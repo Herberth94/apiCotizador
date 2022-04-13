@@ -64,13 +64,15 @@ export const InsertDatosPartida = () => {
                 proyectoId.proyecto_id = listaProyectos.proyecto_id;
     
                 if(pId !== proyectoId.proveedor_id && pId!== ''){
-                    await axios.post(url2 +`/api/cotizador/partida/${pId}`, data);
+                    const respuesta = await axios.post(url2 +`/api/cotizador/partida/${pId}`, data);
                     //console.log(pId);
-                    alert('Registro exitoso')
+                    const respuestaBack = respuesta.data.msg;
+                    alert(respuestaBack);
                 }else{
-                    await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
+                    const respuesta2 = await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
                     //console.log(proyectoId.proyecto_id);
-                    alert('Registro exitoso')
+                    const respuestaBack2 = respuesta2.data.msg;
+                    alert(respuestaBack2);
                 }
                 
             }catch (error){
