@@ -18,7 +18,7 @@ let validatorrol = cookies.get('rol');
 let validatorid = cookies.get('id_usuario');
 
 
-function AdministrarColaboradores() {
+function AdministrarColaboradores(props) {
   /*========================== Mostrar/Ocultar ==========================*/
   const [show2,setShow2] = useState(true);//Tabla colaboradores
   const [textBVer,setTextBVer] = useState([]);//Texto de los botones
@@ -74,9 +74,16 @@ function AdministrarColaboradores() {
   //Función que consulta todas las marcas existentes
   const getColabs = async (pId) => {
       try {
-          const resColabs =  await axios.get(url2 + `/api/cotizador/colaboradores/view/${pId}`)
-          setListaColabs(resColabs.data.data);
+          if(props.estado){
+            const resColabs =  await axios.get(url2 + `/api/cotizador/viewUsersVentaP/${pId}`);
+            setListaColabs(resColabs.data.reSql);
+          }else{
+            const resColabs =  await axios.get(url2 + `/api/cotizador/colaboradores/view/${pId}`);
+            setListaColabs(resColabs.data.data);
+          }
+          
       } catch(error){console.log(error)}
+      console.log(listaColabs);
   }
   /*===================================================================================================================*/
   
@@ -92,6 +99,8 @@ function AdministrarColaboradores() {
     const newArr =[];
     const newArr2 = [];
     let c = Object.keys(suggestions);
+    console.log('suggesKeys:',suggestions);
+    console.log('suggesKeys:',c);
     c = c.length;
     for (let i = 0 ; i < c ; i++){
         if(i === key){
@@ -158,7 +167,7 @@ function AdministrarColaboradores() {
                                 
             <tbody>
             {Object.keys(suggestions).map((key) => (    
-                <tr key={suggestions[key].proyecto_id} >
+                <tr key={parseInt(key)} >
                     <td>{suggestions[key].proyecto_id}</td>   
                     <td>{suggestions[key].proyecto_clave}</td>  
                     <td>{suggestions[key].proyecto_descripcion}</td>  
@@ -194,6 +203,7 @@ function AdministrarColaboradores() {
             <br />
             <CrudColaboradores
                 colabs={listaColabs}
+                estado={props.estado}
                 //envioData={envioData}
                 //setfirst={setfirst}
             />

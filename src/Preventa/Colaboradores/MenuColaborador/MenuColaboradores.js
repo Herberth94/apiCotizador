@@ -69,7 +69,9 @@ function MenuColaboradores() {
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-            < AdministrarColaboradores/>
+            < AdministrarColaboradores
+              estado={false}
+            />
           </div>
         )}
       </td>

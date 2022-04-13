@@ -76,7 +76,9 @@ function MenuVentas() {
         ) : (
           <div className="arregla">
             {/*========================== Llamado al Componente ==========================*/}
-            < AdministrarColaboradores/>
+            < AdministrarColaboradores
+              estado={true}
+            />
           </div>
         )}
       </td>

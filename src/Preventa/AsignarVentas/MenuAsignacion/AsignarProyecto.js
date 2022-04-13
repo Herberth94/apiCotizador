@@ -44,15 +44,15 @@ function AsignarProyecto() {
         if (validatorrol === "administrador") {
           const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
           setListaProyectos(resProy.data.data);
-          console.log(resProy.data.data)
+          //console.log(resProy.data.data)
         } else {
           const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
           setListaProyectos(resProy.data.data);
-          console.log("hola soy el else del getproyectos", resProy.data.data)
+          //console.log("hola soy el else del getproyectos", resProy.data.data)
         }
-        const users = await axios.get(url + '/api/cotizador//viewUsersVenta');
+        const users = await axios.get(url + '/api/cotizador/viewUsersVenta');
         setListaUsuarios(users.data.reSql);
-        console.log("hola soy el users data", users.data.reSql)
+        //console.log("hola soy el users data", users.data.reSql)
 
       } catch (error) {
         console.log(error);
@@ -80,8 +80,8 @@ function AsignarProyecto() {
     setClaveP(clave);
     setSuggestionsProyectos([]);
     setIdProyecto(proyecto_id)
-    console.log("id_proyecto: ", proyecto_id)
-    console.log("hola soy la clave del proyecto", clave)
+    //console.log("id_proyecto: ", proyecto_id)
+    //console.log("hola soy la clave del proyecto", clave)
   }
 
   // Función que realiza la busqueda de los usuarios semejantes al email introducido
@@ -102,7 +102,7 @@ function AsignarProyecto() {
     setEmailU(email);
     setSuggestionsUsuarios([]);
     setIdUsuarios(id_usuario);
-    console.log("id usuario dentro del onsuggest", id_usuario)
+    //console.log("id usuario dentro del onsuggest", id_usuario)
   }
 
   // Almacenamiento del id cliente encontrado en la busqueda

@@ -5,12 +5,18 @@ import { url2 } from '../../../Componentes/Ocultar';
 
 
 export const CrudColaboradores = (props) => {
+
     const deleteColab = async (cId) => {
         const confirmacion = window.confirm("¿Seguro que quieres borrar este Colaborador?" );
         if (confirmacion) {
             try {
-                await axios.delete(url2 + `/api/cotizador/colaboradores/delete/${cId}`);
-                alert('Colaborador eliminado exitosamente');
+                if(props.estado){
+                    await axios.delete(url2 + `/api/cotizador/delete/${cId}`);
+                    alert('Colaborador eliminado exitosamente');
+                }else{
+                    await axios.delete(url2 + `/api/cotizador/colaboradores/delete/${cId}`);
+                    alert('Colaborador eliminado exitosamente');
+                }
             } catch (error) {
                 alert('Error al eliminar Colaborador');
             }
@@ -34,17 +40,19 @@ export const CrudColaboradores = (props) => {
                 <tbody>
                     {/*=================== Tabla de los colaboradores de un Proyecto =================*/}
                     {Object.keys(props.colabs).map((key) => (
-                    <tr key={props.colabs[key].colab_id}>
-                        <td>{props.colabs[key].id_usuario}</td>
+                    <tr key={props.estado ? props.colabs[parseInt(key)].id_usuario : props.colabs[parseInt(key)].colab_id }>
+                        <td>{props.colabs[parseInt(key)].id_usuario}</td>
                         {/*=================== Nombre/Email del Colaborador =================*/}
-                        <td>{props.colabs[key].email}</td>
+                        <td>{props.colabs[parseInt(key)].email}</td>
                         {/*=================== Botón Eliminar =================*/}
                         <td>
                             {" "}
                             <button
                                 className="btn btn-primary eliminar"
                                 type="button"
-                                onClick={() => {deleteColab(props.colabs[key].colab_id)}}
+                                onClick={() => {
+                                    props.estado ? deleteColab(props.colabs[parseInt(key)].up_id):deleteColab(props.colabs[parseInt(key)].colab_id)
+                                }}
                             >Eliminar
                             </button>
                         </td>
