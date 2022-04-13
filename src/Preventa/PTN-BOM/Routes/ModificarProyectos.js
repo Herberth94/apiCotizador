@@ -50,8 +50,9 @@ export const EditProyecto = () => {
             try{
                 console.log('Datos actualizados: ',dataActualizacion);
                 //console.log('Id proyecto: ', proyecto_id);
-                await axios.post(url2 + `/api/cotizador/proyecto/update/${proyecto_id}`, dataActualizacion);
-                alert('Proyecto editado exitosamente');
+                const respuesta = await axios.post(url2 + `/api/cotizador/proyecto/update/${proyecto_id}`, dataActualizacion);
+                const respuestaBack = respuesta.data.msg
+                alert(respuestaBack);
             }catch (error){
                 alert('Edición de proyecto invalido');
             }
