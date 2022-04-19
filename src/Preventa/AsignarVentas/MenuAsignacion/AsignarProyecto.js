@@ -128,19 +128,22 @@ function AsignarProyecto() {
       password: passwordState,
       validatorid
     }
-
-    try {
-      const respuesta = await axios.post(url + '/api/cotizador/proyecto/insertUsuariosProyectos', mandarInformacion);
-      const send2 = respuesta.mandarInformacion;
-      // para que al hacer submit del form se vuelva a poner en blanco el formulario y se puedan seguir asignando nuevos proyectos
-      setPassword({
-        password: '',
-      })
-      setClaveP([])
-      setEmailU([])
-      alert('Colaborador agregado exitosamente')
-    } catch (error) {
-      console.log(error)
+    if(idUsuariosState !== undefined && idProyectoState !== undefined){
+      try {
+        const respuesta = await axios.post(url + '/api/cotizador/proyecto/insertUsuariosProyectos', mandarInformacion);
+        const send2 = respuesta.data.msg;
+        // para que al hacer submit del form se vuelva a poner en blanco el formulario y se puedan seguir asignando nuevos proyectos
+        setPassword({
+          password: '',
+        })
+        setClaveP([])
+        setEmailU([])
+        alert(send2)
+      } catch (error) {
+        console.log(error)
+      }
+    }else{
+      alert("Por favor seleccione un usuario y un proyecto válido")
     }
 
   }

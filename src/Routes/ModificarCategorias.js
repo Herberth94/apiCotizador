@@ -34,11 +34,12 @@ export const EditCats = () => {
         }else{
             try{
                 //console.log(dataActualizacion);
-                await axios.post(url2 + `/api/cotizador/catd/edit/${cd_id}`, dataActualizacion);
-                alert('Datos de una categoria editados exitosamente');
+                const  respuesta = await axios.post(url2 + `/api/cotizador/catd/edit/${cd_id}`, dataActualizacion);
+                const respuestaBack = respuesta.data.msg
+                alert(respuestaBack)
             }catch (error){
                 console.log(error);
-                alert('Error al editar los datos de una Categoria');
+                alert('Error al editar los datos de la Categoría');
             }
         }
     }
