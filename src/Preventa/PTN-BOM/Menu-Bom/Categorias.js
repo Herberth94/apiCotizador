@@ -12,6 +12,16 @@ const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
 
 
+let validaOperacion = false;
+
+function checa(){
+
+    validaOperacion = !validaOperacion;
+    
+    }
+    
+    
+
 function Categorias(props) {
     /*=================================== Obtención de datos en la tabla precio ===================================*/
     // Almacenamiento de los datos
@@ -31,35 +41,48 @@ function Categorias(props) {
         });
     };
 
-    /*=================== Operaciones de los datos de la tabla precio ===================================*/
-    useEffect(()=>{
+///CALCULAR DESCUENTO
+      /*================================================================================*/
+      useEffect(()=>{
+
+        if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
+          const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+          const total = Total(datos.precio_unitario,datos.sp_cantidad)
+          setDatos({ ...datos,  precio_total:   total, precio_descuento: desc });}
+       
+        if(datos.precio_lista === '' || datos.precio_unitario === ''){
+          setDatos({ ...datos,  precio_descuento:''});
+        }
+
+        },[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario   ])
+
+
+///CALCULAR PRECIO UNITARIO
+      /*===================================================================================================================*/
+      useEffect(()=>{
         let precio_u='';
-        if (datos.precio_lista !== '' &&  datos.precio_descuento !== '' && datos.cd_cantidad !== '') {
-        precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
-        const total = Total(precio_u, datos.cd_cantidad);
-        setDatos({ ...datos, precio_unitario: precio_u , precio_total:total});
+        if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
+          precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
+          const total = Total(precio_u, datos.sp_cantidad);
+          if( datos.precio_descuento < 0 || datos.precio_descuento > 100 ){
+          // alert("Advertencia Porcentaje Invalido")
+          }
+          setDatos({ ...datos, precio_total:total,precio_unitario:precio_u});
         }
-    
-    },[datos.precio_lista,datos.precio_descuento])
-    /*================================================================================*/
-    useEffect(()=>{
-        let total='';
-        let desc_='';
-        if (datos.precio_unitario !== '' && datos.cd_cantidad !== '') {
-        const total = Total(datos.precio_unitario, datos.cd_cantidad)
-        setDatos({ ...datos, precio_total: total })
-        }
-        if (datos.precio_unitario == '' || datos.cd_cantidad == '') {
-        setDatos({ ...datos, precio_total: total , precio_descuento:desc_ })
-        }
-    },[datos.precio_unitario,datos.cd_cantidad])
-    /*================================================================================*/
-    useEffect(()=>{
-        if(datos.precio_lista !=='' && datos.precio_unitario !==''){
-        const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-        setDatos({ ...datos, precio_descuento: desc });}
-        },[datos.precio_unitario])
-        
+      
+      },[datos.precio_descuento,datos.precio_lista,datos.sp_cantidad])
+
+      //OBTENER TOTALES
+
+//checar
+           /*===================================================================================================================*/
+           useEffect(()=>{
+
+            if(datos.precio_unitario === '' || datos.sp_cantidad === ''){
+              setDatos({ ...datos,precio_total:''});
+            } 
+          
+          },[,datos.precio_unitario,datos.sp_cantidad])
     /*===================================================================================================================*/
     /*=============================================================================================================*/
     const {enviarDatos,handleInputChange,finalizarProy} = InsertDatosCats();
@@ -94,6 +117,7 @@ function Categorias(props) {
                 {/*========================== Titulos Tabla ==========================*/}
                 <thead>
                     <tr className="titulo-tabla-usuarios">
+                    <th>Funcion</th>
                     <th>Categoria</th>
                     <th>No. De Parte</th>
                     <th>Descripción</th>
@@ -105,6 +129,14 @@ function Categorias(props) {
                 <tbody>
                     <tr className="">
                     {/*======================== Categorias ==========================*/}
+
+               <td>
+                <label className="switch">
+                <input type="checkbox" id="checa"     onClick={checa}/>
+                <span className="slider"></span>
+                </label>   
+                </td>
+               
                     <td>
                         {" "}
                         <select id="lista-opciones" name="cd_id_cats" onChange={handleInputChange}>
