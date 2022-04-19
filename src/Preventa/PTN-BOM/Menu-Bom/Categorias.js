@@ -47,7 +47,7 @@ function Categorias(props) {
 
         if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
           const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-          const total = Total(datos.precio_unitario,datos.sp_cantidad)
+          const total = Total(datos.precio_unitario,datos.cd_cantidad)
           setDatos({ ...datos,  precio_total:   total, precio_descuento: desc });}
        
         if(datos.precio_lista === '' || datos.precio_unitario === ''){
@@ -63,7 +63,7 @@ function Categorias(props) {
         let precio_u='';
         if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
           precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
-          const total = Total(precio_u, datos.sp_cantidad);
+          const total = Total(precio_u, datos.cd_cantidad);
           if( datos.precio_descuento < 0 || datos.precio_descuento > 100 ){
           // alert("Advertencia Porcentaje Invalido")
           }
