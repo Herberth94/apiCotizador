@@ -45,7 +45,7 @@ function DatosPTN(props) {
             ) : (
             <div className="arregla">
               {/*======================== Llamar al componente Categorias ==========================*/}
-              <Categorias />
+              <Categorias clave={props.clave} />
             </div>
           )}
         </div>

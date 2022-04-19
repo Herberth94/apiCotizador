@@ -162,7 +162,12 @@ font-weight: 400;
 
 	.scene.flex.login{
 		margin-top: 40%;
+	} 
+}
+
+@media (max-width: 570px) {
+	.flex {
+		position: initial;
+    	margin-left: 50px;
 	}
-	
-  
 }

@@ -388,7 +388,7 @@ export const CrudProyectos = (props) => {
                                     <thead>
                                         <tr className="titulo-tabla-usuarios">
                                             <th>Resumen Partidas</th>
-                                            <th>Resumen Categorias</th>
+                                            <th>Resumen Categorías</th>
                                         </tr>
                                     </thead>
                                     <tbody>
