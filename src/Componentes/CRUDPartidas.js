@@ -149,14 +149,24 @@ export const CrudPartidas = (props) => {
         // Almacenamiento de los proveedores existentes para el buscador
         const [ListaProv, setListaProv] = useState ([]);
 
+        // Almacenamiento de los no de parte existentes para el buscador
+        const [ListaNp, setListaNp] = useState ([]);
+
+        // Almacenamiento de las descripciones existentes para el buscador
+        const [ListaDes, setListaDes] = useState ([]);
 
         // Función que realiza la consulta a las tablas servicio_producto y proveedores
         async function getDatosSP(partida_id){
             try{
-                const resPSP = await axios.get(url2 +`/api/cotizador/partida/viewPSP/${partida_id}`);
+                const resPSP = await axios.get(url2 +`/api/cotizador/sp/viewPSP/${partida_id}`);
                 setListaSP(resPSP.data.data);
-                const respuesta = await axios.get(url +"/api/cotizador/proveedor/view");
+                const respuesta = await axios.get(url + '/api/cotizador/proveedor/view');
                 setListaProv(respuesta.data.data);
+                const resNp = await axios.get(url + '/api/cotizador/sp/viewSpnp');
+                setListaNp(resNp.data.data);
+                const resDes = await axios.get(url + '/api/cotizador/sp/viewSpd');
+                setListaDes(resDes.data.data);
+
             }catch(error){
                 console.log(error);
             }
@@ -256,6 +266,8 @@ export const CrudPartidas = (props) => {
                         <CrudSp
                         sp={listaSP}
                         proveedores={ListaProv}
+                        nP={ListaNp}
+                        descripciones={ListaDes}
                         setfirst={setfirst}
                         envioDataSP={envioDataSp}
                         />    

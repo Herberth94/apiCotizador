@@ -195,9 +195,9 @@ export const CrudSp = (props) => {
             setNombreProv(arrayNombresProv);
         }
 
-        // Almacenamiento de los proveedores existentes
+        // Almacenamiento de las marcas existentes
         const [listaMarca, setListaMarca] = useState ([]);
-        // Función que realiza la consulta a la tabla proveedores
+        // Función que realiza la consulta a la tabla marca
         async function listaMarcas(proveedor){
             let i = Object.keys(props.proveedores);
             for (let c = 0; c < i.length; c++) {
@@ -361,7 +361,7 @@ export const CrudSp = (props) => {
                                <td>
                                     <input
                                     className="input-name" 
-                                    defaultValue={props.sp[key].sp_no_parte} 
+                                    defaultValue={props.sp[key].spnp_np} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_no_parte" 
@@ -370,7 +370,7 @@ export const CrudSp = (props) => {
                                 <td>
                                     <input
                                     className="input-name" 
-                                    defaultValue={props.sp[key].sp_descripcion} 
+                                    defaultValue={props.sp[key].spd_des} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_descripcion" 
