@@ -62,6 +62,9 @@ function RegistrarProveedor() {
             </form>
           </section>
         </div>
+
+        <br/>
+        <br/>
       </div>
   )
 }

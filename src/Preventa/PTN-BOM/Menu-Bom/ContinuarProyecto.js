@@ -316,7 +316,7 @@ function ContinuarProyecto() {
                                   
               <tbody>
               {Object.keys(suggestions).map((key) => (    
-                  <tr key={suggestions[key].proyecto_id} >
+                  <tr key={key} >
                       <td>{suggestions[key].proyecto_id}</td>   
                       <td>{suggestions[key].proyecto_clave}</td>  
                       <td>{suggestions[key].proyecto_descripcion}</td>  
@@ -441,7 +441,7 @@ function ContinuarProyecto() {
                       <tbody>
                           {Object.keys(listaPartidas).map((key) => (    
                               //checar aqui va los titulos
-                              <tr key={listaPartidas[key].partida_id} >
+                              <tr key={key} >
                                   <td>{listaPartidas[key].partida_id}</td>   
                                   <td>{listaPartidas[key].partida_nombre}</td>  
                                   <td>{listaPartidas[key].partida_descripcion}</td> 

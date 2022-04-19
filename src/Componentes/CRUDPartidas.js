@@ -195,7 +195,7 @@ export const CrudPartidas = (props) => {
                     <tbody>
                         {Object.keys(props.partidas).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={props.partidas[key].partida_id} >
+                            <tr key={key} >
                                 <td>{props.partidas[key].partida_id}</td>
                                 <td>
                                     <input 

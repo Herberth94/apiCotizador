@@ -145,7 +145,7 @@ export const CrudProveedores = (props) => {
                 <tbody>
                     {/*=================== Contenido Tabla Proveedores =================*/}
                     {Object.keys(props.proveedores).map((key) => (
-                        <tr key={props.proveedores[key].proveedor_id}>
+                        <tr key={key}>
                         <td>{props.proveedores[key].proveedor_id}</td>
                         <td>
                             <input

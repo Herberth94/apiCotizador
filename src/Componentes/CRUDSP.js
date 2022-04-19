@@ -356,7 +356,7 @@ export const CrudSp = (props) => {
 
                         <tbody>
                             {Object.keys(props.sp).map((key) => (    
-                            <tr key={props.sp[key].sp_id} >
+                            <tr key={key} >
                                 <td>{props.sp[key].sp_id}</td>
                                <td>
                                     <input

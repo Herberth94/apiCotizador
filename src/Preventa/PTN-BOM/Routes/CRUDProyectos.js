@@ -304,7 +304,7 @@ export const CrudProyectos = (props) => {
                                     
                     <tbody>
                         {Object.keys(props.suggestionsP).map((key) => (    
-                            <tr key={props.suggestionsP[key].proyecto_id} >
+                            <tr key={key} >
                                 <td>{props.suggestionsP[key].proyecto_id}</td>  
                                 <td>
                                     <input 

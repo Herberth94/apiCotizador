@@ -98,7 +98,7 @@ function CostosIndirectos(props) {
                     {/*=================== Contenido Tabla Clientes =================*/}
 
                     {Object.keys(costosIndirectos).map((key) => (
-                        <tr key={costosIndirectos[key]}>
+                        <tr key={key}>
                             {/*================= Descripción==================*/}
                             <td>{costosIndirectos[key]}</td>
 

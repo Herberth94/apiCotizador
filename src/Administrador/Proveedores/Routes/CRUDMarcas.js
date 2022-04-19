@@ -83,7 +83,7 @@ export const CrudMarcas = (props) => {
                 <tbody>
                     {/*=================== Contenido Tabla Marcas =================*/}
                     {Object.keys(props.marcas).map((key) => (
-                    <tr key={props.marcas[key].marca_id}>
+                    <tr key={key}>
                         <td>{props.marcas[key].marca_id}</td>
                         {/*=================== Nombre de la marca =================*/}
                         <td>

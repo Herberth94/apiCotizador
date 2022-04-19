@@ -34,7 +34,7 @@ function Categorias() {
                     {/*=================== Contenido Tabla Clientes =================*/}
 
                     {Object.keys(categoriasUnicas).map((key) => (
-                        <tr key={categoriasUnicas[key]}>
+                        <tr key={key}>
                             
                             {/*================= Descripción  ==================*/}
                             <td>{categoriasUnicas[key]}</td>

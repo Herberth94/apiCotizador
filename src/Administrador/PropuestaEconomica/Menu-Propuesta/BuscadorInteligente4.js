@@ -6,6 +6,7 @@ import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../../Ventas/Operaciones/totalPartida';
 import AdministrarPropuesta from './AdministrarPropuesta';
+import Formulario from './Formulario';
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -151,7 +152,7 @@ async function consultarTotalesP(id){          //console.log(id)
     <tbody>
         {Object.keys(suggestions).map((key) => (    
             //checar aqui va los titulos
-            <tr key={suggestions[key].proyecto_id} >
+            <tr key={key} >
                 <td>{suggestions[key].proyecto_id}</td>   
                 <td>{suggestions[key].proyecto_clave}</td>  
                 <td>{suggestions[key].proyecto_descripcion}</td>  

@@ -23,3 +23,104 @@
 #lista-cotizaciones{
     background-color: brown;
 }
+
+.bi.bi-telephone-fill  , .bi.bi-geo-alt-fill   , .bi.bi-envelope-fill{
+color: rgb(66, 0, 46);
+}
+
+.full2 textarea{
+  display:block ;
+    width: 100%;
+}
+
+#txt2{
+
+    width: 100%;
+}
+
+
+
+/* From uiverse.io by @victoryamaykin */
+.switch2 {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 34px;
+    margin-top: 30px;
+   }
+   
+   .switch2 input {
+    display: none;
+   }
+   
+   .slider2 {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #3C3C3C;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 34px;
+   }
+   
+   .slider2:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+   }
+   
+   input:checked + .slider2 {
+    background-color: #0E6EB8;
+   }
+   
+   input:focus + .slider2 {
+    box-shadow: 0 0 1px #2196F3;
+   }
+   
+   input:checked + .slider2:before {
+    -webkit-transform: translateX(232px);
+    -ms-transform: translateX(232px);
+    transform: translateX(232px);
+    -moz-transform: translateX(232px);
+    -o-transform: translateX(232px);
+}
+   
+   /*------ ADDED CSS ---------*/
+   .slider2:after {
+    content: 'Resumen Partidas';
+    color: white;
+    display: block;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+   }
+   
+   input:checked + .slider2:after {
+    content: 'Resumen Completo Partidas';
+   }
+   
+   /*--------- END --------*/
+  
+  
+   .contenedor {
+       max-width: 1170px;
+       margin: 0 auto 1rem;
+       padding: 1.5rem;
+  }
+   .wrapper {
+       box-shadow: 0 0 20px 0 rgba(69, 90, 100, .7);
+       border-radius: 5px;
+  }

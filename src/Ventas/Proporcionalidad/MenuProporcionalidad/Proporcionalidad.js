@@ -36,7 +36,7 @@ function Proporcionalidad() {
                     {/*=================== Contenido Tabla Clientes =================*/}
 
                     {Object.keys(partidasUnicas).map((key) => (
-                        <tr key={partidasUnicas[key]}>
+                        <tr key={key}>
                             
                             {/*================= Descripción  ==================*/}
 

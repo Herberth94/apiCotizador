@@ -237,6 +237,9 @@ function Colaborador() {
 
         </section>
       </div>
+
+      <br/>
+      <br/>
     </div>
   )
 }

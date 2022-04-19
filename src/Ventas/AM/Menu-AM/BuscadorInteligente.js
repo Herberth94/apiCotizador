@@ -145,7 +145,7 @@ function BuscadorInteligente() {
             <tbody>
             {Object.keys(suggestions).map((key) => (    
             //checar aqui va los titulos
-            <tr key={suggestions[key].proyecto_id} >
+            <tr key={key} >
             <td>{suggestions[key].proyecto_id}</td>   
             <td>{suggestions[key].proyecto_clave}</td>  
             <td>{suggestions[key].proyecto_descripcion}</td>  
@@ -154,7 +154,7 @@ function BuscadorInteligente() {
             <td>{suggestions[key].proyecto_estatus}</td> 
             <td>
                 <button 
-                className="btn btn-primary" 
+                className="btn btn-primary Ver" 
                 onClick={() => {
                     consultarTotalesP(suggestions[key].proyecto_id);
                     setShow(!show);}}

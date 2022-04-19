@@ -95,7 +95,7 @@ function CostosIndirectos(props) {
                     {/*=================== Contenido Tabla Clientes =================*/}
 
                     {Object.keys(costosIndirectos).map((key) => (
-                        <tr key={costosIndirectos[key]}>
+                        <tr key={key}>
                             {/*================= Descripción==================*/}
                             <td>{costosIndirectos[key]}</td>
 
@@ -104,7 +104,7 @@ function CostosIndirectos(props) {
                                         <input
                                         className="input-name"
                                         type="number"
-                                        defaultValue={equivale[key]}
+                                        defaultValue={equivale[key] }
                                         disabled={enable[key]} 
                                         onChange={handleInputChange}
                                         name="porcentaje" 
@@ -115,7 +115,7 @@ function CostosIndirectos(props) {
                             {/*================= Editar==================*/}
                             <td>
                                 <button 
-                                className="btn btn-primary"
+                                className="btn btn-primary Mod"
                                 onClick={() => {
                                     habilitar(key);
                                     envioData(key);

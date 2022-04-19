@@ -167,7 +167,7 @@ function AdministrarColaboradores(props) {
                                 
             <tbody>
             {Object.keys(suggestions).map((key) => (    
-                <tr key={parseInt(key)} >
+                <tr key={key} >
                     <td>{suggestions[key].proyecto_id}</td>   
                     <td>{suggestions[key].proyecto_clave}</td>  
                     <td>{suggestions[key].proyecto_descripcion}</td>  

@@ -4,48 +4,17 @@ import "jspdf-autotable";
 import '../css/Exportar.css';
 import {imagen} from './IMG';
 
+import {datosCompletosAM , Cantidad }from "../../../Ventas/Operaciones/OperacionesAM";
+import { fecha } from './Formulario';
+
+
 
 class ExportarPDF extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      datos: [
-        { partida: "1", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "2", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "1", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "2", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "1", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "2", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "1", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "2", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "1", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "2", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-        { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
-       
-       
-     
-           
-       
-           
-           
-      ],
+ 
       datos2: [
         {descripcion: "descripcion", periodo: "mensual",   costoUnitario: "678" , dispositivos: "1",subtotal: "400"}
       ],
@@ -88,7 +57,7 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
 
 
     const title = "PROPUESTA ECONÓMICA";
-    const fecha = "Ciudad de México a "  + dia + " " + " de " + mes + " " + " de " + " " + año;
+    const fech = "Ciudad de México a "  + fecha
     const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
     const atencion = "Atención "  + nombreContacto;
     const comentarios = "Propuesta económica correspondiente al servicio de TV de paga.";
@@ -110,10 +79,8 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
 
  
     const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"]];
-
-    const data = this.state.datos.map(elt=> [elt.partida, elt.servicio, elt.descripcion , elt.dispositivos, elt.subtotal]);
-    const longitud = this.state.datos.length
-    console.log(longitud);
+    let a = 0;
+    const data = datosCompletosAM.map(elt=> [ [a ],[datosCompletosAM[a++]] , Cantidad[a] ]      );
     let content = {
       startY: 200,
       head: headers,
@@ -135,21 +102,11 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
     image.src = imagen;
     doc.addImage(image,'PNG', 50, 30, 130, 70);
     doc.text(title, 230, 90);
-    doc.text(fecha, 320, 120 );
+    doc.text(fech, 320, 120 );
     doc.text(proyecto, marginLeft, 140 );
     doc.text(atencion, marginLeft, 160 );
     doc.text(comentarios, marginLeft, 190 );
     doc.text(condiciones, marginLeft, 620);
-    // doc.text(vigencia, marginLeft, 645)
-    // doc.text(propuesta, marginLeft, 660)
-    // doc.text(formaPago, marginLeft, 675)
-    // doc.text(duracion, marginLeft, 690)
-    // doc.text(moneda, marginLeft, 705)
-    // doc.text(interes, marginLeft, 720)
-    // doc.text(iva, marginLeft, 735)
-    // doc.text(encargada, 200, 790)
-    // doc.text(cargo, 225, 805)
-    // doc.text(empresa, 200, 820)
     doc.autoTable(content);
     console.log(doc.lastAutoTable.finalY)
     let content2 = {

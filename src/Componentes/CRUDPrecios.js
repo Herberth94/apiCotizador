@@ -152,7 +152,7 @@ export const CrudPrecios = (props) => {
 
                     <tbody>
                         {Object.keys(props.precios).map((key) => (    
-                        <tr key={props.precios[key].precio_id}>
+                        <tr key={key}>
                             <td>{props.precios[key].precio_id}</td>
                             <td>
                                 <label className="switch">

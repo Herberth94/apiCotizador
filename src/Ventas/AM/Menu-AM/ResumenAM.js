@@ -272,7 +272,7 @@ const ResumenAM = () => {
                     <tbody>
                         {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={suggestions[key].proyecto_id} >
+                            <tr key={key} >
                                 <td>{suggestions[key].proyecto_id}</td>   
                                 <td>{suggestions[key].proyecto_clave}</td>  
                                 <td>{suggestions[key].proyecto_descripcion}</td>  
@@ -319,7 +319,7 @@ const ResumenAM = () => {
                             <tbody>
                                 {/*=================== Contenido Tabla Clientes =================*/}
                                 {Object.keys(datosCompletosAM).map((key) => (
-                                <tr key={datosCompletosAM[key]}>
+                                <tr key={key}>
                                     <td>{datosCompletosAM[key]}</td>
                                     {/*================= Descripcion General Partida ==================*/}
                                     <td> {" $ "} {datosCompletosTotal[key]}</td>
@@ -380,7 +380,7 @@ const ResumenAM = () => {
                                     {/*================= Botón Modificar ==================*/}
                                     <td>
                                         <button 
-                                        className="btn btn-primary"
+                                        className="btn btn-primary Mod"
                                         onClick={()=>{
                                             habilitar(key);
                                             envioData(key);

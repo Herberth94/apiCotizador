@@ -7,6 +7,7 @@ import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../../Ventas/Operaciones/totalPartida';
 import AdministrarPropuesta from './AdministrarPropuesta';
 import PEconomica from './PEconomica';
+import Formulario from './Formulario';
 
 
 
@@ -207,7 +208,7 @@ function BuscadorInteligente3() {
                 <div className="arregla">
                     {/*========================== Llamado al Componente ==========================*/}
                     {/*           <CostosIndirectos/> */}
-                    <PEconomica/>
+                    <Formulario/>
                 </div>
             )}
         </div>             

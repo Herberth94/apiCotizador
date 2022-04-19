@@ -164,7 +164,7 @@ function Divisa() {
                     <tbody>
                         {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={suggestions[key].proyecto_id} >
+                            <tr key={key} >
                                 <td>{suggestions[key].proyecto_id}</td>   
                                 <td>{suggestions[key].proyecto_clave}</td>  
                                 <td>{suggestions[key].proyecto_descripcion}</td>  

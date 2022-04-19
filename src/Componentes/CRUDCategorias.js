@@ -170,7 +170,7 @@ export const CrudCategorias = (props) => {
                                     
                     <tbody>
                         {Object.keys(props.dcats).map((key) => (    
-                            <tr key={props.dcats[key].cd_id} >
+                            <tr key={key} >
                                 <td>{props.dcats[key].cd_id}</td>  
                                 <td>
                                     {" "}
