@@ -30,6 +30,7 @@ export const useLogin = () => {
         const respuesta = await axios.post( url + '/api/cotizador/login',data);
         const send2= respuesta.data;
         console.log(send2)
+        alert(send2.msg)
         cookies.set('id_usuario', send2.id_usuario , {path:"/"});
         cookies.set('rol', send2.rol, {path:"/"});
         cookies.set('estado_login', send2.estado_login, {path:"/"});
