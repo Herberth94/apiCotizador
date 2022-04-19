@@ -290,8 +290,15 @@ export const CrudSp = (props) => {
         async function SendDeleteSP(id){
             //console.log(id);
             try {
-                await axios.delete(url2 + `/api/cotizador/precio/delete/${id}`);
-                alert('Servicio/producto eliminado exitosamente')
+                const confirmacion = window.confirm("¿Seguro que quieres borrar esta Partida?" );
+
+                if(confirmacion){
+                    await axios.delete(url2 + `/api/cotizador/precio/delete/${id}`);
+                    alert('Servicio/producto eliminado exitosamente')
+                }else{
+
+                }
+                
             } catch (error) {
                 console.log(error);
                 alert('Eliminación del Servicio/producto invalido')
@@ -465,7 +472,7 @@ export const CrudSp = (props) => {
                                 <td>
                                     <button 
                                     className="btn btn-primary eliminar"
-                                    //onClick={()=>{SendDeleteSP(props.sp[key].sp_id_precio)}}
+                                    onClick={()=>{SendDeleteSP(props.sp[key].sp_id_precio)}}
                                     >Eliminar </button>
                                 </td>
                                 <td>
