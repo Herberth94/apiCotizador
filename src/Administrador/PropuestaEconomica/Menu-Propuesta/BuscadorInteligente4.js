@@ -15,6 +15,7 @@ let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
+let pId;
 
 function BuscadorInteligente4() {
 
@@ -98,6 +99,9 @@ async function consultarTotalesP(id){          //console.log(id)
     
     //console.log('Categorias',totalCategorias);
 }
+    function getIdProy(id){
+        pId = id;
+    }
 
 
 
@@ -165,8 +169,7 @@ async function consultarTotalesP(id){          //console.log(id)
                     onClick={() => {
                     
                        consultarTotalesP(suggestions[key].proyecto_id);
-
-                        
+                       getIdProy(suggestions[key].proyecto_id);
                         setShow(!show);}}
                     >{show ? 'Ver mas':'Ocultar proyecto'}</button>
 
@@ -177,7 +180,9 @@ async function consultarTotalesP(id){          //console.log(id)
                   {/*========================== Llamado al Componente ==========================*/}
     {/*           <CostosIndirectos/> */}
     
-    <AdministrarPropuesta/>
+    <AdministrarPropuesta
+        proyId={pId}
+    />
 
                 </div>
               )}

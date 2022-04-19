@@ -6,17 +6,17 @@ import ExportarPDF from './ExportarPDF';
 import axios from 'axios';
 import { url2 } from '../../../Componentes/Ocultar';
 
-function AdministrarPropuesta() {
+function AdministrarPropuesta(props) {
   const [show, setShow] = useState(true)
 
   // cambio de estatus en el la base de datos del proyecto seleccionado a validado
   async function cambioEstatusProyectoValidad(){
     try{
       const data = {
-        proyecto_estatus: 'Validado'
+        proyecto_estatus: 'Aceptado'
       }
       console.log(data)
-      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/72`, data);
+      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${props.proyId}`, data);
       const send2 = respuesta.data
       console.log(send2)
       alert("Estatus del proyecto actualizado")
@@ -30,7 +30,7 @@ function AdministrarPropuesta() {
       const data = {
         proyecto_estatus: 'Rechazado'
       }
-      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/73`, data);
+      const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${props.proyId}`, data);
       const send2 = respuesta.data
       console.log(send2)
       alert("Estatus del proyecto actualizado")
