@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react'
 import Table from "react-bootstrap/Table";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import ModalCat from "../Routes/ModalCat";
 
 //Componentes
 import { InsertDatosCats } from '../Routes/GuardarDatosCategorias';
@@ -10,9 +11,11 @@ import { precioUnitario, calcularDescuento, Total} from "../Operaciones/Operacio
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
 
-function Categorias() {
+
+function Categorias(props) {
     /*=================================== Obtención de datos en la tabla precio ===================================*/
     // Almacenamiento de los datos
+    console.log(props.clave)
     const [datos, setDatos] = useState({
         precio_lista: '',
         precio_unitario: '',
@@ -60,9 +63,32 @@ function Categorias() {
     /*===================================================================================================================*/
     /*=============================================================================================================*/
     const {enviarDatos,handleInputChange,finalizarProy} = InsertDatosCats();
+    const [modalShow, setModalShow] = useState(false);
+    const [DatosCat, SetDatosCat] = useState([])
+    const lista = async (clave) =>{
+        try {
+            const respuesta = await axios.get(`http://localhost:4001/api/cotizador/catd/view/modal/${clave}`);
+            SetDatosCat(respuesta.data.data)
+            
+        } catch (error) {
+            console.log(error);            
+        }
+        
+    }
+
+    
     
     return (
         <div className="contenido-usuarios">
+             <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true);lista (102)}} >
+                 Ver Categorias agregadas
+             </button><br/><br/>
+             {modalShow  ?   
+             <ModalCat
+             show={modalShow}
+             proyecto_id={DatosCat}
+             onHide={() => setModalShow(false)}  
+             />:  ''  } 
             <form action="" method="post" onSubmit = {(e) => {enviarDatos(e, datos)}}>
                 <Table responsive id="nombreDiv">
                 {/*========================== Titulos Tabla ==========================*/}
