@@ -32,8 +32,9 @@ export const EditPartida = () => {
             alert('El proyecto no puede ser editado porque ha sido Aceptado')
         }else{
             try {
-                await axios.put(url2 + `/api/cotizador/partida/update/${id}`,dataActualizacion);
-                alert('Partida editada exitosamente'); 
+                const respuesta = await axios.put(url2 + `/api/cotizador/partida/update/${id}`,dataActualizacion);
+                const respuestaBack = respuesta.data.msg
+                alert(respuestaBack);
             }catch (error){
                 alert('Edición de Partida invalido');
                 console.log(error);
