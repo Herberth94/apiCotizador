@@ -121,20 +121,20 @@ function BuscadorProyectoFinanciamiento() {
                                         }}
                                     >
                                         {" "}
-                                        {show2 ? "Agregar Datos Financiamiento" : "Ocultar"}{" "}
+                                        {show2 ? "Agregar Datos" : "Ocultar"}{" "}
                                     </button>
 
                                 </td>
                                 <td>
                                     <button
-                                        className="btn btn-primary"
+                                        className="btn btn-primary Mod"
                                         onClick={() => {
                                             setIdAsignado(suggestions[key].proyecto_id)
                                             setShow(!show);
                                         }}
                                     >
                                         {" "}
-                                        {show ? "Modificar Datos Financiamiento" : "Ocultar"}{" "}
+                                        {show ? "Modificar Datos " : "Ocultar"}{" "}
                                     </button>
 
                                 </td>

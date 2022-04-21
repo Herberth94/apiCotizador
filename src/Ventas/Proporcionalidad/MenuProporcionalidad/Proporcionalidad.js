@@ -29,7 +29,7 @@ function Proporcionalidad() {
                         <th>TOTAL</th>
                         <th>TOTAL MENSUAL</th>
                         <th>Financiamiento</th>
-                        <th>Editar</th>
+                     
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +45,7 @@ function Proporcionalidad() {
 
                             <td>{"$ "}{precioVenta2[key]}</td>
                             {/*================= Precio Venta ==================*/}
-                            <td className="verde" >{proporcional[key]} {" % "}  </td>
+                            <td className="azul" >{proporcional[key]} {" % "}  </td>
 
                           {/*=================  % ==================*/}
                       
@@ -58,17 +58,12 @@ function Proporcionalidad() {
                             <td className="azul">{TOTAL[key]} {" $ "}</td>
 
                   {/*================= Total Mensual ==================*/}
-                  <td className="azul"> {totalMensual[key]}{" $ "}</td>
+                  <td className=""> {totalMensual[key]}{" $ "}</td>
 
                     {/*================= Financiamiento ==================*/}
                             <td>{financiamiento[key]}</td>
                                 {/*================= eDITARF==================*/}   
-                            <td>
-
-                                <button className="btn btn-primary"> Editar </button>
-
-
-                            </td>
+                          
                         </tr>
                     ))}
                 </tbody>

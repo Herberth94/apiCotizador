@@ -52,7 +52,7 @@ const ModalCat = (props) => {
         
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={props.onHide}>Cerrar</Button>
       </Modal.Footer>
     </Modal>
     </>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import {url} from "../../../Componentes/Ocultar";
 export const useRegistro = () => {
      const [datos,setDatos] = useState ({
-          rol: '', 
+          usuario_id_rol: '', 
           email  :'',
           remail :'',
           password:''
@@ -20,7 +20,7 @@ export const useRegistro = () => {
 async function Send (){
 
     const data= {
-        rol: datos.rol,
+        usuario_id_rol: datos.usuario_id_rol,
         email : datos.email,
         password : datos.password,
         estado_login:false
@@ -31,7 +31,7 @@ async function Send (){
     {
         if(datos.password != ""){
 
-            if (datos.rol != ""){
+            if (datos.usuario_id_rol != ""){
 
            
                 try {

@@ -37,7 +37,7 @@ validaOperacion = !validaOperacion;
         if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
           const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
           const total = Total(datos.precio_unitario,datos.sp_cantidad)
-          setDatos({ ...datos,  precio_total:   total, precio_descuento: desc });}
+          setDatos({ ...datos,precio_total:   total, precio_descuento: desc });}
        
         if(datos.precio_lista === '' || datos.precio_unitario === ''){
           setDatos({ ...datos,precio_descuento:''});

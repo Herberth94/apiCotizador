@@ -57,7 +57,7 @@ function AdministrarPropuesta(props) {
            {/*    <th>Propuestas</th> */}
               <th>Rechazar Proyecto</th>
               <th>Validar Proyecto</th>
-              <th>Imprimir</th>
+
 
             </tr>
           </thead>
@@ -81,9 +81,9 @@ function AdministrarPropuesta(props) {
               </td>
 
 
-              <td>
+          {/*     <td>
                 <ExportarPDF />
-              </td>
+              </td> */}
 
 
             </tr>
