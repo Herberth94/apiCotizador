@@ -3,7 +3,7 @@ import '../../css/ventanas.css';
 import {useLogin} from './Routes/useLogin';
 import ReCAPTCHA from "react-google-recaptcha";
 import {passwordCaptcha} from "../../Componentes/Ocultar";
-export let valida = false;
+export let valida =true;
 
 
 /*  Funcion Captcha Validación Correcta */
@@ -75,11 +75,11 @@ export function Login() {
             <div className="re-Captcha">
           
           {/*========== ReCAPTCHA Seguridad ==========*/}
-           <ReCAPTCHA
+        <ReCAPTCHA
            sitekey= {passwordCaptcha}
            onChange={onChange}
        
-           />
+           /> 
          </div>
 
 
