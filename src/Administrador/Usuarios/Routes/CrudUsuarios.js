@@ -97,7 +97,17 @@ export const CrudUsuarios = (props) => {
                         //checar aqui va los titulos
                         <tr key={key} >
                             <td>{props.usuarios[key].id_usuario}</td>
-                            <td><input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input></td>
+                            <td> 
+            {/*                     <input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>
+ */}
+                                <select id="rol" name="rol" required defaultValue={props.usuarios[key].rol}   onChange={handleInputChange}  disabled={enable[key]}>
+               <option value="null">------</option>
+                <option value="1">Administrador</option>
+                <option value="2">Preventa</option>
+                <option value="3">Venta</option>
+              </select>
+              </td>
+
                             <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
                             <td><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > Resetear </button></td>
    {/*                          <td>
