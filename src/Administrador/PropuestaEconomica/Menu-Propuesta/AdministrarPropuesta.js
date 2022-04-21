@@ -57,7 +57,7 @@ function AdministrarPropuesta() {
            {/*    <th>Propuestas</th> */}
               <th>Rechazar Proyecto</th>
               <th>Validar Proyecto</th>
-              <th>Imprimir</th>
+
 
             </tr>
           </thead>
@@ -81,9 +81,9 @@ function AdministrarPropuesta() {
               </td>
 
 
-              <td>
+          {/*     <td>
                 <ExportarPDF />
-              </td>
+              </td> */}
 
 
             </tr>

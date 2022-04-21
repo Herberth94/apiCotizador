@@ -28,7 +28,7 @@ function MenuProveedor() {
     <tr className="titulo-tabla-usuarios">
       <th>Registrar Proveedor</th>
       <th>Registrar Marcas </th>
-      <th>Administrar Proveedores </th>
+      <th>Proveedores / Marcas </th>
     </tr>
   </thead>
   <tbody>
