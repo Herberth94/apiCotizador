@@ -41,26 +41,26 @@ function Proyectos() {
     const [ListaC, setListaC] = useState ([]);
 
     // Función que realiza la consulta a la tabla proyecto
-    useEffect(()=>{
-        const getProyectos = async () => {
-            try{
-                if(validatorrol === "administrador"){
-                    const resProy = await axios.get(url +'/api/cotizador/proyecto/viewadmin');
+    const getProyectos = async () => {
+        try{
+            if(validatorrol === "administrador"){
+                const resProy = await axios.get(url +'/api/cotizador/proyecto/viewadmin');
+                setListaProyectos(resProy.data.data);
+            }else{
+                if(show === false){
+                    const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                     setListaProyectos(resProy.data.data);
-                }else{
-                    if(show === false){
-                        const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-                        setListaProyectos(resProy.data.data);
-                      }else if(show1 === false){
-                        const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
-                        setListaProyectos(resProy.data.data);
-                      }
-                }
-                const resC = await axios.get(url + "/api/cotizador/clientes/view");
-                setListaC(resC.data.reSql);
-            }catch(error){console.log(error);}
-        }
-        //console.log('Proyectos:',listaProyectos);
+                  }else if(show1 === false){
+                    const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
+                    setListaProyectos(resProy.data.data);
+                  }
+            }
+            const resC = await axios.get(url + "/api/cotizador/clientes/view");
+            setListaC(resC.data.reSql);
+        }catch(error){console.log(error);}
+    }
+
+    useEffect(()=>{
         getProyectos();
     },[show,show1])
     

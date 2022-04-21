@@ -5,7 +5,7 @@ import '../css/Exportar.css';
 import {imagen} from './IMG';
 
 import {datosCompletosAM , Cantidad }from "../../../Ventas/Operaciones/OperacionesAM";
-import { fecha } from './Formulario';
+import { fecha , datos } from './Formulario';
 
 
 
@@ -42,16 +42,13 @@ class ExportarPDF extends React.Component {
     const doc = new jsPDF(orientation, unit, size);
     doc.setFontSize(12);
     doc.setFont("Arial");
-  
+    
 
-//Datos Fechas
-let dia = "01";
-let mes = "septiembre"
-let año = "2022";
+
 //Datos Proyectos
 let claveProyecto = "2303";
 let organizacion = "Delfos369";
-let nombreProyecto = "Titulo Proyecto";
+let nombreProyecto = datos.nombre;
 //Atención 
 let nombreContacto = "Marco Banda, Compras OIEGSA";
 
@@ -109,6 +106,7 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
     doc.text(condiciones, marginLeft, 620);
     doc.autoTable(content);
     console.log(doc.lastAutoTable.finalY)
+    console.log(datos)
     let content2 = {
       startY: doc.lastAutoTable.finalY,
       margin:{left:410},

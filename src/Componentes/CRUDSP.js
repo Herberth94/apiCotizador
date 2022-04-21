@@ -195,9 +195,9 @@ export const CrudSp = (props) => {
             setNombreProv(arrayNombresProv);
         }
 
-        // Almacenamiento de los proveedores existentes
+        // Almacenamiento de las marcas existentes
         const [listaMarca, setListaMarca] = useState ([]);
-        // Función que realiza la consulta a la tabla proveedores
+        // Función que realiza la consulta a la tabla marca
         async function listaMarcas(proveedor){
             let i = Object.keys(props.proveedores);
             for (let c = 0; c < i.length; c++) {
@@ -290,8 +290,15 @@ export const CrudSp = (props) => {
         async function SendDeleteSP(id){
             //console.log(id);
             try {
-                await axios.delete(url2 + `/api/cotizador/precio/delete/${id}`);
-                alert('Servicio/producto eliminado exitosamente')
+                const confirmacion = window.confirm("¿Seguro que quieres borrar esta Partida?" );
+
+                if(confirmacion){
+                    await axios.delete(url2 + `/api/cotizador/precio/delete/${id}`);
+                    alert('Servicio/producto eliminado exitosamente')
+                }else{
+
+                }
+                
             } catch (error) {
                 console.log(error);
                 alert('Eliminación del Servicio/producto invalido')
@@ -361,7 +368,7 @@ export const CrudSp = (props) => {
                                <td>
                                     <input
                                     className="input-name" 
-                                    defaultValue={props.sp[key].sp_no_parte} 
+                                    defaultValue={props.sp[key].spnp_np} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_no_parte" 
@@ -370,7 +377,7 @@ export const CrudSp = (props) => {
                                 <td>
                                     <input
                                     className="input-name" 
-                                    defaultValue={props.sp[key].sp_descripcion} 
+                                    defaultValue={props.sp[key].spd_des} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_descripcion" 
@@ -465,7 +472,7 @@ export const CrudSp = (props) => {
                                 <td>
                                     <button 
                                     className="btn btn-primary eliminar"
-                                    //onClick={()=>{SendDeleteSP(props.sp[key].sp_id_precio)}}
+                                    onClick={()=>{SendDeleteSP(props.sp[key].sp_id_precio)}}
                                     >Eliminar </button>
                                 </td>
                                 <td>

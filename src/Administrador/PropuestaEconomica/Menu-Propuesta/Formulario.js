@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import logo from "../../../images/logo.png";
 import ExportarPDF from './ExportarPDF';
 
@@ -6,7 +6,7 @@ import ExportarPDF from './ExportarPDF';
 
 
 let validaOperacion = false;
-
+export let datos ={}
 function checa(){
 
   validaOperacion = !validaOperacion;
@@ -17,7 +17,7 @@ function checa(){
 let nombreProyecto = "Delfos369.com";
 
 
-var condicionesC = "CONDICIONES COMERCIALES \n"+
+let condicionesC = "CONDICIONES COMERCIALES \n"+
 "• La vigencia de la presente propuesta es de 10 días naturales. \n"+
 " • La propuesta contempla el servicio para 9 Pantallas mensual  \n"+
 " • La forma de pago será en mensualidades de $ 687.78 antes de IVA por pantalla.  \n"+
@@ -31,10 +31,33 @@ const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
 
 
+
 export const fecha = hoy.toLocaleDateString();
+
 function Formulario() {
-
-
+  const [data,setData] = useState ({
+    nombre:'Delfos369.com',
+    servicios:'',
+    condiciones:condicionesC
+  
+  });
+  const handleChange =(event)=>{
+    setData ({
+      ...data,[event.target.name] : event.target.value ,
+  });
+  }
+  const [show , setshow]=useState(false)
+  
+  const enviar =()=>{
+    datos=data
+    console.log(datos);
+    setTimeout(function(){
+      setshow(false);
+      console.log("prueba");
+  }, 3000);
+  
+  }
+  
  
 
   return (
@@ -57,10 +80,10 @@ function Formulario() {
     </div>
     <div className="contacto">
       <h3>Datos Propuesta</h3>
-      <form className="formulario">
+      <form className="formulario" >
         <p>
           <label>Proyecto</label>
-          <input type="text" name="nombre"  defaultValue={nombreProyecto} />
+          <input type="text" onChange={handleChange} name="nombre"  defaultValue={nombreProyecto} />
         </p>
         <p>
           <label>Fecha</label>
@@ -68,7 +91,7 @@ function Formulario() {
         </p>
         <p>
           <label>Servicios</label>
-          <input type="email" name="servicios" />
+          <input type="email" onChange={handleChange} name="servicios" />
         </p>
         <p>
          
@@ -79,16 +102,21 @@ function Formulario() {
         </p>
         <p className="full2">
           <label>Condiciones Comerciales</label>
-          <textarea id="txt2" name="condiciones" defaultValue={condicionesC} />
+          <textarea id="txt2" onChange={handleChange} name="condiciones" defaultValue={condicionesC} />
         </p>
         <p className="full">
-      
         </p>
-      </form>
-
+        <a className="btn btn-success " onClick={()=>{ setshow(!show); enviar()}}>
+                  <span>Captura de información</span>
+          </a> 
+          <div></div>
+          <div></div>
+        
+        
+</form>
 <div>
+{ show ? <ExportarPDF/> : ''}
 
-<ExportarPDF/>
 </div>
     </div>
   </div>

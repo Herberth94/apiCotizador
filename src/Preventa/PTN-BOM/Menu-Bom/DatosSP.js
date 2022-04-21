@@ -8,6 +8,8 @@ import { pEstatus1 } from "./ContinuarProyecto";
 /*============== Operacions PTN BOM ==============*/
 import { precioUnitario, calcularDescuento, Total} from "../Operaciones/Operaciones";
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
+import Animaciones from "../../../Componentes/Animaciones";
+import { dataCategoria } from "../../../Ventas/Operaciones/totalPartida";
 
 
 //Obtención del id del usuario con sesión activa
@@ -23,7 +25,9 @@ export function getIdPar (partida_id){
 
 
 function DatosSP({clave} ) {
-
+  /*========================== Mostrar/Ocultar ==========================*/
+  const[show,setShow] = useState(true); //Menu SP
+  /*=====================================================================*/
 
 
   function checa(){
@@ -31,7 +35,7 @@ function DatosSP({clave} ) {
     validaOperacion = !validaOperacion;
     
     }
-  console.log(clave);
+  //console.log(clave);
   
   const [modalShow, setModalShow] = useState(false);
   /*  console.log("---- Precio Unitario ----- ") */
@@ -199,7 +203,7 @@ function DatosSP({clave} ) {
     for (let c = 0; c < i.length; c++) {
       if (nombreProv === ListaProv[c].proveedor_nombre) {
         proveedorId.proveedor_id = ListaProv[c].proveedor_id
-        console.log('proveedor id:',proveedorId);
+        //console.log('proveedor id:',proveedorId);
       }        
     }
     async function listaMarcas(){
@@ -248,9 +252,70 @@ function DatosSP({clave} ) {
   }
   /*=========================================================================================================================================================*/
 
-  /*============================= Inserción de datos en las tablas servicio_producto, precio, proveedor, marca, proveedor_marca y psp =============================*/
-  /*=================================== Obtención de datos para la tabla servicio_producto ===================================*/
-  // Almacenamiento de los datos
+  /*======================================== Buscador de servicios/productos ========================================*/
+    // Almacenamiento de todos los servicios/productos
+    const[listaSP, setListaSP] = useState([]);
+
+    // Almacenamiento de los servicios/producos que tienen el no_parte semejante al instroducido
+    const[suggestions,setSuggestions] = useState([]);
+    
+    // Almacenamiento del no_parte
+    const[nP,setNP] = useState([]);
+
+    // Función que realiza la consulta a la tabla servicio/proyecto
+    const getSP = async () => {
+        try{
+          const resSP = await axios.get(url +'/api/cotizador/sp/viewFindSP');
+          setListaSP(resSP.data.data);
+        }catch(error){console.log(error);}
+    }
+
+    useEffect(()=>{
+      getSP();
+    },[nP])
+    
+    // Función que realiza la busqueda de los servicios/productos semejantes a la no_parte introducido 
+    const onChangeTextnp = (np) => {
+      let coincidencias = [];
+      if(np.length>0){
+          coincidencias = listaSP.filter(sp => {
+          const regex = new RegExp(`${np}`, "gi");
+          return sp.spnp_np.match(regex)
+          })
+      }
+      setSuggestions(coincidencias);
+      setNP(np);
+    }
+    /*=================================================================================================================*/
+
+    // Función que realiza la copia de los datos del servicio/producto seleccionado
+    function copyDataSP (key) {
+      setDatosSP({
+        ...datosSP, sp_no_parte : suggestions[key].spnp_np,
+                    sp_descripcion: suggestions[key].spd_des,
+                    sp_meses: suggestions[key].sp_meses,
+                    sp_semanas: suggestions[key].sp_semanas,
+                    sp_comentarios: suggestions[key].sp_comentarios
+      })
+
+      setDatosCategoria({
+        ...datosCategoria, categoria_id: suggestions[key].sp_id_categoria
+      })
+
+      setDatos({
+        ...datos, precio_lista: suggestions[key].precio_lista,
+                  precio_unitario: suggestions[key].precio_unitario,
+                  precio_descuento: suggestions[key].precio_descuento,
+                  precio_total: suggestions[key].precio_total,
+                  sp_cantidad: suggestions[key].sp_cantidad,
+                  precio_id_moneda: suggestions[key].precio_id_moneda
+      })
+      setNombreProv(suggestions[key].proveedor_nombre);
+      setNombreMarca(suggestions[key].marca_nombre);
+    }
+
+  /*======= Inserción de datos en las tablas precio,servicio_producto,sp_no_parte,sp_descripcion,sp_proveedor_marca y psp =======*/
+  // Almacenamiento de los datos de un servicio/producto
   const[datosSP, setDatosSP] = useState  ({
           sp_no_parte: '',
           sp_descripcion: '',
@@ -266,7 +331,6 @@ function DatosSP({clave} ) {
           ...datosSP, [event.target.name] : event.target.value
       })
   }
-  /*==========================================================================================================================*/
 
   // Almacenamiento de la última partida insertada
   var ListaPartida = {
@@ -275,34 +339,41 @@ function DatosSP({clave} ) {
       partida_descripcion:''
   };
 
-
   // Almacenamiento del id de la última partida insertada 
   var partidaId = {
       partida_id:''
   }
   
-  // Función que realiza las inserciones a las tablas y la consulta a la tabla partidas
+  // Función que realiza las inserciones a las tablas 
   async function SendSP (){
-      const dataSP = {
-          sp_no_parte: datosSP.sp_no_parte,
-          sp_descripcion: datosSP.sp_descripcion,
-          sp_meses: datosSP.sp_meses,
-          sp_semanas: datosSP.sp_semanas,
-          sp_cantidad: datos.sp_cantidad,
-          sp_id_precio:'',
-          sp_id_categoria:datosCategoria.categoria_id,
-          sp_comentarios: datosSP.sp_comentarios
-      };
+    const dataSP = {
+        sp_id_spnp: '',
+        sp_id_spd: '',
+        sp_meses: datosSP.sp_meses,
+        sp_semanas: datosSP.sp_semanas,
+        sp_cantidad: datos.sp_cantidad,
+        sp_id_precio:'',
+        sp_id_categoria:datosCategoria.categoria_id,
+        sp_comentarios: datosSP.sp_comentarios
+    };
 
-      const dataPrecio = {
-        precio_lista: datos.precio_lista,
-        precio_unitario: datos.precio_unitario,
-        precio_descuento: datos.precio_descuento,
-        precio_total: datos.precio_total,
-        precio_id_moneda: datos.precio_id_moneda
-      };
+    const dataPrecio = {
+      precio_lista: datos.precio_lista,
+      precio_unitario: datos.precio_unitario,
+      precio_descuento: datos.precio_descuento,
+      precio_total: datos.precio_total,
+      precio_id_moneda: datos.precio_id_moneda
+    };
 
-      // Obtención del id del proveedor que se seleccionó en la búsqueda
+    const dataSpnp = {
+      spnp_np: datosSP.sp_no_parte
+    }
+
+    const dataSpd = {
+      spd_des: datosSP.sp_descripcion
+    }
+
+    // Obtención del id del proveedor que se seleccionó en la búsqueda
     let i = Object.keys(ListaProv);
     for (let c = 0; c < i.length; c++) {
       if (nombreProv === ListaProv[c].proveedor_nombre) {
@@ -310,59 +381,136 @@ function DatosSP({clave} ) {
         //console.log('proveedor id:',proveedorId);
       }        
     }
-      // Obtención del id de la marca que se seleccionó en la búsqueda
-      let m = Object.keys(listaMarca);
-      for (let c = 0; c < m.length; c++) {
-        if (nombreMarca === listaMarca[c].marca_nombre) {
-          marcaId.marca_id = listaMarca[c].marca_id
-          //console.log('marca id:',marcaId);
-        }        
-      }
 
-      if(pEstatus1 === 'En revision'){
-        alert('No se puede continuar el Proyecto porque se encuentra En revision')
-      }else if(pEstatus1 === 'Aceptado'){
-          alert('No se puede continuar el Proyecto porque ha sido Aceptado')
-      }else{
-        try{
-          // Inserción a la tabla precio
-          const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataPrecio);
-          // Obtención del precio_id de la inserción realizada
-          dataSP.sp_id_precio = resPrecio.data.data.insertId;
+    // Obtención del id de la marca que se seleccionó en la búsqueda
+    let m = Object.keys(listaMarca);
+    for (let c = 0; c < m.length; c++) {
+      if (nombreMarca === listaMarca[c].marca_nombre) {
+        marcaId.marca_id = listaMarca[c].marca_id
+        //console.log('marca id:',marcaId);
+      }        
+    }
 
-          // Obtención del id de la última partida insertada del ultimo proyecto insertado del usuario que esta activo
-          const resGetPartida = await axios.get(url2 + `/api/cotizador/partida/viewPU/${validatorid}`);
-          ListaPartida = resGetPartida.data.data.pop();
-          partidaId.partida_id = ListaPartida.partida_id;
+    // Almacenamiento del id del spnp = no_parte
+    let spnp = {spnp_id:''}
+    // Almacenamiento del id del spd = descripción
+    let spd = {spd_id:''}
+    // Obtención del id del no_parte y descripción
+    let n = Object.keys(listaSP);
+    for (let c = 0; c < n.length; c++) {
+      if (datosSP.sp_no_parte === listaSP[c].spnp_np) {
+        spnp.spnp_id = listaSP[c].spnp_id
+      }       
+      if (datosSP.sp_descripcion === listaSP[c].spd_des) {
+        spd.spd_id = listaSP[c].spd_id
+      }     
+    }
 
-          //Inserción a las tablas sp , psp, y sp_proveedor_marcas
-          if(parId !== partidaId.partida_id && parId !== '' ){
-            console.log(parId);
-            const respuesta = await axios.post(url2 + `/api/cotizador/sp/agregar/${parId}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
-            console.log('Despues de la insersión:', parId);
-            const respuestaBack = respuesta.data.msg
-            console.log(respuestaBack)
-            alert(respuestaBack)
+    if(pEstatus1 === 'En revision'){
+      alert('No se puede continuar el Proyecto porque se encuentra En revision')
+    }else if(pEstatus1 === 'Aceptado'){
+        alert('No se puede continuar el Proyecto porque ha sido Aceptado')
+    }else{
+
+      try{
+        // Inserción a la tabla precio
+        const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataPrecio);
+        // Obtención del precio_id de la inserción realizada
+        dataSP.sp_id_precio = resPrecio.data.data.insertId;
+
+        // Obtención del id de la última partida insertada del ultimo proyecto insertado del usuario que esta activo
+        const resGetPartida = await axios.get(url2 + `/api/cotizador/partida/viewPU/${validatorid}`);
+        ListaPartida = resGetPartida.data.data.pop();
+        partidaId.partida_id = ListaPartida.partida_id;
+
+        
+        if(parId !== partidaId.partida_id && parId !== '' ){
+
+          if(spnp.spnp_id !== ''){
+            dataSP.sp_id_spnp = spnp.spnp_id;
           }else{
-            console.log("else",partidaId.partida_id);
-            const respuesta = await axios.post(url2 + `/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
-            const respuestaBack = respuesta.data.msg
-            console.log(respuestaBack)
-            alert(respuestaBack)
+            const resSpnp = await axios.post(url + '/api/cotizador/sp/agregarSpnp', dataSpnp);
+            dataSP.sp_id_spnp = resSpnp.data.data.insertId;
           }
-        }catch (error){
+
+          // Obtención del Id de la descripción de un servicio/producto 
+          if(spd.spd_id !== ''){
+            dataSP.sp_id_spd = spd.spd_id;
+          }else{
+            const resSpd = await axios.post(url + '/api/cotizador/sp/agregarSpd', dataSpd);
+            dataSP.sp_id_spd = resSpd.data.data.insertId;
+          }
+          // console.log('Datos SP:',dataSP);
+          // console.log('Datos precio:',dataPrecio);
+          // console.log('Id categoria:',dataCategoria);
+          const respuesta = await axios.post(url2 + `/api/cotizador/sp/agregar/${parId}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+          //console.log('Despues de la insersión:', parId);
+          const respuestaBack = respuesta.data.msg
+          //console.log(respuestaBack)
+          alert(respuestaBack)
+        }else{
+          // Obtención del Id del no_parte de un servicio/producto 
+          if(spnp.spnp_id !== ''){
+            dataSP.sp_id_spnp = spnp.spnp_id;
+          }else{
+            //console.log('Nuevo No. de parte:',dataSpnp);
+            const resSpnp = await axios.post(url + '/api/cotizador/sp/agregarSpnp', dataSpnp);
+            dataSP.sp_id_spnp = resSpnp.data.data.insertId;
+          }
+
+          // Obtención del Id de la descripción de un servicio/producto 
+          if(spd.spd_id !== ''){
+            dataSP.sp_id_spd = spd.spd_id;
+          }else{
+            //console.log('Nueva descripción:',dataSpd);
+            const resSpd = await axios.post(url + '/api/cotizador/sp/agregarSpd', dataSpd);
+            dataSP.sp_id_spd = resSpd.data.data.insertId;
+          }
+          //console.log("else",partidaId.partida_id);
+          const respuesta = await axios.post(url2 + `/api/cotizador/sp/agregar/${partidaId.partida_id}/${proveedorId.proveedor_id}/${marcaId.marca_id}`, dataSP);
+          const respuestaBack = respuesta.data.msg
+          //console.log(respuestaBack)
+          alert(respuestaBack)
+        }
+      }catch (error){
         alert('Registro de Servicio/producto invalido, revisa que hayas seleccionado correctamente el proveedor y la marca, y el tipo de moneda y categoría')
         console.log(error);
-        }
       }
+    }
+
+    const resSP = await axios.get(url +'/api/cotizador/sp/viewFindSP');
+    setListaSP(resSP.data.data);
   }
+
   const enviarDatosSP = (event) =>{
       SendSP();
       event.preventDefault()
-      event.target.reset();
+      //event.target.reset();
+      setDatosSP({
+        ...datosSP, sp_no_parte : '',
+                    sp_descripcion: '',
+                    sp_meses: '',
+                    sp_semanas: '',
+                    sp_comentarios: ''
+      })
+
+      setDatosCategoria({
+        ...datosCategoria, categoria_id: ''
+      })
+
+      setDatos({
+        ...datos, precio_lista: '',
+                  precio_unitario: '',
+                  precio_descuento: '',
+                  precio_total: '',
+                  sp_cantidad: '',
+                  precio_id_moneda: ''
+      })
+      setNombreProv('');
+      setNombreMarca('');
      
   }
-
+  /*=============================================================================================================================*/
   const [modalShow1, setModalShow1] = useState(true)
   const [proyecto_id, Setproyecto_id] = useState([])
   const lista = async (clave) =>{
@@ -376,12 +524,7 @@ function DatosSP({clave} ) {
       console.log(error)
       
     }
-    
-    
- }
- console.log(clave);
- 
-  /*===============================================================================================================================================================*/
+  }
   
   return (
 
@@ -397,7 +540,77 @@ function DatosSP({clave} ) {
      
       />
          :  ''  } 
-      
+         <button type="button" className="btn btn-primary" onClick={() => {setShow(!show);}} >
+          {show ? "Buscar servicios/productos" : "Ocultar"}
+        </button><br/><br/>
+        {show ? (
+          <div></div>
+        ):(
+          <div className="table-responsive">
+                {/*********Búsqueda de Lista de Proyectos por Clave ********/}
+                <div className="busqueda-proyectos">
+                    <Table responsive id="nombreDiv">
+                        <thead>
+                            <tr className="titulo-tabla-usuarios">
+                                <th>No. de Parte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr >
+                                <td>
+                                    <input className="agregar"
+                                        type="text"
+                                        name="proyecto_clave"
+                                        onChange={e => onChangeTextnp(e.target.value)}
+                                        value={nP}
+                                        placeholder="Ingrese No. de Parte del Servicio/Producto" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                    
+                    {/*============= Titulo Animación =============*/}
+                    <Animaciones mytext="Servicios/Productos " />
+
+                    <Table responsive  striped bordered hover size="sm">
+                        <thead>
+                            <tr className="titulo-tabla-usuarios">
+                                <th>Proyecto</th>
+                                <th>Partida</th>
+                                <th>No. de Parte SP</th>
+                                <th>Descripción SP</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                                        
+                        <tbody>
+                            {Object.keys(suggestions).map((key) => (    
+                                <tr key={key} >
+                                    <td>{suggestions[key].proyecto_clave}</td>  
+                                    <td>{suggestions[key].partida_nombre}</td>  
+                                    <td>{suggestions[key].spnp_np}</td>  
+                                    <td>{suggestions[key].spd_des}</td>  
+                                    <td>
+                                        <button 
+                                        className="btn btn-primary detalles" 
+                                        onClick={() => {
+                                          copyDataSP(key);
+                                            //habilitar1(key);
+                                        }}
+                                        >
+                                          COPIAR
+                                            {/* {textBVer[key]} */}
+                                        </button>
+                                    </td> 
+                                </tr>  
+                            ))}
+                        </tbody>          
+                    </Table>
+
+                </div>
+          </div>
+        )} 
+        
         {/*========================== Tabla Datos PTN ==========================*/}
         <form action="" method="post" onSubmit={enviarDatosSP}>
             <Table responsive id="nombreDiv">
@@ -421,6 +634,7 @@ function DatosSP({clave} ) {
                     name="sp_no_parte"
                     onChange={handleInputChangeSP}
                     placeholder="No. Parte"
+                    value={datosSP.sp_no_parte}
                     />
                 </td>
                 {/*========================Descripcion Producto ==========================*/}
@@ -432,6 +646,7 @@ function DatosSP({clave} ) {
                     name="sp_descripcion"
                     onChange={handleInputChangeSP}
                     placeholder="Descripción"
+                    value={datosSP.sp_descripcion}
                     />
                 </td>
                 {/*========================Meses ==========================*/}
@@ -444,6 +659,7 @@ function DatosSP({clave} ) {
                     min="0"
                     onChange={handleInputChangeSP}
                     placeholder="Meses"
+                    value={datosSP.sp_meses}
                     />
                 </td>
                 {/*======================== Semanas ==========================*/}
@@ -455,11 +671,12 @@ function DatosSP({clave} ) {
                     min="0"
                     onChange={handleInputChangeSP}
                     placeholder="Entrega semanas"
+                    value={datosSP.sp_semanas}
                     />
                 </td>
                 {/*======================== Moneda ==========================*/}
                 <td>
-                    <select id="moneda" name="precio_id_moneda" onChange={handleInputChange}>
+                    <select id="moneda" name="precio_id_moneda" onChange={handleInputChange} value={datos.precio_id_moneda}>
                     <option value={0}></option>
                     <option value={1}>MXN</option>
                     <option value={2}>USD</option>
@@ -624,12 +841,13 @@ function DatosSP({clave} ) {
                     name="sp_comentarios"
                     onChange={handleInputChangeSP}
                     placeholder="Comentarios"
+                    value={datosSP.sp_comentarios}
                     />
                 </td>
                 {/*======================== Categorias ==========================*/}
                 <td>
                     {" "}
-                    <select id="lista-opciones" name="categoria_id" onChange={handleInputChangeCategoria}>
+                    <select id="lista-opciones" name="categoria_id" onChange={handleInputChangeCategoria} value={datosCategoria.categoria_id}>
                     <option value={0}></option>
                     <option value={1}>Tecnología Principal</option>
                     <option value={2}>Sub-tecnología</option>
