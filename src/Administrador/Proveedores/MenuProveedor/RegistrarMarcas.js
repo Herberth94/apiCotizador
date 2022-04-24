@@ -59,7 +59,7 @@ function RegistrarMarcas() {
     <div className="contenido-main-registro">
         <div className="scene flex">
           <section className="card-body">
-            <form  method="post" className="card-form" onSubmit = {(e) => {enviarDatosMarca(e,nombreProv,ListaProv)}}>
+            <form  method="post" className="card-form" onSubmit = {(e) => {enviarDatosMarca(e,nombreProv,setNombreProv,ListaProv)}}>
                 {/*========= Registrar Clientes========= */}
               <h2 >  <span>Registrar Marcas</span> </h2>
    {/*========= Nombre Proveedor ========= */}
