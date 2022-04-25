@@ -16,7 +16,7 @@ export const CrudUsuarios = (props) => {
     /*============================================================================*/
 
     const [data,setData] = useState ({
-        rol: '', 
+        usuario_id_rol: '', 
         email  :'',
         password:'',
         estado_login: 0        
@@ -95,23 +95,20 @@ export const CrudUsuarios = (props) => {
                 {/*=================== Contenido Tabla Usuarios =================*/}
                     {Object.keys(props.usuarios).map((key) => (
                         //checar aqui va los titulos
-                        <tr key={key} >
-                            <td>{props.usuarios[key].id_usuario}</td>
-                            <td><input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input></td>
-                            <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
-                            <td width={"30px"} >
-                                <button className="btn btn-primary Resetear"
-                                 type="button"
-                                  onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)
-                                }
-                                } 
-                                 
-                                >
-                                <i className="bi bi-bootstrap-reboot"></i>
-                                </button></td>
-  
-  
-  
+                    <tr key={key} >
+                        <td>{props.usuarios[key].id_usuario}</td>
+                        <td> 
+                        {/*<input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>
+                        */}
+                            <select id="rol" name="usuario_id_rol" required defaultValue={props.usuarios[key].usuario_id_rol}   onChange={handleInputChange}  disabled={enable[key]}>
+                                <option value={4}>------</option>
+                                <option value={1}>Administrador</option>
+                                <option value={2}>Preventa</option>
+                                <option value={3}>Venta</option>
+                            </select>
+                        </td>
+                        <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
+                        <td><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > Resetear </button></td>
    {/*                          <td>
                                 <button 
                                 className="btn btn-primary eliminar" 

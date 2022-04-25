@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 import "./Componentes/css/Animaciones.css";
 import "./css/Tablas.css";
+import Header from "./Componentes/Header";
 //============ Rutas Públicas ============
 import Login from './Administrador/Login/Login';
 import Footer from './Componentes/Footer';
@@ -45,6 +46,7 @@ import Venta from "./Routes/ValidaVenta";
 
 //============ Ventas  Páginas Private  ============
 import MenuVentas from "./Ventas/MenuVentas";
+
 import AsignarProyecto from "./Preventa/AsignarVentas/MenuAsignacion/AsignarProyecto";
 import { calcularDescuento } from "./Preventa/PTN-BOM/Operaciones/Operaciones";
 
@@ -63,6 +65,7 @@ function App() {
 
         <PublicRoutes path="/" component={Login} />
         <PublicRoutes path="/" component={Footer} />
+        <PublicRoutes path="/" component={Header} />
     
         {/*========================== Páginas Administrador ==========================*/}
 
@@ -74,9 +77,8 @@ function App() {
         <Administrador exact path="/menu-clientes" component={MenuClientes} />
         <Administrador exact path="/menu-proveedores" component={MenuProveedor} />
         <Administrador exact path="/menu-colaboradores" component={MenuColaboradores} />
-      
-   
-       
+        <Administrador exact path ="/" component={CambioContraseña} />
+        <Administrador path ="/" component={Header} />
         <Administrador exact path="/calculadora" component={MenuHeramientas} />
         <Administrador exact path="/ptn" component={PTN_BOM} />
         <Administrador exact path="/propuesta-economica" component={PropuestaEconomica} />
@@ -88,6 +90,7 @@ function App() {
 
         <Preventa path="/" component={MenuPreventa} />
         {/* oooo */}
+        <Preventa exact path ="/" component={Header} />
         <Preventa exact path ="/" component={CambioContraseña} />
 
         <Preventa path="/menu-clientes" component={MenuClientes} />

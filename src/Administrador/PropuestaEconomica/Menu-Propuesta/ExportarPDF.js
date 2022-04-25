@@ -50,7 +50,8 @@ let claveProyecto = "2303";
 let organizacion = "Delfos369";
 let nombreProyecto = datos.nombre;
 //Atención 
-let nombreContacto = "Marco Banda, Compras OIEGSA";
+//let nombreContacto = "Marco Banda, Compras OIEGSA";
+let nombreContacto = datos.servicios
 
 
     const title = "PROPUESTA ECONÓMICA";
@@ -58,7 +59,7 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
     const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
     const atencion = "Atención "  + nombreContacto;
     const comentarios = "Propuesta económica correspondiente al servicio de TV de paga.";
-    const importe = "IMPORTE: SETENTA Y CUATRO MIL DOSCIENTOS OCHENTA 24/100 ANTES DE IVAOIEGSA";
+    const importe = "IMPORTE: SETENTA Y CUATRO MIL DOSCIENTOS OCHENTA 24/100 ANTES DE IVA";
     const cuota = "CUOTA MENSUAL";
     const importeMensual = "IMPORTE MENSUAL UN DISPOSITIVO: SEIS MIL CIENTO NOVENTA PESOS 02/100 ANTES DE IVA"
     const condiciones = "CONDICIONES COMERCIALES"
@@ -98,12 +99,13 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
     let image = new Image();
     image.src = imagen;
     doc.addImage(image,'PNG', 50, 30, 130, 70);
-    doc.text(title, 230, 90);
-    doc.text(fech, 320, 120 );
+    doc.text(title, 230, 120);
+    doc.text(fech, 400, 100 );
     doc.text(proyecto, marginLeft, 140 );
     doc.text(atencion, marginLeft, 160 );
     doc.text(comentarios, marginLeft, 190 );
-    doc.text(condiciones, marginLeft, 620);
+    //doc.text(condiciones, marginLeft, 620);
+    
     doc.autoTable(content);
     console.log(doc.lastAutoTable.finalY)
     console.log(datos)
@@ -139,6 +141,7 @@ let nombreContacto = "Marco Banda, Compras OIEGSA";
     }
     doc.autoTable(content4);
     doc.text(importeMensual, marginLeft, doc.lastAutoTable.finalY + 15);
+    doc.text(datos.condiciones, marginLeft, doc.lastAutoTable.finalY + 30);
     doc.save("PropuestaEconómica.pdf")
   }
 

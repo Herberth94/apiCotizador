@@ -24,7 +24,8 @@ export const EditProyecto = () => {
         const dataActualizacion ={
             proyecto_clave:dataP.proyecto_clave,
             proyecto_descripcion: dataP.proyecto_descripcion,
-            proyecto_id_cliente: dataP.proyecto_id_cliente
+            proyecto_id_cliente: dataP.proyecto_id_cliente,
+            proyecto_plazo_meses: dataP.proyecto_plazo_meses
         }
         //console.log(dataP);
         const k = Object.keys(newdataP);

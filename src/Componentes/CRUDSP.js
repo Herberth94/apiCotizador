@@ -142,10 +142,12 @@ export const CrudSp = (props) => {
             const newArr2 = [];
             let c = Object.keys(props.sp);
             c = c.length;
+            setShow1(Array(c).fill(true));
+            setTextBVer(Array(c).fill('Mostrar'));
             for (let i = 0 ; i < c ; i++){
                 if(i === key){
                     newArr[i] = !show1[i];
-                    setShow(!show);
+                    setShow(newArr[i]);
                     if(show1[i] === false){
                         newArr2[i] = 'Mostrar';
                     }else{

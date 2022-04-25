@@ -88,10 +88,12 @@ export const CrudProveedores = (props) => {
         const newArr2 = [];
         let c = Object.keys(props.proveedores);
         c = c.length;
+        setShow(Array(c).fill(true));
+        setTextBVer(Array(c).fill('Mostrar'));
         for (let i = 0 ; i < c ; i++){
             if(i === key){
                 newArr[i] = !show[i];
-                setShow2(!show2);
+                setShow2(newArr[i]);
                 if(show[i] === false){
                     newArr2[i] = 'Mostrar';
                 }else{

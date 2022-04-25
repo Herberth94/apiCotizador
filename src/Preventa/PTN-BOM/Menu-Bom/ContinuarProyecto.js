@@ -40,41 +40,45 @@ function ContinuarProyecto() {
   const [show10,setShow10] = useState([]);
   const [textBVer1,setTextBVer1] = useState([]);// Texto de los botones de finalizar proyecto
   const [show11,setShow11] = useState([]);
-  const [textBVer2,setTextBVer2] = useState([]);// Texto de los botones de finalizar proyecto
+  const [textBVer2,setTextBVer2] = useState([]);// Texto de los botones de continuar partida
   /*=====================================================================*/
 
   const [id, setid] = useState([]);
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
-
-  //Almacenamiento de los proyectos que tienen la clave semejante a la instroducida
-  const[suggestions,setSuggestions] = useState([]);
   
   // Almacenamiento de la clave introducida del proyecto 
   const[claveP,setClaveP] = useState([]);
 
   // Función que realiza la consulta a la tabla proyectos 
+  const getProyectos = async () => {
+    try{
+      if(validatorrol === "administrador"){
+        const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
+        setListaProyectos(resProy.data.data);
+    }else{
+        if(show6 === false){
+          const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+          setListaProyectos(resProy.data.data);
+        }else if(show7 === false){
+          const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
+          setListaProyectos(resProy.data.data)
+          console.log(listaProyectos)
+        }
+    }
+    }catch(error){console.log(error);}
+  }
+
   useEffect(()=>{
-      const getProyectos = async () => {
-          try{
-            if(validatorrol === "administrador"){
-              const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
-              setListaProyectos(resProy.data.data);
-          }else{
-              if(show6 === false){
-                const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-                setListaProyectos(resProy.data.data);
-              }else if(show7 === false){
-                const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
-                setListaProyectos(resProy.data.data)
-                console.log(listaProyectos)
-              }
-          }
-          }catch(error){console.log(error);}
-      }
       getProyectos();
   },[show6,show7])
+
+  useEffect(()=>{
+    if(claveP === ''){
+      getProyectos();
+    }
+  },[claveP])
   
   /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
   const onChangeTextClaveP = (claveP) => {
@@ -85,7 +89,7 @@ function ContinuarProyecto() {
           return proyecto.proyecto_clave.match(regex)
           })
       }
-      setSuggestions(coincidencias);
+      setListaProyectos(coincidencias);
       setClaveP(claveP);
   }
   /*=======================================================================================================*/
@@ -107,11 +111,11 @@ function ContinuarProyecto() {
           console.log(error);
       }
       proyectoIdCont = proyecto_id;
-      let i = Object.keys(suggestions);
+      let i = Object.keys(listaProyectos);
       i = i.length;
       for(let c = 0 ; c < i ; c++){
-        if(proyecto_id === suggestions[c].proyecto_id){
-          getProyEstatus(suggestions[c].proyecto_estatus);
+        if(proyecto_id === listaProyectos[c].proyecto_id){
+          getProyEstatus(listaProyectos[c].proyecto_estatus);
         }
       }
       //console.log(pEstatus1); 
@@ -120,34 +124,39 @@ function ContinuarProyecto() {
   const {getIdP} = InsertDatosPartida();
   const {getIdP1} = InsertDatosCats();
   /*===================================================================================================*/
+
   useEffect(() => {
-    let i = Object.keys(suggestions)
+    let i = Object.keys(listaProyectos)
     i = i.length
     setShow9(Array(i).fill(true));
     setTextBVer(Array(i).fill('Continuar'));
     setShow10(Array(i).fill(true));
     setTextBVer1(Array(i).fill('Finalizar'));
-  },[suggestions])
+  },[listaProyectos])
 
   useEffect(() => {
     let i = Object.keys(listaPartidas)
     i = i.length
     setShow11(Array(i).fill(true));
     setTextBVer2(Array(i).fill('Continuar'));
-  },[listaPartidas])
+  },[listaPartidas,show3 === true])
 
   const habilitar = (key) =>{
     setShow5(true);
+    setShow3(true);
     key = parseInt(key);
     const newArr =[];
     const newArr2 = [];
-    let c = Object.keys(suggestions);
+    let c = Object.keys(listaProyectos);
     c = c.length;
+    setShow9(Array(c).fill(true));
+    setShow10(Array(c).fill(true));
+    setTextBVer(Array(c).fill('Continuar'));
     setTextBVer1(Array(c).fill('Finalizar'));
     for (let i = 0 ; i < c ; i++){
         if(i === key){
             newArr[i] = !show9[i];
-            setShow(!show);
+            setShow(newArr[i]);
             if(show9[i] === false){
                 newArr2[i] = 'Continuar';
                 setShow2(true);
@@ -168,16 +177,21 @@ function ContinuarProyecto() {
 
   const habilitar1 = (key) =>{
     setShow(true);
+    setShow2(true);
+    setShow4(true);
     key = parseInt(key);
     const newArr =[];
     const newArr2 = [];
-    let c = Object.keys(suggestions);
+    let c = Object.keys(listaProyectos);
     c = c.length;
+    setShow9(Array(c).fill(true));
+    setShow10(Array(c).fill(true));
+    setTextBVer1(Array(c).fill('Finalizar'));
     setTextBVer(Array(c).fill('Continuar'));
     for (let i = 0 ; i < c ; i++){
         if(i === key){
             newArr[i] = !show10[i];
-            setShow5(!show5);
+            setShow5(newArr[i]);
             if(show10[i] === false){
                 newArr2[i] = 'Finalizar';
 
@@ -200,10 +214,12 @@ function ContinuarProyecto() {
     const newArr2 = [];
     let c = Object.keys(listaPartidas);
     c = c.length;
+    setShow11(Array(c).fill(true));
+    setTextBVer2(Array(c).fill('Continuar'));
     for (let i = 0 ; i < c ; i++){
         if(i === key){
             newArr[i] = !show11[i];
-            setShow4(!show4);
+            setShow4(newArr[i]);
             if(show11[i] === false){
                 newArr2[i] = 'Continuar';
             }else{
@@ -309,29 +325,31 @@ function ContinuarProyecto() {
                   <th>Fecha de creación</th>
                   <th>Fecha de modificación</th>
                   <th>Estatus</th>
+                  <th>Plazo de meses</th>
                   <th>Continuar</th>
                   <th>Finalizar</th>
                 </tr>
               </thead>
                                   
               <tbody>
-              {Object.keys(suggestions).map((key) => (    
+              {Object.keys(listaProyectos).map((key) => (    
                   <tr key={key} >
-                      <td>{suggestions[key].proyecto_id}</td>   
-                      <td>{suggestions[key].proyecto_clave}</td>  
-                      <td>{suggestions[key].proyecto_descripcion}</td>  
-                      <td>{suggestions[key].nombre_cliente}</td> 
-                      <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                      <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                      <td>{suggestions[key].proyecto_estatus}</td>  
+                      <td>{listaProyectos[key].proyecto_id}</td>   
+                      <td>{listaProyectos[key].proyecto_clave}</td>  
+                      <td>{listaProyectos[key].proyecto_descripcion}</td>  
+                      <td>{listaProyectos[key].nombre_cliente}</td> 
+                      <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
+                      <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
+                      <td>{listaProyectos[key].proyecto_estatus}</td>  
+                      <td>{listaProyectos[key].proyecto_plazo_meses}</td>  
                       <td>
                         <button 
                           className="btn btn-primary modificar" 
                           type="button" 
                           onClick={() => {
-                            getIdP(suggestions[key].proyecto_id);
-                            getDatosPartida(suggestions[key].proyecto_id); 
-                            setid(suggestions[key].proyecto_id);
+                            getIdP(listaProyectos[key].proyecto_id);
+                            getDatosPartida(listaProyectos[key].proyecto_id); 
+                            setid(listaProyectos[key].proyecto_id);
                             habilitar(key);
                             }}
                           > 
@@ -343,9 +361,9 @@ function ContinuarProyecto() {
                           className="btn btn-primary modificar" 
                           type="button" 
                           onClick={() => {
-                            getIdP1(suggestions[key].proyecto_id);
-                            getDatosPartida(suggestions[key].proyecto_id); 
-                            setid(suggestions[key].proyecto_id);
+                            getIdP1(listaProyectos[key].proyecto_id);
+                            getDatosPartida(listaProyectos[key].proyecto_id); 
+                            setid(listaProyectos[key].proyecto_id);
                             habilitar1(key);
                             }}
                           > 
@@ -363,8 +381,6 @@ function ContinuarProyecto() {
               {/* <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show) ;   }}>  {show ? 'Continuar' : 'Ocultar Proyecto'}    </button> */}
       {show ? (
         <div >
-
-
         </div>
       ) : (
         <Table responsive  striped bordered hover size="sm">
@@ -385,6 +401,7 @@ function ContinuarProyecto() {
                         getIdPar('');
                         setShow2(!show2);
                         setShow3(true);
+                        setShow4(true);
                       }}
                       >{show2 ? 'Agregar' : 'Ocultar'} </button>
                   </td>

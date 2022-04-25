@@ -4,8 +4,6 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-
-
 function archivo() {
   const cierreSesion=()=>{
 
@@ -18,8 +16,8 @@ function archivo() {
 
 
   return (
-    <div className="contenedor">
 
+    <div className="contenedor">
       <nav className="main-menu-ventas">
         <ul>
 

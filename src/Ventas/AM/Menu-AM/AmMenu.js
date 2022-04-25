@@ -19,16 +19,10 @@ function AmMenu() {
    /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
   const [show3, setShow3] = useState(true);
 
-   /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
-  const [show4, setShow4] = useState(true);
-
-
   return (
     <div className="contenido-usuarios">
       {/*======================= Titulo Animación =======================*/}
-
       <Animaciones mytext=" AM " />
-
       {/*========================== Tabla  Categorias ==========================*/}
       <Table responsive id="nombreDiv">
         {/*========================== Titulos Tabla ==========================*/}
@@ -48,6 +42,8 @@ function AmMenu() {
                 type="button"
                 onClick={() => {
                   setShow(!show);
+                  setShow2(true);
+                  setShow3(true);
                 }}
               >
                 {" "}
@@ -69,6 +65,8 @@ function AmMenu() {
                 type="button"
                 onClick={() => {
                   setShow2(!show2);
+                  setShow(true);
+                  setShow3(true);
                 }}
               >
                 {" "}
@@ -84,32 +82,29 @@ function AmMenu() {
               )}
             </td>
 
-
-
             <td>
               <button
                 className="btn btn-primary modificar"
                 type="button"
                 onClick={() => {
-                  setShow4(!show4);
+                  setShow3(!show3);
+                  setShow(true);
+                  setShow2(true);
                 }}
               >
                 {" "}
-                {show4 ? "Ver " : "Ocultar "}{" "}
+                {show3 ? "Ver " : "Ocultar "}{" "}
               </button>
-              {show4 ? (
+              {show3 ? (
                 <div></div>
               ) : (
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
-    {/*           <CostosIndirectos/> */}
-   < BuscadorInteligente/>
-
-
+                  {/*           <CostosIndirectos/> */}
+                  <BuscadorInteligente/>
                 </div>
               )}
             </td>
-
 
           </tr>
         </tbody>
