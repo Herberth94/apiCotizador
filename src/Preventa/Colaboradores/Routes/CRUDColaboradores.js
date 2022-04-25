@@ -33,7 +33,7 @@ export const CrudColaboradores = (props) => {
                     {/*=================== Titulos Tabla Proveedores ===================*/}
                     <tr className="titulo-tabla-usuarios">
                         <th>ID</th>
-                        <th>Colaborador</th>
+                        <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>

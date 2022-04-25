@@ -32,7 +32,8 @@ export const CrudProyectos = (props) => {
         /*========================= Editar =========================*/
         const [data,setData] = useState ({
             proyecto_clave:'',
-            proyecto_descripcion:''        
+            proyecto_descripcion:'',
+            proyecto_plazo_meses:''   
         });
 
         const handleInputChange = (event) => {
@@ -87,7 +88,8 @@ export const CrudProyectos = (props) => {
                         newArr2[i] = 'Modificar';
                         setData({
                             ...data,proyecto_clave:'',
-                                    proyecto_descripcion:''  
+                                    proyecto_descripcion:'',
+                                    proyecto_plazo_meses:''
                         })
                     }else{
                         newArr2[i] = 'Aceptar';
@@ -121,15 +123,18 @@ export const CrudProyectos = (props) => {
         }
 
         const habilitar1 = (key) =>{
+            setShow2(true);
+            setShow3(true);
             key = parseInt(key);
             const newArr =[];
             const newArr2 = [];
             let c = Object.keys(props.suggestionsP);
             c = c.length;
+            setTextBVer(Array(c).fill('Mostrar'));
             for (let i = 0 ; i < c ; i++){
                 if(i === key){
                     newArr[i] = !show4[i];
-                    setShow(!show);
+                    setShow(newArr[i]);
                     if(show4[i] === false){
                         newArr2[i] = 'Mostrar';
                     }else{
@@ -201,6 +206,7 @@ export const CrudProyectos = (props) => {
             //setNombreC(nombreC);
             setSuggestionsClientes([]);
         }
+
         function getProyEstatus(st){
             pEstatus = st;
         }
@@ -214,10 +220,8 @@ export const CrudProyectos = (props) => {
                     getProyEstatus(props.suggestionsP[c].proyecto_estatus)
                 }
             }
-            console.log(pEstatus);
+            //console.log(pEstatus);
         }
-
-    
         /*============================================================================================*/
     /*===============================================================================================================*/
     
@@ -297,6 +301,7 @@ export const CrudProyectos = (props) => {
                             <th>Fecha de creación</th>
                             <th>Fecha de modificación</th>
                             <th>Estatus</th>
+                            <th>Plazo de Meses</th>
                             <th>Modificar</th>
                             <th>Detalles</th>
                         </tr>
@@ -347,6 +352,15 @@ export const CrudProyectos = (props) => {
                                 <td>{props.suggestionsP[key].proyecto_fecha_creacion}</td>
                                 <td>{props.suggestionsP[key].proyecto_fecha_modificacion}</td>
                                 <td>{props.suggestionsP[key].proyecto_estatus}</td>
+                                <td>
+                                    <input 
+                                    className="input-name" 
+                                    defaultValue={props.suggestionsP[key].proyecto_plazo_meses} 
+                                    disabled={enable[key]} 
+                                    onChange={handleInputChange}
+                                    name="proyecto_plazo_meses" 
+                                    ></input>
+                                </td> 
                                 <td>
                                     <button 
                                     className="btn btn-primary modificar" 
@@ -437,18 +451,18 @@ export const CrudProyectos = (props) => {
                                                 {show3 ? "Mostrar" : "Ocultar"}{" "}
                                                 </button>
                                                 {show3 ? (
-                                                <div></div>
-                                                ) : (
-                                                <div className="arregla">
-                                                    <div className='contenido-usuarios'>
-                                                    {/*========================== Llamado al Componente ==========================*/}
-                                                    <CrudCategorias
-                                                    dcats={listaCategorias}
-                                                    setfirst={setfirst1}
-                                                    envioData={envioDataCats}
-                                                    />
+                                                    <div></div>
+                                                ):(
+                                                    <div className="arregla">
+                                                        <div className='contenido-usuarios'>
+                                                            {/*========================== Llamado al Componente ==========================*/}
+                                                            <CrudCategorias
+                                                            dcats={listaCategorias}
+                                                            setfirst={setfirst1}
+                                                            envioData={envioDataCats}
+                                                            />
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 )}
                                             </td>
                                         </tr>

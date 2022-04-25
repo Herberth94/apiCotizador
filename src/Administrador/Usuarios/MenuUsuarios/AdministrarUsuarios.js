@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useRegistro } from '../Routes/ModificarUsuarios';
 import axios from 'axios';
 import Animaciones from "../../../Componentes/Animaciones";
@@ -52,6 +52,10 @@ function AdministrarUsuarios() {
        setShow(!show)
        //setShow(!show)
     }
+
+    useEffect(() => {
+        llamadoUsuario();
+    },[])
     /*==========================================================================*/
     // const llamado = async () =>{
     //    const respuesta = await axios.get(url + '/api/cotizador/registro');
@@ -79,7 +83,7 @@ function AdministrarUsuarios() {
 
   {/*================= Botón Mostrar/Ocultar Lista ==================*/}
                 <div>
-                    <button className="btn btn-primary modificar" type="button" onClick={()=>llamadoUsuario()} >  {show ? 'Mostrar Lista' : 'Ocultar Lista'} </button>
+                    {/* <button className="btn btn-primary modificar" type="button" onClick={()=>llamadoUsuario()} >  {show ? 'Mostrar Lista' : 'Ocultar Lista'} </button> */}
                     {show ? (
                         <div >
                         {/*=================== Ocultar Lista DIV  =====================*/}
