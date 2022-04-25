@@ -20,9 +20,9 @@ export const CrudProyectos = (props) => {
     /*=========================================================================================================*/
 
     /*========================== Mostrar/Ocultar ==========================*/
-    const[show,setShow] = useState(true); //Menu resumen
-    const[show2,setShow2] = useState(true); //Lista de partidas
-    const[show3,setShow3] = useState(true); //Lista de categorias
+    const [show,setShow] = useState(true); //Menu resumen
+    const [show2,setShow2] = useState(true); //Lista de partidas
+    const [show3,setShow3] = useState(true); //Lista de categorias
     const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
     const [show4,setShow4] = useState([]);
     const [textBVer,setTextBVer] = useState([]);// Texto de los botones de mostrar
@@ -309,7 +309,7 @@ export const CrudProyectos = (props) => {
                                     
                     <tbody>
                         {Object.keys(props.suggestionsP).map((key) => (    
-                            <tr key={key} >
+                            <tr key={props.suggestionsP[key].proyecto_id} >
                                 <td>{props.suggestionsP[key].proyecto_id}</td>  
                                 <td>
                                     <input 
@@ -340,13 +340,13 @@ export const CrudProyectos = (props) => {
                                     onChange={e => onChangeTextCliente(e.target.value,key)}
                                     />
                                     {Object.keys(suggestionsClientes).map((i)=>
-                                    <div 
-                                    key={i}
-                                    className="selectCliente" 
-                                    onClick={() => onSuggestHandler(suggestionsClientes[i].nombre_cliente, key)}
-                                    >
-                                        {suggestionsClientes[i].nombre_cliente}
-                                    </div>
+                                        <div 
+                                        key={i}
+                                        className="selectCliente" 
+                                        onClick={() => onSuggestHandler(suggestionsClientes[i].nombre_cliente, key)}
+                                        >
+                                            {suggestionsClientes[i].nombre_cliente}
+                                        </div>
                                     )}
                                 </td> 
                                 <td>{props.suggestionsP[key].proyecto_fecha_creacion}</td>
