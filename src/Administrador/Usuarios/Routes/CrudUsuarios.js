@@ -79,7 +79,7 @@ export const CrudUsuarios = (props) => {
   return (
     <div>
         <form>
-            <Table responsive striped bordered hover size="sm" className="tablas">
+            <Table responsive striped bordered hover size="sm" className="">
                 <thead>
                 {/*=================== Titulos Tabla Usuarios ====================*/}
                     <tr className="titulo-tabla-usuarios">
@@ -99,7 +99,19 @@ export const CrudUsuarios = (props) => {
                             <td>{props.usuarios[key].id_usuario}</td>
                             <td><input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input></td>
                             <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
-                            <td><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > Resetear </button></td>
+                            <td width={"30px"} >
+                                <button className="btn btn-primary Resetear"
+                                 type="button"
+                                  onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)
+                                }
+                                } 
+                                 
+                                >
+                                <i className="bi bi-bootstrap-reboot"></i>
+                                </button></td>
+  
+  
+  
    {/*                          <td>
                                 <button 
                                 className="btn btn-primary eliminar" 
@@ -108,7 +120,7 @@ export const CrudUsuarios = (props) => {
                                 </button>
                             </td> */}
                             {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
-                            <td>
+                            <td width={"10px"} >
                                 <button 
                                     className="btn btn-primary Mod" type="button"
                                     onClick={()=>{
@@ -116,8 +128,13 @@ export const CrudUsuarios = (props) => {
                                         habilitar(key); 
                                         props.setfirst(activar[key]); 
                                     }}
-                                    >{textBModificar[key]}  
+                                    >
+                                        
+                                     
+                                        <i className="bi bi-pencil-square"></i>
                                 </button>
+
+                                
                             <div >
                         </div>
                         </td>
