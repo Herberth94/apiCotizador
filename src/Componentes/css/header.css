@@ -1,24 +1,38 @@
 
 .log{
     width: 10%;
-    justify-content: center;
-    text-align: center;
+    justify-content: left;
+    text-align: left;
+    margin-top: 10px;
 
-    margin-top: 15px;
+    margin-left: 100px;
 }
 
-.header-a h3{
-  
-text-align: center;
-justify-content: center;
+
+.log2{
+  width: 10%;
+  justify-content:right;
+  text-align: right;
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+.header h4{
+  width: 100%;
+position: absolute;
+  top: 15px;
+text-align: right;
+justify-content: right;
+right: 60px;
 
 }
 div.header{
-  position: absolute;
-  top: 0px;
+    position: absolute;
+    top: 0px;
     width: 100%;
     height: 80px;
-    background-color: rgb(255, 255, 255);
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
 
 }
 
@@ -87,9 +101,10 @@ div.header{
 	
         .log{
             width: 30%;
-            justify-content: center;
-            text-align: center ;
+            justify-content: left;
+            text-align: left ;
             margin-left: 60px;
+            margin-left: 100px;
         
         }
               
@@ -103,9 +118,10 @@ div.header{
 
             .log{
                 width: 15%;
-                justify-content: center;
-                text-align: center ;
+                justify-content:left;
+                text-align: left ;
                 margin-left: 60px;
+                margin-left: 100px;
             
             }
           }
@@ -118,9 +134,10 @@ div.header{
 	
 .log{
     width: 35%;
-    justify-content: center;
-    text-align: center;
+    justify-content: left;
+    text-align: left;
     margin-left: 60px;
+    margin-left: 100px;
 
 }
   

@@ -128,7 +128,12 @@ export const CrudUsuarios = (props) => {
                                     }}
                                     >{textBModificar[key]}  
                                 </button>
+
+
+
+                              
                             <div >
+                                
                         </div>
                         </td>
                         </tr>

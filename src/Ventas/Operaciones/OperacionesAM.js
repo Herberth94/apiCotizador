@@ -22,8 +22,6 @@ export let desFabrica = [];
 export let margenGanancia = [];
 export let Cantidad = [];
 export let descuentoCliente = [];
-
-
 export let datosCompletosAM = [];
 export let datosCompletosTotal = [];
  
@@ -192,6 +190,8 @@ precioVenta2 = [];
  TOTAL = [];
 totalCategorias = 0;
 
+Cantidad = [];
+
 }
 
 
@@ -236,12 +236,17 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= 
                 Cantidad.push(dataPorcentajesC[i].amc_cantidad);
                 desFabrica.push(dataPorcentajesC[i].amc_desc_fabrica);
                 }
-         
-                margenGanancia.push(32);
-                descuentoCliente.push(0);
-                Cantidad.push(0);
-                desFabrica.push(0);
-         
+                
+
+                if( dataPorcentajesC.length  ==  dataPorcentajesC.length  &&  dataPorcentajesC.length >0){
+                  margenGanancia.push(32);
+                  descuentoCliente.push(0);
+                  Cantidad.push(0);
+                  desFabrica.push(0);
+           
+                }
+                
+              
        
        
    
