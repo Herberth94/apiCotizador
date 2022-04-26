@@ -40,6 +40,15 @@ input{
   -moz-border-radius: 45px;
   -ms-border-radius: 45px;
   -o-border-radius: 45px;
+  
+}
+
+select{
+  border-radius: 45px;
+  -webkit-border-radius: 45px;
+  -moz-border-radius: 45px;
+  -ms-border-radius: 45px;
+  -o-border-radius: 45px;
 }
 
   span.iconos{
