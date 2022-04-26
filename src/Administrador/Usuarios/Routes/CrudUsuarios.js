@@ -123,8 +123,9 @@ export const CrudUsuarios = (props) => {
                                 </button>
                             </td> */}
                             {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
-                            <td width={"100px"} >
-                                <button 
+                            {enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
                                     className="btn btn-primary Mod" type="button"
                                     onClick={()=>{
                                         props.envioData(datos,key,data); 
@@ -132,18 +133,45 @@ export const CrudUsuarios = (props) => {
                                         props.setfirst(activar[key]); 
                                     }}
                                     >
-                                      {/*   btn btn-primary Mod */}
-                                     
                                         <i className= {textBModificar[key]}  ></i>
-                                </button>
+                                    </button>
+                                    <div >    
+                                    </div>
+                                </td>
+                            ):(
+                                <div >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                    <div >    
+                                    </div>
+                                </td>
 
-
-
-                              
-                            <div >
-                                
-                        </div>
-                        </td>
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                    <div >    
+                                    </div>
+                                </td>
+                                </div>
+                            )}
+                            
                         </tr>
                     ))}
                 </tbody>
