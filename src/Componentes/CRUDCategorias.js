@@ -15,7 +15,6 @@ export const CrudCategorias = (props) => {
     const [textBVer,setTextBVer] = useState([]);
     const [show,setShow] = useState([]);
     const [show2,setShow2] = useState(true);
-    const [show3,setShow3] = useState(true);
     
     /*================================================== Categorias ==================================================*/
         /*========================= Editar =========================*/
@@ -96,10 +95,12 @@ export const CrudCategorias = (props) => {
             const newArr2 = [];
             let c = Object.keys(props.dcats);
             c = c.length;
+            setShow(Array(c).fill(true));
+            setTextBVer(Array(c).fill('Mostrar'));
             for (let i = 0 ; i < c ; i++){
                 if(i === key){
                     newArr[i] = !show[i];
-                    setShow2(!show2);
+                    setShow2(newArr[i]);
                     if(show[i] === false){
                         newArr2[i] = 'Mostrar';
                     }else{
@@ -249,7 +250,6 @@ export const CrudCategorias = (props) => {
                                     className="btn btn-primary detalles" 
                                     onClick={()=>{
                                         getDatosPrecios(props.dcats[key].cd_id); 
-                                        setShow3(!show3);
                                         habilitar2(key);
                                     }}
                                     >
@@ -260,7 +260,7 @@ export const CrudCategorias = (props) => {
                         ))}
                     </tbody>          
                 </Table>
-                {show3 ? (
+                {show2 ? (
                     <div></div>
                 ):(
                     <div>

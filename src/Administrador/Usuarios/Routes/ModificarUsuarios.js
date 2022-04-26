@@ -14,7 +14,7 @@ export const useRegistro = () => {
     async function Send(data, id, datos) {
 
         const dataActulizacion = {
-            rol: data.rol,
+            usuario_id_rol: data.usuario_id_rol,
             email: data.email,
         };
 
@@ -30,7 +30,7 @@ export const useRegistro = () => {
         try {
             const respuesta = await axios.post(url2 + `/api/cotizador/edit/${id}`, dataActulizacion);
             const send2 = respuesta.data.msg;
-            console.log(send2);
+            //console.log(send2);
             alert(send2);
 
         } catch (error) {

@@ -28,8 +28,8 @@ export const EditDivisa = () => {
             const send2= respuesta.data.msg;
             alert(send2);
             } catch (error) {
-            console.log(error);
-            alert('Edición de Divisa invalido');
+                console.log(error);
+                alert('Edición de Divisa invalido');
             }
     }
     return {

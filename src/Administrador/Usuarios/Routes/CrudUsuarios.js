@@ -16,7 +16,7 @@ export const CrudUsuarios = (props) => {
     /*============================================================================*/
 
     const [data,setData] = useState ({
-        rol: '', 
+        usuario_id_rol: '', 
         email  :'',
         password:'',
         estado_login: 0        
@@ -38,7 +38,7 @@ export const CrudUsuarios = (props) => {
          i = i.length
         setenable (Array(i).fill(true));
         setActivar(Array(i).fill(true));
-        setTextBModificar(Array(i).fill('Modificar'));
+        setTextBModificar(Array(i).fill('bi bi-pencil-square'));
         setenable ( Array(i).fill(true));
     },[])
 
@@ -53,20 +53,20 @@ export const CrudUsuarios = (props) => {
             if(i === key){
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     setData({
                         ...data,rol: '', 
                                 email:'',
                                 password:''  
                       })
                 }else{
-                    newArr2[i] = 'Aceptar';
+                    newArr2[i] = 'bi bi-check-lg';
                 }
                 newArr3[i] = !activar[i];
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Modificar';
+                newArr2[i] = 'bi bi-pencil-square';
                 newArr3[i]=true;
             }
 
@@ -79,7 +79,7 @@ export const CrudUsuarios = (props) => {
   return (
     <div>
         <form>
-            <Table responsive striped bordered hover size="sm" className="tablas">
+            <Table responsive striped bordered hover size="sm" className="">
                 <thead>
                 {/*=================== Titulos Tabla Usuarios ====================*/}
                     <tr className="titulo-tabla-usuarios">
@@ -95,21 +95,26 @@ export const CrudUsuarios = (props) => {
                 {/*=================== Contenido Tabla Usuarios =================*/}
                     {Object.keys(props.usuarios).map((key) => (
                         //checar aqui va los titulos
-                        <tr key={key} >
-                            <td>{props.usuarios[key].id_usuario}</td>
-                            <td> 
-            {/*                     <input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>
- */}
-                                <select id="rol" name="rol" required defaultValue={props.usuarios[key].rol}   onChange={handleInputChange}  disabled={enable[key]}>
-               <option value="null">------</option>
-                <option value="1">Administrador</option>
-                <option value="2">Preventa</option>
-                <option value="3">Venta</option>
-              </select>
-              </td>
-
-                            <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
-                            <td><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > Resetear </button></td>
+                    <tr key={key} >
+                        <td>{props.usuarios[key].id_usuario}</td>
+                        <td> 
+                        {/*<input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>
+                        */}
+                            <select id="rol" name="usuario_id_rol" required defaultValue={props.usuarios[key].usuario_id_rol}   onChange={handleInputChange}  disabled={enable[key]}>
+                                <option value={4}>------</option>
+                                <option value={1}>Administrador</option>
+                                <option value={2}>Preventa</option>
+                                <option value={3}>Venta</option>
+                            </select>
+                        </td>
+                        <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
+                        <td  width={"100px"}><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > 
+                               
+                        <i className= "bi bi-unlock"  ></i>
+                        
+         
+                        </button></td>
+                        
    {/*                          <td>
                                 <button 
                                 className="btn btn-primary eliminar" 
@@ -118,7 +123,7 @@ export const CrudUsuarios = (props) => {
                                 </button>
                             </td> */}
                             {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
-                            <td>
+                            <td width={"100px"} >
                                 <button 
                                     className="btn btn-primary Mod" type="button"
                                     onClick={()=>{
@@ -126,7 +131,10 @@ export const CrudUsuarios = (props) => {
                                         habilitar(key); 
                                         props.setfirst(activar[key]); 
                                     }}
-                                    >{textBModificar[key]}  
+                                    >
+                                      {/*   btn btn-primary Mod */}
+                                     
+                                        <i className= {textBModificar[key]}  ></i>
                                 </button>
 
 

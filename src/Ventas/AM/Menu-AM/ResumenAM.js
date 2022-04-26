@@ -37,9 +37,6 @@ const ResumenAM = () => {
     /*== Almacenamiento de todos los proyectos existentes ==*/
     const[listaProyectos, setListaProyectos] = useState([]);
 
-    /*== Almacenamiento de los proyectos que tienen la clave semejante a la instroducida ==*/
-    const[suggestions,setSuggestions] = useState([]);
-    
     /*== Almacenamiento de la clave introducida del proyecto ==*/
     const[claveP,setClaveP] = useState([]);
 
@@ -71,7 +68,7 @@ const ResumenAM = () => {
             return proyecto.proyecto_clave.match(regex)
             })
         }
-        setSuggestions(coincidencias);
+        setListaProyectos(coincidencias);
         setClaveP(claveP);
     }
     /*=======================================================================================================*/
@@ -188,23 +185,25 @@ const ResumenAM = () => {
     }
 
     useEffect(() => {
-        let i = Object.keys(suggestions)
+        let i = Object.keys(listaProyectos)
         i = i.length
         setShow(Array(i).fill(true));
         setTextBVer(Array(i).fill('Mostrar'));
-    },[suggestions])
+    },[listaProyectos])
 
     const habilitar2 = (key) =>{
         //console.log(key);
         key = parseInt(key);
         const newArr =[];
         const newArr2 = [];
-        let c = Object.keys(suggestions);
+        let c = Object.keys(listaProyectos);
         c = c.length;
+        setShow(Array(c).fill(true));
+        setTextBVer(Array(c).fill('Mostrar'));
         for (let i = 0 ; i < c ; i++){
             if(i === key){
                 newArr[i] = !show[i];
-                setShow1(!show[i]);
+                setShow1(newArr[i]);
                 if(show[i] === false){
                     newArr2[i] = 'Mostrar';
                 }else{
@@ -264,26 +263,30 @@ const ResumenAM = () => {
                             <th>Descripción</th>
                             <th>Cliente</th>
                             <th>Fecha de creción</th>
+                            <th>Fecha de Modificación</th>
                             <th>Estatus</th>
+                            <th>Plazo de Meses</th>
                             <th>Resumen AM</th>
                         </tr>
                     </thead>
                                        
                     <tbody>
-                        {Object.keys(suggestions).map((key) => (    
+                        {Object.keys(listaProyectos).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={key} >
-                                <td>{suggestions[key].proyecto_id}</td>   
-                                <td>{suggestions[key].proyecto_clave}</td>  
-                                <td>{suggestions[key].proyecto_descripcion}</td>  
-                                <td>{suggestions[key].nombre_cliente}</td> 
-                                <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                                <td>{suggestions[key].proyecto_estatus}</td> 
+                            <tr key={listaProyectos[key].proyecto_id} >
+                                <td>{listaProyectos[key].proyecto_id}</td>   
+                                <td>{listaProyectos[key].proyecto_clave}</td>  
+                                <td>{listaProyectos[key].proyecto_descripcion}</td>  
+                                <td>{listaProyectos[key].nombre_cliente}</td> 
+                                <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
+                                <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
+                                <td>{listaProyectos[key].proyecto_estatus}</td> 
+                                <td>{listaProyectos[key].proyecto_plazo_meses}</td>
                                 <td>
                                     <button 
                                     className="btn btn-primary" 
                                     onClick={() => {
-                                        consultarTotalesP(suggestions[key].proyecto_id);
+                                        consultarTotalesP(listaProyectos[key].proyecto_id);
                                         habilitar2(key);
                                     }}
                                     >{textBVer[key]}</button>

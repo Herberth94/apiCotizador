@@ -38,7 +38,7 @@ function AdministrarProveedor() {
     if(nombreProv === ''){
       getProvs();
     }
-},[nombreProv])
+  },[nombreProv])
   
   //Función que realiza la busqueda de los proveedores semejantes al nombre e introducido
   const onChangeTextNombreProv = (nProv) => {
