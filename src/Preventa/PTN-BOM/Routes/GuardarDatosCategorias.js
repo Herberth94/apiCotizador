@@ -160,6 +160,10 @@ export const InsertDatosCats = () => {
                     await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/3`);
                     await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/4`);
                     /*=======================================================================*/
+
+                    /*=============== Inserción de datos de proporcionalidad ===============*/
+                    await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${pId}`);
+                    /*======================================================================*/
                     alert('Se finalizó el proyecto correctamente');
                     alert('El proyecto entro al estatus: En revisón');
                 }else{
@@ -179,6 +183,10 @@ export const InsertDatosCats = () => {
                     await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/3`);
                     await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/4`);
                     /*=======================================================================*/
+
+                    /*=============== Inserción de datos de proporcionalidad ===============*/
+                    await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${proyectoId.proyecto_id}`);
+                    /*======================================================================*/
                     alert('Se finalizó el proyecto correctamente');
                     alert('El proyecto entro al estatus: En revisón');
                 }

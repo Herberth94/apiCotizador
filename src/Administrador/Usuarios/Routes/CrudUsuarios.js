@@ -136,9 +136,7 @@ export const CrudUsuarios = (props) => {
                                     
                                 </td>
                             ):(
-                              
-                              
-                              <div >
+                              < >
                                     <td width={"100px"} >
                                     <button 
                                     className="btn btn-primary Mod" type="button"
@@ -150,7 +148,6 @@ export const CrudUsuarios = (props) => {
                                     >
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
-                                
                                 </td>
 
                                 <td width={"100px"}>
@@ -159,14 +156,13 @@ export const CrudUsuarios = (props) => {
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
-                                       props.setfirst(activar[key]); 
+                                       //props.setfirst(activar[key]); 
                                     }}
                                     >
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
-                                   
                                 </td>
-                                </div>
+                                </>
                             )}
                             
                         </tr>

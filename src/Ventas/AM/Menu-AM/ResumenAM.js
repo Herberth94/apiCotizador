@@ -41,24 +41,30 @@ const ResumenAM = () => {
     const[claveP,setClaveP] = useState([]);
 
     /*== Función que realiza la consulta a la tabla proyectos ==*/
-    useEffect(()=>{
-        const getProyectos = async () => {
-            try{
-                if(validatorrol === "administrador"){
-                    const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
-                    setListaProyectos(resProy.data.data);
-                }else{
-                    const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-                    setListaProyectos(resProy.data.data);
-                }
-            }catch(error){
-                console.log(error);
+    const getProyectos = async () => {
+        try{
+            if(validatorrol === "administrador"){
+                const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
+                setListaProyectos(resProy.data.data);
+            }else{
+                const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                setListaProyectos(resProy.data.data);
             }
+        }catch(error){
+            console.log(error);
         }
+    }
+
+    useEffect(()=>{
         getProyectos();
-       
     },[])
     
+    useEffect(()=>{
+        if(claveP === ''){
+          getProyectos();
+        }
+    },[claveP])
+
     /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
     const onChangeTextClaveP = (claveP) => {
         let coincidencias = [];
