@@ -27,38 +27,48 @@ function BuscadorInteligente4() {
         getDivisaProy,
         getPorcentajesCI} = Partida_catalogo();
 
+    /*========================== Mostrar/Ocultar ==========================*/
+    const [show,setShow] = useState([]); 
+    const [show2,setShow2] = useState(true); // Resumen AM
+    const [textBVer,setTextBVer] = useState([]);// Texto de los botones de mostrar
+    /*=====================================================================*/
 
-  //Habilitar/Deshabilitar tabla del resumen AM
-  const [show, setShow] = useState(true)
-
-
-
+    /*======================================== Buscador de proyectos ========================================*/
+    // Almacenamiento de todos los proyectos existentes
     const[listaProyectos, setListaProyectos] = useState([]);
 
-
-    const[suggestions,setSuggestions] = useState([]);
-
-
+    // Almacenamiento de la clave introducida del proyecto
     const[claveP,setClaveP] = useState([]);
 
     /*== Función que realiza la consulta a la tabla proyectos ==*/
-    useEffect(()=>{
-        const getProyectos = async () => {
-            try{
-                if(validatorrol === "administrador"){
-                    const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
-                    setListaProyectos(resProy.data.data);
-                }else{
-                    const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-                    setListaProyectos(resProy.data.data);
-                }
-            }catch(error){
-                console.log(error);
+    const getProyectos = async () => {
+        try{
+            if(validatorrol === "administrador"){
+                const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
+                setListaProyectos(resProy.data.data);
+            }else{
+                const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                setListaProyectos(resProy.data.data);
             }
+        }catch(error){
+            console.log(error);
         }
+    }
+
+    useEffect(()=>{
         getProyectos();
        
     },[])
+
+    useEffect(()=>{
+        if(claveP === ''){
+          getProyectos();
+        }
+
+        if(show2 === false){
+            setShow2(true);
+        }
+    },[claveP])
 
    /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
    const onChangeTextClaveP = (claveP) => {
@@ -69,8 +79,42 @@ function BuscadorInteligente4() {
         return proyecto.proyecto_clave.match(regex)
         })
     }
-    setSuggestions(coincidencias);
+    setListaProyectos(coincidencias);
     setClaveP(claveP);
+}
+
+useEffect(() => {
+    let i = Object.keys(listaProyectos)
+    i = i.length
+    setShow(Array(i).fill(true));
+    setTextBVer(Array(i).fill('Mostrar'));
+},[listaProyectos])
+
+const habilitar = (key) =>{
+    key = parseInt(key);
+    const newArr =[];
+    const newArr2 = [];
+    let c = Object.keys(listaProyectos);
+    c = c.length;
+    setShow(Array(c).fill(true));
+    setTextBVer(Array(c).fill('Mostrar'));
+    for (let i = 0 ; i < c ; i++){
+        if(i === key){
+            newArr[i] = !show[i];
+            setShow2(newArr[i]);
+            if(show[i] === false){
+                newArr2[i] = 'Mostrar';
+            }else{
+                newArr2[i] = 'Ocultar';
+            }
+        }
+        if(i !== key){
+            newArr[i]=true;
+            newArr2[i] = 'Mostrar';
+        }
+    }   
+    setShow(newArr);
+    setTextBVer(newArr2);
 }
 
 async function consultarTotalesP(id){          //console.log(id)
@@ -101,107 +145,91 @@ async function consultarTotalesP(id){          //console.log(id)
 }
     function getIdProy(id){
         pId = id;
+        console.log("Proyecto_id:",pId);
     }
 
 
 
   return (
-
-
     <div className="contenido-usuarios">
+        <div className="busqueda-proyectos">  
+            <Table responsive id="nombreDiv">
+                <thead>
+                    <tr className="azul">
+                        <th>Clave Proyecto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>
+                        <input className="agregar"
+                                type="text"
+                                name="proyecto_clave"
+                                onChange={e => onChangeTextClaveP(e.target.value)}
+                                value={claveP}
+                                placeholder="Ingresa la clave del Proyecto" />
+                        </td>
+                    </tr>
+                </tbody>
+            </Table>
+            {/*============= Titulo Animación =============*/}
+            <div> <Animaciones mytext="Proyectos " /> </div>
 
-
-
-
-            <div className="busqueda-proyectos">
-              
-              
-              
-                    <Table responsive id="nombreDiv">
-                        <thead>
-                            <tr className="azul">
-                                <th>Clave Proyecto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <td>
-                                <input className="agregar"
-                                        type="text"
-                                        name="proyecto_clave"
-                                        onChange={e => onChangeTextClaveP(e.target.value)}
-                                        value={claveP}
-                                        placeholder="Ingresa la clave del Proyecto" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-
-                                   {/*============= Titulo Animación =============*/}
-                <div> <Animaciones mytext="Proyectos " /> </div>
-
-<Table responsive  striped bordered hover size="sm">
-    <thead>
-        <tr className="titulo-tabla-usuarios">
-            <th>ID</th>
-            <th>Clave</th>
-            <th>Descripción</th>
-            <th>Cliente</th>
-            <th>Fecha de creción</th>
-            <th>Estatus</th>
-            <th>Resumen AM</th>
-        </tr>
-    </thead>
-                       
-    <tbody>
-        {Object.keys(suggestions).map((key) => (    
-            //checar aqui va los titulos
-            <tr key={key} >
-                <td>{suggestions[key].proyecto_id}</td>   
-                <td>{suggestions[key].proyecto_clave}</td>  
-                <td>{suggestions[key].proyecto_descripcion}</td>  
-                <td>{suggestions[key].nombre_cliente}</td> 
-                <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                <td>{suggestions[key].proyecto_estatus}</td> 
-                <td>
-                    <button 
-                    className="btn btn-primary Ver" 
-                    onClick={() => {
-                    
-                       consultarTotalesP(suggestions[key].proyecto_id);
-                       getIdProy(suggestions[key].proyecto_id);
-                        setShow(!show);}}
-                    >{show ? 'Ver mas':'Ocultar proyecto'}</button>
-
-{show ? (
+            <Table responsive  striped bordered hover size="sm">
+                <thead>
+                    <tr className="titulo-tabla-usuarios">
+                        <th>ID</th>
+                        <th>Clave</th>
+                        <th>Descripción</th>
+                        <th>Cliente</th>
+                        <th>Fecha de creación</th>
+                        <th>Fecha de modificación</th>
+                        <th>Estatus</th>
+                        <th>Plazo de meses</th>
+                        <th>Propuesta</th>
+                    </tr>
+                </thead>
+                                
+                <tbody>
+                    {Object.keys(listaProyectos).map((key) => (    
+                        //checar aqui va los titulos
+                        <tr key={key} >
+                            <td>{listaProyectos[key].proyecto_id}</td>   
+                            <td>{listaProyectos[key].proyecto_clave}</td>  
+                            <td>{listaProyectos[key].proyecto_descripcion}</td>  
+                            <td>{listaProyectos[key].nombre_cliente}</td> 
+                            <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
+                            <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
+                            <td>{listaProyectos[key].proyecto_estatus}</td> 
+                            <td>{listaProyectos[key].proyecto_plazo_meses}</td>
+                            <td>
+                                <button 
+                                className="btn btn-primary Ver" 
+                                onClick={() => {
+                                consultarTotalesP(listaProyectos[key].proyecto_id);
+                                getIdProy(listaProyectos[key].proyecto_id);
+                                habilitar(key);
+                                }}
+                                >
+                                    {textBVer[key]}
+                                </button>
+                            </td> 
+                        </tr>  
+                    ))}
+                </tbody>          
+            </Table>
+            {show2 ? (
                 <div></div>
-              ) : (
+            ) : (
                 <div className="arregla">
-                  {/*========================== Llamado al Componente ==========================*/}
-    {/*           <CostosIndirectos/> */}
-    
-    <AdministrarPropuesta
-        proyId={pId}
-    />
-
+                    {/*========================== Llamado al Componente ==========================*/}
+                    {/*           <CostosIndirectos/> */}
+                    <AdministrarPropuesta
+                        proyId={pId}
+                    />
                 </div>
-              )}
-                </td> 
-            </tr>  
-        ))}
-    </tbody>          
-</Table>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    
+            )}
+        </div>             
     </div>
   )
 }
