@@ -159,7 +159,7 @@ export const CrudProveedores = (props) => {
                             ></input>
                         </td>
                         {/*================= Teléfono ==================*/}
-                        <td>
+                        <td width={"200px"}>
                             <input
                             className="input-name"
                             defaultValue={props.proveedores[key].proveedor_telefono}

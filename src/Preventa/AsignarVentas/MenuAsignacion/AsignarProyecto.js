@@ -211,8 +211,8 @@ function AsignarProyecto() {
               value={passwordState.password}
             />
 
-            <div className="boton-registro">
-              <button className="card-button" onClick={(event) => { Send(); event.preventDefault() }}>
+            <div className="boton-login">
+              <button className="login" onClick={(event) => { Send(); event.preventDefault() }}>
                 <span>Asignar Proyecto</span>
               </button>
             </div>
