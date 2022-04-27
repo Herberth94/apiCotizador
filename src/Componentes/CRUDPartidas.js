@@ -48,8 +48,8 @@ export const CrudPartidas = (props) => {
             setenable(Array(i).fill(true)); 
             setActivar(Array(i).fill(true));
             setShow1(Array(i).fill(true));
-            setTextBModificar(Array(i).fill('Modificar'));
-            setTextBVer(Array(i).fill('Mostrar'));
+            setTextBModificar(Array(i).fill('bi bi-pencil-square'));
+            setTextBVer(Array(i).fill('bi bi-eye'));
         },[props.partidas])
 
         
@@ -64,19 +64,19 @@ export const CrudPartidas = (props) => {
                 if(i === key){
                     newArr[i] = !enable[i];
                     if(enable[i] === false){
-                        newArr2[i] = 'Modificar';
+                        newArr2[i] = 'bi bi-pencil-square';
                         setData({
                             ...data,partida_nombre:'',
                                     partida_descripcion:''  
                         })
                     }else{
-                        newArr2[i] = 'Aceptar';
+                        newArr2[i] = 'bi bi-check-lg';
                     }
                     newArr3[i] = !activar[i];
                 }
                 if(i !== key){
                     newArr[i] = true;
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     newArr3[i] = true;
                 }
     
@@ -93,20 +93,20 @@ export const CrudPartidas = (props) => {
             let c = Object.keys(props.partidas);
             c = c.length;
             setShow1(Array(c).fill(true));
-            setTextBVer(Array(c).fill('Mostrar'));
+            setTextBVer(Array(c).fill('bi bi-eye'));
             for (let i = 0 ; i < c ; i++){
                 if(i === key){
                     newArr[i] = !show1[i];
                     setShow(newArr[i]);
                     if(show1[i] === false){
-                        newArr2[i] = 'Mostrar';
+                        newArr2[i] = 'bi bi-eye';
                     }else{
-                        newArr2[i] = 'Ocultar';
+                        newArr2[i] = 'bi bi-eye-slash-fill';
                     }
                 }
                 if(i !== key){
                     newArr[i]=true;
-                    newArr2[i] = 'Mostrar';
+                    newArr2[i] = 'bi bi-eye';
                 }
             }   
             setShow1(newArr);
@@ -199,8 +199,10 @@ export const CrudPartidas = (props) => {
                             <th>Nombre</th>
                             <th>Descripción</th>
                             <th>Eliminar</th>
+                        
+                            <th>Servicios Productos</th>
                             <th>Modificar</th>
-                            <th>Servicios/Productos</th>
+                            <th></th>
                         </tr>
                     </thead>
                                     
@@ -228,23 +230,23 @@ export const CrudPartidas = (props) => {
                                     name="partida_descripcion" 
                                     ></input>
                                 </td> 
-                                <td>
+                                <td width={"100px"}>
                                     <button 
                                     className="btn btn-primary eliminar"
                                     onClick={()=>{SendDeletePartida(props.partidas[key].partida_id)}}
-                                    >Eliminar</button></td>
-                                <td>
-                                    <button 
-                                    className="btn btn-primary modificar" 
-                                    onClick={()=>{
-                                        habilitar(key); 
-                                        props.envioDataPar(datos, key, data);
-                                        props.setfirst(activar[key]);;
-                                    }}
-                                    >{textBModificar[key]}
-                                    </button> 
-                                </td> 
-                                <td>
+                                    >
+
+<i className="bi bi-trash-fill"></i>
+                                    
+                                    </button></td>
+
+
+
+
+
+
+                                                               
+          {/*                       <td>
                                     <button 
                                     className="btn btn-primary detalles" 
                                     onClick={() => {
@@ -255,6 +257,93 @@ export const CrudPartidas = (props) => {
                                         {textBVer[key]}
                                     </button>
                                 </td> 
+
+
+ */}
+                                
+                        <td width={"100px"}>
+                            {" "}
+                            <button
+                                className="btn btn-primary Ver"
+                                type="button"
+                                onClick={() => {
+                                    habilitar1(key);
+                                    getDatosSP(props.partidas[key].partida_id);
+                                }}
+                            >
+                                
+                                <i className= {textBVer[key]}></i>
+                                
+                             
+                            </button>
+                        </td>
+
+
+
+
+                             {/*    <td>
+                                    <button 
+                                    className="btn btn-primary modificar" 
+                                    onClick={()=>{
+                                        habilitar(key); 
+                                        props.envioDataPar(datos, key, data);
+                                        props.setfirst(activar[key]);;
+                                    }}
+                                    >{textBModificar[key]}
+                                    </button> 
+                                </td>  */}
+      
+
+{enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                       // props.envioData(datos,key,data); 
+                                       habilitar(key); 
+                                       props.envioDataPar(datos, key, data);
+                                       props.setfirst(activar[key]);;
+                                    }}
+                                    >
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              
+                              
+                              < >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        habilitar(key); 
+                                        props.envioDataPar(datos, key, data);
+                                        props.setfirst(activar[key]);;
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                
+                                </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                   
+                                </td>
+                                </>
+                            )}
+
+ 
                             </tr>  
                         ))}
                     </tbody>          

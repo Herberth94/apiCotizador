@@ -322,10 +322,10 @@ function ContinuarProyecto() {
                   <th>Clave</th>
                   <th>Descripción</th>
                   <th>Cliente</th>
-                  <th>Fecha de creación</th>
-                  <th>Fecha de modificación</th>
+                  <th>Fecha Creación</th>
+                  <th>Fecha Modificación</th>
                   <th>Estatus</th>
-                  <th>Plazo de meses</th>
+                  <th>Plazo Meses</th>
                   <th>Continuar</th>
                   <th>Finalizar</th>
                 </tr>
@@ -340,8 +340,8 @@ function ContinuarProyecto() {
                       <td>{listaProyectos[key].nombre_cliente}</td> 
                       <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
                       <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
-                      <td>{listaProyectos[key].proyecto_estatus}</td>  
-                      <td>{listaProyectos[key].proyecto_plazo_meses}</td>  
+                      <td  className={listaProyectos[key].proyecto_estatus}>{listaProyectos[key].proyecto_estatus}</td>  
+                      <td width={"10px"}>{listaProyectos[key].proyecto_plazo_meses}</td>  
                       <td>
                         <button 
                           className="btn btn-primary modificar" 

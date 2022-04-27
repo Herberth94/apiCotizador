@@ -32,6 +32,8 @@ const hoy = new Date(tiempoTranscurrido);
 
 
 
+
+
 export const fecha = hoy.toLocaleDateString();
 
 function Formulario() {

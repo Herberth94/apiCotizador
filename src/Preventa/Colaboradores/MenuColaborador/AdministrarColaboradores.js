@@ -169,7 +169,7 @@ function AdministrarColaboradores(props) {
                 <th>Fecha  Modificación</th>
                 <th>Estatus</th>
                 <th>Plazo meses</th>
-                <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores"}</th>
+                <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
               </tr>
             </thead>
                                 

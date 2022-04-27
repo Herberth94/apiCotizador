@@ -61,8 +61,8 @@ export const CrudProyectos = (props) => {
             setenable(Array(i).fill(true));
             setShow4(Array(i).fill(true));
             setActivar(Array(i).fill(true));
-            setTextBModificar(Array(i).fill('Modificar'));
-            setTextBVer(Array(i).fill('Mostrar'));
+            setTextBModificar(Array(i).fill('bi bi-pencil-square'));
+            setTextBVer(Array(i).fill('bi bi-eye'));
             const arrayNombresC = []
             //console.log(enable);
             for(let c = 0 ; c < i ;c++){
@@ -85,20 +85,20 @@ export const CrudProyectos = (props) => {
                 if(i === key){
                     newArr[i] = !enable[i];
                     if(enable[i] === false){
-                        newArr2[i] = 'Modificar';
+                        newArr2[i] = 'bi bi-pencil-square';
                         setData({
                             ...data,proyecto_clave:'',
                                     proyecto_descripcion:'',
                                     proyecto_plazo_meses:''
                         })
                     }else{
-                        newArr2[i] = 'Aceptar';
+                        newArr2[i] = 'bi bi-check-lg';
                     }
                     newArr3[i] = !activar[i];
                 }
                 if(i !== key){
                     newArr[i]=true;
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     newArr3[i]=true;
                 }
 
@@ -130,20 +130,20 @@ export const CrudProyectos = (props) => {
             const newArr2 = [];
             let c = Object.keys(props.suggestionsP);
             c = c.length;
-            setTextBVer(Array(c).fill('Mostrar'));
+            setTextBVer(Array(c).fill('bi bi-eye'));
             for (let i = 0 ; i < c ; i++){
                 if(i === key){
                     newArr[i] = !show4[i];
                     setShow(newArr[i]);
                     if(show4[i] === false){
-                        newArr2[i] = 'Mostrar';
+                        newArr2[i] = 'bi bi-eye';
                     }else{
-                        newArr2[i] = 'Ocultar';
+                        newArr2[i] = 'bi bi-eye-slash-fill';
                     }
                 }
                 if(i !== key){
                     newArr[i]=true;
-                    newArr2[i] = 'Mostrar';
+                    newArr2[i] = 'bi bi-eye';
                 }
             }   
             setShow4(newArr);
@@ -298,10 +298,10 @@ export const CrudProyectos = (props) => {
                             <th>Clave</th>
                             <th>Descripción</th>
                             <th>Cliente</th>
-                            <th>Fecha de creación</th>
-                            <th>Fecha de modificación</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Modificación</th>
                             <th>Estatus</th>
-                            <th>Plazo de Meses</th>
+                            <th>Plazo Meses</th>
                             <th>Modificar</th>
                             <th>Detalles</th>
                         </tr>
@@ -351,8 +351,8 @@ export const CrudProyectos = (props) => {
                                 </td> 
                                 <td>{props.suggestionsP[key].proyecto_fecha_creacion}</td>
                                 <td>{props.suggestionsP[key].proyecto_fecha_modificacion}</td>
-                                <td>{props.suggestionsP[key].proyecto_estatus}</td>
-                                <td>
+                                <td  className={props.suggestionsP[key].proyecto_estatus}>{props.suggestionsP[key].proyecto_estatus}</td>
+                                <td width={"100px"}>
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.suggestionsP[key].proyecto_plazo_meses} 
@@ -361,7 +361,7 @@ export const CrudProyectos = (props) => {
                                     name="proyecto_plazo_meses" 
                                     ></input>
                                 </td> 
-                                <td>
+                    {/*             <td>
                                     <button 
                                     className="btn btn-primary modificar" 
                                     onClick={()=>{
@@ -373,7 +373,63 @@ export const CrudProyectos = (props) => {
                                         {textBModificar[key]}
                                     </button> 
                                 </td> 
-                                <td>
+
+ */}
+
+
+
+{enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        props.envioDataP(nombreC,props.clientes,datos,key,data);
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]);
+                                    }}
+                                    >
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              
+                              
+                              <div>
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        props.envioDataP(nombreC,props.clientes,datos,key,data);
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]);
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                
+                                </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                   
+                                </td>
+                                </div>
+                            )}
+                            
+
+{/* ///////////////////////////////////// */}
+
+                       {/*          <td>
                                     <button 
                                     className="btn btn-primary detalles" 
                                     onClick={() => { 
@@ -382,8 +438,32 @@ export const CrudProyectos = (props) => {
                                     }}
                                     >
                                         {textBVer[key]}
+
+
                                     </button>
                                 </td> 
+
+
+ */}
+
+
+
+                                <td width={"100px"}>
+                            {" "}
+                            <button
+                                className="btn btn-primary Ver"
+                                type="button"
+                                onClick={() => {
+                                    getIdP(props.suggestionsP[key].proyecto_id);
+                                    habilitar1(key);
+                                }}
+                            >
+                                
+                                <i className= {textBVer[key]}></i>
+                                
+                             
+                            </button>
+                        </td>
                             </tr>  
                         ))}
                     </tbody>          
