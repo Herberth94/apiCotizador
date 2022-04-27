@@ -114,6 +114,7 @@ export const CrudProveedores = (props) => {
     const [listaMarcas, setListaMarcas] = useState([]);
     //Función que consulta todas las marcas existentes
     const llamadoMarca = async (idFila) => {
+        setListaMarcas('');
         try {
             const respuestaMarca =  await axios.get(url2 + `/api/cotizador/provmarcas/view/${idFila}`)
             setListaMarcas(respuestaMarca.data.data);
