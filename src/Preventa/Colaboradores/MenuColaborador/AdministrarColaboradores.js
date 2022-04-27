@@ -95,7 +95,7 @@ function AdministrarColaboradores(props) {
     let i = Object.keys(listaProyectos)
     i = i.length
     setShow(Array(i).fill(true));
-    setTextBVer(Array(i).fill('Mostrar'));
+    setTextBVer(Array(i).fill('bi bi-eye'));
   },[listaProyectos])
 
   const habilitar2 = (key) =>{
@@ -104,7 +104,7 @@ function AdministrarColaboradores(props) {
     const newArr2 = [];
     let c = Object.keys(listaProyectos);
     setShow(Array(c).fill(true));
-    setTextBVer(Array(c).fill('Mostrar'));
+    setTextBVer(Array(c).fill('bi bi-eye'));
     // console.log('suggesKeys:',listaProyectos);
     // console.log('suggesKeys:',c);
     c = c.length;
@@ -113,14 +113,14 @@ function AdministrarColaboradores(props) {
             newArr[i] = !show[i];
             setShow2(newArr[i]);
             if(show[i] === false){
-                newArr2[i] = 'Mostrar';
+                newArr2[i] = 'bi bi-eye';
             }else{
-                newArr2[i] = 'Ocultar';
+                newArr2[i] = 'bi bi-eye-slash-fill';
             }
         }
         if(i !== key){
             newArr[i]=true;
-            newArr2[i] = 'Mostrar';
+            newArr2[i] = ' bi bi-eye ';
         }
     }   
     setShow(newArr);
@@ -167,7 +167,7 @@ function AdministrarColaboradores(props) {
                 <th>Fecha de modificación</th>
                 <th>Estatus</th>
                 <th>Plazo de meses</th>
-                <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
+                <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores"}</th>
               </tr>
             </thead>
                                 
@@ -182,7 +182,7 @@ function AdministrarColaboradores(props) {
                     <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
                     <td>{listaProyectos[key].proyecto_estatus}</td>  
                     <td>{listaProyectos[key].proyecto_plazo_meses}</td> 
-                    <td>
+                    <td width={"100"}>
                       <button 
                         className="btn btn-primary Ver" 
                         type="button" 
@@ -191,7 +191,8 @@ function AdministrarColaboradores(props) {
                           getColabs(listaProyectos[key].proyecto_id);
                         }}
                         > 
-                          {textBVer[key]} 
+                         
+                          <i className= {textBVer[key]} ></i>
                         </button>
                     </td>
                 </tr>  
