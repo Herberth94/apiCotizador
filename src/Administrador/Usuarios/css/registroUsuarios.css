@@ -1,4 +1,6 @@
 
+
+ 
     .registro{
       position:relative;  
       height:65%;
@@ -19,16 +21,72 @@ background-color: rgb(15, 36, 65);
   }
   
 
-  .btn.btn-primary.Mod{
+  button.btn.btn-primary.Mod{
     background-color: rgb(25, 63, 15);
     }
+
+    .btn {
+      background-color: DodgerBlue;
+      border: none;
+      color: white;
+      padding: 2px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
     
-    
+input{
+  border-radius: 45px;
+  -webkit-border-radius: 45px;
+  -moz-border-radius: 45px;
+  -ms-border-radius: 45px;
+  -o-border-radius: 45px;
+  
+}
+
+select{
+  border-radius: 45px;
+  -webkit-border-radius: 45px;
+  -moz-border-radius: 45px;
+  -ms-border-radius: 45px;
+  -o-border-radius: 45px;
+}
+
+  span.iconos{
+   display: flex;
+margin: 0;
+padding: 0;
+  }
+
+
+/* i.bi.bi-pencil-square{
+  color: black;
+ margin-top: 0px;
+
+}
+     */
+     .btn.btn-primary.Cancelar{
+      background-color: rgb(185, 0, 0);
+      }
+      
+
+     .btn.btn-primary.Cancelar:hover{
+      background-color: rgb(255, 0, 0);
+      }
+      
     .btn.btn-primary.Mod:hover{
       background-color: rgb(26, 182, 34);
       }
       
-        
+
+      input:enabled {
+        color: rgb(17, 0, 255);
+
+      }
+        select:enabled{
+          color: rgb(255, 255, 255);
+          background-color: rgb(0, 140, 255);
+          font-size: 20px;
+        }
     
   
 

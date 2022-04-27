@@ -30,9 +30,6 @@ function Proyectos() {
     /*======================================== Buscador de proyectos ========================================*/
     // Almacenamiento de todos los proyectos existentes
     const[listaProyectos, setListaProyectos] = useState([]);
-
-    // Almacenamiento de los proyectos que tienen la clave semejante a la instroducida
-    const[suggestionsProyecto,setSuggestionsProyectos] = useState([]);
     
     // Almacenamiento de la clave introducida del proyecto
     const[claveP,setClaveP] = useState([]);
@@ -63,6 +60,12 @@ function Proyectos() {
     useEffect(()=>{
         getProyectos();
     },[show,show1])
+
+    useEffect(()=>{
+        if(claveP === ''){
+          getProyectos();
+        }
+    },[claveP])
     
     // Función que realiza la busqueda de los proyectos semejantes a la clave introducida 
     const onChangeTextClaveP = (claveP) => {
@@ -73,7 +76,7 @@ function Proyectos() {
             return proyecto.proyecto_clave.match(regex)
             })
         }
-        setSuggestionsProyectos(coincidencias);
+        setListaProyectos(coincidencias);
         setClaveP(claveP);
     }
     /*=======================================================================================================*/
@@ -168,7 +171,7 @@ function Proyectos() {
                     {/*=================== Botón Mostrar Lista DIV =====================*/}
                     <br />
                     <CrudProyectos
-                        suggestionsP={suggestionsProyecto}
+                        suggestionsP={listaProyectos}
                         clientes={ListaC}
                         setfirst={setfirst}
                         envioDataP={envioDataProy}

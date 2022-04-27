@@ -31,29 +31,33 @@ function AdministrarColaboradores(props) {
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
-
-  //Almacenamiento de los proyectos que tienen la clave semejante a la instroducida
-  const[suggestions,setSuggestions] = useState([]);
   
   // Almacenamiento de la clave introducida del proyecto 
   const[claveP,setClaveP] = useState([]);
 
   // Función que realiza la consulta a la tabla proyectos 
+  const getProyectos = async () => {
+    try{
+      if(validatorrol === "administrador"){
+        const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
+        setListaProyectos(resProy.data.data);
+    }else{
+          const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+          setListaProyectos(resProy.data.data);
+    }
+    }catch(error){console.log(error);}
+  }
+
   useEffect(()=>{
-      const getProyectos = async () => {
-          try{
-            if(validatorrol === "administrador"){
-              const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
-              setListaProyectos(resProy.data.data);
-          }else{
-                const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-                setListaProyectos(resProy.data.data);
-          }
-          }catch(error){console.log(error);}
-      }
       getProyectos();
   },[])
   
+  useEffect(()=>{
+    if(claveP === ''){
+      getProyectos();
+    }
+  },[claveP])
+
   /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
   const onChangeTextClaveP = (claveP) => {
       let coincidencias = [];
@@ -63,7 +67,7 @@ function AdministrarColaboradores(props) {
           return proyecto.proyecto_clave.match(regex)
           })
       }
-      setSuggestions(coincidencias);
+      setListaProyectos(coincidencias);
       setClaveP(claveP);
   }
   /*=======================================================================================================*/
@@ -88,34 +92,38 @@ function AdministrarColaboradores(props) {
   /*===================================================================================================================*/
   
   useEffect(() => {
-    let i = Object.keys(suggestions)
+    let i = Object.keys(listaProyectos)
     i = i.length
     setShow(Array(i).fill(true));
-    setTextBVer(Array(i).fill('Mostrar'));
-  },[suggestions])
+    setTextBVer(Array(i).fill('bi bi-eye'));
+  },[listaProyectos])
 
   const habilitar2 = (key) =>{
     key = parseInt(key);
     const newArr =[];
     const newArr2 = [];
-    let c = Object.keys(suggestions);
-    console.log('suggesKeys:',suggestions);
-    console.log('suggesKeys:',c);
+    const colores= [];
+    let c = Object.keys(listaProyectos);
+    setShow(Array(c).fill(true));
+    setTextBVer(Array(c).fill('bi bi-eye'));
+    // console.log('suggesKeys:',listaProyectos);
+    // console.log('suggesKeys:',c);
     c = c.length;
     for (let i = 0 ; i < c ; i++){
         if(i === key){
             newArr[i] = !show[i];
-            setShow2(!show2);
+            setShow2(newArr[i]);
             if(show[i] === false){
-                newArr2[i] = 'Mostrar';
+                newArr2[i] = 'bi bi-eye';
             }else{
-                newArr2[i] = 'Ocultar';
+                newArr2[i] = 'bi bi-eye-slash-fill';
             }
         }
         if(i !== key){
             newArr[i]=true;
-            newArr2[i] = 'Mostrar';
+            newArr2[i] = ' bi bi-eye ';
         }
+        
     }   
     setShow(newArr);
     setTextBVer(newArr2);
@@ -157,35 +165,36 @@ function AdministrarColaboradores(props) {
                 <th>Clave</th>
                 <th>Descripción</th>
                 <th>Cliente</th>
-                <th>Fecha de creción</th>
-                <th>Fecha de modificación</th>
+                <th>Fecha  Creación</th>
+                <th>Fecha  Modificación</th>
                 <th>Estatus</th>
-                <th>Plazo de meses</th>
-                <th>Colaboradores</th>
+                <th>Plazo meses</th>
+                <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores"}</th>
               </tr>
             </thead>
                                 
             <tbody>
-            {Object.keys(suggestions).map((key) => (    
+            {Object.keys(listaProyectos).map((key) => (    
                 <tr key={key} >
-                    <td>{suggestions[key].proyecto_id}</td>   
-                    <td>{suggestions[key].proyecto_clave}</td>  
-                    <td>{suggestions[key].proyecto_descripcion}</td>  
-                    <td>{suggestions[key].nombre_cliente}</td> 
-                    <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                    <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                    <td>{suggestions[key].proyecto_estatus}</td>  
-                    <td>{suggestions[key].proyecto_plazo_meses}</td> 
-                    <td>
+                    <td>{listaProyectos[key].proyecto_id}</td>   
+                    <td>{listaProyectos[key].proyecto_clave}</td>  
+                    <td>{listaProyectos[key].proyecto_descripcion}</td>  
+                    <td>{listaProyectos[key].nombre_cliente}</td> 
+                    <td width={"150px"}>{listaProyectos[key].proyecto_fecha_creacion}</td>
+                    <td   width={"150px"}>{listaProyectos[key].proyecto_fecha_modificacion}</td>
+                    <td  className= {listaProyectos[key].proyecto_estatus } >{listaProyectos[key].proyecto_estatus}</td>  
+                    <td  width={"50 px"}>{listaProyectos[key].proyecto_plazo_meses}</td> 
+                    <td width={"100 px"}>
                       <button 
                         className="btn btn-primary Ver" 
                         type="button" 
                         onClick={() => {
                           habilitar2(key);
-                          getColabs(suggestions[key].proyecto_id);
+                          getColabs(listaProyectos[key].proyecto_id);
                         }}
                         > 
-                          {textBVer[key]} 
+                         
+                          <i className= {textBVer[key]} ></i>
                         </button>
                     </td>
                 </tr>  

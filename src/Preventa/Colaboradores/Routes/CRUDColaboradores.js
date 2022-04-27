@@ -33,7 +33,7 @@ export const CrudColaboradores = (props) => {
                     {/*=================== Titulos Tabla Proveedores ===================*/}
                     <tr className="titulo-tabla-usuarios">
                         <th>ID</th>
-                        <th>Colaborador</th>
+                        <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
@@ -45,7 +45,7 @@ export const CrudColaboradores = (props) => {
                         {/*=================== Nombre/Email del Colaborador =================*/}
                         <td>{props.colabs[parseInt(key)].email}</td>
                         {/*=================== Botón Eliminar =================*/}
-                        <td>
+                        <td width={"100px"}>
                             {" "}
                             <button
                                 className="btn btn-primary eliminar"
@@ -53,7 +53,9 @@ export const CrudColaboradores = (props) => {
                                 onClick={() => {
                                     props.estado ? deleteColab(props.colabs[parseInt(key)].up_id):deleteColab(props.colabs[parseInt(key)].colab_id)
                                 }}
-                            >Eliminar
+                            >
+                           <i class="bi bi-trash-fill"></i> 
+                              
                             </button>
                         </td>
                     </tr>  

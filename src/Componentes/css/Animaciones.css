@@ -27,11 +27,13 @@ IMAGEN MOVIMIENTO LOGIN
 
 
 .container{
+    display: flex;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  
+    top: -40px;
+    z-index: 9;
     
   }
    .container .box {

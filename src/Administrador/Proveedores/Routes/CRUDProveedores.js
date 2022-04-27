@@ -44,8 +44,8 @@ export const CrudProveedores = (props) => {
         setenable(Array(i).fill(true));
         setActivar(Array(i).fill(true));
         setShow(Array(i).fill(true));
-        setTextBModificar(Array(i).fill('Modificar'));
-        setTextBVer(Array(i).fill('Mostrar'));
+        setTextBModificar(Array(i).fill('bi bi-pencil-square'));
+        setTextBVer(Array(i).fill('bi bi-eye'));
     },[props.proveedores])
 
     const habilitar = (key) =>{
@@ -59,20 +59,20 @@ export const CrudProveedores = (props) => {
             if(i === key){
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     setData({
                         ...data,proveedor_nombre: '', 
                                 proveedor_telefono:'',
                                 proveedor_email:'',
                     })
                 }else{
-                    newArr2[i] = 'Aceptar';
+                    newArr2[i] = 'bi bi-check-lg';
                 }
                 newArr3[i] = !activar[i];
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Modificar';
+                newArr2[i] = 'bi bi-pencil-square';
                 newArr3[i]=true;
             }
 
@@ -88,19 +88,21 @@ export const CrudProveedores = (props) => {
         const newArr2 = [];
         let c = Object.keys(props.proveedores);
         c = c.length;
+        setShow(Array(c).fill(true));
+        setTextBVer(Array(c).fill('bi bi-eye'));
         for (let i = 0 ; i < c ; i++){
             if(i === key){
                 newArr[i] = !show[i];
-                setShow2(!show2);
+                setShow2(newArr[i]);
                 if(show[i] === false){
-                    newArr2[i] = 'Mostrar';
+                    newArr2[i] = 'bi bi-eye';
                 }else{
-                    newArr2[i] = 'Ocultar';
+                    newArr2[i] = 'bi bi-eye-slash-fill';
                 }
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Mostrar';
+                newArr2[i] = 'bi bi-eye';
             }
         }   
         setShow(newArr);
@@ -112,6 +114,7 @@ export const CrudProveedores = (props) => {
     const [listaMarcas, setListaMarcas] = useState([]);
     //Función que consulta todas las marcas existentes
     const llamadoMarca = async (idFila) => {
+        setListaMarcas('');
         try {
             const respuestaMarca =  await axios.get(url2 + `/api/cotizador/provmarcas/view/${idFila}`)
             setListaMarcas(respuestaMarca.data.data);
@@ -157,7 +160,7 @@ export const CrudProveedores = (props) => {
                             ></input>
                         </td>
                         {/*================= Teléfono ==================*/}
-                        <td>
+                        <td width={"200px"}>
                             <input
                             className="input-name"
                             defaultValue={props.proveedores[key].proveedor_telefono}
@@ -177,7 +180,7 @@ export const CrudProveedores = (props) => {
                             ></input>{" "}
                         </td>
 
-                        <td>
+                  {/*       <td>
                             {" "}
                             <button
                                 className="btn btn-primary Mod"
@@ -188,19 +191,80 @@ export const CrudProveedores = (props) => {
                                 props.setfirst(activar[key]);
                                 //props.setActualizarProvs(activar[key]);
                                 }}
-                            >{textBModificar[key]}
+                            >
+                        <i className= {textBModificar[key]}></i>
+                                
+                             
                             </button>
-                        </td>
-                        <td>
+                        </td> */}
+
+
+                        
+
+{enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                       // props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              
+                              
+                              <div >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                
+                                </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                   
+                                </td>
+                                </div>
+                            )}
+
+
+
+                        <td width={"100px"}>
                             {" "}
                             <button
-                                className="btn btn-primary Ver "
+                                className="btn btn-primary Ver"
                                 type="button"
                                 onClick={() => {
                                     llamadoMarca(props.proveedores[key].proveedor_id);
                                     habilitar2(key);
                                 }}
-                            >{textBVer[key]}
+                            >
+                                
+                                <i className= {textBVer[key]}></i>
+                                
+                             
                             </button>
                         </td>
                         </tr>  

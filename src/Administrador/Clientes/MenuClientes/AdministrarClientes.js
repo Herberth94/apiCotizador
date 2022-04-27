@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRegistro } from "../Routes/ModificarCLientes";
 import Animaciones from "../../../Componentes/Animaciones";
@@ -44,6 +44,9 @@ function AdministrarClientes() {
     setShow(!show);
   };
 
+  useEffect(()=>{
+    llamadoCliente();
+  },[])
   const envioData = async (datos, key, data) => {
     if(first){
       actualizacion(datos[key],data);
@@ -60,14 +63,14 @@ function AdministrarClientes() {
 
         {/*================= Botón Mostrar/Ocultar Lista =======================*/}
         <div>
-          <button className="btn btn-primary modificar" type="button"
+          {/* <button className="btn btn-primary modificar" type="button"
             onClick={() => {
               llamadoCliente();
             }}
           >
             {" "}
             {show ? "Mostrar Lista" : "Ocultar Lista"}
-          </button>
+          </button> */}
           {show ? (
             <div>
               {/*=================== Ocultar Lista DIV  =========================*/}

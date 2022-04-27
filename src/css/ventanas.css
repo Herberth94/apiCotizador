@@ -21,7 +21,7 @@ LOGIN
       position: absolute;
       margin-left: 60px;
       width: calc(100% - 60px) ;
-       top: 15%;
+       top: 10%;
   }
 
   .contenido-main-registro.login {	
@@ -56,7 +56,7 @@ LOGIN
 	position: relative;
 	text-align: center;
 	z-index: 1;
-	background-color:  #00000009;
+	background-color:  #ffffff7c;
 	backdrop-filter: blur(6px);
 }
 
@@ -93,9 +93,7 @@ LOGIN
 	color: white;
 	}
 	
-select#rol{
-	background-color: #0b9e1e;
-}
+
 
 
 /*============== BOTONES VENTANA ==============*/

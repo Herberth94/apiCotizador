@@ -34,7 +34,7 @@ export const CrudClientes = (props) => {
         let i = Object.keys(props.clientes)
          i = i.length
         setActivar(Array(i).fill(true));
-        setTextBModificar(Array(i).fill('Modificar'));
+        setTextBModificar(Array(i).fill('bi bi-pencil-square'));
         setenable ( Array(i).fill(true));
     },[])
 
@@ -49,7 +49,7 @@ export const CrudClientes = (props) => {
             if(i === key){
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     setData({
                         ...data,nombre_cliente: '', 
                                 razon_social:'',
@@ -57,13 +57,13 @@ export const CrudClientes = (props) => {
                                 cliente_direccion:''   
                       })
                 }else{
-                    newArr2[i] = 'Aceptar';
+                    newArr2[i] = 'bi bi-check-lg';
                 }
                 newArr3[i] = !activar[i];
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Modificar';
+                newArr2[i] = 'bi bi-pencil-square';
                 newArr3[i]=true;
             }
 
@@ -134,7 +134,7 @@ export const CrudClientes = (props) => {
                                 name="cliente_direccion"
                                 ></input>{" "}
                             </td>
-                            <td>
+                        {/*     <td>
                                 {" "}
                                 <button
                                     className="btn btn-primary Mod"
@@ -146,7 +146,58 @@ export const CrudClientes = (props) => {
                                     }}
                                 >{textBModificar[key]}
                                 </button>
-                            </td>
+                            </td> */}
+
+{enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                       // props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              
+                              
+                              <div >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                
+                                </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                   
+                                </td>
+                                </div>
+                            )}
+
+
+
                             </tr>
                         ))}
                     </tbody>

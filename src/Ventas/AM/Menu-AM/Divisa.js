@@ -17,9 +17,6 @@ let validatorid = cookies.get('id_usuario');
 function Divisa() {
     /*== Almacenamiento de todos los proyectos existentes ==*/
     const[listaProyectos, setListaProyectos] = useState([]);
-
-    /*== Almacenamiento de los proyectos que tienen la clave semejante a la instroducida ==*/
-    const[suggestions,setSuggestions] = useState([]);
     
     /*== Almacenamiento de la clave introducida del proyecto ==*/
     const[claveP,setClaveP] = useState([]);
@@ -37,9 +34,15 @@ function Divisa() {
             console.log(error);
         }
     }
-    /*== Función que realiza la consulta a la tabla proyectos ==*/
+    
     useEffect(()=>{
         getProyectos();
+    },[])
+
+    useEffect(()=>{
+        if(claveP === ''){
+          getProyectos();
+        }
     },[claveP])
     
     /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
@@ -51,7 +54,7 @@ function Divisa() {
             return proyecto.proyecto_clave.match(regex)
             })
         }
-        setSuggestions(coincidencias);
+        setListaProyectos(coincidencias);
         setClaveP(claveP);
     }
 
@@ -68,8 +71,9 @@ function Divisa() {
     }
     /*================================================== Divisa ==================================================*/
         /*========================= Editar =========================*/
-        const [activar, setActivar] = useState(true)
-
+        const [activar, setActivar] = useState([]);
+        const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
+        
         const [data,setData] = useState ({
             proyecto_valor_dolar:''     
         });
@@ -77,43 +81,62 @@ function Divisa() {
         const handleInputChange = (event) => {
             setData ({
             ...data,[event.target.name] : event.target.value ,
-        })
+            })
         }
 
         const [enable, setenable] = useState([]);
         const [datos, Setdatos] = useState();
-        const [newdata, setNewData] = useState([]);
         
+        useEffect(() => {
+            Setdatos(listaProyectos); 
+        },[listaProyectos]);
+
 
         useEffect(() => {
-            Setdatos(suggestions); 
-        },[suggestions]);
-
-
-        useEffect(() => {
-            let i = Object.keys(suggestions)
+            let i = Object.keys(listaProyectos)
             i = i.length
             //console.log(i)
-
+            setActivar(Array(i).fill(true));
+            setTextBModificar(Array(i).fill('Modificar'));
             setenable(Array(i).fill(true)); 
-        },[suggestions])
+        },[listaProyectos])
 
         
         const habilitar = (key) =>{
             key = parseInt(key);
-            const newArr = [] 
-            let p = Object.keys(suggestions);
+            const newArr =[] 
+            const newArr2 = [];
+            const newArr3 = [];
+            let p = Object.keys(listaProyectos);
             p = p.length;
             for (let i = 0 ; i < p ; i++){
                 if(i === key){
-                    newArr[i]=!enable[i];
+                    newArr[i] = !enable[i];
+                    if(enable[i] === false){
+                        newArr2[i] = 'Modificar';
+                        setData({
+                            ...data,proyecto_valor_dolar:''
+                        })
+                    }else{
+                        newArr2[i] = 'Aceptar';
+                    }
+                    newArr3[i] = !activar[i];
                 }
                 if(i !== key){
                     newArr[i]=true;
+                    newArr2[i] = 'Modificar';
+                    newArr3[i]=true;
                 }
+
             }   
-            setenable(newArr);        
+            setenable(newArr);
+            setTextBModificar(newArr2);
+            setActivar(newArr3);
         }
+
+        // useEffect(()=>{
+        //     getProyectos();
+        // },[firts === true])
         /*==========================================================*/
     /*============================================================================================================*/
   return (
@@ -156,42 +179,41 @@ function Divisa() {
                             <th>Fecha de creción</th>
                             <th>Estatus</th>
                             <th>Valor dolar</th>
-                            <th>Plazo meses</th>
+                            <th>Plazo de meses</th>
                             <th>Divisa</th>
                             
                         </tr>
                     </thead>         
                     <tbody>
-                        {Object.keys(suggestions).map((key) => (    
+                        {Object.keys(listaProyectos).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={key} >
-                                <td>{suggestions[key].proyecto_id}</td>   
-                                <td>{suggestions[key].proyecto_clave}</td>  
-                                <td>{suggestions[key].proyecto_descripcion}</td>  
-                                <td>{suggestions[key].nombre_cliente}</td> 
-                                <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                                <td>{suggestions[key].proyecto_estatus}</td> 
+                            <tr key={listaProyectos[key].proyecto_id} >
+                                <td>{listaProyectos[key].proyecto_id}</td>   
+                                <td>{listaProyectos[key].proyecto_clave}</td>  
+                                <td>{listaProyectos[key].proyecto_descripcion}</td>  
+                                <td>{listaProyectos[key].nombre_cliente}</td> 
+                                <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
+                                <td>{listaProyectos[key].proyecto_estatus}</td> 
                                 <td>
                                     <input 
                                     className="input-name" 
-                                    defaultValue={suggestions[key].proyecto_valor_dolar} 
+                                    defaultValue={listaProyectos[key].proyecto_valor_dolar} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="proyecto_valor_dolar" 
                                     ></input>
                                 </td>
-                                <td>{suggestions[key].proyecto_plazo_meses}</td> 
+                                <td>{listaProyectos[key].proyecto_plazo_meses}</td> 
                                 <td>
                                     <button 
                                     className="btn btn-primary" 
                                     onClick={() => {
-                                        EnviarDivisa(datos,key,data);
                                         habilitar(key);
-                                        setActivar(!activar)
-                                        setFirts(activar)
+                                        EnviarDivisa(datos,key,data);
+                                        setFirts(activar[key])
                                     }}
                                     >
-                                        {activar ? "Modificar":"Aceptar"}
+                                        {textBModificar[key]}
                                     </button>
                                 </td> 
                             </tr>  

@@ -40,6 +40,19 @@ td.azul{
 }
 
 
+td.Aceptado{
+  background-color: #00f335d7;
+}
+td.En.revision{
+  background-color: #f6fa00d0;
+}
+
+td.Rechazado{
+  background-color: #ff000083;
+}
+
+
+
 /* From cssbuttons.io by @adamgiebl */
 button.login {
   font-size: 18px;
