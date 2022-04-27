@@ -11,17 +11,10 @@ import BuscadorProyectoFinanciamiento from "./BuscadorProyectoFinanciamiento"
 import BuscadorInteligente2 from "../../AM/Menu-AM/BuscadorInteligente2";
 
 function ProporcionalidadMenu() {
-  {  /*========================== Mostrar Ocultar Tabla ==========================*/}
+
+  /*========================== Mostrar/Ocultar Componente ==========================*/
   const [show, setShow] = useState(true);
-
-  {  /*========================== Mostrar Ocultar Botón ==========================*/}
   const [show2, setShow2] = useState(true);
-
-  {  /*========================== Mostrar Ocultar Datos Adicionales ==========================*/}
-  const [show3, setShow3] = useState(true);
-
-  {  /*========================== Mostrar Ocultar Datos Adicionales ==========================*/}
-  const [show4, setShow4] = useState(true);
 
 
   return (
@@ -50,6 +43,7 @@ function ProporcionalidadMenu() {
                 type="button"
                 onClick={() => {
                   setShow(!show);
+                  setShow2(true);
                 }}
               >
                 {" "}
@@ -71,6 +65,7 @@ function ProporcionalidadMenu() {
                 type="button"
                 onClick={() => {
                   setShow2(!show2);
+                  setShow(true);
                 }}
               >
                 {" "}
@@ -85,11 +80,6 @@ function ProporcionalidadMenu() {
                 </div>
               )}
             </td>
-
-          
-
-
-
           </tr>
         </tbody>
       </Table>

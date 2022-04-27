@@ -27,37 +27,42 @@ function BuscadorInteligente() {
         getPorcentajesCI} = Partida_catalogo();
 
 
-  //Habilitar/Deshabilitar tabla del resumen AM
-  const [show, setShow] = useState(true)
+    //Habilitar/Deshabilitar tabla del resumen AM
+    const [show, setShow] = useState([]);
+    const [show1, setShow1] = useState(true);
+    const [textBVer,setTextBVer] = useState([]);//Texto de los botones de detalles
 
 
 
     const[listaProyectos, setListaProyectos] = useState([]);
 
-
-    const[suggestions,setSuggestions] = useState([]);
-
-
     const[claveP,setClaveP] = useState([]);
 
     /*== Función que realiza la consulta a la tabla proyectos ==*/
-    useEffect(()=>{
-        const getProyectos = async () => {
-            try{
-                if(validatorrol === "administrador"){
-                    const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
-                    setListaProyectos(resProy.data.data);
-                }else{
-                    const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-                    setListaProyectos(resProy.data.data);
-                }
-            }catch(error){
-                console.log(error);
+    const getProyectos = async () => {
+        try{
+            if(validatorrol === "administrador"){
+                const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
+                setListaProyectos(resProy.data.data);
+            }else{
+                const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+                setListaProyectos(resProy.data.data);
             }
+        }catch(error){
+            console.log(error);
         }
+    }
+
+    useEffect(()=>{
         getProyectos();
        
     },[])
+
+    useEffect(()=>{
+        if(claveP === ''){
+          getProyectos();
+        }
+    },[claveP])
 
    /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
    const onChangeTextClaveP = (claveP) => {
@@ -68,7 +73,7 @@ function BuscadorInteligente() {
         return proyecto.proyecto_clave.match(regex)
         })
     }
-    setSuggestions(coincidencias);
+    setListaProyectos(coincidencias);
     setClaveP(claveP);
     }
 
@@ -101,6 +106,40 @@ function BuscadorInteligente() {
         }//console.log('Categorias',totalCategorias);
     }
 
+    useEffect(() => {
+        let i = Object.keys(listaProyectos)
+        i = i.length
+        setShow(Array(i).fill(true));
+        setTextBVer(Array(i).fill('Mostrar'));
+    },[listaProyectos])
+
+    const habilitar = (key) =>{
+        //console.log(key);
+        key = parseInt(key);
+        const newArr =[];
+        const newArr2 = [];
+        let c = Object.keys(listaProyectos);
+        c = c.length;
+        setShow(Array(c).fill(true));
+        setTextBVer(Array(c).fill('Mostrar'));
+        for (let i = 0 ; i < c ; i++){
+            if(i === key){
+                newArr[i] = !show[i];
+                setShow1(newArr[i]);
+                if(show[i] === false){
+                    newArr2[i] = 'Mostrar';
+                }else{
+                    newArr2[i] = 'Ocultar';
+                }
+            }
+            if(i !== key){
+                newArr[i]=true;
+                newArr2[i] = 'Mostrar';
+            }
+        }   
+        setShow(newArr);
+        setTextBVer(newArr2);
+    }
 
 
   return (
@@ -136,35 +175,40 @@ function BuscadorInteligente() {
             <th>Clave</th>
             <th>Descripción</th>
             <th>Cliente</th>
-            <th>Fecha de creción</th>
+            <th>Fecha de creación</th>
+            <th>Fecha de modificación</th>
             <th>Estatus</th>
+            <th>Plazo de meses</th>
             <th>Resumen AM</th>
             </tr>
             </thead>
                     
             <tbody>
-            {Object.keys(suggestions).map((key) => (    
+            {Object.keys(listaProyectos).map((key) => (    
             //checar aqui va los titulos
             <tr key={key} >
-            <td>{suggestions[key].proyecto_id}</td>   
-            <td>{suggestions[key].proyecto_clave}</td>  
-            <td>{suggestions[key].proyecto_descripcion}</td>  
-            <td>{suggestions[key].nombre_cliente}</td> 
-            <td>{suggestions[key].proyecto_fecha_creacion}</td>
-            <td>{suggestions[key].proyecto_estatus}</td> 
+            <td>{listaProyectos[key].proyecto_id}</td>   
+            <td>{listaProyectos[key].proyecto_clave}</td>  
+            <td>{listaProyectos[key].proyecto_descripcion}</td>  
+            <td>{listaProyectos[key].nombre_cliente}</td> 
+            <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
+            <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
+            <td>{listaProyectos[key].proyecto_estatus}</td> 
+            <td>{listaProyectos[key].proyecto_plazo_meses}</td>
             <td>
                 <button 
                 className="btn btn-primary Ver" 
                 onClick={() => {
-                    consultarTotalesP(suggestions[key].proyecto_id);
-                    setShow(!show);}}
-                >{show ? 'Ver mas':'Ocultar proyecto'}</button>
+                    consultarTotalesP(listaProyectos[key].proyecto_id);
+                    habilitar(key);
+                }}
+                >{textBVer[key]}</button>
             </td> 
             </tr>  
             ))}
             </tbody>          
         </Table>
-        {show ? (
+        {show1 ? (
             <div></div>
         ) : (
             <div className="arregla">
