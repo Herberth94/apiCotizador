@@ -97,7 +97,7 @@ export const CrudUsuarios = (props) => {
                         //checar aqui va los titulos
                     <tr key={key} >
                         <td>{props.usuarios[key].id_usuario}</td>
-                        <td> 
+                        <td  width={"200px"}> 
                         {/*<input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>
                         */}
                             <select id="rol" name="usuario_id_rol" required defaultValue={props.usuarios[key].usuario_id_rol}   onChange={handleInputChange}  disabled={enable[key]}>
@@ -107,13 +107,11 @@ export const CrudUsuarios = (props) => {
                                 <option value={3}>Venta</option>
                             </select>
                         </td>
-                        <td><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
-                        <td  width={"100px"}><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} > 
-                               
-                        <i className= "bi bi-unlock"  ></i>
-                        
-         
-                        </button></td>
+                        <td   ><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
+                        <td  width={"100px"}><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} >                             
+                        <i className= "bi bi-unlock"  ></i>       
+                        </button>
+                        </td>
                         
    {/*                          <td>
                                 <button 
@@ -126,20 +124,21 @@ export const CrudUsuarios = (props) => {
                             {enable[key] ? (
                                 <td width={"100px"} >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className=  "btn btn-primary Mod" type="button"
                                     onClick={()=>{
-                                        props.envioData(datos,key,data); 
+                                       // props.envioData(datos,key,data); 
                                         habilitar(key); 
                                         props.setfirst(activar[key]); 
                                     }}
                                     >
-                                        <i className= {textBModificar[key]}  ></i>
+                                        <i className  = {textBModificar[key]}  ></i>
                                     </button>
-                                    <div >    
-                                    </div>
+                                    
                                 </td>
                             ):(
-                                <div >
+                              
+                              
+                              <div >
                                     <td width={"100px"} >
                                     <button 
                                     className="btn btn-primary Mod" type="button"
@@ -151,23 +150,21 @@ export const CrudUsuarios = (props) => {
                                     >
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
-                                    <div >    
-                                    </div>
+                                
                                 </td>
 
                                 <td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="btn btn-primary Cancelar" type="button"
                                     onClick={()=>{
-                                        props.envioData(datos,key,data); 
+                                      /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
-                                        props.setfirst(activar[key]); 
+                                       props.setfirst(activar[key]); 
                                     }}
                                     >
-                                        <i className= {textBModificar[key]}  ></i>
+                                        <i className= "bi bi-x-lg"  ></i>
                                     </button>
-                                    <div >    
-                                    </div>
+                                   
                                 </td>
                                 </div>
                             )}
