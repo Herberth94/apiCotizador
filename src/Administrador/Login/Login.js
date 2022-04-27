@@ -3,7 +3,7 @@ import '../../css/ventanas.css';
 import {useLogin} from './Routes/useLogin';
 import ReCAPTCHA from "react-google-recaptcha";
 import {passwordCaptcha} from "../../Componentes/Ocultar";
-export let valida =true;
+export let valida =false;
 
 
 /*  Funcion Captcha Validación Correcta */
