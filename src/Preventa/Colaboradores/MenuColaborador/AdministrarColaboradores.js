@@ -102,6 +102,7 @@ function AdministrarColaboradores(props) {
     key = parseInt(key);
     const newArr =[];
     const newArr2 = [];
+    const colores= [];
     let c = Object.keys(listaProyectos);
     setShow(Array(c).fill(true));
     setTextBVer(Array(c).fill('bi bi-eye'));
@@ -122,6 +123,7 @@ function AdministrarColaboradores(props) {
             newArr[i]=true;
             newArr2[i] = ' bi bi-eye ';
         }
+        
     }   
     setShow(newArr);
     setTextBVer(newArr2);
@@ -163,10 +165,10 @@ function AdministrarColaboradores(props) {
                 <th>Clave</th>
                 <th>Descripción</th>
                 <th>Cliente</th>
-                <th>Fecha de creción</th>
-                <th>Fecha de modificación</th>
+                <th>Fecha  Creación</th>
+                <th>Fecha  Modificación</th>
                 <th>Estatus</th>
-                <th>Plazo de meses</th>
+                <th>Plazo meses</th>
                 <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores"}</th>
               </tr>
             </thead>
@@ -178,11 +180,11 @@ function AdministrarColaboradores(props) {
                     <td>{listaProyectos[key].proyecto_clave}</td>  
                     <td>{listaProyectos[key].proyecto_descripcion}</td>  
                     <td>{listaProyectos[key].nombre_cliente}</td> 
-                    <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
-                    <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
-                    <td>{listaProyectos[key].proyecto_estatus}</td>  
-                    <td>{listaProyectos[key].proyecto_plazo_meses}</td> 
-                    <td width={"100"}>
+                    <td width={"150px"}>{listaProyectos[key].proyecto_fecha_creacion}</td>
+                    <td   width={"150px"}>{listaProyectos[key].proyecto_fecha_modificacion}</td>
+                    <td  className= {listaProyectos[key].proyecto_estatus } >{listaProyectos[key].proyecto_estatus}</td>  
+                    <td  width={"50 px"}>{listaProyectos[key].proyecto_plazo_meses}</td> 
+                    <td width={"100 px"}>
                       <button 
                         className="btn btn-primary Ver" 
                         type="button" 
