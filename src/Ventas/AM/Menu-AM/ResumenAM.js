@@ -135,7 +135,7 @@ const ResumenAM = () => {
         i = i.length
         setenable(Array(i).fill(true));
         setActivar(Array(i).fill(true));
-        setTextBModificar(Array(i).fill('Modificar'));
+        setTextBModificar(Array(i).fill('bi bi-pencil-square'));
     },[datosCompletosAM])
 
     const habilitar = (key) =>{
@@ -151,7 +151,7 @@ const ResumenAM = () => {
             if(i === key){
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     setData({
                         ...data, desc_cliente : '',
                         margen_ganancia:'',
@@ -168,13 +168,13 @@ const ResumenAM = () => {
                     //     desFabrica[key] = data.descuento_fabrica
                     // }
                 }else{
-                    newArr2[i] = 'Aceptar';
+                    newArr2[i] = 'bi bi-check-lg';
                 }
                 newArr3[i] = !activar[i];
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Modificar';
+                newArr2[i] = 'bi bi-pencil-square';
                 newArr3[i]=true;
             }
 
@@ -188,7 +188,7 @@ const ResumenAM = () => {
         let i = Object.keys(listaProyectos)
         i = i.length
         setShow(Array(i).fill(true));
-        setTextBVer(Array(i).fill('Mostrar'));
+        setTextBVer(Array(i).fill('bi bi-eye'));
     },[listaProyectos])
 
     const habilitar2 = (key) =>{
@@ -199,20 +199,20 @@ const ResumenAM = () => {
         let c = Object.keys(listaProyectos);
         c = c.length;
         setShow(Array(c).fill(true));
-        setTextBVer(Array(c).fill('Mostrar'));
+        setTextBVer(Array(c).fill('bi bi-eye'));
         for (let i = 0 ; i < c ; i++){
             if(i === key){
                 newArr[i] = !show[i];
                 setShow1(newArr[i]);
                 if(show[i] === false){
-                    newArr2[i] = 'Mostrar';
+                    newArr2[i] = 'bi bi-eye';
                 }else{
-                    newArr2[i] = 'Ocultar';
+                    newArr2[i] = 'bi bi-eye-slash-fill';
                 }
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Mostrar';
+                newArr2[i] = 'bi bi-eye';
             }
         }   
         setShow(newArr);
@@ -265,7 +265,7 @@ const ResumenAM = () => {
                             <th>Fecha de creción</th>
                             <th>Fecha de Modificación</th>
                             <th>Estatus</th>
-                            <th>Plazo de Meses</th>
+                            <th>Plazo Meses</th>
                             <th>Resumen AM</th>
                         </tr>
                     </thead>
@@ -281,15 +281,18 @@ const ResumenAM = () => {
                                 <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
                                 <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
                                 <td>{listaProyectos[key].proyecto_estatus}</td> 
-                                <td>{listaProyectos[key].proyecto_plazo_meses}</td>
-                                <td>
+                                <td width={"60px"}>{listaProyectos[key].proyecto_plazo_meses}</td>
+                                <td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary" 
+                                    className="btn btn-primary Ver" 
                                     onClick={() => {
                                         consultarTotalesP(listaProyectos[key].proyecto_id);
                                         habilitar2(key);
                                     }}
-                                    >{textBVer[key]}</button>
+                                    >
+                                       <i className=  {textBVer[key]}></i> 
+                                        
+                                      </button>
                                 </td> 
                             </tr>  
                         ))}
@@ -381,7 +384,7 @@ const ResumenAM = () => {
                                     {/*================= Margen Directo ==================*/}
                                     <td>{margenDirecto[key] } {" % "}</td>
                                     {/*================= Botón Modificar ==================*/}
-                                    <td>
+                             {/*        <td>
                                         <button 
                                         className="btn btn-primary Mod"
                                         onClick={()=>{
@@ -390,7 +393,60 @@ const ResumenAM = () => {
                                         }}
                                         > {textBModificar[key]}
                                         </button>
-                                    </td>
+                                    </td> */}
+
+
+
+{enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                       // props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        envioData(key);
+                                    }}
+                                    >
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              
+                              
+                              <div >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                      
+                                        habilitar(key); 
+                                        envioData(key);
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                
+                                </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                      
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                   
+                                </td>
+                                </div>
+                            )}
+
+
+
                                 </tr>
                                 ))}
                             </tbody>
