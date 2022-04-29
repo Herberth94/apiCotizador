@@ -14,6 +14,8 @@ function AdministrarProveedor() {
   /*======================================== Buscador de proveedores ========================================*/
   //Almacenamiento de todos los proveedores existentes
   const[listaProv, setListaProv] = useState([]);
+
+  const [suggestions, setSuggestions] = useState([]);
   
   // Almacenamiento de la clave introducida del proyecto 
   const[nombreProv,setNombreProv] = useState([]);
@@ -23,6 +25,7 @@ function AdministrarProveedor() {
     try{
         const resProv = await axios.get( url + '/api/cotizador/proveedor/view');
         setListaProv(resProv.data.data);
+        setSuggestions(resProv.data.data);
     }catch(error){
         console.log(error);
     }
@@ -36,20 +39,22 @@ function AdministrarProveedor() {
 
   useEffect(()=>{
     if(nombreProv === ''){
-      getProvs();
+      setSuggestions(listaProv);
     }
   },[nombreProv])
   
   //Función que realiza la busqueda de los proveedores semejantes al nombre e introducido
   const onChangeTextNombreProv = (nProv) => {
       let coincidencias = [];
-      if(nProv.length>0){
+      if(nProv !== ''){
           coincidencias = listaProv.filter(proveedor => {
           const regex = new RegExp(`${nProv}`, "gi");
           return proveedor.proveedor_nombre.match(regex)
           })
+          //console.log(coincidencias);
+          //console.log(listaProv);
       }
-      setListaProv(coincidencias);
+      setSuggestions(coincidencias);
       setNombreProv(nProv);
   }
   /*=======================================================================================================*/
@@ -97,7 +102,7 @@ function AdministrarProveedor() {
               {/*=================== Botón Mostrar Lista DIV =====================*/}
               <br />
               <CrudProveedores
-                proveedores={listaProv} 
+                proveedores={suggestions} 
                 setfirst={setfirst}
                 envioData={envioData}
                 //setActualizarProvs={setActualizarProvs}
