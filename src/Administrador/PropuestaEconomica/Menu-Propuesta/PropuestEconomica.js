@@ -38,6 +38,7 @@ function PropuestaEconomica() {
                   type="button"
                   onClick={() => {
                     setShow(!show);
+                    setShow2(true);
                   }}
                 >
                   {" "}
@@ -59,6 +60,7 @@ function PropuestaEconomica() {
                   type="button"
                   onClick={() => {
                     setShow2(!show2);
+                    setShow(true);
                   }}
                 >
                   {" "}

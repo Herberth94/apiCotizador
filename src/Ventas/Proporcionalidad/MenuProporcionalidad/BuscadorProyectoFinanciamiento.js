@@ -12,32 +12,33 @@ let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
+let idAsignado;
 
 function BuscadorProyectoFinanciamiento() {
-    /*== Almacenamiento de todos los proyectos existentes ==*/
-    const [listaProyectos, setListaProyectos] = useState([]);
+    //Habilitar/Deshabilitar tabla del financiamiento
+    const [show, setShow] = useState([])
+    const [show2, setShow2] = useState(true)
+    const [textBVer,setTextBVer] = useState([]);//Texto de los botones de detalles
 
-    /*== Almacenamiento de los proyectos que tienen la clave semejante a la instroducida ==*/
+    // Almacenamiento de todos los proyectos existentes 
+    const[listaProyectos, setListaProyectos] = useState([]);
+
+    //Almacenamiento de los proyectos semejantes a la clave introducido
     const [suggestions, setSuggestions] = useState([]);
 
-    /*== Almacenamiento de la clave introducida del proyecto ==*/
-    const [claveP, setClaveP] = useState([]);
-    // Almacenamiento del ID asignado 
-    const [idAsignado, setIdAsignado] = useState();
-
-    //Habilitar/Deshabilitar tabla del financiamiento
-    const [show, setShow] = useState(true)
-    const [show2, setShow2] = useState(true)
-
+    // Almacenamiento de la clave introducida del proyecto 
+    const[claveP,setClaveP] = useState([]);
 
     const getProyectos = async () => {
         try {
             if (validatorrol === "administrador") {
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             } else {
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }
         } catch (error) {
             console.log(error);
@@ -46,7 +47,13 @@ function BuscadorProyectoFinanciamiento() {
     /*== Función que realiza la consulta a la tabla proyectos ==*/
     useEffect(() => {
         getProyectos();
-    }, [claveP])
+    }, [])
+
+    useEffect(()=>{
+        if(claveP === ''){
+            setSuggestions(listaProyectos);
+        }
+    },[claveP])
 
     /*== Función que realiza la busqueda de los proyectos semejantes a la clave introducida ==*/
     const onChangeTextClaveP = (claveP) => {
@@ -60,7 +67,47 @@ function BuscadorProyectoFinanciamiento() {
         setSuggestions(coincidencias);
         setClaveP(claveP);
     }
+
+    function getProyId (pId){
+        idAsignado = pId;
+    }
     /*============================================================================================================*/
+
+    useEffect(() => {
+        let i = Object.keys(suggestions)
+        i = i.length
+        setShow(Array(i).fill(true));
+        setTextBVer(Array(i).fill('Mostrar'));
+    },[suggestions])
+
+    const habilitar = (key) =>{
+        //console.log(key);
+        key = parseInt(key);
+        const newArr =[];
+        const newArr2 = [];
+        let c = Object.keys(suggestions);
+        c = c.length;
+        setShow(Array(c).fill(true));
+        setTextBVer(Array(c).fill('Mostrar'));
+        for (let i = 0 ; i < c ; i++){
+            if(i === key){
+                newArr[i] = !show[i];
+                setShow2(newArr[i]);
+                if(show[i] === false){
+                    newArr2[i] = 'Mostrar';
+                }else{
+                    newArr2[i] = 'Ocultar';
+                }
+            }
+            if(i !== key){
+                newArr[i]=true;
+                newArr2[i] = 'Mostrar';
+            }
+        }   
+        setShow(newArr);
+        setTextBVer(newArr2);
+    }
+
     return (
         <div className="contenido-usuarios">
             {/*======================= Titulo Animación =======================*/}
@@ -98,51 +145,40 @@ function BuscadorProyectoFinanciamiento() {
                             <th>Clave</th>
                             <th>Descripción</th>
                             <th>Cliente</th>
-                            <th>Fecha de creción</th>
-                            <th>Financiamiento</th>
-                            <th>Modificar Financiamiento</th>
-
+                            <th>Fecha de creación</th>
+                            <th>Fecha de modificación</th>
+                            <th>Estatus</th>
+                            <th>Plazo de meses</th>
+                            <th>Datos Financiamiento</th>
                         </tr>
                     </thead>
                     <tbody>
                         {Object.keys(suggestions).map((key) => (
-                            <tr key={key} >
+                            <tr key={suggestions[key].proyecto_id} >
                                 <td>{suggestions[key].proyecto_id}</td>
                                 <td>{suggestions[key].proyecto_clave}</td>
                                 <td>{suggestions[key].proyecto_descripcion}</td>
                                 <td>{suggestions[key].nombre_cliente}</td>
                                 <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                                <td>{suggestions[key].proyecto_fecha_modificacion}</td>
+                                <td>{suggestions[key].proyecto_estatus}</td> 
+                                <td>{suggestions[key].proyecto_plazo_meses}</td>
                                 <td>
                                     <button
-                                        className="btn btn-primary"
-                                        onClick={() => {
-                                            setIdAsignado(suggestions[key].proyecto_id)
-                                            setShow2(!show2);
-                                        }}
+                                    className="btn btn-primary Mod"
+                                    onClick={() => {
+                                        getProyId(suggestions[key].proyecto_id);
+                                        habilitar(key);
+                                    }}
                                     >
-                                        {" "}
-                                        {show2 ? "Agregar Datos" : "Ocultar"}{" "}
+                                        {textBVer[key]}
                                     </button>
-
-                                </td>
-                                <td>
-                                    <button
-                                        className="btn btn-primary Mod"
-                                        onClick={() => {
-                                            setIdAsignado(suggestions[key].proyecto_id)
-                                            setShow(!show);
-                                        }}
-                                    >
-                                        {" "}
-                                        {show ? "Modificar Datos " : "Ocultar"}{" "}
-                                    </button>
-
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
-                {show ? (
+                {show2 ? (
                     <div></div>
                 ) : (
                     <div className="arregla">
@@ -151,18 +187,6 @@ function BuscadorProyectoFinanciamiento() {
                         <ModificarFinanciamiento propIdProyecto={idAsignado} />
                     </div>
                 )}
-                {show2 ? (
-                    <div></div>
-                ) : (
-                    <div className="arregla">
-                        <br />
-                        {/*========================== Llamado al Componente agregar financiamiento==========================*/}
-                        <Financiamiento propIdProyecto={idAsignado} />
-                    </div>
-                )}
-
-                {/* {idAsignado !== null ? <Financiamiento propIdProyecto={idAsignado} /> : null} */}
-                {/* {idAsignado !== null ? <ModificarFinanciamiento propIdProyecto={idAsignado} /> : null} */}
             </div>
 
 

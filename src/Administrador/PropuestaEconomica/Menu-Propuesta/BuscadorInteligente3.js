@@ -32,8 +32,8 @@ function BuscadorInteligente3() {
     // Almacenamiento de todos los proyectos existentes
     const[listaProyectos, setListaProyectos] = useState([]);
 
-    // Almacenamiento de los proyectos que tienen la clave semejante a la instroducida
-    const[suggestions,setSuggestions] = useState([]);
+    //Almacenamiento de los proyectos semejantes a la clave introducido
+    const [suggestions, setSuggestions] = useState([]);
 
     // Almacenamiento de la clave introducida del proyecto
     const[claveP,setClaveP] = useState([]);
@@ -44,9 +44,11 @@ function BuscadorInteligente3() {
             if(validatorrol === "administrador"){
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }else{
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }
         }catch(error){
             console.log(error);
@@ -56,6 +58,12 @@ function BuscadorInteligente3() {
     useEffect(()=>{
         getProyectos();
     },[])
+
+    useEffect(()=>{
+        if(claveP === ''){
+            setSuggestions(listaProyectos);
+        }
+    },[claveP])
 
     // Función que realiza la busqueda de los proyectos semejantes a la clave introducida 
     const onChangeTextClaveP = (claveP) => {
@@ -83,10 +91,12 @@ function BuscadorInteligente3() {
         const newArr2 = [];
         let c = Object.keys(suggestions);
         c = c.length;
+        setShow(Array(c).fill(true));
+        setTextBVer(Array(c).fill('Mostrar'));
         for (let i = 0 ; i < c ; i++){
             if(i === key){
                 newArr[i] = !show[i];
-                setShow2(!show2);
+                setShow2(newArr[i]);
                 if(show[i] === false){
                     newArr2[i] = 'Mostrar';
                 }else{
@@ -171,22 +181,26 @@ function BuscadorInteligente3() {
                         <th>Clave</th>
                         <th>Descripción</th>
                         <th>Cliente</th>
-                        <th>Fecha de creción</th>
+                        <th>Fecha de creación</th>
+                        <th>Fecha de modificación</th>
                         <th>Estatus</th>
-                        <th>Resumen AM</th>
+                        <th>Plazo de meses</th>
+                        <th>Propuesta</th>
                     </tr>
                 </thead>
                                 
                 <tbody>
                     {Object.keys(suggestions).map((key) => (    
                         //checar aqui va los titulos
-                    <tr key={key} >
+                    <tr key={suggestions[key].proyecto_id} >
                         <td>{suggestions[key].proyecto_id}</td>   
                         <td>{suggestions[key].proyecto_clave}</td>  
                         <td>{suggestions[key].proyecto_descripcion}</td>  
                         <td>{suggestions[key].nombre_cliente}</td> 
                         <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                        <td>{suggestions[key].proyecto_fecha_modificacion}</td>
                         <td>{suggestions[key].proyecto_estatus}</td> 
+                        <td>{suggestions[key].proyecto_plazo_meses}</td>
                         <td>
                             <button 
                             className="btn btn-primary Ver" 

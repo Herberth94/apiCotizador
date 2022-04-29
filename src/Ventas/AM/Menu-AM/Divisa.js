@@ -15,10 +15,13 @@ let validatorid = cookies.get('id_usuario');
 
 
 function Divisa() {
-    /*== Almacenamiento de todos los proyectos existentes ==*/
+    //Almacenamiento de todos los proyectos existentes 
     const[listaProyectos, setListaProyectos] = useState([]);
     
-    /*== Almacenamiento de la clave introducida del proyecto ==*/
+    //Almacenamiento de los proyectos semejantes a la clave introducido
+    const [suggestions, setSuggestions] = useState([]);
+
+    //Almacenamiento de la clave introducida del proyecto
     const[claveP,setClaveP] = useState([]);
 
     const getProyectos = async () => {
@@ -26,9 +29,11 @@ function Divisa() {
             if(validatorrol === "administrador"){
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }else{
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }
         }catch(error){
             console.log(error);
@@ -41,7 +46,7 @@ function Divisa() {
 
     useEffect(()=>{
         if(claveP === ''){
-          getProyectos();
+            setSuggestions(listaProyectos);
         }
     },[claveP])
     
@@ -54,7 +59,7 @@ function Divisa() {
             return proyecto.proyecto_clave.match(regex)
             })
         }
-        setListaProyectos(coincidencias);
+        setSuggestions(coincidencias);
         setClaveP(claveP);
     }
 
@@ -88,18 +93,18 @@ function Divisa() {
         const [datos, Setdatos] = useState();
         
         useEffect(() => {
-            Setdatos(listaProyectos); 
-        },[listaProyectos]);
+            Setdatos(suggestions); 
+        },[suggestions]);
 
 
         useEffect(() => {
-            let i = Object.keys(listaProyectos)
+            let i = Object.keys(suggestions)
             i = i.length
             //console.log(i)
             setActivar(Array(i).fill(true));
-            setTextBModificar(Array(i).fill('Modificar'));
+            setTextBModificar(Array(i).fill('bi bi-pencil-square'));
             setenable(Array(i).fill(true)); 
-        },[listaProyectos])
+        },[suggestions])
 
         
         const habilitar = (key) =>{
@@ -107,24 +112,24 @@ function Divisa() {
             const newArr =[] 
             const newArr2 = [];
             const newArr3 = [];
-            let p = Object.keys(listaProyectos);
+            let p = Object.keys(suggestions);
             p = p.length;
             for (let i = 0 ; i < p ; i++){
                 if(i === key){
                     newArr[i] = !enable[i];
                     if(enable[i] === false){
-                        newArr2[i] = 'Modificar';
+                        newArr2[i] = 'bi bi-pencil-square';
                         setData({
                             ...data,proyecto_valor_dolar:''
                         })
                     }else{
-                        newArr2[i] = 'Aceptar';
+                        newArr2[i] = 'bi bi-check-lg';
                     }
                     newArr3[i] = !activar[i];
                 }
                 if(i !== key){
                     newArr[i]=true;
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     newArr3[i]=true;
                 }
 
@@ -179,32 +184,32 @@ function Divisa() {
                             <th>Fecha de creción</th>
                             <th>Estatus</th>
                             <th>Valor dolar</th>
-                            <th>Plazo de meses</th>
+                            <th>Plazo Meses</th>
                             <th>Divisa</th>
                             
                         </tr>
                     </thead>         
                     <tbody>
-                        {Object.keys(listaProyectos).map((key) => (    
+                        {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={listaProyectos[key].proyecto_id} >
-                                <td>{listaProyectos[key].proyecto_id}</td>   
-                                <td>{listaProyectos[key].proyecto_clave}</td>  
-                                <td>{listaProyectos[key].proyecto_descripcion}</td>  
-                                <td>{listaProyectos[key].nombre_cliente}</td> 
-                                <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
-                                <td>{listaProyectos[key].proyecto_estatus}</td> 
-                                <td>
+                            <tr key={suggestions[key].proyecto_id} >
+                                <td>{suggestions[key].proyecto_id}</td>   
+                                <td>{suggestions[key].proyecto_clave}</td>  
+                                <td>{suggestions[key].proyecto_descripcion}</td>  
+                                <td>{suggestions[key].nombre_cliente}</td> 
+                                <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                                <td className={suggestions[key].proyecto_estatus}  width={"100px"}>{suggestions[key].proyecto_estatus}</td> 
+                                <td width={"100px"}>
                                     <input 
                                     className="input-name" 
-                                    defaultValue={listaProyectos[key].proyecto_valor_dolar} 
+                                    defaultValue={suggestions[key].proyecto_valor_dolar} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="proyecto_valor_dolar" 
                                     ></input>
                                 </td>
-                                <td>{listaProyectos[key].proyecto_plazo_meses}</td> 
-                                <td>
+                                <td width={"5px"}>{suggestions[key].proyecto_plazo_meses}</td> 
+                              {/*   <td>
                                     <button 
                                     className="btn btn-primary" 
                                     onClick={() => {
@@ -215,7 +220,59 @@ function Divisa() {
                                     >
                                         {textBModificar[key]}
                                     </button>
-                                </td> 
+                                </td>  */}
+
+
+
+{enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                       // props.envioData(datos,key,data); 
+                                       habilitar(key);
+                                       EnviarDivisa(datos,key,data);
+                                       setFirts(activar[key])
+                                    }}
+                                    >
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              
+                              
+                              <div >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        habilitar(key);
+                                        EnviarDivisa(datos,key,data);
+                                        setFirts(activar[key])
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                
+                                </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                      habilitar(key);
+                                  
+                                      setFirts(activar[key])
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                   
+                                </td>
+                                </div>
+                            )}
                             </tr>  
                         ))}
                     </tbody>          

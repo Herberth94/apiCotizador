@@ -51,6 +51,12 @@ td.Rechazado{
   background-color: #ff000083;
 }
 
+td{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
 
 
 /* From cssbuttons.io by @adamgiebl */

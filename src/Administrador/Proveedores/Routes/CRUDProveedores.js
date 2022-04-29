@@ -148,7 +148,7 @@ export const CrudProveedores = (props) => {
                 <tbody>
                     {/*=================== Contenido Tabla Proveedores =================*/}
                     {Object.keys(props.proveedores).map((key) => (
-                        <tr key={key}>
+                        <tr key={props.proveedores[key].proveedor_id}> 
                         <td>{props.proveedores[key].proveedor_id}</td>
                         <td>
                             <input
@@ -239,7 +239,7 @@ export const CrudProveedores = (props) => {
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
-                                       props.setfirst(activar[key]); 
+                                       //props.setfirst(activar[key]); 
                                     }}
                                     >
                                         <i className= "bi bi-x-lg"  ></i>
