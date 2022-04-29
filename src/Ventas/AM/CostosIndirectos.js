@@ -116,7 +116,7 @@ function CostosIndirectos(props) {
                             {/*================= Total Indirecto ==================*/}
                             <td>{ totalIndirecto[key]}</td>
                             {/*================= Editar==================*/}
-                            <td>
+                      {/*       <td>
                                 <button 
                                 className="btn btn-primary"
                                 onClick={() => {
@@ -125,7 +125,22 @@ function CostosIndirectos(props) {
                                 }}
                                 >{textBModificar[key]}
                                 </button>
-                            </td>
+                            </td> */}
+
+
+<td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                   
+                                </td>
 
                         </tr>
                     ))}

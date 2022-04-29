@@ -14,6 +14,7 @@ datosCompletosAM,
 datosCompletosTotal
 } from "../../Operaciones/OperacionesAM";
 import { EditAM } from '../Routes/ModificarDatosAm';
+import {costosIndirectos, equivale,  totalIndirecto} from "../../Operaciones/OperacionesAM";
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -452,7 +453,52 @@ const ResumenAM = () => {
                             </tbody>
                         </Table>
 
+
+                        <div> <Animaciones mytext="Costos Indirectos " /> </div>
+
+                        <Table responsive striped bordered hover size="sm" className="tablas">
+                <thead>
+                    {/*=================== Titulos Tabla Clientes ===================*/}
+                    <tr className="titulo-tabla-usuarios">
+                        <th>Descripción</th>
+                        <th>Equivale a % </th>
+                        <th>Total </th>
+
+ 
+                    </tr>
+                </thead>
+                <tbody>
+                    {/*=================== Contenido Tabla Clientes =================*/}
+
+                    {Object.keys(costosIndirectos).map((key) => (
+                        <tr key={key}>
+                            {/*================= Descripción==================*/}
+                            <td>{costosIndirectos[key]}</td>
+
+                            {/*================= Equivale ==================*/}
+                            <td className="editar" >
+                                        <input
+                                        className="input-name"
+                                        type="number"
+                                        defaultValue={equivale[key] }
+                                        disabled={true} 
+                                        onChange={handleInputChange}
+                                        name="porcentaje" 
+                                        ></input> 
+                                    </td>
+                            {/*================= Total Indirecto ==================*/}
+                            <td>{ totalIndirecto[key]}</td>
+                            {/*================= Editar==================*/}
+
+
+                        </tr>
+                    ))}
+                </tbody>
+            </Table>
+
                         <div>
+                        <div> <Animaciones mytext="Totales " /> </div>
+         
                             <Table responsive striped bordered hover size="sm" className="tablas">
                                 <thead>
                                     {/*=================== Titulos Tabla Clientes ===================*/}

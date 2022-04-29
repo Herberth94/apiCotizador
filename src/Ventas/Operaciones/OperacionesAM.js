@@ -514,17 +514,13 @@ costosIndirectos.push("Total")
 
 for (var i = 0; i < costosIndirectos.length - 1; i++) {
     calculaIndirecto = (equivale[i] / 100) * precio;
-    totalIndirecto.push(calculaIndirecto);
+    totalIndirecto.push(calculaIndirecto.toFixed(decimal));
+
+    toIndirecto +=  calculaIndirecto;
    
   }
 
-
-  for (var i = 0; i <  totalIndirecto.length ; i++) {
-    toIndirecto += totalIndirecto[i];
-/*     console.log(toIndirecto) */
-  }
-
-  totalIndirecto.push(toIndirecto);
+  totalIndirecto.push(parseFloat(toIndirecto.toFixed(decimal)));
   
 
 
@@ -535,6 +531,7 @@ for (var i = 0; i < costosIndirectos.length - 1; i++) {
  let precio2 = totalIndirecto[totalIndirecto.length-1];
 
  costoFianalProyecto =  precio3 + precio2;
+ costoFianalProyecto = costoFianalProyecto.toFixed(decimal)
 
 
 

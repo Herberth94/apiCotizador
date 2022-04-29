@@ -111,14 +111,12 @@ function App() {
         <Venta exact path="/" component={CambioContraseña} />
         <Venta exact path="/menu-clientes" component={MenuClientes} />
         <Venta path="/menu-proveedores" component={MenuProveedor} />
-   
-
-     
         <Venta exact path="/am" component={AM} />
-        <Venta exact path="/propuesta-economica" component={ExportarPDF} />
-
-
+        <Venta exact path="/propuesta-economica" component={PropuestaEconomica} />
         <Venta path="/calculadora" component={MenuHeramientas} />
+        <Venta exact path="/proporcionalidad" component={Proporcionalidad} />
+
+
 
 
 
