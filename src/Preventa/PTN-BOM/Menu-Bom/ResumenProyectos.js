@@ -31,6 +31,8 @@ function Proyectos() {
     // Almacenamiento de todos los proyectos existentes
     const[listaProyectos, setListaProyectos] = useState([]);
     
+    //Almacenamiento de los proyectos semejantes a la clave introducido
+    const [suggestions, setSuggestions] = useState([]);
     // Almacenamiento de la clave introducida del proyecto
     const[claveP,setClaveP] = useState([]);
 
@@ -43,13 +45,16 @@ function Proyectos() {
             if(validatorrol === "administrador"){
                 const resProy = await axios.get(url +'/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }else{
                 if(show === false){
                     const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                     setListaProyectos(resProy.data.data);
+                    setSuggestions(resProy.data.data);
                   }else if(show1 === false){
                     const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
                     setListaProyectos(resProy.data.data);
+                    setSuggestions(resProy.data.data);
                   }
             }
             const resC = await axios.get(url + "/api/cotizador/clientes/view");
@@ -63,7 +68,7 @@ function Proyectos() {
 
     useEffect(()=>{
         if(claveP === ''){
-          getProyectos();
+            setSuggestions(listaProyectos)
         }
     },[claveP])
     
@@ -76,7 +81,7 @@ function Proyectos() {
             return proyecto.proyecto_clave.match(regex)
             })
         }
-        setListaProyectos(coincidencias);
+        setSuggestions(coincidencias);
         setClaveP(claveP);
     }
     /*=======================================================================================================*/
@@ -171,7 +176,7 @@ function Proyectos() {
                     {/*=================== Botón Mostrar Lista DIV =====================*/}
                     <br />
                     <CrudProyectos
-                        suggestionsP={listaProyectos}
+                        suggestionsP={suggestions}
                         clientes={ListaC}
                         setfirst={setfirst}
                         envioDataP={envioDataProy}

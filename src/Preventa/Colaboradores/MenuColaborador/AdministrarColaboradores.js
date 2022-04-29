@@ -31,6 +31,9 @@ function AdministrarColaboradores(props) {
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
+
+  //Almacenamiento de los proyectos semejantes a la clave introducido
+  const [suggestions, setSuggestions] = useState([]);
   
   // Almacenamiento de la clave introducida del proyecto 
   const[claveP,setClaveP] = useState([]);
@@ -41,9 +44,11 @@ function AdministrarColaboradores(props) {
       if(validatorrol === "administrador"){
         const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
         setListaProyectos(resProy.data.data);
+        setSuggestions(resProy.data.data);
     }else{
           const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
           setListaProyectos(resProy.data.data);
+          setSuggestions(resProy.data.data);
     }
     }catch(error){console.log(error);}
   }
@@ -54,7 +59,7 @@ function AdministrarColaboradores(props) {
   
   useEffect(()=>{
     if(claveP === ''){
-      getProyectos();
+      setSuggestions(listaProyectos)
     }
   },[claveP])
 
@@ -67,7 +72,7 @@ function AdministrarColaboradores(props) {
           return proyecto.proyecto_clave.match(regex)
           })
       }
-      setListaProyectos(coincidencias);
+      setSuggestions(coincidencias);
       setClaveP(claveP);
   }
   /*=======================================================================================================*/
@@ -174,23 +179,23 @@ function AdministrarColaboradores(props) {
             </thead>
                                 
             <tbody>
-            {Object.keys(listaProyectos).map((key) => (    
-                <tr key={key} >
-                    <td>{listaProyectos[key].proyecto_id}</td>   
-                    <td>{listaProyectos[key].proyecto_clave}</td>  
-                    <td>{listaProyectos[key].proyecto_descripcion}</td>  
-                    <td>{listaProyectos[key].nombre_cliente}</td> 
-                    <td width={"150px"}>{listaProyectos[key].proyecto_fecha_creacion}</td>
-                    <td   width={"150px"}>{listaProyectos[key].proyecto_fecha_modificacion}</td>
-                    <td  className= {listaProyectos[key].proyecto_estatus } >{listaProyectos[key].proyecto_estatus}</td>  
-                    <td  width={"50 px"}>{listaProyectos[key].proyecto_plazo_meses}</td> 
+            {Object.keys(suggestions).map((key) => (    
+                <tr key={suggestions[key].proyecto_id} >
+                    <td>{suggestions[key].proyecto_id}</td>   
+                    <td>{suggestions[key].proyecto_clave}</td>  
+                    <td>{suggestions[key].proyecto_descripcion}</td>  
+                    <td>{suggestions[key].nombre_cliente}</td> 
+                    <td width={"150px"}>{suggestions[key].proyecto_fecha_creacion}</td>
+                    <td   width={"150px"}>{suggestions[key].proyecto_fecha_modificacion}</td>
+                    <td  className= {suggestions[key].proyecto_estatus } >{suggestions[key].proyecto_estatus}</td>  
+                    <td  width={"50 px"}>{suggestions[key].proyecto_plazo_meses}</td> 
                     <td width={"100 px"}>
                       <button 
                         className="btn btn-primary Ver" 
                         type="button" 
                         onClick={() => {
                           habilitar2(key);
-                          getColabs(listaProyectos[key].proyecto_id);
+                          getColabs(suggestions[key].proyecto_id);
                         }}
                         > 
                          

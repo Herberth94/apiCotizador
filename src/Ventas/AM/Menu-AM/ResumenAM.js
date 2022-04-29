@@ -34,21 +34,26 @@ const ResumenAM = () => {
         getFinanciamieno} = Partida_catalogo();
 
     /*======================================== Buscador de proyectos ========================================*/
-    /*== Almacenamiento de todos los proyectos existentes ==*/
+    // Almacenamiento de todos los proyectos existentes 
     const[listaProyectos, setListaProyectos] = useState([]);
 
-    /*== Almacenamiento de la clave introducida del proyecto ==*/
+    //Almacenamiento de los proyectos semejantes a la clave introducido
+    const [suggestions, setSuggestions] = useState([]);
+
+    // Almacenamiento de la clave introducida del proyecto 
     const[claveP,setClaveP] = useState([]);
 
-    /*== Función que realiza la consulta a la tabla proyectos ==*/
+    // Función que realiza la consulta a la tabla proyectos 
     const getProyectos = async () => {
         try{
             if(validatorrol === "administrador"){
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }else{
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }
         }catch(error){
             console.log(error);
@@ -61,7 +66,7 @@ const ResumenAM = () => {
     
     useEffect(()=>{
         if(claveP === ''){
-          getProyectos();
+            setSuggestions(listaProyectos);
         }
     },[claveP])
 
@@ -74,7 +79,7 @@ const ResumenAM = () => {
             return proyecto.proyecto_clave.match(regex)
             })
         }
-        setListaProyectos(coincidencias);
+        setSuggestions(coincidencias);
         setClaveP(claveP);
     }
     /*=======================================================================================================*/
@@ -191,18 +196,18 @@ const ResumenAM = () => {
     }
 
     useEffect(() => {
-        let i = Object.keys(listaProyectos)
+        let i = Object.keys(suggestions)
         i = i.length
         setShow(Array(i).fill(true));
         setTextBVer(Array(i).fill('bi bi-eye'));
-    },[listaProyectos])
+    },[suggestions])
 
     const habilitar2 = (key) =>{
         //console.log(key);
         key = parseInt(key);
         const newArr =[];
         const newArr2 = [];
-        let c = Object.keys(listaProyectos);
+        let c = Object.keys(suggestions);
         c = c.length;
         setShow(Array(c).fill(true));
         setTextBVer(Array(c).fill('bi bi-eye'));
@@ -277,22 +282,22 @@ const ResumenAM = () => {
                     </thead>
                                        
                     <tbody>
-                        {Object.keys(listaProyectos).map((key) => (    
+                        {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={listaProyectos[key].proyecto_id} >
-                                <td>{listaProyectos[key].proyecto_id}</td>   
-                                <td>{listaProyectos[key].proyecto_clave}</td>  
-                                <td>{listaProyectos[key].proyecto_descripcion}</td>  
-                                <td>{listaProyectos[key].nombre_cliente}</td> 
-                                <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
-                                <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
-                                <td>{listaProyectos[key].proyecto_estatus}</td> 
-                                <td width={"60px"}>{listaProyectos[key].proyecto_plazo_meses}</td>
+                            <tr key={suggestions[key].proyecto_id} >
+                                <td>{suggestions[key].proyecto_id}</td>   
+                                <td>{suggestions[key].proyecto_clave}</td>  
+                                <td>{suggestions[key].proyecto_descripcion}</td>  
+                                <td>{suggestions[key].nombre_cliente}</td> 
+                                <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                                <td>{suggestions[key].proyecto_fecha_modificacion}</td>
+                                <td>{suggestions[key].proyecto_estatus}</td> 
+                                <td width={"60px"}>{suggestions[key].proyecto_plazo_meses}</td>
                                 <td width={"100px"}>
                                     <button 
                                     className="btn btn-primary Ver" 
                                     onClick={() => {
-                                        consultarTotalesP(listaProyectos[key].proyecto_id);
+                                        consultarTotalesP(suggestions[key].proyecto_id);
                                         habilitar2(key);
                                     }}
                                     >

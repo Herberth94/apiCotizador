@@ -48,6 +48,9 @@ function ContinuarProyecto() {
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
   
+  //Almacenamiento de los proyectos semejantes a la clave introducido
+  const [suggestions, setSuggestions] = useState([]);
+
   // Almacenamiento de la clave introducida del proyecto 
   const[claveP,setClaveP] = useState([]);
 
@@ -57,14 +60,18 @@ function ContinuarProyecto() {
       if(validatorrol === "administrador"){
         const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
         setListaProyectos(resProy.data.data);
+        setSuggestions(resProy.data.data);
+        
     }else{
         if(show6 === false){
           const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
           setListaProyectos(resProy.data.data);
+          setSuggestions(resProy.data.data);
         }else if(show7 === false){
           const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
-          setListaProyectos(resProy.data.data)
-          console.log(listaProyectos)
+          setListaProyectos(resProy.data.data);
+          setSuggestions(resProy.data.data);
+          //console.log(listaProyectos)
         }
     }
     }catch(error){console.log(error);}
@@ -76,7 +83,7 @@ function ContinuarProyecto() {
 
   useEffect(()=>{
     if(claveP === ''){
-      getProyectos();
+      setSuggestions(listaProyectos);
     }
   },[claveP])
   
@@ -89,7 +96,7 @@ function ContinuarProyecto() {
           return proyecto.proyecto_clave.match(regex)
           })
       }
-      setListaProyectos(coincidencias);
+      setSuggestions(coincidencias);
       setClaveP(claveP);
   }
   /*=======================================================================================================*/
@@ -111,11 +118,11 @@ function ContinuarProyecto() {
           console.log(error);
       }
       proyectoIdCont = proyecto_id;
-      let i = Object.keys(listaProyectos);
+      let i = Object.keys(suggestions);
       i = i.length;
       for(let c = 0 ; c < i ; c++){
-        if(proyecto_id === listaProyectos[c].proyecto_id){
-          getProyEstatus(listaProyectos[c].proyecto_estatus);
+        if(proyecto_id === suggestions[c].proyecto_id){
+          getProyEstatus(suggestions[c].proyecto_estatus);
         }
       }
       //console.log(pEstatus1); 
@@ -126,13 +133,13 @@ function ContinuarProyecto() {
   /*===================================================================================================*/
 
   useEffect(() => {
-    let i = Object.keys(listaProyectos)
+    let i = Object.keys(suggestions)
     i = i.length
     setShow9(Array(i).fill(true));
     setTextBVer(Array(i).fill('Continuar'));
     setShow10(Array(i).fill(true));
     setTextBVer1(Array(i).fill('Finalizar'));
-  },[listaProyectos])
+  },[suggestions])
 
   useEffect(() => {
     let i = Object.keys(listaPartidas)
@@ -147,7 +154,7 @@ function ContinuarProyecto() {
     key = parseInt(key);
     const newArr =[];
     const newArr2 = [];
-    let c = Object.keys(listaProyectos);
+    let c = Object.keys(suggestions);
     c = c.length;
     setShow9(Array(c).fill(true));
     setShow10(Array(c).fill(true));
@@ -182,7 +189,7 @@ function ContinuarProyecto() {
     key = parseInt(key);
     const newArr =[];
     const newArr2 = [];
-    let c = Object.keys(listaProyectos);
+    let c = Object.keys(suggestions);
     c = c.length;
     setShow9(Array(c).fill(true));
     setShow10(Array(c).fill(true));
@@ -332,24 +339,24 @@ function ContinuarProyecto() {
               </thead>
                                   
               <tbody>
-              {Object.keys(listaProyectos).map((key) => (    
+              {Object.keys(suggestions).map((key) => (    
                   <tr key={key} >
-                      <td>{listaProyectos[key].proyecto_id}</td>   
-                      <td>{listaProyectos[key].proyecto_clave}</td>  
-                      <td>{listaProyectos[key].proyecto_descripcion}</td>  
-                      <td>{listaProyectos[key].nombre_cliente}</td> 
-                      <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
-                      <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
-                      <td  className={listaProyectos[key].proyecto_estatus}>{listaProyectos[key].proyecto_estatus}</td>  
-                      <td width={"10px"}>{listaProyectos[key].proyecto_plazo_meses}</td>  
+                      <td>{suggestions[key].proyecto_id}</td>   
+                      <td>{suggestions[key].proyecto_clave}</td>  
+                      <td>{suggestions[key].proyecto_descripcion}</td>  
+                      <td>{suggestions[key].nombre_cliente}</td> 
+                      <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                      <td>{suggestions[key].proyecto_fecha_modificacion}</td>
+                      <td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td>  
+                      <td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</td>  
                       <td>
                         <button 
                           className="btn btn-primary modificar" 
                           type="button" 
                           onClick={() => {
-                            getIdP(listaProyectos[key].proyecto_id);
-                            getDatosPartida(listaProyectos[key].proyecto_id); 
-                            setid(listaProyectos[key].proyecto_id);
+                            getIdP(suggestions[key].proyecto_id);
+                            getDatosPartida(suggestions[key].proyecto_id); 
+                            setid(suggestions[key].proyecto_id);
                             habilitar(key);
                             }}
                           > 
@@ -361,9 +368,9 @@ function ContinuarProyecto() {
                           className="btn btn-primary modificar" 
                           type="button" 
                           onClick={() => {
-                            getIdP1(listaProyectos[key].proyecto_id);
-                            getDatosPartida(listaProyectos[key].proyecto_id); 
-                            setid(listaProyectos[key].proyecto_id);
+                            getIdP1(suggestions[key].proyecto_id);
+                            getDatosPartida(suggestions[key].proyecto_id); 
+                            setid(suggestions[key].proyecto_id);
                             habilitar1(key);
                             }}
                           > 

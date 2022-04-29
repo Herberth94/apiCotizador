@@ -15,6 +15,7 @@ function AdministrarProveedor() {
   //Almacenamiento de todos los proveedores existentes
   const[listaProv, setListaProv] = useState([]);
 
+  //Almacenamiento de los proveedores semejantes al nombre introducido
   const [suggestions, setSuggestions] = useState([]);
   
   // Almacenamiento de la clave introducida del proyecto 

@@ -15,25 +15,30 @@ let validatorid = cookies.get('id_usuario');
 let idAsignado;
 
 function BuscadorProyectoFinanciamiento() {
-    /*== Almacenamiento de todos los proyectos existentes ==*/
-    const [listaProyectos, setListaProyectos] = useState([]);
-    /*== Almacenamiento de la clave introducida del proyecto ==*/
-    const [claveP, setClaveP] = useState([]);
-
     //Habilitar/Deshabilitar tabla del financiamiento
     const [show, setShow] = useState([])
     const [show2, setShow2] = useState(true)
     const [textBVer,setTextBVer] = useState([]);//Texto de los botones de detalles
 
+    // Almacenamiento de todos los proyectos existentes 
+    const[listaProyectos, setListaProyectos] = useState([]);
+
+    //Almacenamiento de los proyectos semejantes a la clave introducido
+    const [suggestions, setSuggestions] = useState([]);
+
+    // Almacenamiento de la clave introducida del proyecto 
+    const[claveP,setClaveP] = useState([]);
 
     const getProyectos = async () => {
         try {
             if (validatorrol === "administrador") {
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             } else {
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }
         } catch (error) {
             console.log(error);
@@ -46,7 +51,7 @@ function BuscadorProyectoFinanciamiento() {
 
     useEffect(()=>{
         if(claveP === ''){
-          getProyectos();
+            setSuggestions(listaProyectos);
         }
     },[claveP])
 
@@ -59,7 +64,7 @@ function BuscadorProyectoFinanciamiento() {
                 return proyecto.proyecto_clave.match(regex)
             })
         }
-        setListaProyectos(coincidencias);
+        setSuggestions(coincidencias);
         setClaveP(claveP);
     }
 
@@ -69,18 +74,18 @@ function BuscadorProyectoFinanciamiento() {
     /*============================================================================================================*/
 
     useEffect(() => {
-        let i = Object.keys(listaProyectos)
+        let i = Object.keys(suggestions)
         i = i.length
         setShow(Array(i).fill(true));
         setTextBVer(Array(i).fill('Mostrar'));
-    },[listaProyectos])
+    },[suggestions])
 
     const habilitar = (key) =>{
         //console.log(key);
         key = parseInt(key);
         const newArr =[];
         const newArr2 = [];
-        let c = Object.keys(listaProyectos);
+        let c = Object.keys(suggestions);
         c = c.length;
         setShow(Array(c).fill(true));
         setTextBVer(Array(c).fill('Mostrar'));
@@ -148,21 +153,21 @@ function BuscadorProyectoFinanciamiento() {
                         </tr>
                     </thead>
                     <tbody>
-                        {Object.keys(listaProyectos).map((key) => (
-                            <tr key={key} >
-                                <td>{listaProyectos[key].proyecto_id}</td>
-                                <td>{listaProyectos[key].proyecto_clave}</td>
-                                <td>{listaProyectos[key].proyecto_descripcion}</td>
-                                <td>{listaProyectos[key].nombre_cliente}</td>
-                                <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
-                                <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
-                                <td>{listaProyectos[key].proyecto_estatus}</td> 
-                                <td>{listaProyectos[key].proyecto_plazo_meses}</td>
+                        {Object.keys(suggestions).map((key) => (
+                            <tr key={suggestions[key].proyecto_id} >
+                                <td>{suggestions[key].proyecto_id}</td>
+                                <td>{suggestions[key].proyecto_clave}</td>
+                                <td>{suggestions[key].proyecto_descripcion}</td>
+                                <td>{suggestions[key].nombre_cliente}</td>
+                                <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                                <td>{suggestions[key].proyecto_fecha_modificacion}</td>
+                                <td>{suggestions[key].proyecto_estatus}</td> 
+                                <td>{suggestions[key].proyecto_plazo_meses}</td>
                                 <td>
                                     <button
                                     className="btn btn-primary Mod"
                                     onClick={() => {
-                                        getProyId(listaProyectos[key].proyecto_id);
+                                        getProyId(suggestions[key].proyecto_id);
                                         habilitar(key);
                                     }}
                                     >

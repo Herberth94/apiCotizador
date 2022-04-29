@@ -37,6 +37,9 @@ function BuscadorInteligente4() {
     // Almacenamiento de todos los proyectos existentes
     const[listaProyectos, setListaProyectos] = useState([]);
 
+    //Almacenamiento de los proyectos semejantes a la clave introducido
+    const [suggestions, setSuggestions] = useState([]);
+
     // Almacenamiento de la clave introducida del proyecto
     const[claveP,setClaveP] = useState([]);
 
@@ -46,9 +49,11 @@ function BuscadorInteligente4() {
             if(validatorrol === "administrador"){
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }else{
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
+                setSuggestions(resProy.data.data);
             }
         }catch(error){
             console.log(error);
@@ -62,7 +67,7 @@ function BuscadorInteligente4() {
 
     useEffect(()=>{
         if(claveP === ''){
-          getProyectos();
+            setSuggestions(listaProyectos)
         }
 
         if(show2 === false){
@@ -79,22 +84,22 @@ function BuscadorInteligente4() {
         return proyecto.proyecto_clave.match(regex)
         })
     }
-    setListaProyectos(coincidencias);
+    setSuggestions(coincidencias);
     setClaveP(claveP);
 }
 
 useEffect(() => {
-    let i = Object.keys(listaProyectos)
+    let i = Object.keys(suggestions)
     i = i.length
     setShow(Array(i).fill(true));
     setTextBVer(Array(i).fill('Mostrar'));
-},[listaProyectos])
+},[suggestions])
 
 const habilitar = (key) =>{
     key = parseInt(key);
     const newArr =[];
     const newArr2 = [];
-    let c = Object.keys(listaProyectos);
+    let c = Object.keys(suggestions);
     c = c.length;
     setShow(Array(c).fill(true));
     setTextBVer(Array(c).fill('Mostrar'));
@@ -191,23 +196,23 @@ async function consultarTotalesP(id){          //console.log(id)
                 </thead>
                                 
                 <tbody>
-                    {Object.keys(listaProyectos).map((key) => (    
+                    {Object.keys(suggestions).map((key) => (    
                         //checar aqui va los titulos
-                        <tr key={key} >
-                            <td>{listaProyectos[key].proyecto_id}</td>   
-                            <td>{listaProyectos[key].proyecto_clave}</td>  
-                            <td>{listaProyectos[key].proyecto_descripcion}</td>  
-                            <td>{listaProyectos[key].nombre_cliente}</td> 
-                            <td>{listaProyectos[key].proyecto_fecha_creacion}</td>
-                            <td>{listaProyectos[key].proyecto_fecha_modificacion}</td>
-                            <td>{listaProyectos[key].proyecto_estatus}</td> 
-                            <td>{listaProyectos[key].proyecto_plazo_meses}</td>
+                        <tr key={suggestions[key].proyecto_id} >
+                            <td>{suggestions[key].proyecto_id}</td>   
+                            <td>{suggestions[key].proyecto_clave}</td>  
+                            <td>{suggestions[key].proyecto_descripcion}</td>  
+                            <td>{suggestions[key].nombre_cliente}</td> 
+                            <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                            <td>{suggestions[key].proyecto_fecha_modificacion}</td>
+                            <td>{suggestions[key].proyecto_estatus}</td> 
+                            <td>{suggestions[key].proyecto_plazo_meses}</td>
                             <td>
                                 <button 
                                 className="btn btn-primary Ver" 
                                 onClick={() => {
-                                consultarTotalesP(listaProyectos[key].proyecto_id);
-                                getIdProy(listaProyectos[key].proyecto_id);
+                                consultarTotalesP(suggestions[key].proyecto_id);
+                                getIdProy(suggestions[key].proyecto_id);
                                 habilitar(key);
                                 }}
                                 >
