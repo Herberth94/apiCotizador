@@ -3,6 +3,10 @@
 
 
 let valorDolar = 1;
+export let stringDolar = "";
+
+
+
 
 
  /*============= Calcular Costos Indirectos ===============================*/
@@ -208,8 +212,17 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= 
 
     if(Dolar.length != 0){   
         valorDolar = Dolar[0].proyecto_valor_dolar;
+      
+      
+      if(  valorDolar == 1){
+        stringDolar = "MXN";
+      }else{
+        stringDolar = "USD";
+      }
+
     }else{
     valorDolar = 1;
+    stringDolar = "MXN";
     }
 
             for (var i = 0; i <  costosIndi.length ; i++) {
