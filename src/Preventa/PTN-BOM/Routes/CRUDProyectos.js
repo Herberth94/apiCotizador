@@ -304,6 +304,7 @@ export const CrudProyectos = (props) => {
                             <th>Plazo Meses</th>
                             <th>Modificar</th>
                             <th>Detalles</th>
+                            <th></th>
                         </tr>
                     </thead>
                                     
@@ -395,7 +396,7 @@ export const CrudProyectos = (props) => {
                             ):(
                               
                               
-                              <div>
+                              <>
                                     <td width={"100px"} >
                                     <button 
                                     className="btn btn-primary Mod" type="button"
@@ -423,7 +424,7 @@ export const CrudProyectos = (props) => {
                                     </button>
                                    
                                 </td>
-                                </div>
+                                </>
                             )}
                             
 
@@ -469,7 +470,7 @@ export const CrudProyectos = (props) => {
                     </tbody>          
                 </Table>
                 {show ? (
-                    <div></div>
+                    <></>
                 ):(
                     <div className='arregla'>
                         <div className='contenido-usuarios'>
@@ -502,7 +503,7 @@ export const CrudProyectos = (props) => {
                                                 {show2 ? "Mostrar" : "Ocultar"}{" "}
                                                 </button>
                                                 {show2 ? (
-                                                <div></div>
+                                                <></>
                                                 ) : (
                                                     <div className='arregla'>
                                                         <div className='contenido-usuarios'>
@@ -531,7 +532,7 @@ export const CrudProyectos = (props) => {
                                                 {show3 ? "Mostrar" : "Ocultar"}{" "}
                                                 </button>
                                                 {show3 ? (
-                                                    <div></div>
+                                                    <></>
                                                 ):(
                                                     <div className="arregla">
                                                         <div className='contenido-usuarios'>

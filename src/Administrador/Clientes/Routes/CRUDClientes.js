@@ -88,6 +88,7 @@ export const CrudClientes = (props) => {
                             <th>Dirección</th>
                     {/*         <th>Eliminar</th> */}
                             <th>Modificar</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -165,7 +166,7 @@ export const CrudClientes = (props) => {
                             ):(
                               
                               
-                              <div >
+                              <>
                                     <td width={"100px"} >
                                     <button 
                                     className="btn btn-primary Mod" type="button"
@@ -193,7 +194,7 @@ export const CrudClientes = (props) => {
                                     </button>
                                    
                                 </td>
-                                </div>
+                                </>
                             )}
 
 

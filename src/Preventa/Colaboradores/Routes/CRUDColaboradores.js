@@ -54,7 +54,7 @@ export const CrudColaboradores = (props) => {
                                     props.estado ? deleteColab(props.colabs[parseInt(key)].up_id):deleteColab(props.colabs[parseInt(key)].colab_id)
                                 }}
                             >
-                           <i class="bi bi-trash-fill"></i> 
+                           <i className="bi bi-trash-fill"></i> 
                               
                             </button>
                         </td>

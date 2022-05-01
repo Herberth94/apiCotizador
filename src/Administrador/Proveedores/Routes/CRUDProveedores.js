@@ -143,6 +143,7 @@ export const CrudProveedores = (props) => {
                         <th>Email</th>
                         <th>Modificar</th>
                         <th>Marcas</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -218,7 +219,7 @@ export const CrudProveedores = (props) => {
                             ):(
                               
                               
-                              <div >
+                              < >
                                     <td width={"100px"} >
                                     <button 
                                     className="btn btn-primary Mod" type="button"
@@ -246,7 +247,7 @@ export const CrudProveedores = (props) => {
                                     </button>
                                    
                                 </td>
-                                </div>
+                                </>
                             )}
 
 
@@ -272,9 +273,9 @@ export const CrudProveedores = (props) => {
                 </tbody>
             </Table>
             {show2 ? (
-                <div></div>
+                <></>
             ) : (
-                <div>
+                <>
                     {/*=================== Botón Mostrar Lista DIV =====================*/}
                     <br />
                     <CrudMarcas
@@ -282,7 +283,7 @@ export const CrudProveedores = (props) => {
                         envioData={envioData}
                         setfirst={setfirst}
                     />
-                </div>                    
+                </>                    
             )}
         </div>
     )

@@ -186,6 +186,7 @@ function Divisa() {
                             <th>Valor dolar</th>
                             <th>Plazo Meses</th>
                             <th>Divisa</th>
+                            <th></th>
                             
                         </tr>
                     </thead>         
@@ -242,7 +243,7 @@ function Divisa() {
                             ):(
                               
                               
-                              <div >
+                              < >
                                     <td width={"100px"} >
                                     <button 
                                     className="btn btn-primary Mod" type="button"
@@ -271,7 +272,7 @@ function Divisa() {
                                     </button>
                                    
                                 </td>
-                                </div>
+                                </>
                             )}
                             </tr>  
                         ))}

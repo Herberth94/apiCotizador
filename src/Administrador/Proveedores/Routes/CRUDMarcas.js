@@ -78,6 +78,7 @@ export const CrudMarcas = (props) => {
                         <th>ID</th>
                         <th>Marca</th>
                         <th>Modificar</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -128,7 +129,7 @@ export const CrudMarcas = (props) => {
                             ):(
                               
                               
-                              <div >
+                              < >
                                     <td width={"100px"} >
                                     <button 
                                     className="btn btn-primary Mod" type="button"
@@ -156,7 +157,7 @@ export const CrudMarcas = (props) => {
                                     </button>
                                    
                                 </td>
-                                </div>
+                                </>
                             )}
 
 

@@ -172,7 +172,7 @@ function Proyectos() {
                         </tbody>
                     </Table>
                 </div>
-                <div>
+                <>
                     {/*=================== Botón Mostrar Lista DIV =====================*/}
                     <br />
                     <CrudProyectos
@@ -181,7 +181,7 @@ function Proyectos() {
                         setfirst={setfirst}
                         envioDataP={envioDataProy}
                     />    
-                </div>
+                </>
             </div>
             )}
         </div>
