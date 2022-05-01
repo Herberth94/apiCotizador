@@ -127,7 +127,7 @@ export const CrudUsuarios = (props) => {
                                     <button 
                                     className=  "btn btn-primary Mod" type="button"
                                     onClick={()=>{
-                                       // props.envioData(datos,key,data); 
+                                    //    props.envioData(datos,key,data); 
                                         habilitar(key); 
                                         props.setfirst(activar[key]); 
                                     }}

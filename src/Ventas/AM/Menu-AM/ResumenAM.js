@@ -11,7 +11,8 @@ precioFinalVenta,
 costoSinIndirectos,
 costoFianalProyecto,
 datosCompletosAM,
-datosCompletosTotal
+datosCompletosTotal,
+stringDolar
 } from "../../Operaciones/OperacionesAM";
 import { EditAM } from '../Routes/ModificarDatosAm';
 import {costosIndirectos, equivale,  totalIndirecto} from "../../Operaciones/OperacionesAM";
@@ -22,6 +23,8 @@ const cookies = new Cookies();
 let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
+
+let ancho =  "200px";
 
 const ResumenAM = () => {
 
@@ -265,7 +268,7 @@ const ResumenAM = () => {
                 </Table>
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-                <div> <Animaciones mytext="Proyectos " /> </div>
+                <div > <Animaciones mytext="Proyectos " /> </div>
 
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
@@ -292,7 +295,7 @@ const ResumenAM = () => {
                                 <td>{suggestions[key].nombre_cliente}</td> 
                                 <td>{suggestions[key].proyecto_fecha_creacion}</td>
                                 <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                                <td>{suggestions[key].proyecto_estatus}</td> 
+                                <td className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
                                 <td width={"60px"}>{suggestions[key].proyecto_plazo_meses}</td>
                                 <td width={"100px"}>
                                     <button 
@@ -332,6 +335,7 @@ const ResumenAM = () => {
                                     <th>Costo PTN</th>
                                     <th>Margen Directo %</th>
                                     <th>Modificar</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -340,7 +344,7 @@ const ResumenAM = () => {
                                 <tr key={key}>
                                     <td>{datosCompletosAM[key]}</td>
                                     {/*================= Descripcion General Partida ==================*/}
-                                    <td> {" $ "} {datosCompletosTotal[key]}</td>
+                                    <td width={ancho} > {" $ "} {datosCompletosTotal[key]}</td>
                                     {/*================= Descuento Cliente ==================*/}
                                     <td className="editar" >
                                         <input
@@ -353,7 +357,7 @@ const ResumenAM = () => {
                                         ></input> 
                                     </td>
                                     {/*================= Precio Venta ==================*/}
-                                    <td> {"$"} {precioVenta[key]} </td>
+                                    <td width={ancho}> {"$"} {precioVenta[key]} </td>
                                     {/*================= Margen Ganancia==================*/}
                                     <td  className="editar">
                                         <input
@@ -366,7 +370,7 @@ const ResumenAM = () => {
                                         ></input>
                                     </td>
                                     {/*================= PrecioLista Unitario ==================*/}
-                                    <td>{" $ "} {prov[key]}</td>
+                                    <td width={ancho} >{" $ "} {prov[key]}</td>
                                     {/*================= Cantidad ==================*/}
                                     <td className="editar">
                                         <input
@@ -379,7 +383,7 @@ const ResumenAM = () => {
                                         ></input>
                                     </td>
                                     {/*================= Lista prov ==================*/}
-                                    <td>{" $ "} {listaProv[key]}</td>
+                                    <td  width={ancho}  > {" $ "} {listaProv[key]}</td>
                                     {/*================= Descuento Fabrica ==================*/}    
                                     <td  className="editar">
                                         <input
@@ -392,7 +396,7 @@ const ResumenAM = () => {
                                         ></input>
                                     </td>
                                     {/*================= Costo PTN ==================*/}
-                                    <td >{" $ "} {costoPTN[key]}  </td>
+                                    <td width={ancho} >{" $ "} {costoPTN[key]}  </td>
                                     {/*================= Margen Directo ==================*/}
                                     <td>{margenDirecto[key] } {" % "}</td>
                                     {/*================= Botón Modificar ==================*/}
@@ -426,7 +430,7 @@ const ResumenAM = () => {
                             ):(
                               
                               
-                              <div >
+                              <>
                                     <td width={"100px"} >
                                     <button 
                                     className="btn btn-primary Mod" type="button"
@@ -454,7 +458,7 @@ const ResumenAM = () => {
                                     </button>
                                    
                                 </td>
-                                </div>
+                                </>
                             )}
 
 
@@ -474,6 +478,7 @@ const ResumenAM = () => {
                         <th>Descripción</th>
                         <th>Equivale a % </th>
                         <th>Total </th>
+                        <th>Divisa </th>
 
  
                     </tr>
@@ -484,10 +489,10 @@ const ResumenAM = () => {
                     {Object.keys(costosIndirectos).map((key) => (
                         <tr key={key}>
                             {/*================= Descripción==================*/}
-                            <td>{costosIndirectos[key]}</td>
+                            <td width={"100px" } >{costosIndirectos[key]}</td>
 
                             {/*================= Equivale ==================*/}
-                            <td className="editar" >
+                            <td width={"30px"} className="editar" >
                                         <input
                                         className="input-name"
                                         type="number"
@@ -498,7 +503,11 @@ const ResumenAM = () => {
                                         ></input> 
                                     </td>
                             {/*================= Total Indirecto ==================*/}
-                            <td>{ totalIndirecto[key]}</td>
+                            <td width={"500px" }>{ totalIndirecto[key]} </td>
+                            <td width={"50px" }>{stringDolar}</td>
+
+                            
+
                             {/*================= Editar==================*/}
 
 
@@ -517,14 +526,16 @@ const ResumenAM = () => {
                                         <th>Precio Final de Venta</th>
                                         <th>Costo (Sin Indirecto)</th>
                                         <th>Costo Final del Proyecto</th>
+                                        <th>Divisa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {/*=================== Contenido Tabla Clientes =================*/}
                                             <tr > 
-                                            <td className='amarillo'> {" $ "}{precioFinalVenta } {"USD"}</td>  
-                                            <td className='azul'>{" $ "} {costoSinIndirectos}  {"USD"}</td>    
-                                            <td className='verde'>{" $ "} {costoFianalProyecto} {"USD"}   </td>      
+                                            <td   className='amarillo'> {" $ "}{precioFinalVenta } {stringDolar}</td>  
+                                            <td className='azul'>{" $ "} {costoSinIndirectos}  {stringDolar}</td>    
+                                            <td  width={"500px"} className='verde'>{" $ "} {costoFianalProyecto}  </td>   
+                                            <td width={"50px"}   className='verde'>{stringDolar}   </td>     
                                             </tr >
                                 </tbody>
                             </Table>

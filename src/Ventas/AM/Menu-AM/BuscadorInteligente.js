@@ -200,7 +200,7 @@ function BuscadorInteligente() {
             <td>{suggestions[key].nombre_cliente}</td> 
             <td>{suggestions[key].proyecto_fecha_creacion}</td>
             <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-            <td>{suggestions[key].proyecto_estatus}</td> 
+            <td className = {suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
             <td>{suggestions[key].proyecto_plazo_meses}</td>
             <td>
                 <button 
