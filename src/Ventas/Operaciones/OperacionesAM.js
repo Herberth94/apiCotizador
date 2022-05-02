@@ -113,6 +113,13 @@ export let totalCategorias = 0;
 
 function limpiaDatos (){
 
+   plazo_meses = 0;
+  pd_financiamiento = 0;
+ pd_pago_anuales =  0;
+ tasa_interes = 0;
+  name_cliente = "";
+
+
  costosIndirectos = [];
  equivale = [];
  totalMensual= [];
@@ -202,6 +209,12 @@ totalCategorias = 0;
 
 Cantidad = [];
 
+
+pd_financiamiento = 0;
+ pd_pago_anuales =  0;
+ tasa_interes = 0;
+
+
 }
 
 
@@ -234,6 +247,16 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= 
 
 ///DATOS FINANCIAMIENTO
 
+if(dataFinancia.length > 0){
+
+
+
+pd_financiamiento = dataFinancia[0].pd_anio_financiamiento;
+ pd_pago_anuales =  dataFinancia[0].pd_pagos_anuales;
+ tasa_interes = dataFinancia[0].pd_tasa_interes;
+ console.log("OKAAAA")
+
+}
 
 
 
@@ -638,8 +661,7 @@ TOTAL.push(h);
             let m =   pd_pago_anuales;
             // ti = Tasa Interes
             let ti =   tasa_interes ;
-            
-
+           
             console.log(a , " p " , n   ," p " , m  , " p "  , ti)
             for (var i = 0; i < TOTAL.length  ; i++) {
             // tasa % 

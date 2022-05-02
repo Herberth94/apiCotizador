@@ -38,14 +38,14 @@ export const Partida_catalogo = () => {
       dataPorcentajes = pPar;  
       //am_cantidad: 1      am_desc_cliente: 0      am_descuento_fabrica: 0       am_margen_ganancia: 32
        // console.log('Data Porcentajes Partidas',   dataPorcentajes);
-        obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ) ;
+        obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
 
     };
     const getPorcentajesCats = (pCats) => {    
         setPorcentajesCategorias(pCats);
         dataPorcentajesC  = pCats;
        // console.log('Dta Porcentajes Categorias',porcentajesCategorias);
-         obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ) ;
+         obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
 
         };
    
@@ -53,7 +53,7 @@ export const Partida_catalogo = () => {
     const getDivisaProy = (pDiv) => {
         setDivisaProy(pDiv);   
         dolar = pDiv;
-        obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ) ;
+        obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
       // console.log("dollar , " , dolar)
     };
 
@@ -61,14 +61,14 @@ export const Partida_catalogo = () => {
     const getPorcentajesCI = (pCI) =>{
         setPorcentajesCI(pCI);
         dataIndirectos = pCI;
-        obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos,  dataPorcentajes ,  dataPorcentajesC  ) ;
+        obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento  ) ;
       /*   console.log('Cotos indirectos:',   dataIndirectos); */
         };
 
     const getFinanciamieno = (dF) =>{
         setdFinanciamiento(dF); 
          dataFinanciamiento  = dF;
-         obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  ) ;
+         obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  ,  dataFinanciamiento) ;
 
          console.log(' Datos financiamineto xxxx  ',dF);
 
@@ -79,7 +79,7 @@ export const Partida_catalogo = () => {
         const getTotalPar = (tP) =>{
             setotalesPartidas1(tP);
              dataPartida = tP ;    
-             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes,  dataPorcentajesC   );
+             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  , dataFinanciamiento );
             };
 
 
@@ -91,7 +91,7 @@ export const Partida_catalogo = () => {
     
             dataCategoria= tC;
     
-            obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes  );
+            obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes    );
             
     
             };

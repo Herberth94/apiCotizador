@@ -25,7 +25,10 @@ function BuscadorInteligente2() {
         getTotalCats,
         getPorcentajesCats,
         getDivisaProy,
-        getPorcentajesCI} = Partida_catalogo();
+        getPorcentajesCI,
+        getFinanciamieno
+    
+    } = Partida_catalogo();
 
 
     //Habilitar/Deshabilitar tabla del resumen AM
@@ -103,6 +106,10 @@ function BuscadorInteligente2() {
             const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
             getPorcentajesCI(resCI.data.data);
 
+
+            
+            const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
+            getFinanciamieno(resdF.data.data);
            
 
         }catch (error){
