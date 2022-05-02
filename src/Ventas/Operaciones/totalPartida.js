@@ -33,7 +33,8 @@ export const Partida_catalogo = () => {
     const [dFinanciamiento, setdFinanciamiento] = useState([]);
 
 
-    const getPorcentajesPar = (pPar) => {    
+    const getPorcentajesPar = (pPar) => {   
+      setPorcentajesPartidas('');
       setPorcentajesPartidas(pPar);  
       dataPorcentajes = pPar;  
       //am_cantidad: 1      am_desc_cliente: 0      am_descuento_fabrica: 0       am_margen_ganancia: 32
@@ -42,6 +43,7 @@ export const Partida_catalogo = () => {
 
     };
     const getPorcentajesCats = (pCats) => {    
+        setPorcentajesCategorias('');
         setPorcentajesCategorias(pCats);
         dataPorcentajesC  = pCats;
        // console.log('Dta Porcentajes Categorias',porcentajesCategorias);
@@ -51,6 +53,7 @@ export const Partida_catalogo = () => {
    
       /*========================   Valor Dolar ======================== */
     const getDivisaProy = (pDiv) => {
+        setDivisaProy('');
         setDivisaProy(pDiv);   
         dolar = pDiv;
         obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
@@ -59,6 +62,7 @@ export const Partida_catalogo = () => {
 
 
     const getPorcentajesCI = (pCI) =>{
+        setPorcentajesCI('');
         setPorcentajesCI(pCI);
         dataIndirectos = pCI;
         obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento  ) ;
@@ -66,6 +70,7 @@ export const Partida_catalogo = () => {
         };
 
     const getFinanciamieno = (dF) =>{
+        setdFinanciamiento('');
         setdFinanciamiento(dF); 
          dataFinanciamiento  = dF;
          obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  ,  dataFinanciamiento) ;
@@ -77,6 +82,7 @@ export const Partida_catalogo = () => {
         }
 
         const getTotalPar = (tP) =>{
+          setotalesPartidas1('');
             setotalesPartidas1(tP);
              dataPartida = tP ;    
              obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  , dataFinanciamiento );
@@ -87,6 +93,7 @@ export const Partida_catalogo = () => {
 
 
         const getTotalCats = (tC) => {
+            setotalesCategorias1('');
             setotalesCategorias1(tC);
     
             dataCategoria= tC;
