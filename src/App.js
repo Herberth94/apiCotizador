@@ -51,6 +51,8 @@ import AsignarProyecto from "./Preventa/AsignarVentas/MenuAsignacion/AsignarProy
 import { calcularDescuento } from "./Preventa/PTN-BOM/Operaciones/Operaciones";
 
 
+
+import Temas from "./Temas";
   
 
 function App() {
@@ -66,6 +68,7 @@ function App() {
         <PublicRoutes path="/" component={Login} />
         <PublicRoutes path="/" component={Footer} />
         <PublicRoutes path="/" component={Header} />
+
     
         {/*========================== Páginas Administrador ==========================*/}
 
@@ -85,6 +88,8 @@ function App() {
         <Administrador exact path="/am" component={AM} />
         <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
         <Administrador path="/asignar-proyecto" component={MenuVentas2} />
+
+        <Administrador   exact path="/" component={Temas} />
 
         {/*========================== Páginas Preventa ==========================*/}
 

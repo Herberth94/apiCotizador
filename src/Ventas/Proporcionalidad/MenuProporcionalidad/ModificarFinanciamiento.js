@@ -46,7 +46,7 @@ function ModificarFinanciamiento(prop) {
         i = i.length
         setenable(Array(i).fill(true));
         setActivar(Array(i).fill(true));
-        setTextBModificar(Array(i).fill('Modificar'));
+        setTextBModificar(Array(i).fill('bi bi-pencil-square'));
         //console.log('Porcentajes CI%:',props.ci);
     },[listaFinanciamiento])
 
@@ -62,20 +62,20 @@ function ModificarFinanciamiento(prop) {
             if(i === key){
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     setDatos({
                         ...datos,pd_tasa_interes: '',
                                  pd_anio_financiamiento: '',
                                  pd_pagos_anuales: ''
                       })
                 }else{
-                    newArr2[i] = 'Aceptar';
+                    newArr2[i] = 'bi bi-check-lg';
                 }
                 newArr3[i] = !activar[i];
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Modificar';
+                newArr2[i] = 'bi bi-pencil-square';
                 newArr3[i]=true;
             }
 
@@ -141,6 +141,7 @@ function ModificarFinanciamiento(prop) {
                         <th>Años de Financiamiento</th>
                         <th>Pagos Anuales</th>
                         <th>Modificar</th>
+                        <th></th>
 
                     </tr>
                 </thead>
@@ -182,17 +183,62 @@ function ModificarFinanciamiento(prop) {
                                 </input>
                             </td>
                             {/*================= Agregar==================*/}
-                            <td>
+                        {/*     <td>
                                 <button 
                                 onClick={() =>{
                                     habilitar(key);
                                     envioData(key);
                                 }} 
                                 className="btn btn-primary"
-                                > 
-                                    {textBModificar[key]}
+                                >        <i className= {textBModificar[key]}  ></i>
                                 </button>
-                            </td>
+                            </td> */}
+
+{enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                    //    props.envioData(datos,key,data); 
+                                    habilitar(key);
+                                   
+                                    }}
+                                    >
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              < >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        habilitar(key);
+                                        envioData(key);
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       //props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                </td>
+                                </>
+                            )}
+                            
+
+                            
                         </tr>
                          ))}
                 </tbody>

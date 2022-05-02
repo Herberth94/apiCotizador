@@ -92,7 +92,7 @@ useEffect(() => {
     let i = Object.keys(suggestions)
     i = i.length
     setShow(Array(i).fill(true));
-    setTextBVer(Array(i).fill('Mostrar'));
+    setTextBVer(Array(i).fill('bi bi-eye'));
 },[suggestions])
 
 const habilitar = (key) =>{
@@ -102,20 +102,20 @@ const habilitar = (key) =>{
     let c = Object.keys(suggestions);
     c = c.length;
     setShow(Array(c).fill(true));
-    setTextBVer(Array(c).fill('Mostrar'));
+    setTextBVer(Array(c).fill('bi bi-eye'));
     for (let i = 0 ; i < c ; i++){
         if(i === key){
             newArr[i] = !show[i];
             setShow2(newArr[i]);
             if(show[i] === false){
-                newArr2[i] = 'Mostrar';
+                newArr2[i] = 'bi bi-eye';
             }else{
-                newArr2[i] = 'Ocultar';
+                newArr2[i] = 'bi bi-eye-slash-fill';
             }
         }
         if(i !== key){
             newArr[i]=true;
-            newArr2[i] = 'Mostrar';
+            newArr2[i] = 'bi bi-eye';
         }
     }   
     setShow(newArr);
@@ -205,7 +205,7 @@ async function consultarTotalesP(id){          //console.log(id)
                             <td>{suggestions[key].nombre_cliente}</td> 
                             <td>{suggestions[key].proyecto_fecha_creacion}</td>
                             <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                            <td>{suggestions[key].proyecto_estatus}</td> 
+                            <td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
                             <td>{suggestions[key].proyecto_plazo_meses}</td>
                             <td>
                                 <button 
@@ -216,7 +216,8 @@ async function consultarTotalesP(id){          //console.log(id)
                                 habilitar(key);
                                 }}
                                 >
-                                    {textBVer[key]}
+                                       <i className=   {textBVer[key]}  ></i>
+                    
                                 </button>
                             </td> 
                         </tr>  

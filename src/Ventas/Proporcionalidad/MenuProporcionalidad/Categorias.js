@@ -1,7 +1,7 @@
 import React from 'react'
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../../Componentes/Animaciones";
-import { categoriasUnicas,   totalCategoriasUSD2} 
+import { categoriasUnicas,   totalCategoriasUSD2  , stringDolar} 
      from "../../Operaciones/OperacionesAM";
 
 
@@ -22,6 +22,7 @@ function Categorias() {
                     <tr className="titulo-tabla-usuarios">
                         <th>Descripción</th>
                         <th > Total </th>
+                        <th > Divisa </th>
                      {/*    <th>  % </th>
                         <th>Proporcional MESA DE AYUDA </th>
                         <th>TOTAL</th>
@@ -39,6 +40,8 @@ function Categorias() {
                             {/*================= Descripción  ==================*/}
                             <td>{categoriasUnicas[key]}</td>
                             <td>{"$ "}{totalCategoriasUSD2[key]}</td>
+
+                            <td  width={"100px"}>{stringDolar}</td>
                             {/*================= Precio Venta ==================*/}
                           
                         </tr>

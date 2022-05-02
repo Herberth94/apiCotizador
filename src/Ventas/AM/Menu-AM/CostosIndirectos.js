@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../../Componentes/Animaciones";
-import {costosIndirectos, equivale,  totalIndirecto} from "../../Operaciones/OperacionesAM";
+import {costosIndirectos, equivale,  totalIndirecto, stringDolar} from "../../Operaciones/OperacionesAM";
 import { EditCI } from '../Routes/ModificarPorcentajesCI';
 
 function CostosIndirectos(props) {
@@ -29,7 +29,7 @@ function CostosIndirectos(props) {
         i = i.length
         setenable(Array(i).fill(true));
         setActivar(Array(i).fill(true));
-        setTextBModificar(Array(i).fill('Modificar'));
+        setTextBModificar(Array(i).fill('bi bi-pencil-square'));
         //console.log('Porcentajes CI%:',props.ci);
     },[costosIndirectos])
 
@@ -45,18 +45,18 @@ function CostosIndirectos(props) {
             if(i === key){
                 newArr[i] = !enable[i];
                 if(enable[i] === false){
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     setData({
                         ...data, porcentaje :''
                       })
                 }else{
-                    newArr2[i] = 'Aceptar';
+                    newArr2[i] = 'bi bi-check-lg';
                 }
                 newArr3[i] = !activar[i];
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Modificar';
+                newArr2[i] = 'bi bi-pencil-square';
                 newArr3[i]=true;
             }
 
@@ -87,7 +87,9 @@ function CostosIndirectos(props) {
                         <th>Descripción</th>
                         <th>Equivale a % </th>
                         <th>Total </th>
+                        <th>Divisa </th>
                         <th>Modificar</th>
+                        <th></th>
  
                     </tr>
                 </thead>
@@ -100,7 +102,7 @@ function CostosIndirectos(props) {
                             <td>{costosIndirectos[key]}</td>
 
                             {/*================= Equivale ==================*/}
-                            <td className="editar" >
+                            <td  width={"100px"}   className="editar" >
                                         <input
                                         className="input-name"
                                         type="number"
@@ -112,8 +114,10 @@ function CostosIndirectos(props) {
                                     </td>
                             {/*================= Total Indirecto ==================*/}
                             <td>{ totalIndirecto[key]}</td>
+                            <td width={"50px" }>{stringDolar}</td>
+
                             {/*================= Editar==================*/}
-                            <td>
+                     {/*        <td>
                                 <button 
                                 className="btn btn-primary Mod"
                                 onClick={() => {
@@ -122,7 +126,55 @@ function CostosIndirectos(props) {
                                 }}
                                 >{textBModificar[key]}
                                 </button>
-                            </td>
+                            </td> */}
+                            
+                            {enable[key] ? (
+                                <td width={"100px"} >
+                                    <button 
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                    //    props.envioData(datos,key,data); 
+                                    habilitar(key);
+                               
+                                    }}
+                                    >
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              < >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        habilitar(key);
+                                    envioData(key);
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                </td>
+
+
+
+                             
+
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       //props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                </td>
+                                </>
+                            )}
 
                         </tr>
                     ))}

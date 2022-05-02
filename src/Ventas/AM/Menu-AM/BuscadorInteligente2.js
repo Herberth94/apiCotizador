@@ -103,6 +103,8 @@ function BuscadorInteligente2() {
             const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
             getPorcentajesCI(resCI.data.data);
 
+           
+
         }catch (error){
             console.log(error);
         }
@@ -113,7 +115,7 @@ function BuscadorInteligente2() {
         let i = Object.keys(suggestions)
         i = i.length
         setShow(Array(i).fill(true));
-        setTextBVer(Array(i).fill('Mostrar'));
+        setTextBVer(Array(i).fill('bi bi-eye'));
     },[suggestions])
 
     const habilitar = (key) =>{
@@ -124,20 +126,20 @@ function BuscadorInteligente2() {
         let c = Object.keys(suggestions);
         c = c.length;
         setShow(Array(c).fill(true));
-        setTextBVer(Array(c).fill('Mostrar'));
+        setTextBVer(Array(c).fill('bi bi-eye'));
         for (let i = 0 ; i < c ; i++){
             if(i === key){
                 newArr[i] = !show[i];
                 setShow1(newArr[i]);
                 if(show[i] === false){
-                    newArr2[i] = 'Mostrar';
+                    newArr2[i] = 'bi bi-eye';
                 }else{
-                    newArr2[i] = 'Ocultar';
+                    newArr2[i] = 'bi bi-eye-slash-fill';
                 }
             }
             if(i !== key){
                 newArr[i]=true;
-                newArr2[i] = 'Mostrar';
+                newArr2[i] = 'bi bi-eye';
             }
         }   
         setShow(newArr);
@@ -204,7 +206,12 @@ function BuscadorInteligente2() {
                                     consultarTotalesP(suggestions[key].proyecto_id);
                                     habilitar(key);
                                     }}
-                                    >{textBVer[key]}</button>
+                                    >
+                                        
+                                        <i className=   {textBVer[key]}  ></i>
+                    
+                                        
+                                        </button>
                                 </td> 
                             </tr>  
                         ))}

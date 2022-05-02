@@ -1,6 +1,11 @@
 
 //VARIABLE EXTRAIDAS DE LA BD
 
+export let plazo_meses = 0;
+export let pd_financiamiento = 0;
+export let pd_pago_anuales =  0;
+export let  tasa_interes = 0;
+export let name_cliente;
 
 let valorDolar = 1;
 export let stringDolar = "";
@@ -8,16 +13,17 @@ export let stringDolar = "";
 
 
 
+export let costosIndirectos = [];
+
 
  /*============= Calcular Costos Indirectos ===============================*/
- export let costosIndirectos = [];
+
   /*============= Porcentajes Costos Indirectos Default ===============================*/
   export let equivale = [];
 
 
 
 let decimal = 3;
-let plazo_proyecto = 12;
 
 
 export let totalMensual= [];
@@ -205,15 +211,15 @@ Cantidad = [];
 
 
 
-export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= [] ,  costosIndi  = [] , dataPorcentajes = [] ,  dataPorcentajesC = [] ){
+export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= [] ,  costosIndi  = [] , dataPorcentajes = [] ,  dataPorcentajesC = []  ,  dataFinancia = [] ){
 
 
     limpiaDatos();
 
     if(Dolar.length != 0){   
         valorDolar = Dolar[0].proyecto_valor_dolar;
-      
-      
+        plazo_meses =  Dolar[0].proyecto_plazo_meses;
+    
       if(  valorDolar == 1){
         stringDolar = "MXN";
       }else{
@@ -224,6 +230,12 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= 
     valorDolar = 1;
     stringDolar = "MXN";
     }
+
+
+///DATOS FINANCIAMIENTO
+
+
+
 
             for (var i = 0; i <  costosIndi.length ; i++) {
               costosIndirectos.push(costosIndi[i].cci_nombre);
@@ -617,17 +629,18 @@ TOTAL.push(h);
             
             //bien 4
             
-    
-     
+  
             /*============= Financiamiento ===============================*/
             let a = 0;
             // n =  Años de financiamiento
-            let n = 1;
+            let n =   pd_financiamiento;
             // Pagos Anuales default
-            let m = 12;
+            let m =   pd_pago_anuales;
             // ti = Tasa Interes
-            let ti = 20 ;
+            let ti =   tasa_interes ;
             
+
+            console.log(a , " p " , n   ," p " , m  , " p "  , ti)
             for (var i = 0; i < TOTAL.length  ; i++) {
             // tasa % 
             // pago = meses
@@ -649,7 +662,7 @@ TOTAL.push(h);
 /*============= Total Mensual===============================*/
 
 for (var i = 0; i < TOTAL.length  ; i++) {
-    var  j =  (TOTAL[i] / plazo_proyecto) ;
+    var  j =  (TOTAL[i] / plazo_meses) ;
       totalMensual.push(j.toFixed(decimal));
     }
     

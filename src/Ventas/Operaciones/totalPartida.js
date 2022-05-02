@@ -37,14 +37,14 @@ export const Partida_catalogo = () => {
       setPorcentajesPartidas(pPar);  
       dataPorcentajes = pPar;  
       //am_cantidad: 1      am_desc_cliente: 0      am_descuento_fabrica: 0       am_margen_ganancia: 32
-        console.log('Data Porcentajes Partidas',   dataPorcentajes);
+       // console.log('Data Porcentajes Partidas',   dataPorcentajes);
         obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ) ;
 
     };
     const getPorcentajesCats = (pCats) => {    
         setPorcentajesCategorias(pCats);
         dataPorcentajesC  = pCats;
-         console.log('Dta Porcentajes Categorias',porcentajesCategorias);
+       // console.log('Dta Porcentajes Categorias',porcentajesCategorias);
          obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ) ;
 
         };
@@ -70,7 +70,7 @@ export const Partida_catalogo = () => {
          dataFinanciamiento  = dF;
          obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  ) ;
 
-         console.log(' Datos financiamineto   ',dF);
+         console.log(' Datos financiamineto xxxx  ',dF);
 
 
          
@@ -109,8 +109,8 @@ export const Partida_catalogo = () => {
      porcentajesPartidas,
      porcentajesCategorias,
      porcentajesCI,
-     dFinanciamiento,
      totalesPartidas1,
+     dFinanciamiento,
      totalesCategorias1
    }
 };
