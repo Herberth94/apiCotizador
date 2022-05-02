@@ -93,6 +93,16 @@ const ResumenAM = () => {
     /*=============================== Función que consulta los datos de un proyeco para el resumen AM ===============================*/  
     async function consultarTotalesP(id){          //console.log(id)
         try{
+            getTotalPar('');
+            getPorcentajesPar('');
+            setPartidas('');
+            getTotalCats('');
+            getPorcentajesCats('');
+            setCats('');
+            getDivisaProy('');
+            getPorcentajesCI('');
+            getFinanciamieno('');
+
             const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
             getTotalPar(resTotPar.data.data);
 
@@ -104,6 +114,7 @@ const ResumenAM = () => {
             getTotalCats(resTotCats.data.data);
 
             const resAMCats = await axios.get(url2 + `/api/cotizador/am/viewAMCategorias/${id}`);
+
             getPorcentajesCats(resAMCats.data.data);
             setCats(resAMCats.data.data);
 
