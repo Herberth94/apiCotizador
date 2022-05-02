@@ -48,8 +48,8 @@ export const CrudCategorias = (props) => {
             setenable(Array(i).fill(true));
             setActivar(Array(i).fill(true));
             setShow(Array(i).fill(true));
-            setTextBModificar(Array(i).fill('Modificar'));
-            setTextBVer(Array(i).fill('Mostrar'));
+            setTextBModificar(Array(i).fill('bi bi-pencil-square'));
+            setTextBVer(Array(i).fill('bi bi-eye'));
         },[props.dcats])
     
         const habilitar = (key) =>{
@@ -63,7 +63,7 @@ export const CrudCategorias = (props) => {
                 if(i === key){
                     newArr[i] = !enable[i];
                     if(enable[i] === false){
-                        newArr2[i] = 'Modificar';
+                        newArr2[i] = 'bi bi-pencil-square';
                         setData({
                             ...data,cd_id_cats:'',
                                     cd_no_parte:'',
@@ -73,13 +73,13 @@ export const CrudCategorias = (props) => {
                                     cd_comentarios:'',  
                         })
                     }else{
-                        newArr2[i] = 'Aceptar';
+                        newArr2[i] = 'bi bi-check-lg';
                     }
                     newArr3[i] = !activar[i];
                 }
                 if(i !== key){
                     newArr[i]=true;
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     newArr3[i]=true;
                 }
     
@@ -96,20 +96,20 @@ export const CrudCategorias = (props) => {
             let c = Object.keys(props.dcats);
             c = c.length;
             setShow(Array(c).fill(true));
-            setTextBVer(Array(c).fill('Mostrar'));
+            setTextBVer(Array(c).fill('bi bi-eye'));
             for (let i = 0 ; i < c ; i++){
                 if(i === key){
                     newArr[i] = !show[i];
                     setShow2(newArr[i]);
                     if(show[i] === false){
-                        newArr2[i] = 'Mostrar';
+                        newArr2[i] = 'bi bi-eye';
                     }else{
-                        newArr2[i] = 'Ocultar';
+                        newArr2[i] = 'bi bi-eye-slash-fill';
                     }
                 }
                 if(i !== key){
                     newArr[i]=true;
-                    newArr2[i] = 'Mostrar';
+                    newArr2[i] = 'bi bi-eye';
                 }
             }   
             setShow(newArr);
@@ -164,16 +164,17 @@ export const CrudCategorias = (props) => {
                             <th>Duración Meses</th>
                             <th>Entrega Semanas</th>
                             <th>Comentarios</th>
-                            <th>Modificar</th>
                             <th>Precios</th>
+                            <th>Modificar</th>
+                            <th></th>
                         </tr>
                     </thead>
                                     
                     <tbody>
                         {Object.keys(props.dcats).map((key) => (    
                             <tr key={key} >
-                                <td>{props.dcats[key].cd_id}</td>  
-                                <td>
+                                <td >{props.dcats[key].cd_id}</td>  
+                                <td width={"200px"}>
                                     {" "}
                                     <select 
                                     id="lista-opciones" 
@@ -188,7 +189,7 @@ export const CrudCategorias = (props) => {
                                         <option value={4}>Mesa de Ayuda</option>
                                     </select>
                                 </td> 
-                                <td>
+                                <td width={"200px"}>
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_no_parte} 
@@ -197,7 +198,7 @@ export const CrudCategorias = (props) => {
                                     name="cd_no_parte" 
                                     ></input>
                                 </td>  
-                                <td>
+                                <td width={"400px"}>
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_descripcion} 
@@ -206,7 +207,7 @@ export const CrudCategorias = (props) => {
                                     name="cd_descripcion" 
                                     ></input>
                                 </td> 
-                                <td>
+                                <td width={"50px"}>
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_meses} 
@@ -215,7 +216,7 @@ export const CrudCategorias = (props) => {
                                     name="cd_meses" 
                                     ></input>
                                 </td>   
-                                <td>
+                                <td width={"50px"}>
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_semanas} 
@@ -224,7 +225,7 @@ export const CrudCategorias = (props) => {
                                     name="cd_semanas" 
                                     ></input>
                                 </td>  
-                                <td>
+                                <td width={"300px"}>
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_comentarios} 
@@ -233,7 +234,25 @@ export const CrudCategorias = (props) => {
                                     name="cd_comentarios" 
                                     ></input>
                                 </td>  
+
                                 <td>
+                                    <button 
+                                    className="btn btn-primary Ver" 
+                                    onClick={()=>{
+                                        getDatosPrecios(props.dcats[key].cd_id); 
+                                        habilitar2(key);
+                                    }}
+                                    >
+
+                                  <i className=     {textBVer[key]}  ></i>
+                                   
+                                    </button> 
+                                </td>
+
+
+
+
+                              {/*   <td>
                                     <button 
                                     className="btn btn-primary modificar" 
                                     onClick={()=>{
@@ -244,18 +263,59 @@ export const CrudCategorias = (props) => {
                                     >
                                         {textBModificar[key]}
                                     </button> 
-                                </td> 
-                                <td>
+                                </td>  */}
+
+
+
+{enable[key] ? (
+                                <td width={"100px"} >
                                     <button 
-                                    className="btn btn-primary detalles" 
+                                    className=  "btn btn-primary Mod" type="button"
                                     onClick={()=>{
-                                        getDatosPrecios(props.dcats[key].cd_id); 
-                                        habilitar2(key);
+                                    //    props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
                                     }}
                                     >
-                                        {textBVer[key]}
-                                    </button> 
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
                                 </td>
+                            ):(
+                              < >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
+                                    </button>
+                                </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       //props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                </td>
+                                </>
+                            )}
+                            
+                                
+
+
+                                
+                               
                             </tr>  
                         ))}
                     </tbody>          

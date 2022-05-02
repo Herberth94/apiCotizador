@@ -160,7 +160,7 @@ export const CrudPrecios = (props) => {
                                 <span className="slider"></span>
                                 </label>   
                             </td>
-                            <td>
+                            <td width={"50px"}>
                                 <input
                                 className="input-name"
                                 type="number" 
@@ -172,7 +172,7 @@ export const CrudPrecios = (props) => {
                                 name="cantidad"
                                 ></input>
                             </td>
-                            <td>
+                            <td width={"250px"}>
                                 <input
                                 className="input-name"
                                 type="number" 
@@ -183,7 +183,7 @@ export const CrudPrecios = (props) => {
                                 name="precio_lista" 
                                 ></input>  
                             </td> 
-                            <td>
+                            <td  width={"250px"}>
                                 <input
                                 className="input-name"
                                 type="number" 
@@ -194,7 +194,7 @@ export const CrudPrecios = (props) => {
                                 name="precio_unitario" 
                                 ></input>  
                             </td>  
-                            <td>
+                            <td width={"100px"}>
                                 <input
                                 className="input-name"
                                 type="number" 
@@ -205,7 +205,7 @@ export const CrudPrecios = (props) => {
                                 name="precio_descuento" 
                                 ></input>  
                             </td> 
-                            <td>
+                            <td width={"250px"}>
                                 <input
                                 className="input-name" 
                                 placeholder={props.precios[key].precio_total} 
@@ -217,7 +217,7 @@ export const CrudPrecios = (props) => {
                                 name="precio_total" 
                                 ></input>  
                             </td> 
-                            <td>
+                            <td width={"100px"}>
                                 <select 
                                 id="lista-opciones" 
                                 name="precio_id_moneda" 
@@ -232,14 +232,16 @@ export const CrudPrecios = (props) => {
                             </td>
                             <td>
                                 <button 
-                                className="btn btn-primary modificar"
+                                className="btn btn-primary Mod"
                                 onClick={()=>{
                                     habilitar(key); 
                                     props.envioDataPrecio(props.estado,datos, key, data);
                                     props.setfirst(activar);
                                 }}
                                 >
-                                    {activar ? "Modificar" : "Aceptar"}
+                                    
+
+                                    <i className= {activar ? "bi bi-pencil-square" : "bi bi-check-lg"}></i>
                                 </button>
                             </td>    
                         </tr>  

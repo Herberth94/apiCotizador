@@ -1,12 +1,13 @@
 import React,{useState} from 'react';
 import logo from "../../../images/logo.png";
 import ExportarPDF from './ExportarPDF';
+
 import {name_cliente  , clave_p}from "../../../Ventas/Operaciones/OperacionesAM";
 
 
 
 
-let space = "  ";
+
 let validaOperacion = false;
 export let datos ={}
 function checa(){
@@ -15,8 +16,6 @@ function checa(){
   
   }
   
-
-let nombreProyecto = {  clave_p };
 
 
 let condicionesC = "CONDICIONES COMERCIALES \n"+
@@ -87,15 +86,15 @@ function Formulario() {
       <form className="formulario" >
         <p>
           <label>Proyecto</label>
-          <input type="text" onChange={handleChange} name="nombre"  defaultValue={  nombreProyecto  } />
+          <input type="text" onChange={handleChange} name="nombre"  defaultValue={clave_p }  />
         </p>
         <p>
           <label>Fecha</label>
           <input type="text" name="fecha"  defaultValue={fecha} />
         </p>
         <p>
-          <label>Servicios</label>
-          <input type="email" onChange={handleChange} name="servicios" />
+          <label>Cliente</label>
+          <input type="email" onChange={handleChange} name="servicios"   defaultValue={ name_cliente}  />
         </p>
         <p>
          

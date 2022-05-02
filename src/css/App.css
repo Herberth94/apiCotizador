@@ -10,9 +10,9 @@
 
 body{
 
-
-     background: #ffffff;
-  background: url('../images/Cotizador.jpg') no-repeat center center fixed; 
+   z-index: 2;
+  
+  background: url('../images/uu.png') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -414,6 +414,10 @@ visible2{
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 :root {
   /*WHITE*/
+
+  
+
+ 
   --white-bg-color: #fff;
   --white-text-color: rgb(51, 51, 51);
 

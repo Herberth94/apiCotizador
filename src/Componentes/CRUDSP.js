@@ -59,8 +59,8 @@ export const CrudSp = (props) => {
             setenable(Array(i).fill(true));
             setActivar(Array(i).fill(true));
             setShow1(Array(i).fill(true));
-            setTextBModificar(Array(i).fill('Modificar'));
-            setTextBVer(Array(i).fill('Mostrar'));
+            setTextBModificar(Array(i).fill('bi bi-pencil-square'));
+            setTextBVer(Array(i).fill('bi bi-eye'));
 
             const arrayNombresProv = []
             for(let c = 0 ; c < i ;c++){
@@ -87,7 +87,7 @@ export const CrudSp = (props) => {
                 if(i === key){
                     newArr[i] = !enable[i];
                     if(enable[i] === false){
-                        newArr2[i] = 'Modificar';
+                        newArr2[i] = 'bi bi-pencil-square';
                         setData({
                             ...data,sp_no_parte:'',
                                     sp_descripcion:'',
@@ -97,14 +97,14 @@ export const CrudSp = (props) => {
                                     sp_comentarios:''  
                         })
                     }else{
-                        newArr2[i] = 'Aceptar';
+                        newArr2[i] = 'bi bi-check-lg';
                         listaMarcas(props.sp[key].proveedor_nombre);
                     }
                     newArr3[i] = !activar[i];
                 }
                 if(i !== key){
                     newArr[i] = true;
-                    newArr2[i] = 'Modificar';
+                    newArr2[i] = 'bi bi-pencil-square';
                     newArr3[i] = true;
                 }
     
@@ -143,20 +143,20 @@ export const CrudSp = (props) => {
             let c = Object.keys(props.sp);
             c = c.length;
             setShow1(Array(c).fill(true));
-            setTextBVer(Array(c).fill('Mostrar'));
+            setTextBVer(Array(c).fill('bi bi-eye'));
             for (let i = 0 ; i < c ; i++){
                 if(i === key){
                     newArr[i] = !show1[i];
                     setShow(newArr[i]);
                     if(show1[i] === false){
-                        newArr2[i] = 'Mostrar';
+                        newArr2[i] = 'bi bi-eye';
                     }else{
-                        newArr2[i] = 'Ocultar';
+                        newArr2[i] = 'bi bi-eye-slash-fill';
                     }
                 }
                 if(i !== key){
                     newArr[i]=true;
-                    newArr2[i] = 'Mostrar';
+                    newArr2[i] = 'bi bi-eye';
                 }
             }   
             setShow1(newArr);
@@ -358,8 +358,9 @@ export const CrudSp = (props) => {
                             <th>Categoria</th>
                             <th>Comentarios</th>
                             <th>Eliminar</th>
-                            <th>Modificar</th>
                             <th>Precios</th>
+                            <th>Modificar</th>
+                            <th></th>
                         </tr>
                         </thead>
 
@@ -367,7 +368,7 @@ export const CrudSp = (props) => {
                             {Object.keys(props.sp).map((key) => (    
                             <tr key={key} >
                                 <td>{props.sp[key].sp_id}</td>
-                               <td>
+                               <td width={"150px"}>
                                     <input
                                     className="input-name" 
                                     defaultValue={props.sp[key].spnp_np} 
@@ -376,7 +377,7 @@ export const CrudSp = (props) => {
                                     name="sp_no_parte" 
                                     ></input>
                                 </td>  
-                                <td>
+                                <td width={"300px"}>
                                     <input
                                     className="input-name" 
                                     defaultValue={props.sp[key].spd_des} 
@@ -385,7 +386,7 @@ export const CrudSp = (props) => {
                                     name="sp_descripcion" 
                                     ></input>
                                 </td>
-                                <td>
+                                <td width={"50px"}>
                                     <input
                                     className="input-name" 
                                     defaultValue={props.sp[key].sp_meses} 
@@ -394,7 +395,7 @@ export const CrudSp = (props) => {
                                     name="sp_meses" 
                                     ></input>
                                 </td>
-                                <td>
+                                <td width={"50px"}>
                                     <input
                                     className="input-name" 
                                     defaultValue={props.sp[key].sp_semanas} 
@@ -424,7 +425,7 @@ export const CrudSp = (props) => {
                                     </div>
                                     )}
                                 </td>
-                                <td>
+                                <td width={"100px"}>
                                     {" "}
                                     <input
                                     className="agregar"
@@ -445,7 +446,7 @@ export const CrudSp = (props) => {
                                     </div>
                                     )}
                                 </td>
-                                <td>
+                                <td width={"200px"}>
                                     {" "}
                                     <select 
                                     id="lista-opciones" 
@@ -475,11 +476,35 @@ export const CrudSp = (props) => {
                                     <button 
                                     className="btn btn-primary eliminar"
                                     onClick={()=>{SendDeleteSP(props.sp[key].sp_id_precio)}}
-                                    >Eliminar </button>
+                                    >
+
+<i class="bi bi-trash-fill"></i>
+                                    
+                                    
+                                    
+                                     </button>
                                 </td>
+
+
+
                                 <td>
+                                    <button 
+                                    className="btn btn-primary Ver" 
+                                    onClick={() => {
+                                        getDatosPrecios(props.sp[key].sp_id); 
+                                        habilitar1(key);
+                                    }}
+                                    >
+                                      <i className=     {textBVer[key]}  ></i>
+                                   
+                                    </button>
+                                </td>
+
+
+
+                           {/*      <td>
                                 <button 
-                                    className="btn btn-primary modificar" 
+                                    className="btn btn-primary Mod" 
                                     onClick={()=>{
                                         habilitar(key); 
                                         props.envioDataSP(nombreProv, props.proveedores,nombreMarca, listaMarca, data, key, datos);
@@ -487,18 +512,58 @@ export const CrudSp = (props) => {
                                     }}
                                     >{textBModificar[key]}
                                     </button> 
-                                </td> 
-                                <td>
+                                </td>  */}
+
+
+
+                                
+{enable[key] ? (
+                                <td width={"100px"} >
                                     <button 
-                                    className="btn btn-primary detalles" 
-                                    onClick={() => {
-                                        getDatosPrecios(props.sp[key].sp_id); 
-                                        habilitar1(key);
+                                    className=  "btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                    //    props.envioData(datos,key,data); 
+                                        habilitar(key); 
+                                        props.setfirst(activar[key]); 
                                     }}
                                     >
-                                        {textBVer[key]}
+                                        <i className  = {textBModificar[key]}  ></i>
+                                    </button>
+                                    
+                                </td>
+                            ):(
+                              < >
+                                    <td width={"100px"} >
+                                    <button 
+                                    className="btn btn-primary Mod" type="button"
+                                    onClick={()=>{
+                                        habilitar(key); 
+                                        props.envioDataSP(nombreProv, props.proveedores,nombreMarca, listaMarca, data, key, datos);
+                                        props.setfirst(activar[key]);
+                                    }}
+                                    >
+                                        <i className= {textBModificar[key]}  ></i>
                                     </button>
                                 </td>
+
+                                <td width={"100px"}>
+                                    <button 
+                                    className="btn btn-primary Cancelar" type="button"
+                                    onClick={()=>{
+                                      /*   props.envioData(datos,key,data);  */
+                                        habilitar(key); 
+                                       //props.setfirst(activar[key]); 
+                                    }}
+                                    >
+                                        <i className= "bi bi-x-lg"  ></i>
+                                    </button>
+                                </td>
+                                </>
+                            )}
+                            
+                                
+
+                           
                             </tr>  
                             ))
                             }

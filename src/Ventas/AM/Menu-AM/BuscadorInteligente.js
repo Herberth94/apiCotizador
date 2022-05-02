@@ -89,6 +89,14 @@ function BuscadorInteligente() {
 
     async function consultarTotalesP(id){          //console.log(id)
         try{
+
+            getTotalPar('');
+            getPorcentajesPar('');
+            getPorcentajesCats('');
+            getDivisaProy('');
+            getPorcentajesCI('');
+         
+ 
             const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
             getTotalPar(resTotPar.data.data);
 
