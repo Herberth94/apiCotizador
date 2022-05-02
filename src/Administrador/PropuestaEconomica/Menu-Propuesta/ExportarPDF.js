@@ -4,7 +4,9 @@ import "jspdf-autotable";
 import '../css/Exportar.css';
 import {imagen} from './IMG';
 
-import {datosCompletosAM , Cantidad }from "../../../Ventas/Operaciones/OperacionesAM";
+import {datosCompletosAM , Cantidad , name_cliente  , clave_p}from "../../../Ventas/Operaciones/OperacionesAM";
+
+
 import { fecha , datos } from './Formulario';
 
 
@@ -46,8 +48,8 @@ class ExportarPDF extends React.Component {
 
 
 //Datos Proyectos
-let claveProyecto = "2303";
-let organizacion = "Delfos369";
+let claveProyecto = clave_p;
+let organizacion =  name_cliente;
 let nombreProyecto = datos.nombre;
 //Atención 
 //let nombreContacto = "Marco Banda, Compras OIEGSA";

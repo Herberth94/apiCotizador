@@ -6,6 +6,8 @@ export let pd_financiamiento = 0;
 export let pd_pago_anuales =  0;
 export let  tasa_interes = 0;
 export let name_cliente;
+export let clave_p;
+
 
 let valorDolar = 1;
 export let stringDolar = "";
@@ -128,8 +130,6 @@ financiamiento= [];
  margenGanancia = [];
  Cantidad = [];
  descuentoCliente = [];
-
-
  datosCompletosAM = [];
  datosCompletosTotal = [];
  
@@ -232,6 +232,8 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= 
     if(Dolar.length != 0){   
         valorDolar = Dolar[0].proyecto_valor_dolar;
         plazo_meses =  Dolar[0].proyecto_plazo_meses;
+        name_cliente = Dolar[0].nombre_cliente;
+        clave_p = Dolar[0].proyecto_clave;
     
       if(  valorDolar == 1){
         stringDolar = "MXN";

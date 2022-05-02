@@ -1,10 +1,12 @@
 import React,{useState} from 'react';
 import logo from "../../../images/logo.png";
 import ExportarPDF from './ExportarPDF';
+import {name_cliente  , clave_p}from "../../../Ventas/Operaciones/OperacionesAM";
 
 
 
 
+let space = "  ";
 let validaOperacion = false;
 export let datos ={}
 function checa(){
@@ -14,7 +16,7 @@ function checa(){
   }
   
 
-let nombreProyecto = "Delfos369.com";
+let nombreProyecto = {  clave_p };
 
 
 let condicionesC = "CONDICIONES COMERCIALES \n"+
@@ -38,7 +40,7 @@ export const fecha = hoy.toLocaleDateString();
 
 function Formulario() {
   const [data,setData] = useState ({
-    nombre:'Delfos369.com',
+    nombre:'De ',
     servicios:'',
     condiciones:condicionesC
   
@@ -85,7 +87,7 @@ function Formulario() {
       <form className="formulario" >
         <p>
           <label>Proyecto</label>
-          <input type="text" onChange={handleChange} name="nombre"  defaultValue={nombreProyecto} />
+          <input type="text" onChange={handleChange} name="nombre"  defaultValue={  nombreProyecto  } />
         </p>
         <p>
           <label>Fecha</label>
