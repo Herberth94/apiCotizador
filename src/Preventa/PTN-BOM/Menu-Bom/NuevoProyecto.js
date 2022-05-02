@@ -15,10 +15,38 @@ import { url, url2 } from "../../../Componentes/Ocultar";
 const cookies = new Cookies();
 export let validatorid = cookies.get('id_usuario');
 
+//Obtención de la fecha
+const tiempoTranscurrido = Date.now();
+export const hoy = new Date(tiempoTranscurrido);
+
+export let pId1;
+
 function NuevoProyecto() {
 
   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
+
+  function getIdP1 (proyecto_id){
+    pId1 = proyecto_id;
+    console.log('Ultimo proyecto creado:',pId1);
+}
+
+  const getProyectos = async () => {
+    try{
+      const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+      //setListaProyectos(resProy.data.data.pop());
+      let l = resProy.data.data.length
+      console.log('Longitud:',l);
+      //console.log('Ultimo proyecto creado:',resProy.data.data[l-1].proyecto_id);
+      getIdP1(resProy.data.data[l-1].proyecto_id);
+    }catch(error){console.log(error);}
+  }
+
+  useEffect(()=>{
+    getProyectos();
+    
+  },[])
+
 
 
   /*=================================== Buscador de clientes ===================================*/
@@ -33,6 +61,7 @@ function NuevoProyecto() {
 
   // Almacenamiento de los clientes semejantes al texto introducido en el input
   const [suggestions, setSuggestions] = useState([]);
+
   const [clavep, setclavep] = useState([])
   // Función que realiza la consulta a la tabla clientes
   useEffect(() => {
@@ -79,8 +108,13 @@ function NuevoProyecto() {
       ...datos, [event.target.name]: event.target.value,
     })
   }
+
+
+  
+
   // Función que realiza la inserción del proyecto
   async function Send() {
+    //console.log(hoy);
     // Obtención del id del cliente que se seleccionó en la búsqueda
     let i = Object.keys(ListaC);
     for (let c = 0; c < i.length; c++) {
@@ -94,6 +128,8 @@ function NuevoProyecto() {
       proyecto_clave: datos.proyecto_clave,
       proyecto_descripcion: datos.proyecto_descripcion,
       proyecto_id_cliente: clienteId.proyecto_id_cliente,
+      proyecto_fecha_creacion: hoy,
+      proyecto_fecha_modificacion: hoy,
       proyecto_plazo_meses: datos.proyecto_plazo_meses
     };
 

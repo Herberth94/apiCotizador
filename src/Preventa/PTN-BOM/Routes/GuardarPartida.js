@@ -3,12 +3,14 @@ import { useState } from "react";
 import Cookies from "universal-cookie";
 import { url2 } from "../../../Componentes/Ocultar";
 import { pEstatus1 } from "../Menu-Bom/ContinuarProyecto";
+import { hoy } from "../Menu-Bom/NuevoProyecto";
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
 
-let pId;
+export let pId;
+
 
 export const InsertDatosPartida = () => {
     /*=================================== Inserción de datos en la tabla partida ===================================*/
@@ -45,12 +47,20 @@ export const InsertDatosPartida = () => {
     function getIdP (proyecto_id){
         pId = proyecto_id;
     }
+
+    // function getIdP1 (proyecto_id){
+    //     pId1 = proyecto_id;
+    // }
     // Función que realiza la inserción de los datos a la tabla partida en la bd 
     async function SendPartida (){
         const data = {
             partida_nombre: datosPartida.partida_nombre,
             partida_descripcion: datosPartida.partida_descripcion
         };
+
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        }
 
         if(pEstatus1 === 'En revision'){
             alert('No se puede continuar el Proyecto porque se encuentra En revision')
@@ -62,14 +72,19 @@ export const InsertDatosPartida = () => {
                 const resGetProyectos = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 listaProyectos = resGetProyectos.data.data.pop();
                 proyectoId.proyecto_id = listaProyectos.proyecto_id;
+
     
                 if(pId !== proyectoId.proveedor_id && pId!== ''){
                     const respuesta = await axios.post(url2 +`/api/cotizador/partida/${pId}`, data);
+                    await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                     //console.log(pId);
                     const respuestaBack = respuesta.data.msg;
                     alert(respuestaBack);
+                    
+                    
                 }else{
                     const respuesta2 = await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
+                    await axios.put(url2 + `/api/cotizador/proyecto/updateFM/${proyectoId.proyecto_id}`, dataFM);
                     //console.log(proyectoId.proyecto_id);
                     const respuestaBack2 = respuesta2.data.msg;
                     alert(respuestaBack2);

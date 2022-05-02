@@ -10,6 +10,7 @@ import { precioUnitario, calcularDescuento, Total} from "../Operaciones/Operacio
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
 import Animaciones from "../../../Componentes/Animaciones";
 import { dataCategoria } from "../../../Ventas/Operaciones/totalPartida";
+import { pId1 } from "./NuevoProyecto";
 
 
 //Obtención del id del usuario con sesión activa

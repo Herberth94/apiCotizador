@@ -11,6 +11,8 @@ import Proyectos from "../Menu-Bom/ResumenProyectos";
 import { InsertDatosPartida } from '../Routes/GuardarPartida';
 import { getIdPar } from '../Menu-Bom/DatosSP';
 import { InsertDatosCats } from "../Routes/GuardarDatosCategorias";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 function PTN_BOM() {
   {
@@ -31,6 +33,10 @@ function PTN_BOM() {
   const {getIdP} = InsertDatosPartida();
   const {getIdP1} = InsertDatosCats();
   
+  // Función que realiza la consulta a la tabla proyectos 
+  
+
+
   return (
     <div className="contenido-usuarios">
       {/*======================= Titulo Animación =======================*/}

@@ -343,6 +343,7 @@ export const CrudProyectos = (props) => {
                                     {Object.keys(suggestionsClientes).map((i)=>
                                         <div 
                                         key={i}
+                                        disiable={enable[key]}
                                         className="selectCliente" 
                                         onClick={() => onSuggestHandler(suggestionsClientes[i].nombre_cliente, key)}
                                         >
