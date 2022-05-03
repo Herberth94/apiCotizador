@@ -25,6 +25,7 @@ function BuscadorInteligente4() {
         getTotalCats,
         getPorcentajesCats,
         getDivisaProy,
+        getFinanciamieno,
         getPorcentajesCI} = Partida_catalogo();
 
     /*========================== Mostrar/Ocultar ==========================*/
@@ -123,6 +124,20 @@ const habilitar = (key) =>{
 }
 
 async function consultarTotalesP(id){          //console.log(id)
+
+
+    getTotalPar('');
+    getPorcentajesPar('');
+
+    getTotalCats('');
+    getPorcentajesCats('');
+
+    getDivisaProy('');
+    getPorcentajesCI('');
+    getFinanciamieno('');
+
+
+
     try{
         const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
         getTotalPar(resTotPar.data.data);
@@ -141,6 +156,11 @@ async function consultarTotalesP(id){          //console.log(id)
 
         const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
         getPorcentajesCI(resCI.data.data);
+
+
+
+        const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
+        getFinanciamieno(resdF.data.data);
 
     }catch (error){
         console.log(error);

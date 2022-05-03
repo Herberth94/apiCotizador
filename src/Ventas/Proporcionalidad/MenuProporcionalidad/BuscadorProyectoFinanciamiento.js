@@ -4,6 +4,8 @@ import Table from "react-bootstrap/Table";
 import Cookies from 'universal-cookie';
 import Animaciones from "../../../Componentes/Animaciones";
 import ModificarFinanciamiento from './ModificarFinanciamiento';
+
+
 import { url, url2 } from "../../../Componentes/Ocultar";
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -30,6 +32,7 @@ function BuscadorProyectoFinanciamiento() {
 
     const getProyectos = async () => {
         try {
+           
             if (validatorrol === "administrador") {
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);

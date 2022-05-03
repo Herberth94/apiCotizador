@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Table from "react-bootstrap/Table";
 import {  url2 } from "../../../Componentes/Ocultar";
-import { dataFinanciamiento } from '../../Operaciones/totalPartida';
 
 function ModificarFinanciamiento(prop) {
 
@@ -143,6 +142,7 @@ function ModificarFinanciamiento(prop) {
                         <th>Modificar</th>
                         <th></th>
 
+
                     </tr>
                 </thead>
                 <tbody>
@@ -190,9 +190,14 @@ function ModificarFinanciamiento(prop) {
                                     envioData(key);
                                 }} 
                                 className="btn btn-primary"
-                                >        <i className= {textBModificar[key]}  ></i>
+                                > 
+                                    {textBModificar[key]}
                                 </button>
+                     
                             </td> */}
+
+
+
 
 {enable[key] ? (
                                 <td width={"100px"} >
@@ -200,8 +205,8 @@ function ModificarFinanciamiento(prop) {
                                     className=  "btn btn-primary Mod" type="button"
                                     onClick={()=>{
                                     //    props.envioData(datos,key,data); 
-                                    habilitar(key);
-                                   
+                                        habilitar(key); 
+                                     
                                     }}
                                     >
                                         <i className  = {textBModificar[key]}  ></i>
@@ -215,7 +220,7 @@ function ModificarFinanciamiento(prop) {
                                     className="btn btn-primary Mod" type="button"
                                     onClick={()=>{
                                         habilitar(key);
-                                        envioData(key);
+                                    envioData(key);
                                     }}
                                     >
                                         <i className= {textBModificar[key]}  ></i>
@@ -236,8 +241,6 @@ function ModificarFinanciamiento(prop) {
                                 </td>
                                 </>
                             )}
-                            
-
                             
                         </tr>
                          ))}

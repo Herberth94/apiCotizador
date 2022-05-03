@@ -89,7 +89,17 @@ function BuscadorInteligente2() {
     async function consultarTotalesP(id){          //console.log(id)
         try{
 
+            getTotalPar('');
+            getPorcentajesPar('');
+            getPorcentajesCats('');
+            getDivisaProy('');
+            getPorcentajesCI('');
+            getFinanciamieno('');
 
+
+            const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
+            getFinanciamieno(resdF.data.data);
+           
             
             const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
             getTotalPar(resTotPar.data.data);
@@ -111,8 +121,6 @@ function BuscadorInteligente2() {
 
 
             
-            const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
-            getFinanciamieno(resdF.data.data);
            
 
         }catch (error){

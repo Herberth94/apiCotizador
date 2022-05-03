@@ -48,8 +48,14 @@ td.En.revision{
   background-color: #f6fa00d0;
 }
 
-td.Rechazado{
-  background-color: #ff000083;
+td.Rechazado {
+  background-color: hsla(0, 100%, 65%, 0.795);
+
+}
+
+td.Rechazado span{
+
+  color: #ffffff;
 }
 
 td{
@@ -225,6 +231,9 @@ visible2{
   display: none;
  }
  
+ input{
+   padding: 0px  10px;
+ }
  .slider {
   position: absolute;
   cursor: pointer;

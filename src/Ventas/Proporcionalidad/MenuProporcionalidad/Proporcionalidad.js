@@ -9,6 +9,8 @@ import {TOTAL, proporcional ,  proporcionalMesaAyuda,  partidasUnicas,  precioVe
 
 
 function Proporcionalidad() {
+
+  
   return (
     
     

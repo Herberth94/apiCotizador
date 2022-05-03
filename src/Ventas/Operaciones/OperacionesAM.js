@@ -115,7 +115,9 @@ export let totalCategorias = 0;
 
 function limpiaDatos (){
 
-   plazo_meses = 0;
+  financiamiento= [];
+
+ plazo_meses = 0;
   pd_financiamiento = 0;
  pd_pago_anuales =  0;
  tasa_interes = 0;
@@ -125,7 +127,7 @@ function limpiaDatos (){
  costosIndirectos = [];
  equivale = [];
  totalMensual= [];
-financiamiento= [];
+
  desFabrica = [];
  margenGanancia = [];
  Cantidad = [];
@@ -255,7 +257,7 @@ if(dataFinancia.length > 0){
 
 pd_financiamiento = dataFinancia[0].pd_anio_financiamiento;
  pd_pago_anuales =  dataFinancia[0].pd_pagos_anuales;
- tasa_interes = dataFinancia[0].pd_tasa_interes;
+ tasa_interes =     dataFinancia[0].pd_tasa_interes;
  console.log("OKAAAA")
 
 }
@@ -291,8 +293,10 @@ pd_financiamiento = dataFinancia[0].pd_anio_financiamiento;
                 if( dataPorcentajesC.length  ==  dataPorcentajesC.length  &&  dataPorcentajesC.length >0){
                   margenGanancia.push(32);
                   descuentoCliente.push(0);
-                  Cantidad.push(0);
+                  Cantidad.push(1);
                   desFabrica.push(0);
+
+
            
                 }
                 
