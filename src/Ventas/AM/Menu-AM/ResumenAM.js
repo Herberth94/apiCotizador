@@ -12,7 +12,9 @@ costoSinIndirectos,
 costoFianalProyecto,
 datosCompletosAM,
 datosCompletosTotal,
-stringDolar
+stringDolar,
+totalMensual,
+margenReal
 } from "../../Operaciones/OperacionesAM";
 import { EditAM } from '../Routes/ModificarDatosAm';
 import {costosIndirectos, equivale,  totalIndirecto} from "../../Operaciones/OperacionesAM";
@@ -514,7 +516,7 @@ const ResumenAM = () => {
                                         ></input> 
                                     </td>
                             {/*================= Total Indirecto ==================*/}
-                            <td width={"500px" }>{ totalIndirecto[key]} </td>
+                            <td width={"500px" }>  {" $ "}  { totalIndirecto[key]} </td>
                             <td width={"50px" }>{stringDolar}</td>
 
                             
@@ -551,8 +553,54 @@ const ResumenAM = () => {
                                 </tbody>
                             </Table>
                         </div>
+
+
+
+
+
+
+
+
+
+                        <div>
+               
+                            <Table responsive striped bordered hover size="sm" className="tablas">
+                                <thead>
+                                    {/*=================== Titulos Tabla Clientes ===================*/}
+                                    <tr className="titulo-tabla-usuarios">
+                                        <th>Precio Total de Venta Sin IVA </th>
+                                        <th>Mensual</th>
+                                        <th>Costo Final</th>
+                                        <th>Margen Real</th>
+                                        <th>Divisa</th>
+                                      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {/*=================== Contenido Tabla Clientes =================*/}
+                                            <tr > 
+                                            <td   className='verde'> {" $ "}{precioFinalVenta } {stringDolar}</td>  
+
+                                            
+                                     {/*        <td className='azul'>{" $ "} {costoPTN[costoPTN.length -1]}  {stringDolar}</td>    
+ */}
+                                            <td  width={"300px"} className='azul'>{" $ "} {costoFianalProyecto}  </td> 
+
+                                                <td width={"300px"}   className='verde'>{" $ "}  {totalMensual[totalMensual.length-1]}   </td>   
+                                                <td width={"100px"}   className='azul'>{margenReal} {" % "}   </td>   
+                                                <td width={"50px"}   className='verde'>{stringDolar}   </td> 
+                                            </tr >
+                                </tbody>
+                            </Table>
+                        </div>
+
+
+
                     </div>
                 </div>
+                    
+
+
                     
             )}
         </div>

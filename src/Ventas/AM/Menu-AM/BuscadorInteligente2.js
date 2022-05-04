@@ -97,10 +97,7 @@ function BuscadorInteligente2() {
             getFinanciamieno('');
 
 
-            const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
-            getFinanciamieno(resdF.data.data);
-           
-            
+        
             const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
             getTotalPar(resTotPar.data.data);
 
@@ -115,6 +112,11 @@ function BuscadorInteligente2() {
 
             const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${id}`);
             getDivisaProy(dProy.data.data);
+
+            const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
+            getFinanciamieno(resdF.data.data);
+           
+            
 
             const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
             getPorcentajesCI(resCI.data.data);

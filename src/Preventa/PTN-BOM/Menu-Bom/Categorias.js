@@ -117,13 +117,14 @@ function Categorias(props) {
                 {/*========================== Titulos Tabla ==========================*/}
                 <thead>
                     <tr className="titulo-tabla-usuarios">
-                    <th>Funcion</th>
-                    <th>Categoria</th>
+                    <th>Funcion</th>           
                     <th>No. De Parte</th>
+                    <th>Categoria</th>
+                    <th>Moneda</th>
                     <th>Descripción</th>
                     <th>Duración Meses </th>
-                    <th>Entrega</th>
-                    <th>Moneda</th>
+                    <th>Entrega Semanas</th>
+                  
                     </tr>
                 </thead>
                 <tbody>
@@ -136,6 +137,17 @@ function Categorias(props) {
                 <span className="slider"></span>
                 </label>   
                 </td>
+
+                  {/*========================== Número de Parte ==========================*/}
+                  <td>
+                        <input
+                        className="agregar"
+                        type="text"
+                        name="cd_no_parte"
+                        onChange={handleInputChange}
+                        placeholder="No. Parte"
+                        />
+                    </td>
                
                     <td>
                         {" "}
@@ -148,16 +160,17 @@ function Categorias(props) {
                             
                         </select>
                     </td>
-                    {/*========================== Número de Parte ==========================*/}
-                    <td>
-                        <input
-                        className="agregar"
-                        type="text"
-                        name="cd_no_parte"
-                        onChange={handleInputChange}
-                        placeholder="No. Parte"
-                        />
+
+                    <td width={"100px"}>
+                        <select id="moneda" name="precio_id_moneda" 
+                        onChange={handleInputChangePrecio}
+                        >
+                            <option value={0}></option>
+                            <option value={1}>MXN</option>
+                            <option value={2}>USD</option>
+                        </select>
                     </td>
+                  
                     {/*========================Descripcion Producto ==========================*/}
                     <td>
                         {" "}
@@ -170,7 +183,7 @@ function Categorias(props) {
                         />
                     </td>
                     {/*========================Meses ==========================*/}
-                    <td>
+                    <td width={"100px"}>
                         {" "}
                         <input
                         className="agregar"
@@ -182,26 +195,18 @@ function Categorias(props) {
                         />
                     </td>
                     {/*======================== Semanas ==========================*/}
-                    <td>
+                    <td  width={"100px"}>
                         <input
                         className="agregar"
                         type="number"
                         name="cd_semanas"
                         min="0"
                         onChange={handleInputChange}
-                        placeholder="Entrega semanas"
+                        placeholder="Semanas"
                         />
                     </td>
                     {/*======================== Moneda ==========================*/}
-                    <td>
-                        <select id="moneda" name="precio_id_moneda" 
-                        onChange={handleInputChangePrecio}
-                        >
-                            <option value={0}></option>
-                            <option value={1}>MXN</option>
-                            <option value={2}>USD</option>
-                        </select>
-                    </td>
+                   
                     </tr>
                 </tbody>
                 </Table>

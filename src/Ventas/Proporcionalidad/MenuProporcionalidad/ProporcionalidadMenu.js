@@ -4,9 +4,6 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../../../Componentes/Animaciones";
 
 
-import BuscarProyecto from "./BuscarProyecto"
-
-import Financiamiento from "./Financiamiento";
 import BuscadorProyectoFinanciamiento from "./BuscadorProyectoFinanciamiento"
 import BuscadorInteligente2 from "../../AM/Menu-AM/BuscadorInteligente2";
 

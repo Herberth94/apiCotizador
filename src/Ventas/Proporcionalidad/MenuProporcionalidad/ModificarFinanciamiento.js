@@ -138,7 +138,7 @@ function ModificarFinanciamiento(prop) {
                         <th>ID</th>
                         <th>Tasa de Interes</th>
                         <th>Años de Financiamiento</th>
-                        <th>Pagos Anuales</th>
+                        <th>Diferimiento de Tasa</th>
                         <th>Modificar</th>
                         <th></th>
 

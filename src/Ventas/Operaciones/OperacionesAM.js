@@ -10,7 +10,9 @@ export let clave_p;
 
 
 let valorDolar = 1;
+let summm = 0;
 export let stringDolar = "";
+export let margenReal = "";
 
 
 
@@ -105,7 +107,7 @@ export let costoSinIndirectos=0;
 export let costoFianalProyecto=0;
 export let precioFinalVenta = 0;
 
-
+export let precioVenta3 = [];
 export let precioVenta2 = [];
 export let proporcional = [];
 export let proporcionalMesaAyuda = [];
@@ -201,6 +203,7 @@ precioVenta = [];
  costoSinIndirectos=0;
  costoFianalProyecto=0;
  precioFinalVenta = 0;
+ margenReal = 0;
 
 
 precioVenta2 = [];
@@ -210,6 +213,11 @@ precioVenta2 = [];
 totalCategorias = 0;
 
 Cantidad = [];
+
+
+precioVenta3 = [];
+
+summm = 0;
 
 
 pd_financiamiento = 0;
@@ -255,10 +263,9 @@ if(dataFinancia.length > 0){
 
 
 
-pd_financiamiento = dataFinancia[0].pd_anio_financiamiento;
+  pd_financiamiento = dataFinancia[0].pd_anio_financiamiento;
  pd_pago_anuales =  dataFinancia[0].pd_pagos_anuales;
  tasa_interes =     dataFinancia[0].pd_tasa_interes;
- console.log("OKAAAA")
 
 }
 
@@ -585,8 +592,12 @@ for (var i = 0; i < costosIndirectos.length - 1; i++) {
  let precio2 = totalIndirecto[totalIndirecto.length-1];
 
  costoFianalProyecto =  precio3 + precio2;
- costoFianalProyecto = costoFianalProyecto.toFixed(decimal)
+ costoFianalProyecto = costoFianalProyecto.toFixed(decimal);
 
+
+
+ margenReal  = (1 - (costoFianalProyecto /  precioFinalVenta)) * 100;
+margenReal = margenReal.toFixed(decimal);
 
 
 final();
@@ -668,7 +679,7 @@ TOTAL.push(h);
             // ti = Tasa Interes
             let ti =   tasa_interes ;
            
-            console.log(a , " p " , n   ," p " , m  , " p "  , ti)
+
             for (var i = 0; i < TOTAL.length  ; i++) {
             // tasa % 
             // pago = meses
@@ -716,5 +727,17 @@ for (var i = 0; i < TOTAL.length  ; i++) {
        cos = 0;
 
 
+/////////Categorias Proporcionalidad
+
+    for (var i = partidasUnicas.length-1 ; i < datosCompletosAM.length -1 ; i++) {
+      
+     precioVenta3.push(precioVenta[i]); 
+
+     summm += parseFloat( precioVenta[i]) ;
+      }
+
+      precioVenta3.push(summm);
+
+      summm = 0;
        ///console.log("cccc  ", totalCategoriasUSD2);
 }

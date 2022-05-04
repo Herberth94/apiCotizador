@@ -34,9 +34,9 @@ overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
 z-index:10;
-background: #6786b8bd;
+background: #088080bd;
 backdrop-filter: blur(10px);
-border: 1px solid rgba(254, 254, 254, 0.18);
+border: 1zpx solid rgba(0, 0, 0, 0.18);
 }
 
 .main-menu-ventas>ul {
