@@ -507,7 +507,7 @@ function ContinuarProyecto() {
       ):(
         <div  className="arregla"> 
           {/*======================== Llamar al componente Categorias ==========================*/}
-          <Categorias />
+          <Categorias clave={id} />
         </div>
       )}
       
