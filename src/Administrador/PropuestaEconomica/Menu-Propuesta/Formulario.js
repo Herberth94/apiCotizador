@@ -103,20 +103,27 @@ function Formulario() {
                 <span className="slider2"></span>
                 </label>  
         </p>
-        <p className="full2">
-          <label>Condiciones Comerciales</label>
-          <textarea id="txt2" onChange={handleChange} name="condiciones" defaultValue={condicionesC} />
-        </p>
+
+     
+        
         <p className="full">
         </p>
         <a className="btn btn-success " onClick={()=>{ setshow(!show); enviar()}}>
                   <span>Captura de información</span>
           </a> 
-          <div></div>
+      
           <div></div>
         
         
 </form>
+
+<div className='parrafoX'>
+        <p className="full3">
+          <label>Condiciones Comerciales</label>
+          <textarea id="txt3" onChange={handleChange} name="condiciones" defaultValue={condicionesC} />
+        </p>
+
+        </div>
 <div>
 { show ? <ExportarPDF/> : ''}
 

@@ -12,6 +12,18 @@
 
 
 
+  body{
+
+    background: url('../images/uu.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; 
+  
+  
+  }
+  
+
 
 th.listacl{
   width: 200px;
@@ -307,7 +319,7 @@ input{
 }
  .info-empresa {
 	 padding: 1rem;
-	 background-color: #ccd7dcf5;
+	 background-color: #797979a4;
 }
  .info-empresa h3 {
 	 text-align: center;
