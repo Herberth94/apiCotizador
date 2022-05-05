@@ -569,8 +569,9 @@ const ResumenAM = () => {
                                     {/*=================== Titulos Tabla Clientes ===================*/}
                                     <tr className="titulo-tabla-usuarios">
                                         <th>Precio Total de Venta Sin IVA </th>
-                                        <th>Mensual</th>
                                         <th>Costo Final</th>
+                                        <th>Mensual</th>
+                          
                                         <th>Margen Real</th>
                                         <th>Divisa</th>
                                       
