@@ -91,7 +91,7 @@ function Categorias(props) {
     const [DatosCat, SetDatosCat] = useState([])
     const lista = async (clave) =>{
         try {
-            const respuesta = await axios.get( url2+`/api/cotizador/catd/view/modal/${clave}`);
+            const respuesta = await axios.get(url2+`/api/cotizador/catd/view/modal/${clave}`);
             SetDatosCat(respuesta.data.data)
             
         } catch (error) {
