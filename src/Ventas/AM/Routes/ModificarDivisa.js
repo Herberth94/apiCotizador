@@ -10,7 +10,8 @@ export const EditDivisa = () => {
     async function SendUpdatePrecio (data, proyecto_id, newdata){
         
         const dataActualizacion = {
-            proyecto_valor_dolar: data.proyecto_valor_dolar
+            proyecto_valor_dolar: data.proyecto_valor_dolar,
+            proyecto_id_moneda:data.proyecto_id_moneda
         };
 
         const k = Object.keys(newdata);
