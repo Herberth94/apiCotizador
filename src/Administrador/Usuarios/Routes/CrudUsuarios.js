@@ -108,7 +108,8 @@ export const CrudUsuarios = (props) => {
                                 <option value={3}>Venta</option>
                             </select>
                         </td>
-                        <td   ><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
+
+                        <td  width={"900px"} ><input className="input-name" defaultValue={props.usuarios[key].email} onChange={handleInputChange}  disabled={enable[key]} name='email'  ></input> </td>
                         <td  width={"100px"}><button className="btn btn-primary Resetear" type="button" onClick={()=>{props.resetearContraseña(props.usuarios[key].id_usuario,props.usuarios[key].email)}} >                             
                         <i className= "bi bi-unlock"  ></i>       
                         </button>
@@ -123,7 +124,7 @@ export const CrudUsuarios = (props) => {
                             </td> */}
                             {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
                             {enable[key] ? (
-                                <td width={"100px"} >
+                                <td width={"100px"}  className= "">
                                     <button 
                                     className=  "btn btn-primary Mod" type="button"
                                     onClick={()=>{

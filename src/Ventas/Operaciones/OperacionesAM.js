@@ -11,6 +11,10 @@ export let clave_p;
 
 let valorDolar = 1;
 let summm = 0;
+
+
+let precio3 = 0;
+let precio2  = 0;
 export let stringDolar = "";
 export let margenReal = "";
 
@@ -225,6 +229,10 @@ pd_financiamiento = 0;
  tasa_interes = 0;
 
 
+
+ precio3 = 0;
+ precio2  = 0;
+
 }
 
 
@@ -241,6 +249,7 @@ export function obtenPartidasUnicas(datosPTN= [] ,  categoriasPTN= [] ,  Dolar= 
 
     if(Dolar.length != 0){   
         valorDolar = Dolar[0].proyecto_valor_dolar;
+        
         plazo_meses =  Dolar[0].proyecto_plazo_meses;
         name_cliente = Dolar[0].nombre_cliente;
         clave_p = Dolar[0].proyecto_clave;
@@ -298,12 +307,10 @@ if(dataFinancia.length > 0){
                 
 
                 if( dataPorcentajesC.length  ==  dataPorcentajesC.length  &&  dataPorcentajesC.length >0){
-                  margenGanancia.push(32);
+                  margenGanancia.push(0);
                   descuentoCliente.push(0);
                   Cantidad.push(1);
                   desFabrica.push(0);
-
-
            
                 }
                 
@@ -457,7 +464,7 @@ for (var i = 0; i < datosCompletosTotal.length; i++) {
 
   }
 
-datosCompletosTotal.push(suma);
+datosCompletosTotal.push(suma.toFixed(decimal));
 suma = 0; 
 /* console.log(datosCompletosAM);
 console.log(datosCompletosTotal);
@@ -479,53 +486,60 @@ console.log(datosCompletosTotal);
 
 
 
+/*=============CHECAR Obtener Lista Prov ===============================*/
+
+totallistaprov=0;
+
+let r = 0;
+for (var i = 0; i < prov.length - 1; i++) {
+
+
+   listaProv.push((prov[i] * Cantidad[i]).toFixed(decimal));
+
+    r  += parseFloat((prov[i] * Cantidad[i]).toFixed(decimal));
+   
+
+}
+
+
+listaProv.push(r.toFixed(decimal))
+r=0;
+
+
+
+
   //COSTO PTN
-  for (var i = 0; i < prov.length; i++) {
 
-  let suma = prov[i] * Cantidad[i];
-
-    listaProv.push(suma.toFixed(decimal));
-  
-  }
 
   for (var i = 0; i <  listaProv.length; i++) {
 
    let  m = 1 - (desFabrica[i] / 100);
-    costoPTN.push( listaProv[i] * m);
+
+   let x =  listaProv[i] * m;
+    costoPTN.push( x.toFixed(decimal));
   }
 
 
 
-/*============= Obtener Lista Prov ===============================*/
-
-totallistaprov=0;
-for (var i = 0; i < prov.length; i++) {
-   listaProv.push(prov[i] * Cantidad[i]);
-   var m = 1 - (desFabrica[i] / 100);
-   costoPTN.push(prov[i] * m);
-}
-
-    
-
- totallistaprov=0;
+   precio3 = costoPTN[costoPTN.length-1];
+  costoSinIndirectos = precio3;
 
 
 /*============= Obtener Lista Prov ===============================*/
 
 
-  /*============= Obtener Totales ===============================*/
+  /*============= Obtener Totales ccc===============================*/
   
   for (var i = 0; i < datosCompletosTotal.length -1 ; i++) {
     //Solucion
     totalPrecioVenta += parseFloat(datosCompletosTotal[i]);
     totallistaprov += parseFloat(listaProv[i]);
     totalprov += parseFloat(prov[i]);
-    totalCostoPTN += parseFloat(costoPTN[i]);
+   // totalCostoPTN += parseFloat(costoPTN[i]);
   
   }
   
-
-
+console.log("bb" ,costoPTN)
 
 calcularPrecioVenta();
     return partidasUnicas;
@@ -535,20 +549,28 @@ calcularPrecioVenta();
 
 
 
-
+let sumP = 0;
 function calcularPrecioVenta(){
 
     /*============= Calcular Precio Venta ===============================*/
 
- for (var i = 0; i < datosCompletosTotal.length ; i++) {
+ for (var i = 0; i < datosCompletosTotal.length -1 ; i++) {
     var x = datosCompletosTotal[i] * (100 - descuentoCliente[i]) / 100;
     var k = (100 - margenGanancia[i]) / 100;
     var z = x / k;
   /*============= Dejar Solo 3 Digitos despues del punto ===============================*/
     z = z.toFixed(decimal)
+
+    sumP+= parseFloat(z);
     precioVenta.push(z);
   
    }
+    
+
+   precioVenta.push(sumP.toFixed(decimal));
+   sumP = 0;
+
+   console.log(precioVenta);
 
 
 //Calcular Margen Directo
@@ -586,18 +608,15 @@ for (var i = 0; i < costosIndirectos.length - 1; i++) {
 
 
 
-  let precio3 = datosCompletosTotal[datosCompletosTotal.length-1];
-  costoSinIndirectos = precio3;
 
- let precio2 = totalIndirecto[totalIndirecto.length-1];
+ precio2 = totalIndirecto[totalIndirecto.length-1];
 
- costoFianalProyecto =  precio3 + precio2;
- costoFianalProyecto = costoFianalProyecto.toFixed(decimal);
+ costoFianalProyecto =  parseFloat(precio3) + parseFloat(precio2)  ;
 
 
 
  margenReal  = (1 - (costoFianalProyecto /  precioFinalVenta)) * 100;
-margenReal = margenReal.toFixed(decimal);
+ margenReal = margenReal.toFixed(decimal);
 
 
 final();

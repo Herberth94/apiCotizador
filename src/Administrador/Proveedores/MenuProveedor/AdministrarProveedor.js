@@ -71,28 +71,28 @@ function AdministrarProveedor() {
 
   return (
     <div className="contenido-usuarios">
-      <div className="head"></div>
+
         <div className="table-responsive">
             {/*============= Titulo Animación =============*/}
-            <Animaciones mytext="Buscar proveedores" />
+        {/*     <Animaciones mytext="Buscar proveedores" /> */}
             {/*********Búsqueda de Lista de Proyectos por Clave ********/}
             <div className="busqueda-proyectos">
               <Table responsive id="nombreDiv">
                   <thead>
                       <tr className="titulo-tabla-usuarios">
-                          <th>Nombre</th>
+                          <th className="ocultar">Buscar Por Nombre</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr >
-                          <td>
+                          <td className="busqueda">
                               <input 
                                   className="agregar"
                                   type="text"
                                   name="proveedor_nombre"
                                   onChange={e => onChangeTextNombreProv(e.target.value)}
                                   value={nombreProv}
-                                  placeholder="Ingrese el nombre del proveedor" 
+                                  placeholder="🔍︎  Buscar Proveedores" 
                               />
                           </td>
                       </tr>

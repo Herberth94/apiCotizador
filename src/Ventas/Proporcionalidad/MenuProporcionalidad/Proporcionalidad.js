@@ -17,11 +17,17 @@ function Proporcionalidad() {
     <div className="contenido-usuarios">
 
 
-
+{/* 
             <div> <Animaciones mytext="Resumen Proporcionalmente" /> </div>
- 
+  */}
             <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>
+
+                <tr className="titulo-tabla-usuarios">
+                        <th>Resumen Proporcionalmente</th>
+                 
+                     
+                    </tr>
                     {/*=================== Titulos Tabla Clientes ===================*/}
                     <tr className="titulo-tabla-usuarios">
                         <th>Descripción</th>
@@ -53,17 +59,17 @@ function Proporcionalidad() {
                       
 
                          {/*================= Proporcional Mesa de Ayuda==================*/}
-                            <td>{ proporcionalMesaAyuda[key]} {" $"}</td>
+                            <td>  {" $ "}{ proporcionalMesaAyuda[key]}</td>
 
                             {/*================= Total ==================*/}
 
-                            <td className="azul">{TOTAL[key]} {" $ "}</td>
+                            <td className="azul"> {" $ "} {TOTAL[key]} </td>
 
                   {/*================= Total Mensual ==================*/}
-                  <td className=""> {totalMensual[key]}{" $ "}</td>
+                  <td className=""> {" $ "} {totalMensual[key]}</td>
 
                     {/*================= Financiamiento ==================*/}
-                            <td>{financiamiento[key]}</td>
+                            <td> {" $"} {financiamiento[key]}</td>
                                 {/*================= eDITARF==================*/}   
                           
                         </tr>

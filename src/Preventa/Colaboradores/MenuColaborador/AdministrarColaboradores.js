@@ -137,28 +137,35 @@ function AdministrarColaboradores(props) {
   return (
     <div className="contenido-usuarios">
       <div className="table-responsive">
-        {/*========================== Titulo Animación =======================*/}
-        <div> <Animaciones   mytext= "Buscar proyecto"   /> </div>
+        <div className = "busqueda-proyectos">
 
+
+   
+        {/*========================== Titulo Animación =======================*/}
+    {/*     <div> <Animaciones   mytext= "Buscar proyecto"   /> </div>
+ */}
         <Table responsive id="nombreDiv">
           <thead>
             <tr className="titulo-tabla-usuarios">
-              <th>Clave</th>
+              <th className="ocultar">Clave</th>
             </tr>
           </thead>
           <tbody>
             <tr className="">
-              <td>
+              <td className =  "busqueda">
                   <input className="agregar"
                   type="text"
                   name="proyecto_clave"
                   onChange={e => onChangeTextClaveP(e.target.value)}
                   value={claveP}
-                  placeholder="Ingrese clave del proyecto" />
+                  placeholder=" 🔍︎Búsqueda por clave del proyecto" />
               </td>
             </tr>
           </tbody>
         </Table>
+
+
+        </div>
         {/****************************Lista de los Proyectos Creados ****************************************/}
         {/*============= Titulo Animación =============*/}
         <div> <Animaciones mytext="Lista de Proyectos" /></div>

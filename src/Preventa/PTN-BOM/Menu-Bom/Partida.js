@@ -1,49 +1,99 @@
-import React from 'react'
-import {InsertDatosPartida} from '../Routes/GuardarPartida'
+import React, { useEffect, useState } from "react";
+import { InsertDatosPartida } from "../Routes/GuardarPartida";
+import Table from "react-bootstrap/Table";
+import ModalPtnDatos from "../Routes/ModalPtnDatos";
+import axios from 'axios';
 
-function Partida() {
+function Partida({clave} ) {
+  const { handleInputChangePartida, enviarDatosPartida } = InsertDatosPartida();
 
-  const{
-    handleInputChangePartida,
-    enviarDatosPartida
-  } = InsertDatosPartida();
+  const [modalShow, setModalShow] = useState(false);
 
+  const [modalShow1, setModalShow1] = useState(true)
+  const [proyecto_id, Setproyecto_id] = useState([])
+  const lista = async (clave) =>{
+    console.log(clave);
+    try {
+      const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
+      Setproyecto_id(respuesta.data.reSql)
+    
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+  
 
   return (
     <div className="contenido-usuarios">
-    {/*========================== Nombre Partida ==========================*/}
-      <br />
+      {/*========================== Nombre Partida ==========================*/}
+
       <form action="" method="post" onSubmit={enviarDatosPartida}>
-        <input
-          className="agregar"
-          type="text"
-          name="partida_nombre"
-          onChange={handleInputChangePartida}
-          placeholder="Ingrese Nombre Partida"
-        />
+        <Table responsive id="nombreDiv">
+          <thead>
+            <tr className="titulo-tabla-usuarios">
+              <th>Nombre Partida</th>
+              <th>Descripción </th>         
+              <th> Partidas Agregadas</th>
+              <th> Agregar Datos</th>
+            </tr>
+          </thead>
 
-        <br />
-        <br />
+          <tbody>
+            <tr className="">
+              {/*=======================  Nombre Partida ======================= */}
+              <td>
+                <input
+                  className="agregar"
+                  type="text"
+                  name="partida_nombre"
+                  onChange={handleInputChangePartida}
+                  placeholder="Ingrese Nombre Partida"
+                />
+              </td>
 
-        {/*========================== Descripción Partida ==========================*/}
-        <input
-          className="agregar"
-          type="text"
-          name="partida_descripcion"
-          onChange={handleInputChangePartida}
-          placeholder="ingrese Descripción Partida"
-        />
+              
+              {/*=======================  DescripciónPartida ======================= */}
+              <td>
+                <input
+                  className="agregar"
+                  type="text"
+                  name="partida_descripcion"
+                  onChange={handleInputChangePartida}
+                  placeholder="ingrese Descripción Partida"
+                />
+              </td>
 
-        <br />
-        <br />
-        {/*========================== Botón Agregar Partidas ==========================*/}
-        <button className="btn btn-success">Agregar Datos Partida</button>
-      </form>
-      <br />
-      <br />
-  </div>
-  
-  )
+
+
+              <td width={"100px"}>
+
+
+      <button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (clave)}} >
+        <i class="bi bi-eye-fill"></i>
+        </button><br/><br/>
+      {modalShow && modalShow1 ?   
+      <ModalPtnDatos
+      show={modalShow}
+      proyecto_id={proyecto_id}
+      onHide={() => setModalShow(false)}  
+     
+      />
+         :  ''  } 
+              </td>
+              <td width={"100px"}>
+                <button className="btn btn-primary Mod">
+                <i class="bi bi-send"></i>
+                </button>
+              </td>
+              {/*========================== Botón Agregar Partidas ==========================*/}
+            </tr>
+          </tbody>
+        </Table>
+        </form>
+    </div>
+  );
 }
 
-export default Partida
+export default Partida;

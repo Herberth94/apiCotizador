@@ -82,7 +82,7 @@ function archivo() {
           <li className="has-subnav">
             <a href="/asignar-proyecto">
               <i className="bi bi-list"></i>
-              <span className="nav-text">Menú Ventas</span>
+              <span className="nav-text">Asignar proyectos Ventas</span>
             </a>
           </li>
 

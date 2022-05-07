@@ -28,9 +28,9 @@ function AmMenu() {
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
-            <th>Divisa</th>
-            <th>Resumen AM</th>
-            <th>Costos Indirectos</th>
+            <th className="ocultar">Divisa</th>
+            <th className="ocultar">Resumen AM</th>
+            <th className="ocultar">Costos Indirectos</th>
           </tr>
         </thead>
         <tbody>
@@ -47,7 +47,7 @@ function AmMenu() {
                 }}
               >
                 {" "}
-                {show ? "Agregar" : "Ocultar"}{" "}
+                {show ? "Agregar Divisa" : "Ocultar"}{" "}
               </button>
               {show ? (
                 <div></div>
@@ -70,7 +70,7 @@ function AmMenu() {
                 }}
               >
                 {" "}
-                {show2 ? "ver" : "Ocultar"}{" "}
+                {show2 ? "Resumen AM" : "Ocultar"}{" "}
               </button>
               {show2 ? (
                 <div></div>
@@ -93,7 +93,7 @@ function AmMenu() {
                 }}
               >
                 {" "}
-                {show3 ? "Ver " : "Ocultar "}{" "}
+                {show3 ? "Costos Indirectos" : "Ocultar "}{" "}
               </button>
               {show3 ? (
                 <div></div>

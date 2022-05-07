@@ -80,13 +80,15 @@ function Divisa() {
         const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
         
         const [data,setData] = useState ({
-            proyecto_valor_dolar:''     
+            proyecto_valor_dolar:'',
+            proyecto_id_moneda:''
         });
 
         const handleInputChange = (event) => {
             setData ({
             ...data,[event.target.name] : event.target.value ,
             })
+            console.log(data);
         }
 
         const [enable, setenable] = useState([]);
@@ -120,9 +122,13 @@ function Divisa() {
                     if(enable[i] === false){
                         newArr2[i] = 'bi bi-pencil-square';
                         setData({
-                            ...data,proyecto_valor_dolar:''
+                            ...data,proyecto_valor_dolar:'',
+                                    proyecto_id_moneda:''
                         })
                     }else{
+                        setData({
+                                proyecto_id_moneda:suggestions[key].proyecto_id_moneda
+                        })
                         newArr2[i] = 'bi bi-check-lg';
                     }
                     newArr3[i] = !activar[i];
@@ -147,34 +153,45 @@ function Divisa() {
   return (
     <div className="contenido-usuarios">
             {/*======================= Titulo Animación =======================*/}
-            <div> <Animaciones mytext="Divisa" /> </div>
+        {/*     <div> <Animaciones mytext="Divisa" /> </div> */}
                 {/*********Búsqueda de Proyectos AM ********/}
 
                 <div className="busqueda-proyectos">
                     <Table responsive id="nombreDiv">
                         <thead>
                             <tr className="azul">
-                                <th>Clave Proyecto</th>
+                                <th className='ocultar'>Clave Proyecto</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr >
-                                <td>
+                                <td className='busqueda'>
                                 <input className="agregar"
                                         type="text"
                                         name="proyecto_clave"
                                         onChange={e => onChangeTextClaveP(e.target.value)}
                                         value={claveP}
-                                        placeholder="Clave Proyecto" />
+                                        placeholder= "🔎 Búsqueda por Clave del Proyecto" />
                                 </td>
                             </tr>
                         </tbody>
                     </Table>
-                    {/****************************Lista de los Proyectos Creados ****************************************/}
-                {/*============= Titulo Animación =============*/}
-                <div> <Animaciones mytext="Proyectos" /> </div>
 
+             </div>
+
+                    {/****************************Lista de los Proyectos Creados ****************************************/}
+            {/*  
+                <div> <Animaciones mytext="Proyectos" /> </div>
+ */}
                 <Table responsive  striped bordered hover size="sm">
+
+                <thead>
+                        <tr className="titulo-tabla-usuarios">
+                            <th>Divisa </th>
+                         
+                            
+                        </tr>
+                    </thead>         
                     <thead>
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
@@ -184,6 +201,7 @@ function Divisa() {
                             <th>Fecha de creción</th>
                             <th>Estatus</th>
                             <th>Valor dolar</th>
+                            <th>Moneda</th>
                             <th>Plazo Meses</th>
                             <th>Divisa</th>
                             <th></th>
@@ -194,7 +212,7 @@ function Divisa() {
                         {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
                             <tr key={suggestions[key].proyecto_id} >
-                                <td>{suggestions[key].proyecto_id}</td>   
+                                <td width={"50px"}>{suggestions[key].proyecto_id}</td>   
                                 <td>{suggestions[key].proyecto_clave}</td>  
                                 <td>{suggestions[key].proyecto_descripcion}</td>  
                                 <td>{suggestions[key].nombre_cliente}</td> 
@@ -208,6 +226,20 @@ function Divisa() {
                                     onChange={handleInputChange}
                                     name="proyecto_valor_dolar" 
                                     ></input>
+                                </td>
+
+                                <td width={"100px"}>
+                                <select 
+                                id="lista-opciones" 
+                                name="proyecto_id_moneda" 
+                                value={enable[key] ? suggestions[key].proyecto_id_moneda : data.proyecto_id_moneda} 
+                                disabled={enable[key]} 
+                                onChange={handleInputChange}
+                                >
+                                    <option value={0}></option>
+                                    <option value={1}>MXN</option>
+                                    <option value={2}>USD</option>
+                                </select>
                                 </td>
                                 <td width={"5px"}>{suggestions[key].proyecto_plazo_meses}</td> 
                               {/*   <td>
@@ -278,8 +310,7 @@ function Divisa() {
                         ))}
                     </tbody>          
                 </Table>
-            </div>
-
+          
 
     </div>
   )

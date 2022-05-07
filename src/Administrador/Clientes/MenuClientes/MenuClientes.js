@@ -22,8 +22,8 @@ function MenuClientes() {
   {/*========================== Titulos Tabla ==========================*/}
   <thead>
     <tr className="titulo-tabla-usuarios">
-      <th>Registrar Clientes</th>
-      <th>Administrar Clientes </th>
+      <th className='ocultar'>Registrar Clientes</th>
+      <th className='ocultar'>Administrar Clientes </th>
     </tr>
   </thead>
   <tbody>
@@ -39,7 +39,7 @@ function MenuClientes() {
           }}
         >
           {" "}
-          {show ? "Registrar" : "Ocultar"}{" "}
+          {show ? "Registrar Clientes" : "Ocultar"}{" "}
         </button>
         {show ? (
           <div></div>
@@ -61,7 +61,7 @@ function MenuClientes() {
           }}
         >
           {" "}
-          {show2 ? "Administrar" : "Ocultar"}{" "}
+          {show2 ? "Administrar Clientes" : "Ocultar"}{" "}
         </button>
         {show2 ? (
           <div></div>
