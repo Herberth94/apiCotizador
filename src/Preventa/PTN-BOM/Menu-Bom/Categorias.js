@@ -14,19 +14,18 @@ let validatorid = cookies.get('id_usuario');
 
 
 let validaOperacion = false;
-
-function checa(){
-
-    validaOperacion = !validaOperacion;
-    
-    }
-    
-    
-
 function Categorias(props) {
     /*=================================== Obtención de datos en la tabla precio ===================================*/
     // Almacenamiento de los datos
     console.log(props.clave)
+    function checa(){
+
+        validaOperacion = !validaOperacion;
+        setBdesc(!Bdesc);
+        setBdesc2(!Bdesc2);
+        
+        }
+        
     const [datos, setDatos] = useState({
         precio_lista: '',
         precio_unitario: '',
@@ -89,6 +88,8 @@ function Categorias(props) {
     const {enviarDatos,handleInputChange,finalizarProy} = InsertDatosCats();
     const [modalShow, setModalShow] = useState(false);
     const [DatosCat, SetDatosCat] = useState([])
+    const[ Bdesc, setBdesc]= useState(true);
+    const[ Bdesc2, setBdesc2]= useState(false);
     const lista = async (clave) =>{
         try {
             const respuesta = await axios.get(url2+`/api/cotizador/catd/view/modal/${clave}`);
@@ -99,7 +100,18 @@ function Categorias(props) {
         }
         
     }
+   const send =(e,datos)=>{
+    enviarDatos(e, datos);
+    setDatos({
+        precio_lista: '',
+        precio_unitario: '',
+        precio_descuento: '',
+        cd_cantidad: '',
+        precio_total: '',
+        precio_id_moneda:''
+    });
 
+   }
     
     
     return (
@@ -113,7 +125,7 @@ function Categorias(props) {
              proyecto_id={DatosCat}
              onHide={() => setModalShow(false)}  
              />:  ''  } 
-            <form action="" method="post" onSubmit = {(e) => {enviarDatos(e, datos)}}>
+            <form action="" method="post" onSubmit = {(e) => {send(e, datos)}}>
                 <Table responsive id="nombreDiv">
                 {/*========================== Titulos Tabla ==========================*/}
                 <thead>
@@ -262,6 +274,7 @@ function Categorias(props) {
                         onChange={handleInputChangePrecio}
                         placeholder="Precio unitario"
                         step="any"
+                        disabled={Bdesc2}
                         />
                     </td>
                     {/*======================== Descuento==========================*/}
@@ -276,6 +289,7 @@ function Categorias(props) {
                         placeholder="Descuento"
                         min="0"
                         step="any"
+                        disabled ={Bdesc}
                         />
                     </td>
                     {/*======================== Total ==========================*/}

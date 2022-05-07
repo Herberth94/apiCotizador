@@ -200,7 +200,7 @@ export const InsertDatosCats = () => {
     const enviarDatos = (event,datosPrecio) =>{
         //console.log(datosPrecio);
         Send(datosPrecio);
-        event.preventDefault()
+        event.preventDefault();
         event.target.reset();
     }
     /*==============================================================================================================*/
