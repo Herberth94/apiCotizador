@@ -78,7 +78,7 @@ function AdministrarUsuarios() {
           <div className="">
           <div>
               {/*======================= Titulo Animación =======================*/}
-               <Animaciones   mytext= "Lista de Usuarios"      /> 
+     {/*           <Animaciones   mytext= "Lista de Usuarios"      />  */}
          </div>
 
   {/*================= Botón Mostrar/Ocultar Lista ==================*/}
