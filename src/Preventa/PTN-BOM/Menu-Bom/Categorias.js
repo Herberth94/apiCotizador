@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState,useEffect } from 'react';
+import {url, url2} from '../../../Componentes/Ocultar';
 import Table from "react-bootstrap/Table";
 import axios from 'axios';
 import Cookies from 'universal-cookie';
@@ -90,7 +91,7 @@ function Categorias(props) {
     const [DatosCat, SetDatosCat] = useState([])
     const lista = async (clave) =>{
         try {
-            const respuesta = await axios.get(`http://localhost:4001/api/cotizador/catd/view/modal/${clave}`);
+            const respuesta = await axios.get(url2+`/api/cotizador/catd/view/modal/${clave}`);
             SetDatosCat(respuesta.data.data)
             
         } catch (error) {

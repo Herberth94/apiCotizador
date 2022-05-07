@@ -517,7 +517,7 @@ function DatosSP({clave} ) {
   const lista = async (clave) =>{
     console.log(clave);
     try {
-      const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
+      const respuesta = await axios.get(url2+`/api/cotizador/proyecto/viewModal/${clave}`);
       Setproyecto_id(respuesta.data.reSql)
     
       
