@@ -14,10 +14,15 @@ function Categorias() {
 
        <br/>
 
-            <div> <Animaciones mytext="Resumen Categorias" /> </div>
- 
+          {/*   <div> <Animaciones mytext="Resumen Categorias" /> </div>
+  */}
             <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>
+
+                <tr className="titulo-tabla-usuarios">
+                        <th>Resumen Categorias</th>
+                  
+                    </tr>
                     {/*=================== Titulos Tabla Clientes ===================*/}
                     <tr className="titulo-tabla-usuarios">
                         <th>Descripción</th>

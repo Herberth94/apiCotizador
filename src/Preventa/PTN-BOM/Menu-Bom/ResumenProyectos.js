@@ -105,8 +105,8 @@ function Proyectos() {
                 {/*========================== Titulos Tabla ==========================*/}
                 <thead>
                     <tr className="titulo-tabla-usuarios">
-                        <th>Mis Proyectos</th>
-                        <th>Otros Proyectos</th>
+                        <th className='ocultar'>Mis Proyectos</th>
+                        <th className='ocultar'>Proyectos en Colaboración</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -114,7 +114,7 @@ function Proyectos() {
                         {/*========================== Divisa ==========================*/}
                         <td>
                             <button
-                            className="btn btn-primary modificar"
+                            className="btn btn-primary Mod2"
                             type="button"
                             onClick={() => {
                             setShow(!show);
@@ -123,12 +123,12 @@ function Proyectos() {
                             }}
                             >
                             {" "}
-                            {show ? "Mostrar" : "Ocultar"}{" "}
+                            {show ? "Mis Proyectos" : "Ocultar"}{" "}
                             </button>
                         </td>
                         <td>
                             <button
-                            className="btn btn-primary modificar"
+                            className="btn btn-primary Mod2"
                             type="button"
                             onClick={() => {
                             setShow1(!show1);
@@ -137,7 +137,7 @@ function Proyectos() {
                             }}
                             >
                             {" "}
-                            {show1 ? "Mostrar" : "Ocultar"}{" "}
+                            {show1 ? "Proyectos en Colaboración" : "Ocultar"}{" "}
                             </button>
                         </td>
                     </tr>
@@ -148,25 +148,25 @@ function Proyectos() {
             ):(
                 <div className="table-responsive">
                 {/*============= Titulo Animación =============*/}
-                <Animaciones mytext="Buscar proyectos" />
-
+              {/*   <Animaciones mytext="Buscar proyectos" />
+ */}
                 {/*********Búsqueda de Lista de Proyectos por Clave ********/}
                 <div className="busqueda-proyectos">
                     <Table responsive id="nombreDiv">
                         <thead>
                             <tr className="titulo-tabla-usuarios">
-                                <th>Búsqueda por clave</th>
+                                <th className='ocultar'>Búsqueda por clave</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr >
-                                <td>
+                                <td className='busqueda'>
                                     <input className="agregar"
                                         type="text"
                                         name="proyecto_clave"
                                         onChange={e => onChangeTextClaveP(e.target.value)}
                                         value={claveP}
-                                        placeholder="Ingrese clave del proyecto" />
+                                        placeholder="🔎 Búsqueda por clave del proyecto" />
                                 </td>
                             </tr>
                         </tbody>

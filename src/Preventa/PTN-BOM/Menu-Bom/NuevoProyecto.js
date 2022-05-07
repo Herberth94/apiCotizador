@@ -182,20 +182,33 @@ function NuevoProyecto() {
 
     <div className="contenido-usuarios">
       {/*======================= Titulo Animación =======================*/}
-      <div> <Animaciones mytext="Datos Proyecto" /> </div>
-
+    {/*   <div> <Animaciones mytext="Datos Proyecto" /> </div>
+ */}
       {/*=======================  Tabla Nuevo Proyecto ======================= */}
       <form action="" method="post" onSubmit={enviarDatos}>
         <Table responsive id="nombreDiv">
 
           {/*======================= Titulos Tabla ======================= */}
+
+
+          <thead >
+            <tr className="titulo-tabla-usuarios">
+           
+              <th >Agregar Nuevo proyecto</th>
+            
+            </tr>
+
+          </thead>
+
+
+
           <thead>
             <tr className="titulo-tabla-usuarios">
               <th>Clave</th>
               <th>Descripción</th>
               <th> Cliente </th>
               <th> Plazo Meses </th>
-              <th> Añadir </th>
+              <th> Agregar Proyecto </th>
             </tr>
           </thead>
 
@@ -252,23 +265,29 @@ function NuevoProyecto() {
               </td>
               <td>
                 {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
-                <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button>
+ {/*                <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button> */}
+ <button className="btn btn-primary modificar" type="submit" onClick={() => { setShow(!show) }}>  {show ? 'Iniciar' : 'Ocultar Datos'}    </button>
+      {show ? (
+        <div >
+
+        </div>
+      ) : 
+      
+      
+      (
+        <div className="arregla">
+          <DatosPTN clave={clavep} />
+        </div>
+      )}
+            
               </td>
             </tr>
           </tbody>
         </Table>
 
       </form>
-      <button className="btn btn-primary modificar" type="submit" onClick={() => { setShow(!show) }}>  {show ? 'Empezar' : 'Ocultar Datos'}    </button>
-      {show ? (
-        <div >
 
-        </div>
-      ) : (
-        <div className="arregla">
-          <DatosPTN clave={clavep} />
-        </div>
-      )}
+ 
 
 
     </div>

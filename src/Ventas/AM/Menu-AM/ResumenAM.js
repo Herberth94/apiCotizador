@@ -257,34 +257,44 @@ const ResumenAM = () => {
 
     return (
         <div className="contenido-usuarios">
-            <div> <Animaciones mytext="AM COMPLETO" /> </div>
+      {/*       <div> <Animaciones mytext="AM COMPLETO" /> </div> */}
             <div className="busqueda-proyectos">
                 <Table responsive id="nombreDiv">
                     <thead>
                         <tr className="azul">
-                            <th>Clave Proyecto</th>
+                            <th className='ocultar'>Clave Proyecto</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr >
-                            <td>
+                            <td className='busqueda'>
                                 <input className="agregar"
                                         type="text"
                                         name="proyecto_clave"
                                         onChange={e => onChangeTextClaveP(e.target.value)}
                                         value={claveP}
-                                        placeholder="Ingresa la clave del Proyecto" 
+                                        placeholder=" 🔎 Búsqueda por Clave del Proyecto" 
                                 />
                             </td>
                         </tr>
                     </tbody>
                 </Table>
+
+                </div>
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-                <div > <Animaciones mytext="Proyectos " /> </div>
-
+               {/*  <div > <Animaciones mytext="Proyectos " /> </div>
+ */}
                 <Table responsive  striped bordered hover size="sm">
+
+               
+                    
                     <thead>
+
+                    <tr className="titulo-tabla-usuarios">
+                            <th>Resumen AM</th>
+                        </tr>
+                  
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
                             <th>Clave</th>
@@ -302,7 +312,7 @@ const ResumenAM = () => {
                         {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
                             <tr key={suggestions[key].proyecto_id} >
-                                <td>{suggestions[key].proyecto_id}</td>   
+                                <td width={"50px"}>{suggestions[key].proyecto_id}</td>   
                                 <td>{suggestions[key].proyecto_clave}</td>  
                                 <td>{suggestions[key].proyecto_descripcion}</td>  
                                 <td>{suggestions[key].nombre_cliente}</td> 
@@ -326,7 +336,7 @@ const ResumenAM = () => {
                         ))}
                     </tbody>          
                 </Table>
-            </div>
+      
             {show1 ? (
                 <div></div>
             ):(

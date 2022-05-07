@@ -78,10 +78,16 @@ function CostosIndirectos(props) {
       
     <div className="contenido-usuarios">
   <br/>   
-   <div> <Animaciones mytext="Costos Indirectos" /> </div>
+ {/*   <div> <Animaciones mytext="Costos Indirectos" /> </div> */}
 
    <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>
+
+                   <tr className="titulo-tabla-usuarios">
+                        <th>Costos Indirectos</th>
+           
+ 
+                    </tr>
                     {/*=================== Titulos Tabla Clientes ===================*/}
                     <tr className="titulo-tabla-usuarios">
                         <th>Descripción</th>
@@ -99,22 +105,22 @@ function CostosIndirectos(props) {
                     {Object.keys(costosIndirectos).map((key) => (
                         <tr key={key}>
                             {/*================= Descripción==================*/}
-                            <td>{costosIndirectos[key]}</td>
+                            <td width={"200px"}>{costosIndirectos[key]}</td>
 
                             {/*================= Equivale ==================*/}
-                            <td  width={"100px"}   className="editar" >
+                            <td  width={"200px"}   className="editar" >
                                         <input
                                         className="input-name"
                                         type="number"
-                                        defaultValue={equivale[key] }
+                                        defaultValue={equivale[key] } 
                                         disabled={enable[key]} 
                                         onChange={handleInputChange}
                                         name="porcentaje" 
                                         ></input> 
                                     </td>
                             {/*================= Total Indirecto ==================*/}
-                            <td>{ totalIndirecto[key]}</td>
-                            <td width={"50px" }>{stringDolar}</td>
+                            <td> {" $ "}{ totalIndirecto[key]} </td>
+                            <td width={"100px" }>{stringDolar}</td>
 
                             {/*================= Editar==================*/}
                      {/*        <td>

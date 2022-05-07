@@ -26,8 +26,8 @@ function ProporcionalidadMenu() {
         <thead>
           <tr className="titulo-tabla-usuarios">
         
-            <th>Resumen</th>
-            <th>Financiamiento</th>
+            <th className="ocultar">Resumen</th>
+            <th className="ocultar">Financiamiento</th>
     
           </tr>
         </thead>
@@ -44,7 +44,7 @@ function ProporcionalidadMenu() {
                 }}
               >
                 {" "}
-                {show ? "Ver" : "Ocultar"}{" "}
+                {show ? "Resumen Financiamiento" : "Ocultar"}{" "}
               </button>
               {show ? (
                 <div></div>
@@ -66,7 +66,7 @@ function ProporcionalidadMenu() {
                 }}
               >
                 {" "}
-                {show2 ? "Registrar Datos " : "Ocultar"}{" "}
+                {show2 ? "Registrar Financiamiento " : "Ocultar"}{" "}
               </button>
               {show2 ? (
                 <div></div>

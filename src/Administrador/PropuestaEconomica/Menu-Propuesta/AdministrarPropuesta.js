@@ -44,15 +44,23 @@ function AdministrarPropuesta(props) {
 
 
       <div className="table-responsive">
-      <br/>      <br/>
+  
 
-        <div>
+     {/*    <div>
           <Animaciones mytext="Validación" />
         </div>
-
+ */}
         <Table responsive id="nombreDiv">
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
+
+          <tr className="titulo-tabla-usuarios">
+        
+              <th>Revisión de Proyectos</th>
+         
+            </tr>
+
+
             <tr className="titulo-tabla-usuarios">
            {/*    <th>Propuestas</th> */}
               <th>Rechazar Proyecto</th>

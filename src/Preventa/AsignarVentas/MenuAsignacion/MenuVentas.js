@@ -25,8 +25,8 @@ function MenuVentas() {
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
-            <th>Asignar Proyectos</th>
-            <th>Administrar Ventas </th>
+            <th className="ocultar">Asignar Proyectos</th>
+            <th className="ocultar">Administrar Ventas </th>
           </tr>
         </thead>
         <tbody>
@@ -42,7 +42,7 @@ function MenuVentas() {
                 }}
               >
                 {" "}
-                {show ? "Registrar" : "Ocultar"}{" "}
+                {show ? "Asignar Proyectos" : "Ocultar"}{" "}
               </button>
               {show ? (
                 <div></div>
@@ -64,7 +64,7 @@ function MenuVentas() {
                 }}
               >
                 {" "}
-                {show2 ? "Administrar" : "Ocultar"}{" "}
+                {show2 ? "Administrar Usuarios Ventas" : "Ocultar"}{" "}
               </button>
               {show2 ? (
                 <div></div>

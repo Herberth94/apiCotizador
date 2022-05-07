@@ -113,35 +113,41 @@ function BuscadorProyectoFinanciamiento() {
     return (
         <div className="contenido-usuarios">
             {/*======================= Titulo Animación =======================*/}
-            <div> <Animaciones mytext="Divisa" /> </div>
+        {/*     <div> <Animaciones mytext="Divisa" /> </div> */}
             {/*********Búsqueda de Proyectos AM ********/}
 
             <div className="busqueda-proyectos">
                 <Table responsive id="nombreDiv">
                     <thead>
                         <tr className="azul">
-                            <th>Clave Proyecto</th>
+                            <th className='ocultar'>Clave Proyecto</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr >
-                            <td>
+                            <td className='busqueda'> 
                                 <input className="agregar"
                                     type="text"
                                     name="proyecto_clave"
                                     onChange={e => onChangeTextClaveP(e.target.value)}
                                     value={claveP}
-                                    placeholder="Clave Proyecto" />
+                                    placeholder=" 🔎 Búsqueda por Clave del Proyecto" />
                             </td>
                         </tr>
                     </tbody>
                 </Table>
+                </div>
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-                <div> <Animaciones mytext="Proyectos" /> </div>
-
+              {/*   <div> <Animaciones mytext="Proyectos" /> </div>
+ */}
                 <Table responsive striped bordered hover size="sm">
                     <thead>
+
+                    <tr className="titulo-tabla-usuarios">
+                            <th>Financiamiento</th>
+              
+                        </tr>
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
                             <th>Clave</th>
@@ -190,7 +196,7 @@ function BuscadorProyectoFinanciamiento() {
                         <ModificarFinanciamiento propIdProyecto={idAsignado} />
                     </div>
                 )}
-            </div>
+       
 
 
         </div>

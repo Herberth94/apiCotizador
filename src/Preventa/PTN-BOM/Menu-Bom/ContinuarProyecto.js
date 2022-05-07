@@ -249,8 +249,8 @@ function ContinuarProyecto() {
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
               <tr className="titulo-tabla-usuarios">
-                  <th>Mis Proyectos</th>
-                  <th>Otros Proyectos</th>
+                  <th className= "ocultar">Mis Proyectos</th>
+                  <th className = "ocultar">Otros Proyectos</th>
               </tr>
           </thead>
           <tbody>
@@ -267,7 +267,7 @@ function ContinuarProyecto() {
                       }}
                       >
                       {" "}
-                      {show6 ? "Mostrar" : "Ocultar"}{" "}
+                      {show6 ? "Mis Proyectos" : "Ocultar"}{" "}
                       </button>
                   </td>
                   <td>
@@ -281,7 +281,7 @@ function ContinuarProyecto() {
                       }}
                       >
                       {" "}
-                      {show7 ? "Mostrar" : "Ocultar"}{" "}
+                      {show7 ? "Proyectos Colaboración" : "Ocultar"}{" "}
                       </button>
                   </td>
               </tr>
@@ -292,19 +292,19 @@ function ContinuarProyecto() {
       ):(
       <div className="table-responsive">
         {/*============= Titulo Animación =============*/}
-        <Animaciones mytext="Buscar proyectos" />
-
+       {/*  <Animaciones mytext="Buscar nn proyectos" />
+ */}
         <div className="busqueda-proyectos">
           <Table responsive id="nombreDiv">
             <thead>
               <tr className="titulo-tabla-usuarios">
-                <th>Clave</th>
+                <th className='ocultar'>Clave</th>
               </tr>
             </thead>
 
             <tbody>
               <tr className="">
-                <td>
+                <td className= "busqueda">
                     <input className="agregar"
                     type="text"
                     name="proyecto_clave"
@@ -315,6 +315,8 @@ function ContinuarProyecto() {
               </tr>
             </tbody>
           </Table>
+
+          </div>
           {/****************************Lista de los Proyectos Creados ****************************************/}
           {/*============= Titulo Animación =============*/}
           <div>
@@ -381,7 +383,7 @@ function ContinuarProyecto() {
               ))}
               </tbody>          
           </Table>
-        </div>
+       
       </div>
       )}
 
