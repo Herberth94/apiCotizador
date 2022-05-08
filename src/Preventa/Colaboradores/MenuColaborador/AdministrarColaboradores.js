@@ -168,8 +168,7 @@ function AdministrarColaboradores(props) {
         </div>
         {/****************************Lista de los Proyectos Creados ****************************************/}
         {/*============= Titulo Animación =============*/}
-        <div> <Animaciones mytext="Lista de Proyectos" /></div>
-
+     
         <Table responsive  striped bordered hover size="sm">
             <thead>
               <tr className="titulo-tabla-usuarios">

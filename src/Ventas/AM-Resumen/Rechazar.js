@@ -2,9 +2,9 @@ import React from 'react';
 import Table from 'react-bootstrap/Table'
 import { useState } from "react";
 import axios from 'axios';
-import { url2 } from '../../../Componentes/Ocultar';
+import { url2 } from '../../Componentes/Ocultar';
 
-function AdministrarPropuesta(props) {
+function Rechazar(props) {
   const [show, setShow] = useState(true)
 
   // cambio de estatus en el la base de datos del proyecto seleccionado a validado
@@ -62,9 +62,7 @@ function AdministrarPropuesta(props) {
             <tr className="titulo-tabla-usuarios">
            {/*    <th>Propuestas</th> */}
               <th>Rechazar Proyecto</th>
-              <th>Validar Proyecto</th>
-
-
+         
             </tr>
           </thead>
           <tbody>
@@ -81,11 +79,11 @@ function AdministrarPropuesta(props) {
               </td>
 
 
-              <td>
+       {/*        <td>
 
                 <button className="btn btn-primary" onClick={()=>{cambioEstatusProyectoValidad()}} type="button"> Validar </button>
               </td>
-
+ */}
 
           {/*     <td>
                 <ExportarPDF />
@@ -107,4 +105,4 @@ function AdministrarPropuesta(props) {
   )
 }
 
-export default AdministrarPropuesta
+export default Rechazar

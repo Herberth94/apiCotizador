@@ -57,7 +57,7 @@ export const Partida_catalogo = () => {
         setDivisaProy(pDiv);   
         dolar = pDiv;
         obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
-      // console.log("dollar , " , dolar)
+       console.log("FUNCIONANDO   =  N  , " , dolar)
     };
 
 
@@ -75,9 +75,9 @@ export const Partida_catalogo = () => {
          dataFinanciamiento  = dF;
          obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  ,  dataFinanciamiento) ;
 
-         console.log(' Datos financiamineto xxxx  ',dF);
+    /*      console.log(' Datos financiamineto xxxx  ',dF);
 
-
+ */
          
         }
 
@@ -99,7 +99,9 @@ export const Partida_catalogo = () => {
             dataCategoria= tC;
     
             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes    );
-            
+              
+
+            console.log("verificar ",dataCategoria)
     
             };
 

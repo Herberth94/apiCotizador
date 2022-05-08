@@ -69,7 +69,7 @@ function MenuPreventa() {
             <a href="/asignar">
               <i className="bi bi-list"></i>
               <span className="nav-text">
-            Menú ventas
+           Asignación de proyectos
               </span>
             </a>           
           </li>
@@ -87,6 +87,8 @@ function MenuPreventa() {
           </li>
 
 
+
+ 
           <li className="has-subnav">
             <a href="/calculadora">
               <i className="bi bi-calculator-fill"></i>

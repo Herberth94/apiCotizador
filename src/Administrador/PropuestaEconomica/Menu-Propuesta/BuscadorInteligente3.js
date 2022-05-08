@@ -5,8 +5,6 @@ import Animaciones from "../../../Componentes/Animaciones";
 import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../../Ventas/Operaciones/totalPartida';
-import AdministrarPropuesta from './AdministrarPropuesta';
-import PEconomica from './PEconomica';
 import Formulario from './Formulario';
 
 

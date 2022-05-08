@@ -50,6 +50,7 @@ import MenuVentas from "./Ventas/MenuVentas";
 import AsignarProyecto from "./Preventa/AsignarVentas/MenuAsignacion/AsignarProyecto";
 import { calcularDescuento } from "./Preventa/PTN-BOM/Operaciones/Operaciones";
 
+import MenuValidacion from "./Ventas/AM-Resumen/MenuValidacion";
 
 
 import Temas from "./Temas";
@@ -117,7 +118,7 @@ function App() {
         <Venta exact path="/menu-clientes" component={MenuClientes} />
         <Venta path="/menu-proveedores" component={MenuProveedor} />
         <Venta exact path="/am" component={AM} />
-        <Venta exact path="/propuesta-economica" component={PropuestaEconomica} />
+        <Venta exact path="/propuesta-economica" component={ MenuValidacion } />
         <Venta path="/calculadora" component={MenuHeramientas} />
         <Venta exact path="/proporcionalidad" component={Proporcionalidad} />
 
