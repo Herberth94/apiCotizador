@@ -48,9 +48,9 @@ function PTN_BOM() {
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
-            <th>Nuevo Proyecto</th>
-            <th>Continuar Proyecto</th>
-            <th> Resumen </th>
+            <th className="ocultar">Nuevo Proyecto</th>
+            <th className="ocultar">Continuar Proyecto</th>
+            <th className="ocultar"> Resumen </th>
           </tr>
         </thead>
         <tbody>
@@ -70,7 +70,7 @@ function PTN_BOM() {
                 }}
               >
                 {" "}
-                {show ? "Añadir" : "Ocultar Proyecto"}{" "}
+                {show ? "Nuevo proyecto" : "Ocultar Proyecto"}{" "}
               </button>
               {show ? (
                 <div></div>
@@ -93,7 +93,7 @@ function PTN_BOM() {
                 }}
               >
                 {" "}
-                {show2 ? "Continuar" : "Ocultar Proyecto"}{" "}
+                {show2 ? "Continuar Proyecto" : "Ocultar Proyecto"}{" "}
               </button>
               {show2 ? (
                 <div></div>
@@ -116,7 +116,7 @@ function PTN_BOM() {
                 }}
               >
                 {" "}
-                {show3 ? "Ver Proyectos" : "Ocultar Proyecto"}{" "}
+                {show3 ? "Resumen Proyectos" : "Ocultar Proyecto"}{" "}
               </button>
               {show3 ? (
                 <div></div>

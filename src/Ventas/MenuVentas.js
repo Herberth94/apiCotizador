@@ -74,6 +74,15 @@ function archivo() {
             </a>           
           </li>
 
+          <li className="has-subnav">
+            <a href="/resumen-ptn">
+              <i className="bi bi-briefcase-fill fa-2x"></i>
+              <span className="nav-text">
+            Resumen PTN-BOM
+              </span>
+            </a>           
+          </li>
+
 
           <li className="has-subnav">
             <a href="/proporcionalidad">
@@ -85,12 +94,17 @@ function archivo() {
           </li>
 
 
+
+          
+
+
+
           
           <li className="has-subnav">
             <a href="/propuesta-economica">
-              <i className="bi bi-check2-circle fa-2x"></i>
+            <i className="bi bi-x-octagon-fill"></i>
               <span className="nav-text">
-         Propuesta Económica
+        Rechazar Proyectos
               </span>
             </a>           
           </li>

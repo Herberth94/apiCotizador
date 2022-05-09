@@ -18,7 +18,7 @@ function DatosPTN(props) {
       {/*========================== Titulos ==========================*/}
       <div>
         {" "}
-        <Animaciones mytext="Datos PTN" />{" "}
+      {/*   <Animaciones mytext="Datos PTN" />{" "} */}
       </div>
       {/*========================== Tabla Datos partida==========================*/}
       <div className="arregla">

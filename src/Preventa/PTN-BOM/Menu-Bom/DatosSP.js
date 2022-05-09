@@ -517,7 +517,7 @@ function DatosSP({clave} ) {
   const lista = async (clave) =>{
     console.log(clave);
     try {
-      const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
+      const respuesta = await axios.get(url2+`/api/cotizador/proyecto/viewModal/${clave}`);
       Setproyecto_id(respuesta.data.reSql)
     
       
@@ -530,8 +530,24 @@ function DatosSP({clave} ) {
   return (
 
     <div className="contenido-usuarios">
-        <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true);lista (clave)}} >
-          Ver partidas agregadas
+
+
+<Table>
+
+<thead>
+                            <tr className="">
+
+                             
+                                <th className="ocultar">Buscar Servicios y Productos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr >
+                              
+
+       {/*                            
+        <button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (clave)}} >
+        <i class="bi bi-eye-fill"></i>
         </button><br/><br/>
       {modalShow && modalShow1 ?   
       <ModalPtnDatos
@@ -541,18 +557,31 @@ function DatosSP({clave} ) {
      
       />
          :  ''  } 
-         <button type="button" className="btn btn-primary" onClick={() => {setShow(!show);}} >
-          {show ? "Buscar servicios/productos" : "Ocultar"}
+ */}
+         
+       
+                            
+
+                                <td>
+                                   
+                                <button type="button" className="btn btn-primary Mod" onClick={() => {setShow(!show);}} >
+          {show ? "Buscar servicios/productos" : "Ocultar  servicios/productos"}
         </button><br/><br/>
         {show ? (
           <div></div>
         ):(
+
+  <div className="" >
+
+
+ 
           <div className="table-responsive">
                 {/*********Búsqueda de Lista de Proyectos por Clave ********/}
-                <div className="busqueda-proyectos">
+                <div className="busqueda-proyecto">
                     <Table responsive id="nombreDiv">
                         <thead>
-                            <tr className="titulo-tabla-usuarios">
+                            <tr className="titulo-bus">
+
                                 <th>No. de Parte</th>
                             </tr>
                         </thead>
@@ -570,12 +599,21 @@ function DatosSP({clave} ) {
                         </tbody>
                     </Table>
                     
+        </div>
                     {/*============= Titulo Animación =============*/}
-                    <Animaciones mytext="Servicios/Productos " />
+                {/*     <Animaciones mytext="Servicios/Productos " />
 
-                    <Table responsive  striped bordered hover size="sm">
+
+
+ */}
+
+
+ <div className="bbb">
+
+
+           <Table responsive  striped bordered hover size="sm">
                         <thead>
-                            <tr className="titulo-tabla-usuarios">
+                            <tr className="titulo-tabla">
                                 <th>Proyecto</th>
                                 <th>Partida</th>
                                 <th>No. de Parte SP</th>
@@ -607,11 +645,22 @@ function DatosSP({clave} ) {
                             ))}
                         </tbody>          
                     </Table>
-
+           </div>
+         
                 </div>
           </div>
+
+        
         )} 
         
+                                </td>
+                            </tr>
+                        </tbody>
+
+</Table>
+
+
+
         {/*========================== Tabla Datos PTN ==========================*/}
         <form action="" method="post" onSubmit={enviarDatosSP}>
             <Table responsive id="nombreDiv">
@@ -693,9 +742,9 @@ function DatosSP({clave} ) {
 <Table responsive id="nombreDiv">
             <thead>
                 <tr className="titulo-tabla-usuarios">
-                <th>Función</th>
+                <th>Calcular</th>
                 <th>Cantidad</th>
-                <th>Precio Lista</th>
+                <th>Precio Lista Unitario</th>
                 <th>Precio Unitario</th>
                 <th> Descuento (%)</th>
                 <th> Total </th>

@@ -289,8 +289,8 @@ export const CrudProyectos = (props) => {
            {/* <form> */}
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-                <Animaciones mytext="Proyectos " />
-
+           {/*      <Animaciones mytext="Proyectos " />
+ */}
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
                         <tr className="titulo-tabla-usuarios">
@@ -477,14 +477,18 @@ export const CrudProyectos = (props) => {
                         <div className='contenido-usuarios'>
                             <div className="table-responsive">
                                 <div>
-                                    <Animaciones mytext="Resumen" /> 
+                               {/*      <Animaciones mytext="Resumen" />  */}
                                 </div>
                                 <Table responsive id="nombreDiv">
                                     {/*========================== Titulos Tabla ==========================*/}
                                     <thead>
+                                    <tr className="titulo-tabla-usuarios">
+                                            <th>Resumen por Apartados</th>
+                                      
+                                        </tr>
                                         <tr className="titulo-tabla-usuarios">
-                                            <th>Resumen Partidas</th>
-                                            <th>Resumen Categorías</th>
+                                            <th>Partidas</th>
+                                            <th> Categorías</th>
                                         </tr>
                                     </thead>
                                     <tbody>

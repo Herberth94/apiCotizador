@@ -26,9 +26,9 @@ function MenuProveedor() {
   {/*========================== Titulos Tabla ==========================*/}
   <thead>
     <tr className="titulo-tabla-usuarios">
-      <th>Registrar Proveedor</th>
-      <th>Registrar Marcas </th>
-      <th>Proveedores / Marcas </th>
+      <th className='ocultar'>Registrar Proveedor</th>
+      <th className='ocultar'>Registrar Marcas </th>
+      <th className='ocultar'>Proveedores / Marcas </th>
     </tr>
   </thead>
   <tbody>
@@ -45,7 +45,7 @@ function MenuProveedor() {
           }}
         >
           {" "}
-          {show ? "Registrar" : "Ocultar"}{" "}
+          {show ? "Registrar Proveedores" : "Ocultar"}{" "}
         </button>
         {show ? (
           <div></div>
@@ -68,7 +68,7 @@ function MenuProveedor() {
           }}
         >
           {" "}
-          {show2 ? "Registrar" : "Ocultar"}{" "}
+          {show2 ? "Registrar  Marcas" : "Ocultar"}{" "}
         </button>
         {show2 ? (
           <div></div>
@@ -93,7 +93,7 @@ function MenuProveedor() {
           }}
         >
           {" "}
-          {show3 ? "Administrar" : "Ocultar"}{" "}
+          {show3 ? "Administrar Proveedores / Marcas" : "Ocultar"}{" "}
         </button>
         {show3 ? (
           <div></div>

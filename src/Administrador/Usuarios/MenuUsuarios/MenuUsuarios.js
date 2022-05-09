@@ -20,8 +20,8 @@ function MenuUsuarios() {
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
-            <th>Registrar Usuarios</th>
-            <th>Administrar Usuarios </th>
+            <th className='ocultar'>Registrar Usuarios</th>
+            <th className='ocultar'> Administrar Usuarios </th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,7 @@ function MenuUsuarios() {
                 }}
               >
                 {" "}
-                {show ? "Registrar" : "Ocultar"}{" "}
+                {show ? "Registrar Usuarios" : "Ocultar"}{" "}
               </button>
               {show ? (
                 <div></div>
@@ -59,12 +59,13 @@ function MenuUsuarios() {
                 }}
               >
                 {" "}
-                {show2 ? "Administrar" : "Ocultar"}{" "}
+                {show2 ? "Administrar Usuarios" : "Ocultar"}{" "}
               </button>
               {show2 ? (
                 <div></div>
               ) : (
                 <div className="arregla">
+              
                   {/*========================== Llamado al Componente ==========================*/}
                   <AdministrarUsuarios/>
                 </div>

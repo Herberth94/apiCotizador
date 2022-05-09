@@ -172,28 +172,34 @@ function BuscadorInteligente2() {
                 <Table responsive id="nombreDiv">
                     <thead>
                         <tr className="azul">
-                            <th>Clave Proyecto</th>
+                            <th className='ocultar'>Clave Proyecto</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr >
-                            <td>
+                            <td className='busqueda'>
                             <input className="agregar"
                                     type="text"
                                     name="proyecto_clave"
                                     onChange={e => onChangeTextClaveP(e.target.value)}
                                     value={claveP}
-                                    placeholder="Ingresa la clave del Proyecto" />
+                                    placeholder="🔎 Búsqueda por Clave del Proyecto" />
                             </td>
                         </tr>
                     </tbody>
                 </Table>
-
+                </div>   
                 {/*============= Titulo Animación =============*/}
-                <div> <Animaciones mytext="Proyectos " /> </div>
+         {/*        <div> <Animaciones mytext="Proyectos " /> </div> */}
 
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
+
+                    <tr className="titulo-tabla-usuarios">
+                        <th></th>
+                            <th className='titulo-tabla'>Proporcional</th>
+                      
+                        </tr>
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
                             <th>Clave</th>
@@ -203,7 +209,7 @@ function BuscadorInteligente2() {
                             <th>Fecha de modificación</th>
                             <th>Estatus</th>
                             <th>Plazo de meses</th>
-                            <th>Resumen AM</th>
+                            <th>Proporcionalidad</th>
                         </tr>
                     </thead>
                                     
@@ -219,7 +225,7 @@ function BuscadorInteligente2() {
                                 <td>{suggestions[key].proyecto_fecha_modificacion}</td>
                                 <td className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
                                 <td>{suggestions[key].proyecto_plazo_meses}</td>
-                                <td>
+                                <td width={"50px"}>
                                     <button 
                                     className="btn btn-primary Ver" 
                                     onClick={() => {
@@ -247,7 +253,7 @@ function BuscadorInteligente2() {
                         < Proporcionalidad/>
                     </div>
                 )}
-        </div>     
+       
     </div>
   )
 }

@@ -171,26 +171,35 @@ function BuscadorInteligente() {
         <Table responsive id="nombreDiv">
             <thead>
                 <tr className="azul">
-                    <th>Clave Proyecto</th>
+                    <th className='ocultar'>Clave Proyecto</th>
                 </tr>
             </thead>
             <tbody>
                 <tr >
-                    <td>
+                    <td className='busqueda'>
                         <input 
                         className="agregar"
                         type="text"
                         name="proyecto_clave"
                         onChange={e => onChangeTextClaveP(e.target.value)}
                         value={claveP}
-                        placeholder="Ingresa la clave del Proyecto" />
+                        placeholder=" 🔎 Búsqueda por Clave del Proyecto" />
                     </td>
                 </tr>
             </tbody>
         </Table>
+
+        </div>   
         {/*============= Titulo Animación =============*/}
-        <div> <Animaciones mytext="Proyectos " /> </div>
+      {/*   <div> <Animaciones mytext="Proyectos " /> </div> */}
         <Table responsive  striped bordered hover size="sm">
+
+        <thead>
+            <tr className="titulo-tabla-usuarios">
+                <th></th>
+            <th className='titulo-tabla'>Proyectos</th>
+            </tr>
+            </thead>
             <thead>
             <tr className="titulo-tabla-usuarios">
             <th>ID</th>
@@ -209,7 +218,7 @@ function BuscadorInteligente() {
             {Object.keys(suggestions).map((key) => (    
             //checar aqui va los titulos
             <tr key={suggestions[key].proyecto_id} >
-            <td>{suggestions[key].proyecto_id}</td>   
+            <td width={"80px"}>{suggestions[key].proyecto_id}</td>   
             <td>{suggestions[key].proyecto_clave}</td>  
             <td>{suggestions[key].proyecto_descripcion}</td>  
             <td>{suggestions[key].nombre_cliente}</td> 
@@ -217,7 +226,7 @@ function BuscadorInteligente() {
             <td>{suggestions[key].proyecto_fecha_modificacion}</td>
             <td className = {suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
             <td>{suggestions[key].proyecto_plazo_meses}</td>
-            <td>
+            <td width={"100px"}>
                 <button 
                 className="btn btn-primary Ver" 
                 onClick={() => {
@@ -244,7 +253,7 @@ function BuscadorInteligente() {
                 />
             </div>
         )}
-        </div>            
+            
     </div>
   )
 }
