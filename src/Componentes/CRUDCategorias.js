@@ -152,10 +152,16 @@ export const CrudCategorias = (props) => {
            {/* <form> */}
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-                <Animaciones mytext="Categorias " />
-
+             {/*    <Animaciones mytext="Categorias " />
+ */}
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
+
+                    <tr className="titulo-tabla-usuarios">
+                            <th></th>
+                            <th className='titulo-tabla'>Resumen Categorias</th>
+                         
+                        </tr>
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
                             <th>Categoria</th>
