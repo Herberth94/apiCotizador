@@ -319,13 +319,18 @@ function ContinuarProyecto() {
           </div>
           {/****************************Lista de los Proyectos Creados ****************************************/}
           {/*============= Titulo Animación =============*/}
-          <div>
+       {/*    <div>
             {" "}
             <Animaciones mytext="Lista de Proyectos" />{" "}
           </div>
-
+ */}
           <Table responsive  striped bordered hover size="sm">
               <thead>
+
+              <tr className="titulo-tabla-usuarios">
+                  <th></th>
+                  <th className='titulo-tabla'>Proyectos</th>
+                </tr>
                 <tr className="titulo-tabla-usuarios">
                   <th>ID</th>
                   <th>Clave</th>
@@ -395,8 +400,8 @@ function ContinuarProyecto() {
         <Table responsive  striped bordered hover size="sm">
           <thead>
             <tr className="titulo-tabla-usuarios">
-              <th>Agregar más partidas</th>
-              <th>Continuar una partida</th>
+              <th className='ocultar'>Agregar más partidas</th>
+              <th className='ocultar'>Continuar una partida</th>
             </tr>
           </thead>
                               
@@ -412,7 +417,7 @@ function ContinuarProyecto() {
                         setShow3(true);
                         setShow4(true);
                       }}
-                      >{show2 ? 'Agregar' : 'Ocultar'} </button>
+                      >{show2 ? 'Agregar Nueva Partidas' : 'Ocultar'} </button>
                   </td>
                   <td>
                     <button 
@@ -422,7 +427,7 @@ function ContinuarProyecto() {
                         setShow3(!show3);
                         setShow2(true);
                       }}
-                      >{show3 ? 'Continuar' : 'Ocultar'} </button>
+                      >{show3 ? 'Continuar Partida' : 'Ocultar'} </button>
                   </td>
               </tr>  
           </tbody>          
@@ -433,10 +438,10 @@ function ContinuarProyecto() {
               <div ></div>
       ) : (
               <div  className="arregla"> 
-                <div className="contenido-usuarios">
+           {/*      <div className="contenido-usuarios">
                   {" "}
                   <Animaciones mytext="Datos PTN" />{" "}
-                </div>
+                </div> */}
                 {/*========================== Llamado a los Componentes ==========================*/} 
                 <Partida></Partida>
                             
@@ -449,13 +454,19 @@ function ContinuarProyecto() {
       ) : ( 
               <div className="arregla"> 
                 <div className="contenido-usuarios">
-                <div>
+               {/*  <div>
                   {" "}
                   <Animaciones mytext="Partidas del Proyecto" />{" "}
                 </div>
-
+ */}
                   <Table responsive  striped bordered hover size="sm">
                       <thead>
+
+                      <tr className="titulo-tabla-usuarios">
+                              <th></th>
+                              <th className='titulo-tabla'>Partidas del Proyecto</th>
+                           
+                          </tr>
                           <tr className="titulo-tabla-usuarios">
                               <th>ID</th>
                               <th>Nombre</th>
@@ -492,10 +503,10 @@ function ContinuarProyecto() {
                         ) : (
                           
                           <div  className="arregla"> 
-                             <div className="contenido-usuarios">
+                          {/*    <div className="contenido-usuarios">
                               {" "}
                               <Animaciones mytext="Datos Servicios/Productos" />{" "}
-                              </div>
+                              </div> */}
                           {/*========================== Llamado al Componente ==========================*/} 
                             <DatosSP clave={id}/>
                           </div>

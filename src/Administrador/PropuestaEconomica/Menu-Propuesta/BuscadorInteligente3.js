@@ -194,7 +194,8 @@ function BuscadorInteligente3() {
                 <thead>
 
                 <tr className="titulo-tabla-usuarios">
-                        <th>Editar</th>        
+                        <th></th> 
+                        <th className='titulo-tabla'>Proyectos</th>        
                     </tr>
                     <tr className="titulo-tabla-usuarios">
                         <th>ID</th>
