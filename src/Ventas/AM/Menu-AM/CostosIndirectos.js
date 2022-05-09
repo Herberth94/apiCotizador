@@ -84,7 +84,8 @@ function CostosIndirectos(props) {
                 <thead>
 
                    <tr className="titulo-tabla-usuarios">
-                        <th>Costos Indirectos</th>
+                       <th></th>
+                        <th className='titulo-tabla'>Costos Indirectos</th>
            
  
                     </tr>

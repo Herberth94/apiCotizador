@@ -1,29 +1,6 @@
-/* VARIABLES CSS  */
-
-:root {
-  --resetear-bg-color: rgb(2, 34, 77);
-  --resetear-hover-color: rgb(60, 98, 180);
-
-  --modificar-bg-color: rgb(41, 92, 17);
-  --modificar-hover-color: rgb(21, 182, 16);
-
-  
-  --modificar2-bg-color: rgb(17, 75, 92);
-  --modificar2-hover-color: rgb(0, 131, 113);
-
-  --cancelar-bg-color: rgb(185, 0, 0);
-  --cancelar-hover-color: rgb(255, 0, 0);
-
-  --ver-bg-color: rgb(63, 15, 21);
-  --ver-hover-color: rgb(115, 0, 160);
 
 
-
-  --busqueda-bg-color: rgba(0, 0, 0, 0.486);
-  --busqueda-hover-color: rgb(0, 44, 80);
-}
-
-
+/* Colores Menu Administrador */
 
 /* 
 BUSQUEDA DE PROYECTOS */
@@ -93,7 +70,7 @@ input:enabled {
   color: rgb(17, 0, 255);
 }
 select:enabled {
-  color: rgb(185, 0, 0);
+  color: rgb(255, 255, 255);
   background-color: rgb(0, 140, 255);
   font-size: 20px;
 }

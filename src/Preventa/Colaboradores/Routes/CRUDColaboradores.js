@@ -31,6 +31,11 @@ export const CrudColaboradores = (props) => {
             <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>
                     {/*=================== Titulos Tabla Proveedores ===================*/}
+                        
+                    <tr className="titulo-tabla-usuarios">
+                     <th></th>
+                        <th className='titulo-tabla'>{props.estado ? "Administrar Ventas" : "Administrar Preventa"}</th>
+                        </tr>
                     <tr className="titulo-tabla-usuarios">
                         <th>ID</th>
                         <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>

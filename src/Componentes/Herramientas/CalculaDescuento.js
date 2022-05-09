@@ -82,7 +82,7 @@ validaOperacion = !validaOperacion;
 <Table responsive id="nombreDiv">
             <thead>
                 <tr className="titulo-tabla-usuarios">
-                <th>Función</th>
+                <th>Calcular</th>
                 <th>Cantidad</th>
                 <th>Precio Lista</th>
                 <th>Precio Unitario</th>

@@ -86,13 +86,19 @@ function CostosIndirectos(props) {
 
    <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>
+
+
+                <tr className="titulo-tabla-usuarios">
+                        <th></th>
+                        <th className='titulo-tabla'>Costos Indirecto</th>
+                      
+                    </tr>
                     {/*=================== Titulos Tabla Clientes ===================*/}
                     <tr className="titulo-tabla-usuarios">
                         <th>Descripción</th>
                         <th>Equivale a % </th>
                         <th>Total </th>
                         <th>Modificar</th>
- 
                     </tr>
                 </thead>
                 <tbody>

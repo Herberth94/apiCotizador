@@ -90,8 +90,8 @@ function App() {
         <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
         <Administrador path="/asignar-proyecto" component={MenuVentas2} />
 
-        <Administrador   exact path="/" component={Temas} />
-
+      {/*   <Administrador   exact path="/" component={Temas} />
+ */}
         {/*========================== Páginas Preventa ==========================*/}
 
         <Preventa path="/" component={MenuPreventa} />

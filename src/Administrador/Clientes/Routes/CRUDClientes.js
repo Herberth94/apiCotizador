@@ -83,7 +83,7 @@ export const CrudClientes = (props) => {
 
                     <tr className="titulo-tabla-usuarios">
                             <th></th>
-                            <th>Lista de Clientes</th>
+                            <th className='titulo-tabla'>Lista de Clientes</th>
                          
                         </tr>
                         {/*=================== Titulos Tabla Clientes ===================*/}

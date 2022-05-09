@@ -145,7 +145,8 @@ function BuscadorProyectoFinanciamiento() {
                     <thead>
 
                     <tr className="titulo-tabla-usuarios">
-                            <th>Financiamiento</th>
+                        <th></th>
+                            <th className='titulo-tabla'>Financiamiento</th>
               
                         </tr>
                         <tr className="titulo-tabla-usuarios">
@@ -190,7 +191,7 @@ function BuscadorProyectoFinanciamiento() {
                 {show2 ? (
                     <div></div>
                 ) : (
-                    <div className="arregla">
+                    <div className="">
                         <br />
                         {/*========================== Llamado al Componente modificar financiamiento ==========================*/}
                         <ModificarFinanciamiento propIdProyecto={idAsignado} />
@@ -198,7 +199,9 @@ function BuscadorProyectoFinanciamiento() {
                 )}
        
 
-
+<br></br>
+<br></br>
+<br></br>
         </div>
     )
 }

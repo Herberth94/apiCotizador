@@ -196,7 +196,8 @@ function BuscadorInteligente() {
 
         <thead>
             <tr className="titulo-tabla-usuarios">
-            <th>Costos Indirectos</th>
+                <th></th>
+            <th className='titulo-tabla'>Proyectos</th>
             </tr>
             </thead>
             <thead>

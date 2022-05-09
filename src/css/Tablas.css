@@ -1,14 +1,56 @@
 
 .contenido-usuarios{
- 
     position: relative;
     margin-left: 60px;
-    width: calc(100%  - 60px); 
-    background-color: #ffffff;
-    padding: 2%;
- 
-    
+    width: calc(100%  - 60px);
+    /*background-color: #ffffff;
+    */padding: 1% 2% 0%;
+    background-color:  var(--administrador-tablas-color);
+    border-radius: 45px ;
+    -webkit-border-radius: 45px ;
+    -moz-border-radius: 45px ;
+    -ms-border-radius: 45px ;
+    -o-border-radius: 45px ;
+
+    top: 30px;
 }
+
+
+#nombreDiv{
+   width: 100%;
+   height: 100%;
+
+   border-radius: 45px ;
+   -webkit-border-radius: 45px ;
+   -moz-border-radius: 45px ;
+   -ms-border-radius: 45px ;
+   -o-border-radius: 45px ;
+   border: #ffffff00;
+
+ 
+}
+
+
+
+.titulo-tabla-usuarios{
+    background-color: var(--administrador-bg-color);
+    color: rgb(255, 255, 255);
+
+}
+    
+td , th, tr, table , tbody , thead{
+  
+    border: #ffffff00;
+}
+
+th.titulo-tabla{
+    background-color:  var(--titulo-bg-color);
+    color: black;
+}
+
+
+
+
 
 
 .arregla{
@@ -16,6 +58,7 @@
  height: 100%;
 left: -60px;
 width: calc(100% + 60px);
+
 
 }
 
@@ -37,32 +80,7 @@ width: calc(100% + 60px);
     padding: 1%;
 }
 
-.partidax{
-    background-color: rgba(57, 117, 185, 0.61);
-  
-}
 
-.titulo-tabla-usuarios{
-background-color:#3c1053;
-color: rgb(255, 255, 255);
-
-
-}
-
-.table-responsive h2{
-  
-    color: rgb(0, 0, 0);
- 
-  
-}
-
-#nombreDiv{
-    
-    width: 100%;
-    background-color: #ffffff;
-    height: 100%;
-  
-}
 
 
 /*Arreglar el -14px*/

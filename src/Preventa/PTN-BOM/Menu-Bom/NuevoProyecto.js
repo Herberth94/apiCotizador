@@ -194,7 +194,7 @@ function NuevoProyecto() {
           <thead >
             <tr className="titulo-tabla-usuarios">
            
-              <th >Agregar Nuevo proyecto</th>
+              <th className="titulo-tabla" >Agregar Nuevo proyecto</th>
             
             </tr>
 

@@ -130,7 +130,7 @@ function Categorias(props) {
                 {/*========================== Titulos Tabla ==========================*/}
                 <thead>
                     <tr className="titulo-tabla-usuarios">
-                    <th>Funcion</th>           
+                    <th>Calcular</th>           
                     <th>No. De Parte</th>
                     <th>Categoria</th>
                     <th>Moneda</th>

@@ -196,7 +196,8 @@ function BuscadorInteligente2() {
                     <thead>
 
                     <tr className="titulo-tabla-usuarios">
-                            <th>Proporcional</th>
+                        <th></th>
+                            <th className='titulo-tabla'>Proporcional</th>
                       
                         </tr>
                         <tr className="titulo-tabla-usuarios">

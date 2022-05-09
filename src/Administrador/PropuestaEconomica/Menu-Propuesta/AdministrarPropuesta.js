@@ -54,7 +54,7 @@ function AdministrarPropuesta(props) {
 
           <tr className="titulo-tabla-usuarios">
         
-              <th>Revisión de Proyectos</th>
+              <th className='titulo-tabla'>Revisión de Proyectos</th>
          
             </tr>
 
