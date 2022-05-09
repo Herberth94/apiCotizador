@@ -483,7 +483,7 @@ export const CrudProyectos = (props) => {
                                     {/*========================== Titulos Tabla ==========================*/}
                                     <thead>
                                     <tr className="titulo-tabla-usuarios">
-                                            <th>Resumen por Apartados</th>
+                                            <th className='titulo-tabla'>Resumen por Apartados</th>
                                       
                                         </tr>
                                         <tr className="titulo-tabla-usuarios">

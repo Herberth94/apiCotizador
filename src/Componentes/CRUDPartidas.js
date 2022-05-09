@@ -124,12 +124,12 @@ export const CrudPartidas = (props) => {
                 let cSP = Object.keys(listaSP);
                 for(let c = 0; c < cSP;c++){
                     try {
-                        await axios.delete(`http://localhost:4001/api/cotizador/precio/delete/${listaSP[c].sp_id_precio}`);
+                        await axios.delete(url2  +`/api/cotizador/precio/delete/${listaSP[c].sp_id_precio}`);
                         setShow(!show);
                     } catch (error) {}
                 }
                 try{
-                    await axios.delete(`http://localhost:4001/api/cotizador/partida/delete/${id}`);
+                    await axios.delete(url2 +`/api/cotizador/partida/delete/${id}`);
                     alert('Partida eliminada exitosamene');
                 } catch (error) {
                     console.log(error);
@@ -190,10 +190,16 @@ export const CrudPartidas = (props) => {
     return (
         <div>
            {/* <form> */}
-                <Animaciones mytext="Partidas" />
-
+          {/*       <Animaciones mytext="Partidas" />
+ */}
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
+
+                    <tr className="titulo-tabla-usuarios">
+                            <th></th>
+                            <th className='titulo-tabla'>Resumen por Partidas</th>
+                           
+                        </tr>
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
                             <th>Nombre</th>
