@@ -205,7 +205,8 @@ async function consultarTotalesP(id){          //console.log(id)
                 <thead>
 
                 <tr className="titulo-tabla-usuarios">
-                        <th>Propuestas</th>            
+                       <th></th>
+                        <th className='titulo-tabla'>Proyectos</th>            
                     </tr>
                     <tr className="titulo-tabla-usuarios">
                         <th>ID</th>

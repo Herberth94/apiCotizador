@@ -52,16 +52,11 @@ function Rechazar(props) {
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
 
-          <tr className="titulo-tabla-usuarios">
-        
-              <th>Revisión de Proyectos</th>
-         
-            </tr>
-
+     
 
             <tr className="titulo-tabla-usuarios">
            {/*    <th>Propuestas</th> */}
-              <th>Rechazar Proyecto</th>
+              <th   className='ocultar'>Rechazar Proyecto</th>
          
             </tr>
           </thead>
@@ -73,7 +68,7 @@ function Rechazar(props) {
 
               <td>
 
-                <button className="btn btn-primary PDF" onClick={()=>{cambioEstatusProyectoRechazado()}} type="button"> Rechazar </button>
+                <button className="btn btn-primary PDF" onClick={()=>{cambioEstatusProyectoRechazado()}} type="button"> Rechazar Proyecto</button>
 
 
               </td>

@@ -34,7 +34,7 @@ overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
 z-index:10;
-background: #088080bd;
+background: var( --administrador-bg-color);
 backdrop-filter: blur(10px);
 border: 1zpx solid rgba(0, 0, 0, 0.18);
 }
@@ -118,7 +118,7 @@ padding:0;
 }
 .main-menu-ventas li:hover>a,nav.main-menu-ventas li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
 color:#fff;
-background-color:#38153E;
+background-color: var( --administrador-hover-color);
 }
 .area {
 float: left;
