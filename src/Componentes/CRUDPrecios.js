@@ -137,6 +137,26 @@ export const CrudPrecios = (props) => {
            <Animaciones mytext="Precios" />
             <Table responsive id="nombreDiv"  striped bordered hover size="sm">
                 <thead>
+                    {/* <tr className="titulo-tabla-usuarios">
+                        <th></th>
+                        <th className='titulo-tabla'>{props.proyecto}</th>
+                    </tr>
+                    <tr className="titulo-tabla-usuarios">
+                        <th></th>
+                        <th className='titulo-tabla'>{`Partida: ${props.partida}`}</th>
+                    </tr> */}
+                    {/* <tr className="titulo-tabla-usuarios">
+                        <th></th>
+                        <th className='titulo-tabla'>{`Servicio/Producto:`}</th>
+                    </tr>
+                    <tr className="titulo-tabla-usuarios">
+                        <th></th>
+                        <th className='titulo-tabla'>{`   No. de Parte: ${props.np}`}</th>
+                    </tr> */}
+                    {/* <tr className="titulo-tabla-usuarios">
+                        <th></th>
+                        <th className='titulo-tabla'>{`   Descripción: ${props.des}`}</th>
+                    </tr> */}
                     <tr className="titulo-tabla-usuarios">
                         <th>ID</th>
                         <th>Función</th>

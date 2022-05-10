@@ -9,7 +9,7 @@ import Animaciones from '../../../Componentes/Animaciones';
 import {CrudProyectos} from '../Routes/CRUDProyectos';
 import { EditProyecto } from '../Routes/ModificarProyectos';
 import {url, url2} from "../../../Componentes/Ocultar";
-
+import { actualizarListaProy } from '../Routes/CRUDProyectos';
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -181,6 +181,8 @@ function Proyectos() {
                         clientes={ListaC}
                         setfirst={setfirst}
                         envioDataP={envioDataProy}
+                        show2={show2}
+                        setShow2={setShow2}
                     />    
                 </>
             </div>
