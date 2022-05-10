@@ -10,8 +10,8 @@ import CostosIndirectos from './CostosIndirectos';
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
-//let validatorrol = cookies.get('rol');
-let validatorrol ="administrador";
+let validatorrol = cookies.get('rol');
+//let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
@@ -196,7 +196,8 @@ function BuscadorInteligente() {
 
         <thead>
             <tr className="titulo-tabla-usuarios">
-            <th>Costos Indirectos</th>
+                <th></th>
+            <th className='titulo-tabla'>Proyectos</th>
             </tr>
             </thead>
             <thead>

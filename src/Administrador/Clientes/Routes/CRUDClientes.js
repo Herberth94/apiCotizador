@@ -79,6 +79,13 @@ export const CrudClientes = (props) => {
                 {/*===================     Tabla Clientes   ========================*/}
                 <Table responsive striped bordered hover size="sm" className="tablas">
                     <thead>
+
+
+                    <tr className="titulo-tabla-usuarios">
+                            <th></th>
+                            <th className='titulo-tabla'>Lista de Clientes</th>
+                         
+                        </tr>
                         {/*=================== Titulos Tabla Clientes ===================*/}
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>

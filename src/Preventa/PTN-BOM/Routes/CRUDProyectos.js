@@ -211,15 +211,21 @@ export const CrudProyectos = (props) => {
             pEstatus = st;
         }
 
-        function getIdP (proyecto_id){
-            pId = proyecto_id;
-            let i = Object.keys(props.suggestionsP);
-            i = i.length;
-            for(let c = 0; c < i ; c++){
-                if(pId === props.suggestionsP[c].proyecto_id){
-                    getProyEstatus(props.suggestionsP[c].proyecto_estatus)
-                }
-            }
+            /*===== Mostrar Proyecto actual =====*/
+            const [cProy,setCProy] = useState('');
+            const [desProy,setDesProy] = useState('');
+            const [clProy,setClProy] = useState('');
+            /*===================================*/
+
+        function getIdP (proyecto){
+            pId = proyecto.proyecto_id;
+            setCProy(proyecto.proyecto_clave);
+            setDesProy(proyecto.proyecto_descripcion);
+            setClProy(proyecto.nombre_cliente);
+            
+            getProyEstatus(proyecto.proyecto_estatus);
+            console.log('Estatus:',proyecto.proyecto_estatus);
+            
             //console.log(pEstatus);
         }
         /*============================================================================================*/
@@ -231,9 +237,9 @@ export const CrudProyectos = (props) => {
         const[listaPartidas, setListaPartidas] = useState([]);
         
         // Función que realiza la consulta a la tabla partida
-        async function getDatosPartida(proyecto_id){
+        async function getDatosPartida(id){
             try{
-                const resPP = await axios.get(url2 + `/api/cotizador/partida/viewPP/${proyecto_id}`);
+                const resPP = await axios.get(url2 + `/api/cotizador/partida/viewPP/${id}`); 
                     setListaPartidas(resPP.data.data);
             }catch(error){
                 console.log(error);
@@ -456,7 +462,8 @@ export const CrudProyectos = (props) => {
                                 className="btn btn-primary Ver"
                                 type="button"
                                 onClick={() => {
-                                    getIdP(props.suggestionsP[key].proyecto_id);
+                                    getIdP(props.suggestionsP[key]);
+                                    //getDatosPartida(props.suggestionsP[key]);
                                     habilitar1(key);
                                 }}
                             >
@@ -483,7 +490,7 @@ export const CrudProyectos = (props) => {
                                     {/*========================== Titulos Tabla ==========================*/}
                                     <thead>
                                     <tr className="titulo-tabla-usuarios">
-                                            <th>Resumen por Apartados</th>
+                                            <th className='titulo-tabla'>Proyecto: {cProy} - {desProy} - {clProy}</th>
                                       
                                         </tr>
                                         <tr className="titulo-tabla-usuarios">

@@ -24,8 +24,8 @@ function MenuHeramientas() {
       {/*========================== Titulos Tabla ==========================*/}
       <thead>
         <tr className="titulo-tabla-usuarios">
-          <th>Calculara de Descuento % </th>
-          <th>Manual de Usuario </th>
+          <th className='ocultar'> Calculara de Descuento % </th>
+          <th className='ocultar'>Manual de Usuario </th>
         {/*   <th>------ </th> */}
         </tr>
       </thead>
@@ -41,7 +41,7 @@ function MenuHeramientas() {
               }}
             >
               {" "}
-              {show ? "Calcular" : "Ocultar"}{" "}
+              {show ? "Calculadora " : "Ocultar"}{" "}
             </button>
             {show ? (
               <div></div>
@@ -57,7 +57,7 @@ function MenuHeramientas() {
           <td>
 
           <form method="get" action={pdf}>
-          <button    className="btn btn-primary PDF" > Descargar PDF
+          <button    className="btn btn-primary PDF" > Descargar Manual de Usuario
 
        <span></span>
           </button>

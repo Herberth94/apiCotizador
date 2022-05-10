@@ -168,10 +168,17 @@ function AdministrarColaboradores(props) {
         </div>
         {/****************************Lista de los Proyectos Creados ****************************************/}
         {/*============= Titulo Animación =============*/}
-        <div> <Animaciones mytext="Lista de Proyectos" /></div>
-
+     
         <Table responsive  striped bordered hover size="sm">
             <thead>
+
+               <tr className="titulo-tabla-usuarios">
+                <th></th>
+           
+                <th className="titulo-tabla">{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
+           
+           
+              </tr>
               <tr className="titulo-tabla-usuarios">
                 <th>ID</th>
                 <th>Clave</th>

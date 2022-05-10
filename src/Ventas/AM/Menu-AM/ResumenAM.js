@@ -21,8 +21,8 @@ import {costosIndirectos, equivale,  totalIndirecto} from "../../Operaciones/Ope
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
-//let validatorrol = cookies.get('rol');
-let validatorrol ="administrador";
+let validatorrol = cookies.get('rol');
+//let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
@@ -292,9 +292,13 @@ const ResumenAM = () => {
                     <thead>
 
                     <tr className="titulo-tabla-usuarios">
-                            <th>Resumen AM</th>
+
+                            <th></th>
+                            <th className='titulo-tabla'>Proyectos</th>
                         </tr>
-                  
+
+
+                    
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
                             <th>Clave</th>
@@ -345,6 +349,13 @@ const ResumenAM = () => {
                         <Table responsive striped bordered hover size="sm" className="tablas">
                             <thead>
                                 {/*=================== Titulos Tabla Clientes ===================*/}
+                                <tr className="titulo-tabla-usuarios">
+
+                                    <th></th>
+                            <th className='titulo-tabla'>Resumen AM</th>
+                        </tr>
+
+                                
                                 <tr className="titulo-tabla-usuarios">
                                     <th>Nombre Partida</th>
                                     <th className="listacl">Lista cl </th>
@@ -491,11 +502,18 @@ const ResumenAM = () => {
                             </tbody>
                         </Table>
 
-
+{/* 
                         <div> <Animaciones mytext="Costos Indirectos " /> </div>
-
+ */}
                         <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>
+
+                <tr className="titulo-tabla-usuarios">
+
+                    <th></th>
+                            <th className='titulo-tabla'>Costos Indirectos</th>
+                        </tr>
+
                     {/*=================== Titulos Tabla Clientes ===================*/}
                     <tr className="titulo-tabla-usuarios">
                         <th>Descripción</th>
@@ -540,10 +558,15 @@ const ResumenAM = () => {
             </Table>
 
                         <div>
-                        <div> <Animaciones mytext="Totales " /> </div>
+                    {/*     <div> <Animaciones mytext="Totales " /> </div> */}
          
                             <Table responsive striped bordered hover size="sm" className="tablas">
                                 <thead>
+
+                                <tr className="titulo-tabla-usuarios">
+                            <th className='titulo-tabla'>Total Proyecto</th>
+                        </tr>
+
                                     {/*=================== Titulos Tabla Clientes ===================*/}
                                     <tr className="titulo-tabla-usuarios">
                                         <th>Precio Final de Venta</th>
@@ -576,6 +599,11 @@ const ResumenAM = () => {
                
                             <Table responsive striped bordered hover size="sm" className="tablas">
                                 <thead>
+
+                                <tr className="titulo-tabla-usuarios">
+                            <th className='titulo-tabla'>Datos Financiamiento</th>
+                        </tr>
+
                                     {/*=================== Titulos Tabla Clientes ===================*/}
                                     <tr className="titulo-tabla-usuarios">
                                         <th>Precio Total de Venta Sin IVA </th>

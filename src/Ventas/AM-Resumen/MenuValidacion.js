@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Table from "react-bootstrap/Table";
-import Animaciones from "../../../Componentes/Animaciones";
-import { url, url2 } from '../../../Componentes/Ocultar';
+import { url, url2 } from '../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
-import {Partida_catalogo} from '../../../Ventas/Operaciones/totalPartida';
-import AdministrarPropuesta from './AdministrarPropuesta';
-import Formulario from './Formulario';
+
+import { Partida_catalogo } from '../Operaciones/totalPartida';
+import Rechazar from './Rechazar';
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -17,7 +16,7 @@ let validatorid = cookies.get('id_usuario');
 
 let pId;
 
-function BuscadorInteligente4() {
+function MenuValidacion() {
 
     const { 
         getTotalPar,
@@ -170,7 +169,7 @@ async function consultarTotalesP(id){          //console.log(id)
 }
     function getIdProy(id){
         pId = id;
-        //console.log("Proyecto_id:",pId);
+        console.log("Proyecto_id:",pId);
     }
 
 
@@ -206,7 +205,7 @@ async function consultarTotalesP(id){          //console.log(id)
                 <thead>
 
                 <tr className="titulo-tabla-usuarios">
-                       <th></th> 
+                       <th></th>
                         <th className='titulo-tabla'>Proyectos</th>            
                     </tr>
                     <tr className="titulo-tabla-usuarios">
@@ -257,9 +256,7 @@ async function consultarTotalesP(id){          //console.log(id)
                 <div className="arregla">
                     {/*========================== Llamado al Componente ==========================*/}
                     {/*           <CostosIndirectos/> */}
-                    <AdministrarPropuesta
-                        proyId={pId}
-                    />
+                    <Rechazar   proyId={pId}   />
                 </div>
             )}
                 
@@ -267,4 +264,4 @@ async function consultarTotalesP(id){          //console.log(id)
   )
 }
 
-export default BuscadorInteligente4
+export default MenuValidacion

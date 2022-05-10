@@ -59,8 +59,8 @@ function AdministrarClientes() {
       <div className="head"></div>
       <div className="table-responsive">
         {/*========================== Titulo Animación =======================*/}
-        <div> <Animaciones mytext="Lista de Clientes" /> </div>
-
+{/*         <div> <Animaciones mytext="Lista de Clientes" /> </div>
+ */}
         {/*================= Botón Mostrar/Ocultar Lista =======================*/}
         <div>
           {/* <button className="btn btn-primary modificar" type="button"

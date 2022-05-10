@@ -24,7 +24,8 @@ function Proporcionalidad() {
                 <thead>
 
                 <tr className="titulo-tabla-usuarios">
-                        <th>Resumen Proporcionalmente</th>
+
+                        <th className='titulo-tabla'>Resumen Proporcional</th>
                  
                      
                     </tr>

@@ -74,11 +74,11 @@ function AdministrarUsuarios() {
   return (
         
         <div className="contenido-usuarios">
-          <div className=""></div>
+         
           <div className="">
           <div>
               {/*======================= Titulo Animación =======================*/}
-               <Animaciones   mytext= "Lista de Usuarios"      /> 
+     {/*           <Animaciones   mytext= "Lista de Usuarios"      />  */}
          </div>
 
   {/*================= Botón Mostrar/Ocultar Lista ==================*/}

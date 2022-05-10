@@ -544,10 +544,10 @@ function DatosSP({clave} ) {
 <Table>
 
 <thead>
-                            <tr className="serv">
+                            <tr className="">
 
                              
-                                <th className="">Buscar Servicios y Productos</th>
+                                <th className="ocultar">Buscar Servicios y Productos</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -573,8 +573,8 @@ function DatosSP({clave} ) {
 
                                 <td>
                                    
-                                <button type="button" className="btn btn-primary" onClick={() => {setShow(!show);}} >
-          {show ? "Buscar servicios/productos" : "Ocultar"}
+                                <button type="button" className="btn btn-primary Mod" onClick={() => {setShow(!show);}} >
+          {show ? "Buscar servicios/productos" : "Ocultar  servicios/productos"}
         </button><br/><br/>
         {show ? (
           <div></div>

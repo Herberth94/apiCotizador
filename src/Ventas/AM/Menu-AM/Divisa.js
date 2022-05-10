@@ -187,7 +187,9 @@ function Divisa() {
 
                 <thead>
                         <tr className="titulo-tabla-usuarios">
-                            <th>Divisa </th>
+
+                            <th></th>
+                            <th className='titulo-tabla'>Divisa </th>
                          
                             
                         </tr>

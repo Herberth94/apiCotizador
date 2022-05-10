@@ -23,8 +23,8 @@ function MenuColaboradores() {
   {/*========================== Titulos Tabla ==========================*/}
   <thead>
     <tr className="titulo-tabla-usuarios">
-      <th>Registrar Colaboradores</th>
-      <th>Administrar Colaboradores </th>
+      <th className='ocultar'>Registrar Colaboradores</th>
+      <th className='ocultar'>Administrar Colaboradores </th>
     </tr>
   </thead>
   <tbody>
@@ -40,7 +40,7 @@ function MenuColaboradores() {
           }}
         >
           {" "}
-          {show ? "Registrar" : "Ocultar"}{" "}
+          {show ? "Registrar Colaboradores" : "Ocultar"}{" "}
         </button>
         {show ? (
           <div></div>
@@ -62,7 +62,7 @@ function MenuColaboradores() {
           }}
         >
           {" "}
-          {show2 ? "Administrar" : "Ocultar"}{" "}
+          {show2 ? "Administrar Colaboradores" : "Ocultar"}{" "}
         </button>
         {show2 ? (
           <div></div>

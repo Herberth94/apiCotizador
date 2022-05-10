@@ -5,8 +5,6 @@ import Animaciones from "../../../Componentes/Animaciones";
 import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../../Ventas/Operaciones/totalPartida';
-import AdministrarPropuesta from './AdministrarPropuesta';
-import PEconomica from './PEconomica';
 import Formulario from './Formulario';
 
 
@@ -15,8 +13,8 @@ import Formulario from './Formulario';
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
-//let validatorrol = cookies.get('rol');
-let validatorrol ="administrador";
+let validatorrol = cookies.get('rol');
+//let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
@@ -196,7 +194,8 @@ function BuscadorInteligente3() {
                 <thead>
 
                 <tr className="titulo-tabla-usuarios">
-                        <th>Editar</th>        
+                        <th></th> 
+                        <th className='titulo-tabla'>Proyectos</th>        
                     </tr>
                     <tr className="titulo-tabla-usuarios">
                         <th>ID</th>

@@ -1,6 +1,3 @@
-
-
-
 .fa-2x {
 font-size: 2em;
 }
@@ -12,16 +9,12 @@ height: 36px;
 text-align: center;
 vertical-align: middle;
 font-size:20px;
-color: #e2e2e2;
 }
-
-
 
 .main-menu:hover,nav.main-menu.expanded {
 width:250px;
 overflow:visible;
 }
-
 .main-menu {
  
 position:fixed;
@@ -34,14 +27,8 @@ overflow:hidden;
 -webkit-transition:width .05s linear;
 transition:width .05s linear;
 z-index:10;
-/* backdrop-filter: blur(10px);
-background: #38153E;
-background: #137adb69;
-
- */
-
  backdrop-filter: blur(5px);
- background-color:  #3d1152e5;
+ background-color:   var(--administrador-bg-color);
 
 
 }
@@ -62,7 +49,7 @@ position:relative;
 display:table;
 border-collapse:collapse;
 border-spacing:0;
-color:rgb(0, 0, 0);
+
  font-family: arial;
 font-size: 14px;
 text-decoration:none;
@@ -116,10 +103,8 @@ margin:0;
 padding:0;
 }
 .main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
-color:#fff;
-background: #02000285;
-
-
+color:var(--administrador-texto-color);
+background:  var(--administrador-hover-color);
 }
 .area {
 float: left;
@@ -127,67 +112,35 @@ width: 100%;
 height: 100%;
 }
 
-
 /*============================ ICONOS ADMINISTRADOR ============================ */
 i.fa.fa-power-off {
-color: #ff0000;
+color: var(--administrador-salir-color);
 }
 
-i.fa.fa-home{
-color: #bad4fc;
-}
 
 .administrador-user{
-	background-color:  #631b75;
-  color: #ffffff;
+	background-color:  var(--administrador-hover-color);
   margin-bottom: 30px;
 }
 
 
-.main-menu span{
-color: #ffffff;
-font-weight: 300;
 
-}
-
-.bi.bi-person-circle.fa-2x{
-  color: #f8f8f8;
-}
-
-/*============================ Agregar Clientes y Usuarios ============================ */
-i.bi.bi-person-plus{
-  color: #00d9ff;  
-}
-
-/*============================ Administrador usuarios y Cliente ============================ */
-i.bi.bi-person-video2{
-  color: #00d9ff;  
-}
-/*============================ colaborador ============================ */
-i.bi.bi-people.fa-2x{
-  color: #00d9ff
-}
-/*============================ PTN BOM ============================ */
-i.bi.bi-file-earmark-spreadsheet{
-  color: #a8dcff;  
-}
-/* AM */
-.bi.bi-check2-circle.fa-2x{
-  color: #e59af2e0;
-}
-
-i.bi.bi-file-earmark-break{
-  color: rgb(197, 196, 238);
-  
-}
-
-i.bi.fa-solid.fa-chart-line{
-  color: #0bc8b6;  
-}
-
-i.bi.bi-briefcase{
-  color: #8bffc5;  
+.bi.bi-person-circle.fa-2x , i.bi.bi-person-plus, i.bi.bi-person-video2.i.bi.bi-people.fa-2x
+, i.bi.bi-file-earmark-spreadsheet , .bi.bi-check2-circle.fa-2x , i.bi.bi-file-earmark-break
+, i.bi.fa-solid.fa-chart-line, i.bi.bi-briefcase , i.fa.fa-home , .bi.bi-list
+, .bi.bi-calculator-fill{
+  color: var(--administrador-menu-color);
 }
 
 
+
+
+
+
+/*============== OPTIONS VENTANA ==============*/
+#rol:hover{
+	background-color: var( --administrador-bg-color);
+	color: white;
+	}
+	
 

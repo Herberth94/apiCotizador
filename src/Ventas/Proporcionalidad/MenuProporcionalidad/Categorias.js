@@ -20,7 +20,7 @@ function Categorias() {
                 <thead>
 
                 <tr className="titulo-tabla-usuarios">
-                        <th>Resumen Categorias</th>
+                        <th className='titulo-tabla'>Resumen Categorias</th>
                   
                     </tr>
                     {/*=================== Titulos Tabla Clientes ===================*/}

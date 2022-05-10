@@ -1,7 +1,68 @@
+/* VARIABLES CSS  */
 
 :root {
-    --colorTextos: #0d0d0d;
+
+/* Body Color
+ */ 
+ --administrador-body-color: rgb(175, 175, 175);
+
+
+   /* Color Menu Lateral */
+   --administrador-tablas-color: rgb(255, 255, 255);
+  
+
+
+  /*   Color Menu Administrador  */
+  /* Color Menu Lateral */
+  --administrador-bg-color: rgb(2, 34, 77);
+  
+ 
+  /* 
+  Coor Hover Menu lateral
+   */
+  --administrador-hover-color: rgb(15, 82, 170);
+  /* Color Texto Menu lateral
+    */
+  --administrador-texto-color: rgb(255, 255, 255);
+  
+  
+  
+  /* Color Iconos Menu */
+  --administrador-menu-color: rgb(255, 255, 255);
+  
+  
+  /* Color Icono Salir */
+  --administrador-salir-color: rgb(255, 0, 0);
+  
+    --resetear-bg-color: rgb(2, 34, 77);
+    --resetear-hover-color: rgb(60, 98, 180);
+  
+    --modificar-bg-color: rgb(41, 92, 17);
+    --modificar-hover-color: rgb(21, 182, 16);
+  
+    
+    --modificar2-bg-color: rgb(17, 75, 92);
+    --modificar2-hover-color: rgb(0, 131, 113);
+  
+    --cancelar-bg-color: rgb(185, 0, 0);
+    --cancelar-hover-color: rgb(255, 0, 0);
+  
+    --ver-bg-color: rgb(63, 15, 21);
+    --ver-hover-color: rgb(115, 0, 160);
+
+    --busqueda-bg-color: rgba(0, 0, 0, 0);
+    --busqueda-hover-color: rgb(0, 44, 80);
+
+
+
+    --titulo-bg-color:    rgb(75, 255, 225);
+
+
+ 
+  
+  
   }
+  
   * {
     margin: 0;
     padding: 0;
@@ -10,19 +71,27 @@
 
 
 
-
+ 
 
   body{
 
-    background: url('../images/uu.png') no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover; 
+
+    
   
-  
-  }
-  
+
+      background: url('../images/Cotizador2.png') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover; 
+     
+        background-color:var(--administrador-body-color);
+
+      }
+      
+      
+      
+
 
 
 th.listacl{
@@ -46,7 +115,16 @@ td.Aceptado{
   background-color: #00f335d7;
 }
 td.En.revision{
+
+
   background-color: #f6fa00d0;
+
+
+  content: "\2193";
+  
+
+
+  
 }
 
 td.Rechazado {
@@ -135,14 +213,20 @@ button.login {
   font-weight: 500;
   border: none;
   border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(241, 230, 230, 0.685);
+
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
+
+
+  
+
  }
  
+
+
  .btn:hover {
-  box-shadow: 0px 15px 20px rgba(5, 53, 126, 0.4);
+
   color: #fff;
   transform: translateY(-7px);
  }
@@ -176,11 +260,13 @@ select
   line-height: 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background-color: rgba(0, 0, 0, 0.5);
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(255, 255, 255);
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 2px;
 }
+
+
 
 ::placeholder{
   text-align: center;
@@ -215,9 +301,6 @@ input{
 }
 /* ================================== Transparencia fondo menus ==================================*/
 
-  .tablas{
-	  background-color: #ffffff;
-  }
 
 
 /* From uiverse.io by @victoryamaykin */
@@ -262,6 +345,7 @@ input{
   border-radius: 50%;
  }
  
+
  input:checked + .slider {
   background-color: #0E6EB8;
  }
@@ -290,7 +374,7 @@ input{
  }
  
  input:checked + .slider:after {
-  content: 'Unitario';
+  content: 'Precio Unitario';
  }
  
  /*--------- END --------*/
@@ -421,244 +505,4 @@ input{
 @media (max-width: 576px) {
   
 }
-/* RESET STYLES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-body{
 
-  /* background: url('../images/uu.png') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; */
-
- 
-  background-color:  var(--black-bg-color);
- 
-}
-
-
-:root {
-  /*WHITE*/
-
-  
-
-  /*DARK*/
-  --black-bg-color:  rgb(255, 255, 255);
-  --black-text-color: black   ;
-
-  /*RED*/
-  --red-bg-color: #ce8082;
-  --red-text-color: #020202;
-
-  /*GREEN*/
-  --green-bg-color: #40de7c;
-  --green-text-color: #020202;
-
-  /*YELLOW*/
-  --yellow-bg-color: #fdc011;
-  --yellow-text-color: #110d02;
-
-  /*BLUE*/
-  --blue-bg-color: #2943a1;
-  --blue-text-color: #d4cbcd;
-
-  /*PURPLE*/
-  --purple-bg-color: #dbdbed;
-  --purple-text-color: #29262e;
-
-  /*OLIVE*/
-  --olive-bg-color: #838b74;
-  --olive-text-color: #f7f5e4;
-}
-
-
-[type="radio"] {
-  position: fixed;
-  left: -9999px;
-}
-
-label {
-  cursor: pointer;
-}
-
-
-
-/* MAIN STYLES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.page-wrapper {
- position: absolute;
-  width: 100%;
-  height: calc(100% - 64px);
-  transition: all 0.3s ease-in-out;
- 
-}
-
-.color-palette {
-  position: fixed;
-  top: 30px;
-  right: 15px;
-  display: grid;
-  grid-row-gap: 10px;
-  padding: 10px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.color-palette label {
-  position: relative;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-
-.color-palette label::before {
-  display: none;
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -30px;
-  transform: translateY(-50%);
-  width: 10px;
-  height: 2px;
-}
-
-.container {
-  max-width: 1200px;
-  padding: 0 15px;
-  margin: 0 auto;
-}
-
-[id="white"] ~ .page-wrapper [for="white"] {
-  background: var(--white-bg-color);
-}
-
-[id="black"] ~ .page-wrapper [for="black"] {
-  background: var(--black-bg-color);
-  
-}
-
-[id="red"] ~ .page-wrapper [for="red"] {
-  background: var(--red-bg-color);
-}
-
-
-
-
-
-[id="green"] ~ .page-wrapper [for="green"] {
-  background: var(--green-bg-color);
-}
-
-[id="yellow"] ~ .page-wrapper [for="yellow"] {
-  background: var(--yellow-bg-color);
-}
-
-[id="blue"] ~ .page-wrapper [for="blue"] {
-  background: var(--blue-bg-color);
-}
-
-[id="purple"] ~ .page-wrapper [for="purple"] {
-  background: var(--purple-bg-color);
-}
-
-[id="olive"] ~ .page-wrapper [for="olive"] {
-  background: var(--olive-bg-color);
-}
-
-
-
-
-/* CHECKBOX HACK STYLES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-[type="radio"]:checked ~ .page-wrapper label::before {
-  display: block;
-}
-
-[id="white"]:checked ~ .page-wrapper {
-  color: var(--white-text-color);
-  background: var(--white-bg-color);
-}
-
-[id="white"]:checked ~ .page-wrapper [for="white"]::before {
-  background: var(--white-text-color);
-}
-
-[id="black"]:checked ~ .page-wrapper {
-  color: var(--black-text-color);
-  background: var(--black-bg-color);
-}
-
-[id="black"]:checked ~ .page-wrapper [for="black"]::before {
-  background: var(--black-text-color);
-}
-
-[id="red"]:checked ~ .page-wrapper {
-  color: var(--red-text-color);
-  background: var(--red-bg-color);
-}
-
-[id="red"]:checked ~ .page-wrapper [for="red"]::before {
-  background: var(--red-text-color);
-}
-
-[id="green"]:checked ~ .page-wrapper {
-  color: var(--green-text-color);
-  background: var(--green-bg-color);
-}
-
-[id="green"]:checked ~ .page-wrapper [for="green"]::before {
-  background: var(--green-text-color);
-}
-
-[id="yellow"]:checked ~ .page-wrapper {
-  color: var(--yellow-text-color);
-  background: var(--yellow-bg-color);
-}
-
-[id="yellow"]:checked ~ .page-wrapper [for="yellow"]::before {
-  background: var(--yellow-text-color);
-}
-
-[id="blue"]:checked ~ .page-wrapper {
-  color: var(--blue-text-color);
-  background: var(--blue-bg-color);
-}
-
-[id="blue"]:checked ~ .page-wrapper [for="blue"]::before {
-  background: var(--blue-text-color);
-}
-
-[id="purple"]:checked ~ .page-wrapper {
-  color: var(--purple-text-color);
-  background: var(--purple-bg-color);
-}
-
-[id="purple"]:checked ~ .page-wrapper [for="purple"]::before {
-  background: var(--purple-text-color);
-}
-
-[id="olive"]:checked ~ .page-wrapper {
-  color: var(--olive-text-color);
-  background: var(--olive-bg-color);
-}
-
-[id="olive"]:checked ~ .page-wrapper [for="olive"]::before {
-  background: var(--olive-text-color);
-}
-
-
-/* FOOTER STYLES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.page-footer {
-  position: fixed;
-  right: 15px;
-  bottom: 20px;
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  padding: 5px;
-}
-
-.page-footer a {
-  margin-left: 4px;
-}
