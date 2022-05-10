@@ -23,7 +23,13 @@ function Categorias(props) {
         validaOperacion = !validaOperacion;
         setBdesc(!Bdesc);
         setBdesc2(!Bdesc2);
-        
+        setDatos({
+            precio_lista: '',
+            precio_unitario: '',
+            precio_descuento: '',
+            cd_cantidad: '',
+            precio_total: ''           
+        });
         }
         
     const [datos, setDatos] = useState({

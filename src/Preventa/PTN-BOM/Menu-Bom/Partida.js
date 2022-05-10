@@ -3,6 +3,7 @@ import { InsertDatosPartida } from "../Routes/GuardarPartida";
 import Table from "react-bootstrap/Table";
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
 import axios from 'axios';
+import { pId1 } from "./NuevoProyecto";
 
 function Partida({clave} ) {
   const { handleInputChangePartida, enviarDatosPartida } = InsertDatosPartida();
@@ -70,7 +71,7 @@ function Partida({clave} ) {
               <td width={"100px"}>
 
 
-      <button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (clave)}} >
+      <button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (pId1)}} >
         <i class="bi bi-eye-fill"></i>
         </button><br/><br/>
       {modalShow && modalShow1 ?   
