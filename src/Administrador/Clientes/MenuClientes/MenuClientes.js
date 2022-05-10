@@ -15,7 +15,7 @@ function MenuClientes() {
  <div className="contenido-usuarios">
 
 
-<Animaciones mytext= " Menú Clientes" />
+<Animaciones mytext= "Clientes" />
 
 {/*========================== Tabla  Categorias ==========================*/}
 <Table responsive id="nombreDiv">

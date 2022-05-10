@@ -19,7 +19,7 @@ function MenuProveedor() {
  <div className="contenido-usuarios">
 
 
-<Animaciones mytext= " Menú Proveedores" />
+<Animaciones mytext= "Proveedores" />
 
 {/*========================== Tabla  Categorias ==========================*/}
 <Table responsive id="nombreDiv">

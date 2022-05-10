@@ -41,7 +41,7 @@ function PTN_BOM() {
     <div className="contenido-usuarios">
       {/*======================= Titulo Animación =======================*/}
 
-      <Animaciones mytext="PTN BOM " />
+      <Animaciones mytext="BOM " />
 
       {/*========================== Tabla  Categorias ==========================*/}
       <Table responsive id="nombreDiv">
@@ -116,7 +116,7 @@ function PTN_BOM() {
                 }}
               >
                 {" "}
-                {show3 ? "Resumen Proyectos" : "Ocultar Proyecto"}{" "}
+                {show3 ? "Resumen" : "Ocultar Proyecto"}{" "}
               </button>
               {show3 ? (
                 <div></div>

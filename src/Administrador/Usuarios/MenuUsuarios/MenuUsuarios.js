@@ -14,7 +14,7 @@ function MenuUsuarios() {
 
   return (
     <div className="contenido-usuarios">
-      <Animaciones mytext= " Menú Usuarios " />
+      <Animaciones mytext= " Usuarios " />
       {/*========================== Tabla  Categorias ==========================*/}
       <Table responsive id="nombreDiv">
         {/*========================== Titulos Tabla ==========================*/}
@@ -66,6 +66,11 @@ function MenuUsuarios() {
               ) : (
                 <div className="arregla">
               
+
+
+
+
+
                   {/*========================== Llamado al Componente ==========================*/}
                   <AdministrarUsuarios/>
                 </div>

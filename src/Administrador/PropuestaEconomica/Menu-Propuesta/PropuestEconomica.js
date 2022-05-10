@@ -24,8 +24,8 @@ function PropuestaEconomica() {
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
             <tr className="titulo-tabla-usuarios">
-              <th>Editar Propuesta</th>
-              <th>Administrar propuestas </th>
+              <th className='ocultar'>Editar Propuesta</th>
+              <th className='ocultar'>Administrar propuestas </th>
             </tr>
           </thead>
 
@@ -42,7 +42,7 @@ function PropuestaEconomica() {
                   }}
                 >
                   {" "}
-                  {show ? "Editar" : "Ocultar"}{" "}
+                  {show ? "Editar Propuesta  Económica" : "Ocultar Edición"}{" "}
                 </button>
                 {show ? (
                   <div></div>
@@ -64,7 +64,7 @@ function PropuestaEconomica() {
                   }}
                 >
                   {" "}
-                  {show2 ? "Administrar" : "Ocultar"}{" "}
+                  {show2 ? "Administrar Propuesta Económica" : "Ocultar"}{" "}
                 </button>
                 {show2 ? (
                   <div></div>

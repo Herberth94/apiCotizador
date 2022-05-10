@@ -44,7 +44,7 @@ function ProporcionalidadMenu() {
                 }}
               >
                 {" "}
-                {show ? "Resumen Financiamiento" : "Ocultar"}{" "}
+                {show ? "Resumen" : "Ocultar"}{" "}
               </button>
               {show ? (
                 <div></div>

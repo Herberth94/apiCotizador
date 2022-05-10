@@ -281,7 +281,7 @@ function ContinuarProyecto() {
                       }}
                       >
                       {" "}
-                      {show7 ? "Proyectos Colaboración" : "Ocultar"}{" "}
+                      {show7 ? "Proyectos Compartidos" : "Ocultar"}{" "}
                       </button>
                   </td>
               </tr>

@@ -4,7 +4,7 @@ import "jspdf-autotable";
 import '../css/Exportar.css';
 import {imagen} from './IMG';
 
-import {datosCompletosAM , Cantidad , name_cliente  , clave_p}from "../../../Ventas/Operaciones/OperacionesAM";
+import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , TOTAL, }from "../../../Ventas/Operaciones/OperacionesAM";
 
 
 import { fecha , datos } from './Formulario';
@@ -21,10 +21,10 @@ class ExportarPDF extends React.Component {
         {descripcion: "descripcion", periodo: "mensual",   costoUnitario: "678" , dispositivos: "1",subtotal: "400"}
       ],
       datosTotales: [
-        {subtotal: "$74,280", iva: "11,884", total: "86,165"}
+        {subtotal: "$74,280", iva: "16 %", total: "86,165"}
       ],
       datosTotales2: [
-        {subtotal: "$6,190", iva: "990", total: "7,180"}
+        {subtotal: "$6,190", iva: "16 %", total: "7,180"}
       ]
     }
 
@@ -77,10 +77,13 @@ let nombreContacto = datos.servicios
     const cargo ="EJECUTIVA DE CUENTA"
     const empresa="PALO TINTO NETWORKS SA DE CV"
 
- 
-    const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"]];
+    console.log( "Tot   a ",TOTAL);
+    const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"  , ""]];
     let a = 0;
-    const data = datosCompletosAM.map(elt=> [ [a ],[datosCompletosAM[a++]] , Cantidad[a] ]      );
+    let b = 0;
+    let c = 0;
+    let d = 0;
+    const data = partidasUnicas2.map(elt=> [ [a +1 ],[partidasUnicas2[a++]] , descripcionGeneral[b++]  ,Cantidad[c++] ]   , TOTAL[0]   );
     let content = {
       startY: 200,
       head: headers,

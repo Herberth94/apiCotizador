@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRegistro } from "../Routes/ModificarCLientes";
-import Animaciones from "../../../Componentes/Animaciones";
 import {url,url2 } from "../../../Componentes/Ocultar";
 import { CrudClientes } from "../Routes/CRUDClientes";
 

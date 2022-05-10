@@ -138,7 +138,7 @@ function Proyectos() {
                             }}
                             >
                             {" "}
-                            {show1 ? "Proyectos en Colaboración" : "Ocultar"}{" "}
+                            {show1 ? "Proyectos Compartidos" : "Ocultar"}{" "}
                             </button>
                         </td>
                     </tr>

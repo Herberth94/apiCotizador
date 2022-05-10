@@ -32,21 +32,21 @@ function archivo() {
           <li className="has-subnav">
             <a href="/menu-usuarios">
               <i className="bi bi-list"></i>
-              <span className="nav-text">Menú Usuarios</span>
+              <span className="nav-text">Usuarios</span>
             </a>
           </li>
 
           <li className="has-subnav">
             <a href="/menu-clientes">
               <i className="bi bi-list"></i>
-              <span className="nav-text">Menú Clientes</span>
+              <span className="nav-text">Clientes</span>
             </a>
           </li>
 
           <li className="has-subnav">
             <a href="/menu-proveedores">
               <i className="bi bi-list"></i>
-              <span className="nav-text">Menú Proveedores</span>
+              <span className="nav-text">Proveedores</span>
             </a>
           </li>
           
@@ -74,7 +74,7 @@ function archivo() {
         <li className="has-subnav">
             <a href="/menu-colaboradores">
               <i className="bi bi-list"></i>
-              <span className="nav-text">Menú Colaboradores</span>
+              <span className="nav-text">Colaboradores</span>
             </a>
           </li>
 
@@ -82,7 +82,7 @@ function archivo() {
           <li className="has-subnav">
             <a href="/asignar-proyecto">
               <i className="bi bi-list"></i>
-              <span className="nav-text">Asignar proyectos Ventas</span>
+              <span className="nav-text">Proyectos </span>
             </a>
           </li>
 
@@ -91,7 +91,7 @@ function archivo() {
           <li className="has-subnav">
             <a href="/ptn">
               <i className="bi bi-file-earmark-spreadsheet fa-2x"></i>
-              <span className="nav-text">PTN BOM Cotizaciones</span>
+              <span className="nav-text">BOM</span>
             </a>
           </li>
 

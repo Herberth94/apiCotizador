@@ -22,7 +22,7 @@ function AmMenu() {
   return (
     <div className="contenido-usuarios">
       {/*======================= Titulo Animación =======================*/}
-      <Animaciones mytext=" AM " />
+      <Animaciones mytext=" Análisis de Margen" />
       {/*========================== Tabla  Categorias ==========================*/}
       <Table responsive id="nombreDiv">
         {/*========================== Titulos Tabla ==========================*/}
