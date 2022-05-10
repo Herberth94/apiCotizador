@@ -342,10 +342,12 @@ export function obtenPartidasUnicas(
      
         if(totalUSD[i] !==0   ){
 
-          let a  = parseFloat(totalMXN[i].toFixed(decimal));
-          let b = parseFloat(totalUSD[i].toFixed(decimal) * valorDolar)
-          monedaPTN.push(a+b );
-          monedaPTN2.push(a+b);
+          let a  = parseFloat(totalMXN[i]);
+          let b = parseFloat(totalUSD[i] * valorDolar)
+
+          let c = a+b;
+          monedaPTN.push(c.toFixed(decimal));
+          monedaPTN2.push(c.toFixed(decimal));
         }else{
           monedaPTN.push(totalMXN[i].toFixed(decimal) );
           monedaPTN2.push(totalMXN[i].toFixed(decimal));
@@ -357,15 +359,19 @@ export function obtenPartidasUnicas(
 
 
             if (totalMXN[i] !== 0) {
-              let a  = parseFloat(totalMXN[i].toFixed(decimal));
-              let b = parseFloat(totalUSD[i].toFixed(decimal) * valorDolar)
-              monedaPTN.push(a+b );
-              monedaPTN2.push(a+b);
+              let a  = parseFloat(totalMXN[i]);
+              let b = parseFloat(totalUSD[i] * valorDolar)
+
+              let c = a+b;
+              monedaPTN.push(c.toFixed(decimal) );
+              monedaPTN2.push(c.toFixed(decimal));
 
               
             }else{
-              monedaPTN.push(totalUSD[i].toFixed(decimal) * valorDolar);
-              monedaPTN2.push(totalUSD[i].toFixed(decimal)* valorDolar);
+
+              let d = totalUSD[i] * valorDolar;
+              monedaPTN.push(d.toFixed(decimal));
+              monedaPTN2.push(d.toFixed(decimal));
             }
 
 
@@ -381,12 +387,15 @@ export function obtenPartidasUnicas(
      
         if(totalUSD[i] !==0   ){
 
-          let a  = parseFloat(totalUSD[i].toFixed(decimal));
-          let b = parseFloat(totalMXN[i].toFixed(decimal) / valorDolar)
-          monedaPTN.push(a+b );
-          monedaPTN2.push(a+b);
+          let a  = parseFloat(totalUSD[i]);
+          let b = parseFloat(totalMXN[i]/ valorDolar);
+
+          let c = a+b;
+          monedaPTN.push(c.toFixed(decimal) );
+          monedaPTN2.push(c.toFixed(decimal));
 
         }else{
+        
           monedaPTN.push(totalUSD[i].toFixed(decimal) );
           monedaPTN2.push(totalUSD[i].toFixed(decimal));
         }
@@ -395,10 +404,12 @@ export function obtenPartidasUnicas(
 
 
             if (totalMXN[i] !== 0) {
-              let a  = parseFloat(totalUSD[i].toFixed(decimal));
-              let b = parseFloat(totalMXN[i].toFixed(decimal) / valorDolar)
-              monedaPTN.push(a+b );
-              monedaPTN2.push(a+b);
+              let a  = parseFloat(totalUSD[i]);
+              let b = parseFloat(totalMXN[i] / valorDolar);
+
+              let d = a+b;
+              monedaPTN.push(d.toFixed(decimal) );
+              monedaPTN2.push(d.toFixed(decimal));
 
               
             }else{
@@ -488,11 +499,13 @@ export function obtenPartidasUnicas(
 
         if (totalUSD2[i] !== 0) {
           let a  = parseFloat(totalUSD2[i].toFixed(decimal));
-          let b = parseFloat(totalMXN2[i].toFixed(decimal) / valorDolar)
+          let b = parseFloat(totalMXN2[i] / valorDolar)
           totalCategoriasUSD.push(a+b );
  
         }else{
-          totalCategoriasUSD.push(totalMXN2[i].toFixed(decimal) / valorDolar);        
+
+          let c = totalMXN2[i] / valorDolar;
+          totalCategoriasUSD.push(c.toFixed(decimal));        
         }
       } 
 
@@ -778,7 +791,7 @@ function final() {
   for (var i = 0; i < totalCategoriasUSD2.length; i++) {
     cos += parseFloat(totalCategoriasUSD2[i]);
   }
-  totalCategoriasUSD2.push(cos);
+  totalCategoriasUSD2.push(cos.toFixed(decimal));
   cos = 0;
 
   /////////Categorias Proporcionalidad
@@ -793,7 +806,7 @@ function final() {
     summm += parseFloat(precioVenta[i]);
   }
 
-  precioVenta3.push(summm);
+  precioVenta3.push(summm.toFixed(decimal));
 
   summm = 0;
   ///console.log("cccc  ", totalCategoriasUSD2);
