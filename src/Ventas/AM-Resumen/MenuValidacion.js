@@ -9,8 +9,8 @@ import Rechazar from './Rechazar';
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
-//let validatorrol = cookies.get('rol');
-let validatorrol ="administrador";
+let validatorrol = cookies.get('rol');
+//let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
