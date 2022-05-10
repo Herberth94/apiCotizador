@@ -136,16 +136,16 @@ function ContinuarProyecto() {
     let i = Object.keys(suggestions)
     i = i.length
     setShow9(Array(i).fill(true));
-    setTextBVer(Array(i).fill('Continuar'));
+    setTextBVer(Array(i).fill('bi bi-play-fill'));
     setShow10(Array(i).fill(true));
-    setTextBVer1(Array(i).fill('Finalizar'));
+    setTextBVer1(Array(i).fill('bi bi-check-circle-fill'));
   },[suggestions])
 
   useEffect(() => {
     let i = Object.keys(listaPartidas)
     i = i.length
     setShow11(Array(i).fill(true));
-    setTextBVer2(Array(i).fill('Continuar'));
+    setTextBVer2(Array(i).fill('bi bi-play-fill'));
   },[listaPartidas,show3 === true])
 
   const habilitar = (key) =>{
@@ -158,24 +158,24 @@ function ContinuarProyecto() {
     c = c.length;
     setShow9(Array(c).fill(true));
     setShow10(Array(c).fill(true));
-    setTextBVer(Array(c).fill('Continuar'));
-    setTextBVer1(Array(c).fill('Finalizar'));
+    setTextBVer(Array(c).fill('bi bi-play-fill'));
+    setTextBVer1(Array(c).fill('bi bi-check-circle-fill'));
     for (let i = 0 ; i < c ; i++){
         if(i === key){
             newArr[i] = !show9[i];
             setShow(newArr[i]);
             if(show9[i] === false){
-                newArr2[i] = 'Continuar';
+                newArr2[i] = 'bi bi-play-fill';
                 setShow2(true);
                 setShow3(true);
                 setShow4(true);
             }else{
-                newArr2[i] = 'Ocultar';
+                newArr2[i] = 'bi bi-eye-slash-fill';
             }
         }
         if(i !== key){
             newArr[i]=true;
-            newArr2[i] = 'Continuar';
+            newArr2[i] = 'bi bi-play-fill';
         }
     }   
     setShow9(newArr);
@@ -193,22 +193,22 @@ function ContinuarProyecto() {
     c = c.length;
     setShow9(Array(c).fill(true));
     setShow10(Array(c).fill(true));
-    setTextBVer1(Array(c).fill('Finalizar'));
-    setTextBVer(Array(c).fill('Continuar'));
+    setTextBVer1(Array(c).fill('bi bi-check-circle-fill'));
+    setTextBVer(Array(c).fill('bi bi-play-fill'));
     for (let i = 0 ; i < c ; i++){
         if(i === key){
             newArr[i] = !show10[i];
             setShow5(newArr[i]);
             if(show10[i] === false){
-                newArr2[i] = 'Finalizar';
+                newArr2[i] = 'bi bi-check-circle-fill';
 
             }else{
-                newArr2[i] = 'Ocultar';
+                newArr2[i] = 'bi bi-eye-slash-fill';
             }
         }
         if(i !== key){
             newArr[i]=true;
-            newArr2[i] = 'Finalizar';
+            newArr2[i] = 'bi bi-check-circle-fill';
         }
     }   
     setShow10(newArr);
@@ -222,20 +222,20 @@ function ContinuarProyecto() {
     let c = Object.keys(listaPartidas);
     c = c.length;
     setShow11(Array(c).fill(true));
-    setTextBVer2(Array(c).fill('Continuar'));
+    setTextBVer2(Array(c).fill('bi bi-play-fill'));
     for (let i = 0 ; i < c ; i++){
         if(i === key){
             newArr[i] = !show11[i];
             setShow4(newArr[i]);
             if(show11[i] === false){
-                newArr2[i] = 'Continuar';
+                newArr2[i] = 'bi bi-play-fill';
             }else{
-                newArr2[i] = 'Ocultar';
+                newArr2[i] = 'bi bi-eye-slash-fill';
             }
         }
         if(i !== key){
             newArr[i]=true;
-            newArr2[i] = 'Continuar';
+            newArr2[i] = 'bi bi-play-fill';
         }
     }   
     setShow11(newArr);
@@ -358,7 +358,7 @@ function ContinuarProyecto() {
                       <td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</td>  
                       <td>
                         <button 
-                          className="btn btn-primary modificar" 
+                          className="btn btn-primary Mod" 
                           type="button" 
                           onClick={() => {
                             getIdP(suggestions[key].proyecto_id);
@@ -367,7 +367,10 @@ function ContinuarProyecto() {
                             habilitar(key);
                             }}
                           > 
-                            {textBVer[key]} 
+                         
+
+                            <i className=   {textBVer[key]} ></i>
+
                           </button>
                       </td>
                       <td>
@@ -381,7 +384,10 @@ function ContinuarProyecto() {
                             habilitar1(key);
                             }}
                           > 
-                            {textBVer1[key]} 
+
+                           <i className=   {textBVer1[key]}  ></i>
+
+                           
                           </button>
                       </td>
                   </tr>  

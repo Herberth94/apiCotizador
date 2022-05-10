@@ -28,7 +28,7 @@ function NuevoProyecto() {
 
   function getIdP1 (proyecto_id){
     pId1 = proyecto_id;
-    console.log('Ultimo proyecto creado:',pId1);
+    //console.log('Ultimo proyecto creado:',pId1);
 }
 
   const getProyectos = async () => {
@@ -36,7 +36,7 @@ function NuevoProyecto() {
       const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
       //setListaProyectos(resProy.data.data.pop());
       let l = resProy.data.data.length
-      console.log('Longitud:',l);
+      //console.log('Longitud:',l);
       //console.log('Ultimo proyecto creado:',resProy.data.data[l-1].proyecto_id);
       getIdP1(resProy.data.data[l-1].proyecto_id);
     }catch(error){console.log(error);}
@@ -44,7 +44,6 @@ function NuevoProyecto() {
 
   useEffect(()=>{
     getProyectos();
-    
   },[])
 
 
@@ -120,7 +119,7 @@ function NuevoProyecto() {
     for (let c = 0; c < i.length; c++) {
       if (nombreC === ListaC[c].nombre_cliente) {
         clienteId.proyecto_id_cliente = ListaC[c].cliente_id
-        console.log(clienteId);
+        //console.log(clienteId);
       }
     }
 
@@ -171,10 +170,18 @@ function NuevoProyecto() {
     }
   }
 
-  const enviarDatos = (event) => {
-    Send();
-    event.preventDefault()
-    event.target.reset();
+  const enviarDatos = () => {
+    if(show === true){
+      Send();
+      setDatos({
+        ...datos, proyecto_clave: '',
+                  proyecto_descripcion: '',
+                  proyecto_plazo_meses: ''
+      })
+    // event.preventDefault()
+    // event.target.reset();
+
+    }
   }
   /*=================================================================================================================*/
 
@@ -185,7 +192,7 @@ function NuevoProyecto() {
     {/*   <div> <Animaciones mytext="Datos Proyecto" /> </div>
  */}
       {/*=======================  Tabla Nuevo Proyecto ======================= */}
-      <form action="" method="post" onSubmit={enviarDatos}>
+      {/* <form action="" method="post" onSubmit={enviarDatos}> */}
         <Table responsive id="nombreDiv">
 
           {/*======================= Titulos Tabla ======================= */}
@@ -266,7 +273,15 @@ function NuevoProyecto() {
               <td>
                 {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
  {/*                <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button> */}
- <button className="btn btn-primary modificar" type="submit" onClick={() => { setShow(!show) }}>  {show ? 'Iniciar' : 'Ocultar Datos'}    </button>
+      <button 
+      className="btn btn-primary modificar" 
+      type="submit" 
+      onClick={() => { 
+        setShow(!show);
+        enviarDatos();
+      }}>  
+      {show ? 'Iniciar' : 'Ocultar Datos'}    
+      </button>
       {show ? (
         <div >
 
@@ -284,16 +299,9 @@ function NuevoProyecto() {
             </tr>
           </tbody>
         </Table>
-
-      </form>
-
- 
-
-
+      {/* </form> */}
     </div>
-
   )
-
 }
 
 export default NuevoProyecto

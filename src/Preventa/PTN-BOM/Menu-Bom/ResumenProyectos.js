@@ -82,6 +82,7 @@ function Proyectos() {
             })
         }
         setSuggestions(coincidencias);
+        //console.log('Suggestions:',suggestions);
         setClaveP(claveP);
     }
     /*=======================================================================================================*/

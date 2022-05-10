@@ -29,12 +29,21 @@ function DatosSP({clave} ) {
   /*========================== Mostrar/Ocultar ==========================*/
   const[show,setShow] = useState(true); //Menu SP
   /*=====================================================================*/
-
+  const[ Bdesc, setBdesc]= useState(true);
+  const[ Bdesc2, setBdesc2]= useState(false);
 
   function checa(){
 
     validaOperacion = !validaOperacion;
-    
+    setBdesc(!Bdesc);
+    setBdesc2(!Bdesc2);
+    setDatos({
+          precio_lista: '',
+          precio_unitario: '',
+          precio_descuento: '',
+          sp_cantidad: '',
+          precio_total: '',      
+        });
     }
   //console.log(clave);
   
@@ -799,6 +808,7 @@ function DatosSP({clave} ) {
                     name="precio_unitario"
                     onChange={handleInputChange}
                     placeholder="Precio unitario"
+                    disabled={Bdesc2}
                     step="any"
                     />
                 </td>
@@ -812,6 +822,7 @@ function DatosSP({clave} ) {
                     name="precio_descuento"
                     onChange={handleInputChange}
                     placeholder="Descuento"
+                    disabled ={Bdesc}
                     min="0"
                     step="any"
                     />

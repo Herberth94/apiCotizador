@@ -5,7 +5,7 @@ import axios from 'axios';
 import ResumenAM from '../../../Ventas/AM/Menu-AM/ResumenAM';
 
 const ModalPtnDatos = (props) => {
-   console.log(props.proyecto_id);
+   //console.log(props.proyecto_id);
  
          
    return (

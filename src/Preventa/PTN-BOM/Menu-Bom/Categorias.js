@@ -23,7 +23,13 @@ function Categorias(props) {
         validaOperacion = !validaOperacion;
         setBdesc(!Bdesc);
         setBdesc2(!Bdesc2);
-        
+        setDatos({
+            precio_lista: '',
+            precio_unitario: '',
+            precio_descuento: '',
+            cd_cantidad: '',
+            precio_total: ''           
+        });
         }
         
     const [datos, setDatos] = useState({
@@ -129,8 +135,15 @@ function Categorias(props) {
                 <Table responsive id="nombreDiv">
                 {/*========================== Titulos Tabla ==========================*/}
                 <thead>
+
+                <tr className="titulo-tabla-usuarios">
+                    <th></th>           
+                    <th className='titulo-tabla'>Categorias Adicionales</th>
+                
+                  
+                    </tr>
                     <tr className="titulo-tabla-usuarios">
-                    <th>Calcular</th>           
+                    
                     <th>No. De Parte</th>
                     <th>Categoria</th>
                     <th>Moneda</th>
@@ -144,12 +157,7 @@ function Categorias(props) {
                     <tr className="">
                     {/*======================== Categorias ==========================*/}
 
-               <td>
-                <label className="switch">
-                <input type="checkbox" id="checa"     onClick={checa}/>
-                <span className="slider"></span>
-                </label>   
-                </td>
+            
 
                   {/*========================== Número de Parte ==========================*/}
                   <td>
@@ -227,6 +235,7 @@ function Categorias(props) {
                 <Table responsive id="nombreDiv">
                 <thead>
                     <tr className="titulo-tabla-usuarios">
+                    <th>Calcular</th>  
                     <th>Cantidad</th>
                     <th>Precio Lista</th>
                     <th>Precio Unitario</th>
@@ -236,8 +245,15 @@ function Categorias(props) {
                 </thead>
                 <tbody>
                     <tr className="">
-                    {/*======================== Cantidad ==========================*/}
+        {/*======================== Funcion Calcular==========================*/}
                     <td>
+                <label className="switch">
+                <input type="checkbox" id="checa"     onClick={checa}/>
+                <span className="slider"></span>
+                </label>   
+                </td>
+                    {/*======================== Cantidad ==========================*/}
+                    <td width={"100px"}>
                         {" "}
                         <input
                         className="agregar"
@@ -337,7 +353,14 @@ function Categorias(props) {
                     </tbody>
                     </Table>
             </form>
+
             <button className="btn btn-primary modificar" onClick={() => finalizarProy()}>Finalizar proyecto</button>
+          <br></br>
+          <br></br>
+        
+          <br></br>
+        
+        
         </div>
     )
 }
