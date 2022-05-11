@@ -2,13 +2,22 @@ import React from 'react';
 import {jsPDF} from "jspdf";
 import "jspdf-autotable";
 import '../css/Exportar.css';
+
 import {imagen} from './IMG';
 
-import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , TOTAL, }from "../../../Ventas/Operaciones/OperacionesAM";
 
+
+import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , TOTAL, 
+  TOTALSTRING , totD , totD2, totMensual, mesesMensual, totalMen,  totalMenIva,
+  totalMensual}from "../../../Ventas/Operaciones/OperacionesAM";
+
+
+/*   export var totMensual =  "" ;
+export var mesesMensual = "";
+export var totalMen = "";
+ */
 
 import { fecha , datos } from './Formulario';
-
 
 
 class ExportarPDF extends React.Component {
@@ -18,13 +27,13 @@ class ExportarPDF extends React.Component {
     this.state = {
  
       datos2: [
-        {descripcion: "descripcion", periodo: "mensual",   costoUnitario: "678" , dispositivos: "1",subtotal: "400"}
+        {descripcion: "descripcion", periodo: "mensual",   costoUnitario: totMensual , dispositivos: mesesMensual ,subtotal: totalMen}
       ],
       datosTotales: [
-        {subtotal: "$74,280", iva: "16 %", total: "86,165"}
+        {subtotal: totD , iva: "16 %", total: totD2}
       ],
       datosTotales2: [
-        {subtotal: "$6,190", iva: "16 %", total: "7,180"}
+        {subtotal: totalMen, iva: "16 %", total:   totalMenIva}
       ]
     }
 
@@ -77,13 +86,15 @@ let nombreContacto = datos.servicios
     const cargo ="EJECUTIVA DE CUENTA"
     const empresa="PALO TINTO NETWORKS SA DE CV"
 
-    console.log( "Tot   a ",TOTAL);
-    const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"  , ""]];
+    console.log( "Tot   a ",TOTALSTRING);
+
+
+    const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"  ]];
     let a = 0;
     let b = 0;
     let c = 0;
     let d = 0;
-    const data = partidasUnicas2.map(elt=> [ [a +1 ],[partidasUnicas2[a++]] , descripcionGeneral[b++]  ,Cantidad[c++] ]   , TOTAL[0]   );
+    const data = partidasUnicas2.map(elt=> [ [a +1 ],[partidasUnicas2[a++]] , descripcionGeneral[b++]  ,Cantidad[c++]    , TOTALSTRING[d++] ]      );
     let content = {
       startY: 200,
       head: headers,
@@ -92,7 +103,7 @@ let nombreContacto = datos.servicios
     };
 
   
-    const headers2 = [["DESCRIPCIÓN", "PERIODO", "COSTO UNITARIO", "DISPOSITIVOS", "SUBTOTAL" ]]
+    const headers2 = [["DESCRIPCIÓN", "PERIODO", "COSTO MENSUAL", "MESES", "SUBTOTAL" ]]
     const data2 = this.state.datos2.map(elt=> [elt.descripcion , elt.periodo,  elt.costoUnitario, elt.dispositivos, elt.subtotal]);
     
     const headers3 = [["SUBTOTAL", "IVA", "TOTAL"]]

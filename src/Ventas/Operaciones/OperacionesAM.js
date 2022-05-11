@@ -1,5 +1,6 @@
 //VARIABLE EXTRAIDAS DE LA BD
 
+
 export let plazo_meses = 0;
 export let pd_financiamiento = 0;
 export let pd_pago_anuales = 0;
@@ -14,12 +15,25 @@ let precio3 = 0;
 let precio2 = 0;
 export let stringDolar = "";
 export let margenReal = "";
+export var totalPropuesta = "";
 
 export let costosIndirectos = [];
 
 /*============= Calcular Costos Indirectos ===============================*/
 
 /*============= Porcentajes Costos Indirectos Default ===============================*/
+
+
+export var totD  = "" ;
+export var totaliva = ""
+export var totD2 =  "" ;
+
+
+export var totMensual =  "" ;
+export var mesesMensual = "";
+export var totalMen = "";
+export var totalMenIva = "";
+
 export let equivale = [];
 
 let decimal = 3;
@@ -33,6 +47,7 @@ export let descuentoCliente = [];
 export let datosCompletosAM = [];
 export let datosCompletosTotal = [];
 
+
 let sumatoriaMXN2 = 0;
 let sumatoriaUSD2 = 0;
 let totalBom = 0;
@@ -41,6 +56,7 @@ let data2 = [];
 let data3 = [];
 let dataCategoria = [];
 let monedaAM = [];
+
 /*============= Eliminar Valores Repetidos ===============================*/
 
 export let partidasUnicas = [];
@@ -94,9 +110,26 @@ export let precioVenta2 = [];
 export let proporcional = [];
 export let proporcionalMesaAyuda = [];
 export let TOTAL = [];
+
+export let TOTALSTRING = [];
 export let totalCategorias = 0;
 
 function limpiaDatos() {
+
+
+
+   totD  = "" ;
+   totaliva = ""
+  totD2 =  "" ;
+
+
+   totMensual =  "" ;
+   mesesMensual = "";
+   totalMen = "";
+  totalMenIva = "";
+
+
+  TOTALSTRING = [];
   financiamiento = [];
 
   plazo_meses = 0;
@@ -192,6 +225,8 @@ function limpiaDatos() {
   precio2 = 0;
 
   stringDolar = "";
+
+  totalPropuesta = "";
 }
 
 let conversion = "";
@@ -744,11 +779,29 @@ function final() {
   /*============= Proporcional Mesa De Ayuda ===============================*/
   for (var i = 0; i < partidasUnicas.length; i++) {
     h = parseFloat(proporcionalMesaAyuda[i]) + parseFloat(precioVenta2[i]);
-
     h = h.toFixed(decimal);
     TOTAL.push(h);
+ 
+ 
   }
 
+
+  var g = 0;
+  for (var i = 0; i <TOTAL.length; i++) {
+
+
+    g =  " $ " + TOTAL[i];
+
+    TOTALSTRING.push(g);
+ 
+ 
+  }
+
+  
+   totD  = "$ " + TOTAL[TOTAL.length-1];
+   totaliva = parseFloat(TOTAL[TOTAL.length-1])  + parseFloat(TOTAL[TOTAL.length-1] * .16);
+   totD2 =  "$ " + totaliva.toFixed(3);
+  
   //bien 4
 
   /*============= Financiamiento ===============================*/
@@ -810,4 +863,18 @@ function final() {
 
   summm = 0;
   ///console.log("cccc  ", totalCategoriasUSD2);
+
+
+
+  totMensual = "$ " +totalMensual[totalMensual.length-1];
+  mesesMensual = " " +  plazo_meses;
+  totalMen =    " $  " + (totalMensual[totalMensual.length-1] * 12);
+   let cx =  (totalMensual[totalMensual.length-1] * 12) *  .16;
+   let cz =   (totalMensual[totalMensual.length-1] * 12) + cx;
+   cz = cz.toFixed(decimal);
+  totalMenIva = " $ " + cz;
+
+
+
+ 
 }
