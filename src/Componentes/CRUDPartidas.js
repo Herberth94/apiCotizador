@@ -173,6 +173,13 @@ export const CrudPartidas = (props) => {
                 console.log(error);
             }
         }
+
+        const [namePar,setNamePar] = useState('')
+
+        function getNamePar(partida){
+            setNamePar(partida.partida_nombre);
+            //console.log(namePar);
+        }
         /*================================================================================================*/
 
         /*========================= Envío de nuevos datos =========================*/
@@ -195,10 +202,17 @@ export const CrudPartidas = (props) => {
                 <Table responsive  striped bordered hover size="sm">
                     <thead>
 
-                    <tr className="titulo-tabla-usuarios">
+                         {/* <tr className="titulo-tabla-usuarios">
+                            <th></th>
+                            <th className='titulo-tabla'>{props.proyecto}</th>
+                        </tr>
+                        <tr className="titulo-tabla-usuarios">
+                            <th></th>
+                            <th className='titulo-tabla'>Partidas:</th>
+                        </tr> */}
+                        <tr className="titulo-tabla-usuarios">
                             <th></th>
                             <th className='titulo-tabla'>Resumen por Partidas</th>
-                           
                         </tr>
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
@@ -275,6 +289,7 @@ export const CrudPartidas = (props) => {
                                 onClick={() => {
                                     habilitar1(key);
                                     getDatosSP(props.partidas[key].partida_id);
+                                    getNamePar(props.partidas[key])
                                 }}
                             >
                                 
@@ -367,6 +382,8 @@ export const CrudPartidas = (props) => {
                         // descripciones={ListaDes}
                         setfirst={setfirst}
                         envioDataSP={envioDataSp}
+                        proyecto={props.proyecto}
+                        partida={namePar}
                         />    
                     </div>
                 )}

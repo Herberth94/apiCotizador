@@ -212,19 +212,21 @@ export const CrudProyectos = (props) => {
         }
 
             /*===== Mostrar Proyecto actual =====*/
-            const [cProy,setCProy] = useState('');
-            const [desProy,setDesProy] = useState('');
-            const [clProy,setClProy] = useState('');
+            const [proyecto,setProyecto] = useState('')
+            // const [cProy,setCProy] = useState('');
+            // const [desProy,setDesProy] = useState('');
+            // const [clProy,setClProy] = useState('');
             /*===================================*/
 
         function getIdP (proyecto){
             pId = proyecto.proyecto_id;
-            setCProy(proyecto.proyecto_clave);
-            setDesProy(proyecto.proyecto_descripcion);
-            setClProy(proyecto.nombre_cliente);
+            // setCProy(proyecto.proyecto_clave);
+            // setDesProy(proyecto.proyecto_descripcion);
+            // setClProy(proyecto.nombre_cliente);
+            setProyecto(`Proyecto: FO-ING-01 BOM - ${proyecto.proyecto_clave} - ${proyecto.proyecto_descripcion}  -  ${proyecto.nombre_cliente}`)
             
             getProyEstatus(proyecto.proyecto_estatus);
-            console.log('Estatus:',proyecto.proyecto_estatus);
+            //console.log('Estatus:',proyecto.proyecto_estatus);
             
             //console.log(pEstatus);
         }
@@ -288,283 +290,243 @@ export const CrudProyectos = (props) => {
         }
         /*=========================================================================*/
     /*==============================================================================================================*/
-
-
     return (
         <div>
-           {/* <form> */}
-                {/****************************Lista de los Proyectos Creados ****************************************/}
-                {/*============= Titulo Animación =============*/}
-           {/*      <Animaciones mytext="Proyectos " />
- */}
-                <Table responsive  striped bordered hover size="sm">
-                    <thead>
-                        <tr className="titulo-tabla-usuarios">
-                            <th>ID</th>
-                            <th>Clave</th>
-                            <th>Descripción</th>
-                            <th>Cliente</th>
-                            <th>Fecha Creación</th>
-                            <th>Fecha Modificación</th>
-                            <th>Estatus</th>
-                            <th>Plazo Meses</th>
-                            <th>Modificar</th>
-                            <th>Detalles</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                                    
-                    <tbody>
-                        {Object.keys(props.suggestionsP).map((key) => (    
-                            <tr key={props.suggestionsP[key].proyecto_id} >
-                                <td>{props.suggestionsP[key].proyecto_id}</td>  
-                                <td>
-                                    <input 
-                                    className="input-name" 
-                                    defaultValue={props.suggestionsP[key].proyecto_clave} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="proyecto_clave" 
-                                    ></input>
-                                </td>   
-                                <td>
-                                    <input 
-                                    className="input-name" 
-                                    defaultValue={props.suggestionsP[key].proyecto_descripcion} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="proyecto_descripcion" 
-                                    ></input>
-                                </td>  
-                                <td>
-                                {" "}
-                                <input
-                                    className="agregar"
-                                    type="text"
-                                    name="nombre_cliente"
-                                    disabled={enable[key]}
-                                    value={nombreC[key]}
-                                    onChange={e => onChangeTextCliente(e.target.value,key)}
-                                    />
-                                    {Object.keys(suggestionsClientes).map((i)=>
-                                        <div 
-                                        key={i}
-                                        disiable={enable[key]}
-                                        className="selectCliente" 
-                                        onClick={() => onSuggestHandler(suggestionsClientes[i].nombre_cliente, key)}
-                                        >
-                                            {suggestionsClientes[i].nombre_cliente}
-                                        </div>
-                                    )}
-                                </td> 
-                                <td>{props.suggestionsP[key].proyecto_fecha_creacion}</td>
-                                <td>{props.suggestionsP[key].proyecto_fecha_modificacion}</td>
-                                <td  className={props.suggestionsP[key].proyecto_estatus}>{props.suggestionsP[key].proyecto_estatus}</td>
-                                <td width={"100px"}>
-                                    <input 
-                                    className="input-name" 
-                                    defaultValue={props.suggestionsP[key].proyecto_plazo_meses} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="proyecto_plazo_meses" 
-                                    ></input>
-                                </td> 
-                    {/*             <td>
-                                    <button 
-                                    className="btn btn-primary modificar" 
-                                    onClick={()=>{
-                                        props.envioDataP(nombreC,props.clientes,datos,key,data);
-                                        habilitar(key); 
-                                        props.setfirst(activar[key]);
-                                    }}
-                                    >
-                                        {textBModificar[key]}
-                                    </button> 
-                                </td> 
-
- */}
-
-
-
-{enable[key] ? (
-                                <td width={"100px"} >
-                                    <button 
-                                    className=  "btn btn-primary Mod" type="button"
-                                    onClick={()=>{
-                                        props.envioDataP(nombreC,props.clientes,datos,key,data);
-                                        habilitar(key); 
-                                        props.setfirst(activar[key]);
-                                    }}
-                                    >
-                                        <i className  = {textBModificar[key]}  ></i>
-                                    </button>
-                                    
-                                </td>
-                            ):(
-                              
-                              
-                              <>
-                                    <td width={"100px"} >
-                                    <button 
-                                    className="btn btn-primary Mod" type="button"
-                                    onClick={()=>{
-                                        props.envioDataP(nombreC,props.clientes,datos,key,data);
-                                        habilitar(key); 
-                                        props.setfirst(activar[key]);
-                                    }}
-                                    >
-                                        <i className= {textBModificar[key]}  ></i>
-                                    </button>
+            <Table responsive  striped bordered hover size="sm">
+                <thead>
+                    <tr className="titulo-tabla-usuarios">
+                        <th>ID</th>
+                        <th>Clave</th>
+                        <th>Descripción</th>
+                        <th>Cliente</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Modificación</th>
+                        <th>Estatus</th>
+                        <th>Plazo Meses</th>
+                        <th>Modificar</th>
+                        <th>Detalles</th>
+                        <th></th>
+                    </tr>
+                </thead>
                                 
-                                </td>
+                <tbody>
+                    {Object.keys(props.suggestionsP).map((key) => (    
+                        <tr key={props.suggestionsP[key].proyecto_id} >
+                            <td>{props.suggestionsP[key].proyecto_id}</td>  
+                            <td>
+                                <input 
+                                className="input-name" 
+                                defaultValue={props.suggestionsP[key].proyecto_clave} 
+                                disabled={enable[key]} 
+                                onChange={handleInputChange}
+                                name="proyecto_clave" 
+                                ></input>
+                            </td>   
 
-                                <td width={"100px"}>
-                                    <button 
-                                    className="btn btn-primary Cancelar" type="button"
-                                    onClick={()=>{
-                                      /*   props.envioData(datos,key,data);  */
-                                        habilitar(key); 
-                                       props.setfirst(activar[key]); 
-                                    }}
-                                    >
-                                        <i className= "bi bi-x-lg"  ></i>
-                                    </button>
-                                   
-                                </td>
-                                </>
-                            )}
-                            
+                            <td>
+                                <input 
+                                className="input-name" 
+                                defaultValue={props.suggestionsP[key].proyecto_descripcion} 
+                                disabled={enable[key]} 
+                                onChange={handleInputChange}
+                                name="proyecto_descripcion" 
+                                ></input>
+                            </td>  
 
-{/* ///////////////////////////////////// */}
-
-                       {/*          <td>
-                                    <button 
-                                    className="btn btn-primary detalles" 
-                                    onClick={() => { 
-                                        getIdP(props.suggestionsP[key].proyecto_id);
-                                        habilitar1(key);
-                                    }}
-                                    >
-                                        {textBVer[key]}
-
-
-                                    </button>
-                                </td> 
-
-
- */}
-
-
-
-                                <td width={"100px"}>
+                            <td>
                             {" "}
-                            <button
-                                className="btn btn-primary Ver"
-                                type="button"
-                                onClick={() => {
-                                    getIdP(props.suggestionsP[key]);
-                                    //getDatosPartida(props.suggestionsP[key]);
-                                    habilitar1(key);
+                            <input
+                                className="agregar"
+                                type="text"
+                                name="nombre_cliente"
+                                disabled={enable[key]}
+                                value={nombreC[key]}
+                                onChange={e => onChangeTextCliente(e.target.value,key)}
+                                />
+                                {Object.keys(suggestionsClientes).map((i)=>
+                                    <div 
+                                    key={i}
+                                    disiable={enable[key]}
+                                    className="selectCliente" 
+                                    onClick={() => onSuggestHandler(suggestionsClientes[i].nombre_cliente, key)}
+                                    >
+                                        {suggestionsClientes[i].nombre_cliente}
+                                    </div>
+                                )}
+                            </td> 
+
+                            <td>{props.suggestionsP[key].proyecto_fecha_creacion}</td>
+
+                            <td>{props.suggestionsP[key].proyecto_fecha_modificacion}</td>
+
+                            <td  className={props.suggestionsP[key].proyecto_estatus}>{props.suggestionsP[key].proyecto_estatus}</td>
+                            <td width={"100px"}>
+                                <input 
+                                className="input-name" 
+                                defaultValue={props.suggestionsP[key].proyecto_plazo_meses} 
+                                disabled={enable[key]} 
+                                onChange={handleInputChange}
+                                name="proyecto_plazo_meses" 
+                                ></input>
+                            </td> 
+
+
+                            {enable[key] ? (
+                            <td width={"100px"} >
+                                <button 
+                                className=  "btn btn-primary Mod" type="button"
+                                onClick={()=>{
+                                    props.envioDataP(nombreC,props.clientes,datos,key,data);
+                                    habilitar(key); 
+                                    props.setfirst(activar[key]);
                                 }}
-                            >
+                                >
+                                    <i className  = {textBModificar[key]}  ></i>
+                                </button>
+                            </td>
+                        ):(
+                            <>
+                            <td width={"100px"} >
+                                <button 
+                                className="btn btn-primary Mod" type="button"
+                                onClick={()=>{
+                                    props.envioDataP(nombreC,props.clientes,datos,key,data);
+                                    habilitar(key); 
+                                    props.setfirst(activar[key]);
+                                }}
+                                >
+                                    <i className= {textBModificar[key]}  ></i>
+                                </button>
+                            </td>
+
+                            <td width={"100px"}>
+                                <button 
+                                className="btn btn-primary Cancelar" type="button"
+                                onClick={()=>{
+                                    /*   props.envioData(datos,key,data);  */
+                                    habilitar(key); 
+                                    setSuggestionsClientes('')
+                                    props.setShow2(props.show2)
+                                    //props.setfirst(activar[key]); 
+                                }}
+                                >
+                                    <i className= "bi bi-x-lg"  ></i>
+                                </button>
                                 
-                                <i className= {textBVer[key]}></i>
-                                
-                             
-                            </button>
-                        </td>
-                            </tr>  
-                        ))}
-                    </tbody>          
-                </Table>
-                {show ? (
-                    <></>
-                ):(
-                    <div className='arregla'>
-                        <div className='contenido-usuarios'>
-                            <div className="table-responsive">
-                                <div>
-                               {/*      <Animaciones mytext="Resumen" />  */}
-                                </div>
-                                <Table responsive id="nombreDiv">
-                                    {/*========================== Titulos Tabla ==========================*/}
-                                    <thead>
-                                    <tr className="titulo-tabla-usuarios">
-                                            <th className='titulo-tabla'>Proyecto: {cProy} - {desProy} - {clProy}</th>
-                                      
-                                        </tr>
-                                        <tr className="titulo-tabla-usuarios">
-                                            <th>Partidas</th>
-                                            <th> Categorías</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr className="">
-                                            {/*========================== Divisa ==========================*/}
-                                            <td>
-                                                <button
-                                                className="btn btn-primary modificar"
-                                                type="button"
-                                                onClick={() => {
-                                                getDatosPartida(pId); 
-                                                setShow2(!show2);
-                                                setShow3(true);
-                                                }}
-                                                >
-                                                {" "}
-                                                {show2 ? "Mostrar" : "Ocultar"}{" "}
-                                                </button>
-                                                {show2 ? (
-                                                <></>
-                                                ) : (
-                                                    <div className='arregla'>
-                                                        <div className='contenido-usuarios'>
-                                                            {/*=================== Botón Mostrar Lista DIV =====================*/}
-                                                            <br />
-                                                            <CrudPartidas
-                                                            partidas={listaPartidas}
-                                                            setfirst={setfirst}
-                                                            envioDataPar={envioDataPartida}
-                                                            />   
-                                                        </div> 
-                                                    </div>
-                                                )}
-                                            </td>
-                                            <td>
-                                                <button
-                                                className="btn btn-primary modificar"
-                                                type="button"
-                                                onClick={() => {
-                                                    getDatosCats(pId);
-                                                    setShow3(!show3);
-                                                    setShow2(true);
-                                                }}
-                                                >
-                                                {" "}
-                                                {show3 ? "Mostrar" : "Ocultar"}{" "}
-                                                </button>
-                                                {show3 ? (
-                                                    <></>
-                                                ):(
-                                                    <div className="arregla">
-                                                        <div className='contenido-usuarios'>
-                                                            {/*========================== Llamado al Componente ==========================*/}
-                                                            <CrudCategorias
-                                                            dcats={listaCategorias}
-                                                            setfirst={setfirst1}
-                                                            envioData={envioDataCats}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
+                            </td>
+                            </>
+                        )}
+                        
+                        <td width={"100px"}>
+                        {" "}
+                        <button
+                            className="btn btn-primary Ver"
+                            type="button"
+                            onClick={() => {
+                                getIdP(props.suggestionsP[key]);
+                                //getDatosPartida(props.suggestionsP[key]);
+                                habilitar1(key);
+                            }}
+                        >
+                            <i className= {textBVer[key]}></i>
+                        </button>
+                    </td>
+                        </tr>  
+                    ))}
+                </tbody>          
+            </Table>
+
+            {show ? (
+                <></>
+            ):(
+                <div className='arregla'>
+                    <div className='contenido-usuarios'>
+                        <div className="table-responsive">
+                            <div>
+                            {/*      <Animaciones mytext="Resumen" />  */}
                             </div>
+                            <Table responsive id="nombreDiv">
+                                {/*========================== Titulos Tabla ==========================*/}
+                                <thead>
+                                    {/* <tr className="titulo-tabla-usuarios">
+                                        <th className='titulo-tabla'>{proyecto}</th>
+                                    </tr> */}
+                                    <tr className="titulo-tabla-usuarios">
+                                        <th className='titulo-tabla'>Resumen por Apartados</th>
+                                    </tr>
+                                    <tr className="titulo-tabla-usuarios">
+                                        <th>Partidas</th>
+                                        <th>Categorías</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="">
+                                        {/*========================== Divisa ==========================*/}
+                                        <td>
+                                            <button
+                                            className="btn btn-primary modificar"
+                                            type="button"
+                                            onClick={() => {
+                                            getDatosPartida(pId); 
+                                            setShow2(!show2);
+                                            setShow3(true);
+                                            }}
+                                            >
+                                            {" "}
+                                            {show2 ? "Mostrar" : "Ocultar"}{" "}
+                                            </button>
+                                            {show2 ? (
+                                            <></>
+                                            ) : (
+                                                <div className='arregla'>
+                                                    <div className='contenido-usuarios'>
+                                                        {/*=================== Botón Mostrar Lista DIV =====================*/}
+                                                        <br />
+                                                        <CrudPartidas
+                                                        partidas={listaPartidas}
+                                                        setfirst={setfirst}
+                                                        envioDataPar={envioDataPartida}
+                                                        proyecto={proyecto}
+                                                        />   
+                                                    </div> 
+                                                </div>
+                                            )}
+                                        </td>
+                                        <td>
+                                            <button
+                                            className="btn btn-primary modificar"
+                                            type="button"
+                                            onClick={() => {
+                                                getDatosCats(pId);
+                                                setShow3(!show3);
+                                                setShow2(true);
+                                            }}
+                                            >
+                                            {" "}
+                                            {show3 ? "Mostrar" : "Ocultar"}{" "}
+                                            </button>
+                                            {show3 ? (
+                                                <></>
+                                            ):(
+                                                <div className="arregla">
+                                                    <div className='contenido-usuarios'>
+                                                        {/*========================== Llamado al Componente ==========================*/}
+                                                        <CrudCategorias
+                                                        dcats={listaCategorias}
+                                                        setfirst={setfirst1}
+                                                        envioData={envioDataCats}
+                                                        />
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </Table>
                         </div>
                     </div>
-                )}
+                </div>
+            )}
             {/* </form> */}
         </div>
     )

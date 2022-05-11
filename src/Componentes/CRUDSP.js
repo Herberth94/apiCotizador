@@ -323,6 +323,13 @@ export const CrudSp = (props) => {
                 console.log(error);
             }
         }
+
+        const [npSP,setNPSP] = useState('');
+        const [desSP,setDesSP] = useState('');
+        function getNameSp (sp){
+            setNPSP(sp.spnp_np);
+            setDesSP(sp.spd_des);
+        }
         /*============================================================================================================================*/
 
         /*========================= Envío de nuevos datos =========================*/
@@ -345,8 +352,16 @@ export const CrudSp = (props) => {
                 {/******************Lista de los servicios/productos de una partida ****************************************/}
                 {/*============= Titulo Animación =============*/}
                 <Animaciones mytext="Servicios/Productos" />
-                <Table responsive id="nombreDiv"  striped bordered hover size="sm">
+                <Table responsive striped bordered hover size="sm">
                     <thead>
+                        {/* <tr className="titulo-tabla-usuarios">
+                            <th></th>
+                            <th className='titulo-tabla'>{props.proyecto}</th>
+                        </tr> */}
+                        {/* <tr className="titulo-tabla-usuarios">
+                            <th></th>
+                            <th className='titulo-tabla'>{`Partida: ${props.partida}`}</th>
+                        </tr> */}
                         <tr className="titulo-tabla-usuarios">
                             <th>ID</th>
                             <th># Parte</th>
@@ -493,6 +508,7 @@ export const CrudSp = (props) => {
                                     onClick={() => {
                                         getDatosPrecios(props.sp[key].sp_id); 
                                         habilitar1(key);
+                                        getNameSp(props.sp[key]);
                                     }}
                                     >
                                       <i className=     {textBVer[key]}  ></i>
@@ -560,29 +576,31 @@ export const CrudSp = (props) => {
                                 </td>
                                 </>
                             )}
-                            
-                                
-
-                           
                             </tr>  
-                            ))
-                            }
-                        </tbody>
+                            
+                            
+                            ))}
+                        </tbody>                
                 </Table>
                 {show ? (
-                    <div></div>
-                ):(
-                    <div>
-                    {/*=================== Botón Mostrar Lista DIV =====================*/}
-                    <br />
-                        <CrudPrecios
-                        precios={listaPrecios}
-                        setfirst={setfirst}
-                        envioDataPrecio={envioDataPrecio}
-                        estado={true}
-                        />    
-                    </div>
-                )}
+                                <></>
+                            ):(
+                            <>
+                            {/*=================== Botón Mostrar Lista DIV =====================*/}
+                            <br />
+                                <CrudPrecios
+                                precios={listaPrecios}
+                                setfirst={setfirst}
+                                envioDataPrecio={envioDataPrecio}
+                                proyecto={props.proyecto}
+                                partida={props.partida}
+                                np={npSP}
+                                des={desSP}
+                                estado={true}
+                                />    
+                            </>
+                            )}
+                
             {/* </form> */}
         </div>
     )
