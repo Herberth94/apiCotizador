@@ -2,8 +2,8 @@ import React from 'react';
 import {jsPDF} from "jspdf";
 import "jspdf-autotable";
 import '../css/Exportar.css';
-
 import {imagen} from './IMG';
+import {numeroALetras} from './calculo';
 
 
 
@@ -43,7 +43,7 @@ class ExportarPDF extends React.Component {
         { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
         { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
         */ 
-
+       
 
   exportPDF = () => {
     const unit = "pt";
@@ -53,7 +53,11 @@ class ExportarPDF extends React.Component {
     const doc = new jsPDF(orientation, unit, size);
     doc.setFontSize(12);
     doc.setFont("Arial");
-    
+ // numeros a letras , sustituir en la funcion numeroALetras (x) donde es x es un numero cualquiera para transformarlo al importe
+ 
+ const letra = numeroALetras(25962.50);
+ const divisa = 'USD'
+ console.log(letra + divisa)
 
 
 //Datos Proyectos
@@ -87,7 +91,7 @@ let nombreContacto = datos.servicios
     const empresa="PALO TINTO NETWORKS SA DE CV"
 
     console.log( "Tot   a ",TOTALSTRING);
-
+   
 
     const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"  ]];
     let a = 0;
