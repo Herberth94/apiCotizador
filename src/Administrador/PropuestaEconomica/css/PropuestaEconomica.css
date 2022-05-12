@@ -234,10 +234,33 @@
            text-align: left;
            margin-bottom: 0.5rem;
       }
-  }
-   .nombre-empresa {
-       color: #263137;
-  }
+}
+  @media screen and (max-width: 830px) {
+    .headerPropuesta{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .logoPropuesta{
+        width: 50%;
+    }
+    .divBuscadorInteligente{
+        top: 170px
+    }
+}
+.divServicios{
+    display: flex;
+}
+@media screen and (max-width: 450px) {
+    /* .arregla{
+        top: 170px
+    } */
+
+    .divServicios{
+        justify-content: flex-end
+    }
+
+}
    .contacto {
        padding: 1rem;
        background-color: #eaeff1;
