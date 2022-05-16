@@ -30,10 +30,12 @@ function Divisa() {
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
+                //console.log(resProy.data.data);
             }else{
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
+                //console.log(resProy.data.data);
             }
         }catch(error){
             console.log(error);

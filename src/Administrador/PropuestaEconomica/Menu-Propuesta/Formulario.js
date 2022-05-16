@@ -1,19 +1,22 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React,{useState} from 'react';
 import logo from "../../../images/logo.png";
 import ExportarPDF from './ExportarPDF';
-
-import {name_cliente  , clave_p}from "../../../Ventas/Operaciones/OperacionesAM";
-
+import infPartida from './ModalPartida'
+import {name_cliente  , clave_p, descripcionGeneral}from "../../../Ventas/Operaciones/OperacionesAM";
+import ModalPartida from './ModalPartida';
 
 
 
 
 let validaOperacion = false;
 export let datos ={}
+export let datos2 =[];
 function checa(){
-
+   
   validaOperacion = !validaOperacion;
-  
+  console.log(descripcionGeneral);
+  console.log(datos2);
   }
   
 
@@ -38,11 +41,12 @@ const hoy = new Date(tiempoTranscurrido);
 export const fecha = hoy.toLocaleDateString();
 
 function Formulario() {
+  
   const [data,setData] = useState ({
     nombre:'De ',
     servicios:'',
-    condiciones:condicionesC
-  
+    condiciones:condicionesC,
+    
   });
   const handleChange =(event)=>{
     setData ({
@@ -51,8 +55,16 @@ function Formulario() {
   }
   const [show , setshow]=useState(false)
   
-  const enviar =()=>{
+  const enviar =(inf)=>{
     datos=data
+    if (inf === ''){
+      datos2=descripcionGeneral;
+    }
+    else{
+      datos2 = inf
+      
+    }
+    datos2=descripcionGeneral
     console.log(datos);
     setTimeout(function(){
       setshow(false);
@@ -61,7 +73,7 @@ function Formulario() {
   
   }
   
- 
+  const [modalShow, setModalShow] = useState(false);
 
   return (
     <div className="contenido-usuarios">
@@ -74,12 +86,19 @@ function Formulario() {
     <span className="nombre-empresa">Datos</span> Propuesta Económica</h1>
   <div className="wrapper animated bounceInLeft">
     <div className="info-empresa">
-      <h3><img src={logo}></img></h3>
-      <ul className="servicios">
-        <li><i className="bi bi-geo-alt-fill" /> Carretera México Toluca #5420 Piso 21, Col. El Yaqui, Del. Cuajimalpa, C.P. 05320, Ciudad de México. </li>
-        <li><i className="bi bi-telephone-fill" /> 6843-4433</li>
-        <li><i className="bi bi-envelope-fill" /> contacto@palotinto.com</li>
-      </ul>
+      <h3><img className="logoPropuesta" src={logo}></img></h3>
+      <div className='divServicios'>
+        <ul className="servicios serviciosPropuestaEc">
+          <li><i className="bi bi-geo-alt-fill" />  </li>
+          <li><i className="bi bi-telephone-fill" /> </li>
+          <li><i className="bi bi-envelope-fill" /> </li>
+        </ul>
+        <ul className="servicios serviciosPropuestaEc">
+          <li>Carretera México Toluca #5420 Piso 21, Col. El Yaqui, Del. Cuajimalpa, C.P. 05320, Ciudad de México. </li>
+          <li>6843-4433</li>
+          <li>contacto@palotinto.com</li>
+        </ul>
+      </div>
     </div>
     <div className="contacto">
       <h3>Datos Propuesta</h3>
@@ -108,11 +127,20 @@ function Formulario() {
         
         <p className="full">
         </p>
-        <a className="btn btn-success " onClick={()=>{ setshow(!show); enviar()}}>
+        
+        <a className="btn btn-success " onClick={()=>{ setshow(!show); enviar(infPartida)}}>
                   <span>Captura de información</span>
           </a> 
-      
-          <div></div>
+          <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true);}} >
+          <span>partida</span>
+
+          </button><br/><br/>
+          {modalShow  ?   
+          <ModalPartida
+          show={modalShow}
+          partida={descripcionGeneral}
+          onHide={() => setModalShow(false)}  
+             />:  ''  } 
         
         
 </form>

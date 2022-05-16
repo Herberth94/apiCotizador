@@ -2,8 +2,8 @@ import React from 'react';
 import {jsPDF} from "jspdf";
 import "jspdf-autotable";
 import '../css/Exportar.css';
-
 import {imagen} from './IMG';
+import {numeroALetras} from './calculo';
 
 
 
@@ -17,9 +17,10 @@ export var mesesMensual = "";
 export var totalMen = "";
  */
 
-import { fecha , datos } from './Formulario';
-
-
+import { fecha , datos} from './Formulario';
+import {infPartida} from './ModalPartida'
+ let dataPartida2 = (Object.values(infPartida));
+ let dataPartida = [];
 class ExportarPDF extends React.Component {
 
   constructor() {
@@ -43,7 +44,7 @@ class ExportarPDF extends React.Component {
         { partida: "3", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
         { partida: "4", servicio: "Enero" , descripcion: "descripcion",dispositivos: "1" , subtotal: "100"  },
         */ 
-
+       
 
   exportPDF = () => {
     const unit = "pt";
@@ -53,8 +54,14 @@ class ExportarPDF extends React.Component {
     const doc = new jsPDF(orientation, unit, size);
     doc.setFontSize(12);
     doc.setFont("Arial");
-    
-
+ // numeros a letras , sustituir en la funcion numeroALetras (x) donde es x es un numero cualquiera para transformarlo al importe
+ 
+ const letra = numeroALetras(25962.50);
+ const divisa = 'USD'
+ //console.log(letra + divisa)
+ //console.log(infPartida)
+ let dataPartida2 = (Object.values(infPartida));
+//console.log(dataPartida2);
 
 //Datos Proyectos
 let claveProyecto = clave_p;
@@ -87,14 +94,21 @@ let nombreContacto = datos.servicios
     const empresa="PALO TINTO NETWORKS SA DE CV"
 
     console.log( "Tot   a ",TOTALSTRING);
-
+   
 
     const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"  ]];
     let a = 0;
     let b = 0;
     let c = 0;
     let d = 0;
-    const data = partidasUnicas2.map(elt=> [ [a +1 ],[partidasUnicas2[a++]] , descripcionGeneral[b++]  ,Cantidad[c++]    , TOTALSTRING[d++] ]      );
+    if (dataPartida2 == ''){
+      dataPartida=descripcionGeneral
+
+    }
+    else{
+      dataPartida= dataPartida2
+    }
+    const data = partidasUnicas2.map(elt=> [ [a +1 ],[partidasUnicas2[a++]] , dataPartida[b++]  ,Cantidad[c++]    , TOTALSTRING[d++] ]      );
     let content = {
       startY: 200,
       head: headers,
