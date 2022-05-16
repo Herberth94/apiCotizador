@@ -21,17 +21,21 @@ export const EditDivisa = () => {
             }
             
         }
-         
-        try {
-            // console.log(dataActualizacion);
-            // console.log(proyecto_id);
-            const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateDiv/${proyecto_id}`,dataActualizacion);
-            const send2= respuesta.data.msg;
-            alert(send2);
-            } catch (error) {
-                console.log(error);
-                alert('Edición de Divisa invalido');
-            }
+        if(data.proyecto_estatus === 'Aceptado'){
+            alert('No se puede modificar este Proyecto, se encuentra en Estatus: Aceptado')
+        }else{
+            try {
+                // console.log(dataActualizacion);
+                // console.log(proyecto_id);
+                const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateDiv/${proyecto_id}`,dataActualizacion);
+                const send2= respuesta.data.msg;
+                alert(send2);
+                } catch (error) {
+                    console.log(error);
+                    alert('Edición de Divisa invalido');
+                }
+        }
+        
     }
     return {
         actualizacionDivisa

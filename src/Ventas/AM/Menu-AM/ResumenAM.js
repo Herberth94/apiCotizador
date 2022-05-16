@@ -28,6 +28,8 @@ let validatorid = cookies.get('id_usuario');
 
 let ancho =  "200px";
 
+export let estatusProy;
+
 const ResumenAM = () => {
 
     const { 
@@ -122,6 +124,7 @@ const ResumenAM = () => {
 
             const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${id}`);
             getDivisaProy(dProy.data.data);
+            //console.log(dProy.data.data);
 
             const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
             getPorcentajesCI(resCI.data.data);
@@ -255,6 +258,10 @@ const ResumenAM = () => {
         }
     }
 
+    function getEstatusProy (estatus){
+        estatusProy = estatus;
+    }
+
     return (
         <div className="contenido-usuarios">
       {/*       <div> <Animaciones mytext="AM COMPLETO" /> </div> */}
@@ -330,6 +337,7 @@ const ResumenAM = () => {
                                     onClick={() => {
                                         consultarTotalesP(suggestions[key].proyecto_id);
                                         habilitar2(key);
+                                        getEstatusProy(suggestions[key].proyecto_estatus);
                                     }}
                                     >
                                        <i className=  {textBVer[key]}></i> 

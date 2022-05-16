@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Table from "react-bootstrap/Table";
 import {  url2 } from "../../../Componentes/Ocultar";
+import { estatusProy2 } from './BuscadorProyectoFinanciamiento';
 
 function ModificarFinanciamiento(prop) {
 
@@ -116,15 +117,19 @@ function ModificarFinanciamiento(prop) {
             }
         }
         
-
-        try {
-            //console.log('Data actualización:',data);
-            const respuestaUpdate = await axios.put(url2 + `/api/cotizador/proporcionalidad/update/${prop.propIdProyecto}`, data);
-            const respuestaUpdateBack = respuestaUpdate.data.msg
-            alert(respuestaUpdateBack)
-        } catch (error) {
-            console.log(error)
+        if(estatusProy2 === 'Aceptado'){
+            alert('No se puede modificar este Proyecto, se encuentra en Estatus: Aceptado')
+        }else{
+            try {
+                //console.log('Data actualización:',data);
+                const respuestaUpdate = await axios.put(url2 + `/api/cotizador/proporcionalidad/update/${prop.propIdProyecto}`, data);
+                const respuestaUpdateBack = respuestaUpdate.data.msg
+                alert(respuestaUpdateBack)
+            } catch (error) {
+                console.log(error)
+            }
         }
+        
     }
 
     return (

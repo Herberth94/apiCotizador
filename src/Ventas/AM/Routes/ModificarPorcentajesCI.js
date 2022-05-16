@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { url2 } from "../../../Componentes/Ocultar";
-
+import { estatusProy1 } from '../Menu-AM/BuscadorInteligente';
 export const EditCI = () => {
 
     const actualizacion = (data, catCI, newdata) => {
@@ -40,19 +40,23 @@ export const EditCI = () => {
         }
 
 
-
-        try {
-            //console.log('Nuevos datos CI:',dataActualizacion);
-            //console.log('ci_id:',ciId);
-            const respuesta = await axios.post(url2 + `/api/cotizador/ci/edit/${ciId}`, dataActualizacion);
-            const respuestaBack = respuesta.data.msg;
-            alert(respuestaBack);
-            
-
-        } catch (error) {
-            console.log(error);
-            alert('Error al editar el porcentaje');
+        if(estatusProy1 === 'Aceptado'){
+            alert('No se puede modificar este Proyecto, se encuentra en Estatus: Aceptado')
+        }else{
+            try {
+                //console.log('Nuevos datos CI:',dataActualizacion);
+                //console.log('ci_id:',ciId);
+                const respuesta = await axios.post(url2 + `/api/cotizador/ci/edit/${ciId}`, dataActualizacion);
+                const respuestaBack = respuesta.data.msg;
+                alert(respuestaBack);
+                
+    
+            } catch (error) {
+                console.log(error);
+                alert('Error al editar el porcentaje');
+            }
         }
+
     }
     return {
         actualizacion

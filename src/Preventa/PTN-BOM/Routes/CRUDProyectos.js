@@ -47,6 +47,8 @@ export const CrudProyectos = (props) => {
         const [nombreC, setNombreC] = useState([]);
         // Almacenamiento de los clientes semejantes al texto introducido en el input
         const [suggestionsClientes, setSuggestionsClientes] = useState ([]);
+        // Almacenamiento de los clientes semejantes al texto introducido en el input
+        const [suggestionsClientes1, setSuggestionsClientes1] = useState ([]);
 
         //const [sCInput, setScInput] = useState([]);
 
@@ -69,7 +71,6 @@ export const CrudProyectos = (props) => {
                 arrayNombresC[c] = props.suggestionsP[c].nombre_cliente;
             }
             setNombreC(arrayNombresC);
-
             
         },[props.suggestionsP])
 
@@ -161,13 +162,15 @@ export const CrudProyectos = (props) => {
                 return cliente.nombre_cliente.match(regex)
                 })
             }
-            setSuggestionsClientes(coincidencias);
 
+            setSuggestionsClientes1(coincidencias);
             key = parseInt(key);
             let i = Object.keys(props.suggestionsP)
             i = i.length;
             const arrayNombresC = []
+            const arrayNombresC1 = []
             for(let c = 0 ; c < i ;c++){
+                arrayNombresC1[c] = coincidencias;
                 if(c === key){
                     arrayNombresC[c] = nombreCliente;
                 }else{
@@ -175,6 +178,7 @@ export const CrudProyectos = (props) => {
                 }
             }
             setNombreC(arrayNombresC);
+            setSuggestionsClientes(arrayNombresC1);
 
             // const arraySC = [];
             // for(let c = 0 ; c < i ; c++){
@@ -185,6 +189,8 @@ export const CrudProyectos = (props) => {
             //console.log('clientes de cada input:',arraySC);
             //setNombreC1(nombreCliente);
             //console.log('nombres clientes:',nombreC);
+            console.log('Clientes:',suggestionsClientes);
+            console.log('Cliente especifico:', suggestionsClientes[0][0].nombre_cliente);
         }
 
         // Función que obtiene el nombre del cliente seleccionado
@@ -343,14 +349,13 @@ export const CrudProyectos = (props) => {
                                 value={nombreC[key]}
                                 onChange={e => onChangeTextCliente(e.target.value,key)}
                                 />
-                                {Object.keys(suggestionsClientes).map((i)=>
+                                {Object.keys(suggestionsClientes1).map((i)=>
                                     <div 
-                                    key={i}
-                                    disiable={enable[key]}
+                                    key={[key][i]}
                                     className="selectCliente" 
-                                    onClick={() => onSuggestHandler(suggestionsClientes[i].nombre_cliente, key)}
+                                    onClick={() => onSuggestHandler(suggestionsClientes[key][i].nombre_cliente, key)}
                                     >
-                                        {suggestionsClientes[i].nombre_cliente}
+                                        {suggestionsClientes[key][i].nombre_cliente}
                                     </div>
                                 )}
                             </td> 
