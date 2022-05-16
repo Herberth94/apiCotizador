@@ -5,12 +5,7 @@ IMAGEN MOVIMIENTO LOGIN
 .container-portada{
     width: 100%;
     height: 100%;
-    position: absolute; 
-    background-image: url("../../images/Cotizador.jpg");
-    background-size: 100%;
-     background-size: cover;
-	background-repeat: no-repeat;
-    animation: movimiento 20s infinite linear alternate;  
+
 }
 @keyframes movimiento{
     from{

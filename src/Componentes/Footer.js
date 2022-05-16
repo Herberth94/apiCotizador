@@ -19,7 +19,7 @@ function Footer() {
                 </h4>
             </div>
                  <div className="box1">
-                    <h3>Palo Tinto Networks-</h3>
+                    <h3>Marvilop - Palo Tinto Networks.</h3>
                  </div>
         </div>
     )

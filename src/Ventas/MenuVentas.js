@@ -78,7 +78,7 @@ function archivo() {
             <a href="/resumen-ptn">
               <i className="bi bi-briefcase-fill fa-2x"></i>
               <span className="nav-text">
-            Resumen PTN-BOM
+                BOM
               </span>
             </a>           
           </li>

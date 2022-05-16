@@ -1,6 +1,4 @@
 import React from 'react'
-import logo from '../images/logo2.png'
-import marvilop from '../images/marvilop.png'
 import './css/header.css'
 
 

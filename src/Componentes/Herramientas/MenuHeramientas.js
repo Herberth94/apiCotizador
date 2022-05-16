@@ -2,12 +2,31 @@ import React from 'react'
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
-
+import Cookies from 'universal-cookie';
 import CalculaDescuento from './CalculaDescuento';
-import pdf from "../../Componentes/Manual_Usuario.pdf"
+import pdf from "../../Componentes/Manuales/Manual_Administrador.pdf";
+import pdf2 from "../../Componentes/Manuales/Manual_Administrador.pdf";
+import pdf3 from "../../Componentes/Manuales/Manual_Administrador.pdf";
 
+
+
+const cookies = new Cookies();
+ let tipoRol = cookies.get('rol');
+ let i = "";
+ if (tipoRol  === "administrador") {
+
+} else if (tipoRol  === "preventa") {
+  i = "preventa";
+} else if (tipoRol  === "venta") {
+  i = "venta";
+} else {
+  i = "null";
+
+}
 
 function MenuHeramientas() {
+
+
             //Habilitar/Deshabilitar tabla del resumen AM
             const [show, setShow] = useState(true)
             const [show2, setShow2] = useState(true)
@@ -57,10 +76,17 @@ function MenuHeramientas() {
           <td>
 
           <form method="get" action={pdf}>
-          <button    className="btn btn-primary PDF" > Descargar Manual de Usuario
 
-       <span></span>
+           
+          <button    className="btn btn-primary PDF" > Descargar Manual de Usuario
+          <span></span>
           </button>
+
+
+
+
+
+
          </form>
            
           
