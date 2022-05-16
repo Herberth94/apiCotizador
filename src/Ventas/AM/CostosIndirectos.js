@@ -82,7 +82,7 @@ function CostosIndirectos(props) {
     <div className="contenido-usuarios">
   <br/> 
     
-   <div className='j'> <Animaciones mytext="Costos Indirectos" /> </div>
+   <div className=''> <Animaciones mytext="Costos Indirectos" /> </div>
 
    <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>

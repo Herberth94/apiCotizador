@@ -15,6 +15,8 @@ let validatorid = cookies.get('id_usuario');
 
 let idAsignado;
 
+export let estatusProy2;
+
 function BuscadorProyectoFinanciamiento() {
     //Habilitar/Deshabilitar tabla del financiamiento
     const [show, setShow] = useState([])
@@ -110,6 +112,10 @@ function BuscadorProyectoFinanciamiento() {
         setTextBVer(newArr2);
     }
 
+    function getEstatusProy (estatus){
+        estatusProy2 = estatus;
+    }
+
     return (
         <div className="contenido-usuarios">
             {/*======================= Titulo Animación =======================*/}
@@ -178,6 +184,7 @@ function BuscadorProyectoFinanciamiento() {
                                     onClick={() => {
                                         getProyId(suggestions[key].proyecto_id);
                                         habilitar(key);
+                                        getEstatusProy(suggestions[key].proyecto_estatus);
                                     }}
                                     >
                                         <i className=   {textBVer[key]}  ></i>

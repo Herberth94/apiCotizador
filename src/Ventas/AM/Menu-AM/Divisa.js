@@ -36,12 +36,20 @@ function Divisa() {
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
+<<<<<<< HEAD
                 console.log(resProy.data.data);
+=======
+                //console.log(resProy.data.data);
+>>>>>>> 171d387c74c192d5034494e9ab7b0a3b23009254
             }else{
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
+<<<<<<< HEAD
                 console.log(resProy.data.data);
+=======
+                //console.log(resProy.data.data);
+>>>>>>> 171d387c74c192d5034494e9ab7b0a3b23009254
             }
         }catch(error){
             console.log(error);

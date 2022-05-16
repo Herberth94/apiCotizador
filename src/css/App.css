@@ -8,7 +8,10 @@
 
 /* Body Color
  */ 
- --administrador-body-color: rgb(175, 175, 175);
+/*  --administrador-body-color: rgb(255, 255, 255);
+ */
+ --administrador-body-color: rgb(255, 255, 255);
+
 
 
    /* Color Menu Lateral */

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { url2 } from "../../../Componentes/Ocultar";
+import { estatusProy } from '../Menu-AM/ResumenAM';
 
 export const EditAM = () => {
 
@@ -79,23 +80,26 @@ export const EditAM = () => {
             }
         }
 
-
-        try {
-            console.log('Nuevos datos partida:', dataActualizacion);
-            console.log('Nuevos datos categoria:', dataActualizacion1);
-            // console.log(proyecto_id);
-            if (dataPar !== '') {
-                const respuesta = await axios.post(url2 + `/api/cotizador/am/EditAMPar/${amId}`, dataActualizacion);
-                const respuestaBack = respuesta.data.msg;
-                alert(respuestaBack);
-            } else {
-                const respuesta2= await axios.post(url2 + `/api/cotizador/am/EditAMCats/${amId}`, dataActualizacion1);
-                const respuestaBack2 = respuesta2.data.msg;
-                alert(respuestaBack2);
+        if(estatusProy === 'Aceptado'){
+            alert('No se puede modificar este Proyecto, se encuentra en Estatus: Aceptado')
+        }else{
+            try {
+                console.log('Nuevos datos partida:', dataActualizacion);
+                console.log('Nuevos datos categoria:', dataActualizacion1);
+                // console.log(proyecto_id);
+                if (dataPar !== '') {
+                    const respuesta = await axios.post(url2 + `/api/cotizador/am/EditAMPar/${amId}`, dataActualizacion);
+                    const respuestaBack = respuesta.data.msg;
+                    alert(respuestaBack);
+                } else {
+                    const respuesta2= await axios.post(url2 + `/api/cotizador/am/EditAMCats/${amId}`, dataActualizacion1);
+                    const respuestaBack2 = respuesta2.data.msg;
+                    alert(respuestaBack2);
+                }
+            } catch (error) {
+                console.log(error);
+                alert('Error al editar los datos AM');
             }
-        } catch (error) {
-            console.log(error);
-            alert('Error al editar los datos AM');
         }
     }
     return {

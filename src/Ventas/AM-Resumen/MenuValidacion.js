@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie';
 
 import { Partida_catalogo } from '../Operaciones/totalPartida';
 import Rechazar from './Rechazar';
+import Animaciones from '../../Componentes/Animaciones';
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -176,6 +177,8 @@ async function consultarTotalesP(id){          //console.log(id)
 
   return (
     <div className="contenido-usuarios">
+          <div><Animaciones mytext="Validación de Proyectos" /> </div>
+
         <div className="busqueda-proyectos">  
             <Table responsive id="nombreDiv">
                 <thead>

@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table'
 import { useState } from "react";
 import axios from 'axios';
 import { url2 } from '../../Componentes/Ocultar';
+import Animaciones from '../../Componentes/Animaciones';
 
 function Rechazar(props) {
   const [show, setShow] = useState(true)
@@ -39,7 +40,6 @@ function Rechazar(props) {
 
   return (
     <div className="contenido-usuarios">
-
 
       <div className="table-responsive">
   

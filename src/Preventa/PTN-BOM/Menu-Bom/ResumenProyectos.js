@@ -5,12 +5,10 @@ import Cookies from 'universal-cookie';
 
 //Componentes
 import "../css/Proyectos.css";
-import Animaciones from '../../../Componentes/Animaciones';
 import {CrudProyectos} from '../Routes/CRUDProyectos';
 import { EditProyecto } from '../Routes/ModificarProyectos';
 import {url, url2} from "../../../Componentes/Ocultar";
 import { actualizarListaProy } from '../Routes/CRUDProyectos';
-
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
 let validatorrol = cookies.get('rol');

@@ -15,6 +15,7 @@ let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
+export let estatusProy1;
 
 function BuscadorInteligente() {
 
@@ -163,6 +164,9 @@ function BuscadorInteligente() {
         setTextBVer(newArr2);
     }
 
+    function getEstatusProy (estatus){
+        estatusProy1 = estatus;
+    }
 
   return (
     <div className="contenido-usuarios">
@@ -232,6 +236,7 @@ function BuscadorInteligente() {
                 onClick={() => {
                     consultarTotalesP(suggestions[key].proyecto_id);
                     habilitar(key);
+                    getEstatusProy(suggestions[key].proyecto_estatus);
                 }}
                 >
                      <i className=   {textBVer[key]}  ></i>

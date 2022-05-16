@@ -46,14 +46,8 @@ import Venta from "./Routes/ValidaVenta";
 
 //============ Ventas  Páginas Private  ============
 import MenuVentas from "./Ventas/MenuVentas";
-
-import AsignarProyecto from "./Preventa/AsignarVentas/MenuAsignacion/AsignarProyecto";
-import { calcularDescuento } from "./Preventa/PTN-BOM/Operaciones/Operaciones";
-
 import MenuValidacion from "./Ventas/AM-Resumen/MenuValidacion";
-
-
-import Temas from "./Temas";
+import MenuResumenBom from "./Ventas/AM/ResumenBOM/MenuResumenBom";
   
 
 function App() {
@@ -121,6 +115,10 @@ function App() {
         <Venta exact path="/propuesta-economica" component={ MenuValidacion } />
         <Venta path="/calculadora" component={MenuHeramientas} />
         <Venta exact path="/proporcionalidad" component={Proporcionalidad} />
+
+
+
+        <Venta exact path="/resumen-ptn" component={MenuResumenBom} />
 
 
 
