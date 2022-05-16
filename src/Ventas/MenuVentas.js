@@ -104,7 +104,7 @@ function archivo() {
             <a href="/propuesta-economica">
             <i className="bi bi-x-octagon-fill"></i>
               <span className="nav-text">
-        Rechazar Proyectos
+                Proyectos
               </span>
             </a>           
           </li>
