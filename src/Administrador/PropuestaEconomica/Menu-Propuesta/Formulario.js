@@ -41,7 +41,7 @@ const hoy = new Date(tiempoTranscurrido);
 export const fecha = hoy.toLocaleDateString();
 
 function Formulario() {
-  
+  console.log('Proyecto:',clave_p)
   const [data,setData] = useState ({
     nombre:'De ',
     servicios:'',

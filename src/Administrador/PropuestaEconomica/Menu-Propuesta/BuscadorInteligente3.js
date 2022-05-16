@@ -6,6 +6,7 @@ import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../../Ventas/Operaciones/totalPartida';
 import Formulario from './Formulario';
+import { computeHeadingLevel } from '@testing-library/react';
 
 
 
@@ -148,9 +149,11 @@ function BuscadorInteligente3() {
 
             const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${id}`);
             getDivisaProy(dProy.data.data);
+            //console.log(dProy.data.data);
 
             const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
             getPorcentajesCI(resCI.data.data);
+            
 
 
             const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);

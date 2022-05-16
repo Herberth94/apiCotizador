@@ -7,7 +7,7 @@ import {numeroALetras} from './calculo';
 
 
 
-import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , TOTAL, 
+import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , 
   TOTALSTRING , totD , totD2, totMensual, mesesMensual, totalMen,  totalMenIva,
   totalMensual}from "../../../Ventas/Operaciones/OperacionesAM";
 

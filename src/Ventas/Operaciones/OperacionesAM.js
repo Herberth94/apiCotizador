@@ -1,5 +1,7 @@
 //VARIABLE EXTRAIDAS DE LA BD
 
+import { computeHeadingLevel } from "@testing-library/react";
+
 
 export let plazo_meses = 0;
 export let pd_financiamiento = 0;
@@ -254,7 +256,8 @@ export function obtenPartidasUnicas(
       plazo_meses = Dolar[0].proyecto_plazo_meses;
       name_cliente = Dolar[0].nombre_cliente;
       clave_p = Dolar[0].proyecto_clave;
-
+      console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
+      console.log('Cliente - Archivo Operaciones AM:',name_cliente)
 
     } else if (Dolar[0].proyecto_id_moneda === 2) {
     
@@ -266,6 +269,8 @@ export function obtenPartidasUnicas(
       plazo_meses = Dolar[0].proyecto_plazo_meses;
       name_cliente = Dolar[0].nombre_cliente;
       clave_p = Dolar[0].proyecto_clave;
+      console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
+      console.log('Cliente - Archivo Operaciones AM:',name_cliente)
     }
   }
 

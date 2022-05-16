@@ -1,3 +1,4 @@
+import { computeHeadingLevel } from '@testing-library/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Table from "react-bootstrap/Table";
@@ -11,6 +12,7 @@ let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
+export let proyEstatus;
 
 
 
@@ -24,16 +26,22 @@ function Divisa() {
     //Almacenamiento de la clave introducida del proyecto
     const[claveP,setClaveP] = useState([]);
 
+    function getEstatus (estatus){
+        proyEstatus = estatus;
+    }
+
     const getProyectos = async () => {
         try{
             if(validatorrol === "administrador"){
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
+                console.log(resProy.data.data);
             }else{
                 const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
+                console.log(resProy.data.data);
             }
         }catch(error){
             console.log(error);

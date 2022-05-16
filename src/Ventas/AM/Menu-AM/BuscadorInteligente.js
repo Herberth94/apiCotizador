@@ -228,7 +228,7 @@ function BuscadorInteligente() {
             <td>{suggestions[key].proyecto_plazo_meses}</td>
             <td width={"100px"}>
                 <button 
-                className="btn btn-primary Ver" 
+                 className="btn btn-primary Ver" 
                 onClick={() => {
                     consultarTotalesP(suggestions[key].proyecto_id);
                     habilitar(key);
