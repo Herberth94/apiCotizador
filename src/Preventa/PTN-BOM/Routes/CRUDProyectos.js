@@ -210,7 +210,7 @@ export const CrudProyectos = (props) => {
             setNombreC(arrayNombresC);
             //console.log('array de nombreC seleccionado:', nombreC);
             //setNombreC(nombreC);
-            setSuggestionsClientes([]);
+            setSuggestionsClientes1([]);
         }
 
         function getProyEstatus(st){
@@ -351,11 +351,11 @@ export const CrudProyectos = (props) => {
                                 />
                                 {Object.keys(suggestionsClientes1).map((i)=>
                                     <div 
-                                    key={[key][i]}
+                                    key={i}
                                     className="selectCliente" 
-                                    onClick={() => onSuggestHandler(suggestionsClientes[key][i].nombre_cliente, key)}
+                                    onClick={() => onSuggestHandler(suggestionsClientes1[i].nombre_cliente, key)}
                                     >
-                                        {suggestionsClientes[key][i].nombre_cliente}
+                                        {suggestionsClientes1[i].nombre_cliente}
                                     </div>
                                 )}
                             </td> 
