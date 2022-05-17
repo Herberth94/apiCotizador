@@ -78,7 +78,7 @@ function MenuHeramientas() {
           <form method="get" action={pdf}>
 
            
-          <button    className="btn btn-primary PDF" > Descargar Manual de Usuario
+          <button    className="btn btn-primary PDF" > Manual de Usuario
           <span></span>
           </button>
 

@@ -49,7 +49,7 @@ IMAGEN MOVIMIENTO LOGIN
    .container .box .title .block {
       
        height: inherit;
-       background: #6786b8;
+       background: #6786b800;
        position: absolute;
        animation: mainBlock 2s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
        display: flex;

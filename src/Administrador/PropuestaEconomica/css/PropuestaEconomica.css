@@ -1,5 +1,5 @@
 .encabezado{
-    background-color: rgb(190, 149, 228);
+    background-color: rgb(23, 23, 24);
 }
 .total{
     background-color: rgb(75, 201, 3);
@@ -224,10 +224,14 @@
   }
    .info-empresa {
        padding: 1rem;
-       background-color: #797979a4;
+       background-color: var(--administrador-bg-color);
   }
    .info-empresa h3 {
        text-align: center;
+  }
+
+  .divServicios {
+      color: white;
   }
    @media screen and (min-width: 700px) {
        .info-empresa h3 {
