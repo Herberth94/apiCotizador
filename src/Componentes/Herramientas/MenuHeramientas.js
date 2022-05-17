@@ -4,21 +4,21 @@ import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 import Cookies from 'universal-cookie';
 import CalculaDescuento from './CalculaDescuento';
-import pdf from "../../Componentes/Manuales/Manual_Administrador.pdf";
-import pdf2 from "../../Componentes/Manuales/Manual_Administrador.pdf";
-import pdf3 from "../../Componentes/Manuales/Manual_Administrador.pdf";
+import pdf from "../../Componentes/Manuales/Manual_Administrador_V1.pdf";
+import pdf2 from "../../Componentes/Manuales/Manual_Preventa_V1.pdf";
+import pdf3 from "../../Componentes/Manuales/Manual_Ventas_V1.pdf";
 
-
+let G;
 
 const cookies = new Cookies();
  let tipoRol = cookies.get('rol');
  let i = "";
  if (tipoRol  === "administrador") {
-
+  G = pdf;
 } else if (tipoRol  === "preventa") {
-  i = "preventa";
+  G = pdf2;
 } else if (tipoRol  === "venta") {
-  i = "venta";
+  G = pdf3;
 } else {
   i = "null";
 
@@ -75,7 +75,7 @@ function MenuHeramientas() {
 
           <td>
 
-          <form method="get" action={pdf}>
+          <form method="get" action={G}>
 
            
           <button    className="btn btn-primary PDF" > Manual de Usuario

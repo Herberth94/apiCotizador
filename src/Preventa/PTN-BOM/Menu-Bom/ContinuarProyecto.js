@@ -488,14 +488,21 @@ function ContinuarProyecto() {
                                   <td>{listaPartidas[key].partida_id}</td>   
                                   <td>{listaPartidas[key].partida_nombre}</td>  
                                   <td>{listaPartidas[key].partida_descripcion}</td> 
-                                  <td>
+
+                                  <td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary modificar" 
+                                    className="btn btn-primary  Mod" 
                                     onClick={() => {
                                       getIdPar(listaPartidas[key].partida_id);
                                       habilitar2(key);
                                     }}
-                                    >  {textBVer2[key]} </button>
+                                    > 
+                                    
+                                 
+                                   
+                                   <i className=  {textBVer2[key]} ></i>
+                                   
+                                   </button>
                                   </td> 
                               </tr>  
                           ))}
