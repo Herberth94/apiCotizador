@@ -17,7 +17,7 @@ export var mesesMensual = "";
 export var totalMen = "";
  */
 
-import { fecha , datos} from './Formulario';
+import { fecha , datos, datos2} from './Formulario';
 import {infPartida} from './ModalPartida'
  let dataPartida2 = (Object.values(infPartida));
  let dataPartida = [];
@@ -83,7 +83,7 @@ let nombreContacto = datos.servicios
     const condiciones = "CONDICIONES COMERCIALES"
     const vigencia= "La vigencia de la presente propuesta es de 10 días naturales."
     const propuesta="La propuesta contempla el servicio para 9 Pantallas mensual"
-    const formaPago= "La forma de pago será en mensualidades de $ 687.78 antes de IVA por pantalla."
+    const formaPago= "La forma de pago será en mensualidades de " +   datos2.costoUnitario + "antes de IVA  por Servicio";
     const duracion= "Esta propuesta contempla los servicios de ENERO 2021 al mes de DICIEMBRE 2021."
     const moneda= "Los precios están expresados en moneda nacional."
     const interes="Los retrasos en pagos generarán un interés moratorio del 0.2% por cada día de atraso en el pago."

@@ -115,13 +115,13 @@ function Formulario() {
           <label>Cliente</label>
           <input type="email" onChange={handleChange} name="servicios"   defaultValue={ name_cliente}  />
         </p>
-        <p>
+     {/*    <p>
          
           <label className="switch2"> 
                 <input type="checkbox" id="checa"     onClick={checa}/>
                 <span className="slider2"></span>
                 </label>  
-        </p>
+        </p> */}
 
      
         
@@ -145,13 +145,18 @@ function Formulario() {
         
 </form>
 
-<div className='parrafoX'>
-        <p className="full3">
+
+        <p className="full">
           <label>Condiciones Comerciales</label>
-          <textarea id="txt3" onChange={handleChange} name="condiciones" defaultValue={condicionesC} />
+          <textarea id="txt" onChange={handleChange} name="condiciones" defaultValue={condicionesC} />
         </p>
 
-        </div>
+  
+
+
+
+
+  
 <div>
 { show ? <ExportarPDF/> : ''}
 

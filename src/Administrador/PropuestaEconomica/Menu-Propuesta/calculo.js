@@ -1,6 +1,8 @@
+    // Código basado en https://gist.github.com/alfchee/e563340276f89b22042a
+
 export let numeroALetras = (function() {
 
-    // Código basado en https://gist.github.com/alfchee/e563340276f89b22042a
+
         function Unidades(num){
     
             switch(num)
