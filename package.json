@@ -26,7 +26,7 @@
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "http://www.marvilop.com/",
+  "homepage": "http://200.194.42.18:4001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
