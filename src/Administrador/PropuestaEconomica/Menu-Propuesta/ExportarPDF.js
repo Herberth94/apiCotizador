@@ -31,7 +31,7 @@ class ExportarPDF extends React.Component {
         {descripcion: "descripcion", periodo: "mensual",   costoUnitario: totMensual , dispositivos: mesesMensual ,subtotal: totalMen}
       ],
       datosTotales: [
-        {subtotal: "$ " + totD , iva: "16 %", total: "$ "+ totD2 }
+        {subtotal: " $ " + totD , iva: "16 %", total: "$ "+ totD2 }
       ],
       datosTotales2: [
         {subtotal: totalMen, iva: "16 %", total:   totalMenIva}
@@ -52,7 +52,7 @@ class ExportarPDF extends React.Component {
     const orientation = "portrait"; // portrait or landscape
     const marginLeft = 40;
     const doc = new jsPDF(orientation, unit, size);
-    doc.setFontSize(12);
+    doc.setFontSize(10);
     doc.setFont("Arial");
  // numeros a letras , sustituir en la funcion numeroALetras (x) donde es x es un numero cualquiera para transformarlo al importe
  
@@ -70,7 +70,11 @@ let organizacion =  name_cliente;
 let nombreProyecto = datos.nombre;
 //Atención 
 //let nombreContacto = "Marco Banda, Compras OIEGSA";
-let nombreContacto = datos.servicios
+let nombreContacto = datos.servicios;
+
+let nombreResponsable = datos.firma;
+
+
 
 
     const title = "PROPUESTA ECONÓMICA";
@@ -134,7 +138,10 @@ let nombreContacto = datos.servicios
       // logo la imagen debe de estar en base64 si no no la lee
     let image = new Image();
     image.src = imagen;
-    doc.addImage(image,'PNG', 50, 30, 130, 70);
+
+    doc.addImage(image,'PNG', 0 , 0 , 600 , 800);
+
+
     doc.text(title, 230, 120);
     doc.text(fech, 400, 100 );
     doc.text(proyecto, marginLeft, 140 );

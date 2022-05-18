@@ -8,8 +8,7 @@ import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas
   TOTALSTRING , totD , totD2, totMensual, mesesMensual, totalMen,  totalMenIva,
   totalMensual}from "../../../Ventas/Operaciones/OperacionesAM";
 
-
-
+  let name_encargado = "--";
 
 
 let validaOperacion = false;
@@ -26,8 +25,8 @@ function checa(){
 
 var condicionesC = "CONDICIONES COMERCIALES \n"+
 "• La vigencia de la presente propuesta es de 10 días naturales. \n"+
-" • La propuesta contempla el servicio para 9 Pantallas mensual  \n"+
-" • La forma de pago será en mensualidades de " +  totMensual +  " antes de IVA por pantalla.  \n"+
+" • La propuesta contempla el servicio para  \n"+
+" • La forma de pago será en mensualidades de  \n"+
 "  • Esta propuesta contempla los servicios de ENERO 2022 al mes de DICIEMBRE 2022. \n"+
 " • Los precios están expresados en moneda nacional. \n"+
 " • Los retrasos en pagos generarán un interés moratorio del 0.2% por cada día de atraso en el pago. \n"+
@@ -44,13 +43,16 @@ const hoy = new Date(tiempoTranscurrido);
 export const fecha = hoy.toLocaleDateString();
 
 function Formulario() {
-  console.log('Proyecto:',clave_p)
+  //console.log('Proyecto:',clave_p)
   const [data,setData] = useState ({
     nombre:'De ',
     servicios:'',
+    firma:'',
     condiciones:condicionesC,
     
   });
+
+
   const handleChange =(event)=>{
     setData ({
       ...data,[event.target.name] : event.target.value ,
@@ -110,14 +112,31 @@ function Formulario() {
           <label>Proyecto</label>
           <input type="text" onChange={handleChange} name="nombre"  defaultValue={clave_p }  />
         </p>
+
+        <p>
+          <label>Propuesta Económica</label>
+          <input type="text" onChange={handleChange} name="firma"   defaultValue={ name_encargado }  />
+        </p>
+
+
+        <p>
+          <label>Cliente</label>
+          <input type="text" onChange={handleChange} name="servicios"   defaultValue={ name_cliente}  />
+        </p>
+
+
+        <p>
+          <label>Atentamente.</label>
+          <input type="text" onChange={handleChange} name="firma"   defaultValue={ name_encargado }  />
+        </p>
+
+    
         <p>
           <label>Fecha</label>
           <input type="text" name="fecha"  defaultValue={fecha} />
         </p>
-        <p>
-          <label>Cliente</label>
-          <input type="email" onChange={handleChange} name="servicios"   defaultValue={ name_cliente}  />
-        </p>
+
+        <p></p>
      {/*    <p>
          
           <label className="switch2"> 
@@ -128,16 +147,27 @@ function Formulario() {
 
      
         
-        <p className="full">
+        <p >
+  
+
+          
+        <button type="button" className="btn btn-primary Mod" onClick={()=>{ setshow(!show); enviar(infPartida)}}>
+        <span>Captura de información</span>
+
+          </button>
+
         </p>
         
-        <a className="btn btn-success " onClick={()=>{ setshow(!show); enviar(infPartida)}}>
-                  <span>Captura de información</span>
-          </a> 
-          <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true);}} >
+
+
+
+      <p>
+      <button type="button" className="btn btn-primary Mod" onClick={() => {setModalShow(true);}} >
           <span>partida</span>
 
-          </button><br/><br/>
+          </button>
+      </p>
+        
           {modalShow  ?   
           <ModalPartida
           show={modalShow}
