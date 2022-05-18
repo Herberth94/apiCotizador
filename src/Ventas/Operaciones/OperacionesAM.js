@@ -872,13 +872,13 @@ function final() {
 
 
 
-  totMensual = "$ " +totalMensual[totalMensual.length-1];
+  totMensual = totalMensual[totalMensual.length-1];
   mesesMensual = " " +  plazo_meses;
-  totalMen =    " $  " + (totalMensual[totalMensual.length-1] * 12);
+  totalMen =   (totalMensual[totalMensual.length-1] * 12);
    let cx =  (totalMensual[totalMensual.length-1] * 12) *  .16;
    let cz =   (totalMensual[totalMensual.length-1] * 12) + cx;
    cz = cz.toFixed(decimal);
-  totalMenIva = " $ " + cz;
+  totalMenIva =  cz;
 
 
 
