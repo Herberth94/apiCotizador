@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { url2 } from "../../../Componentes/Ocultar";
-import { estatusProy } from '../Menu-AM/ResumenAM';
+import { estatusProy,pId } from '../Menu-AM/ResumenAM';
+import { hoy } from '../../../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto';
 
 export const EditAM = () => {
 
@@ -34,8 +35,8 @@ export const EditAM = () => {
     }
 
     async function Send(dataPar, dataCat, amId, newdata) {
-        console.log('Datos partida:', dataPar);
-        console.log('Datos categoria:', dataCat);
+        // console.log('Datos partida:', dataPar);
+        // console.log('Datos categoria:', dataCat);
         const newData = {
             am_desc_cliente: newdata.desc_cliente,
             am_margen_ganancia: newdata.margen_ganancia,
@@ -64,6 +65,10 @@ export const EditAM = () => {
             amc_desc_fabrica: dataCat.amc_desc_fabrica
         };
 
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        }
+
         const k = Object.keys(newData);
         const k1 = Object.keys(newData1);
         if (dataPar !== '') {
@@ -84,9 +89,10 @@ export const EditAM = () => {
             alert('No se puede modificar este Proyecto, se encuentra en Estatus: Aceptado')
         }else{
             try {
-                console.log('Nuevos datos partida:', dataActualizacion);
-                console.log('Nuevos datos categoria:', dataActualizacion1);
+                // console.log('Nuevos datos partida:', dataActualizacion);
+                // console.log('Nuevos datos categoria:', dataActualizacion1);
                 // console.log(proyecto_id);
+                await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                 if (dataPar !== '') {
                     const respuesta = await axios.post(url2 + `/api/cotizador/am/EditAMPar/${amId}`, dataActualizacion);
                     const respuestaBack = respuesta.data.msg;

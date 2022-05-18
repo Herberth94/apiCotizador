@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {url, url2} from "../../../Componentes/Ocultar";
-import { pEstatus } from './CRUDProyectos';
+import { pEstatus, pId } from './CRUDProyectos';
+import { hoy } from '../Menu-Bom/NuevoProyecto';
 
 export const EditSP = () => {
     
@@ -35,6 +36,10 @@ export const EditSP = () => {
                 sp_comentarios:dataSP.sp_comentarios
         }
         
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        }
+
         const dataSpnp = {
             spnp_np: ''
         }
@@ -91,7 +96,8 @@ export const EditSP = () => {
             try{
                 //console.log(proveedor_id);
                 //console.log(marca_id);
-                console.log(dataActualizacion);
+                //console.log(dataActualizacion);
+                await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                 if(proveedor_id !== dataSP.proveedor_id && proveedor_id !== '' && marca_id !== dataSP.marca_id && marca_id !== ''){
                     // console.log(proveedor_id);
                     // console.log(marca_id);

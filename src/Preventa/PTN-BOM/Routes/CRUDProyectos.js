@@ -10,7 +10,7 @@ import { EditCats } from '../../../Routes/ModificarCategorias';
 import { CrudPartidas } from '../../../Componentes/CRUDPartidas';
 import { CrudCategorias } from '../../../Componentes/CRUDCategorias';
 
-let pId;
+export let pId;
 export let pEstatus;
 
 export const CrudProyectos = (props) => {

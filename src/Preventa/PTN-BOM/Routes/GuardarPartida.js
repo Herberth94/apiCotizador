@@ -46,6 +46,7 @@ export const InsertDatosPartida = () => {
 
     function getIdP (proyecto_id){
         pId = proyecto_id;
+        //console.log(pId);
     }
 
     // function getIdP1 (proyecto_id){

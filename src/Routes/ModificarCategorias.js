@@ -1,7 +1,8 @@
 
 import axios from 'axios';
 import {url2} from "../Componentes/Ocultar";
-import {pEstatus} from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
+import { pEstatus,pId } from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
+import { hoy } from '../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto';
 
 export const EditCats = () => {
     
@@ -19,6 +20,9 @@ export const EditCats = () => {
                 cd_semanas:data.cd_semanas,
                 cd_comentarios:data.cd_comentarios
         }
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        };
         //console.log(data.proveedor_id);
         const k = Object.keys(newData);
         for(let keys of k){
@@ -34,6 +38,7 @@ export const EditCats = () => {
         }else{
             try{
                 //console.log(dataActualizacion);
+                await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                 const  respuesta = await axios.post(url2 + `/api/cotizador/catd/edit/${cd_id}`, dataActualizacion);
                 const respuestaBack = respuesta.data.msg
                 alert(respuestaBack)

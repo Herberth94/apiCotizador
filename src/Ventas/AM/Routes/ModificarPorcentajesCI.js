@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { url2 } from "../../../Componentes/Ocultar";
-import { estatusProy1 } from '../Menu-AM/BuscadorInteligente';
+import { estatusProy1,pId } from '../Menu-AM/BuscadorInteligente';
+import { hoy } from '../../../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto';
+
 export const EditCI = () => {
 
     const actualizacion = (data, catCI, newdata) => {
@@ -34,6 +36,10 @@ export const EditCI = () => {
             ci_porcentaje: oldData
         };
 
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        }
+
         const k = Object.keys(newData);
         if (newData[k] !== '') {
             dataActualizacion[k] = newData[k];
@@ -46,6 +52,8 @@ export const EditCI = () => {
             try {
                 //console.log('Nuevos datos CI:',dataActualizacion);
                 //console.log('ci_id:',ciId);
+                
+                await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                 const respuesta = await axios.post(url2 + `/api/cotizador/ci/edit/${ciId}`, dataActualizacion);
                 const respuestaBack = respuesta.data.msg;
                 alert(respuestaBack);

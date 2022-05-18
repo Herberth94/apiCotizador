@@ -1,7 +1,7 @@
 import  {useState} from 'react';
 import axios from 'axios';
 import {url2} from "../../../Componentes/Ocultar";
-
+import { hoy } from '../Menu-Bom/NuevoProyecto';
 
 export const EditProyecto = () => {
      /*=================================== Edición de los datos de un proyecto ===================================*/
@@ -25,7 +25,8 @@ export const EditProyecto = () => {
             proyecto_clave:dataP.proyecto_clave,
             proyecto_descripcion: dataP.proyecto_descripcion,
             proyecto_id_cliente: dataP.proyecto_id_cliente,
-            proyecto_plazo_meses: dataP.proyecto_plazo_meses
+            proyecto_plazo_meses: dataP.proyecto_plazo_meses,
+            proyecto_fecha_modificacion:hoy
         }
         //console.log(dataP);
         const k = Object.keys(newdataP);

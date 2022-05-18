@@ -205,8 +205,8 @@ function BuscadorInteligente3() {
                         <th>Clave</th>
                         <th>Descripción</th>
                         <th>Cliente</th>
-                        <th>Fecha de creación</th>
-                        <th>Fecha de modificación</th>
+                        <th>Fecha Creación</th>
+                        <th>Fecha Modificación</th>
                         <th>Estatus</th>
                         <th>Plazo de meses</th>
                         <th>Propuesta</th>

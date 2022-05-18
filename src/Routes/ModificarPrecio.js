@@ -1,6 +1,8 @@
 import axios from 'axios';
 import {url2} from "../Componentes/Ocultar";
 import {pEstatus} from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
+import { pId } from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
+import { hoy } from '../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto';
 
 export const EditPrecio = () => {
     const actualizacionPrecio = (estado,data,newdata)=>{
@@ -27,6 +29,10 @@ export const EditPrecio = () => {
 
         const dataActualizacion3= {
             cd_cantidad:''
+        };
+
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
         };
 
         const k = Object.keys(newdata);
@@ -57,6 +63,7 @@ export const EditPrecio = () => {
         }else{
             try {
                 //console.log('Precios:',dataActualizacion1);
+                await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                 if(estado){
                     //console.log('Cantidad_sp:',dataActualizacion2);
                     await axios.post(url2 + `/api/cotizador/precio/edit/${precio_id}`,dataActualizacion1);

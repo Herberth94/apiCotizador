@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { InsertDatosPartida } from "../Routes/GuardarPartida";
+import { InsertDatosPartida, pId } from "../Routes/GuardarPartida";
 import Table from "react-bootstrap/Table";
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
 import axios from 'axios';
-import { pId1 } from "./NuevoProyecto";
+import { pId2 } from "./NuevoProyecto";
 
+let id;
 function Partida({clave} ) {
   const { handleInputChangePartida, enviarDatosPartida } = InsertDatosPartida();
 
@@ -13,7 +14,7 @@ function Partida({clave} ) {
   const [modalShow1, setModalShow1] = useState(true)
   const [proyecto_id, Setproyecto_id] = useState([])
   const lista = async (clave) =>{
-    console.log(clave);
+    console.log(id);
     try {
       const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
       Setproyecto_id(respuesta.data.reSql)
@@ -23,6 +24,12 @@ function Partida({clave} ) {
       console.log(error)
       
     }
+  }
+  
+  if(pId2 !== ''){
+    id = pId2;
+  } else{
+    id = pId;
   }
   
 
@@ -71,7 +78,7 @@ function Partida({clave} ) {
               <td width={"100px"}>
 
 
-      <button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (pId1)}} >
+      <button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (id)}} >
         <i class="bi bi-eye-fill"></i>
         </button><br/><br/>
       {modalShow && modalShow1 ?   

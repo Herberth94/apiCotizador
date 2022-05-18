@@ -1,9 +1,7 @@
 import axios from 'axios';
-
-
-
 import {url2} from "../Componentes/Ocultar";
-import { pEstatus } from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
+import { pEstatus,pId } from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
+import { hoy } from '../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto';
 
 export const EditPartida = () => {
 
@@ -16,6 +14,10 @@ export const EditPartida = () => {
             partida_nombre:data.partida_nombre, 
             partida_descripcion:data.partida_descripcion
         };
+
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        }
         
         const k = Object.keys(newdata);
         for(let keys of k){
@@ -31,6 +33,7 @@ export const EditPartida = () => {
             alert('El proyecto no puede ser editado porque ha sido Aceptado')
         }else{
             try {
+                await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                 const respuesta = await axios.put(url2 + `/api/cotizador/partida/update/${id}`,dataActualizacion);
                 const respuestaBack = respuesta.data.msg
                 alert(respuestaBack);

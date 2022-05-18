@@ -11,6 +11,7 @@ import Proyectos from "../Menu-Bom/ResumenProyectos";
 import { InsertDatosPartida } from '../Routes/GuardarPartida';
 import { getIdPar } from '../Menu-Bom/DatosSP';
 import { InsertDatosCats } from "../Routes/GuardarDatosCategorias";
+import { getIdP2 } from "../Menu-Bom/NuevoProyecto";
 import axios from "axios";
 import Cookies from "universal-cookie";
 
@@ -87,6 +88,7 @@ function PTN_BOM() {
                 className="btn btn-primary modificar"
                 type="button"
                 onClick={() => {
+                  getIdP2(''); 
                   setShow2(!show2);
                   setShow(true);
                   setShow3(true);
