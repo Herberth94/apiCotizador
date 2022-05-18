@@ -634,7 +634,7 @@ const ResumenAM = () => {
                                             <td  width={"300px"} className='azul'>{" $ "} {costoFianalProyecto}  </td> 
 
                                                 <td width={"300px"}   className='verde'>{" $ "}  {totalMensual[totalMensual.length-1]}   </td>   
-                                                <td width={"100px"}   className='azul'>{margenReal} {" % "}   </td>   
+                                                <td width={"120px"}   className='azul'>{ margenReal } {" % "}   </td>   
                                                 <td width={"50px"}   className='verde'>{stringDolar}   </td> 
                                             </tr >
                                 </tbody>

@@ -17,7 +17,7 @@ export var mesesMensual = "";
 export var totalMen = "";
  */
 
-import { fecha , datos, datos2} from './Formulario';
+import { fecha , datos} from './Formulario';
 import {infPartida} from './ModalPartida'
  let dataPartida2 = (Object.values(infPartida));
  let dataPartida = [];
@@ -31,7 +31,7 @@ class ExportarPDF extends React.Component {
         {descripcion: "descripcion", periodo: "mensual",   costoUnitario: totMensual , dispositivos: mesesMensual ,subtotal: totalMen}
       ],
       datosTotales: [
-        {subtotal: totD , iva: "16 %", total: totD2}
+        {subtotal: "$ " + totD , iva: "16 %", total: "$ "+ totD2 }
       ],
       datosTotales2: [
         {subtotal: totalMen, iva: "16 %", total:   totalMenIva}
@@ -56,7 +56,8 @@ class ExportarPDF extends React.Component {
     doc.setFont("Arial");
  // numeros a letras , sustituir en la funcion numeroALetras (x) donde es x es un numero cualquiera para transformarlo al importe
  
- const letra = numeroALetras(25962.50);
+ let num = parseFloat(totD);
+ const letra = numeroALetras(num);
  const divisa = 'USD'
  //console.log(letra + divisa)
  //console.log(infPartida)
@@ -77,13 +78,18 @@ let nombreContacto = datos.servicios
     const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
     const atencion = "Atención "  + nombreContacto;
     const comentarios = "Propuesta económica correspondiente al servicio de TV de paga.";
-    const importe = "IMPORTE: SETENTA Y CUATRO MIL DOSCIENTOS OCHENTA 24/100 ANTES DE IVA";
+
+    
+    const importe = letra;
+
+
+
     const cuota = "CUOTA MENSUAL";
     const importeMensual = "IMPORTE MENSUAL UN DISPOSITIVO: SEIS MIL CIENTO NOVENTA PESOS 02/100 ANTES DE IVA"
     const condiciones = "CONDICIONES COMERCIALES"
     const vigencia= "La vigencia de la presente propuesta es de 10 días naturales."
     const propuesta="La propuesta contempla el servicio para 9 Pantallas mensual"
-    const formaPago= "La forma de pago será en mensualidades de " +   datos2.costoUnitario + "antes de IVA  por Servicio";
+    const formaPago= "La forma de pago será en mensualidades de " +  "FUNJJJ " + "antes de IVA  por Servicio";
     const duracion= "Esta propuesta contempla los servicios de ENERO 2021 al mes de DICIEMBRE 2021."
     const moneda= "Los precios están expresados en moneda nacional."
     const interes="Los retrasos en pagos generarán un interés moratorio del 0.2% por cada día de atraso en el pago."
@@ -93,9 +99,9 @@ let nombreContacto = datos.servicios
     const cargo ="EJECUTIVA DE CUENTA"
     const empresa="PALO TINTO NETWORKS SA DE CV"
 
-    console.log( "Tot   a ",TOTALSTRING);
+/*     console.log( "Tot   a ",TOTALSTRING);
    
-
+ */
     const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"  ]];
     let a = 0;
     let b = 0;
@@ -141,7 +147,7 @@ let nombreContacto = datos.servicios
     console.log(datos)
     let content2 = {
       startY: doc.lastAutoTable.finalY,
-      margin:{left:410},
+      margin:{left:380},
       head: headers3,
       body: data3,
       tableWidth:'wrap',
@@ -163,7 +169,7 @@ let nombreContacto = datos.servicios
     doc.autoTable(content3);
     let content4 = {
       startY: (doc.lastAutoTable.finalY) + 5,
-      margin: {left:420},
+      margin: {left:380},
       head: headers3,
       body: data4,
       tableWidth:'wrap',

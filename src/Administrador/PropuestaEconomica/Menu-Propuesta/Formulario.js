@@ -3,8 +3,11 @@ import React,{useState} from 'react';
 import logo from "../../../images/logo.png";
 import ExportarPDF from './ExportarPDF';
 import infPartida from './ModalPartida'
-import {name_cliente  , clave_p, descripcionGeneral}from "../../../Ventas/Operaciones/OperacionesAM";
 import ModalPartida from './ModalPartida';
+import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , 
+  TOTALSTRING , totD , totD2, totMensual, mesesMensual, totalMen,  totalMenIva,
+  totalMensual}from "../../../Ventas/Operaciones/OperacionesAM";
+
 
 
 
@@ -15,17 +18,17 @@ export let datos2 =[];
 function checa(){
    
   validaOperacion = !validaOperacion;
-  console.log(descripcionGeneral);
-  console.log(datos2);
+/*   console.log(descripcionGeneral);
+  console.log(datos2); */
   }
   
 
 
-let condicionesC = "CONDICIONES COMERCIALES \n"+
+var condicionesC = "CONDICIONES COMERCIALES \n"+
 "• La vigencia de la presente propuesta es de 10 días naturales. \n"+
 " • La propuesta contempla el servicio para 9 Pantallas mensual  \n"+
-" • La forma de pago será en mensualidades de $ 687.78 antes de IVA por pantalla.  \n"+
-"  • Esta propuesta contempla los servicios de ENERO 2021 al mes de DICIEMBRE 2021. \n"+
+" • La forma de pago será en mensualidades de " +  totMensual +  " antes de IVA por pantalla.  \n"+
+"  • Esta propuesta contempla los servicios de ENERO 2022 al mes de DICIEMBRE 2022. \n"+
 " • Los precios están expresados en moneda nacional. \n"+
 " • Los retrasos en pagos generarán un interés moratorio del 0.2% por cada día de atraso en el pago. \n"+
 "   • El cargo por refacturación es de 200.m.n. + IVA ";
@@ -156,7 +159,7 @@ function Formulario() {
 
 
 
-  
+
 <div>
 { show ? <ExportarPDF/> : ''}
 

@@ -102,7 +102,7 @@
    
    /*------ ADDED CSS ---------*/
    .slider2:after {
-    content: 'Resumen Partidas';
+    content: '  Resumen Partidas';
     color: white;
     display: block;
     position: absolute;
@@ -114,7 +114,7 @@
    }
    
    input:checked + .slider2:after {
-    content: 'Resumen Completo Partidas';
+    content: '  Resumen Completo Partidas';
    }
    
    /*--------- END --------*/
@@ -162,7 +162,7 @@
    
    .slider:before {
     position: absolute;
-    content: "";
+    content: " ";
     height: 26px;
     width: 26px;
     left: 4px;
@@ -190,19 +190,19 @@
    
    /*------ ADDED CSS ---------*/
    .slider:after {
-    content: 'Descuento';
+    content: '-*Descuento ';
     color: white;
     display: block;
     position: absolute;
     transform: translate(-50%,-50%);
     top: 50%;
     left: 50%;
-    font-size: 10px;
+    font-size: 9px;
     font-family: Verdana, sans-serif;
    }
    
    input:checked + .slider:after {
-    content: 'Precio Unitario';
+    content: ' Precio Unitario';
    }
    
    /*--------- END --------*/

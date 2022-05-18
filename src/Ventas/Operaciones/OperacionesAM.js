@@ -803,9 +803,10 @@ function final() {
   }
 
   
-   totD  = "$ " + TOTAL[TOTAL.length-1];
+   totD  =  TOTAL[TOTAL.length-1];
    totaliva = parseFloat(TOTAL[TOTAL.length-1])  + parseFloat(TOTAL[TOTAL.length-1] * .16);
-   totD2 =  "$ " + totaliva.toFixed(3);
+   totD2 =   totaliva.toFixed(3);
+
   
   //bien 4
 
