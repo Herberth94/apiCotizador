@@ -19,26 +19,24 @@ export let validatorid = cookies.get('id_usuario');
 const tiempoTranscurrido = Date.now();
 export const hoy = new Date(tiempoTranscurrido);
 
-export let pId1;
+export let pId2;
+export function getIdP2 (proyecto_id){
+  pId2 = proyecto_id;
+  //console.log('Ultimo proyecto creado:',pId1);
+}
 
 function NuevoProyecto() {
 
   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
-  function getIdP1 (proyecto_id){
-    pId1 = proyecto_id;
-    //console.log('Ultimo proyecto creado:',pId1);
-}
+  
 
   const getProyectos = async () => {
     try{
       const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
-      //setListaProyectos(resProy.data.data.pop());
-      let l = resProy.data.data.length
-      //console.log('Longitud:',l);
-      //console.log('Ultimo proyecto creado:',resProy.data.data[l-1].proyecto_id);
-      getIdP1(resProy.data.data[l-1].proyecto_id);
+      let proy = resProy.data.data.pop(); 
+      getIdP2(proy.proyecto_id);
     }catch(error){console.log(error);}
   }
 

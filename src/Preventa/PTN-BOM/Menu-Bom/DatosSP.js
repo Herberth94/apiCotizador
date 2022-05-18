@@ -10,7 +10,9 @@ import { precioUnitario, calcularDescuento, Total} from "../Operaciones/Operacio
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
 import Animaciones from "../../../Componentes/Animaciones";
 import { dataCategoria } from "../../../Ventas/Operaciones/totalPartida";
-import { pId1 } from "./NuevoProyecto";
+import { pId } from "../Routes/GuardarPartida";
+import { pId2, hoy} from "./NuevoProyecto";
+
 
 
 //Obtención del id del usuario con sesión activa
@@ -383,6 +385,10 @@ function DatosSP({clave} ) {
       spd_des: datosSP.sp_descripcion
     }
 
+    const dataFM = {
+      proyecto_fecha_modificacion:hoy
+    }
+
     // Obtención del id del proveedor que se seleccionó en la búsqueda
     let i = Object.keys(ListaProv);
     for (let c = 0; c < i.length; c++) {
@@ -421,8 +427,13 @@ function DatosSP({clave} ) {
     }else if(pEstatus1 === 'Aceptado'){
         alert('No se puede continuar el Proyecto porque ha sido Aceptado')
     }else{
-
       try{
+        //console.log('Id del proyecto seleccionado para cambiar la fecha:',pId);
+        if(pId2 !== pId && pId2 !== ''){
+          await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId2}`, dataFM);
+        }else{
+          await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
+        }
         // Inserción a la tabla precio
         const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataPrecio);
         // Obtención del precio_id de la inserción realizada
@@ -484,7 +495,7 @@ function DatosSP({clave} ) {
         }
       }catch (error){
         alert('Registro de Servicio/producto invalido, revisa que hayas seleccionado correctamente el proveedor y la marca, y el tipo de moneda y categoría')
-        console.log(error);
+        //console.log(error);
       }
     }
 

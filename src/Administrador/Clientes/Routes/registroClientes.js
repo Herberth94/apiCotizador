@@ -53,6 +53,12 @@ async function Send (){
         event.preventDefault();
         //guardado de datos
         event.target.reset();
+        setDatos ({
+            ...datos,nombre_cliente: '', 
+                     razon_social:'',
+                     telefono: '',
+                     cliente_direccion: ''
+        })
     }
 
 

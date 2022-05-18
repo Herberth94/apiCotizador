@@ -2,7 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Table from "react-bootstrap/Table";
 import {  url2 } from "../../../Componentes/Ocultar";
-import { estatusProy2 } from './BuscadorProyectoFinanciamiento';
+import { estatusProy2,idAsignado } from './BuscadorProyectoFinanciamiento';
+import { hoy } from '../../../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto';
 
 function ModificarFinanciamiento(prop) {
 
@@ -110,6 +111,10 @@ function ModificarFinanciamiento(prop) {
             pd_pagos_anuales: oldData.pd_pagos_anuales
         };
 
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        }
+
         const k = Object.keys(datos);
         for(let key of k){
             if (datos[key] !== '') {
@@ -122,6 +127,7 @@ function ModificarFinanciamiento(prop) {
         }else{
             try {
                 //console.log('Data actualización:',data);
+                await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${idAsignado}`, dataFM);
                 const respuestaUpdate = await axios.put(url2 + `/api/cotizador/proporcionalidad/update/${prop.propIdProyecto}`, data);
                 const respuestaUpdateBack = respuestaUpdate.data.msg
                 alert(respuestaUpdateBack)

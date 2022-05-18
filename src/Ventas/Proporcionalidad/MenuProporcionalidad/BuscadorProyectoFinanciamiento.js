@@ -13,7 +13,7 @@ let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
-let idAsignado;
+export let idAsignado;
 
 export let estatusProy2;
 
@@ -160,8 +160,8 @@ function BuscadorProyectoFinanciamiento() {
                             <th>Clave</th>
                             <th>Descripción</th>
                             <th>Cliente</th>
-                            <th>Fecha de creación</th>
-                            <th>Fecha de modificación</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Modificación</th>
                             <th>Estatus</th>
                             <th>Plazo de meses</th>
                             <th>Datos Financiamiento</th>

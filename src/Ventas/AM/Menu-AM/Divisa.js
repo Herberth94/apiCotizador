@@ -208,7 +208,8 @@ function Divisa() {
                             <th>Clave</th>
                             <th>Descripción</th>
                             <th>Cliente</th>
-                            <th>Fecha de creción</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Modificación</th>
                             <th>Estatus</th>
                             <th>Valor dolar</th>
                             <th>Moneda</th>
@@ -227,6 +228,7 @@ function Divisa() {
                                 <td>{suggestions[key].proyecto_descripcion}</td>  
                                 <td>{suggestions[key].nombre_cliente}</td> 
                                 <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                                <td>{suggestions[key].proyecto_fecha_modificacion}</td>
                                 <td className={suggestions[key].proyecto_estatus}  width={"100px"}>{suggestions[key].proyecto_estatus}</td> 
                                 <td width={"100px"}>
                                     <input 

@@ -10,6 +10,7 @@ import {url, url2} from "./Ocultar";
 
 export const CrudCategorias = (props) => {
 
+    //console.log('Datos de categorías:',props.dcats);
     const [activar, setActivar] = useState([]);
     const [textBModificar,setTextBModificar] = useState([]);
     const [textBVer,setTextBVer] = useState([]);

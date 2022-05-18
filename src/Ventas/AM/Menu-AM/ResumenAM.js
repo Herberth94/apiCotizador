@@ -29,6 +29,7 @@ let validatorid = cookies.get('id_usuario');
 let ancho =  "200px";
 
 export let estatusProy;
+export let pId;
 
 const ResumenAM = () => {
 
@@ -258,8 +259,9 @@ const ResumenAM = () => {
         }
     }
 
-    function getEstatusProy (estatus){
+    function getEstatusProy (estatus,id){
         estatusProy = estatus;
+        pId = id;
     }
 
     return (
@@ -311,8 +313,8 @@ const ResumenAM = () => {
                             <th>Clave</th>
                             <th>Descripción</th>
                             <th>Cliente</th>
-                            <th>Fecha de creción</th>
-                            <th>Fecha de Modificación</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Modificación</th>
                             <th>Estatus</th>
                             <th>Plazo Meses</th>
                             <th>Resumen AM</th>
@@ -337,7 +339,7 @@ const ResumenAM = () => {
                                     onClick={() => {
                                         consultarTotalesP(suggestions[key].proyecto_id);
                                         habilitar2(key);
-                                        getEstatusProy(suggestions[key].proyecto_estatus);
+                                        getEstatusProy(suggestions[key].proyecto_estatus,suggestions[key].proyecto_id);
                                     }}
                                     >
                                        <i className=  {textBVer[key]}></i> 

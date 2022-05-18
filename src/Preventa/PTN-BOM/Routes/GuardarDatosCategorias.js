@@ -3,7 +3,7 @@ import { useState } from "react";
 import Cookies from "universal-cookie";
 import {url,url2} from "../../../Componentes/Ocultar";
 import { pEstatus1 } from "../Menu-Bom/ContinuarProyecto";
-
+import { hoy } from "../Menu-Bom/NuevoProyecto";
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
@@ -33,6 +33,7 @@ export const InsertDatosCats = () => {
 
     function getIdP1 (proyecto_id){
         pId = proyecto_id;
+        //console.log('Id del proyecto en el archivo Guardas Categorias:',pId);
     }
     // Función que realiza la inserción de los datos a la tabla partida en la bd 
     async function Send(dPrecio){
@@ -68,6 +69,10 @@ export const InsertDatosCats = () => {
         var proyectoId = {
             proyecto_id:''
         }
+
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        }
         
         if(pEstatus1 === 'En revision'){
             alert('No se puede continuar el Proyecto porque se encuentra En revision')
@@ -80,12 +85,18 @@ export const InsertDatosCats = () => {
                 ListaProyectos = resGetProyectos.data.data.pop();
                 proyectoId.proyecto_id = ListaProyectos.proyecto_id;
 
+                if(pId !== proyectoId.proyecto_id && pId !== ''){
+                    await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
+                }else{
+                    await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${proyectoId.proyecto_id}`, dataFM);
+                }
+
                 if(pId !== proyectoId.proyect && pId !== ''){
                     // Inserción a la tabla precio
                     const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataP);
                     // Obtención del precio_id de la inserción realizada
                     data.cd_id_precio = resPrecio.data.data.insertId;
-                    const respuesta = await axios.post(url2 + `/api/cotizador/catd/agregar/${proyectoId.proyecto_id}`,data);
+                    const respuesta = await axios.post(url2 + `/api/cotizador/catd/agregar/${pId}`,data);
                     //console.log(pId);
                     const respuestaBack = respuesta.data.msg;
                     alert(respuestaBack);
@@ -132,10 +143,16 @@ export const InsertDatosCats = () => {
             proyecto_estatus: 'En revision'
         }
 
+        const dataFM = {
+            proyecto_fecha_modificacion:hoy
+        }
+
         if(pEstatus1 === 'En revision'){
-            alert('El proyecto no puede ser finalizado porque se encuentra En revision')
+            alert('El proyecto no puede ser finalizado nuevamente')
         }else if(pEstatus1 === 'Aceptado'){
-            alert('El proyecto no puede ser finalizado porque ha sido Aceptado')
+            alert('El proyecto no puede ser finalizado nuevamente')
+        }else if(pEstatus1 === 'Rechazado'){
+            alert('El proyecto no puede ser finalizado nuevamente')
         }else{
             try {
                 // Obtención del id del último proyecto insertado
@@ -143,7 +160,13 @@ export const InsertDatosCats = () => {
                 ListaProyectos = resGetProyectos.data.data.pop();
                 proyectoId.proyecto_id = ListaProyectos.proyecto_id;
 
-                if(pId !== proyectoId.proyect && pId !== ''){
+                if(pId !== proyectoId.proyecto_id && pId !== ''){
+                    await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
+                }else{
+                    await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${proyectoId.proyecto_id}`, dataFM);
+                }
+
+                if(pId !== proyectoId.proyecto_id && pId !== ''){
                     //Inserción de estatus al proyecto
                     await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${pId}`,dataEstatus);
                     /*=============== Inserción de costos indirectos ===============*/

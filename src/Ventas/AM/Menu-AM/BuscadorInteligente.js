@@ -16,6 +16,7 @@ let validatorrol = cookies.get('rol');
 let validatorid = cookies.get('id_usuario');
 
 export let estatusProy1;
+export let pId;
 
 function BuscadorInteligente() {
 
@@ -164,8 +165,9 @@ function BuscadorInteligente() {
         setTextBVer(newArr2);
     }
 
-    function getEstatusProy (estatus){
+    function getEstatusProy (estatus,id){
         estatusProy1 = estatus;
+        pId = id;
     }
 
   return (
@@ -210,8 +212,8 @@ function BuscadorInteligente() {
             <th>Clave</th>
             <th>Descripción</th>
             <th>Cliente</th>
-            <th>Fecha de creación</th>
-            <th>Fecha de modificación</th>
+            <th>Fecha Creación</th>
+            <th>Fecha Modificación</th>
             <th>Estatus</th>
             <th>Plazo de meses</th>
             <th>Resumen AM</th>
@@ -236,7 +238,7 @@ function BuscadorInteligente() {
                 onClick={() => {
                     consultarTotalesP(suggestions[key].proyecto_id);
                     habilitar(key);
-                    getEstatusProy(suggestions[key].proyecto_estatus);
+                    getEstatusProy(suggestions[key].proyecto_estatus,suggestions[key].proyecto_id);
                 }}
                 >
                      <i className=   {textBVer[key]}  ></i>
