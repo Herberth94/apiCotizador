@@ -49,7 +49,7 @@ function MenuHeramientas() {
         </tr>
       </thead>
       <tbody>
-        <tr className="">
+        <tr className="headerPropuesta">
           {/*========================== Divisa ==========================*/}
           <td>
             <button
@@ -65,7 +65,7 @@ function MenuHeramientas() {
             {show ? (
               <div></div>
             ) : (
-              <div className="arregla">
+              <div className="arregla divBuscadorInteligente">
                 {/*========================== Llamado al Componente ==========================*/}
               < CalculaDescuento/>
               </div>
