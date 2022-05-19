@@ -28,7 +28,7 @@ function MenuColaboradores() {
     </tr>
   </thead>
   <tbody>
-    <tr className="">
+    <tr className="headerPropuesta">
       {/*========================== Divisa ==========================*/}
       <td>
         <button
@@ -45,7 +45,7 @@ function MenuColaboradores() {
         {show ? (
           <div></div>
         ) : (
-          <div className="arregla">
+          <div className="arregla divBuscadorInteligente">
             {/*========================== Llamado al Componente ==========================*/}
              <RegistrarColaboradores/>
           </div>

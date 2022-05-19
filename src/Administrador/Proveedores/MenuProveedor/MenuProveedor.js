@@ -32,7 +32,7 @@ function MenuProveedor() {
     </tr>
   </thead>
   <tbody>
-    <tr className="">
+    <tr className="headerPropuesta">
       {/*========================== Divisa ==========================*/}
       <td>
         <button
@@ -50,7 +50,7 @@ function MenuProveedor() {
         {show ? (
           <div></div>
         ) : (
-          <div className="arregla">
+          <div className="arregla divBuscadorInteligente">
             {/*========================== Llamado al Componente ==========================*/}
              <RegistrarProveedor/>
           </div>
@@ -73,7 +73,7 @@ function MenuProveedor() {
         {show2 ? (
           <div></div>
         ) : (
-          <div className="arregla">
+          <div className="arregla divBuscadorInteligente">
             {/*========================== Llamado al Componente ==========================*/}
             <RegistrarMarcas/>
           </div>

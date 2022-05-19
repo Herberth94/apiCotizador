@@ -25,7 +25,7 @@ function MenuUsuarios() {
           </tr>
         </thead>
         <tbody>
-          <tr className="">
+          <tr className="headerPropuesta">
             {/*========================== Divisa ==========================*/}
             <td>
               <button
@@ -42,7 +42,7 @@ function MenuUsuarios() {
               {show ? (
                 <div></div>
               ) : (
-                <div className="arregla">
+                <div className="arregla divBuscadorInteligente">
                   {/*========================== Llamado al Componente ==========================*/}
                   < RegistrarUsuarios />
                 </div>
