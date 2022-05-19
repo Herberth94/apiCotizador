@@ -724,7 +724,6 @@ function calcularPrecioVenta() {
   for (var i = 0; i < costosIndirectos.length - 1; i++) {
     calculaIndirecto = (equivale[i] / 100) * precio;
     totalIndirecto.push(calculaIndirecto.toFixed(decimal));
-
     toIndirecto += calculaIndirecto;
   }
 
@@ -735,8 +734,6 @@ function calcularPrecioVenta() {
   costoFianalProyecto = parseFloat(precio3) + parseFloat(precio2);
 
   margenReal = (((1 - costoFianalProyecto / precioFinalVenta) * 100 ).toFixed(decimal));
-
-
 
   final();
 }
