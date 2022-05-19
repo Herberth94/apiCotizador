@@ -241,7 +241,7 @@ export const CrudPrecios = (props) => {
                                 <select 
                                 id="lista-opciones" 
                                 name="precio_id_moneda" 
-                                value={props.precios[key].precio_id_moneda} 
+                                defaultValue={props.precios[key].precio_id_moneda} 
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 >
@@ -250,7 +250,22 @@ export const CrudPrecios = (props) => {
                                     <option value={2}>USD</option>
                                 </select>
                             </td>
-                            <td>
+                            {enable[key] ? (
+                                <td>
+                                <button 
+                                className="btn btn-primary Mod"
+                                onClick={()=>{
+                                    habilitar(key); 
+                                    //props.envioDataPrecio(props.estado,datos, key, data);
+                                    props.setfirst(activar);
+                                }}
+                                >
+                                    <i className= "bi bi-pencil-square"></i>
+                                </button>
+                                </td>   
+                            ) : (       
+                                <>
+                                <td>
                                 <button 
                                 className="btn btn-primary Mod"
                                 onClick={()=>{
@@ -259,11 +274,25 @@ export const CrudPrecios = (props) => {
                                     props.setfirst(activar);
                                 }}
                                 >
-                                    
-
-                                    <i className= {activar ? "bi bi-pencil-square" : "bi bi-check-lg"}></i>
+                                    <i className= "bi bi-check-lg" ></i>
                                 </button>
-                            </td>    
+                                </td> 
+
+                                <td>
+                                <button 
+                                className="btn btn-primary Cancelar" type="button"
+                                onClick={()=>{
+                                    habilitar(key); 
+                                    //props.envioDataPrecio(props.estado,datos, key, data);
+                                    props.setfirst(activar);
+                                }}
+                                >
+                                    <i className= "bi bi-x-lg"  ></i>
+                                </button>
+                                </td> 
+                                </>
+                            )}
+                             
                         </tr>  
                         ))
                         }

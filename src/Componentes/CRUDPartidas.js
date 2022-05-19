@@ -315,14 +315,14 @@ export const CrudPartidas = (props) => {
                                 </td>  */}
       
 
-{enable[key] ? (
+                        {enable[key] ? (
                                 <td width={"100px"} >
                                     <button 
                                     className=  "btn btn-primary Mod" type="button"
                                     onClick={()=>{
                                        // props.envioData(datos,key,data); 
                                        habilitar(key); 
-                                       props.envioDataPar(datos, key, data);
+                                       //props.envioDataPar(datos, key, data);
                                        props.setfirst(activar[key]);;
                                     }}
                                     >
@@ -354,7 +354,7 @@ export const CrudPartidas = (props) => {
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
-                                       props.setfirst(activar[key]); 
+                                        props.setfirst(activar[key]); 
                                     }}
                                     >
                                         <i className= "bi bi-x-lg"  ></i>

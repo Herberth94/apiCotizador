@@ -350,13 +350,22 @@ export const CrudProyectos = (props) => {
                                 onChange={e => onChangeTextCliente(e.target.value,key)}
                                 />
                                 {Object.keys(suggestionsClientes1).map((i)=>
-                                    <div 
-                                    key={i}
-                                    className="selectCliente" 
-                                    onClick={() => onSuggestHandler(suggestionsClientes1[i].nombre_cliente, key)}
-                                    >
-                                        {suggestionsClientes1[i].nombre_cliente}
-                                    </div>
+                                    {if(enable[key]){
+                                        return(
+                                        <div></div>
+                                        )
+                                    }else{
+                                        return(
+                                        <div
+                                        key={i}
+                                        className="selectCliente" 
+                                        onClick={() => onSuggestHandler(suggestionsClientes1[i].nombre_cliente, key)}
+                                        >
+                                            {suggestionsClientes1[i].nombre_cliente}
+                                        </div>
+                                        )
+                                    }}
+                                    
                                 )}
                             </td> 
 
@@ -381,7 +390,7 @@ export const CrudProyectos = (props) => {
                                 <button 
                                 className=  "btn btn-primary Mod" type="button"
                                 onClick={()=>{
-                                    props.envioDataP(nombreC,props.clientes,datos,key,data);
+                                    //props.envioDataP(nombreC,props.clientes,datos,key,data);
                                     habilitar(key); 
                                     props.setfirst(activar[key]);
                                 }}
