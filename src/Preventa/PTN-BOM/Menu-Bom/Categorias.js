@@ -118,6 +118,18 @@ function Categorias(props) {
     });
 
    }
+
+   function confirFinalizar(){
+    const confirmacion = window.confirm(
+        "¿Seguro que quieres Finalizar este Proyecto?"
+      );
+      if(confirmacion){
+        finalizarProy()
+      }else{
+
+      }
+    
+   }
     
     
     return (
@@ -354,7 +366,11 @@ function Categorias(props) {
                     </Table>
             </form>
 
-            <button className="btn btn-primary modificar" onClick={() => finalizarProy()}>Finalizar proyecto</button>
+            <button className="btn btn-primary modificar" 
+            onClick={() =>
+                //finalizarProy() 
+                confirFinalizar()
+            }>Finalizar proyecto</button>
           <br></br>
           <br></br>
         
