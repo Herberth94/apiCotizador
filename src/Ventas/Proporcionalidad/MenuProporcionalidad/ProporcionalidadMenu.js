@@ -32,7 +32,7 @@ function ProporcionalidadMenu() {
           </tr>
         </thead>
         <tbody>
-          <tr className="">
+          <tr className="headerPropuesta">
             {/*========================== Divisa ==========================*/}
             <td>
               <button
@@ -49,7 +49,7 @@ function ProporcionalidadMenu() {
               {show ? (
                 <div></div>
               ) : (
-                <div className="arregla">
+                <div className="arregla divBuscadorInteligente">
                   {/*========================== Llamado al Componente ==========================*/}
                 <BuscadorInteligente2/>
                 </div>

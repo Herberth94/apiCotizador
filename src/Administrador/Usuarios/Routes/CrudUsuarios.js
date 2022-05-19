@@ -99,7 +99,7 @@ export const CrudUsuarios = (props) => {
             {/*=================== Contenido Tabla Usuarios =================*/}
             {Object.keys(props.usuarios).map((key) => (
               //checar aqui va los titulos
-              <tr key={key}>
+              <tr key={props.usuarios[key].id_usuario}>
                 <td>{props.usuarios[key].id_usuario}</td>
                 <td width={"200px"}>
                   {/*<input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>

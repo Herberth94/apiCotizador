@@ -55,7 +55,7 @@ function PTN_BOM() {
           </tr>
         </thead>
         <tbody>
-          <tr className="">
+          <tr className="headerPropuesta">
             {/*========================== Nuevo Proyecto ==========================*/}
             <td>
               <button
@@ -76,7 +76,7 @@ function PTN_BOM() {
               {show ? (
                 <div></div>
               ) : (
-                <div className="arregla">
+                <div className="arregla divBuscadorInteligente">
                   {/*========================== Llamado al Componente ==========================*/}
                   <NuevoProyecto />
                 </div>
@@ -100,7 +100,7 @@ function PTN_BOM() {
               {show2 ? (
                 <div></div>
               ) : (
-                <div className="arregla">
+                <div className="arregla divBuscadorInteligente" >
                   {/*========================== Llamado al Componente ==========================*/}
                   <ContinuarProyecto />
                 </div>

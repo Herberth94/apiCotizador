@@ -19,7 +19,7 @@ let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
-
+let estatus;
 function BuscadorInteligente3() {
     /*========================== Mostrar/Ocultar ==========================*/
     const [show,setShow] = useState([]); 
@@ -77,6 +77,12 @@ function BuscadorInteligente3() {
         setClaveP(claveP);
     }
     /*=======================================================================================================*/
+
+    function getEstatus(et){
+        estatus = et;
+        //console.log(estatus);
+    }
+
     useEffect(() => {
         let i = Object.keys(suggestions)
         i = i.length
@@ -92,8 +98,18 @@ function BuscadorInteligente3() {
         c = c.length;
         setShow(Array(c).fill(true));
         setTextBVer(Array(c).fill('bi bi-eye'));
+        // if(estatus === 'Aceptado'){
+
+        // }else{
+        //     alert('Solo se puede generar una Propuesta Economica en proyectos aceptados')
+        // }
         for (let i = 0 ; i < c ; i++){
             if(i === key){
+                // if(estatus === 'Aceptado'){
+                //     newArr[i] = !show[i];
+                // }else{
+                //     newArr[i] = show[i];
+                // }
                 newArr[i] = !show[i];
                 setShow2(newArr[i]);
                 if(show[i] === false){
@@ -229,8 +245,13 @@ function BuscadorInteligente3() {
                             <button 
                             className="btn btn-primary Ver" 
                             onClick={() => {
-                            consultarTotalesP(suggestions[key].proyecto_id);    
-                            habilitar(key);
+                            getEstatus(suggestions[key].proyecto_estatus);
+                            {if(estatus === 'Aceptado'){
+                                consultarTotalesP(suggestions[key].proyecto_id);
+                                habilitar(key);
+                            }else{
+                                alert('Solo se puede generar una Propuesta Economica en proyectos aceptados')}
+                            } 
                             }}
                             >
                            <i className=   {textBVer[key]}  ></i>
