@@ -34,6 +34,9 @@ const  ModalPartida = (props) => {
     const envio =()=>{
         infPartida = data;
         console.log(infPartida)
+
+
+        
     }
     const habilitar =(key)=>{
         let keys = parseInt(key);

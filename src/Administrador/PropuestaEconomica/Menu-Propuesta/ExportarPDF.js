@@ -4,21 +4,19 @@ import "jspdf-autotable";
 import '../css/Exportar.css';
 import {imagen} from './IMG';
 import {numeroALetras} from './calculo';
-
-
-
 import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , 
   TOTALSTRING , totD , totD2, totMensual, mesesMensual, totalMen,  totalMenIva,
   totalMensual}from "../../../Ventas/Operaciones/OperacionesAM";
-
-
-/*   export var totMensual =  "" ;
-export var mesesMensual = "";
-export var totalMen = "";
- */
-
 import { fecha , datos} from './Formulario';
-import {infPartida} from './ModalPartida'
+import {infPartida} from './ModalPartida';
+export let name_encargado = "OCM ";
+export let atent = "Atentamente";
+export let cargo = "Account Manager";
+
+
+
+
+
  let dataPartida2 = (Object.values(infPartida));
  let dataPartida = [];
 class ExportarPDF extends React.Component {
@@ -27,9 +25,9 @@ class ExportarPDF extends React.Component {
     super();
     this.state = {
  
-      datos2: [
+      /* datos2: [
         {descripcion: "descripcion", periodo: "mensual",   costoUnitario: totMensual , dispositivos: mesesMensual ,subtotal: totalMen}
-      ],
+      ], */
       datosTotales: [
         {subtotal: " $ " + totD , iva: "16 %", total: "$ "+ totD2 }
       ],
@@ -68,49 +66,44 @@ class ExportarPDF extends React.Component {
 let claveProyecto = clave_p;
 let organizacion =  name_cliente;
 let nombreProyecto = datos.nombre;
-//Atención 
-//let nombreContacto = "Marco Banda, Compras OIEGSA";
 let nombreContacto = datos.servicios;
 
-let nombreResponsable = datos.firma;
+let nombreEncargado = datos.firma;
+let nombreCargo = datos.cargo;
 
 
 
 
-    const title = "PROPUESTA ECONÓMICA";
+
+    const titulo= "PROPUESTA ECONÓMICA";
     const fech = "Ciudad de México a "  + fecha
+
+
+     /*    Datos de Proyecto */
     const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
-    const atencion = "Atención "  + nombreContacto;
-    const comentarios = "Propuesta económica correspondiente al servicio de TV de paga.";
+    const namePresente = "Name";
+    const presente = "Presente: ";
 
+ /*    Nombre de Proyecto */
+    const atencion = "No de Proyecto: "  +  " "+ nombreContacto;
+ /*    const comentarios = "No de ProyectoX:  " + claveProyecto ;
+ */
     
-    const importe = letra;
+ const cuota = "ANTES DE IVA";
+
+    const importe = letra  + " " + cuota;
 
 
-
-    const cuota = "CUOTA MENSUAL";
-    const importeMensual = "IMPORTE MENSUAL UN DISPOSITIVO: SEIS MIL CIENTO NOVENTA PESOS 02/100 ANTES DE IVA"
-    const condiciones = "CONDICIONES COMERCIALES"
-    const vigencia= "La vigencia de la presente propuesta es de 10 días naturales."
-    const propuesta="La propuesta contempla el servicio para 9 Pantallas mensual"
-    const formaPago= "La forma de pago será en mensualidades de " +  "FUNJJJ " + "antes de IVA  por Servicio";
-    const duracion= "Esta propuesta contempla los servicios de ENERO 2021 al mes de DICIEMBRE 2021."
-    const moneda= "Los precios están expresados en moneda nacional."
-    const interes="Los retrasos en pagos generarán un interés moratorio del 0.2% por cada día de atraso en el pago."
-    const iva= "El cargo por refacturación es de 200.m.n. + IVA"
-
-    const encargada="ESMERALDA RODRÍGUEZ MEDELLÍN"
-    const cargo ="EJECUTIVA DE CUENTA"
-    const empresa="PALO TINTO NETWORKS SA DE CV"
 
 /*     console.log( "Tot   a ",TOTALSTRING);
    
  */
-    const headers = [["NO.PARTIDA", "SERVICIO", "DESCRIPCIÓN",  "DISPOSITIVOS" ,  "SUBTOTAL"  ]];
+    const headers = [["#", "Partida", "Descripción General",  "Cantidad" , "Precio Unitario", "Subtotal"  ]];
     let a = 0;
     let b = 0;
     let c = 0;
     let d = 0;
+    let e= 0;
     if (dataPartida2 == ''){
       dataPartida=descripcionGeneral
 
@@ -118,17 +111,38 @@ let nombreResponsable = datos.firma;
     else{
       dataPartida= dataPartida2
     }
-    const data = partidasUnicas2.map(elt=> [ [a +1 ],[partidasUnicas2[a++]] , dataPartida[b++]  ,Cantidad[c++]    , TOTALSTRING[d++] ]      );
+    const data = partidasUnicas2.map(elt=> [ [a +1 ],[partidasUnicas2[a++]] , dataPartida[b++]  ,Cantidad[c++]    , TOTALSTRING[d++] ,  TOTALSTRING[e++] ]      );
     let content = {
-      startY: 200,
+      startY: 180,
       head: headers,
       body: data,
+      headStyles: {
+        fillColor: [0,0,0]
+      },
+      bodyStyles: { 
+      lineWidth:1,
+      lineColor:[0,0,0],
+      },
+
+
+      columnStyles: {
+        0: {cellWidth: 30},
+        1: {cellWidth: 80},
+        2: {cellWidth: 150},
+        3: {cellWidth: 80},
+        4: {cellWidth: 80},
+        5: {cellWidth: 80},
+        // etc
+      }
      
     };
 
   
-    const headers2 = [["DESCRIPCIÓN", "PERIODO", "COSTO MENSUAL", "MESES", "SUBTOTAL" ]]
+ /*    const headers2 = [["DESCRIPCIÓN", "PERIODO", "COSTO MENSUAL", "MESES", "SUBTOTAL" ]]
     const data2 = this.state.datos2.map(elt=> [elt.descripcion , elt.periodo,  elt.costoUnitario, elt.dispositivos, elt.subtotal]);
+     */
+
+    var width = doc.internal.pageSize.getWidth();
     
     const headers3 = [["SUBTOTAL", "IVA", "TOTAL"]]
     const data3 = this.state.datosTotales.map(elt=> [elt.subtotal , elt.iva,  elt.total]);
@@ -141,40 +155,61 @@ let nombreResponsable = datos.firma;
 
     doc.addImage(image,'PNG', 0 , 0 , 600 , 800);
 
+ 
+   /*  doc.text(title, 230, 120 ); */
 
-    doc.text(title, 230, 120);
-    doc.text(fech, 400, 100 );
-    doc.text(proyecto, marginLeft, 140 );
+
+    doc.text(fech, 425, 80 );
+
+/*     Nombre de Proyecto */
+    doc.text(proyecto, marginLeft, 100 );
+    doc.text(namePresente, marginLeft, 110 );
+    doc.text(presente, marginLeft, 120 );
+
+    /* TITULO PROPUESTA ECONOMICA */
+    doc.text(titulo,  width/2, 130); 
     doc.text(atencion, marginLeft, 160 );
-    doc.text(comentarios, marginLeft, 190 );
+/*  FIRMA  */
+    doc.text(atent, width/2, 660 ,  { align: 'center' }); 
+    doc.text(nombreEncargado , width/2, 700,  { align: 'center' }); 
+    doc.text(nombreCargo, width/2, 710,  { align: 'center' }); 
+ 
+
+ 
+
+
+   
+/*     doc.text(comentarios, marginLeft, 190 ); */
     //doc.text(condiciones, marginLeft, 620);
     
-    doc.autoTable(content);
+    doc.autoTable(content );
     console.log(doc.lastAutoTable.finalY)
-    console.log(datos)
+/*     console.log(datos) */
     let content2 = {
       startY: doc.lastAutoTable.finalY,
-      margin:{left:380},
+      margin:{left:360},
       head: headers3,
       body: data3,
       tableWidth:'wrap',
+   
       // fillColor: Color 
     }
 
     doc.autoTable(content2);
     const p =   doc.lastAutoTable.finalY;
-    
     doc.text(importe, marginLeft, p+15 );
-    doc.text(cuota, marginLeft, p+ 28 );
-
-    let content3 = {
+ /*    doc.text(cuota, marginLeft, p+ 28 );
+ */
+/*     let content3 = {
       startY: (doc.lastAutoTable.finalY) + 35,
       head: headers2,
       body: data2,
      
-    }
+    } 
     doc.autoTable(content3);
-    let content4 = {
+
+    */
+/*     let content4 = {
       startY: (doc.lastAutoTable.finalY) + 5,
       margin: {left:380},
       head: headers3,
@@ -182,9 +217,9 @@ let nombreResponsable = datos.firma;
       tableWidth:'wrap',
      
     }
-    doc.autoTable(content4);
-    doc.text(importeMensual, marginLeft, doc.lastAutoTable.finalY + 15);
-    doc.text(datos.condiciones, marginLeft, doc.lastAutoTable.finalY + 30);
+    doc.autoTable(content4); */
+
+    doc.text(datos.condiciones, marginLeft, doc.lastAutoTable.finalY + 90);
     doc.save("PropuestaEconómica.pdf")
   }
 

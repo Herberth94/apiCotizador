@@ -7,13 +7,14 @@ import ModalPartida from './ModalPartida';
 import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , 
   TOTALSTRING , totD , totD2, totMensual, mesesMensual, totalMen,  totalMenIva,
   totalMensual}from "../../../Ventas/Operaciones/OperacionesAM";
-
-  let name_encargado = "--";
-
-
+import {name_encargado, cargo } from './ExportarPDF';
 let validaOperacion = false;
 export let datos ={}
 export let datos2 =[];
+
+
+
+
 function checa(){
    
   validaOperacion = !validaOperacion;
@@ -24,31 +25,27 @@ function checa(){
 
 
 var condicionesC = "CONDICIONES COMERCIALES \n"+
-"• La vigencia de la presente propuesta es de 10 días naturales. \n"+
+" • La vigencia de la presente propuesta es de 10 días naturales. \n"+
 " • La propuesta contempla el servicio para  \n"+
 " • La forma de pago será en mensualidades de  \n"+
-"  • Esta propuesta contempla los servicios de ENERO 2022 al mes de DICIEMBRE 2022. \n"+
+" • Esta propuesta contempla los servicios de ENERO 2022 al mes de DICIEMBRE 2022. \n"+
 " • Los precios están expresados en moneda nacional. \n"+
 " • Los retrasos en pagos generarán un interés moratorio del 0.2% por cada día de atraso en el pago. \n"+
-"   • El cargo por refacturación es de 200.m.n. + IVA ";
+" • El cargo por refacturación es de 200.m.n. + IVA ";
 
 
 const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
-
-
-
-
-
 export const fecha = hoy.toLocaleDateString();
 
 function Formulario() {
   //console.log('Proyecto:',clave_p)
   const [data,setData] = useState ({
-    nombre:'De ',
+    nombre:'De',
     servicios:'',
     firma:'',
-    condiciones:condicionesC,
+    puesto: '',
+    condiciones: condicionesC,
     
   });
 
@@ -73,7 +70,7 @@ function Formulario() {
     console.log(datos);
     setTimeout(function(){
       setshow(false);
-      console.log("prueba");
+   
   }, 3000);
   
   }
@@ -110,24 +107,24 @@ function Formulario() {
       <form className="formulario" >
         <p>
           <label>Proyecto</label>
-          <input type="text" onChange={handleChange} name="nombre"  defaultValue={clave_p }  />
+          <input type="text" onChange={handleChange} name="nombre"  defaultValue={clave_p}  />
         </p>
 
         <p>
-          <label>Propuesta Económica</label>
-          <input type="text" onChange={handleChange} name="firma"   defaultValue={ name_encargado }  />
-        </p>
-
-
-        <p>
-          <label>Cliente</label>
-          <input type="text" onChange={handleChange} name="servicios"   defaultValue={ name_cliente}  />
+          <label>Nombre Responsable</label>
+          <input type="text" onChange={handleChange} name="firma"   defaultValue={name_encargado}  />
         </p>
 
 
         <p>
-          <label>Atentamente.</label>
-          <input type="text" onChange={handleChange} name="firma"   defaultValue={ name_encargado }  />
+          <label>Nombre Proyecto</label>
+          <input type="text" onChange={handleChange} name="servicios"   defaultValue={name_cliente}  />
+        </p>
+
+
+        <p>
+          <label>Nombre Cargo</label>
+          <input type="text" onChange={handleChange} name="cargo"   defaultValue={cargo}  />
         </p>
 
     
