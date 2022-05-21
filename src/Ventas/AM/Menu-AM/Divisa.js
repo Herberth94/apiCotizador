@@ -244,7 +244,7 @@ function Divisa() {
                                 <select 
                                 id="lista-opciones" 
                                 name="proyecto_id_moneda" 
-                                value={enable[key] ? suggestions[key].proyecto_id_moneda : data.proyecto_id_moneda} 
+                                defaultValue={suggestions[key].proyecto_id_moneda} 
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 >

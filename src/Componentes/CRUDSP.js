@@ -431,13 +431,21 @@ export const CrudSp = (props) => {
                                     placeholder="Proveedor"
                                     />
                                     {Object.keys(suggestionsProv).map((i)=>
-                                    <div 
-                                    key={i} 
-                                    className="selectCliente" 
-                                    onClick={() => onSuggestHandlerProv(suggestionsProv[i].proveedor_nombre,key)}
-                                    >
-                                        {suggestionsProv[i].proveedor_nombre}
-                                    </div>
+                                    {if(enable[key]){
+                                        return(
+                                        <></>
+                                        )
+                                    }else{
+                                        return(
+                                            <div 
+                                            key={i} 
+                                            className="selectCliente" 
+                                            onClick={() => onSuggestHandlerProv(suggestionsProv[i].proveedor_nombre,key)}
+                                            >
+                                                {suggestionsProv[i].proveedor_nombre}
+                                            </div>
+                                        )
+                                    }}
                                     )}
                                 </td>
                                 <td width={"100px"}>
@@ -452,13 +460,22 @@ export const CrudSp = (props) => {
                                     placeholder="Marca"
                                     />
                                     {Object.keys(suggestionsMarca).map((i)=>
-                                    <div 
-                                    key={i} 
-                                    className="selectCliente" 
-                                    onClick={() => onSuggestHandlerMarca(suggestionsMarca[i].marca_nombre,key)}
-                                    >
-                                        {suggestionsMarca[i].marca_nombre}
-                                    </div>
+                                    {if(enable[key]){
+                                        return(
+                                            <></>
+                                        )
+                                    }else{
+                                        return(
+                                            <div 
+                                            key={i} 
+                                            className="selectCliente" 
+                                            onClick={() => onSuggestHandlerMarca(suggestionsMarca[i].marca_nombre,key)}
+                                            >
+                                                {suggestionsMarca[i].marca_nombre}
+                                            </div>
+                                        )
+                                    }}
+                                    
                                     )}
                                 </td>
                                 <td width={"200px"}>
@@ -568,7 +585,9 @@ export const CrudSp = (props) => {
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
-                                       //props.setfirst(activar[key]); 
+                                        props.setfirst(activar[key]); 
+                                        setSuggestionsProv('');
+                                        setSuggestionsMarca('');
                                     }}
                                     >
                                         <i className= "bi bi-x-lg"  ></i>
