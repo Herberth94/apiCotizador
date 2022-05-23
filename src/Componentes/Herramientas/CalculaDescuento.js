@@ -81,6 +81,11 @@ validaOperacion = !validaOperacion;
         
 <Table responsive id="nombreDiv">
             <thead>
+
+            <tr className="titulo-tabla-usuarios">
+                <th></th>
+                <th  className="titulo-tabla">Calculadora</th>
+                </tr>
                 <tr className="titulo-tabla-usuarios">
                 <th>Calcular</th>
                 <th>Cantidad</th>
@@ -117,7 +122,6 @@ validaOperacion = !validaOperacion;
                 <td>
                     {" "}
                     <input
-                    className="agregar"
                     type="text"
                     name="precio_lista"
                     value={datos.precio_lista}
@@ -131,7 +135,7 @@ validaOperacion = !validaOperacion;
                 <td>
                     {" "}
                     <input
-                    className="agregar"
+               
                     type="text"
                     value={datos.precio_unitario}
                     name="precio_unitario"
@@ -144,7 +148,7 @@ validaOperacion = !validaOperacion;
                 <td>
                     {" "}
                     <input
-                    className="agregar"
+              
                     type="text"
                     value={datos.precio_descuento}
                     name="precio_descuento"
@@ -158,8 +162,7 @@ validaOperacion = !validaOperacion;
                 <td>
                     {" "}
                     <input
-                    className="agregar"
-                    type="text"
+             type="text"
                     name="precio_total"
                     value={datos.precio_total}
                     readOnly

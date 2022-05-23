@@ -7,7 +7,7 @@ import ModalPartida from './ModalPartida';
 import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , 
   TOTALSTRING , totD , totD2, totMensual, mesesMensual, totalMen,  totalMenIva,
   totalMensual}from "../../../Ventas/Operaciones/OperacionesAM";
-import {name_encargado, cargo } from './ExportarPDF';
+import {name_encargado, cargo , nombreP} from './ExportarPDF';
 let validaOperacion = false;
 export let datos ={}
 export let datos2 =[];
@@ -45,6 +45,7 @@ function Formulario() {
     servicios:'',
     firma:'',
     puesto: '',
+    nombreP: '',
     condiciones: condicionesC,
     
   });
@@ -110,6 +111,13 @@ function Formulario() {
           <input type="text" onChange={handleChange} name="nombre"  defaultValue={clave_p}  />
         </p>
 
+
+        <p>
+          <label>Nombre</label>
+          <input type="text" onChange={handleChange} name="nombreP"  defaultValue={nombreP}  />
+        </p>
+
+
         <p>
           <label>Nombre Responsable</label>
           <input type="text" onChange={handleChange} name="firma"   defaultValue={name_encargado}  />
@@ -133,7 +141,7 @@ function Formulario() {
           <input type="text" name="fecha"  defaultValue={fecha} />
         </p>
 
-        <p></p>
+       
      {/*    <p>
          
           <label className="switch2"> 
@@ -188,6 +196,8 @@ function Formulario() {
 
 
 <div>
+
+
 { show ? <ExportarPDF/> : ''}
 
 </div>

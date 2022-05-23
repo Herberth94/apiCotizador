@@ -2,14 +2,13 @@
 
 import { computeHeadingLevel } from "@testing-library/react";
 
-
+export let comprobacionFinanciamieno = false;
 export let plazo_meses = 0;
 export let pd_financiamiento = 0;
 export let pd_pago_anuales = 0;
 export let tasa_interes = 0;
 export let name_cliente;
 export let clave_p;
-
 let valorDolar = 1;
 let summm = 0;
 
@@ -25,11 +24,13 @@ export let costosIndirectos = [];
 
 /*============= Porcentajes Costos Indirectos Default ===============================*/
 
+export let tMensual =0;
+export let tMensualIVA =0;
+export let tMensualSUMA =0;
 
-export var totD  = "" ;
-export var totaliva = ""
-export var totD2 =  "" ;
 
+export let totD  = 0;
+export let totDIVA = 0;
 
 export var totMensual =  "" ;
 export var mesesMensual = "";
@@ -114,15 +115,36 @@ export let proporcionalMesaAyuda = [];
 export let TOTAL = [];
 
 export let TOTALSTRING = [];
+
+export let TOTALSTRINGMENSUAL = [];
+
+
 export let totalCategorias = 0;
 
+
+export let financiamientoDescripcion = [];
+
+
+
+export let totalMensualFinanciamiento = [];
+export let TotalFinanciamiento= [];
+
+
+financiamientoDescripcion.push("xhcjhksjxhckj");
+
 function limpiaDatos() {
+  comprobacionFinanciamieno = false; 
+  tMensual =0;
+  tMensualIVA =0;
+  tMensualSUMA =0;
+
+  totalMensualFinanciamiento = [];
+  TotalFinanciamiento= [];
 
 
+   totD  = 0;
+   totDIVA = 0;
 
-   totD  = "" ;
-   totaliva = ""
-  totD2 =  "" ;
 
 
    totMensual =  "" ;
@@ -132,6 +154,9 @@ function limpiaDatos() {
 
 
   TOTALSTRING = [];
+  TOTALSTRINGMENSUAL = [];
+
+
   financiamiento = [];
 
   plazo_meses = 0;
@@ -254,6 +279,17 @@ export function obtenPartidasUnicas(
 
       valorDolar = Dolar[0].proyecto_valor_dolar;
       plazo_meses = Dolar[0].proyecto_plazo_meses;
+
+
+      if(  plazo_meses > 0 ){
+        comprobacionFinanciamieno = true; 
+      }else{
+        comprobacionFinanciamieno = false; 
+      }
+
+
+
+
       name_cliente = Dolar[0].nombre_cliente;
       clave_p = Dolar[0].proyecto_clave;
       console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
@@ -793,16 +829,35 @@ function final() {
 
 
     g =  " $ " + TOTAL[i];
+    let a = parseFloat(TOTAL[i]) / plazo_meses;
 
+    
+    TOTALSTRINGMENSUAL.push(a.toFixed(decimal));
     TOTALSTRING.push(g);
  
  
   }
 
   
-   totD  =  TOTAL[TOTAL.length-1];
-   totaliva = parseFloat(TOTAL[TOTAL.length-1])  + parseFloat(TOTAL[TOTAL.length-1] * .16);
-   totD2 =   totaliva.toFixed(3);
+     totD  =  TOTAL[TOTAL.length-1];
+     let tiD =    (parseFloat(totD)  * .16);
+
+     totDIVA = tiD.toFixed(decimal) ;
+  
+
+
+    tMensual = parseFloat(totD)  / plazo_meses ;
+    tMensual =  tMensual.toFixed(decimal);
+   
+    tMensualIVA =  (  tMensual  * .16);
+    tMensualIVA  =    tMensualIVA.toFixed(decimal);
+
+    let tm= parseFloat( tMensual )  +    parseFloat(tMensualIVA) ;
+    tMensualSUMA =   tm.toFixed(decimal) ;
+
+
+
+
 
   
   //bien 4
@@ -875,6 +930,8 @@ function final() {
    let cx =  (totalMensual[totalMensual.length-1] * 12) *  .16;
    let cz =   (totalMensual[totalMensual.length-1] * 12) + cx;
    cz = cz.toFixed(decimal);
+
+
   totalMenIva =  cz;
 
 

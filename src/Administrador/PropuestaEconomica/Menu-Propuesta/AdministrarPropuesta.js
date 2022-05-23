@@ -87,9 +87,6 @@ function AdministrarPropuesta(props) {
               </td>
 
 
-          {/*     <td>
-                <ExportarPDF />
-              </td> */}
 
 
             </tr>

@@ -258,12 +258,7 @@ input {
 
 @media screen and (max-width: 960px) {
 
-#nombreDiv{
 
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1.25rem;
-}
   .busqueda-proyectos {
     z-index: 1;
     position: fixed;
