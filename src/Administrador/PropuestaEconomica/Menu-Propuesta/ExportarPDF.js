@@ -8,7 +8,7 @@ import {
   Cantidad, name_cliente, clave_p, descripcionGeneral, partidasUnicas2,
   TOTALSTRING, totD, totD2, totMensual, mesesMensual, totalMen, totalMenIva,
   totalMensual, comprobacionFinanciamieno, plazo_meses , tMensual , tMensualIVA  ,  totDIVA ,  
-  tMensualSUMA , TOTALSTRINGMENSUAL
+  tMensualSUMA , TOTALSTRINGMENSUAL  ,   totalsnIVA
 } from "../../../Ventas/Operaciones/OperacionesAM";
 
 
@@ -49,7 +49,14 @@ class ExportarPDF extends React.Component {
         
         
       }
-    } else {
+    } else if(comprobacionFinanciamieno === false) {
+      this.state = {
+         datosTotales: [
+        { subtotal: "ANTES DE IVA"      ,                    total: "$ " + totD },
+        { subtotal: "IVA"               ,                    total: "$ " + totDIVA },
+        { subtotal: "TOTAL"             ,                    total: "$ " +   totalsnIVA},
+      ]
+    }
 
     }
 
@@ -118,8 +125,6 @@ class ExportarPDF extends React.Component {
      */
 
     if (comprobacionFinanciamieno === true) {
-
-
       let a = 0;
       let b = 0;
       let c = 0;
@@ -229,7 +234,7 @@ class ExportarPDF extends React.Component {
 
 
         columnStyles: {
-          0: { cellWidth: 80 },    // #
+              // #
           1: { cellWidth: 100 },  // Total mensual
           2: { cellWidth: 100 }, //Total
           // etc
@@ -247,15 +252,19 @@ class ExportarPDF extends React.Component {
       doc.text(datos.condiciones, marginLeft, doc.lastAutoTable.finalY + 90);
       doc.save("PropuestaEconómica.pdf");
 
+
+
+     /*  sin financiamiento */
+
+
     } else if (comprobacionFinanciamieno === false) {
-
-
-
       let a = 0;
       let b = 0;
       let c = 0;
       let d = 0;
       let e = 0;
+
+
       if (dataPartida2 == '') {
         dataPartida = descripcionGeneral
 
@@ -272,9 +281,11 @@ class ExportarPDF extends React.Component {
         head: headers,
         body: data,
         headStyles: {
+          fontSize:  7,
           fillColor: [0, 0, 0]
         },
         bodyStyles: {
+          fontSize:  7,
           lineWidth: 1,
           lineColor: [0, 0, 0],
         },
@@ -292,17 +303,8 @@ class ExportarPDF extends React.Component {
 
       };
 
-
-      /*    const headers2 = [["DESCRIPCIÓN", "PERIODO", "COSTO MENSUAL", "MESES", "SUBTOTAL" ]]
-        const data2 = this.state.datos2.map(elt=> [elt.descripcion , elt.periodo,  elt.costoUnitario, elt.dispositivos, elt.subtotal]);
-         */
-
-
-      const headers3 = [["SUBTOTAL", "IVA", "TOTAL"]]
-      const data3 = this.state.datosTotales.map(elt => [elt.subtotal, elt.iva, elt.total]);
-
-      const data4 = this.state.datosTotales2.map(elt => [elt.subtotal, elt.iva, elt.total]);
-
+      const headers3 = [["      " , "            "]];
+      const data3 = this.state.datosTotales.map(elt => [elt.subtotal    , elt.total]);
       // logo la imagen debe de estar en base64 si no no la lee
       let image = new Image();
       image.src = imagen;
@@ -336,9 +338,25 @@ class ExportarPDF extends React.Component {
       /*     console.log(datos) */
       let content2 = {
         startY: doc.lastAutoTable.finalY,
-        margin: { left: 360 },
-        head: headers3,
-        body: data3,
+        margin: { left: 380 },
+        /* head: headers3, */
+        body: data3, 
+        headStyles: {
+        
+        },
+        bodyStyles: {
+          fontSize:  7,
+          lineWidth: 1,
+          lineColor: [0, 9, 227],
+        },
+
+
+        columnStyles: {
+          0: { cellWidth: 80 },
+          1: { cellWidth: 80 },
+
+          // etc
+        },
         tableWidth: 'wrap',
 
         // fillColor: Color 

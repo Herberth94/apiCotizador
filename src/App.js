@@ -47,6 +47,8 @@ import Venta from "./Routes/ValidaVenta";
 //============ Ventas  Páginas Private  ============
 import MenuVentas from "./Ventas/MenuVentas";
 import MenuValidacion from "./Ventas/AM-Resumen/MenuValidacion";
+
+import MenuFormulario from "./Ventas/AM-Resumen/MenuFormulario";
 import MenuResumenBom from "./Ventas/AM/ResumenBOM/MenuResumenBom";
   
 
@@ -112,7 +114,7 @@ function App() {
         <Venta exact path="/menu-clientes" component={MenuClientes} />
         <Venta path="/menu-proveedores" component={MenuProveedor} />
         <Venta exact path="/am" component={AM} />
-        <Venta exact path="/propuesta-economica" component={ MenuValidacion } />
+        <Venta exact path="/propuesta-economica" component={ MenuFormulario  } />
         <Venta path="/calculadora" component={MenuHeramientas} />
         <Venta exact path="/proporcionalidad" component={Proporcionalidad} />
 

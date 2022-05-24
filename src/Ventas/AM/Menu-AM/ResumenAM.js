@@ -4,7 +4,6 @@ import Table from "react-bootstrap/Table";
 import Cookies from 'universal-cookie';
 //Componentes
 import {Partida_catalogo} from '../../Operaciones/totalPartida';
-import Animaciones from "../../../Componentes/Animaciones";
 import { url, url2 } from '../../../Componentes/Ocultar';
 import {  Cantidad,descuentoCliente,  prov, listaProv,desFabrica, costoPTN, margenGanancia, precioVenta , margenDirecto ,
 precioFinalVenta,
@@ -14,10 +13,22 @@ datosCompletosAM,
 datosCompletosTotal,
 stringDolar,
 totalMensual,
-margenReal
+margenReal,
+comprobacionFinanciamieno
 } from "../../Operaciones/OperacionesAM";
 import { EditAM } from '../Routes/ModificarDatosAm';
 import {costosIndirectos, equivale,  totalIndirecto} from "../../Operaciones/OperacionesAM";
+
+
+let y = ["No Aplica"];
+let mensu = totalMensual[totalMensual.length-1];
+
+
+if( comprobacionFinanciamieno == false){
+   mensu =  y[0];
+}else if (comprobacionFinanciamieno == true){
+   mensu = totalMensual[totalMensual.length-1];  
+}
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -635,7 +646,7 @@ const ResumenAM = () => {
  */}
                                             <td  width={"300px"} className='azul'>{" $ "} {costoFianalProyecto}  </td> 
 
-                                                <td width={"300px"}   className='verde'>{" $ "}  {totalMensual[totalMensual.length-1]}   </td>   
+                                                <td width={"300px"}   className='verde'>{" $ "}  {mensu}   </td>   
                                                 <td width={"120px"}   className='azul'>{ margenReal } {" % "}   </td>   
                                                 <td width={"50px"}   className='verde'>{stringDolar}   </td> 
                                             </tr >

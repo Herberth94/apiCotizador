@@ -37,6 +37,10 @@ export var mesesMensual = "";
 export var totalMen = "";
 export var totalMenIva = "";
 
+
+export var totalsnIVA = "";
+
+
 export let equivale = [];
 
 let decimal = 3;
@@ -151,6 +155,8 @@ function limpiaDatos() {
    mesesMensual = "";
    totalMen = "";
   totalMenIva = "";
+
+  totalsnIVA = "";
 
 
   TOTALSTRING = [];
@@ -768,6 +774,7 @@ function calcularPrecioVenta() {
   precio2 = totalIndirecto[totalIndirecto.length - 1];
 
   costoFianalProyecto = parseFloat(precio3) + parseFloat(precio2);
+  costoFianalProyecto = costoFianalProyecto.toFixed(decimal);
 
   margenReal = (((1 - costoFianalProyecto / precioFinalVenta) * 100 ).toFixed(decimal));
 
@@ -854,6 +861,8 @@ function final() {
 
     let tm= parseFloat( tMensual )  +    parseFloat(tMensualIVA) ;
     tMensualSUMA =   tm.toFixed(decimal) ;
+    let ttt = parseFloat(totD) +   parseFloat(totDIVA) ;
+    totalsnIVA  = ttt.toFixed(decimal) ;
 
 
 
@@ -885,14 +894,27 @@ function final() {
     a = (co * im) / (1 - im2);
     //console.log("Cuota Cap + Int: " + a.toFixed(3));
 
-    financiamiento.push(a.toFixed(decimal));
+
+
+    if (comprobacionFinanciamieno == false){
+      financiamiento.push("No Aplica");
+    } else if (comprobacionFinanciamieno == true){
+      financiamiento.push(a.toFixed(decimal));
+    }
+   
   }
 
   /*============= Total Mensual===============================*/
 
   for (var i = 0; i < TOTAL.length; i++) {
     var j = TOTAL[i] / plazo_meses;
-    totalMensual.push(j.toFixed(decimal));
+
+    if (comprobacionFinanciamieno == false){
+      totalMensual.push("No Aplica");
+    }else{
+      totalMensual.push(j.toFixed(decimal));
+    }
+
   }
 
   categoriasUnicas.push(" Total ");

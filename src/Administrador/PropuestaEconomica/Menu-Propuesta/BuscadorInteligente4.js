@@ -6,7 +6,7 @@ import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../../Ventas/Operaciones/totalPartida';
 import AdministrarPropuesta from './AdministrarPropuesta';
-import Formulario from './Formulario';
+
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
