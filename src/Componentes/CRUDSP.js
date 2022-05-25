@@ -5,7 +5,7 @@ import Animaciones from './Animaciones';
 
 import { EditPrecio } from '../Routes/ModificarPrecio';
 import { CrudPrecios } from './CRUDPrecios';
-
+import { pEstatus } from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
 
 import {url, url2} from "./Ocultar"
 
@@ -306,6 +306,16 @@ export const CrudSp = (props) => {
                 alert('Eliminación del Servicio/producto invalido')
             }
         }
+
+        function deleteSP(id){
+            if(pEstatus === 'Aceptado'){
+                alert('El proyecto no puede ser editado porque ha sido Aceptado')
+            }else if(pEstatus === 'En revision'){
+                alert('El proyecto no puede ser editado porque se encuentra En revision')
+            }else{
+                SendDeleteSP(id);
+            }
+        }
         /*=================================================================================================================================*/
     /*========================================================================================================*/
 
@@ -507,7 +517,9 @@ export const CrudSp = (props) => {
                                 <td>
                                     <button 
                                     className="btn btn-primary eliminar"
-                                    onClick={()=>{SendDeleteSP(props.sp[key].sp_id_precio)}}
+                                    onClick={()=>{
+                                        deleteSP(props.sp[key].sp_id_precio)
+                                    }}
                                     >
 
 <i class="bi bi-trash-fill"></i>

@@ -147,13 +147,7 @@ export const InsertDatosCats = () => {
             proyecto_fecha_modificacion:hoy
         }
 
-        if(pEstatus1 === 'En revision'){
-            alert('El proyecto no puede ser finalizado nuevamente')
-        }else if(pEstatus1 === 'Aceptado'){
-            alert('El proyecto no puede ser finalizado nuevamente')
-        }else if(pEstatus1 === 'Rechazado'){
-            alert('El proyecto no puede ser finalizado nuevamente')
-        }else{
+        
             try {
                 // Obtención del id del último proyecto insertado
                 const resGetProyectos = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
@@ -162,62 +156,75 @@ export const InsertDatosCats = () => {
 
                 if(pId !== proyectoId.proyecto_id && pId !== ''){
                     await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
+                    await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${pId}`,dataEstatus);
+                    alert('Se finalizó el proyecto correctamente');
+                    alert('El proyecto entro al estatus: En revisón');
                 }else{
                     await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${proyectoId.proyecto_id}`, dataFM);
+                    await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
+                    alert('Se finalizó el proyecto correctamente');
+                    alert('El proyecto entro al estatus: En revisón');
                 }
 
-                if(pId !== proyectoId.proyecto_id && pId !== ''){
-                    //Inserción de estatus al proyecto
-                    await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${pId}`,dataEstatus);
-                    /*=============== Inserción de costos indirectos ===============*/
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/1/2/${pId}`);
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/2/1/${pId}`);
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/3/5/${pId}`);
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/4/1/${pId}`);
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/5/4/${pId}`);
-                    /*==============================================================*/
-
-                    /*=============== Inserción de datos AM de las categorías ===============*/
-                    await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/1`);
-                    await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/2`);
-                    await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/3`);
-                    await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/4`);
-                    /*=======================================================================*/
-
-                    /*=============== Inserción de datos de proporcionalidad ===============*/
-                    await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${pId}`);
-                    /*======================================================================*/
-                    alert('Se finalizó el proyecto correctamente');
-                    alert('El proyecto entro al estatus: En revisón');
+                if(pEstatus1 === 'En revision'){
+                    //alert('El proyecto no puede ser finalizado nuevamente')
+                }else if(pEstatus1 === 'Aceptado'){
+                    //alert('El proyecto no puede ser finalizado nuevamente')
+                }else if(pEstatus1 === 'Rechazado'){
+                    //alert('El proyecto no puede ser finalizado nuevamente')
                 }else{
-                    //Inserción de estatus al proyecto
-                    await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
-                    /*=============== Inserción de costos indirectos ===============*/
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/1/2/${proyectoId.proyecto_id}`);
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/2/1/${proyectoId.proyecto_id}`);
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/3/5/${proyectoId.proyecto_id}`);
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/4/1/${proyectoId.proyecto_id}`);
-                    await axios.post(url2 + `/api/cotizador/ci/agregar/5/4/${proyectoId.proyecto_id}`);
-                    /*==============================================================*/
+                    if(pId !== proyectoId.proyecto_id && pId !== ''){
+                        //Inserción de estatus al proyecto
+                        
+                        /*=============== Inserción de costos indirectos ===============*/
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/1/2/${pId}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/2/1/${pId}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/3/5/${pId}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/4/1/${pId}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/5/4/${pId}`);
+                        /*==============================================================*/
 
-                    /*=============== Inserción de datos AM de las categorías ===============*/
-                    await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/1`);
-                    await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/2`);
-                    await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/3`);
-                    await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/4`);
-                    /*=======================================================================*/
+                        /*=============== Inserción de datos AM de las categorías ===============*/
+                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/1`);
+                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/2`);
+                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/3`);
+                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/4`);
+                        /*=======================================================================*/
 
-                    /*=============== Inserción de datos de proporcionalidad ===============*/
-                    await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${proyectoId.proyecto_id}`);
-                    /*======================================================================*/
-                    alert('Se finalizó el proyecto correctamente');
-                    alert('El proyecto entro al estatus: En revisón');
+                        /*=============== Inserción de datos de proporcionalidad ===============*/
+                        await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${pId}`);
+                        /*======================================================================*/
+                        
+                    }else{
+                        //Inserción de estatus al proyecto
+                        
+                        /*=============== Inserción de costos indirectos ===============*/
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/1/2/${proyectoId.proyecto_id}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/2/1/${proyectoId.proyecto_id}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/3/5/${proyectoId.proyecto_id}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/4/1/${proyectoId.proyecto_id}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/5/4/${proyectoId.proyecto_id}`);
+                        /*==============================================================*/
+
+                        /*=============== Inserción de datos AM de las categorías ===============*/
+                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/1`);
+                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/2`);
+                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/3`);
+                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/4`);
+                        /*=======================================================================*/
+
+                        /*=============== Inserción de datos de proporcionalidad ===============*/
+                        await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${proyectoId.proyecto_id}`);
+                        /*======================================================================*/
+                        // alert('Se finalizó el proyecto correctamente');
+                        // alert('El proyecto entro al estatus: En revisón');
+                    }
                 }
             }catch (error) {
                 console.log(error);
                 alert('Finalización del proyecto inválido');
             }
-        }
+        
     }
 
     const enviarDatos = (event,datosPrecio) =>{

@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table'
 import { EditSP } from '../Preventa/PTN-BOM/Routes/ModificarSP';
 import Animaciones from './Animaciones';
 import { CrudSp } from './CRUDSP';
-
+import { pEstatus } from '../Preventa/PTN-BOM/Routes/CRUDProyectos';
 import {url, url2} from "./Ocultar";
 
 export const CrudPartidas = (props) => {
@@ -115,19 +115,21 @@ export const CrudPartidas = (props) => {
         /*==========================================================*/
 
         /*=================================== Eliminación de una partida y sus servicios/productos ===================================*/
+       
         async function SendDeletePartida(id){
             getDatosSP(id);
             //console.log(listaSP);
             const confirmacion = window.confirm("¿Seguro que quieres borrar esta Partida?" );
 
             if(confirmacion){
-                let cSP = Object.keys(listaSP);
-                for(let c = 0; c < cSP;c++){
-                    try {
-                        await axios.delete(url2  +`/api/cotizador/precio/delete/${listaSP[c].sp_id_precio}`);
-                        setShow(!show);
-                    } catch (error) {}
-                }
+                // let cSP = Object.keys(listaSP);
+                // for(let c = 0; c <cSP;c++){
+                  
+                //     await axios.delete(url2  +`/api/cotizador/precio/delete/${listaSP[c].sp_id_precio}`);
+                //     setShow(!show);
+                    
+                // }
+
                 try{
                     await axios.delete(url2 +`/api/cotizador/partida/delete/${id}`);
                     alert('Partida eliminada exitosamene');
@@ -140,6 +142,17 @@ export const CrudPartidas = (props) => {
             }
             
         }
+
+        function deletePar(id){
+            if(pEstatus === 'Aceptado'){
+                alert('El proyecto no puede ser editado porque ha sido Aceptado')
+            }else if(pEstatus === 'En revision'){
+                alert('El proyecto no puede ser editado porque se encuentra En revision')
+            }else{
+                SendDeletePartida(id);
+            }
+        }
+        
         /*============================================================================================================================*/
     /*==============================================================================================================*/
 
@@ -253,12 +266,14 @@ export const CrudPartidas = (props) => {
                                 <td width={"100px"}>
                                     <button 
                                     className="btn btn-primary eliminar"
-                                    onClick={()=>{SendDeletePartida(props.partidas[key].partida_id)}}
-                                    >
+                                    onClick={()=>{
+                                        deletePar(props.partidas[key].partida_id);
+                                    }
+                                    }>
 
-<i className="bi bi-trash-fill"></i>
-                                    
-                                    </button></td>
+                                        <i className="bi bi-trash-fill"></i>
+                                    </button>
+                                </td>
 
 
 
