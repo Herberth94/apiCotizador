@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import * as XLSX from 'xlsx'
+import Table from "react-bootstrap/Table";
 import "../css/excel.css"
 import PLN  from "./PLN";
 
@@ -58,7 +59,7 @@ function Excel() {
         }}
       />
 
-   <table className="table">
+<Table responsive  striped bordered hover size="sm">
         <thead>
           <tr>
             <th scope="col"> Partida</th>
@@ -79,6 +80,8 @@ function Excel() {
         </thead>
         <tbody>
           {items.map((d) => (
+
+              
             <tr key={d.Id}>
 
               <td> {d.Partida} </td>
@@ -95,13 +98,13 @@ function Excel() {
               <td>{d.Precio_Lista}</td>
               <td>{d.Descuento}</td>
               <td>{d.Comentarios}</td>
+
             </tr>
 
           ))}
         </tbody>
 
-     </table>
-
+        </Table>
 
 
 

@@ -1,17 +1,39 @@
 //Separar Datos por Partida
 
 import {dataPartidas} from "./excel";
+import React from 'react';
 
 
 
-import React from 'react'
+
+export let NombrePartida = [];
+
+
+
+function limpiarData(){
+  NombrePartida = [];
+}
+
+
+
 
 function PLN() {
 
-    console.log("Datos Cargados Exitosamente");
 
-    console.log(dataPartidas);
-    console.log("-------------------");
+
+  limpiarData();
+
+  if(dataPartidas.length >0){
+    for (let index = 0; index < dataPartidas.length; index++) {
+      NombrePartida.push(dataPartidas[index].Partida);
+    }
+  }
+  
+  
+    console.log("FUNCIONANDO");
+    console.log(NombrePartida);
+    console.log("--------");
+  
 
 
   return (

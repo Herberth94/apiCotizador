@@ -10,6 +10,11 @@ import pdf3 from "../../Componentes/Manuales/Manual_Ventas_V1.pdf";
 
 
 import Excel from  "../../Componentes/Herramientas/excel.js";
+import Nuevo from "../../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto";
+
+
+
+import CargaDatos from "./CargaDatos";
 
 
 let G;
@@ -34,6 +39,7 @@ function MenuHeramientas() {
             //Habilitar/Deshabilitar tabla del resumen AM
             const [show, setShow] = useState(true)
             const [show2, setShow2] = useState(true)
+            const [show3, setShow3] = useState(true)
   return (
  
  
@@ -96,11 +102,44 @@ function MenuHeramientas() {
             ) : (
               <div className="arregla divBuscadorInteligente">
                 {/*========================== Llamado al Componente ==========================*/}
+
+  
+              < Nuevo  />
+
               < Excel/>
               </div>
             )}
 
           </td>
+
+
+
+          
+          <td>
+
+          <button
+              className="btn btn-primary Mod"
+              type="button"
+              onClick={() => {
+                setShow3(!show3);
+              }}
+            >
+              {" "}
+              {show3 ? "Prueba Datos " : "Ocultar"}{" "}
+            </button>
+            {show3 ? (
+              <div></div>
+            ) : (
+              <div className="arregla divBuscadorInteligente">
+                {/*========================== Llamado al Componente ==========================*/}
+
+      <CargaDatos  />
+           
+              </div>
+            )}
+
+          </td>
+
 
 
           <td>
