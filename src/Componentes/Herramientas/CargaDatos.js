@@ -1,10 +1,67 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 
+const Array= [];
+
 function CargaDatos() {
+
+
+
+  const [title, setTitle] = useState('')
+
+
+
+console.log(title);
+
+
+
+const handleInputChange = (event) => {
+  setTitle({
+    ...title,[event.target.name]: event.target.value,
+  });
+};
+
+
+for (let index = 0; index < title; index++) {
+Array.push(index)
+  
+}
+
+
+
+
+
+
   return (
     <div className="contenido-usuarios">
+
+
+
+<Table responsive striped bordered hover size="sm">
+                <thead>
+                  <tr>
+                    <th scope="col"> Rows</th>
+                    <th scope="col"> Boton</th>
+                
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td  className="numericos"> 
+                    
+                    <input  className="formato-input"   onChange={handleInputChange}  />
+                    
+              
+                    </td>
+
+
+                    <td   className="numericos"><input  className="formato-input"     /> </td>
+                  
+                  </tr>
+                </tbody>
+              </Table>
+
+
       <Table responsive striped bordered hover size="sm">
         <thead>
           <tr>
@@ -27,13 +84,22 @@ function CargaDatos() {
                   </tr>
                 </thead>
                 <tbody>
+
+                {Array.map((key) => (
                   <tr>
+
+
                     <td className="datos"><input  className="formato-input"     /> </td>
                     <td className="datos" > <input  className="formato-input"     /></td>
                     <td className="datos"> <input  className="formato-input"     /></td>
                     <td className="datos"><input  className="formato-input"     /> </td>
                     <td  className="datos"> <input  className="formato-input"     /></td>
+               
+               
+               
                   </tr>
+                ))}
+
                 </tbody>
               </Table>
             </td>
