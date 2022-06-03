@@ -42,7 +42,7 @@ function PTN_BOM() {
     <div className="contenido-usuarios">
       {/*======================= Titulo Animación =======================*/}
 
-      <Animaciones mytext="BOM " />
+      <Animaciones mytext=" Cotizaciones " />
 
       {/*========================== Tabla  Categorias ==========================*/}
       <Table responsive id="nombreDiv">

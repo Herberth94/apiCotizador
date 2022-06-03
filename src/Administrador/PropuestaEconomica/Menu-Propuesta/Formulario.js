@@ -89,7 +89,7 @@ function Formulario() {
     <span className="nombre-empresa">Datos</span> Propuesta Económica</h1>
   <div className="wrapper animated bounceInLeft">
     <div className="info-empresa">
-      <h3><img className="logoPropuesta" src={logo}></img></h3>
+      <h3><img className="logoPropuesta" ></img></h3>
       <div className='divServicios'>
         <ul className="servicios serviciosPropuestaEc">
           <li><i className="bi bi-geo-alt-fill" />  </li>
@@ -97,9 +97,9 @@ function Formulario() {
           <li><i className="bi bi-envelope-fill" /> </li>
         </ul>
         <ul className="servicios serviciosPropuestaEc">
-          <li>Carretera México Toluca #5420 Piso 21, Col. El Yaqui, Del. Cuajimalpa, C.P. 05320, Ciudad de México. </li>
-          <li>6843-4433</li>
-          <li>contacto@palotinto.com</li>
+          <li>Dirección </li>
+          <li>5555</li>
+          <li>contacto@gmail.com</li>
         </ul>
       </div>
     </div>

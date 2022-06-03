@@ -18,7 +18,7 @@ function ProporcionalidadMenu() {
     <div className="contenido-usuarios">
       {/*======================= Titulo Animación =======================*/}
 
-      <Animaciones mytext=" Proporcionalidad " />
+      <Animaciones mytext="Financiamiento " />
 
       {/*========================== Tabla  Categorias ==========================*/}
       <Table responsive id="nombreDiv">

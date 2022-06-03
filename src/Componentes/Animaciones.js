@@ -15,7 +15,7 @@ function Animaciones(props) {
                  {/*========= Subtitulo Animación ========= */}
                         <div className="role">
                             <div className="block"></div>
-                            <p>Palo Tinto Networks.</p>
+                            <p>  Delfos369</p>
                         </div>
 
                     </div>
