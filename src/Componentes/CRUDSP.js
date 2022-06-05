@@ -15,7 +15,6 @@ export const CrudSp = (props) => {
     /*======================================== Habilitar/Deshabilitar ========================================*/
     const [enable, setenable] = useState([]);//Inputs
     /*==================================================================================================================*/
-
     /*========================== Mostrar/Ocultar ==========================*/
     const [show,setShow] = useState(true);// Tabla de precios
     const [activar, setActivar] = useState([]);

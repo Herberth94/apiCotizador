@@ -1,8 +1,13 @@
 import React, { useState,useEffect } from 'react';
-import {url, url2} from '../../../Componentes/Ocultar';
-import Table from "react-bootstrap/Table";
 import axios from 'axios';
+import {url2} from '../../../Componentes/Ocultar';
+
+
+import Table from "react-bootstrap/Table";
+
 import Cookies from 'universal-cookie';
+
+
 import ModalCat from "../Routes/ModalCat";
 
 //Componentes
@@ -11,8 +16,6 @@ import { InsertDatosCats } from '../Routes/GuardarDatosCategorias';
 import { precioUnitario, calcularDescuento, Total} from "../Operaciones/Operaciones";
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
-
-
 let validaOperacion = false;
 function Categorias(props) {
     /*=================================== Obtención de datos en la tabla precio ===================================*/
@@ -150,18 +153,24 @@ function Categorias(props) {
 
                 <tr className="titulo-tabla-usuarios">
                     <th></th>           
-                    <th className='titulo-tabla'>Categorias Adicionales</th>
-                
-                  
+                    <th className='titulo-tabla'>Categorias Adicionales</th>            
                     </tr>
                     <tr className="titulo-tabla-usuarios">
                     
-                    <th>No. De Parte</th>
-                    <th>Categoria</th>
-                    <th>Moneda</th>
-                    <th>Descripción</th>
-                    <th>Duración Meses </th>
-                    <th>Entrega Semanas</th>
+                    <th className= 'agregar'  width={"150px"}> No. De Parte</th>
+                    <th  className='agregar'>Categoria</th>
+                    <th className='agregar'>Moneda</th>
+                    <th className='agregar'>Descripción</th>
+                    <th className='agregar'>Duración Meses </th>
+                    <th className='agregar'>Entrega Semanas</th>
+                    <th className='agregar'>Calcular</th>  
+                    <th className='agregar'>Cantidad</th>
+                    <th className='agregar'>Precio Lista</th>
+                    <th className='agregar'>Precio Unitario</th>
+                    <th className='agregar'>Descuento (%)</th>
+                    <th className='agregar'>Total</th>
+                    <th className='agregar'>Comentarios</th>
+                    <th className='agregar'>-----</th>
                   
                     </tr>
                 </thead>
@@ -239,26 +248,13 @@ function Categorias(props) {
                         />
                     </td>
                     {/*======================== Moneda ==========================*/}
-                   
-                    </tr>
-                </tbody>
-                </Table>
-                {/*======================== Tabla Números ==========================*/}
-                <Table responsive id="nombreDiv">
-                <thead>
-                    <tr className="titulo-tabla-usuarios">
-                    <th>Calcular</th>  
-                    <th>Cantidad</th>
-                    <th>Precio Lista</th>
-                    <th>Precio Unitario</th>
-                    <th>Descuento (%)</th>
-                    <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className="">
-        {/*======================== Funcion Calcular==========================*/}
-                    <td>
+
+
+
+
+
+                        {/*======================== Funcion Calcular==========================*/}
+                        <td>
                 <label className="switch">
                 <input type="checkbox" id="checa"     onClick={checa}/>
                 <span className="slider"></span>
@@ -333,21 +329,10 @@ function Categorias(props) {
                         step="any"
                         />
                     </td>
-                    </tr>
-                </tbody>
-                </Table>
-                {/*========================== Datos PTN ==========================*/}
-                <Table responsive id="nombreDiv">
-                    <thead>
-                        <tr className="titulo-tabla-usuarios">
-                            <th>Comentarios</th>
-                            <th>-</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="">
-                            {/*======================== Comentarios ==========================*/}
-                            <td>
+
+
+
+                    <td>
                                 {" "}
                                 <input
                                 className="agregar"
@@ -361,9 +346,13 @@ function Categorias(props) {
                                 {/*=======================  Boton Agregar Categoria ======================= */}
                                 <button className="btn btn-primary" type="submit">Agregar</button>
                             </td>
-                        </tr>
-                    </tbody>
-                    </Table>
+                   
+                    </tr>
+                </tbody>
+                </Table>
+                {/*======================== Tabla Números ==========================*/}
+             
+            
             </form>
 
             <button className="btn btn-primary modificar" 

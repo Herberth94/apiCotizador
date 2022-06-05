@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
+import {url2} from '../../Componentes/Ocultar';
+import Cookies from 'universal-cookie';
+
+
+
+
 import CreateIcon from "@material-ui/icons/Create";
 import {
 	Box, Button, Snackbar, Table,
@@ -15,30 +22,174 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { InsertDatosCats } from '../../Preventa/PTN-BOM/Routes/GuardarDatosCategorias';
+/*============== Operacions PTN BOM ==============*/
+import { precioUnitario, calcularDescuento, Total}  from '../../Preventa/PTN-BOM/Operaciones/Operaciones';
+
+
+
+const cookies = new Cookies();
+let validatorid = cookies.get('id_usuario');
+let validaOperacion = false;
+
+
+
+
+
+
 
 // Creating styles
 const useStyles = makeStyles({
 	root: {
 		"& > *": {
 			borderBottom: "unset",
+		
 		},
 	},
 	table: {
-		minWidth: 650,
+		minWidth: 100,
 	},
 	snackbar: {
-		bottom: "104px",
+		bottom: "140px",
 	},
+
 });
 
-function CargaDatos() {
+
+
+
+
+
+function CargaDatos(props) {
+
+    function checa(){
+
+        validaOperacion = !validaOperacion;
+        setBdesc(!Bdesc);
+        setBdesc2(!Bdesc2);
+        setDatos({
+            precio_lista: '',
+            precio_unitario: '',
+            precio_descuento: '',
+            cd_cantidad: '',
+            precio_total: ''           
+        });
+        }
+		const [datos, setDatos] = useState({
+			precio_lista: '',
+			precio_unitario: '',
+			precio_descuento: '',
+			cd_cantidad: '',
+			precio_total: '',
+			precio_id_moneda:''
+		});
+
+		const handleInputChangePrecio = (event) => {
+			setDatos({
+			...datos,[event.target.name]: event.target.value,
+			});
+		};
+	
+	///CALCULAR DESCUENTO
+		  /*================================================================================*/
+		  useEffect(()=>{
+	
+			if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
+			  const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+			  const total = Total(datos.precio_unitario,datos.cd_cantidad)
+			  setDatos({ ...datos,  precio_total:   total, precio_descuento: desc });}
+		   
+			if(datos.precio_lista === '' || datos.precio_unitario === ''){
+			  setDatos({ ...datos,  precio_descuento:''});
+			}
+	
+			},[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario   ])
+	
+	
+	///CALCULAR PRECIO UNITARIO
+		  /*===================================================================================================================*/
+		  useEffect(()=>{
+			let precio_u='';
+			if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
+			  precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
+			  const total = Total(precio_u, datos.cd_cantidad);
+			  if( datos.precio_descuento < 0 || datos.precio_descuento > 100 ){
+			  // alert("Advertencia Porcentaje Invalido")
+			  }
+			  setDatos({ ...datos, precio_total:total,precio_unitario:precio_u});
+			}
+		  
+		  },[datos.precio_descuento,datos.precio_lista,datos.sp_cantidad])
+	
+		  //OBTENER TOTALES
+	
+	//checar
+			   /*===================================================================================================================*/
+			   useEffect(()=>{
+	
+				if(datos.precio_unitario === '' || datos.sp_cantidad === ''){
+				  setDatos({ ...datos,precio_total:''});
+				} 
+			  
+			  },[,datos.precio_unitario,datos.sp_cantidad])
+		/*===================================================================================================================*/
+		/*=============================================================================================================*/
+		const {enviarDatos,handleInputChange2,finalizarProy} = InsertDatosCats();
+		const [modalShow, setModalShow] = useState(false);
+		const [DatosCat, SetDatosCat] = useState([])
+		const[ Bdesc, setBdesc]= useState(true);
+		const[ Bdesc2, setBdesc2]= useState(false);
+		const lista = async (clave) =>{
+			try {
+				const respuesta = await axios.get(url2+`/api/cotizador/catd/view/modal/${clave}`);
+				SetDatosCat(respuesta.data.data)
+				
+			} catch (error) {
+				console.log(error);            
+			}
+			
+		}
+	   const send =(e,datos)=>{
+		enviarDatos(e, datos);
+		setDatos({
+			precio_lista: '',
+			precio_unitario: '',
+			precio_descuento: '',
+			cd_cantidad: '',
+			precio_total: '',
+			precio_id_moneda:''
+		});
+	
+	   }
+	
+	   function confirFinalizar(){
+		const confirmacion = window.confirm(
+			"¿Seguro que quieres Finalizar este Proyecto?"
+		  );
+		  if(confirmacion){
+			finalizarProy()
+		  }else{
+	
+		  }
+		
+	   }
+		
+		
+
+
+
 	// Creating style object
 	const classes = useStyles();
 
 	// Defining a state named rows
 	// which we can update by calling on setRows function
 	const [rows, setRows] = useState([
-		{ id: 1, firstname: "", lastname: "", city: "" },
+		{ id: 1, n_parte: "", descripcion: "", meses: "" , semanas: "" , 
+		cantidad:1, precio_lista: 0, precio_unitario: 0, descuento:0, total:0 ,
+        moneda:"", categoria:"", comentarios: "",
+	 
+	
+	},
 	]);
 
 	// Initial states
@@ -59,9 +210,11 @@ function CargaDatos() {
 	const handleAdd = () => {
 		setRows([
 			...rows,
-			{
-				id: rows.length + 1, firstname: "",
-				lastname: "", city: ""
+			{		
+		id: rows.length + 1   , n_parte: "", descripcion: "", meses: "" , semanas: "" , 
+		cantidad:1, precio_lista: 0, precio_unitario: 0, descuento:0, total:0 ,
+        moneda:"", categoria:"", comentarios: "",
+	 
 			},
 		]);
 		setEdit(true);
@@ -78,7 +231,7 @@ function CargaDatos() {
 	const handleSave = () => {
 		setEdit(!isEdit);
 		setRows(rows);
-		console.log("saved : ", rows);
+		console.log("Guardado: ", rows);
 		setDisable(true);
 		setOpen(true);
 	};
@@ -117,9 +270,6 @@ function CargaDatos() {
 return (
 
 
-  <div  className="contenido-usuarios">
-
-
  
 	<TableBody>
 	<Snackbar
@@ -129,43 +279,43 @@ return (
 		className={classes.snackbar}
 	>
 		<Alert onClose={handleClose} severity="success">
-		Record saved successfully!
+	Guardado
 		</Alert>
 	</Snackbar>
-	<Box margin={1}>
+	<Box margin={10} >
 		<div style={{ display: "flex", justifyContent: "space-between" }}>
 		<div>
 			{isEdit ? (
 			<div>
 				<Button onClick={handleAdd}>
 				<AddBoxIcon onClick={handleAdd} />
-				ADD
+		            	Agregar
 				</Button>
 				{rows.length !== 0 && (
-				<div>
+				<>
 					{disable ? (
 					<Button disabled align="right" onClick={handleSave}>
 						<DoneIcon />
-						SAVE
+						Guardar
 					</Button>
 					) : (
 					<Button align="right" onClick={handleSave}>
 						<DoneIcon />
-						SAVE
+				    	Guardar
 					</Button>
 					)}
-				</div>
+				</>
 				)}
 			</div>
 			) : (
 			<div>
 				<Button onClick={handleAdd}>
 				<AddBoxIcon onClick={handleAdd} />
-				ADD
+				Añadir
 				</Button>
 				<Button align="right" onClick={handleEdit}>
 				<CreateIcon />
-				EDIT
+		     	Editar
 				</Button>
 			</div>
 			)}
@@ -180,66 +330,349 @@ return (
 		>
 		<TableHead>
 			<TableRow>
-			<TableCell>First Name</TableCell>
-			<TableCell>Last Name</TableCell>
-			<TableCell align="center">City</TableCell>
-			<TableCell align="center"></TableCell>
+			<TableCell  align="center">N° Parte</TableCell>
+			<TableCell  align="center">Descripción</TableCell>
+			<TableCell  align="center">Meses</TableCell>
+			<TableCell  align="center">Semanas</TableCell>
+			<TableCell  align="center">Cantidad</TableCell>
+			<TableCell  align="center">Precio Lista Unitario</TableCell>
+			<TableCell  align="center">Precio Unitario</TableCell>
+			<TableCell  align="center">Descuento</TableCell>
+			<TableCell  align="center">Total</TableCell>
+			<TableCell  align="center">Moneda</TableCell>
+			<TableCell  align="center">Categoria</TableCell>
+			<TableCell  align="center">Comentarios</TableCell>
+			<TableCell  align="center">X</TableCell>
+
+
+
+		{/* 	id: rows.length + 1, n_parte: "", descripcion: "", meses: "" , semanas: "" , 
+		cantidad:0, precio_lista: 0, precio_unitario: 0, descuento:0, total:0 ,
+        moneda:"", proveedor:"", marca: "", comentarios: "",
+ */}
 			</TableRow>
 		</TableHead>
 		<TableBody>
 			{rows.map((row, i) => {
 			return (
-				<div>
+				<>
 				<TableRow>
 					{isEdit ? (
-					<div>
+					<>
 						<TableCell padding="none">
-						<input
-							value={row.firstname}
-							name="firstname"
+					{/* 	<input
+						    className="agregar"
+							value={row.n_parte}
+							name="n_parte"
 							onChange={(e) => handleInputChange(e, i)}
-						/>
+						/> */}
+
+                        <input
+                        className="agregar"
+                        type="text"
+                        name="n_parte"
+						onChange={(e) => handleInputChange(e, i)}
+                        placeholder="No. Parte"
+						value={row.n_parte}
+                        />
 						</TableCell>
 						<TableCell padding="none">
 						<input
-							value={row.lastname}
-							name="lastname"
+                        className="agregar"
+                        type="text"
+						name="descripcion"
+						onChange={(e) => handleInputChange(e, i)}
+                        placeholder="Descripción"
+						value={row.descripcion}
+                        />
+						{/* <input
+					        className="agregar"
+							value={row.descripcion}
+							name="descripcion"
 							onChange={(e) => handleInputChange(e, i)}
-						/>
+						/> */}
 						</TableCell>
+
+						<TableCell padding="none">
+
+						<input
+                        className="agregar"
+                        type="number"
+						name="meses"
+                        min="0"
+						onChange={(e) => handleInputChange(e, i)}
+                        placeholder="Meses"
+						value={row.meses}
+                        />
+					{/* 	<input
+						    className="agregar"
+							value={row.meses}
+							name="meses"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+						<TableCell padding="none">
+						<input
+                        className="agregar"
+                        type="number"
+                        name="semanas"
+                        min="0"
+						onChange={(e) => handleInputChange(e, i)}
+                        placeholder="Semanas"
+							value={row.semanas}
+                        />
+					{/* 	<input
+					        className="agregar"
+							value={row.semanas}
+							name="semanas"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+
+						<TableCell padding="none">
+						<input
+                        className="agregar"
+                        type="number"
+                        name="cantidad"
+                    	value={row.cantidad}
+						onChange={(e) => handleInputChange(e, i)}
+               
+                        placeholder="Cantidad "
+                        
+                        />
+					{/* 	<input
+						    className="agregar"
+							value={row.cantidad}
+							name="camtidad"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+						<TableCell padding="none">
+
+						<input
+                        className="agregar"
+                        type="number"
+                        name="precio_lista"
+                        value={row.precio_lista}
+						onChange={(e) => handleInputChange(e, i)}
+                    
+                        placeholder="Precio Lista"
+                        
+                        />
+					{/* 	<input
+					        className="agregar"
+							value={row.precio_lista}
+							name="precio_lista"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+
+						<TableCell padding="none">
+						<input
+                        className="agregar"
+                        type="number"
+                        value={row.precio_unitario}
+                        name="precio_unitario"
+						onChange={(e) => handleInputChange(e, i)}
+                        
+                        placeholder="Precio unitario"
+                        step="any"
+                        disabled={Bdesc2}
+                        />
+					{/* 	<input
+						    className="agregar"
+							value={row.precio_unitario}
+							name="precio_unitario"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+						<TableCell padding="none">
+
+						<input
+                        className="agregar"
+                        type="number"
+                        value={row.descuento}
+                        name="precio_descuento"
+						onChange={(e) => handleInputChange(e, i)}
+                        
+                        placeholder="Descuento"
+                        min="0"
+                        step="any"
+                        disabled ={Bdesc}
+                        />
+						{/* <input
+					        className="agregar"
+							value={row.descuento}
+							name="descuento"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+
+
+						<TableCell padding="none">
+
+						<input
+                        className="agregar"
+                        type="text"
+                        name="total"
+                        value={row.total}
+                        readOnly
+                        placeholder="Total"
+                        step="any"
+                        />
+						{/* <input
+						    className="agregar"
+							value={row.total}
+							name="total"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+						<TableCell padding="none">
+						<select id="moneda" 
+							value={row.moneda}
+							name="moneda"
+					   onChange={(e) => handleInputChange(e, i)}
+                        >
+                            <option value={0}></option>
+                            <option value={1}>MXN</option>
+                            <option value={2}>USD</option>
+                        </select>
+					{/* 	<input
+					        className="agregar"
+							value={row.moneda}
+							name="moneda"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+
 						<TableCell padding="none">
 						<select
+						 id="lista-opciones"
+						  name="categoria" 
+						  value={row.categoria}
+						  	onChange={(e) => handleInputChange(e, i)}>
+                            <option value={0}></option>
+                            <option value={1}>Capacitación</option>
+                            <option value={2}>Accesorios</option>
+                            <option value={3}>Servicios PTN</option>
+                            <option value={4}>Mesa de Ayuda</option>                       
+                        </select>
+					{/* 	<input
+						    className="agregar"
+							value={row.proveedor}
+							name="proveedor"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+					
+
+
+
+						<TableCell padding="none">
+
+					        	<input
+                                className="agregar"
+                                type="text"
+                                name="comentarios"
+                            	onChange={(e) => handleInputChange(e, i)}
+                                placeholder="Comentarios"
+								value={row.comentarios}
+                                />
+                            
+					{/* 	<input
+						    className="agregar"
+							value={row.comentarios}
+							name="comentarios"
+							onChange={(e) => handleInputChange(e, i)}
+						/> */}
+						</TableCell>
+						{/* <TableCell padding="none">
+						<input
+					        className="agregar"
+							value={row.descripcion}
+							name="descripcion"
+							onChange={(e) => handleInputChange(e, i)}
+						/>
+						</TableCell> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+					{/* 	<TableCell padding="none">
+						<select
 							style={{ width: "100px" }}
-							name="city"
+							name="meses"
 							value={row.city}
 							onChange={(e) => handleInputChange(e, i)}
 						>
 							<option value=""></option>
-							<option value="Karanja">Karanja</option>
+							<option value="Karanja">Delfos</option>
 							<option value="Hingoli">Hingoli</option>
 							<option value="Bhandara">Bhandara</option>
 							<option value="Amaravati">Amaravati</option>
-							<option value="Pulgaon">Pulgaon</option>
+							<option value="Pulgaon">Pulgaon</option> 
 						</select>
-						</TableCell>
-					</div>
+						</TableCell> */}
+
+
+
+					</>
 					) : (
-					<div>
-						<TableCell component="th" scope="row">
-						{row.firstname}
+					<>
+						<TableCell component="th" scope="row" align="center">
+						{row.n_parte}
 						</TableCell>
-						<TableCell component="th" scope="row">
-						{row.lastname}
+						<TableCell component="th" scope="row"  align="center">
+						{row.descripcion}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{row.city}
+						{row.meses}
 						</TableCell>
-						<TableCell
-						component="th"
-						scope="row"
-						align="center"
-						></TableCell>
-					</div>
+						<TableCell component="th" scope="row" align="center">
+						{row.semanas}
+						</TableCell>
+						<TableCell component="th" scope="row"  align="center">
+						{row.cantidad}
+						</TableCell>
+						<TableCell component="th" scope="row" align="center">
+						{row.precio_lista}
+						</TableCell>
+						<TableCell component="th" scope="row" align="center">
+						{row.precio_unitario}
+						</TableCell>
+						<TableCell component="th" scope="row"  align="center">
+						{row.descuento}
+						</TableCell>
+						<TableCell component="th" scope="row" align="center">
+						{row.total}
+						</TableCell>
+						<TableCell component="th" scope="row" align="center">
+						{row.moneda}
+						</TableCell>
+						<TableCell component="th" scope="row"  align="center">
+						{row.categoria}
+						</TableCell>
+						<TableCell component="th" scope="row" align="center">
+						{row.comentarios}
+						</TableCell>
+					</>
 					)}
 					{isEdit ? (
 					<Button className="mr10" onClick={handleConfirm}>
@@ -251,7 +684,7 @@ return (
 					</Button>
 					)}
 					{showConfirm && (
-					<div>
+					<>
 						<Dialog
 						open={showConfirm}
 						onClose={handleNo}
@@ -259,11 +692,11 @@ return (
 						aria-describedby="alert-dialog-description"
 						>
 						<DialogTitle id="alert-dialog-title">
-							{"Confirm Delete"}
+							{"Confirmar Eliminación"}
 						</DialogTitle>
 						<DialogContent>
 							<DialogContentText id="alert-dialog-description">
-							Are you sure to delete
+							Estas Seguro de Eliminar está Fila de Datos?
 							</DialogContentText>
 						</DialogContent>
 						<DialogActions>
@@ -272,7 +705,7 @@ return (
 							color="primary"
 							autoFocus
 							>
-							Yes
+							Si
 							</Button>
 							<Button
 							onClick={handleNo}
@@ -283,10 +716,10 @@ return (
 							</Button>
 						</DialogActions>
 						</Dialog>
-					</div>
+					</>
 					)}
 				</TableRow>
-				</div>
+				</>
 			);
 			})}
 		</TableBody>
@@ -296,7 +729,7 @@ return (
 
 
 
-  </div>
+  
 );
 
 
