@@ -2,42 +2,46 @@
 
 import {dataPartidas} from "./excel";
 import React from 'react';
+import { useState } from "react";
 
 
 
 
-export let NombrePartida = [];
+//export let NombrePartida = [];
 
 
 
-function limpiarData(){
-  NombrePartida = [];
-}
+// function limpiarData(){
+//   NombrePartida = [];
+// }
 
 
 
 
 function PLN() {
+  
 
-
-
-  limpiarData();
+  const [partida, setPartida] = useState([{}]);
+  const [sp, setSP] = useState([{}]);
+  
+  //limpiarData();
 
   if(dataPartidas.length >0){
     for (let index = 0; index < dataPartidas.length; index++) {
-      NombrePartida.push(dataPartidas[index].Partida);
+      //NombrePartida.push(dataPartidas[index].Partida);
+      
     }
   }
+  //cargarDatos(dataPartidas);
   
-  
-    console.log("FUNCIONANDO");
-    console.log(NombrePartida);
-    console.log("--------");
+  async function cargarDatos(){
+    //await axios.post(url2 + `/api/cotizador/sp/insert`, dataPartidas)
+  }
   
 
 
   return (
-    <div>Datos Cargados  Correctamente</div>
+      cargarDatos
   )
 }
 
