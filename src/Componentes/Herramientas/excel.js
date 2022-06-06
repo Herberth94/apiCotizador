@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import * as XLSX from 'xlsx'
 import Table from "react-bootstrap/Table";
 import "../css/excel.css"
-import PLN  from "./PLN";
+import {PLN}  from "./PLN";
+import axios from "axios";
+import {url2} from "../Ocultar";
 
 
 export let dataPartidas = [];
@@ -48,6 +50,12 @@ function Excel() {
 
   const [show2, setShow2] = useState(true)
 
+  async function cargarDatos(){
+    if(show2){
+      let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${113}`, dataPartidas);
+      alert(res.data.msg);
+    }
+  }
 
   return (
     <div  className='contenido-usuarios'>
@@ -58,6 +66,8 @@ function Excel() {
           readExcel(file);
         }}
       />
+
+     
 
 <Table responsive  striped bordered hover size="sm">
         <thead>
@@ -114,21 +124,13 @@ function Excel() {
               type="button"
               onClick={() => {
                 setShow2(!show2);
+                cargarDatos();
               }}
             >
               {" "}
               {show2 ? "Subir Datos" : "Ocultar"}{" "}
             </button>
-            {show2 ? (
-              <div></div>
-            ) : (
-              <div className="arregla divBuscadorInteligente">
-                {/*========================== Llamado al Componente ==========================*/}
-              < PLN/>
-              </div>
-            )}
-
-
+            
 {/* <button  className='btn btn-primary Mod'> Subir Datos</button>
  */}
 <br/>
