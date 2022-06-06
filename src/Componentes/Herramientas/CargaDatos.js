@@ -13,6 +13,11 @@ import {
 } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import FunctionsIcon from '@material-ui/icons/Functions';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+
+
+
 import DoneIcon from "@material-ui/icons/Done";
 import ClearIcon from "@material-ui/icons/Clear";
 import { makeStyles } from "@material-ui/core/styles";
@@ -33,7 +38,7 @@ let validatorid = cookies.get('id_usuario');
 let validaOperacion = false;
 
 
-
+var define = "";
 
 
 
@@ -72,9 +77,19 @@ function CargaDatos(props) {
             precio_unitario: '',
             precio_descuento: '',
             cd_cantidad: '',
-            precio_total: ''           
+            precio_total: '' 
+			
+			
+
         });
         }
+
+		
+		if( validaOperacion === false){
+          define = "Descuento";
+		}else{
+			define = "Precio Unitario	";
+		}
 		const [datos, setDatos] = useState({
 			precio_lista: '',
 			precio_unitario: '',
@@ -304,7 +319,16 @@ return (
 				    	Guardar
 					</Button>
 					)}
+
+
+					
+               <Button align="right"   onClick={checa}>
+				<AutorenewIcon />
+		     	<span> = Calcular  {define}    </span>
+				 </Button>
 				</>
+
+
 				)}
 			</div>
 			) : (
@@ -313,15 +337,28 @@ return (
 				<AddBoxIcon onClick={handleAdd} />
 				Añadir
 				</Button>
+
 				<Button align="right" onClick={handleEdit}>
 				<CreateIcon />
 		     	Editar
 				</Button>
+
+
+				<Button align="right"   onClick={checa}>
+				<AutorenewIcon />
+		     	<span> Calcular  {define}    </span>
+			
+				</Button>
+
+
+
 			</div>
 			)}
 		</div>
 		</div>
-		<TableRow align="center"></TableRow>
+	
+
+		
 
 		<Table
 		className={classes.table}
@@ -356,7 +393,7 @@ return (
 			{rows.map((row, i) => {
 			return (
 				<>
-				<TableRow>
+				<TableRow  >
 					{isEdit ? (
 					<>
 						<TableCell padding="none">
@@ -528,10 +565,10 @@ return (
 						/> */}
 						</TableCell>
 						<TableCell padding="none">
-						<select id="moneda" 
+						<select id="combo-box" 
 							value={row.moneda}
 							name="moneda"
-					   onChange={(e) => handleInputChange(e, i)}
+					        onChange={(e) => handleInputChange(e, i)}
                         >
                             <option value={0}></option>
                             <option value={1}>MXN</option>
@@ -547,7 +584,8 @@ return (
 
 						<TableCell padding="none">
 						<select
-						 id="lista-opciones"
+					    style={{ width: "170px" }}
+						 id="combo-box"
 						  name="categoria" 
 						  value={row.categoria}
 						  	onChange={(e) => handleInputChange(e, i)}>
@@ -678,11 +716,19 @@ return (
 					<Button className="mr10" onClick={handleConfirm}>
 						<ClearIcon />
 					</Button>
+
+					
+
+
 					) : (
 					<Button className="mr10" onClick={handleConfirm}>
 						<DeleteOutlineIcon />
 					</Button>
+
+
 					)}
+
+
 					{showConfirm && (
 					<>
 						<Dialog

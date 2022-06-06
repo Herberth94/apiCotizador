@@ -4,6 +4,18 @@ td{
 }
 
 
+#combo-box{
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  height: 100%;
+  padding: 0px   2px  2px;
+  margin: 5px;
+}
+
+
 input.agregar{
   border-radius: 0px;
   -webkit-border-radius: 0px;
