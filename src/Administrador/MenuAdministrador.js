@@ -91,7 +91,7 @@ function archivo() {
           <li className="has-subnav">
             <a href="/ptn">
               <i className="bi bi-file-earmark-spreadsheet fa-2x"></i>
-              <span className="nav-text">BOM</span>
+              <span className="nav-text">Cotizaciones</span>
             </a>
           </li>
 
@@ -109,7 +109,7 @@ function archivo() {
             <a href="/proporcionalidad">
               <i className="bi fa-solid fa-chart-line"></i>
 
-              <span className="nav-text">Proporcionalidad</span>
+              <span className="nav-text">Financiamiento</span>
             </a>
           </li>
 

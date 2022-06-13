@@ -23,3 +23,12 @@ td.numericos{
 td.adicionales{
     background-color: brown;
 }
+
+
+input.fase2{
+
+    border-radius: 0px;
+
+
+    padding: 2px;
+}

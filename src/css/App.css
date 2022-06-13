@@ -66,7 +66,9 @@ input {
 }
 
 body {
-  background: url("../images/Cotizador2.png") no-repeat center center fixed;
+
+  
+   background: url("../images/Cotizador.png") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -269,7 +271,7 @@ input {
   }
 
   body {
-    background: url("../images/movil.png") no-repeat center center fixed;
+     background: url("../images/movil.png") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

@@ -184,11 +184,11 @@ class ExportarPDF extends React.Component {
 
 
       // logo la imagen debe de estar en base64 si no no la lee
-      let image = new Image();
+      
+   /*    let image = new Image();
       image.src = imagen;
-
       doc.addImage(image, 'PNG', 0, 0, 600, 800);
-
+ */
 
       /*  doc.text(title, 230, 120 ); */
 

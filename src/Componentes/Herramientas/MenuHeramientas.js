@@ -84,61 +84,66 @@ function MenuHeramientas() {
 
 
 
-
-          <td>
-
-          <button
-              className="btn btn-primary Mod"
-              type="button"
-              onClick={() => {
-                setShow2(!show2);
-              }}
-            >
-              {" "}
-              {show2 ? "Importa Excel " : "Ocultar"}{" "}
-            </button>
-            {show2 ? (
-              <div></div>
-            ) : (
-              <div className="arregla divBuscadorInteligente">
-                {/*========================== Llamado al Componente ==========================*/}
-
-  
-              < Nuevo  />
-
-              < Excel/>
-              </div>
-            )}
-
-          </td>
+{/*  */}
 
 
 
-          
-          <td>
+<td>
 
-          <button
-              className="btn btn-primary Mod"
-              type="button"
-              onClick={() => {
-                setShow3(!show3);
-              }}
-            >
-              {" "}
-              {show3 ? "Prueba Datos " : "Ocultar"}{" "}
-            </button>
-            {show3 ? (
-              <div></div>
-            ) : (
-              <div className="arregla divBuscadorInteligente">
-                {/*========================== Llamado al Componente ==========================*/}
+<button
+    className="btn btn-primary Mod"
+    type="button"
+    onClick={() => {
+      setShow2(!show2);
+    }}
+  >
+    {" "}
+    {show2 ? "Importa Excel " : "Ocultar"}{" "}
+  </button>
+  {show2 ? (
+    <div></div>
+  ) : (
+    <div className="arregla divBuscadorInteligente">
+      {/*========================== Llamado al Componente ==========================*/}
 
-      <CargaDatos  />
-           
-              </div>
-            )}
 
-          </td>
+    < Nuevo  />
+
+    < Excel/>
+    </div>
+  )}
+
+</td>
+
+
+
+
+<td>
+
+<button
+    className="btn btn-primary Mod"
+    type="button"
+    onClick={() => {
+      setShow3(!show3);
+    }}
+  >
+    {" "}
+    {show3 ? "Prueba Datos " : "Ocultar"}{" "}
+  </button>
+  {show3 ? (
+    <div></div>
+  ) : (
+    <div className="arregla divBuscadorInteligente">
+      {/*========================== Llamado al Componente ==========================*/}
+
+<CargaDatos  />
+ 
+    </div>
+  )}
+
+</td>
+
+
 
 
 
