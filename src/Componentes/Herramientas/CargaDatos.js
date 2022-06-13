@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
+import {url2} from '../../Componentes/Ocultar';
+import Cookies from 'universal-cookie';
+
+
+
+
 import CreateIcon from "@material-ui/icons/Create";
 import {
   Box, Button, Snackbar, Table,
@@ -6,6 +13,11 @@ import {
 } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddBoxIcon from "@material-ui/icons/AddBox";
+import FunctionsIcon from '@material-ui/icons/Functions';
+import AutorenewIcon from '@material-ui/icons/Autorenew';
+
+
+
 import DoneIcon from "@material-ui/icons/Done";
 import ClearIcon from "@material-ui/icons/Clear";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +27,21 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { InsertDatosCats } from '../../Preventa/PTN-BOM/Routes/GuardarDatosCategorias';
+/*============== Operacions PTN BOM ==============*/
+import { precioUnitario, calcularDescuento, Total}  from '../../Preventa/PTN-BOM/Operaciones/Operaciones';
+
+
+
+const cookies = new Cookies();
+let validatorid = cookies.get('id_usuario');
+let validaOperacion = false;
+
+
+var define = "";
+
+
+
 
 // Creating styles
 const useStyles = makeStyles({

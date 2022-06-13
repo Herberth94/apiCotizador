@@ -3,6 +3,50 @@ td{
   letter-spacing: 2px;
 }
 
+
+#combo-box{
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  height: 100%;
+  padding: 0px   2px  2px;
+  margin: 5px;
+}
+
+
+input.agregar{
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  padding:0px;
+  border: 1px solid rgba(0, 0, 0, 0.397);
+
+  color: rgb(0, 0, 0);
+
+
+}
+
+th.agregar{
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 10px;
+
+  
+}
+
+
+.MuiBox-root{
+  background-color: #ffffff;
+
+
+}
+
+
+
 :root {
   /* Body Color
  */
