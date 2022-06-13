@@ -1,784 +1,176 @@
-import React, { useState,useEffect } from 'react';
-import axios from 'axios';
-import {url2} from '../../Componentes/Ocultar';
-import Cookies from 'universal-cookie';
+import React, { Component } from "react";
+import BootstrapTable from "react-bootstrap-table-next";
+import cellEditFactory from "react-bootstrap-table2-editor";
+import ToolkitProvider, { CSVExport } from "react-bootstrap-table2-toolkit";
+import "./App.css";
 
+const { ExportCSVButton } = CSVExport;
+const pricesData = [
+  { id: "1", fruit: "banana", price: "10" },
+  { id: "2", fruit: "apple", price: "20" },
+  { id: "3", fruit: "orange", price: "15" }
+];
 
+class CargaDatos extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [...pricesData]
+    };
+    this.prices = this.prices.bind(this);
+  }
 
+  prices = action => {
+    if (!action) {
+      return this.state.data;
+    } else {
+      switch (action.actionType) {
+        case "addRow":
+          let newRow = {};
+          newRow.id = this.state.data.length + 1;
+          newRow.fruit = " ";
+          newRow.price = " ";
+          this.setState({ data: [...this.state.data, newRow] });
 
-import CreateIcon from "@material-ui/icons/Create";
-import {
-	Box, Button, Snackbar, Table,
-	TableBody, TableCell, TableHead, TableRow
-} from "@material-ui/core";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import FunctionsIcon from '@material-ui/icons/Functions';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
+          return this.state.data;
+        case "deleteRow":
+          //this delets different rows only
+          let new_state = this.state.data.filter(
+            row => row.id !== action.row || row.fruit !== action.fruit
+          );
 
+          this.setState({ data: [...new_state] });
+          return this.state.data;
+        default:
+          return this.state.data;
+      }
+    }
+  };
+  render() {
+    return (
+      <div className="App">
+        <RenderExpenseTable data={this.state.data} prices={this.prices} />
+      </div>
+    );
+  }
+}
 
+class RenderExpenseTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: [...this.props.data] };
+  }
+  componentWillMount() {
+    if (!this.state.data.length) {
+      this.setState({ data: [...this.props.prices({ action: "data" })] });
+    }
+  }
 
-import DoneIcon from "@material-ui/icons/Done";
-import ClearIcon from "@material-ui/icons/Clear";
-import { makeStyles } from "@material-ui/core/styles";
-import Alert from "@material-ui/lab/Alert";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { InsertDatosCats } from '../../Preventa/PTN-BOM/Routes/GuardarDatosCategorias';
-/*============== Operacions PTN BOM ==============*/
-import { precioUnitario, calcularDescuento, Total}  from '../../Preventa/PTN-BOM/Operaciones/Operaciones';
-
-
-
-const cookies = new Cookies();
-let validatorid = cookies.get('id_usuario');
-let validaOperacion = false;
-
-
-var define = "";
-
-
-
-
-// Creating styles
-const useStyles = makeStyles({
-	root: {
-		"& > *": {
-			borderBottom: "unset",
-		
-		},
-	},
-	table: {
-		minWidth: 100,
-	},
-	snackbar: {
-		bottom: "140px",
-	},
-
-});
-
-
-
-
-
-
-function CargaDatos(props) {
-
-    function checa(){
-
-        validaOperacion = !validaOperacion;
-        setBdesc(!Bdesc);
-        setBdesc2(!Bdesc2);
-        setDatos({
-            precio_lista: '',
-            precio_unitario: '',
-            precio_descuento: '',
-            cd_cantidad: '',
-            precio_total: '' 
-			
-			
-
-        });
+  render() {
+    let tableData = this.state.data;
+    if (JSON.stringify(this.props.data) === JSON.stringify(tableData)) {
+      console.log("in rendered table components the new data is: updated ");
+    } else {
+      console.log("in rendered table components the new data is: not updated ");
+      tableData = this.props.data;
+    }
+    const columns = [
+      {
+        dataField: "id",
+        text: "Id"
+      },
+      {
+        dataField: "fruit",
+        text: "Fruit Name"
+      },
+      {
+        dataField: "price",
+        text: "Fruit Price"
+      },
+      {
+        dataField: "databasePkey",
+        text: "",
+        editable: false,
+        formatter: (cell, row) => {
+          if (row)
+            return (
+              <button
+                className="btn btn-danger btn-xs border-secondary rounded"
+                onClick={() => {
+                  this.setState(this.state.data, () => {
+                    this.props.prices({
+                      actionType: "deleteRow",
+                      row: row.id,
+                      fruit: row.fruit
+                    });
+                  });
+                }}
+              >
+                Delete Row
+              </button>
+            );
+          return null;
         }
-
-		
-		if( validaOperacion === false){
-          define = "Descuento";
-		}else{
-			define = "Precio Unitario	";
-		}
-		const [datos, setDatos] = useState({
-			precio_lista: '',
-			precio_unitario: '',
-			precio_descuento: '',
-			cd_cantidad: '',
-			precio_total: '',
-			precio_id_moneda:''
-		});
-
-		const handleInputChangePrecio = (event) => {
-			setDatos({
-			...datos,[event.target.name]: event.target.value,
-			});
-		};
-	
-	///CALCULAR DESCUENTO
-		  /*================================================================================*/
-		  useEffect(()=>{
-	
-			if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
-			  const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-			  const total = Total(datos.precio_unitario,datos.cd_cantidad)
-			  setDatos({ ...datos,  precio_total:   total, precio_descuento: desc });}
-		   
-			if(datos.precio_lista === '' || datos.precio_unitario === ''){
-			  setDatos({ ...datos,  precio_descuento:''});
-			}
-	
-			},[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario   ])
-	
-	
-	///CALCULAR PRECIO UNITARIO
-		  /*===================================================================================================================*/
-		  useEffect(()=>{
-			let precio_u='';
-			if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
-			  precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
-			  const total = Total(precio_u, datos.cd_cantidad);
-			  if( datos.precio_descuento < 0 || datos.precio_descuento > 100 ){
-			  // alert("Advertencia Porcentaje Invalido")
-			  }
-			  setDatos({ ...datos, precio_total:total,precio_unitario:precio_u});
-			}
-		  
-		  },[datos.precio_descuento,datos.precio_lista,datos.sp_cantidad])
-	
-		  //OBTENER TOTALES
-	
-	//checar
-			   /*===================================================================================================================*/
-			   useEffect(()=>{
-	
-				if(datos.precio_unitario === '' || datos.sp_cantidad === ''){
-				  setDatos({ ...datos,precio_total:''});
-				} 
-			  
-			  },[,datos.precio_unitario,datos.sp_cantidad])
-		/*===================================================================================================================*/
-		/*=============================================================================================================*/
-		const {enviarDatos,handleInputChange2,finalizarProy} = InsertDatosCats();
-		const [modalShow, setModalShow] = useState(false);
-		const [DatosCat, SetDatosCat] = useState([])
-		const[ Bdesc, setBdesc]= useState(true);
-		const[ Bdesc2, setBdesc2]= useState(false);
-		const lista = async (clave) =>{
-			try {
-				const respuesta = await axios.get(url2+`/api/cotizador/catd/view/modal/${clave}`);
-				SetDatosCat(respuesta.data.data)
-				
-			} catch (error) {
-				console.log(error);            
-			}
-			
-		}
-	   const send =(e,datos)=>{
-		enviarDatos(e, datos);
-		setDatos({
-			precio_lista: '',
-			precio_unitario: '',
-			precio_descuento: '',
-			cd_cantidad: '',
-			precio_total: '',
-			precio_id_moneda:''
-		});
-	
-	   }
-	
-	   function confirFinalizar(){
-		const confirmacion = window.confirm(
-			"¿Seguro que quieres Finalizar este Proyecto?"
-		  );
-		  if(confirmacion){
-			finalizarProy()
-		  }else{
-	
-		  }
-		
-	   }
-		
-		
-
-
-
-	// Creating style object
-	const classes = useStyles();
-
-	// Defining a state named rows
-	// which we can update by calling on setRows function
-	const [rows, setRows] = useState([
-		{ id: 1, n_parte: "", descripcion: "", meses: "" , semanas: "" , 
-		cantidad:1, precio_lista: 0, precio_unitario: 0, descuento:0, total:0 ,
-        moneda:"", categoria:"", comentarios: "",
-	 
-	
-	},
-	]);
-
-	// Initial states
-	const [open, setOpen] = React.useState(false);
-	const [isEdit, setEdit] = React.useState(false);
-	const [disable, setDisable] = React.useState(true);
-	const [showConfirm, setShowConfirm] = React.useState(false);
-
-	// Function For closing the alert snackbar
-	const handleClose = (event, reason) => {
-		if (reason === "clickaway") {
-			return;
-		}
-		setOpen(false);
-	};
-
-	// Function For adding new row object
-	const handleAdd = () => {
-		setRows([
-			...rows,
-			{		
-		id: rows.length + 1   , n_parte: "", descripcion: "", meses: "" , semanas: "" , 
-		cantidad:1, precio_lista: 0, precio_unitario: 0, descuento:0, total:0 ,
-        moneda:"", categoria:"", comentarios: "",
-	 
-			},
-		]);
-		setEdit(true);
-	};
-
-	// Function to handle edit
-	const handleEdit = (i) => {
-		// If edit mode is true setEdit will
-		// set it to false and vice versa
-		setEdit(!isEdit);
-	};
-
-	// Function to handle save
-	const handleSave = () => {
-		setEdit(!isEdit);
-		setRows(rows);
-		console.log("Guardado: ", rows);
-		setDisable(true);
-		setOpen(true);
-	};
-
-	// The handleInputChange handler can be set up to handle
-	// many different inputs in the form, listen for changes
-	// to input elements and record their values in state
-	const handleInputChange = (e, index) => {
-		setDisable(false);
-		const { name, value } = e.target;
-		const list = [...rows];
-		list[index][name] = value;
-		setRows(list);
-	};
-
-	// Showing delete confirmation to users
-	const handleConfirm = () => {
-		setShowConfirm(true);
-	};
-
-	// Handle the case of delete confirmation where
-	// user click yes delete a specific row of id:i
-	const handleRemoveClick = (i) => {
-		const list = [...rows];
-		list.splice(i, 1);
-		setRows(list);
-		setShowConfirm(false);
-	};
-
-	// Handle the case of delete confirmation
-	// where user click no
-	const handleNo = () => {
-		setShowConfirm(false);
-	};
-
-return (
-
-
- 
-	<TableBody>
-	<Snackbar
-		open={open}
-		autoHideDuration={2000}
-		onClose={handleClose}
-		className={classes.snackbar}
-	>
-		<Alert onClose={handleClose} severity="success">
-	Guardado
-		</Alert>
-	</Snackbar>
-	<Box margin={10} >
-		<div style={{ display: "flex", justifyContent: "space-between" }}>
-		<div>
-			{isEdit ? (
-			<div>
-				<Button onClick={handleAdd}>
-				<AddBoxIcon onClick={handleAdd} />
-		            	Agregar
-				</Button>
-				{rows.length !== 0 && (
-				<>
-					{disable ? (
-					<Button disabled align="right" onClick={handleSave}>
-						<DoneIcon />
-						Guardar
-					</Button>
-					) : (
-					<Button align="right" onClick={handleSave}>
-						<DoneIcon />
-				    	Guardar
-					</Button>
-					)}
-
-
-					
-               <Button align="right"   onClick={checa}>
-				<AutorenewIcon />
-		     	<span> = Calcular  {define}    </span>
-				 </Button>
-				</>
-
-
-				)}
-			</div>
-			) : (
-			<div>
-				<Button onClick={handleAdd}>
-				<AddBoxIcon onClick={handleAdd} />
-				Añadir
-				</Button>
-
-				<Button align="right" onClick={handleEdit}>
-				<CreateIcon />
-		     	Editar
-				</Button>
-
-
-				<Button align="right"   onClick={checa}>
-				<AutorenewIcon />
-		     	<span> Calcular  {define}    </span>
-			
-				</Button>
-
-
-
-			</div>
-			)}
-		</div>
-		</div>
-	
-
-		
-
-		<Table
-		className={classes.table}
-		size="small"
-		aria-label="a dense table"
-		>
-		<TableHead>
-			<TableRow>
-			<TableCell  align="center">N° Parte</TableCell>
-			<TableCell  align="center">Descripción</TableCell>
-			<TableCell  align="center">Meses</TableCell>
-			<TableCell  align="center">Semanas</TableCell>
-			<TableCell  align="center">Cantidad</TableCell>
-			<TableCell  align="center">Precio Lista Unitario</TableCell>
-			<TableCell  align="center">Precio Unitario</TableCell>
-			<TableCell  align="center">Descuento</TableCell>
-			<TableCell  align="center">Total</TableCell>
-			<TableCell  align="center">Moneda</TableCell>
-			<TableCell  align="center">Categoria</TableCell>
-			<TableCell  align="center">Comentarios</TableCell>
-			<TableCell  align="center">X</TableCell>
-
-
-
-		{/* 	id: rows.length + 1, n_parte: "", descripcion: "", meses: "" , semanas: "" , 
-		cantidad:0, precio_lista: 0, precio_unitario: 0, descuento:0, total:0 ,
-        moneda:"", proveedor:"", marca: "", comentarios: "",
- */}
-			</TableRow>
-		</TableHead>
-		<TableBody>
-			{rows.map((row, i) => {
-			return (
-				<>
-				<TableRow  >
-					{isEdit ? (
-					<>
-						<TableCell padding="none">
-					{/* 	<input
-						    className="agregar"
-							value={row.n_parte}
-							name="n_parte"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-
-                        <input
-                        className="agregar"
-                        type="text"
-                        name="n_parte"
-						onChange={(e) => handleInputChange(e, i)}
-                        placeholder="No. Parte"
-						value={row.n_parte}
-                        />
-						</TableCell>
-						<TableCell padding="none">
-						<input
-                        className="agregar"
-                        type="text"
-						name="descripcion"
-						onChange={(e) => handleInputChange(e, i)}
-                        placeholder="Descripción"
-						value={row.descripcion}
-                        />
-						{/* <input
-					        className="agregar"
-							value={row.descripcion}
-							name="descripcion"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-
-						<TableCell padding="none">
-
-						<input
-                        className="agregar"
-                        type="number"
-						name="meses"
-                        min="0"
-						onChange={(e) => handleInputChange(e, i)}
-                        placeholder="Meses"
-						value={row.meses}
-                        />
-					{/* 	<input
-						    className="agregar"
-							value={row.meses}
-							name="meses"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-						<TableCell padding="none">
-						<input
-                        className="agregar"
-                        type="number"
-                        name="semanas"
-                        min="0"
-						onChange={(e) => handleInputChange(e, i)}
-                        placeholder="Semanas"
-							value={row.semanas}
-                        />
-					{/* 	<input
-					        className="agregar"
-							value={row.semanas}
-							name="semanas"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-
-						<TableCell padding="none">
-						<input
-                        className="agregar"
-                        type="number"
-                        name="cantidad"
-                    	value={row.cantidad}
-						onChange={(e) => handleInputChange(e, i)}
-               
-                        placeholder="Cantidad "
-                        
-                        />
-					{/* 	<input
-						    className="agregar"
-							value={row.cantidad}
-							name="camtidad"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-						<TableCell padding="none">
-
-						<input
-                        className="agregar"
-                        type="number"
-                        name="precio_lista"
-                        value={row.precio_lista}
-						onChange={(e) => handleInputChange(e, i)}
-                    
-                        placeholder="Precio Lista"
-                        
-                        />
-					{/* 	<input
-					        className="agregar"
-							value={row.precio_lista}
-							name="precio_lista"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-
-						<TableCell padding="none">
-						<input
-                        className="agregar"
-                        type="number"
-                        value={row.precio_unitario}
-                        name="precio_unitario"
-						onChange={(e) => handleInputChange(e, i)}
-                        
-                        placeholder="Precio unitario"
-                        step="any"
-                        disabled={Bdesc2}
-                        />
-					{/* 	<input
-						    className="agregar"
-							value={row.precio_unitario}
-							name="precio_unitario"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-						<TableCell padding="none">
-
-						<input
-                        className="agregar"
-                        type="number"
-                        value={row.descuento}
-                        name="precio_descuento"
-						onChange={(e) => handleInputChange(e, i)}
-                        
-                        placeholder="Descuento"
-                        min="0"
-                        step="any"
-                        disabled ={Bdesc}
-                        />
-						{/* <input
-					        className="agregar"
-							value={row.descuento}
-							name="descuento"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-
-
-						<TableCell padding="none">
-
-						<input
-                        className="agregar"
-                        type="text"
-                        name="total"
-                        value={row.total}
-                        readOnly
-                        placeholder="Total"
-                        step="any"
-                        />
-						{/* <input
-						    className="agregar"
-							value={row.total}
-							name="total"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-						<TableCell padding="none">
-						<select id="combo-box" 
-							value={row.moneda}
-							name="moneda"
-					        onChange={(e) => handleInputChange(e, i)}
-                        >
-                            <option value={0}></option>
-                            <option value={1}>MXN</option>
-                            <option value={2}>USD</option>
-                        </select>
-					{/* 	<input
-					        className="agregar"
-							value={row.moneda}
-							name="moneda"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-
-						<TableCell padding="none">
-						<select
-					    style={{ width: "170px" }}
-						 id="combo-box"
-						  name="categoria" 
-						  value={row.categoria}
-						  	onChange={(e) => handleInputChange(e, i)}>
-                            <option value={0}></option>
-                            <option value={1}>Capacitación</option>
-                            <option value={2}>Accesorios</option>
-                            <option value={3}>Servicios PTN</option>
-                            <option value={4}>Mesa de Ayuda</option>                       
-                        </select>
-					{/* 	<input
-						    className="agregar"
-							value={row.proveedor}
-							name="proveedor"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-					
-
-
-
-						<TableCell padding="none">
-
-					        	<input
-                                className="agregar"
-                                type="text"
-                                name="comentarios"
-                            	onChange={(e) => handleInputChange(e, i)}
-                                placeholder="Comentarios"
-								value={row.comentarios}
-                                />
-                            
-					{/* 	<input
-						    className="agregar"
-							value={row.comentarios}
-							name="comentarios"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
-						</TableCell>
-						{/* <TableCell padding="none">
-						<input
-					        className="agregar"
-							value={row.descripcion}
-							name="descripcion"
-							onChange={(e) => handleInputChange(e, i)}
-						/>
-						</TableCell> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-						
-					{/* 	<TableCell padding="none">
-						<select
-							style={{ width: "100px" }}
-							name="meses"
-							value={row.city}
-							onChange={(e) => handleInputChange(e, i)}
-						>
-							<option value=""></option>
-							<option value="Karanja">Delfos</option>
-							<option value="Hingoli">Hingoli</option>
-							<option value="Bhandara">Bhandara</option>
-							<option value="Amaravati">Amaravati</option>
-							<option value="Pulgaon">Pulgaon</option> 
-						</select>
-						</TableCell> */}
-
-
-
-					</>
-					) : (
-					<>
-						<TableCell component="th" scope="row" align="center">
-						{row.n_parte}
-						</TableCell>
-						<TableCell component="th" scope="row"  align="center">
-						{row.descripcion}
-						</TableCell>
-						<TableCell component="th" scope="row" align="center">
-						{row.meses}
-						</TableCell>
-						<TableCell component="th" scope="row" align="center">
-						{row.semanas}
-						</TableCell>
-						<TableCell component="th" scope="row"  align="center">
-						{row.cantidad}
-						</TableCell>
-						<TableCell component="th" scope="row" align="center">
-						{row.precio_lista}
-						</TableCell>
-						<TableCell component="th" scope="row" align="center">
-						{row.precio_unitario}
-						</TableCell>
-						<TableCell component="th" scope="row"  align="center">
-						{row.descuento}
-						</TableCell>
-						<TableCell component="th" scope="row" align="center">
-						{row.total}
-						</TableCell>
-						<TableCell component="th" scope="row" align="center">
-						{row.moneda}
-						</TableCell>
-						<TableCell component="th" scope="row"  align="center">
-						{row.categoria}
-						</TableCell>
-						<TableCell component="th" scope="row" align="center">
-						{row.comentarios}
-						</TableCell>
-					</>
-					)}
-					{isEdit ? (
-					<Button className="mr10" onClick={handleConfirm}>
-						<ClearIcon />
-					</Button>
-
-					
-
-
-					) : (
-					<Button className="mr10" onClick={handleConfirm}>
-						<DeleteOutlineIcon />
-					</Button>
-
-
-					)}
-
-
-					{showConfirm && (
-					<>
-						<Dialog
-						open={showConfirm}
-						onClose={handleNo}
-						aria-labelledby="alert-dialog-title"
-						aria-describedby="alert-dialog-description"
-						>
-						<DialogTitle id="alert-dialog-title">
-							{"Confirmar Eliminación"}
-						</DialogTitle>
-						<DialogContent>
-							<DialogContentText id="alert-dialog-description">
-							Estas Seguro de Eliminar está Fila de Datos?
-							</DialogContentText>
-						</DialogContent>
-						<DialogActions>
-							<Button
-							onClick={() => handleRemoveClick(i)}
-							color="primary"
-							autoFocus
-							>
-							Si
-							</Button>
-							<Button
-							onClick={handleNo}
-							color="primary"
-							autoFocus
-							>
-							No
-							</Button>
-						</DialogActions>
-						</Dialog>
-					</>
-					)}
-				</TableRow>
-				</>
-			);
-			})}
-		</TableBody>
-		</Table>
-	</Box>
-	</TableBody>
-
-
-
-  
-);
-
-
+      }
+    ];
+
+    return (
+      <div xs={12} className="col form">
+        <ToolkitProvider
+          keyField="id"
+          data={tableData}
+          columns={columns}
+          exportCSV
+        >
+          {props => (
+            <div>
+              <div className="d-flex justify-content-around p-2">
+                <ExportCSVButton
+                  className="text-light btn bg-success border-secondary rounded"
+                  {...props.csvProps}
+                >
+                  <span>Export CSV</span>
+                </ExportCSVButton>
+
+                <button
+                  className="btn bg-success text-light rounded"
+                  onClick={() =>
+                    this.setState(tableData, () => {
+                      this.props.prices({ actionType: "addRow" });
+                    })
+                  }
+                >
+                  Add Row
+                </button>
+              </div>
+              <BootstrapTable
+                {...props.baseProps}
+                keyField="id"
+                data={tableData}
+                columns={columns}
+                cellEdit={cellEditFactory({
+                  mode: "click",
+                  onStartEdit: (row, column, rowIndex, columnIndex) => {},
+                  beforeSaveCell: (oldValue, newValue, row, column) => {
+                    if (column.dataField === "price") {
+                      if (isNaN(Number(newValue))) {
+                        alert(
+                          "You entered " +
+                            newValue +
+                            " Please Enter numbers Only!!"
+                        );
+                      }
+                    }
+                  },
+                  afterSaveCell: (oldValue, newValue, row, column) => {}
+                })}
+              />
+            </div>
+          )}
+        </ToolkitProvider>
+      </div>
+    );
+  }
 }
 
 export default CargaDatos;

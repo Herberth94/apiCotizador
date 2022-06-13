@@ -41,7 +41,6 @@
     border-collapse:collapse;
     border-spacing:0;
     color:rgb(255, 255, 255);
-     font-family: arial;
     font-size: 14px;
     text-decoration:none;
     -webkit-transition:all .1s linear;
@@ -64,7 +63,6 @@
     display:table-cell;
     vertical-align:middle;
     width:190px;
-      font-family: 'Titillium Web', sans-serif;
     }
     
     .main-menu-preventa>ul.logout {

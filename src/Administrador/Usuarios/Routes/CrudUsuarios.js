@@ -2,6 +2,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
+import CrudUsuario from "./CrudUsuario";
+
 
 export const CrudUsuarios = (props) => {
   /*========================== Mostrar/Ocultar ==========================*/
