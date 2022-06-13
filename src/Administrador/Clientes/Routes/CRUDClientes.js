@@ -1,5 +1,8 @@
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
+import Table from 'react-bootstrap/Table';
+
+
+var array = [1, 5, 10, 15];
 
 export const CrudClientes = (props) => {
     /*========================== Mostrar/Ocultar ==========================*/
@@ -103,6 +106,8 @@ export const CrudClientes = (props) => {
                         {Object.keys(props.clientes).map((key) => (
                             <tr key={key}>
                             <td>{props.clientes[key].cliente_id}</td>
+
+
                             <td>
                                 <input
                                 className="input-name"
