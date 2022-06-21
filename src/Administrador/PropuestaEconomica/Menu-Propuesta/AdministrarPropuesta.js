@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { useState } from "react";
 import axios from 'axios';
 import { url2 } from '../../../Componentes/Ocultar';
@@ -8,8 +8,8 @@ function AdministrarPropuesta(props) {
   const [show, setShow] = useState(true)
 
   // cambio de estatus en el la base de datos del proyecto seleccionado a validado
-  async function cambioEstatusProyectoValidad(){
-    try{
+  async function cambioEstatusProyectoValidad() {
+    try {
       const data = {
         proyecto_estatus: 'Aceptado'
       }
@@ -18,13 +18,13 @@ function AdministrarPropuesta(props) {
       const send2 = respuesta.data
       console.log(send2)
       alert("Estatus del proyecto actualizado")
-    } catch(error){
+    } catch (error) {
       console.log(error)
     }
   }
   // cambio de estatus en el la base de datos del proyecto seleccionado a rechazado
-  async function cambioEstatusProyectoRechazado(){
-    try{
+  async function cambioEstatusProyectoRechazado() {
+    try {
       const data = {
         proyecto_estatus: 'Rechazado'
       }
@@ -32,7 +32,7 @@ function AdministrarPropuesta(props) {
       const send2 = respuesta.data
       console.log(send2)
       alert("Estatus del proyecto actualizado")
-    } catch(error){
+    } catch (error) {
       console.log(error)
     }
   }
@@ -42,55 +42,41 @@ function AdministrarPropuesta(props) {
 
 
       <div className="table-responsive">
-  
 
-     {/*    <div>
+
+        {/*    <div>
           <Animaciones mytext="Validación" />
         </div>
  */}
-        <Table responsive id="nombreDiv">
+        <Table >
           {/*========================== Titulos Tabla ==========================*/}
-          <thead>
-
-          <tr className="titulo-tabla-usuarios">
-        
-              <th className='titulo-tabla'>Revisión de Proyectos</th>
-         
-            </tr>
+          <Thead>
 
 
-            <tr className="titulo-tabla-usuarios">
-           {/*    <th>Propuestas</th> */}
-              <th>Rechazar Proyecto</th>
-              <th>Validar Proyecto</th>
+            <Tr >
+              {/*    <th>Propuestas</th> */}
+              <Th>Rechazar Proyecto</Th>
+              <Th>Validar Proyecto</Th>
 
 
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="">
+            </Tr>
+          </Thead>
+          <Tbody>
+            <Tr className="">
               {/*========================== Divisa ==========================*/}
+              <Td>
+
+                <button className="btn btn-primary PDF" onClick={() => { cambioEstatusProyectoRechazado() }} type="button"> Rechazar </button>
+              </Td>
 
 
+              <Td>
 
-              <td>
+                <button className="btn btn-primary" onClick={() => { cambioEstatusProyectoValidad() }} type="button"> Validar </button>
+              </Td>
 
-                <button className="btn btn-primary PDF" onClick={()=>{cambioEstatusProyectoRechazado()}} type="button"> Rechazar </button>
-
-
-              </td>
-
-
-              <td>
-
-                <button className="btn btn-primary" onClick={()=>{cambioEstatusProyectoValidad()}} type="button"> Validar </button>
-              </td>
-
-
-
-
-            </tr>
-          </tbody>
+            </Tr>
+          </Tbody>
         </Table>
 
 

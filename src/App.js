@@ -16,9 +16,37 @@ import MenuClientes from "./Administrador/Clientes/MenuClientes/MenuClientes";
 import Administrador from "./Routes/ValidaAdministrador";
 import MenuHeramientas from "./Componentes/Herramientas/MenuHeramientas";
 
+import CalculaDescuento from "./Componentes/Herramientas/CalculaDescuento";
+import NuevoProyecto from "./Preventa/PTN-BOM/Menu-Bom/NuevoProyecto";
+import Excel from "./Componentes/Herramientas/excel";
+
 //============ Administrador Páginas Private Administrador ============
 import MenuAdministrador from "./Administrador/MenuAdministrador";
 import MenuUsuarios from './Administrador/Usuarios/MenuUsuarios/MenuUsuarios';
+import RegistrarUsuarios from "./Administrador/Usuarios/MenuUsuarios/RegistrarUsuarios"
+import RegistrarClientes from "./Administrador/Clientes/MenuClientes/RegistrarClientes"
+import RegistrarProveedor from "./Administrador/Proveedores/MenuProveedor/RegistrarProveedor";
+import RegistrarMarcas from "./Administrador/Proveedores/MenuProveedor/RegistrarMarcas";
+
+
+import AdministrarUsuarios from "./Administrador/Usuarios/MenuUsuarios/AdministrarUsuarios";
+import AdministrarClientes from "./Administrador/Clientes/MenuClientes/AdministrarClientes";
+import AdministrarProveedor from "./Administrador/Proveedores/MenuProveedor/AdministrarProveedor";
+import AdministrarColaboradores from "./Preventa/Colaboradores/MenuColaborador/AdministrarColaboradores";
+
+import AsignarProyecto from "./Preventa/AsignarVentas/MenuAsignacion/AsignarProyecto";
+
+import Divisa from "./Ventas/AM/Menu-AM/Divisa";
+import BuscadorInteligente from "./Ventas/AM/Menu-AM/BuscadorInteligente";
+import BuscadorInteligente2 from "./Ventas/AM/Menu-AM/BuscadorInteligente2";
+import BuscadorProyectoFinanciamiento from "./Ventas/Proporcionalidad/MenuProporcionalidad/BuscadorProyectoFinanciamiento";
+import BuscadorInteligente3 from "./Administrador/PropuestaEconomica/Menu-Propuesta/BuscadorInteligente3";
+import BuscadorInteligente4 from "./Administrador/PropuestaEconomica/Menu-Propuesta/BuscadorInteligente4";
+import ResumenAM from "./Ventas/AM/Menu-AM/ResumenAM";
+
+
+import AgregarColaborador from "./Preventa/Colaboradores/MenuColaborador/AgregarColaborador";
+
 import CambioContraseña from "./Componentes/CambioContraseña";
 
 import MenuProveedor from "./Administrador/Proveedores/MenuProveedor/MenuProveedor";
@@ -71,15 +99,71 @@ function App() {
 
         <Administrador path="/" component={MenuAdministrador}  />
 
+
+              
+        <Administrador exact path="/calculadora" component={CalculaDescuento} />
+        <Administrador  path="/documentacion" component={MenuHeramientas} />
+
+
+        <Administrador exact path="/plantilla-excel" component={NuevoProyecto} />
+        <Administrador exact path="/plantilla-excel" component={Excel} />
+
+
         {/* <Administrador exact path="/" component={CambioContraseña} /> */}
         
-        <Administrador exact path="/menu-usuarios" component={MenuUsuarios} />
+        <Administrador exact path="/registrar-usuarios" component={RegistrarUsuarios} />
+        <Administrador exact path="/registrar-clientes" component={RegistrarClientes} />        
+        <Administrador exact path="/registrar-proveedores" component={RegistrarProveedor} />
+        <Administrador exact path="/registrar-marcas" component={RegistrarMarcas} />
+        <Administrador exact path="/registrar-colaboradores" component={AgregarColaborador} />
+
+
+        <Administrador exact path="/administrar-usuarios" component={AdministrarUsuarios} />
+        <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />        
+        <Administrador exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
+        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores} />
+
+
+
+        <Administrador exact path="/administrar-asignaciones" component={AdministrarColaboradores}   />
+        <Administrador exact path="/asignar-proyectos" component={AsignarProyecto} />
+      
+
+{/* /////////////Preventa */}
+        <Administrador exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
+   
+ 
+
+{/* /////////////Ventas */}
+
+        <Administrador exact path="/divisa" component={Divisa} /> 
+        <Administrador exact path="/costos-indirectos" component={BuscadorInteligente} /> 
+        <Administrador exact path="/imprimir-propuesta" component={ BuscadorInteligente3} /> 
+        <Administrador exact path="/administrar-propuesta" component={ BuscadorInteligente4} />
+        <Administrador exact path="/resumen-am" component={ResumenAM} /> 
+
+
+
+   
+ 
+   
+
+
+
+
+        <Administrador exact path="/resumen" component={BuscadorInteligente2} /> 
+        <Administrador exact path="/registrar-financiamiento" component={BuscadorProyectoFinanciamiento} />
+      
+      
+      
+      
+
+
         <Administrador exact path="/menu-clientes" component={MenuClientes} />
         <Administrador exact path="/menu-proveedores" component={MenuProveedor} />
         <Administrador exact path="/menu-colaboradores" component={MenuColaboradores} />
         <Administrador exact path ="/" component={CambioContraseña} />
         <Administrador path ="/" component={Header} />
-        <Administrador exact path="/calculadora" component={MenuHeramientas} />
         <Administrador exact path="/ptn" component={PTN_BOM} />
         <Administrador exact path="/propuesta-economica" component={PropuestaEconomica} />
         <Administrador exact path="/am" component={AM} />

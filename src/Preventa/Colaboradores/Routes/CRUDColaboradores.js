@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react'
 import Table from 'react-bootstrap/Table'
 import { url2 } from '../../../Componentes/Ocultar';
+import Animaciones from '../../../Componentes/Animaciones';
 
 
 export const CrudColaboradores = (props) => {
@@ -27,6 +28,12 @@ export const CrudColaboradores = (props) => {
 
     return (
         <div>
+
+            <div className='arregla'>
+
+             <Animaciones   mytext= "Administrar Colaboradores" />
+
+            </div>
             {/*===================     Tabla Proveedores   ========================*/}
             <Table responsive striped bordered hover size="sm" className="tablas">
                 <thead>

@@ -14,7 +14,7 @@ function Clientes() {
           <section className="card-body">
             <form  method="post" className="card-form" onSubmit = {enviarDatos}>
                 {/*========= Registrar Clientes========= */}
-              <h2 >  <span>Registrar Clientes</span> </h2>
+              <h2 >  Registrar Clientes</h2>
    {/*========= Nombre Cliente========= */}
                  <label htmlFor="user" className=" label">
                     Nombre Cliente

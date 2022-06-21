@@ -1,150 +1,238 @@
-import React from "react";
-import "../css/MenuAdministrador.css"
+import React from 'react';
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Cookies from "universal-cookie";
+import RegistrarUsuarios from "../Administrador/Usuarios/MenuUsuarios/RegistrarUsuarios";
+
+import AdministrarColaboradores from '../Preventa/Colaboradores/MenuColaborador/AdministrarColaboradores';
+
+
 const cookies = new Cookies();
 
-function archivo() {
-  const cierreSesion = () => {
-    cookies.remove("id_usuario", { path: "/" });
-    cookies.remove("rol", { path: "/" });
-    cookies.remove('estado_login',{path:"/"});
-    window.location.href = "../Login.js";
-  };
 
-  return (
-    <div className="contenedor">
-      {/*======================== Menú ==========================*/}
-      <nav className="main-menu">
-        <ul>
-          <div className="administrador-user">
-            <li>
-              <i className="bi bi-person-circle fa-2x"></i>
-              <span className="nav-text">Administrador</span>
-            </li>
-          </div>
-
-          <li>
-            <a href="/">
-              <i className="fa fa-home fa-2x"></i>
-              <span className="nav-text">Home</span>
-            </a>
-          </li>
-          <li className="has-subnav">
-            <a href="/menu-usuarios">
-              <i className="bi bi-list"></i>
-              <span className="nav-text">Usuarios</span>
-            </a>
-          </li>
-
-          <li className="has-subnav">
-            <a href="/menu-clientes">
-              <i className="bi bi-list"></i>
-              <span className="nav-text">Clientes</span>
-            </a>
-          </li>
-
-          <li className="has-subnav">
-            <a href="/menu-proveedores">
-              <i className="bi bi-list"></i>
-              <span className="nav-text">Proveedores</span>
-            </a>
-          </li>
-          
+function Archivo() {
 
 
-  
+    const cierreSesion = () => {
+        cookies.remove("id_usuario", { path: "/" });
+        cookies.remove("rol", { path: "/" });
+        cookies.remove('estado_login', { path: "/" });
+        window.location.href = "../Login.js";
+    };
 
-        {/*   <li className="has-subnav">
-            <a href="/usuarios">
-              <i className="bi bi-person-video2"></i>
-              <span className="nav-text">Administrar Usuarios</span>
-            </a>
-          </li>
- */}
-       {/*    <li className="has-subnav">
-            <a href="/administrar-clientes">
-              <i className="bi bi-person-video2"></i>
-              <span className="nav-text">Administrar Clientes</span>
-            </a>
-          </li>
- */}
-          {/*======================== Preventa==========================*/}
+    return (
 
+        <div className='' >
+            <Navbar expand="lg">
+                <Container fluid>
+                    <Navbar.Brand id="titulo" href="/">Marvilop</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbar-dark-example" id="icono" />
+                    <Navbar.Collapse id="navbar-dark-example">
+                        <Nav>
+                            <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Home"
+                                menuVariant="dark"
+                                
+                            >
+                        
 
-        <li className="has-subnav">
-            <a href="/menu-colaboradores">
-              <i className="bi bi-list"></i>
-              <span className="nav-text">Colaboradores</span>
-            </a>
-          </li>
-
-                    
-          <li className="has-subnav">
-            <a href="/asignar-proyecto">
-              <i className="bi bi-list"></i>
-              <span className="nav-text">Proyectos </span>
-            </a>
-          </li>
-
-
-
-          <li className="has-subnav">
-            <a href="/ptn">
-              <i className="bi bi-file-earmark-spreadsheet fa-2x"></i>
-              <span className="nav-text">Cotizaciones</span>
-            </a>
-          </li>
-
-
-   
-          {/*======================== Venta ==========================*/}
-
-          <li className="has-subnav">
-            <a href="/am">
-              <i className="bi bi-check2-circle fa-2x"></i>
-              <span className="nav-text">AM</span>
-            </a>
-          </li>
-          <li className="has-subnav">
-            <a href="/proporcionalidad">
-              <i className="bi fa-solid fa-chart-line"></i>
-
-              <span className="nav-text">Financiamiento</span>
-            </a>
-          </li>
-
-          <li className="has-subnav">
-            <a href="/propuesta-economica">
-              <i className="bi bi-briefcase fa-2x"></i>
-              <span className="nav-text">Propuesta Económica</span>
-            </a>
-          </li>
-
-
-
-          <li className="has-subnav">
-            <a href="/calculadora">
-              <i className="bi bi-calculator-fill"></i>
-              <span className="nav-text">Herramientas</span>
-            </a>
-          </li>
+                                <NavDropdown
+                                    id="nav-dropdown-dark-example"
+                                    title={"Herramientas "}
+                                    menuVariant="dark"
+                                >
+                                    <NavDropdown.Item href="/calculadora">Calculadora</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/plantilla-excel">Cargar Plantilla Excel</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/documentacion">Documentación</NavDropdown.Item>
+                                </NavDropdown>
 
 
 
 
-          {/*======================== Salir ==========================*/}
-        </ul>
-        <ul className="logout">
-          <li>
-            <a href="#" onClick={cierreSesion}>
-              <i className="fa fa-power-off fa-2x"></i>
-              <span className="nav-text">Salir</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  );
+                                <NavDropdown.Item href="#" onClick={cierreSesion} >Salir</NavDropdown.Item>
+                            </NavDropdown>
+
+
+                            <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Administrador"
+                                menuVariant="dark"
+                            >
+
+                              {/*   Registros */}
+                                <NavDropdown
+                                    id="nav-dropdown-dark-example"
+                                    title="Registros"
+                                    menuVariant="dark"
+                                >
+                                    <NavDropdown.Item href="/registrar-usuarios">Usuarios</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/registrar-clientes">Clientes</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/registrar-proveedores">Proveedores</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/registrar-marcas">Marcas</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/registrar-colaboradores">Colaboradores</NavDropdown.Item>
+
+                                </NavDropdown>
+
+
+                        {/*    Administración */}
+                                <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Administración"
+                                menuVariant="dark"
+                            >
+                                <NavDropdown.Item href="/administrar-usuarios">Usuarios</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="/administrar-clientes">Clientes</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="/administrar-proveedores-marcas">Proveedores y Marcas</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="/administrar-colaboradores">Colaboradores</NavDropdown.Item>
+                            </NavDropdown>
+
+
+                              {/*    Proyectos*/}
+
+                            <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Proyectos"
+                                menuVariant="dark"
+                            >
+                                <NavDropdown.Item href="/asignar-proyectos">Asignar Proyecto</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="/administrar-asignaciones">Administrar Asignaciones</NavDropdown.Item>
+                            </NavDropdown>
+
+
+
+
+                            </NavDropdown>
+
+                    {/* ======================================================  */}                  
+                                             {/* Preventa */}
+                    {/* ======================================================  */}    
+                            <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Preventa"
+                                menuVariant="dark"
+                            >
+
+                                
+                                    <NavDropdown
+                                        id="nav-dropdown-dark-example"
+                                        title="BOM"
+                                        menuVariant="dark"
+                                    >
+                                        <NavDropdown.Item href="/nuevo-proyecto">Nuevo proyecto</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/continuar-proyecto">Continuar Proyecto</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="#resumen-proyecto">Resumen</NavDropdown.Item>
+
+
+                                    </NavDropdown>
+
+
+                            </NavDropdown>
+
+
+
+                    {/* ======================================================  */}                  
+                                             {/* Venta */}
+                    {/* ======================================================  */} 
+
+
+
+                            <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Venta "
+                                menuVariant="dark"
+                            >
+                               
+                                    <NavDropdown
+                                        id="nav-dropdown-dark-example"
+                                        title="Análisis de Margen "
+                                        menuVariant="dark"
+                                    >
+                                        <NavDropdown.Item href="/divisa">Agregar Divisa</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/resumen-am">Resumen AM</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/costos-indirectos">Costos Indirectos</NavDropdown.Item>
+                                    </NavDropdown>
+
+
+                                            
+                                    <NavDropdown
+                                        id="nav-dropdown-dark-example"
+                                        title="Proporcionalidad "
+                                        menuVariant="dark"
+                                    >
+                                        <NavDropdown.Item href="/resumen">Resumen</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/registrar-financiamiento">Registrar Financiamiento</NavDropdown.Item>
+                                    </NavDropdown>
+
+
+
+                                            
+                                    <NavDropdown
+                                        id="nav-dropdown-dark-example"
+                                        title="Propuesta Económica "
+                                        menuVariant="dark"
+                                    >
+                                        <NavDropdown.Item href="/administrar-propuesta">Administrar Propuesta</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/imprimir-propuesta">Imprimir Propuesta</NavDropdown.Item>
+                                    </NavDropdown>
+
+
+
+
+
+
+
+
+
+                            </NavDropdown>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+
+
+
+
+
+                <form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" type="search" placeholder="   Buscar" aria-label="Search" />
+
+                </form>
+                
+       <button className="bus" type="submit">🔎</button>
+              
+         
+            </Navbar>
+        </div>
+    );
 }
 
-export default archivo;
+export default Archivo;

@@ -1,12 +1,14 @@
 import React, { useState,useEffect } from "react";
-import Table from "react-bootstrap/Table";
 import axios from "axios";
 import Cookies from 'universal-cookie';
-
 //Componentes
 import Animaciones from "../../../Componentes/Animaciones";
 import {url,url2} from "../../../Componentes/Ocultar";
 import { CrudColaboradores } from "../Routes/CRUDColaboradores";
+
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+
 
 
 
@@ -136,6 +138,8 @@ function AdministrarColaboradores(props) {
 
   return (
     <div className="contenido-usuarios">
+
+      <Animaciones  mytext="Administrar Colaboradores"/>
       <div className="table-responsive">
         <div className = "busqueda-proyectos">
 
@@ -144,24 +148,24 @@ function AdministrarColaboradores(props) {
         {/*========================== Titulo Animación =======================*/}
     {/*     <div> <Animaciones   mytext= "Buscar proyecto"   /> </div>
  */}
-        <Table responsive id="nombreDiv">
-          <thead>
-            <tr className="titulo-tabla-usuarios">
-              <th className="ocultar">Clave</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="">
-              <td className =  "busqueda">
+        <Table  id="nombreDiv">
+          <Thead>
+            <Tr className="titulo-tabla-usuarios">
+              <Th className="ocultar">Clave</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            <Tr className="">
+              <Td className =  "busqueda">
                   <input className="agregar"
                   type="text"
                   name="proyecto_clave"
                   onChange={e => onChangeTextClaveP(e.target.value)}
                   value={claveP}
                   placeholder=" 🔍︎Búsqueda por clave del proyecto" />
-              </td>
-            </tr>
-          </tbody>
+              </Td>
+            </Tr>
+          </Tbody>
         </Table>
 
 
@@ -169,41 +173,39 @@ function AdministrarColaboradores(props) {
         {/****************************Lista de los Proyectos Creados ****************************************/}
         {/*============= Titulo Animación =============*/}
      
-        <Table responsive  striped bordered hover size="sm">
-            <thead>
+        <Table >
+            <Thead>
 
-               <tr className="titulo-tabla-usuarios">
+   {/*             <tr className="titulo-tabla-usuarios">
                 <th></th>
            
                 <th className="titulo-tabla">{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
-           
-           
-              </tr>
-              <tr className="titulo-tabla-usuarios">
-                <th>ID</th>
-                <th>Clave</th>
-                <th>Descripción</th>
-                <th>Cliente</th>
-                <th>Fecha  Creación</th>
-                <th>Fecha  Modificación</th>
-                <th>Estatus</th>
-                <th>Plazo meses</th>
-                <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
-              </tr>
-            </thead>
+              </tr> */}
+              <Tr >
+                <Th>ID</Th>
+                <Th>Clave</Th>
+                <Th>Descripción</Th>
+                <Th>Cliente</Th>
+                <Th>Fecha  Creación</Th>
+                <Th>Fecha  Modificación</Th>
+                <Th>Estatus</Th>
+                <Th>Plazo meses</Th>
+                <Th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</Th>
+              </Tr>
+            </Thead>
                                 
-            <tbody>
+            <Tbody>
             {Object.keys(suggestions).map((key) => (    
-                <tr key={suggestions[key].proyecto_id} >
-                    <td>{suggestions[key].proyecto_id}</td>   
-                    <td>{suggestions[key].proyecto_clave}</td>  
-                    <td>{suggestions[key].proyecto_descripcion}</td>  
-                    <td>{suggestions[key].nombre_cliente}</td> 
-                    <td width={"150px"}>{suggestions[key].proyecto_fecha_creacion}</td>
-                    <td   width={"150px"}>{suggestions[key].proyecto_fecha_modificacion}</td>
-                    <td  className= {suggestions[key].proyecto_estatus } >{suggestions[key].proyecto_estatus}</td>  
-                    <td  width={"50 px"}>{suggestions[key].proyecto_plazo_meses}</td> 
-                    <td width={"100 px"}>
+                <Tr key={suggestions[key].proyecto_id} >
+                    <Td>{suggestions[key].proyecto_id}</Td>   
+                    <Td>{suggestions[key].proyecto_clave}</Td>  
+                    <Td>{suggestions[key].proyecto_descripcion}</Td>  
+                    <Td>{suggestions[key].nombre_cliente}</Td> 
+                    <Td width={"150px"}>{suggestions[key].proyecto_fecha_creacion}</Td>
+                    <Td   width={"150px"}>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                    <Td  className= {suggestions[key].proyecto_estatus } >{suggestions[key].proyecto_estatus}</Td>  
+                    <Td  width={"50 px"}>{suggestions[key].proyecto_plazo_meses}</Td> 
+                    <Td width={"100 px"}>
                       <button 
                         className="btn btn-primary Ver" 
                         type="button" 
@@ -215,10 +217,10 @@ function AdministrarColaboradores(props) {
                          
                           <i className= {textBVer[key]} ></i>
                         </button>
-                    </td>
-                </tr>  
+                    </Td>
+                </Tr>  
             ))}
-            </tbody>          
+            </Tbody>          
         </Table>
         <div>
           {show2 ? (

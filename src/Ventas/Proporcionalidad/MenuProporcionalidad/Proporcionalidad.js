@@ -1,5 +1,5 @@
 import React from 'react'
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from "../../../Componentes/Animaciones";
 
 import {TOTAL, proporcional ,  proporcionalMesaAyuda,  partidasUnicas,  precioVenta2 ,
@@ -16,70 +16,74 @@ function Proporcionalidad() {
     
     <div className="contenido-usuarios">
 
+        <br/>
+
+        <div>
+            <Animaciones mytext="Proporcionalidad" />
+        </div>
+
 
 {/* 
             <div> <Animaciones mytext="Resumen Proporcionalmente" /> </div>
   */}
-            <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
+            <Table >
+                <Thead>
 
-                <tr className="titulo-tabla-usuarios">
-
-                        <th className='titulo-tabla'>Resumen Proporcional</th>
-                 
-                     
-                    </tr>
+        
                     {/*=================== Titulos Tabla Clientes ===================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>Descripción</th>
-                        <th > Precio Venta </th>
-                        <th>  % </th>
-                        <th>Proporcional MESA DE AYUDA </th>
-                        <th>TOTAL</th>
-                        <th>TOTAL MENSUAL</th>
-                        <th>Financiamiento</th>
+                    <Tr >
+                        <Th>Descripción</Th>
+                        <Th > Precio Venta </Th>
+                        <Th>  % </Th>
+                        <Th>Proporcional MESA DE AYUDA </Th>
+                        <Th>TOTAL</Th>
+                        <Th>TOTAL MENSUAL</Th>
+                        <Th>Financiamiento</Th>
                      
-                    </tr>
-                </thead>
-                <tbody>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/*=================== Contenido Tabla Clientes =================*/}
 
                     {Object.keys(partidasUnicas).map((key) => (
-                        <tr key={key}>
+                        <Tr key={key}>
                             
                             {/*================= Descripción  ==================*/}
 
-                            <td>{partidasUnicas[key]}</td>
+                            <Td>{partidasUnicas[key]}</Td>
 
 
-                            <td>{"$ "}{precioVenta2[key]}</td>
+                            <Td>{"$ "}{precioVenta2[key]}</Td>
                             {/*================= Precio Venta ==================*/}
-                            <td className="azul" >{proporcional[key]} {" % "}  </td>
+                            <Td className="azul" >{proporcional[key]} {" % "}  </Td>
 
                           {/*=================  % ==================*/}
                       
 
                          {/*================= Proporcional Mesa de Ayuda==================*/}
-                            <td>  {" $ "}{ proporcionalMesaAyuda[key]}</td>
+                            <Td>  {" $ "}{ proporcionalMesaAyuda[key]}</Td>
 
                             {/*================= Total ==================*/}
 
-                            <td className="azul"> {" $ "} {TOTAL[key]} </td>
+                            <Td className="azul"> {" $ "} {TOTAL[key]} </Td>
 
                   {/*================= Total Mensual ==================*/}
-                  <td className=""> {" $ "} {totalMensual[key]}</td>
+                  <Td className=""> {" $ "} {totalMensual[key]}</Td>
 
                     {/*================= Financiamiento ==================*/}
-                            <td> {" $"} {financiamiento[key]}</td>
+                            <Td> {" $"} {financiamiento[key]}</Td>
                                 {/*================= eDITARF==================*/}   
                           
-                        </tr>
+                        </Tr>
                     ))}
-                </tbody>
+                </Tbody>
             </Table>
 
 
 
+
+<br/>
+<br/>
 
         
     </div>

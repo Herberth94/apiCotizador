@@ -134,10 +134,4 @@ color: var(--administrador-salir-color);
 
 
 
-/*============== OPTIONS VENTANA ==============*/
-#rol:hover{
-	background-color: var( --administrador-bg-color);
-	color: white;
-	}
-	
 

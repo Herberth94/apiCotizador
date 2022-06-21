@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from "../../../Componentes/Animaciones";
 import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
@@ -172,9 +172,9 @@ function BuscadorInteligente() {
 
   return (
     <div className="contenido-usuarios">
-    {/*   <div> <Animaciones mytext="Buscador Inteligente" /> </div>*/}
-    <div className="busqueda-proyectos">
-        <Table responsive id="nombreDiv">
+      <div> <Animaciones mytext="Costos Indirectos" /> </div>
+    <div className="">
+        <Table >
             <thead>
                 <tr className="azul">
                     <th className='ocultar'>Clave Proyecto</th>
@@ -198,43 +198,36 @@ function BuscadorInteligente() {
         </div>   
         {/*============= Titulo Animación =============*/}
       {/*   <div> <Animaciones mytext="Proyectos " /> </div> */}
-        <Table responsive  striped bordered hover size="sm">
-
-        <thead>
-            <tr className="titulo-tabla-usuarios">
-                <th></th>
-            <th className='titulo-tabla'>Proyectos</th>
-            </tr>
-            </thead>
-            <thead>
-            <tr className="titulo-tabla-usuarios">
-            <th>ID</th>
-            <th>Clave</th>
-            <th>Descripción</th>
-            <th>Cliente</th>
-            <th>Fecha Creación</th>
-            <th>Fecha Modificación</th>
-            <th>Estatus</th>
-            <th>Plazo de meses</th>
-            <th>Resumen AM</th>
-            </tr>
-            </thead>
+        <Table >
+            <Thead>
+            <Tr >
+            <Th>ID</Th>
+            <Th>Clave</Th>
+            <Th>Descripción</Th>
+            <Th>Cliente</Th>
+            <Th>Fecha Creación</Th>
+            <Th>Fecha Modificación</Th>
+            <Th>Estatus</Th>
+            <Th>Plazo de meses</Th>
+            <Th>Resumen AM</Th>
+            </Tr>
+            </Thead>
                     
-            <tbody>
+            <Tbody>
             {Object.keys(suggestions).map((key) => (    
             //checar aqui va los titulos
-            <tr key={suggestions[key].proyecto_id} >
-            <td width={"80px"}>{suggestions[key].proyecto_id}</td>   
-            <td>{suggestions[key].proyecto_clave}</td>  
-            <td>{suggestions[key].proyecto_descripcion}</td>  
-            <td>{suggestions[key].nombre_cliente}</td> 
-            <td>{suggestions[key].proyecto_fecha_creacion}</td>
-            <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-            <td className = {suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
-            <td>{suggestions[key].proyecto_plazo_meses}</td>
-            <td width={"100px"}>
+            <Tr key={suggestions[key].proyecto_id} >
+            <Td width={"80px"}>{suggestions[key].proyecto_id}</Td>   
+            <Td>{suggestions[key].proyecto_clave}</Td>  
+            <Td>{suggestions[key].proyecto_descripcion}</Td>  
+            <Td>{suggestions[key].nombre_cliente}</Td> 
+            <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
+            <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
+            <Td className = {suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</Td> 
+            <Td>{suggestions[key].proyecto_plazo_meses}</Td>
+            <Td width={"100px"}>
                 <button 
-                 className="btn btn-primary Ver" 
+                 className="sn-boton" 
                 onClick={() => {
                     consultarTotalesP(suggestions[key].proyecto_id);
                     habilitar(key);
@@ -244,15 +237,15 @@ function BuscadorInteligente() {
                      <i className=   {textBVer[key]}  ></i>
                     
                   </button>
-            </td> 
-            </tr>  
+            </Td> 
+            </Tr>  
             ))}
-            </tbody>          
+            </Tbody>          
         </Table>
         {show1 ? (
             <div></div>
         ) : (
-            <div className="arregla">
+            <div className="">
                 {/*========================== Llamado al Componente ==========================*/}
                 {/*           <CostosIndirectos/> */}
                 < CostosIndirectos
@@ -261,6 +254,7 @@ function BuscadorInteligente() {
             </div>
         )}
             
+
     </div>
   )
 }

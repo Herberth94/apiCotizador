@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react";
 import { useRegistro } from '../Routes/ModificarUsuarios';
 import axios from 'axios';
-import Animaciones from "../../../Componentes/Animaciones";
 import { CrudUsuarios } from "../Routes/CrudUsuarios";
 import {url, url2} from "../../../Componentes/Ocultar";
+
 
 
 function AdministrarUsuarios() {

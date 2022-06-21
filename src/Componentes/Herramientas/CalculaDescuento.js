@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
 import { precioUnitario, calcularDescuento, Total} from "../../Preventa/PTN-BOM/Operaciones/Operaciones";
+
+import Animaciones from "../Animaciones";
+
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 
 
 let validaOperacion = false;
@@ -77,39 +80,40 @@ validaOperacion = !validaOperacion;
   return (
     <div className="contenido-usuarios">
 
+      <div>
+        <Animaciones mytext= "Calculadora"/>
+      </div>
+
 
         
-<Table responsive id="nombreDiv">
-            <thead>
+<Table >
+            <Thead>
 
-            <tr className="titulo-tabla-usuarios">
-                <th></th>
-                <th  className="titulo-tabla">Calculadora</th>
-                </tr>
-                <tr className="titulo-tabla-usuarios">
-                <th>Calcular</th>
-                <th>Cantidad</th>
-                <th>Precio Lista</th>
-                <th>Precio Unitario</th>
-                <th> Descuento (%)</th>
-                <th> Total </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr className="">
+      
+                <Tr>
+                <Th>Calcular</Th>
+                <Th>Cantidad</Th>
+                <Th>Precio Lista</Th>
+                <Th>Precio Unitario</Th>
+                <Th> Descuento (%)</Th>
+                <Th> Total </Th>
+                </Tr>
+            </Thead>
+            <Tbody>
+                <Tr className="">
                 {/*======================== Cantidad ==========================*/}
-                <td>
+                <Td>
                 <label className="switch">
                 <input type="checkbox" id="checa"     onClick={checa}/>
                 <span className="slider"></span>
                 </label>   
-                </td>
+                </Td>
                
                
-                <td>
+                <Td>
                     {" "}
                     <input
-                    className="agregar"
+                   
                     type="text"
                     name="sp_cantidad"
                     value={datos.sp_cantidad}
@@ -117,9 +121,9 @@ validaOperacion = !validaOperacion;
                     placeholder="Cantidad "
                     
                     />
-                </td>
+                </Td>
                 {/*======================== Precio Lista ==========================*/}
-                <td>
+                <Td>
                     {" "}
                     <input
                     type="text"
@@ -129,10 +133,10 @@ validaOperacion = !validaOperacion;
                     placeholder="Precio Lista"
                     
                     />
-                </td>
+                </Td>
 
                 {/*======================== Precio Unitario ==========================*/}
-                <td>
+                <Td>
                     {" "}
                     <input
                
@@ -143,9 +147,9 @@ validaOperacion = !validaOperacion;
                     placeholder="Precio unitario"
                     step="any"
                     />
-                </td>
+                </Td>
                 {/*======================== Descuento==========================*/}
-                <td>
+                <Td>
                     {" "}
                     <input
               
@@ -157,9 +161,9 @@ validaOperacion = !validaOperacion;
                     min="0"
                     step="any"
                     />
-                </td>
+                </Td>
                 {/*======================== Total ==========================*/}
-                <td>
+                <Td>
                     {" "}
                     <input
              type="text"
@@ -169,9 +173,9 @@ validaOperacion = !validaOperacion;
                     placeholder="Total"
                     step="any"
                     />
-                </td>
-                </tr>
-            </tbody>
+                </Td>
+                </Tr>
+            </Tbody>
             </Table>
 
 

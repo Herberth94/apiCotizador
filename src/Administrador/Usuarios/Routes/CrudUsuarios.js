@@ -1,8 +1,9 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
-import CrudUsuario from "./CrudUsuario";
+import Animaciones from "../../../Componentes/Animaciones"
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
 
 
 export const CrudUsuarios = (props) => {
@@ -79,31 +80,34 @@ export const CrudUsuarios = (props) => {
 
   return (
     <div className="">
+      <div>
+       <Animaciones  mytext="Lista de Usuarios" />
+      </div>
       <form>
-        <Table responsive striped bordered hover size="sm col-ms-4" className="tab" aria-rowcount={2} >
-          <thead>
-            <tr className="titulo-tabla-usuarios">
+        <Table  id="h1"  >
+          <Thead  className="lines">
+         {/*    <tr className="titulo-tabla-usuarios">
               <th></th>
               <th className="titulo-tabla">Lista de Usuarios</th>
-            </tr>
+            </tr> */}
             {/*=================== Titulos Tabla Usuarios ====================*/}
-            <tr className="titulo-tabla-usuarios">
-              <th>ID</th>
-              <th>Administrador</th>
-              <th>Correo</th>
-              <th>Contraseña</th>
+            <Tr className="lines" >
+              <Th>ID</Th>
+              <Th>Administrador</Th>
+              <Th>Correo</Th>
+              <Th>Contraseña</Th>
               {/*    <th>Eliminar</th> */}
-              <th>Modificar</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
+              <Th>Modificar</Th>
+              <Th></Th>
+            </Tr>
+          </Thead>
+          <Tbody>
             {/*=================== Contenido Tabla Usuarios =================*/}
             {Object.keys(props.usuarios).map((key) => (
               //checar aqui va los titulos
-              <tr key={props.usuarios[key].id_usuario }>
-                <td>{props.usuarios[key].id_usuario}</td>
-                <td width={"200px"}>
+              <Tr key={props.usuarios[key].id_usuario }>
+                <Td>{props.usuarios[key].id_usuario}</Td>
+                <Td width={"200px"}>
                   {/*<input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>
                    */}
                   <select
@@ -119,20 +123,20 @@ export const CrudUsuarios = (props) => {
                     <option value={2}>Preventa</option>
                     <option value={3}>Venta</option>
                   </select>
-                </td>
+                </Td>
 
-                <td width={"900px"}>
+                <Td >
                   <input
-                    className="input-name"
+                  
                     defaultValue={props.usuarios[key].email}
                     onChange={handleInputChange}
                     disabled={enable[key]}
                     name="email"
                   ></input>{" "}
-                </td>
-                <td width={"100px"}>
+                </Td>
+                <Td width={"100px"} >
                   <button
-                    className="btn btn-primary Resetear"
+                    className="sn-boton resetear"
                     type="button"
                     onClick={() => {
                       props.resetearContraseña(
@@ -141,9 +145,9 @@ export const CrudUsuarios = (props) => {
                       );
                     }}
                   >
-                    <i className="bi bi-unlock"></i>
+                    <i className="bi bi-lock"></i>
                   </button>
-                </td>
+                </Td>
 
                 {/*                          <td>
                                 <button 
@@ -154,9 +158,9 @@ export const CrudUsuarios = (props) => {
                             </td> */}
                 {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
                 {enable[key] ? (
-                  <td width={"100px"} className="">
+                  <Td width={"100px"} >
                     <button
-                      className="btn btn-primary Mod"
+                      className="sn-boton"
                       type="button"
                       onClick={() => {
                         //    props.envioData(datos,key,data);
@@ -166,12 +170,12 @@ export const CrudUsuarios = (props) => {
                     >
                       <i className={textBModificar[key]}></i>
                     </button>
-                  </td>
+                  </Td>
                 ) : (
                   <>
-                    <td width={"100px"}>
+                    <Td width={"100px"}>
                       <button
-                        className="btn btn-primary Mod"
+                        className="sn-boton"
                         type="button"
                         onClick={() => {
                           props.envioData(datos, key, data);
@@ -181,11 +185,11 @@ export const CrudUsuarios = (props) => {
                       >
                         <i className={textBModificar[key]}></i>
                       </button>
-                    </td>
+                    </Td>
 
-                    <td width={"100px"}>
+                    <Td width={"100px"}>
                       <button
-                        className="btn btn-primary Cancelar"
+                        className="sn-boton cancelar"
                         type="button"
                         onClick={() => {
                           /*   props.envioData(datos,key,data);  */
@@ -195,12 +199,14 @@ export const CrudUsuarios = (props) => {
                       >
                         <i className="bi bi-x-lg"></i>
                       </button>
-                    </td>
+
+                      
+                    </Td>
                   </>
                 )}
-              </tr>
+              </Tr>
             ))}
-          </tbody>
+          </Tbody>
         </Table>
       </form>
     </div>

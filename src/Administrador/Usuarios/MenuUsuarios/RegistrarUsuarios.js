@@ -73,9 +73,13 @@ function Registro() {
 
 
             </div>
+
+
+
           </form>
         </section>
       </div>
+
 
       <br/>
       <br/>

@@ -1,10 +1,11 @@
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import axios from "axios";
 //Componentes
 import {url2} from "../../../Componentes/Ocultar";
 import { EditMarcas } from '../Routes/ModificarMarcas';
 import { CrudMarcas } from './CRUDMarcas';
+import Animaciones from '../../../Componentes/Animaciones';
 
 export const CrudProveedores = (props) => {
     /*========================== Mostrar/Ocultar ==========================*/
@@ -132,32 +133,36 @@ export const CrudProveedores = (props) => {
     /*============================================================================================================*/
     return (
         <div>
-            {/*===================     Tabla Proveedores   ========================*/}
-            <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
 
-                <tr className="titulo-tabla-usuarios">
+            <div>
+                <Animaciones  mytext="Administración  de Proveedores"/>
+            </div>
+            {/*===================     Tabla Proveedores   ========================*/}
+            <Table >
+                <Thead>
+
+                {/* <tr className="titulo-tabla-usuarios">
                         <th></th>
                         <th className='titulo-tabla'>Lista de Proveedores</th>
                       
-                    </tr>
+                    </tr> */}
                     {/*=================== Titulos Tabla Proveedores ===================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Proveedor</th>
-                        <th>Teléfono</th>
-                        <th>Email</th>
-                        <th>Modificar</th>
-                        <th>Marcas</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>Proveedor</Th>
+                        <Th>Teléfono</Th>
+                        <Th>Email</Th>
+                        <Th>Modificar</Th>
+                        <Th>Marcas</Th>
+                        <Th></Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/*=================== Contenido Tabla Proveedores =================*/}
                     {Object.keys(props.proveedores).map((key) => (
-                        <tr key={props.proveedores[key].proveedor_id}> 
-                        <td>{props.proveedores[key].proveedor_id}</td>
-                        <td>
+                        <Tr key={props.proveedores[key].proveedor_id}> 
+                        <Td>{props.proveedores[key].proveedor_id}</Td>
+                        <Td>
                             <input
                             className="input-name"
                             defaultValue={props.proveedores[key].proveedor_nombre}
@@ -165,9 +170,9 @@ export const CrudProveedores = (props) => {
                             disabled={enable[key]}
                             name="proveedor_nombre"
                             ></input>
-                        </td>
+                        </Td>
                         {/*================= Teléfono ==================*/}
-                        <td width={"200px"}>
+                        <Td width={"200px"}>
                             <input
                             className="input-name"
                             defaultValue={props.proveedores[key].proveedor_telefono}
@@ -175,9 +180,9 @@ export const CrudProveedores = (props) => {
                             disabled={enable[key]}
                             name="proveedor_telefono"
                             ></input>{" "}
-                        </td>
+                        </Td>
                         {/*================= email==================*/}
-                        <td>
+                        <Td>
                             <input
                             className="input-name"
                             defaultValue={props.proveedores[key].proveedor_email}
@@ -185,7 +190,7 @@ export const CrudProveedores = (props) => {
                             disabled={enable[key]}
                             name="proveedor_email"
                             ></input>{" "}
-                        </td>
+                        </Td>
 
                   {/*       <td>
                             {" "}
@@ -209,9 +214,9 @@ export const CrudProveedores = (props) => {
                         
 
 {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td width={"100px"} >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton " type="button"
                                     onClick={()=>{
                                        // props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -221,14 +226,14 @@ export const CrudProveedores = (props) => {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               
                               
                               < >
-                                    <td width={"100px"} >
+                                    <Td width={"100px"} >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton " type="button"
                                     onClick={()=>{
                                         props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -238,11 +243,11 @@ export const CrudProveedores = (props) => {
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
                                 
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton cancelar" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
@@ -252,16 +257,16 @@ export const CrudProveedores = (props) => {
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
                                    
-                                </td>
+                                </Td>
                                 </>
                             )}
 
 
 
-                        <td width={"100px"}>
+                        <Td width={"100px"}>
                             {" "}
                             <button
-                                className="btn btn-primary Ver"
+                                className="sn-boton"
                                 type="button"
                                 onClick={() => {
                                     llamadoMarca(props.proveedores[key].proveedor_id);
@@ -273,10 +278,10 @@ export const CrudProveedores = (props) => {
                                 
                              
                             </button>
-                        </td>
-                        </tr>  
+                        </Td>
+                        </Tr>  
                     ))}
-                </tbody>
+                </Tbody>
             </Table>
             {show2 ? (
                 <></>
@@ -284,6 +289,8 @@ export const CrudProveedores = (props) => {
                 <>
                     {/*=================== Botón Mostrar Lista DIV =====================*/}
                     <br />
+
+                    <Animaciones  mytext="Administración de Marcas" />
                     <CrudMarcas
                         marcas={listaMarcas}
                         envioData={envioData}

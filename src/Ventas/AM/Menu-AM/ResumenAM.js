@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Cookies from 'universal-cookie';
+import Animaciones from '../../../Componentes/Animaciones';
 //Componentes
 import {Partida_catalogo} from '../../Operaciones/totalPartida';
 import { url, url2 } from '../../../Componentes/Ocultar';
@@ -18,6 +19,7 @@ comprobacionFinanciamieno
 } from "../../Operaciones/OperacionesAM";
 import { EditAM } from '../Routes/ModificarDatosAm';
 import {costosIndirectos, equivale,  totalIndirecto} from "../../Operaciones/OperacionesAM";
+import { TableChartOutlined } from '@material-ui/icons';
 
 
 let y = ["No Aplica"];
@@ -277,17 +279,20 @@ const ResumenAM = () => {
 
     return (
         <div className="contenido-usuarios">
+
+<div > <Animaciones mytext="Proyectos " /> </div>
+
       {/*       <div> <Animaciones mytext="AM COMPLETO" /> </div> */}
-            <div className="busqueda-proyectos">
-                <Table responsive id="nombreDiv">
-                    <thead>
-                        <tr className="azul">
-                            <th className='ocultar'>Clave Proyecto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr >
-                            <td className='busqueda'>
+            <div className="">
+                <Table >
+                    <Thead>
+                        <Tr className="azul">
+                            <Th className='ocultar'>Clave Proyecto</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        <Tr >
+                            <Td className='busqueda'>
                                 <input className="agregar"
                                         type="text"
                                         name="proyecto_clave"
@@ -295,58 +300,48 @@ const ResumenAM = () => {
                                         value={claveP}
                                         placeholder=" 🔎 Búsqueda por Clave del Proyecto" 
                                 />
-                            </td>
-                        </tr>
-                    </tbody>
+                            </Td>
+                        </Tr>
+                    </Tbody>
                 </Table>
 
                 </div>
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-               {/*  <div > <Animaciones mytext="Proyectos " /> </div>
- */}
-                <Table responsive  striped bordered hover size="sm">
+          
+                <Table>
 
                
                     
-                    <thead>
-
-                    <tr className="titulo-tabla-usuarios">
-
-                            <th></th>
-                            <th className='titulo-tabla'>Proyectos</th>
-                        </tr>
-
-
-                    
-                        <tr className="titulo-tabla-usuarios">
-                            <th>ID</th>
-                            <th>Clave</th>
-                            <th>Descripción</th>
-                            <th>Cliente</th>
-                            <th>Fecha Creación</th>
-                            <th>Fecha Modificación</th>
-                            <th>Estatus</th>
-                            <th>Plazo Meses</th>
-                            <th>Resumen AM</th>
-                        </tr>
-                    </thead>
+                    <Thead>                
+                        <Tr>
+                            <Th>ID</Th>
+                            <Th>Clave</Th>
+                            <Th>Descripción</Th>
+                            <Th>Cliente</Th>
+                            <Th>Fecha Creación</Th>
+                            <Th>Fecha Modificación</Th>
+                            <Th>Estatus</Th>
+                            <Th>Plazo Meses</Th>
+                            <Th>Resumen AM</Th>
+                        </Tr>
+                    </Thead>
                                        
-                    <tbody>
+                    <Tbody>
                         {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={suggestions[key].proyecto_id} >
-                                <td width={"50px"}>{suggestions[key].proyecto_id}</td>   
-                                <td>{suggestions[key].proyecto_clave}</td>  
-                                <td>{suggestions[key].proyecto_descripcion}</td>  
-                                <td>{suggestions[key].nombre_cliente}</td> 
-                                <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                                <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                                <td className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
-                                <td width={"60px"}>{suggestions[key].proyecto_plazo_meses}</td>
-                                <td width={"100px"}>
+                            <Tr key={suggestions[key].proyecto_id} >
+                                <Td >{suggestions[key].proyecto_id}</Td>   
+                                <Td>{suggestions[key].proyecto_clave}</Td>  
+                                <Td>{suggestions[key].proyecto_descripcion}</Td>  
+                                <Td>{suggestions[key].nombre_cliente}</Td> 
+                                <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
+                                <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                                <Td className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</Td> 
+                                <Td >{suggestions[key].proyecto_plazo_meses}</Td>
+                                <Td >
                                     <button 
-                                    className="btn btn-primary Ver" 
+                                    className="sn-boton" 
                                     onClick={() => {
                                         consultarTotalesP(suggestions[key].proyecto_id);
                                         habilitar2(key);
@@ -356,52 +351,46 @@ const ResumenAM = () => {
                                        <i className=  {textBVer[key]}></i> 
                                         
                                       </button>
-                                </td> 
-                            </tr>  
+                                </Td> 
+                            </Tr>  
                         ))}
-                    </tbody>          
+                    </Tbody>          
                 </Table>
       
             {show1 ? (
                 <div></div>
             ):(
-                <div className="arregla">
-                    <div className="contenido-usuarios">
-                        <Table responsive striped bordered hover size="sm" className="tablas">
-                            <thead>
-                                {/*=================== Titulos Tabla Clientes ===================*/}
-                                <tr className="titulo-tabla-usuarios">
+                <div className="">
 
-                                    <th></th>
-                            <th className='titulo-tabla'>Resumen AM</th>
-                        </tr>
-
-                                
-                                <tr className="titulo-tabla-usuarios">
-                                    <th>Nombre Partida</th>
-                                    <th className="listacl">Lista cl </th>
-                                    <th>Desc. Cliente % </th>
-                                    <th>Precio Venta </th>
-                                    <th>Margen de Ganancia %</th>
-                                    <th>Precio Lista Unitario Prov</th>
-                                    <th>Cantidad</th>
-                                    <th>Lista Prov</th>
-                                    <th>Desc Fabrica %</th>
-                                    <th>Costo PTN</th>
-                                    <th>Margen Directo %</th>
-                                    <th>Modificar</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <Animaciones mytext="Resumen Am" />
+                    <div className="">
+                        <Table >
+                            <Thead>                     
+                                <Tr >
+                                    <Th>Nombre Partida</Th>
+                                    <Th className="listacl">Lista cl </Th>
+                                    <Th>Desc. Cliente % </Th>
+                                    <Th>Precio Venta </Th>
+                                    <Th>Margen de Ganancia %</Th>
+                                    <Th>Precio Lista Unitario Prov</Th>
+                                    <Th>Cantidad</Th>
+                                    <Th>Lista Prov</Th>
+                                    <Th>Desc Fabrica %</Th>
+                                    <Th>Costo PTN</Th>
+                                    <Th>Margen Directo %</Th>
+                                    <Th>Modificar</Th>
+                                    <Th></Th>
+                                </Tr>
+                            </Thead>
+                            <Tbody>
                                 {/*=================== Contenido Tabla Clientes =================*/}
                                 {Object.keys(datosCompletosAM).map((key) => (
-                                <tr key={key}>
-                                    <td>{datosCompletosAM[key]}</td>
+                                <Tr key={key}>
+                                    <Td>{datosCompletosAM[key]}</Td>
                                     {/*================= Descripcion General Partida ==================*/}
-                                    <td width={ancho} > {" $ "} {datosCompletosTotal[key]}</td>
+                                    <Td  > {" $ "} {datosCompletosTotal[key]}</Td>
                                     {/*================= Descuento Cliente ==================*/}
-                                    <td className="editar" >
+                                    <Td className="editar" >
                                         <input
                                         className="input-name"
                                         type="number"
@@ -410,11 +399,11 @@ const ResumenAM = () => {
                                         onChange={handleInputChange}
                                         name="desc_cliente" 
                                         ></input> 
-                                    </td>
+                                    </Td>
                                     {/*================= Precio Venta ==================*/}
-                                    <td width={ancho}> {"$"} {precioVenta[key]} </td>
+                                    <Td> {"$"} {precioVenta[key]} </Td>
                                     {/*================= Margen Ganancia==================*/}
-                                    <td  className="editar">
+                                    <Td  className="editar">
                                         <input
                                         className="input-name"
                                         type="number"
@@ -423,11 +412,11 @@ const ResumenAM = () => {
                                         onChange={handleInputChange}
                                         name="margen_ganancia" 
                                         ></input>
-                                    </td>
+                                    </Td>
                                     {/*================= PrecioLista Unitario ==================*/}
-                                    <td width={ancho} >{" $ "} {prov[key]}</td>
+                                    <Td >{" $ "} {prov[key]}</Td>
                                     {/*================= Cantidad ==================*/}
-                                    <td className="editar">
+                                    <Td className="editar">
                                         <input
                                         className="input-name"
                                         type="number"
@@ -436,11 +425,11 @@ const ResumenAM = () => {
                                         onChange={handleInputChange}
                                         name="cantidad" 
                                         ></input>
-                                    </td>
+                                    </Td>
                                     {/*================= Lista prov ==================*/}
-                                    <td  width={ancho}  > {" $ "} {listaProv[key]}</td>
+                                    <Td  > {" $ "} {listaProv[key]}</Td>
                                     {/*================= Descuento Fabrica ==================*/}    
-                                    <td  className="editar">
+                                    <Td  className="editar">
                                         <input
                                         className="input-name"
                                         type="number"
@@ -449,11 +438,11 @@ const ResumenAM = () => {
                                         onChange={handleInputChange}
                                         name="desc_fabrica" 
                                         ></input>
-                                    </td>
+                                    </Td>
                                     {/*================= Costo PTN ==================*/}
-                                    <td width={ancho} >{" $ "} {costoPTN[key]}  </td>
+                                    <Td >{" $ "} {costoPTN[key]}  </Td>
                                     {/*================= Margen Directo ==================*/}
-                                    <td>{margenDirecto[key] } {" % "}</td>
+                                    <Td>{margenDirecto[key] } {" % "}</Td>
                                     {/*================= Botón Modificar ==================*/}
                              {/*        <td>
                                         <button 
@@ -469,9 +458,9 @@ const ResumenAM = () => {
 
 
 {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td  >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton" type="button"
                                     onClick={()=>{
                                        // props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -481,14 +470,14 @@ const ResumenAM = () => {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               
                               
                               <>
-                                    <td width={"100px"} >
+                                    <Td  >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton" type="button"
                                     onClick={()=>{
                                       
                                         habilitar(key); 
@@ -498,11 +487,11 @@ const ResumenAM = () => {
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
                                 
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td >
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
@@ -512,49 +501,47 @@ const ResumenAM = () => {
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
                                    
-                                </td>
+                                </Td>
                                 </>
                             )}
 
 
 
-                                </tr>
+                                </Tr>
                                 ))}
-                            </tbody>
+                            </Tbody>
                         </Table>
 
-{/* 
+
+
+<br/>
+<br/>
                         <div> <Animaciones mytext="Costos Indirectos " /> </div>
- */}
-                        <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
+ 
+                        <Table >
+                <Thead>
 
-                <tr className="titulo-tabla-usuarios">
-
-                    <th></th>
-                            <th className='titulo-tabla'>Costos Indirectos</th>
-                        </tr>
 
                     {/*=================== Titulos Tabla Clientes ===================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>Descripción</th>
-                        <th>Equivale a % </th>
-                        <th>Total </th>
-                        <th>Divisa </th>
+                    <Tr >
+                        <Th>Descripción</Th>
+                        <Th>Equivale a % </Th>
+                        <Th>Total </Th>
+                        <Th>Divisa </Th>
 
  
-                    </tr>
-                </thead>
-                <tbody>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/*=================== Contenido Tabla Clientes =================*/}
 
                     {Object.keys(costosIndirectos).map((key) => (
-                        <tr key={key}>
+                        <Tr key={key}>
                             {/*================= Descripción==================*/}
-                            <td width={"100px" } >{costosIndirectos[key]}</td>
+                            <Td  >{costosIndirectos[key]}</Td>
 
                             {/*================= Equivale ==================*/}
-                            <td width={"30px"} className="editar" >
+                            <Td  className="editar" >
                                         <input
                                         className="input-name"
                                         type="number"
@@ -563,49 +550,51 @@ const ResumenAM = () => {
                                         onChange={handleInputChange}
                                         name="porcentaje" 
                                         ></input> 
-                                    </td>
+                                    </Td>
                             {/*================= Total Indirecto ==================*/}
-                            <td width={"500px" }>  {" $ "}  { totalIndirecto[key]} </td>
-                            <td width={"50px" }>{stringDolar}</td>
+                            <Td >  {" $ "}  { totalIndirecto[key]} </Td>
+                            <Td >{stringDolar}</Td>
 
                             
 
                             {/*================= Editar==================*/}
 
 
-                        </tr>
+                        </Tr>
                     ))}
-                </tbody>
+                </Tbody>
             </Table>
-
+            <br/>
+            <br/>
+      
                         <div>
                     {/*     <div> <Animaciones mytext="Totales " /> </div> */}
-         
-                            <Table responsive striped bordered hover size="sm" className="tablas">
-                                <thead>
-
-                                <tr className="titulo-tabla-usuarios">
-                            <th className='titulo-tabla'>Total Proyecto</th>
-                        </tr>
+                    <div> <Animaciones mytext="Costos Totales Finales " /> </div>
+ 
+                            <Table>
+                                <Thead>
 
                                     {/*=================== Titulos Tabla Clientes ===================*/}
-                                    <tr className="titulo-tabla-usuarios">
-                                        <th>Precio Final de Venta</th>
-                                        <th>Costo (Sin Indirecto)</th>
-                                        <th>Costo Final del Proyecto</th>
-                                        <th>Divisa</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                    <Tr >
+                                        <Th>Precio Final de Venta</Th>
+                                        <Th>Costo (Sin Indirecto)</Th>
+                                        <Th>Costo Final del Proyecto</Th>
+                                        <Th>Divisa</Th>
+                                    </Tr>
+                                </Thead>
+                                <Tbody>
                                     {/*=================== Contenido Tabla Clientes =================*/}
-                                            <tr > 
-                                            <td   className='amarillo'> {" $ "}{precioFinalVenta } {stringDolar}</td>  
-                                            <td className='azul'>{" $ "} {costoSinIndirectos}  {stringDolar}</td>    
-                                            <td  width={"500px"} className='verde'>{" $ "} {costoFianalProyecto}  </td>   
-                                            <td width={"50px"}   className='verde'>{stringDolar}   </td>     
-                                            </tr >
-                                </tbody>
+                                            <Tr > 
+                                            <Td   className='amarillo'> {" $ "}{precioFinalVenta } {stringDolar}</Td>  
+                                            <Td className='azul'>{" $ "} {costoSinIndirectos}  {stringDolar}</Td>    
+                                            <Td  className='verde'>{" $ "} {costoFianalProyecto}  </Td>   
+                                            <Td   className='verde'>{stringDolar}   </Td>     
+                                            </Tr >
+                                </Tbody>
                             </Table>
+
+                            <br/>
+                            <br/>
                         </div>
 
 
@@ -618,40 +607,39 @@ const ResumenAM = () => {
 
                         <div>
                
-                            <Table responsive striped bordered hover size="sm" className="tablas">
-                                <thead>
-
-                                <tr className="titulo-tabla-usuarios">
-                            <th className='titulo-tabla'>Datos Financiamiento</th>
-                        </tr>
+                            <Table >
+                                <Thead>
 
                                     {/*=================== Titulos Tabla Clientes ===================*/}
-                                    <tr className="titulo-tabla-usuarios">
-                                        <th>Precio Total de Venta Sin IVA </th>
-                                        <th>Costo Final</th>
-                                        <th>Mensual</th>
+                                    <Tr >
+                                        <Th>Precio Total de Venta Sin IVA </Th>
+                                        <Th>Costo Final</Th>
+                                        <Th>Mensual</Th>
                           
-                                        <th>Margen Real</th>
-                                        <th>Divisa</th>
+                                        <Th>Margen Real</Th>
+                                        <Th>Divisa</Th>
                                       
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                    </Tr>
+                                </Thead>
+                                <Tbody>
                                     {/*=================== Contenido Tabla Clientes =================*/}
-                                            <tr > 
-                                            <td   className='verde'> {" $ "}{precioFinalVenta } {stringDolar}</td>  
+                                            <Tr > 
+                                            <Td   className='verde'> {" $ "}{precioFinalVenta } {stringDolar}</Td>  
 
                                             
                                      {/*        <td className='azul'>{" $ "} {costoPTN[costoPTN.length -1]}  {stringDolar}</td>    
  */}
-                                            <td  width={"300px"} className='azul'>{" $ "} {costoFianalProyecto}  </td> 
+                                            <Td  className='azul'>{" $ "} {costoFianalProyecto}  </Td> 
 
-                                                <td width={"300px"}   className='verde'>{" $ "}  {mensu}   </td>   
-                                                <td width={"120px"}   className='azul'>{ margenReal } {" % "}   </td>   
-                                                <td width={"50px"}   className='verde'>{stringDolar}   </td> 
-                                            </tr >
-                                </tbody>
+                                                <Td   className='verde'>{" $ "}  {mensu}   </Td>   
+                                                <Td    className='azul'>{ margenReal } {" % "}   </Td>   
+                                                <Td   className='verde'>{stringDolar}   </Td> 
+                                            </Tr >
+                                </Tbody>
                             </Table>
+                            <br/>
+                            
+                            <br/>
                         </div>
 
 

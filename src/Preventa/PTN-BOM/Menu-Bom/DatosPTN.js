@@ -14,14 +14,14 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="contenido-usuarios">
+    <div className="">
       {/*========================== Titulos ==========================*/}
       <div>
         {" "}
       {/*   <Animaciones mytext="Datos PTN" />{" "} */}
       </div>
       {/*========================== Tabla Datos partida==========================*/}
-      <div className="arregla">
+      <div className="">
         <Partida/>
       {/*========================== Tabla Datos PTN ==========================*/}
       
@@ -43,7 +43,7 @@ function DatosPTN(props) {
           {show ? (
             <div></div>
             ) : (
-            <div className="arregla">
+            <div className="">
               {/*======================== Llamar al componente Categorias ==========================*/}
               <Categorias clave={props.clave} />
             </div>

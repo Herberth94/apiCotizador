@@ -5,9 +5,9 @@ export let authAdmin1;
 export let authPreventa1;
 export let authVenta1;
 export let i = "";
-
-export let validator = 'administrador';
-
+export let validator = cookies.get('rol');
+/* export let validator = 'administrador';  */
+    
 // console.log(validator);
 
 

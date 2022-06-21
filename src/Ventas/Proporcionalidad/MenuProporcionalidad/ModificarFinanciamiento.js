@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import {  url2 } from "../../../Componentes/Ocultar";
 import { estatusProy2,idAsignado } from './BuscadorProyectoFinanciamiento';
 import { hoy } from '../../../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto';
@@ -142,48 +142,41 @@ function ModificarFinanciamiento(prop) {
 
         <div className="contenido-usuarios">
 
-            <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
+            <Table>
+                <Thead>
 
-                <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>Modificar Financiamiento</th>
-                      
-
-
-                    </tr>
 
                     {/*=================== Titulos Tabla Clientes ===================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Tasa de Interes</th>
-                        <th>Años de Financiamiento</th>
-                        <th>Diferimiento de Tasa</th>
-                        <th>Modificar</th>
-                        <th></th>
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>Tasa de Interes</Th>
+                        <Th>Años Financiamiento</Th>
+                        <Th>Diferimiento de Tasa</Th>
+                        <Th>Modificar</Th>
+                        <Th></Th>
 
 
-                    </tr>
-                </thead>
-                <tbody>
+                    </Tr>
+                </Thead>
+                <Tbody>
                 {Object.keys(listaFinanciamiento).map((key) => (
-                        <tr key={listaFinanciamiento[key].pd_id}>
+                        <Tr key={listaFinanciamiento[key].pd_id}>
                             {/*================= ID ==================*/}
-                            <td>
+                            <Td>
                                 {listaFinanciamiento[key].pd_id}
-                            </td>
+                            </Td>
                             {/*================= Años de Financiamiento ==================*/}
-                            <td>
+                            <Td>
                                 <input
                                     onChange={handleInputChange}
                                     defaultValue={listaFinanciamiento[key].pd_tasa_interes}
                                     type="text"
                                     disabled={enable[key]}
                                     name='pd_tasa_interes'></input>
-                            </td>
+                            </Td>
 
                             {/*================= Pagos Anuales ==================*/}
-                            <td>
+                            <Td>
                                 <input
                                     onChange={handleInputChange}
                                     defaultValue={listaFinanciamiento[key].pd_anio_financiamiento}
@@ -191,9 +184,9 @@ function ModificarFinanciamiento(prop) {
                                     disabled={enable[key]}
                                     name='pd_anio_financiamiento'>
                                 </input>
-                            </td>
+                            </Td>
                             {/*================= Pagos Anuales ==================*/}
-                            <td>
+                            <Td>
                                 <input
                                     onChange={handleInputChange}
                                     defaultValue={listaFinanciamiento[key].pd_pagos_anuales}
@@ -201,7 +194,7 @@ function ModificarFinanciamiento(prop) {
                                     disabled={enable[key]}
                                     name='pd_pagos_anuales'>
                                 </input>
-                            </td>
+                            </Td>
                             {/*================= Agregar==================*/}
                         {/*     <td>
                                 <button 
@@ -220,9 +213,9 @@ function ModificarFinanciamiento(prop) {
 
 
 {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td width={"100px"} >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton" type="button"
                                     onClick={()=>{
                                     //    props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -232,12 +225,12 @@ function ModificarFinanciamiento(prop) {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               < >
-                                    <td width={"100px"} >
+                                    <Td width={"100px"} >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton" type="button"
                                     onClick={()=>{
                                         habilitar(key);
                                     envioData(key);
@@ -245,11 +238,11 @@ function ModificarFinanciamiento(prop) {
                                     >
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton cancelar" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
@@ -258,13 +251,13 @@ function ModificarFinanciamiento(prop) {
                                     >
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
-                                </td>
+                                </Td>
                                 </>
                             )}
                             
-                        </tr>
+                        </Tr>
                          ))}
-                </tbody>
+                </Tbody>
             </Table>
         </div>
 
