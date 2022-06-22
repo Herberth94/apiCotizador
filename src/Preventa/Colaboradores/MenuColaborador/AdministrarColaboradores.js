@@ -137,18 +137,27 @@ function AdministrarColaboradores(props) {
 }
 
   return (
-    <div className="contenido-usuarios">
-
+    <div className="contenido-marvilop">
+   
       <Animaciones  mytext="Administrar Colaboradores"/>
       <div className="table-responsive">
-        <div className = "busqueda-proyectos">
+        <div className = "buscador-inteligente">
 
+ 
+                <form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
 
-   
-        {/*========================== Titulo Animación =======================*/}
-    {/*     <div> <Animaciones   mytext= "Buscar proyecto"   /> </div>
- */}
-        <Table  id="nombreDiv">
+                </form>
+
+     {/*    <Table  >
           <Thead>
             <Tr className="titulo-tabla-usuarios">
               <Th className="ocultar">Clave</Th>
@@ -166,7 +175,7 @@ function AdministrarColaboradores(props) {
               </Td>
             </Tr>
           </Tbody>
-        </Table>
+        </Table> */}
 
 
         </div>
@@ -201,13 +210,13 @@ function AdministrarColaboradores(props) {
                     <Td>{suggestions[key].proyecto_clave}</Td>  
                     <Td>{suggestions[key].proyecto_descripcion}</Td>  
                     <Td>{suggestions[key].nombre_cliente}</Td> 
-                    <Td width={"150px"}>{suggestions[key].proyecto_fecha_creacion}</Td>
-                    <Td   width={"150px"}>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                    <Td >{suggestions[key].proyecto_fecha_creacion}</Td>
+                    <Td >{suggestions[key].proyecto_fecha_modificacion}</Td>
                     <Td  className= {suggestions[key].proyecto_estatus } >{suggestions[key].proyecto_estatus}</Td>  
-                    <Td  width={"50 px"}>{suggestions[key].proyecto_plazo_meses}</Td> 
-                    <Td width={"100 px"}>
+                    <Td  >{suggestions[key].proyecto_plazo_meses}</Td> 
+                    <Td>
                       <button 
-                        className="btn btn-primary Ver" 
+                        className="sn-boton" 
                         type="button" 
                         onClick={() => {
                           habilitar2(key);

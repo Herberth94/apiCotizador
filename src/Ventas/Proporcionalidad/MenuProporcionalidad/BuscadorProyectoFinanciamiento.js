@@ -117,32 +117,31 @@ function BuscadorProyectoFinanciamiento() {
     }
 
     return (
-        <div className="contenido-usuarios">
+        <div className="contenido-marvilop">
             {/*======================= Titulo Animación =======================*/}
           <div> <Animaciones mytext="Datos Financiamiento" /> </div> 
             {/*********Búsqueda de Proyectos AM ********/}
 
-            <div className="">
-                <Table >
-                    <thead>
-                        <tr className="azul">
-                            <th className='ocultar'>Clave Proyecto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr >
-                            <td className='busqueda'> 
-                                <input className="agregar"
-                                    type="text"
-                                    name="proyecto_clave"
-                                    onChange={e => onChangeTextClaveP(e.target.value)}
-                                    value={claveP}
-                                    placeholder=" 🔎 Búsqueda por Clave del Proyecto" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
+            <div className = "buscador-inteligente">
+
+ 
+<form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave 🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
+
+                </form>
+
+     
+
+
+        </div>
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
               {/*   <div> <Animaciones mytext="Proyectos" /> </div>

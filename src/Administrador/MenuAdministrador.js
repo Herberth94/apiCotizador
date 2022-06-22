@@ -21,7 +21,7 @@ function Archivo() {
 
     return (
 
-        <div className='' >
+        <div className='menu-principal' >
             <Navbar expand="lg">
                 <Container fluid>
                     <Navbar.Brand id="titulo" href="/">Marvilop</Navbar.Brand>
@@ -130,7 +130,8 @@ function Archivo() {
                                     >
                                         <NavDropdown.Item href="/nuevo-proyecto">Nuevo proyecto</NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/continuar-proyecto">Continuar Proyecto</NavDropdown.Item>
+                                        <NavDropdown.Item href="/continuar-proyecto">Continuar Proyecto           
+                                        </NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item href="#resumen-proyecto">Resumen</NavDropdown.Item>
 
@@ -221,15 +222,6 @@ function Archivo() {
 
 
 
-
-                <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="   Buscar" aria-label="Search" />
-
-                </form>
-                
-       <button className="bus" type="submit">🔎</button>
-              
-         
             </Navbar>
         </div>
     );

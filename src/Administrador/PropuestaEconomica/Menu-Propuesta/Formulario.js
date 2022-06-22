@@ -79,7 +79,7 @@ function Formulario() {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="contenido-usuarios">
+    <div className="">
 
 
 

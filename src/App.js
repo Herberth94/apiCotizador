@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 import "./Componentes/css/Animaciones.css";
 import "./css/Tablas.css";
+import "./css/Buscador.css"
 import Header from "./Componentes/Header";
 //============ Rutas Públicas ============
 import Login from './Administrador/Login/Login';
@@ -18,6 +19,7 @@ import MenuHeramientas from "./Componentes/Herramientas/MenuHeramientas";
 
 import CalculaDescuento from "./Componentes/Herramientas/CalculaDescuento";
 import NuevoProyecto from "./Preventa/PTN-BOM/Menu-Bom/NuevoProyecto";
+import NuevoProyectoExcel from "./Componentes/Herramientas/NuevoProyectoExcel";
 import Excel from "./Componentes/Herramientas/excel";
 
 //============ Administrador Páginas Private Administrador ============
@@ -43,6 +45,10 @@ import BuscadorProyectoFinanciamiento from "./Ventas/Proporcionalidad/MenuPropor
 import BuscadorInteligente3 from "./Administrador/PropuestaEconomica/Menu-Propuesta/BuscadorInteligente3";
 import BuscadorInteligente4 from "./Administrador/PropuestaEconomica/Menu-Propuesta/BuscadorInteligente4";
 import ResumenAM from "./Ventas/AM/Menu-AM/ResumenAM";
+
+
+
+import ContinuarProyecto from "./Preventa/PTN-BOM/Menu-Bom/ContinuarProyecto";
 
 
 import AgregarColaborador from "./Preventa/Colaboradores/MenuColaborador/AgregarColaborador";
@@ -103,10 +109,7 @@ function App() {
               
         <Administrador exact path="/calculadora" component={CalculaDescuento} />
         <Administrador  path="/documentacion" component={MenuHeramientas} />
-
-
-        <Administrador exact path="/plantilla-excel" component={NuevoProyecto} />
-        <Administrador exact path="/plantilla-excel" component={Excel} />
+        <Administrador exact path="/plantilla-excel" component={NuevoProyectoExcel} />
 
 
         {/* <Administrador exact path="/" component={CambioContraseña} /> */}
@@ -131,6 +134,9 @@ function App() {
 
 {/* /////////////Preventa */}
         <Administrador exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
+        <Administrador exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
+   
+ 
    
  
 

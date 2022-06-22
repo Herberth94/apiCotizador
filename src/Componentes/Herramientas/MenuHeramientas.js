@@ -3,18 +3,11 @@ import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 import Cookies from 'universal-cookie';
-import CalculaDescuento from './CalculaDescuento';
 import pdf from "../../Componentes/Manuales/Manual_Administrador_V1.pdf";
 import pdf2 from "../../Componentes/Manuales/Manual_Preventa_V1.pdf";
 import pdf3 from "../../Componentes/Manuales/Manual_Ventas_V1.pdf";
+import Plantilla from "../../Componentes/Manuales/Plantilla.xlsx"
 
-
-import Excel from "../../Componentes/Herramientas/excel.js";
-import Nuevo from "../../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto";
-
-
-
-import CargaDatos from "./CargaDatos";
 
 
 let G;
@@ -36,20 +29,16 @@ if (tipoRol === "administrador") {
 function MenuHeramientas() {
 
 
-  //Habilitar/Deshabilitar tabla del resumen AM
-  const [show, setShow] = useState(true)
-  const [show2, setShow2] = useState(true)
-  const [show3, setShow3] = useState(true)
   return (
 
 
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
 
 
-      <Animaciones mytext="Manual de Usuario" />
+      <Animaciones mytext="Documentos" />
 
       {/*========================== Tabla  Categorias ==========================*/}
-      <Table responsive id="nombreDiv">
+      <Table >
         {/*========================== Titulos Tabla ==========================*/}
         <tbody>
           <tr className="headerPropuesta">
@@ -60,13 +49,15 @@ function MenuHeramientas() {
                 </button>
               </form>
             </td>
+            <td>
+              <form method="get" action={Plantilla}>
+                <button className="btn btn-primary Excel" > Descargar Plantilla Excel
+                </button>
+              </form>
+            </td>
           </tr>
         </tbody>
       </Table>
-
-
-
-
     </div>
   )
 }

@@ -14,9 +14,8 @@ function Proporcionalidad() {
   return (
     
     
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
 
-        <br/>
 
         <div>
             <Animaciones mytext="Proporcionalidad" />

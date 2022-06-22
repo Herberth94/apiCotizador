@@ -1,3 +1,6 @@
+a#nav-dropdown-dark-example.dropdown-toggle.nav-link::after{
+  color: #ffffff;
+}
 
 
 
@@ -107,10 +110,6 @@ select#rol{
   -o-border-radius: 10px ;
 }
 
-div.tdBefore{
-
-}
-
 .bus{
   background-color: #1db88400;
   border: none;
@@ -125,9 +124,6 @@ button.bus{
 .buscador{
   position: relative;
   right: 50px;
-}
-a#nav-dropdown-dark-example.dropdown-toggle.nav-link::after{
-  color: #1db88400;
 }
 
 .container-fluid{

@@ -4,9 +4,11 @@ import { url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 
 import CreateIcon from "@material-ui/icons/Create";
+
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import {
-	Box, Button, Snackbar, Table,
-	TableBody, TableCell, TableHead, TableRow
+	Box, Button, Snackbar,
+TableBody, TableCell, TableHead, TableRow
 } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddBoxIcon from "@material-ui/icons/AddBox";
@@ -337,8 +339,9 @@ function DatosPTN2(props) {
 
 return (
 
+<div className='arregla multiple'>
+	
 
- 
 	<TableBody>
 	<Snackbar
 		open={open}
@@ -691,21 +694,6 @@ return (
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 						
 					{/* 	<TableCell padding="none">
 						<select
@@ -828,7 +816,8 @@ return (
 	</Box>
 	</TableBody>
 
-
+	</div>
+ 
 
   
 );

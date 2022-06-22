@@ -83,7 +83,7 @@ export const CrudClientes = (props) => {
     }
 
     return (
-        <div>
+        <div className='administracion'>
 
             <div>
                 <Animaciones mytext="Administración de Clientes" />

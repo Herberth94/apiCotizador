@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import * as XLSX from 'xlsx'
 import Table from "react-bootstrap/Table";
 import "../css/excel.css"
-import {PLN}  from "./PLN";
 import axios from "axios";
 import {url2} from "../Ocultar";
 
@@ -58,7 +57,7 @@ function Excel() {
   }
 
   return (
-    <div  className='contenido-usuarios'>
+    <div  className='arregla multiple'>
       <input className="btn btn-primary Mod"
         type="file"
         onChange={(e) => {
@@ -133,8 +132,11 @@ function Excel() {
             
 {/* <button  className='btn btn-primary Mod'> Subir Datos</button>
  */}
+
+
 <br/>
 <br/>
+
     </div>
   );
 }

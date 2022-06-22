@@ -3,14 +3,10 @@ import { useState, useEffect } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-
 //Componentes
-import Animaciones from "../../../Componentes/Animaciones";
-import "../css/PTN_BOM.css";
-import DatosPTN from "../Menu-Bom/DatosPTN";
-import DatosPTN2 from "../Menu-Bom/DatosPTN2";
-import { url, url2 } from "../../../Componentes/Ocultar";
-
+import Animaciones from "../Animaciones";
+import Excel from "./excel";
+import { url, url2 } from  "../Ocultar";
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
@@ -26,7 +22,7 @@ export function getIdP2 (proyecto_id){
   //console.log('Ultimo proyecto creado:',pId1);
 }
 
-function NuevoProyecto() {
+function NuevoProyectoExcel() {
 
   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
@@ -186,11 +182,11 @@ function NuevoProyecto() {
 
   return (
 
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
 
       <div>
 
-        <Animaciones  mytext= "Datos Nuevo Proyecto" />
+        <Animaciones  mytext= "Cargar Plantilla Excel" />
         
       </div>
       {/*======================= Titulo Animación =======================*/}
@@ -289,7 +285,7 @@ function NuevoProyecto() {
         <div className="">
       {/*     <DatosPTN clave={clavep} /> */}
 
-      <DatosPTN2   clave={clavep} />
+      <Excel  clave={clavep} />
 
         </div>
       )}
@@ -303,4 +299,4 @@ function NuevoProyecto() {
   )
 }
 
-export default NuevoProyecto
+export default NuevoProyectoExcel

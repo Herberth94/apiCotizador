@@ -79,7 +79,7 @@ export const CrudUsuarios = (props) => {
   };
 
   return (
-    <div className="">
+    <div className="administracion">
       <div>
        <Animaciones  mytext="Lista de Usuarios" />
       </div>

@@ -166,33 +166,28 @@ function BuscadorInteligente2() {
     }
     
   return (
-    <div className="contenido-usuarios">
-        <div className="">
+    <div className="contenido-marvilop">
+            <Animaciones mytext="Resumen Proporcionalidad" />
+            <div className = "buscador-inteligente">
 
-            <div className='titulo'>
+ 
+<form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave 🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
 
-                <Animaciones mytext="Resumen Proporcionalidad" />
-            </div>
-                <Table>
-                    <thead>
-                        <tr className="azul">
-                            <th className='ocultar'>Clave Proyecto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr >
-                            <td className='busqueda'>
-                            <input className="agregar"
-                                    type="text"
-                                    name="proyecto_clave"
-                                    onChange={e => onChangeTextClaveP(e.target.value)}
-                                    value={claveP}
-                                    placeholder="🔎 Búsqueda por Clave del Proyecto" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>   
+                </form>
+
+     
+
+
+        </div>
                 {/*============= Titulo Animación =============*/}
          {/*        <div> <Animaciones mytext="Proyectos " /> </div> */}
 

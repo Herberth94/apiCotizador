@@ -78,7 +78,7 @@ validaOperacion = !validaOperacion;
       
 
   return (
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
 
       <div>
         <Animaciones mytext= "Calculadora"/>

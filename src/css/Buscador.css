@@ -1,0 +1,80 @@
+
+.buscador-inteligente{
+    position: fixed;
+    z-index: 2;
+    justify-content: end;
+    right: 20px;
+    top: 0;
+    top: 10px;
+    }
+    
+    .administracion{
+      position: absolute;
+      top: 80px;
+      width: 100%;
+      left: 0px;
+      padding: 0px 20px;
+    }
+
+
+
+    .menu-principal{
+      position: fixed;
+       width: 100%;
+       z-index: 1;
+    }
+    
+
+    .contenido-marvilop{
+        position: relative;
+        padding: 20px  ;
+        top: 100px;
+    }
+
+    
+
+
+.arregla.multiple{
+
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    padding: 0px  20px;
+    margin: 0px;
+  
+     }
+
+
+    @media screen and (max-width: 960px) {
+
+        .buscador-inteligente{
+            position: fixed;
+            right: 0px;
+            z-index: 2;
+            justify-content: end;
+             top: 0;
+            top: 70px;
+            width: 100%;
+            z-index: 1;
+            padding: 0px 20px 0px;
+            }
+            .menu-principal{
+                position: fixed;
+                 width: 100%;
+                 z-index: 2;
+              }
+            
+
+
+              .arregla.multiple{
+
+                position: absolute;
+                width: 100%;
+                left: 0px;
+                padding: 0px  20px;
+                margin: 0px;
+              
+                 }
+    }
+    
+    

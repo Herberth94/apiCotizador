@@ -1,4 +1,27 @@
-/* VARIABLES CSS  */
+
+
+
+   table.makeStyles-table-2.responsiveTable{
+    position:absolute;
+    width: 100%;
+    left: 0px;
+    height: 10px;
+   }
+
+   
+   .btn.btn-primary.Excel{
+background-color: #116b20;
+   }
+
+   .btn.btn-primary.Excel:hover{
+    background-color: #18992d;
+       }
+
+
+
+
+
+
 td{
   letter-spacing: 2px;
 }

@@ -1,9 +1,7 @@
 import axios from 'axios';
 import React from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { url2 } from '../../../Componentes/Ocultar';
-import Animaciones from '../../../Componentes/Animaciones';
-
 
 export const CrudColaboradores = (props) => {
 
@@ -29,35 +27,32 @@ export const CrudColaboradores = (props) => {
     return (
         <div>
 
-            <div className='arregla'>
+            <div className=''>
 
-             <Animaciones   mytext= "Administrar Colaboradores" />
-
+      {/*        <Animaciones   mytext= "Administrar Colaboradores" />
+ */}
             </div>
             {/*===================     Tabla Proveedores   ========================*/}
-            <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
+            <Table>
+                <Thead>
                     {/*=================== Titulos Tabla Proveedores ===================*/}
                         
-                    <tr className="titulo-tabla-usuarios">
-                     <th></th>
-                        <th className='titulo-tabla'>{props.estado ? "Administrar Ventas" : "Administrar Preventa"}</th>
-                        </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
+
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</Th>
+                        <Th>Eliminar</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/*=================== Tabla de los colaboradores de un Proyecto =================*/}
                     {Object.keys(props.colabs).map((key) => (
-                    <tr key={props.estado ? props.colabs[parseInt(key)].id_usuario : props.colabs[parseInt(key)].colab_id }>
-                        <td>{props.colabs[parseInt(key)].id_usuario}</td>
+                    <Tr key={props.estado ? props.colabs[parseInt(key)].id_usuario : props.colabs[parseInt(key)].colab_id }>
+                        <Td>{props.colabs[parseInt(key)].id_usuario}</Td>
                         {/*=================== Nombre/Email del Colaborador =================*/}
-                        <td>{props.colabs[parseInt(key)].email}</td>
+                        <Td>{props.colabs[parseInt(key)].email}</Td>
                         {/*=================== Botón Eliminar =================*/}
-                        <td width={"100px"}>
+                        <Td width={"100px"}>
                             {" "}
                             <button
                                 className="btn btn-primary eliminar"
@@ -69,10 +64,10 @@ export const CrudColaboradores = (props) => {
                            <i className="bi bi-trash-fill"></i> 
                               
                             </button>
-                        </td>
-                    </tr>  
+                        </Td>
+                    </Tr>  
                     ))}
-                </tbody>
+                </Tbody>
             </Table>
         </div>
     )

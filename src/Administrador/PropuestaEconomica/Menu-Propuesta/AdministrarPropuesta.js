@@ -38,7 +38,7 @@ function AdministrarPropuesta(props) {
   }
 
   return (
-    <div className="contenido-usuarios">
+    <div className="">
 
 
       <div className="table-responsive">

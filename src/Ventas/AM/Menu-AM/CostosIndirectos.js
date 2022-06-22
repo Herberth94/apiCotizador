@@ -76,7 +76,7 @@ function CostosIndirectos(props) {
 
   return (
       
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
  
 {/*    <div> <Animaciones mytext="Costos Indirectos" /> </div> 
  */}
