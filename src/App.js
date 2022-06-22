@@ -47,7 +47,7 @@ import BuscadorInteligente4 from "./Administrador/PropuestaEconomica/Menu-Propue
 import ResumenAM from "./Ventas/AM/Menu-AM/ResumenAM";
 
 
-
+import Proyectos from "./Preventa/PTN-BOM/Menu-Bom/ResumenProyectos";
 import ContinuarProyecto from "./Preventa/PTN-BOM/Menu-Bom/ContinuarProyecto";
 
 
@@ -135,6 +135,8 @@ function App() {
 {/* /////////////Preventa */}
         <Administrador exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
         <Administrador exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
+        <Administrador exact path="/resumen-proyecto" component={Proyectos } /> 
+   
    
  
    

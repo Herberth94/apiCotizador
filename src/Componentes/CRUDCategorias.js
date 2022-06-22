@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { EditPrecio } from '../Routes/ModificarPrecio';
 import Animaciones from './Animaciones';
 import { CrudPrecios } from './CRUDPrecios';
@@ -149,39 +149,35 @@ export const CrudCategorias = (props) => {
     /*=============================================================================================================*/
 
     return (
-        <div>
+        <div className=''>
            {/* <form> */}
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
              {/*    <Animaciones mytext="Categorias " />
  */}
-                <Table responsive  striped bordered hover size="sm">
-                    <thead>
+                <Table >
+                    <Thead>
 
-                    <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>Resumen Categorias</th>
-                         
-                        </tr>
-                        <tr className="titulo-tabla-usuarios">
-                            <th>ID</th>
-                            <th>Categoria</th>
-                            <th># Parte</th>
-                            <th>Descripción</th>
-                            <th>Duración Meses</th>
-                            <th>Entrega Semanas</th>
-                            <th>Comentarios</th>
-                            <th>Precios</th>
-                            <th>Modificar</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+                 
+                        <Tr>
+                            <Th>ID</Th>
+                            <Th>Categoria</Th>
+                            <Th># Parte</Th>
+                            <Th>Descripción</Th>
+                            <Th>Duración Meses</Th>
+                            <Th>Entrega Semanas</Th>
+                            <Th>Comentarios</Th>
+                            <Th>Precios</Th>
+                            <Th>Modificar</Th>
+                            <Th></Th>
+                        </Tr>
+                    </Thead>
                                     
-                    <tbody>
+                    <Tbody>
                         {Object.keys(props.dcats).map((key) => (    
-                            <tr key={key} >
-                                <td >{props.dcats[key].cd_id}</td>  
-                                <td width={"200px"}>
+                            <Tr key={key} >
+                                <Td >{props.dcats[key].cd_id}</Td>  
+                                <Td >
                                     {" "}
                                     <select 
                                     id="lista-opciones" 
@@ -195,8 +191,8 @@ export const CrudCategorias = (props) => {
                                         <option value={3}>Servicios PTN</option>
                                         <option value={4}>Mesa de Ayuda</option>
                                     </select>
-                                </td> 
-                                <td width={"200px"}>
+                                </Td> 
+                                <Td >
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_no_parte} 
@@ -204,8 +200,8 @@ export const CrudCategorias = (props) => {
                                     onChange={handleInputChange}
                                     name="cd_no_parte" 
                                     ></input>
-                                </td>  
-                                <td width={"400px"}>
+                                </Td>  
+                                <Td >
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_descripcion} 
@@ -213,8 +209,8 @@ export const CrudCategorias = (props) => {
                                     onChange={handleInputChange}
                                     name="cd_descripcion" 
                                     ></input>
-                                </td> 
-                                <td width={"50px"}>
+                                </Td> 
+                                <Td>
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_meses} 
@@ -222,8 +218,8 @@ export const CrudCategorias = (props) => {
                                     onChange={handleInputChange}
                                     name="cd_meses" 
                                     ></input>
-                                </td>   
-                                <td width={"50px"}>
+                                </Td>   
+                                <Td >
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_semanas} 
@@ -231,8 +227,8 @@ export const CrudCategorias = (props) => {
                                     onChange={handleInputChange}
                                     name="cd_semanas" 
                                     ></input>
-                                </td>  
-                                <td width={"300px"}>
+                                </Td>  
+                                <Td >
                                     <input 
                                     className="input-name" 
                                     defaultValue={props.dcats[key].cd_comentarios} 
@@ -240,11 +236,11 @@ export const CrudCategorias = (props) => {
                                     onChange={handleInputChange}
                                     name="cd_comentarios" 
                                     ></input>
-                                </td>  
+                                </Td>  
 
-                                <td>
+                                <Td>
                                     <button 
-                                    className="btn btn-primary Ver" 
+                                    className="sn-boton ver" 
                                     onClick={()=>{
                                         getDatosPrecios(props.dcats[key].cd_id); 
                                         habilitar2(key);
@@ -254,7 +250,7 @@ export const CrudCategorias = (props) => {
                                   <i className=     {textBVer[key]}  ></i>
                                    
                                     </button> 
-                                </td>
+                                </Td>
 
 
 
@@ -275,9 +271,9 @@ export const CrudCategorias = (props) => {
 
 
 {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton" type="button"
                                     onClick={()=>{
                                     //    props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -287,12 +283,12 @@ export const CrudCategorias = (props) => {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               < >
-                                    <td width={"100px"} >
+                                    <Td  >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton" type="button"
                                     onClick={()=>{
                                         props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -301,11 +297,11 @@ export const CrudCategorias = (props) => {
                                     >
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td>
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton cancelar" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
@@ -314,7 +310,7 @@ export const CrudCategorias = (props) => {
                                     >
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
-                                </td>
+                                </Td>
                                 </>
                             )}
                             
@@ -323,9 +319,9 @@ export const CrudCategorias = (props) => {
 
                                 
                                
-                            </tr>  
+                            </Tr>  
                         ))}
-                    </tbody>          
+                    </Tbody>          
                 </Table>
                 {show2 ? (
                     <div></div>

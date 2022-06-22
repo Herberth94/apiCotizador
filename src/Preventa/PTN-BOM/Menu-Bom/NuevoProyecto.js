@@ -186,7 +186,7 @@ function NuevoProyecto() {
 
   return (
 
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
 
       <div>
 
@@ -286,7 +286,7 @@ function NuevoProyecto() {
       
       
       (
-        <div className="">
+        <div className="arregla multiple">
       {/*     <DatosPTN clave={clavep} /> */}
 
       <DatosPTN2   clave={clavep} />

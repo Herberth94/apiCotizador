@@ -133,7 +133,7 @@ function Archivo() {
                                         <NavDropdown.Item href="/continuar-proyecto">Continuar Proyecto           
                                         </NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#resumen-proyecto">Resumen</NavDropdown.Item>
+                                        <NavDropdown.Item href="/resumen-proyecto">Resumen</NavDropdown.Item>
 
 
                                     </NavDropdown>

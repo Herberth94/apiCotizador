@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from '../../../Componentes/Animaciones';
 
 //Componentes
-import {url, url2} from "../../../Componentes/Ocultar";
+import { url2} from "../../../Componentes/Ocultar";
 import { EditPartida } from '../../../Routes/ModificarPartida';
 import { EditCats } from '../../../Routes/ModificarCategorias';
 import { CrudPartidas } from '../../../Componentes/CRUDPartidas';
@@ -298,51 +298,51 @@ export const CrudProyectos = (props) => {
     /*==============================================================================================================*/
     return (
         <div>
-            <Table responsive  striped bordered hover size="sm">
-                <thead>
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Clave</th>
-                        <th>Descripción</th>
-                        <th>Cliente</th>
-                        <th>Fecha Creación</th>
-                        <th>Fecha Modificación</th>
-                        <th>Estatus</th>
-                        <th>Plazo Meses</th>
-                        <th>Modificar</th>
-                        <th>Detalles</th>
-                        <th></th>
-                    </tr>
-                </thead>
+            <Table >
+                <Thead>
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>Clave</Th>
+                        <Th>Descripción</Th>
+                        <Th>Cliente</Th>
+                        <Th>Fecha Creación</Th>
+                        <Th>Fecha Modificación</Th>
+                        <Th>Estatus</Th>
+                        <Th>Plazo Meses</Th>
+                        <Th>Modificar</Th>
+                        <Th>Detalles</Th>
+                        <Th></Th>
+                    </Tr>
+                </Thead>
                                 
-                <tbody>
+                <Tbody>
                     {Object.keys(props.suggestionsP).map((key) => (    
-                        <tr key={props.suggestionsP[key].proyecto_id} >
-                            <td>{props.suggestionsP[key].proyecto_id}</td>  
-                            <td>
-                                <input 
-                                className="input-name" 
+                        <Tr key={props.suggestionsP[key].proyecto_id} >
+                            <Td>{props.suggestionsP[key].proyecto_id}</Td>  
+                            <Td>
+                                <input
+                     
                                 defaultValue={props.suggestionsP[key].proyecto_clave} 
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="proyecto_clave" 
                                 ></input>
-                            </td>   
+                            </Td>   
 
-                            <td>
+                            <Td>
                                 <input 
-                                className="input-name" 
+                                
                                 defaultValue={props.suggestionsP[key].proyecto_descripcion} 
                                 disabled={enable[key]} 
                                 onChange={handleInputChange}
                                 name="proyecto_descripcion" 
                                 ></input>
-                            </td>  
+                            </Td>  
 
-                            <td>
+                            <Td>
                             {" "}
                             <input
-                                className="agregar"
+                                
                                 type="text"
                                 name="nombre_cliente"
                                 disabled={enable[key]}
@@ -367,14 +367,14 @@ export const CrudProyectos = (props) => {
                                     }}
                                     
                                 )}
-                            </td> 
+                            </Td> 
 
-                            <td>{props.suggestionsP[key].proyecto_fecha_creacion}</td>
+                            <Td>{props.suggestionsP[key].proyecto_fecha_creacion}</Td>
 
-                            <td>{props.suggestionsP[key].proyecto_fecha_modificacion}</td>
+                            <Td>{props.suggestionsP[key].proyecto_fecha_modificacion}</Td>
 
-                            <td  className={props.suggestionsP[key].proyecto_estatus}>{props.suggestionsP[key].proyecto_estatus}</td>
-                            <td width={"100px"}>
+                            <Td  className={props.suggestionsP[key].proyecto_estatus}>{props.suggestionsP[key].proyecto_estatus}</Td>
+                            <Td >
                                 <input 
                                 className="input-name" 
                                 defaultValue={props.suggestionsP[key].proyecto_plazo_meses} 
@@ -382,13 +382,13 @@ export const CrudProyectos = (props) => {
                                 onChange={handleInputChange}
                                 name="proyecto_plazo_meses" 
                                 ></input>
-                            </td> 
+                            </Td> 
 
 
                             {enable[key] ? (
-                            <td width={"100px"} >
+                            <Td width={"100px"} >
                                 <button 
-                                className=  "btn btn-primary Mod" type="button"
+                                className=  "sn-boton" type="button"
                                 onClick={()=>{
                                     //props.envioDataP(nombreC,props.clientes,datos,key,data);
                                     habilitar(key); 
@@ -397,12 +397,12 @@ export const CrudProyectos = (props) => {
                                 >
                                     <i className  = {textBModificar[key]}  ></i>
                                 </button>
-                            </td>
+                            </Td>
                         ):(
                             <>
-                            <td width={"100px"} >
+                            <Td width={"100px"} >
                                 <button 
-                                className="btn btn-primary Mod" type="button"
+                                className="sn-boton" type="button"
                                 onClick={()=>{
                                     props.envioDataP(nombreC,props.clientes,datos,key,data);
                                     habilitar(key); 
@@ -411,11 +411,11 @@ export const CrudProyectos = (props) => {
                                 >
                                     <i className= {textBModificar[key]}  ></i>
                                 </button>
-                            </td>
+                            </Td>
 
-                            <td width={"100px"}>
+                            <Td width={"100px"}>
                                 <button 
-                                className="btn btn-primary Cancelar" type="button"
+                                className="sn-boton cancelar" type="button"
                                 onClick={()=>{
                                     /*   props.envioData(datos,key,data);  */
                                     habilitar(key); 
@@ -427,14 +427,14 @@ export const CrudProyectos = (props) => {
                                     <i className= "bi bi-x-lg"  ></i>
                                 </button>
                                 
-                            </td>
+                            </Td>
                             </>
                         )}
                         
-                        <td width={"100px"}>
+                        <Td width={"100px"}>
                         {" "}
                         <button
-                            className="btn btn-primary Ver"
+                            className="sn-boton ver"
                             type="button"
                             onClick={() => {
                                 getIdP(props.suggestionsP[key]);
@@ -444,39 +444,35 @@ export const CrudProyectos = (props) => {
                         >
                             <i className= {textBVer[key]}></i>
                         </button>
-                    </td>
-                        </tr>  
+                    </Td>
+                        </Tr>  
                     ))}
-                </tbody>          
+                </Tbody>          
             </Table>
 
             {show ? (
                 <></>
             ):(
-                <div className='arregla'>
-                    <div className='contenido-usuarios'>
-                        <div className="table-responsive">
+                <div className=''>
                             <div>
-                            {/*      <Animaciones mytext="Resumen" />  */}
+                             <Animaciones mytext="Resumen" />  
                             </div>
-                            <Table responsive id="nombreDiv">
+                            <Table >
                                 {/*========================== Titulos Tabla ==========================*/}
-                                <thead>
+                                <Thead>
                                     {/* <tr className="titulo-tabla-usuarios">
                                         <th className='titulo-tabla'>{proyecto}</th>
                                     </tr> */}
-                                    <tr className="titulo-tabla-usuarios">
-                                        <th className='titulo-tabla'>Resumen por Apartados</th>
-                                    </tr>
-                                    <tr className="titulo-tabla-usuarios">
-                                        <th>Partidas</th>
-                                        <th>Categorías</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr className="">
+                                 
+                                    <Tr >
+                                        <Th className='ocultar'>Partidas</Th>
+                                        <Th  className='ocultar'>Categorías</Th>
+                                    </Tr>
+                                </Thead>
+                                <Tbody>
+                                    <Tr className="">
                                         {/*========================== Divisa ==========================*/}
-                                        <td>
+                                        <Td>
                                             <button
                                             className="btn btn-primary modificar"
                                             type="button"
@@ -487,26 +483,26 @@ export const CrudProyectos = (props) => {
                                             }}
                                             >
                                             {" "}
-                                            {show2 ? "Mostrar" : "Ocultar"}{" "}
+                                            {show2 ? "Partidas" : "Ocultar"}{" "}
                                             </button>
                                             {show2 ? (
                                             <></>
                                             ) : (
-                                                <div className='arregla'>
-                                                    <div className='contenido-usuarios'>
+                                                <div className='menu2'>
+                                                   
                                                         {/*=================== Botón Mostrar Lista DIV =====================*/}
-                                                        <br />
+                                                 
                                                         <CrudPartidas
                                                         partidas={listaPartidas}
                                                         setfirst={setfirst}
                                                         envioDataPar={envioDataPartida}
                                                         proyecto={proyecto}
                                                         />   
-                                                    </div> 
+                                                
                                                 </div>
                                             )}
-                                        </td>
-                                        <td>
+                                        </Td>
+                                        <Td>
                                             <button
                                             className="btn btn-primary modificar"
                                             type="button"
@@ -517,29 +513,29 @@ export const CrudProyectos = (props) => {
                                             }}
                                             >
                                             {" "}
-                                            {show3 ? "Mostrar" : "Ocultar"}{" "}
+                                            {show3 ? "Categorias" : "Ocultar"}{" "}
                                             </button>
                                             {show3 ? (
                                                 <></>
                                             ):(
-                                                <div className="arregla">
-                                                    <div className='contenido-usuarios'>
+                                                <div className="menu2">
+                                                 
                                                         {/*========================== Llamado al Componente ==========================*/}
                                                         <CrudCategorias
                                                         dcats={listaCategorias}
                                                         setfirst={setfirst1}
                                                         envioData={envioDataCats}
                                                         />
-                                                    </div>
+                                                
                                                 </div>
                                             )}
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                        </Td>
+                                    </Tr>
+                                </Tbody>
                             </Table>
-                        </div>
+                 
                     </div>
-                </div>
+         
             )}
             {/* </form> */}
         </div>

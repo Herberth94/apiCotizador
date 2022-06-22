@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { EditSP } from '../Preventa/PTN-BOM/Routes/ModificarSP';
 import Animaciones from './Animaciones';
 import { CrudSp } from './CRUDSP';
@@ -208,43 +208,30 @@ export const CrudPartidas = (props) => {
         /*=========================================================================*/
     /*=========================================================================================================================*/
     return (
-        <div>
+        <div className=''>
            {/* <form> */}
           {/*       <Animaciones mytext="Partidas" />
  */}
-                <Table responsive  striped bordered hover size="sm">
-                    <thead>
-
-                         {/* <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>{props.proyecto}</th>
-                        </tr>
-                        <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>Partidas:</th>
-                        </tr> */}
-                        <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>Resumen por Partidas</th>
-                        </tr>
-                        <tr className="titulo-tabla-usuarios">
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                            <th>Eliminar</th>
+                <Table>
+                    <Thead>
+                        <Tr>
+                            <Th>ID</Th>
+                            <Th>Nombre</Th>
+                            <Th>Descripción</Th>
+                            <Th>Eliminar</Th>
                         
-                            <th>Servicios Productos</th>
-                            <th>Modificar</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+                            <Th>Servicios Productos</Th>
+                            <Th>Modificar</Th>
+                            <Th></Th>
+                        </Tr>
+                    </Thead>
                                     
-                    <tbody>
+                    <Tbody>
                         {Object.keys(props.partidas).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={key} >
-                                <td>{props.partidas[key].partida_id}</td>
-                                <td>
+                            <Tr key={key} >
+                                <Td>{props.partidas[key].partida_id}</Td>
+                                <Td>
                                     <input 
                                     id={props.partidas[key].partida_id}
                                     className="input-name" 
@@ -253,8 +240,8 @@ export const CrudPartidas = (props) => {
                                     onChange={handleInputChange}
                                     name="partida_nombre" 
                                     ></input>
-                                </td>
-                                <td>
+                                </Td>
+                                <Td>
                                     <input
                                     className="input-name" 
                                     defaultValue={props.partidas[key].partida_descripcion} 
@@ -262,10 +249,10 @@ export const CrudPartidas = (props) => {
                                     onChange={handleInputChange}
                                     name="partida_descripcion" 
                                     ></input>
-                                </td> 
-                                <td width={"100px"}>
+                                </Td> 
+                                <Td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary eliminar"
+                                    className="sn-boton eliminar"
                                     onClick={()=>{
                                         deletePar(props.partidas[key].partida_id);
                                     }
@@ -273,7 +260,7 @@ export const CrudPartidas = (props) => {
 
                                         <i className="bi bi-trash-fill"></i>
                                     </button>
-                                </td>
+                                </Td>
 
 
 
@@ -296,10 +283,10 @@ export const CrudPartidas = (props) => {
 
  */}
                                 
-                        <td width={"100px"}>
+                        <Td width={"100px"}>
                             {" "}
                             <button
-                                className="btn btn-primary Ver"
+                                className="sn-boton ver"
                                 type="button"
                                 onClick={() => {
                                     habilitar1(key);
@@ -312,7 +299,7 @@ export const CrudPartidas = (props) => {
                                 
                              
                             </button>
-                        </td>
+                        </Td>
 
 
 
@@ -331,9 +318,9 @@ export const CrudPartidas = (props) => {
       
 
                         {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td width={"100px"} >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton" type="button"
                                     onClick={()=>{
                                        // props.envioData(datos,key,data); 
                                        habilitar(key); 
@@ -344,14 +331,14 @@ export const CrudPartidas = (props) => {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               
                               
                               < >
-                                    <td width={"100px"} >
+                                    <Td width={"100px"} >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton" type="button"
                                     onClick={()=>{
                                         habilitar(key); 
                                         props.envioDataPar(datos, key, data);
@@ -361,11 +348,11 @@ export const CrudPartidas = (props) => {
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
                                 
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton cancelar" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
@@ -375,14 +362,14 @@ export const CrudPartidas = (props) => {
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
                                    
-                                </td>
+                                </Td>
                                 </>
                             )}
 
  
-                            </tr>  
+                            </Tr>  
                         ))}
-                    </tbody>          
+                    </Tbody>          
                 </Table>
                 {show ? (
                     <div></div>

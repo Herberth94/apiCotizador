@@ -12,7 +12,6 @@ TableBody, TableCell, TableHead, TableRow
 } from "@material-ui/core";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddBoxIcon from "@material-ui/icons/AddBox";
-import FunctionsIcon from '@material-ui/icons/Functions';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 
@@ -339,7 +338,7 @@ function DatosPTN2(props) {
 
 return (
 
-<div className='arregla multiple'>
+<div className=''>
 	
 
 	<TableBody>

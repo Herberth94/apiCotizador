@@ -1,4 +1,10 @@
+.menu2{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  z-index: 1;
 
+}
 .buscador-inteligente{
     position: fixed;
     z-index: 2;
@@ -75,6 +81,17 @@
                 margin: 0px;
               
                  }
+
+
+
+                 .menu2{
+
+                  width: 100%;
+
+                  top:100px;
+            
+                
+                }
     }
     
     

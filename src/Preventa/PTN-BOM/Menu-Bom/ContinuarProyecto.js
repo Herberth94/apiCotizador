@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useState, useEffect } from "react";
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import Table from "react-bootstrap/Table";
 import Cookies from 'universal-cookie';
 // Componentes
 import Partida from "../Menu-Bom/Partida";
@@ -244,20 +244,19 @@ function ContinuarProyecto() {
 
   return (
     /*==================== Continuar Proyecto ====================*/
-    <div  className="contenido-usuarios">
-
-      <div>
-        
-      </div>
-      <Table >
+    <div  className="contenido-marvilop">
+      <Table responsive id="nombreDiv">
           {/*========================== Titulos Tabla ==========================*/}
-          <Thead>
-            
-          </Thead>
-          <Tbody>
-              <Tr className="">
+          <thead>
+              <tr className="titulo-tabla-usuarios">
+                  <th className= "ocultar">Mis Proyectos</th>
+                  <th className = "ocultar">Otros Proyectos</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr className="">
                   {/*========================== Divisa ==========================*/}
-                  <Td>
+                  <td>
                       <button
                       className="btn btn-primary modificar"
                       type="button"
@@ -270,8 +269,8 @@ function ContinuarProyecto() {
                       {" "}
                       {show6 ? "Mis Proyectos" : "Ocultar"}{" "}
                       </button>
-                  </Td>
-                  <Td>
+                  </td>
+                  <td>
                       <button
                       className="btn btn-primary modificar"
                       type="button"
@@ -284,9 +283,9 @@ function ContinuarProyecto() {
                       {" "}
                       {show7 ? "Proyectos Compartidos" : "Ocultar"}{" "}
                       </button>
-                  </Td>
-              </Tr>
-          </Tbody>
+                  </td>
+              </tr>
+          </tbody>
       </Table>
       {show8 ? (
         <div></div>
@@ -295,21 +294,8 @@ function ContinuarProyecto() {
         {/*============= Titulo Animación =============*/}
        {/*  <Animaciones mytext="Buscar nn proyectos" />
  */}
-      
-          {/****************************Lista de los Proyectos Creados ****************************************/}
-          {/*============= Titulo Animación =============*/}
-       {/*    <div>
-            {" "}
-            <Animaciones mytext="Lista de Proyectos" />{" "}
-          </div>
- */}
-
- <br/>
- <br/>
-
-
- <div className="buscador-inteligente">
-          <Table >
+        <div className="busqueda-proyectos">
+          <Table responsive id="nombreDiv">
             <thead>
               <tr className="titulo-tabla-usuarios">
                 <th className='ocultar'>Clave</th>
@@ -331,36 +317,48 @@ function ContinuarProyecto() {
           </Table>
 
           </div>
-          <Table >
-              <Thead>
-                <Tr >
-                  <Th>ID</Th>
-                  <Th>Clave</Th>
-                  <Th>Descripción</Th>
-                  <Th>Cliente</Th>
-                  <Th>Fecha Creación</Th>
-                  <Th>Fecha Modificación</Th>
-                  <Th>Estatus</Th>
-                  <Th>Plazo Meses</Th>
-                  <Th>Continuar</Th>
-                  <Th>Finalizar</Th>
-                </Tr>
-              </Thead>
+          {/****************************Lista de los Proyectos Creados ****************************************/}
+          {/*============= Titulo Animación =============*/}
+       {/*    <div>
+            {" "}
+            <Animaciones mytext="Lista de Proyectos" />{" "}
+          </div>
+ */}
+          <Table responsive  striped bordered hover size="sm">
+              <thead>
+
+              <tr className="titulo-tabla-usuarios">
+                  <th></th>
+                  <th className='titulo-tabla'>Proyectos</th>
+                </tr>
+                <tr className="titulo-tabla-usuarios">
+                  <th>ID</th>
+                  <th>Clave</th>
+                  <th>Descripción</th>
+                  <th>Cliente</th>
+                  <th>Fecha Creación</th>
+                  <th>Fecha Modificación</th>
+                  <th>Estatus</th>
+                  <th>Plazo Meses</th>
+                  <th>Continuar</th>
+                  <th>Finalizar</th>
+                </tr>
+              </thead>
                                   
-              <Tbody>
+              <tbody>
               {Object.keys(suggestions).map((key) => (    
-                  <Tr key={suggestions[key].proyecto_id} >
-                      <Td>{suggestions[key].proyecto_id}</Td>   
-                      <Td>{suggestions[key].proyecto_clave}</Td>  
-                      <Td>{suggestions[key].proyecto_descripcion}</Td>  
-                      <Td>{suggestions[key].nombre_cliente}</Td> 
-                      <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
-                      <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
-                      <Td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</Td>  
-                      <Td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</Td>  
-                      <Td>
+                  <tr key={suggestions[key].proyecto_id} >
+                      <td>{suggestions[key].proyecto_id}</td>   
+                      <td>{suggestions[key].proyecto_clave}</td>  
+                      <td>{suggestions[key].proyecto_descripcion}</td>  
+                      <td>{suggestions[key].nombre_cliente}</td> 
+                      <td>{suggestions[key].proyecto_fecha_creacion}</td>
+                      <td>{suggestions[key].proyecto_fecha_modificacion}</td>
+                      <td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td>  
+                      <td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</td>  
+                      <td>
                         <button 
-                          className="sn-boton" 
+                          className="btn btn-primary Mod" 
                           type="button" 
                           onClick={() => {
                             getIdP(suggestions[key].proyecto_id);
@@ -374,10 +372,10 @@ function ContinuarProyecto() {
                             <i className=   {textBVer[key]} ></i>
 
                           </button>
-                      </Td>
-                      <Td>
+                      </td>
+                      <td>
                         <button 
-                          className="sn-boton" 
+                          className="btn btn-primary modificar" 
                           type="button" 
                           onClick={() => {
                             getIdP1(suggestions[key].proyecto_id);
@@ -391,10 +389,10 @@ function ContinuarProyecto() {
 
                            
                           </button>
-                      </Td>
-                  </Tr>  
+                      </td>
+                  </tr>  
               ))}
-              </Tbody>          
+              </tbody>          
           </Table>
        
       </div>
@@ -407,7 +405,7 @@ function ContinuarProyecto() {
       ) : (
         <Table responsive  striped bordered hover size="sm">
           <thead>
-            <tr>
+            <tr className="titulo-tabla-usuarios">
               <th className='ocultar'>Agregar más partidas</th>
               <th className='ocultar'>Continuar una partida</th>
             </tr>
@@ -445,13 +443,13 @@ function ContinuarProyecto() {
       {show2 ? (
               <div ></div>
       ) : (
-              <div  className=""> 
+              <div  className="arregla"> 
            {/*      <div className="contenido-usuarios">
                   {" "}
                   <Animaciones mytext="Datos PTN" />{" "}
                 </div> */}
                 {/*========================== Llamado a los Componentes ==========================*/} 
-                <Partida/>
+                <Partida></Partida>
                             
                 <DatosSP clave={id}/>
               </div>
@@ -460,40 +458,40 @@ function ContinuarProyecto() {
       {show3 ? (
               <div ></div>
       ) : ( 
-              <div className=""> 
-                <div className="">
+              <div className="arregla"> 
+                <div className="contenido-usuarios">
                {/*  <div>
                   {" "}
                   <Animaciones mytext="Partidas del Proyecto" />{" "}
                 </div>
  */}
-                  <Table>
-                      <Thead>
+                  <Table responsive  striped bordered hover size="sm">
+                      <thead>
 
-                      <Tr className="titulo-tabla-usuarios">
-                              <Th></Th>
-                              <Th className='titulo-tabla'>Partidas del Proyecto</Th>
+                      <tr className="titulo-tabla-usuarios">
+                              <th></th>
+                              <th className='titulo-tabla'>Partidas del Proyecto</th>
                            
-                          </Tr>
-                          <Tr className="titulo-tabla-usuarios">
-                              <Th>ID</Th>
-                              <Th>Nombre</Th>
-                              <Th>Descripción</Th>
-                              <Th>Continuar</Th>
-                          </Tr>
-                      </Thead>
+                          </tr>
+                          <tr className="titulo-tabla-usuarios">
+                              <th>ID</th>
+                              <th>Nombre</th>
+                              <th>Descripción</th>
+                              <th>Continuar</th>
+                          </tr>
+                      </thead>
                                         
-                      <Tbody>
+                      <tbody>
                           {Object.keys(listaPartidas).map((key) => (    
                               //checar aqui va los titulos
-                              <Tr key={key} >
-                                  <Td>{listaPartidas[key].partida_id}</Td>   
-                                  <Td>{listaPartidas[key].partida_nombre}</Td>  
-                                  <Td>{listaPartidas[key].partida_descripcion}</Td> 
+                              <tr key={key} >
+                                  <td>{listaPartidas[key].partida_id}</td>   
+                                  <td>{listaPartidas[key].partida_nombre}</td>  
+                                  <td>{listaPartidas[key].partida_descripcion}</td> 
 
-                                  <Td >
+                                  <td width={"100px"}>
                                     <button 
-                                    className="sn-boton" 
+                                    className="btn btn-primary  Mod" 
                                     onClick={() => {
                                       getIdPar(listaPartidas[key].partida_id);
                                       habilitar2(key);
@@ -505,10 +503,10 @@ function ContinuarProyecto() {
                                    <i className=  {textBVer2[key]} ></i>
                                    
                                    </button>
-                                  </Td> 
-                              </Tr>  
+                                  </td> 
+                              </tr>  
                           ))}
-                      </Tbody>          
+                      </tbody>          
                   </Table>
                   {show4 ? (
                           <div >
