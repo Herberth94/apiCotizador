@@ -1,10 +1,6 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Cookies from "universal-cookie";
-import RegistrarUsuarios from "../Administrador/Usuarios/MenuUsuarios/RegistrarUsuarios";
-
-import AdministrarColaboradores from '../Preventa/Colaboradores/MenuColaborador/AdministrarColaboradores';
-
 
 const cookies = new Cookies();
 

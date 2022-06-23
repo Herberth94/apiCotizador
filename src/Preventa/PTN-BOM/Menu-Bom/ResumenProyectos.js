@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react'
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import { Table} from 'react-super-responsive-table';
 import axios from "axios";
 import Cookies from 'universal-cookie';
+import Animaciones from '../../../Componentes/Animaciones';
 
 //Componentes
 import "../css/Proyectos.css";
 import {CrudProyectos} from '../Routes/CRUDProyectos';
 import { EditProyecto } from '../Routes/ModificarProyectos';
 import {url, url2} from "../../../Componentes/Ocultar";
-import { actualizarListaProy } from '../Routes/CRUDProyectos';
+/* import { actualizarListaProy } from '../Routes/CRUDProyectos'; */
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
 let validatorrol = cookies.get('rol');
@@ -100,6 +101,11 @@ function Proyectos() {
     /*===========================================================================================================*/
     return (
         <div className="contenido-marvilop">
+
+<Animaciones mytext="Resumen Proyectos " />
+
+
+            
             
             <div className = "buscador-inteligente">
 
@@ -143,7 +149,7 @@ function Proyectos() {
                             }}
                             >
                             {" "}
-                            {show ? "Mis Proyectos l" : "Ocultar"}{" "}
+                            {show ? "Mis Proyectos " : "Ocultar"}{" "}
                             </button>
                         </td>
                         <td>

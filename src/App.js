@@ -101,12 +101,16 @@ function App() {
         <PublicRoutes path="/" component={Header} />
 
     
-        {/*========================== Páginas Administrador ==========================*/}
 
-        <Administrador path="/" component={MenuAdministrador}  />
+              {/* ======================================================  */}                  
+                                        {/*Administrador*/}
+              {/* ======================================================  */} 
 
+        <Administrador path="/" component={MenuAdministrador}  />            
+        <Administrador exact path ="/" component={CambioContraseña} />
+  
 
-              
+         
         <Administrador exact path="/calculadora" component={CalculaDescuento} />
         <Administrador  path="/documentacion" component={MenuHeramientas} />
         <Administrador exact path="/plantilla-excel" component={NuevoProyectoExcel} />
@@ -151,69 +155,85 @@ function App() {
         <Administrador exact path="/resumen-am" component={ResumenAM} /> 
 
 
-
-   
- 
-   
-
-
-
-
         <Administrador exact path="/resumen" component={BuscadorInteligente2} /> 
         <Administrador exact path="/registrar-financiamiento" component={BuscadorProyectoFinanciamiento} />
       
-      
-      
-      
 
 
-        <Administrador exact path="/menu-clientes" component={MenuClientes} />
-        <Administrador exact path="/menu-proveedores" component={MenuProveedor} />
-        <Administrador exact path="/menu-colaboradores" component={MenuColaboradores} />
-        <Administrador exact path ="/" component={CambioContraseña} />
-        <Administrador path ="/" component={Header} />
-        <Administrador exact path="/ptn" component={PTN_BOM} />
-        <Administrador exact path="/propuesta-economica" component={PropuestaEconomica} />
-        <Administrador exact path="/am" component={AM} />
-        <Administrador exact path="/proporcionalidad" component={Proporcionalidad} />
-        <Administrador path="/asignar-proyecto" component={MenuVentas2} />
+              {/* ======================================================  */}                  
+                                        {/* Preventa */}
+              {/* ======================================================  */} 
 
-      {/*   <Administrador   exact path="/" component={Temas} />
- */}
-        {/*========================== Páginas Preventa ==========================*/}
-
+                       {/*======== Inicio ========*/}
         <Preventa path="/" component={MenuPreventa} />
-        {/* oooo */}
-        <Preventa exact path ="/" component={Header} />
         <Preventa exact path ="/" component={CambioContraseña} />
 
-        <Preventa path="/menu-clientes" component={MenuClientes} />
-        <Preventa exact path="/menu-colaboradores" component={MenuColaboradores} />
-        <Preventa exact path="/menu-proveedores" component={MenuProveedor} />
+                        {/*======== Home ========*/}
+
+        <Preventa path="/calculadora" component={CalculaDescuento} />
+        <Preventa path="/documentacion" component={MenuHeramientas} />
+        <Preventa path="/plantilla-excel" component={NuevoProyectoExcel} />
 
 
+                        {/*======== Registros ========*/}
+        <Preventa exact path="/registrar-clientes" component={RegistrarClientes} />        
+        <Preventa exact path="/registrar-proveedores" component={RegistrarProveedor} />
+        <Preventa exact path="/registrar-marcas" component={RegistrarMarcas} />
+        <Preventa exact path="/registrar-colaboradores" component={AgregarColaborador} />
 
-        <Preventa path="/asignar" component={MenuVentas2} />
-        <Preventa path="/ptn" component={ PTN_BOM} />
-        <Preventa path="/calculadora" component={MenuHeramientas} />
+                        {/*======== Administración ========*/}
+        <Preventa exact path="/administrar-clientes" component={AdministrarClientes} />        
+        <Preventa exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
+        <Preventa exact path="/administrar-colaboradores" component={AdministrarColaboradores} />
+        <Preventa exact path="/administrar-asignaciones" component={AdministrarColaboradores}   />
+        <Preventa exact path="/asignar-proyectos" component={AsignarProyecto} />
+               
+                     {/*======== BOM========*/}
+        <Preventa exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
+        <Preventa exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
+        <Preventa exact path="/resumen-proyecto" component={Proyectos } /> 
+   
+   
+ 
+              {/* ======================================================  */}                  
+                                        {/* Ventas */}
+              {/* ======================================================  */} 
 
-
-
-
-        {/*========================== Páginas Ventas ==========================*/}
         <Venta path="/" component={MenuVentas} />
         <Venta exact path="/" component={CambioContraseña} />
-        <Venta exact path="/menu-clientes" component={MenuClientes} />
-        <Venta path="/menu-proveedores" component={MenuProveedor} />
-        <Venta exact path="/am" component={AM} />
-        <Venta exact path="/propuesta-economica" component={ MenuFormulario  } />
-        <Venta path="/calculadora" component={MenuHeramientas} />
-        <Venta exact path="/proporcionalidad" component={Proporcionalidad} />
+
+                 
+        <Venta exact path="/calculadora" component={CalculaDescuento} />
+        <Venta  path="/documentacion" component={MenuHeramientas} />
+
+        <Venta exact path="/registrar-clientes" component={RegistrarClientes} />        
+        <Venta  exact path="/registrar-proveedores" component={RegistrarProveedor} />
+        <Venta  exact path="/registrar-marcas" component={RegistrarMarcas} />
+
+        <Venta  exact path="/administrar-clientes" component={AdministrarClientes} />        
+        <Venta  exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
+
+                  
+         {/* AM*/}
+        <Venta exact path="/divisa" component={Divisa} /> 
+        <Venta exact path="/resumen-am" component={ResumenAM} /> 
+        <Venta exact path="/costos-indirectos" component={BuscadorInteligente} /> 
+       
+         
+         {/* proyectos*/}
+        <Venta  exact path="/imprimir-propuesta" component={ BuscadorInteligente3} /> 
+        <Venta  exact path="/administrar-propuesta" component={ BuscadorInteligente4} />
+
+                       {/* proporcionalidad */}
+        <Venta  exact path="/resumen" component={BuscadorInteligente2} /> 
+        <Venta  exact path="/registrar-financiamiento" component={BuscadorProyectoFinanciamiento} />
+      
+
+               {/* Bom*/}
+  {/*       <Venta  exact path="/resumen-proyecto" component={BuscadorInteligente2} /> 
 
 
-
-        <Venta exact path="/resumen-ptn" component={MenuResumenBom} />
-
+ */}
 
 
 

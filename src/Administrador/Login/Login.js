@@ -90,7 +90,7 @@ export function Login() {
   
             <div className ="boton-login">
             <br></br>
-            <button className="login" type="submit"   >    
+            <button className="btn-login" type="submit"   >   
               <span>Entrar</span>
             </button>
             </div>

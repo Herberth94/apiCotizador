@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import axios from 'axios';
 import Cookies from "universal-cookie";
-import {url, url2} from "../../../Componentes/Ocultar";
+import { url, url2 } from "../../../Componentes/Ocultar";
 import { pEstatus1 } from "./ContinuarProyecto";
 /*============== Operacions PTN BOM ==============*/
-import { precioUnitario, calcularDescuento, Total} from "../Operaciones/Operaciones";
+import { precioUnitario, calcularDescuento, Total } from "../Operaciones/Operaciones";
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
 import Animaciones from "../../../Componentes/Animaciones";
 import { dataCategoria } from "../../../Ventas/Operaciones/totalPartida";
 import { pId } from "../Routes/GuardarPartida";
-import { pId2, hoy} from "./NuevoProyecto";
+import { pId2, hoy } from "./NuevoProyecto";
 
 
 
@@ -22,33 +22,33 @@ let validatorid = cookies.get('id_usuario');
 let parId;
 let validaOperacion = false;
 
-export function getIdPar (partida_id){
+export function getIdPar(partida_id) {
   parId = partida_id;
 }
 
 
-function DatosSP({clave} ) {
+function DatosSP({ clave }) {
   /*========================== Mostrar/Ocultar ==========================*/
-  const[show,setShow] = useState(true); //Menu SP
+  const [show, setShow] = useState(true); //Menu SP
   /*=====================================================================*/
-  const[ Bdesc, setBdesc]= useState(true);
-  const[ Bdesc2, setBdesc2]= useState(false);
+  const [Bdesc, setBdesc] = useState(true);
+  const [Bdesc2, setBdesc2] = useState(false);
 
-  function checa(){
+  function checa() {
 
     validaOperacion = !validaOperacion;
     setBdesc(!Bdesc);
     setBdesc2(!Bdesc2);
     setDatos({
-          precio_lista: '',
-          precio_unitario: '',
-          precio_descuento: '',
-          sp_cantidad: '',
-          precio_total: '',      
-        });
-    }
+      precio_lista: '',
+      precio_unitario: '',
+      precio_descuento: '',
+      sp_cantidad: '',
+      precio_total: '',
+    });
+  }
   //console.log(clave);
-  
+
   const [modalShow, setModalShow] = useState(false);
   /*  console.log("---- Precio Unitario ----- ") */
   /*PARAMETROS   precioUnitario(precioLista, Descuento) */
@@ -70,22 +70,22 @@ function DatosSP({clave} ) {
 
   /*=================================== Obtención de datos en la tabla precio ===================================*/
   // Almacenamiento de los datos
-  
+
   const [datos, setDatos] = useState({
     precio_lista: '',
     precio_unitario: '',
     precio_descuento: '',
     sp_cantidad: '',
     precio_total: '',
-    precio_id_moneda:''
+    precio_id_moneda: ''
   });
-  
+
   const handleInputChange = (event) => {
     setDatos({
-      ...datos,[event.target.name]: event.target.value,
+      ...datos, [event.target.name]: event.target.value,
     });
   };
-    
+
   /*useEffect(() => {
     let total = '';
     let precio_u = '';
@@ -106,79 +106,80 @@ function DatosSP({clave} ) {
     }
   },[datos.precio_unitario, datos.precio_lista, datos.precio_descuento, datos.sp_cantidad])*/
 
-///CALCULAR DESCUENTO
-      /*================================================================================*/
-      useEffect(()=>{
+  ///CALCULAR DESCUENTO
+  /*================================================================================*/
+  useEffect(() => {
 
-        if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
-          const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-          const total = Total(datos.precio_unitario,datos.sp_cantidad)
-          setDatos({ ...datos,precio_total:total, precio_descuento: desc });}
-       
-        if(datos.precio_lista === '' || datos.precio_unitario === ''){
-          setDatos({ ...datos,precio_descuento:''});
-        }
+    if (datos.precio_lista !== '' && datos.precio_unitario !== '' && validaOperacion === false) {
+      const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+      const total = Total(datos.precio_unitario, datos.sp_cantidad)
+      setDatos({ ...datos, precio_total: total, precio_descuento: desc });
+    }
 
-        },[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario])
+    if (datos.precio_lista === '' || datos.precio_unitario === '') {
+      setDatos({ ...datos, precio_descuento: '' });
+    }
+
+  }, [datos.sp_cantidad, datos.precio_lista, datos.precio_unitario])
 
 
-///CALCULAR PRECIO UNITARIO
-      /*===================================================================================================================*/
-      useEffect(()=>{
-        let precio_u='';
-        if (datos.precio_lista !== '' &&  datos.precio_descuento !== ''  &&  validaOperacion ===true) {
-          precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
-          const total = Total(precio_u, datos.sp_cantidad);
-          if( datos.precio_descuento < 0 || datos.precio_descuento > 100 ){
-          // alert("Advertencia Porcentaje Invalido")
-          }
-          setDatos({ ...datos, precio_total:total,precio_unitario:precio_u});
-        }
-      
-      },[datos.precio_descuento,datos.precio_lista,datos.sp_cantidad])
+  ///CALCULAR PRECIO UNITARIO
+  /*===================================================================================================================*/
+  useEffect(() => {
+    let precio_u = '';
+    if (datos.precio_lista !== '' && datos.precio_descuento !== '' && validaOperacion === true) {
+      precio_u = precioUnitario(datos.precio_lista, datos.precio_descuento);
+      const total = Total(precio_u, datos.sp_cantidad);
+      if (datos.precio_descuento < 0 || datos.precio_descuento > 100) {
+        // alert("Advertencia Porcentaje Invalido")
+      }
+      setDatos({ ...datos, precio_total: total, precio_unitario: precio_u });
+    }
 
-      //OBTENER TOTALES
+  }, [datos.precio_descuento, datos.precio_lista, datos.sp_cantidad])
 
-//checar
-           /*===================================================================================================================*/
-           useEffect(()=>{
+  //OBTENER TOTALES
 
-            if(datos.precio_unitario === '' || datos.sp_cantidad === ''){
-              setDatos({ ...datos,precio_total:''});
-            } 
-          
-          },[,datos.precio_unitario,datos.sp_cantidad])
-      
-/*===========================================================================*/
+  //checar
+  /*===================================================================================================================*/
+  useEffect(() => {
+
+    if (datos.precio_unitario === '' || datos.sp_cantidad === '') {
+      setDatos({ ...datos, precio_total: '' });
+    }
+
+  }, [, datos.precio_unitario, datos.sp_cantidad])
+
+  /*===========================================================================*/
 
   /*=================================== Buscador de proveedores ===================================*/
   // Almacenamiento de los proveedores existentes
-  const [ListaProv, setListaProv] = useState ([]);
+  const [ListaProv, setListaProv] = useState([]);
 
   // Almacenamiento del id del proveedor encontrado en la busqueda
-  var proveedorId = {proveedor_id:''}
+  var proveedorId = { proveedor_id: '' }
 
   // Almacenamiento del nombre del proveedor a buscar
   const [nombreProv, setNombreProv] = useState('');
 
   // Almacenamiento de los proveedores semejantes al texto introducido en el input
-  const [suggestionsProv, setSuggestionsProv] = useState ([]);
+  const [suggestionsProv, setSuggestionsProv] = useState([]);
 
   // Función que realiza la consulta a la tabla proveedores
-  useEffect (() => {
-    async function listaProvs(){
+  useEffect(() => {
+    async function listaProvs() {
       try {
         const respuesta = await axios.get(url + "/api/cotizador/proveedor/view");
         setListaProv(respuesta.data.data);
-      } catch (error) {}
+      } catch (error) { }
     }
     listaProvs();
-  },[])
+  }, [])
 
   // Función que realiza la busqueda de los clientes semejantes a al nombre introducido 
   const onChangeTextProv = (nombreProveedor) => {
     let coincidencias = [];
-    if(nombreProveedor.length>0){
+    if (nombreProveedor.length > 0) {
       coincidencias = ListaProv.filter(proveedor => {
         const regex = new RegExp(`${nombreProveedor}`, "gi");
         return proveedor.proveedor_nombre.match(regex)
@@ -197,42 +198,42 @@ function DatosSP({clave} ) {
 
   /*=================================== Buscador de marcas con respecto al proveedor seleccionado ===================================*/
   // Almacenamiento de los proveedores existentes
-  const [listaMarca, setListaMarca] = useState ([]);
+  const [listaMarca, setListaMarca] = useState([]);
 
   // Almacenamiento del id del proveedor encontrado en la busqueda
-  var marcaId = { marca_id:''}
+  var marcaId = { marca_id: '' }
 
   // Almacenamiento del nombre del proveedor a buscar
   const [nombreMarca, setNombreMarca] = useState('');
 
   // Almacenamiento de los proveedores semejantes al texto introducido en el input
-  const [suggestionsMarca, setSuggestionsMarca] = useState ([]);
+  const [suggestionsMarca, setSuggestionsMarca] = useState([]);
 
   // Función que realiza la consulta a la tabla proveedores
-  useEffect (() => {
+  useEffect(() => {
     // Obtención del id del proveedor que se seleccionó en la búsqueda
     let i = Object.keys(ListaProv);
     for (let c = 0; c < i.length; c++) {
       if (nombreProv === ListaProv[c].proveedor_nombre) {
         proveedorId.proveedor_id = ListaProv[c].proveedor_id
         //console.log('proveedor id:',proveedorId);
-      }        
+      }
     }
-    async function listaMarcas(){
+    async function listaMarcas() {
       try {
         const respuesta = await axios.get(url2 + `/api/cotizador/provmarcas/view/${proveedorId.proveedor_id}`);
         setListaMarca(respuesta.data.data);
-      } catch (error) {}
+      } catch (error) { }
     }
-    if(proveedorId.proveedor_id !== ''){
+    if (proveedorId.proveedor_id !== '') {
       listaMarcas();
     }
-  },[nombreProv])
+  }, [nombreProv])
 
   // Función que realiza la busqueda de los clientes semejantes a al nombre introducido 
   const onChangeTextMarca = (nombreMarca) => {
     let coincidencias = [];
-    if(nombreMarca.length>0){
+    if (nombreMarca.length > 0) {
       coincidencias = listaMarca.filter(marca => {
         const regex = new RegExp(`${nombreMarca}`, "gi");
         return marca.marca_nombre.match(regex)
@@ -247,126 +248,126 @@ function DatosSP({clave} ) {
     setNombreMarca(nombreMarca);
     setSuggestionsMarca([]);
   }
-  
+
   /*============================================================================================*/
-  
+
   /*=================================== Obtención de los id's de las categorias para insertar en la tabla servicio_producto ===================================*/
   // Almacenamiento de los datos
-  const[datosCategoria, setDatosCategoria] = useState  ({
-      categoria_id: '',
+  const [datosCategoria, setDatosCategoria] = useState({
+    categoria_id: '',
   });
 
   // Obtención de los id's dependiendo del select
-  const handleInputChangeCategoria = (event) =>{
-      setDatosCategoria({
-          ...datosCategoria, [event.target.name] : event.target.value
-      })
+  const handleInputChangeCategoria = (event) => {
+    setDatosCategoria({
+      ...datosCategoria, [event.target.name]: event.target.value
+    })
   }
   /*=========================================================================================================================================================*/
 
   /*======================================== Buscador de servicios/productos ========================================*/
-    // Almacenamiento de todos los servicios/productos
-    const[listaSP, setListaSP] = useState([]);
+  // Almacenamiento de todos los servicios/productos
+  const [listaSP, setListaSP] = useState([]);
 
-    // Almacenamiento de los servicios/producos que tienen el no_parte semejante al instroducido
-    const[suggestions,setSuggestions] = useState([]);
-    
-    // Almacenamiento del no_parte
-    const[nP,setNP] = useState([]);
+  // Almacenamiento de los servicios/producos que tienen el no_parte semejante al instroducido
+  const [suggestions, setSuggestions] = useState([]);
 
-    // Función que realiza la consulta a la tabla servicio/proyecto
-    const getSP = async () => {
-        try{
-          const resSP = await axios.get(url +'/api/cotizador/sp/viewFindSP');
-          setListaSP(resSP.data.data);
-        }catch(error){console.log(error);}
-    }
+  // Almacenamiento del no_parte
+  const [nP, setNP] = useState([]);
 
-    useEffect(()=>{
-      getSP();
-    },[nP])
-    
-    // Función que realiza la busqueda de los servicios/productos semejantes a la no_parte introducido 
-    const onChangeTextnp = (np) => {
-      let coincidencias = [];
-      if(np.length>0){
-          coincidencias = listaSP.filter(sp => {
-          const regex = new RegExp(`${np}`, "gi");
-          return sp.spnp_np.match(regex)
-          })
-      }
-      setSuggestions(coincidencias);
-      setNP(np);
-    }
-    /*=================================================================================================================*/
+  // Función que realiza la consulta a la tabla servicio/proyecto
+  const getSP = async () => {
+    try {
+      const resSP = await axios.get(url + '/api/cotizador/sp/viewFindSP');
+      setListaSP(resSP.data.data);
+    } catch (error) { console.log(error); }
+  }
 
-    // Función que realiza la copia de los datos del servicio/producto seleccionado
-    function copyDataSP (key) {
-      setDatosSP({
-        ...datosSP, sp_no_parte : suggestions[key].spnp_np,
-                    sp_descripcion: suggestions[key].spd_des,
-                    sp_meses: suggestions[key].sp_meses,
-                    sp_semanas: suggestions[key].sp_semanas,
-                    sp_comentarios: suggestions[key].sp_comentarios
+  useEffect(() => {
+    getSP();
+  }, [nP])
+
+  // Función que realiza la busqueda de los servicios/productos semejantes a la no_parte introducido 
+  const onChangeTextnp = (np) => {
+    let coincidencias = [];
+    if (np.length > 0) {
+      coincidencias = listaSP.filter(sp => {
+        const regex = new RegExp(`${np}`, "gi");
+        return sp.spnp_np.match(regex)
       })
-
-      setDatosCategoria({
-        ...datosCategoria, categoria_id: suggestions[key].sp_id_categoria
-      })
-
-      setDatos({
-        ...datos, precio_lista: suggestions[key].precio_lista,
-                  precio_unitario: suggestions[key].precio_unitario,
-                  precio_descuento: suggestions[key].precio_descuento,
-                  precio_total: suggestions[key].precio_total,
-                  sp_cantidad: suggestions[key].sp_cantidad,
-                  precio_id_moneda: suggestions[key].precio_id_moneda
-      })
-      setNombreProv(suggestions[key].proveedor_nombre);
-      setNombreMarca(suggestions[key].marca_nombre);
     }
+    setSuggestions(coincidencias);
+    setNP(np);
+  }
+  /*=================================================================================================================*/
+
+  // Función que realiza la copia de los datos del servicio/producto seleccionado
+  function copyDataSP(key) {
+    setDatosSP({
+      ...datosSP, sp_no_parte: suggestions[key].spnp_np,
+      sp_descripcion: suggestions[key].spd_des,
+      sp_meses: suggestions[key].sp_meses,
+      sp_semanas: suggestions[key].sp_semanas,
+      sp_comentarios: suggestions[key].sp_comentarios
+    })
+
+    setDatosCategoria({
+      ...datosCategoria, categoria_id: suggestions[key].sp_id_categoria
+    })
+
+    setDatos({
+      ...datos, precio_lista: suggestions[key].precio_lista,
+      precio_unitario: suggestions[key].precio_unitario,
+      precio_descuento: suggestions[key].precio_descuento,
+      precio_total: suggestions[key].precio_total,
+      sp_cantidad: suggestions[key].sp_cantidad,
+      precio_id_moneda: suggestions[key].precio_id_moneda
+    })
+    setNombreProv(suggestions[key].proveedor_nombre);
+    setNombreMarca(suggestions[key].marca_nombre);
+  }
 
   /*======= Inserción de datos en las tablas precio,servicio_producto,sp_no_parte,sp_descripcion,sp_proveedor_marca y psp =======*/
   // Almacenamiento de los datos de un servicio/producto
-  const[datosSP, setDatosSP] = useState  ({
-          sp_no_parte: '',
-          sp_descripcion: '',
-          sp_meses: '',
-          sp_semanas: '',
-          sp_cantidad: '',
-          sp_comentarios: ''
+  const [datosSP, setDatosSP] = useState({
+    sp_no_parte: '',
+    sp_descripcion: '',
+    sp_meses: '',
+    sp_semanas: '',
+    sp_cantidad: '',
+    sp_comentarios: ''
   });
 
   // Obtención de los datos introducidos en los input
-  const handleInputChangeSP = (event) =>{
-      setDatosSP({
-          ...datosSP, [event.target.name] : event.target.value
-      })
+  const handleInputChangeSP = (event) => {
+    setDatosSP({
+      ...datosSP, [event.target.name]: event.target.value
+    })
   }
 
   // Almacenamiento de la última partida insertada
   var ListaPartida = {
-      partida_id:'',
-      partida_nombre:'',
-      partida_descripcion:''
+    partida_id: '',
+    partida_nombre: '',
+    partida_descripcion: ''
   };
 
   // Almacenamiento del id de la última partida insertada 
   var partidaId = {
-      partida_id:''
+    partida_id: ''
   }
-  
+
   // Función que realiza las inserciones a las tablas 
-  async function SendSP (){
+  async function SendSP() {
     const dataSP = {
-        sp_id_spnp: '',
-        sp_id_spd: '',
-        sp_meses: datosSP.sp_meses,
-        sp_semanas: datosSP.sp_semanas,
-        sp_cantidad: datos.sp_cantidad,
-        sp_id_precio:'',
-        sp_id_categoria:datosCategoria.categoria_id,
-        sp_comentarios: datosSP.sp_comentarios
+      sp_id_spnp: '',
+      sp_id_spd: '',
+      sp_meses: datosSP.sp_meses,
+      sp_semanas: datosSP.sp_semanas,
+      sp_cantidad: datos.sp_cantidad,
+      sp_id_precio: '',
+      sp_id_categoria: datosCategoria.categoria_id,
+      sp_comentarios: datosSP.sp_comentarios
     };
 
     const dataPrecio = {
@@ -386,7 +387,7 @@ function DatosSP({clave} ) {
     }
 
     const dataFM = {
-      proyecto_fecha_modificacion:hoy
+      proyecto_fecha_modificacion: hoy
     }
 
     // Obtención del id del proveedor que se seleccionó en la búsqueda
@@ -395,7 +396,7 @@ function DatosSP({clave} ) {
       if (nombreProv === ListaProv[c].proveedor_nombre) {
         proveedorId.proveedor_id = ListaProv[c].proveedor_id
         //console.log('proveedor id:',proveedorId);
-      }        
+      }
     }
 
     // Obtención del id de la marca que se seleccionó en la búsqueda
@@ -404,35 +405,35 @@ function DatosSP({clave} ) {
       if (nombreMarca === listaMarca[c].marca_nombre) {
         marcaId.marca_id = listaMarca[c].marca_id
         //console.log('marca id:',marcaId);
-      }        
+      }
     }
 
     // Almacenamiento del id del spnp = no_parte
-    let spnp = {spnp_id:''}
+    let spnp = { spnp_id: '' }
     // Almacenamiento del id del spd = descripción
-    let spd = {spd_id:''}
+    let spd = { spd_id: '' }
     // Obtención del id del no_parte y descripción
     let n = Object.keys(listaSP);
     for (let c = 0; c < n.length; c++) {
       if (datosSP.sp_no_parte === listaSP[c].spnp_np) {
         spnp.spnp_id = listaSP[c].spnp_id
-      }       
+      }
       if (datosSP.sp_descripcion === listaSP[c].spd_des) {
         spd.spd_id = listaSP[c].spd_id
-      }     
+      }
     }
 
-    if(pEstatus1 === 'En revision'){
+    if (pEstatus1 === 'En revision') {
       alert('No se puede continuar el Proyecto porque se encuentra En revision')
-    }else if(pEstatus1 === 'Aceptado'){
-        alert('No se puede continuar el Proyecto porque ha sido Aceptado')
-    }else{
-      try{
+    } else if (pEstatus1 === 'Aceptado') {
+      alert('No se puede continuar el Proyecto porque ha sido Aceptado')
+    } else {
+      try {
         //console.log('Id del proyecto seleccionado para cambiar la fecha:',pId);
-        if(pId2 !== pId && pId2 !== ''){
-          await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId2}`, dataFM);
-        }else{
-          await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
+        if (pId2 !== pId && pId2 !== '') {
+          await axios.put(url2 + `/api/cotizador/proyecto/updateFM/${pId2}`, dataFM);
+        } else {
+          await axios.put(url2 + `/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
         }
         // Inserción a la tabla precio
         const resPrecio = await axios.post(url + '/api/cotizador/precio/agregar', dataPrecio);
@@ -444,20 +445,20 @@ function DatosSP({clave} ) {
         ListaPartida = resGetPartida.data.data.pop();
         partidaId.partida_id = ListaPartida.partida_id;
 
-        
-        if(parId !== partidaId.partida_id && parId !== '' ){
 
-          if(spnp.spnp_id !== ''){
+        if (parId !== partidaId.partida_id && parId !== '') {
+
+          if (spnp.spnp_id !== '') {
             dataSP.sp_id_spnp = spnp.spnp_id;
-          }else{
+          } else {
             const resSpnp = await axios.post(url + '/api/cotizador/sp/agregarSpnp', dataSpnp);
             dataSP.sp_id_spnp = resSpnp.data.data.insertId;
           }
 
           // Obtención del Id de la descripción de un servicio/producto 
-          if(spd.spd_id !== ''){
+          if (spd.spd_id !== '') {
             dataSP.sp_id_spd = spd.spd_id;
-          }else{
+          } else {
             const resSpd = await axios.post(url + '/api/cotizador/sp/agregarSpd', dataSpd);
             dataSP.sp_id_spd = resSpd.data.data.insertId;
           }
@@ -469,20 +470,20 @@ function DatosSP({clave} ) {
           const respuestaBack = respuesta.data.msg
           //console.log(respuestaBack)
           alert(respuestaBack)
-        }else{
+        } else {
           // Obtención del Id del no_parte de un servicio/producto 
-          if(spnp.spnp_id !== ''){
+          if (spnp.spnp_id !== '') {
             dataSP.sp_id_spnp = spnp.spnp_id;
-          }else{
+          } else {
             //console.log('Nuevo No. de parte:',dataSpnp);
             const resSpnp = await axios.post(url + '/api/cotizador/sp/agregarSpnp', dataSpnp);
             dataSP.sp_id_spnp = resSpnp.data.data.insertId;
           }
 
           // Obtención del Id de la descripción de un servicio/producto 
-          if(spd.spd_id !== ''){
+          if (spd.spd_id !== '') {
             dataSP.sp_id_spd = spd.spd_id;
-          }else{
+          } else {
             //console.log('Nueva descripción:',dataSpd);
             const resSpd = await axios.post(url + '/api/cotizador/sp/agregarSpd', dataSpd);
             dataSP.sp_id_spd = resSpd.data.data.insertId;
@@ -493,79 +494,79 @@ function DatosSP({clave} ) {
           //console.log(respuestaBack)
           alert(respuestaBack)
         }
-      }catch (error){
+      } catch (error) {
         alert('Registro de Servicio/producto invalido, revisa que hayas seleccionado correctamente el proveedor y la marca, y el tipo de moneda y categoría')
         //console.log(error);
       }
     }
 
-    const resSP = await axios.get(url +'/api/cotizador/sp/viewFindSP');
+    const resSP = await axios.get(url + '/api/cotizador/sp/viewFindSP');
     setListaSP(resSP.data.data);
   }
 
-  const enviarDatosSP = (event) =>{
-      SendSP();
-      event.preventDefault()
-      //event.target.reset();
-      setDatosSP({
-        ...datosSP, sp_no_parte : '',
-                    sp_descripcion: '',
-                    sp_meses: '',
-                    sp_semanas: '',
-                    sp_comentarios: ''
-      })
+  const enviarDatosSP = (event) => {
+    SendSP();
+    event.preventDefault()
+    //event.target.reset();
+    setDatosSP({
+      ...datosSP, sp_no_parte: '',
+      sp_descripcion: '',
+      sp_meses: '',
+      sp_semanas: '',
+      sp_comentarios: ''
+    })
 
-      setDatosCategoria({
-        ...datosCategoria, categoria_id: ''
-      })
+    setDatosCategoria({
+      ...datosCategoria, categoria_id: ''
+    })
 
-      setDatos({
-        ...datos, precio_lista: '',
-                  precio_unitario: '',
-                  precio_descuento: '',
-                  precio_total: '',
-                  sp_cantidad: '',
-                  precio_id_moneda: ''
-      })
-      setNombreProv('');
-      setNombreMarca('');
-     
+    setDatos({
+      ...datos, precio_lista: '',
+      precio_unitario: '',
+      precio_descuento: '',
+      precio_total: '',
+      sp_cantidad: '',
+      precio_id_moneda: ''
+    })
+    setNombreProv('');
+    setNombreMarca('');
+
   }
   /*=============================================================================================================================*/
   const [modalShow1, setModalShow1] = useState(true)
   const [proyecto_id, Setproyecto_id] = useState([])
-  const lista = async (clave) =>{
+  const lista = async (clave) => {
     console.log(clave);
     try {
-      const respuesta = await axios.get(url2+`/api/cotizador/proyecto/viewModal/${clave}`);
+      const respuesta = await axios.get(url2 + `/api/cotizador/proyecto/viewModal/${clave}`);
       Setproyecto_id(respuesta.data.reSql)
-    
-      
+
+
     } catch (error) {
       console.log(error)
-      
+
     }
   }
-  
+
   return (
 
     <div className="contenido-usuarios">
 
 
-<Table>
+      <Table>
 
-<thead>
-                            <tr className="">
+        <thead>
+          <tr className="">
 
-                             
-                                <th className="ocultar">Buscar Servicios y Productos</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                              
 
-       {/*                            
+            <th className="ocultar">Buscar Servicios y Productos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+
+
+            {/*                            
         <button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (clave)}} >
         <i class="bi bi-eye-fill"></i>
         </button><br/><br/>
@@ -578,366 +579,372 @@ function DatosSP({clave} ) {
       />
          :  ''  } 
  */}
-         
-       
-                            
-
-                                <td>
-                                   
-                                <button type="button" className="btn btn-primary Mod" onClick={() => {setShow(!show);}} >
-          {show ? "Buscar servicios/productos" : "Ocultar  servicios/productos"}
-        </button><br/><br/>
-        {show ? (
-          <div></div>
-        ):(
-
-  <div className="" >
 
 
- 
-          <div className="table-responsive">
-                {/*********Búsqueda de Lista de Proyectos por Clave ********/}
-                <div className="busqueda-proyecto">
-                    <Table responsive id="nombreDiv">
-                        <thead>
-                            <tr className="titulo-bus">
 
-                                <th>No. de Parte</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <td>
-                                    <input className="agregar"
-                                        type="text"
-                                        name="proyecto_clave"
-                                        onChange={e => onChangeTextnp(e.target.value)}
-                                        value={nP}
-                                        placeholder="Ingrese No. de Parte del Servicio/Producto" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    
-        </div>
+
+            <td>
+
+              <button type="button" className="btn btn-primary Mod" onClick={() => { setShow(!show); }} >
+                {show ? "Buscar servicios/productos" : "Ocultar  servicios/productos"}
+              </button><br /><br />
+              {show ? (
+                <div></div>
+              ) : (
+
+                <div className="" >
+
+
+
+                  <div className="table-responsive">
+                    {/*********Búsqueda de Lista de Proyectos por Clave ********/}
+                    <div className="busqueda-proyecto">
+                      <Table >
+                        <Thead>
+                          <Tr >
+
+                            <Th>No. de Parte</Th>
+                          </Tr>
+                        </Thead>
+                        <Tbody>
+                          <Tr >
+                            <Td>
+                              <input className="agregar"
+                                type="text"
+                                name="proyecto_clave"
+                                onChange={e => onChangeTextnp(e.target.value)}
+                                value={nP}
+                                placeholder="Ingrese No. de Parte del Servicio/Producto" />
+                            </Td>
+                          </Tr>
+                        </Tbody>
+                      </Table>
+
+                    </div>
                     {/*============= Titulo Animación =============*/}
-                {/*     <Animaciones mytext="Servicios/Productos " />
+                    {/*     <Animaciones mytext="Servicios/Productos " />
 
 
 
  */}
 
 
- <div className="bbb">
+                    <div className="bbb">
 
 
-           <Table responsive  striped bordered hover size="sm">
-                        <thead>
-                            <tr className="titulo-tabla">
-                                <th>Proyecto</th>
-                                <th>Partida</th>
-                                <th>No. de Parte SP</th>
-                                <th>Descripción SP</th>
-                                <th>-</th>
-                            </tr>
-                        </thead>
-                                        
-                        <tbody>
-                            {Object.keys(suggestions).map((key) => (    
-                                <tr key={key} >
-                                    <td>{suggestions[key].proyecto_clave}</td>  
-                                    <td>{suggestions[key].partida_nombre}</td>  
-                                    <td>{suggestions[key].spnp_np}</td>  
-                                    <td>{suggestions[key].spd_des}</td>  
-                                    <td>
-                                        <button 
-                                        className="btn btn-primary detalles" 
-                                        onClick={() => {
-                                          copyDataSP(key);
-                                            //habilitar1(key);
-                                        }}
-                                        >
-                                          COPIAR
-                                            {/* {textBVer[key]} */}
-                                        </button>
-                                    </td> 
-                                </tr>  
-                            ))}
-                        </tbody>          
-                    </Table>
-           </div>
-         
+                      <Table>
+                        <Thead>
+                          <Tr>
+                            <Th>Proyecto</Th>
+                            <Th>Partida</Th>
+                            <Th>No. de Parte SP</Th>
+                            <Th>Descripción SP</Th>
+                            <Th>-</Th>
+                          </Tr>
+                        </Thead>
+
+                        <Tbody>
+                          {Object.keys(suggestions).map((key) => (
+                            <Tr key={key} >
+                              <Td>{suggestions[key].proyecto_clave}</Td>
+                              <Td>{suggestions[key].partida_nombre}</Td>
+                              <Td>{suggestions[key].spnp_np}</Td>
+                              <Td>{suggestions[key].spd_des}</Td>
+                              <Td>
+                                <button
+                                  className="btn btn-primary detalles"
+                                  onClick={() => {
+                                    copyDataSP(key);
+                                    //habilitar1(key);
+                                  }}
+                                >
+                                  COPIAR
+                                  {/* {textBVer[key]} */}
+                                </button>
+                              </Td>
+                            </Tr>
+                          ))}
+                        </Tbody>
+                      </Table>
+
+
+                      <br/>
+                      <br/>
+                      <br/>
+
+                    </div>
+
+                  </div>
                 </div>
-          </div>
-
-        
-        )} 
-        
-                                </td>
-                            </tr>
-                        </tbody>
-
-</Table>
 
 
+              )}
 
-        {/*========================== Tabla Datos PTN ==========================*/}
-        <form action="" method="post" onSubmit={enviarDatosSP}>
-            <Table responsive id="nombreDiv">
-            {/*========================== Titulos Tabla ==========================*/}
-            <thead>
-                <tr className="titulo-tabla-usuarios">
-                <th>No. De Parte</th>
-                <th>Descripción</th>
-                <th> Duración Meses </th>
-                <th> Entrega </th>
-                <th> Moneda </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr className="">
-                {/*========================== Número de Parte ==========================*/}
-                <td>
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="sp_no_parte"
-                    onChange={handleInputChangeSP}
-                    placeholder="No. Parte"
-                    value={datosSP.sp_no_parte}
-                    />
-                </td>
-                {/*========================Descripcion Producto ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="sp_descripcion"
-                    onChange={handleInputChangeSP}
-                    placeholder="Descripción"
-                    value={datosSP.sp_descripcion}
-                    />
-                </td>
-                {/*========================Meses ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="number"
-                    name="sp_meses"
-                    min="0"
-                    onChange={handleInputChangeSP}
-                    placeholder="Meses"
-                    value={datosSP.sp_meses}
-                    />
-                </td>
-                {/*======================== Semanas ==========================*/}
-                <td>
-                    <input
-                    className="agregar"
-                    type="number"
-                    name="sp_semanas"
-                    min="0"
-                    onChange={handleInputChangeSP}
-                    placeholder="Entrega semanas"
-                    value={datosSP.sp_semanas}
-                    />
-                </td>
-                {/*======================== Moneda ==========================*/}
-                <td>
-                    <select id="moneda" name="precio_id_moneda" onChange={handleInputChange} value={datos.precio_id_moneda}>
-                    <option value={0}></option>
-                    <option value={1}>MXN</option>
-                    <option value={2}>USD</option>
-                    </select>
-                </td>
-                </tr>
-            </tbody>
-            </Table>
+            </td>
+          </tr>
+        </tbody>
 
-            {/*======================== Tabla Números ==========================*/}
+      </Table>
 
-        
-<Table responsive id="nombreDiv">
-            <thead>
-                <tr className="titulo-tabla-usuarios">
-                <th>Calcular</th>
-                <th>Cantidad</th>
-                <th>Precio Lista Unitario</th>
-                <th>Precio Unitario</th>
-                <th> Descuento (%)</th>
-                <th> Total </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr className="">
-                {/*======================== Cantidad ==========================*/}
-                <td>
+
+
+      {/*========================== Tabla Datos PTN ==========================*/}
+      <form action="" method="post" onSubmit={enviarDatosSP}>
+        <Table responsive id="nombreDiv">
+          {/*========================== Titulos Tabla ==========================*/}
+          <thead>
+            <tr className="titulo-tabla-usuarios">
+              <th>No. De Parte</th>
+              <th>Descripción</th>
+              <th> Duración Meses </th>
+              <th> Entrega </th>
+              <th> Moneda </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="">
+              {/*========================== Número de Parte ==========================*/}
+              <td>
+                <input
+                  className="agregar"
+                  type="text"
+                  name="sp_no_parte"
+                  onChange={handleInputChangeSP}
+                  placeholder="No. Parte"
+                  value={datosSP.sp_no_parte}
+                />
+              </td>
+              {/*========================Descripcion Producto ==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  name="sp_descripcion"
+                  onChange={handleInputChangeSP}
+                  placeholder="Descripción"
+                  value={datosSP.sp_descripcion}
+                />
+              </td>
+              {/*========================Meses ==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="number"
+                  name="sp_meses"
+                  min="0"
+                  onChange={handleInputChangeSP}
+                  placeholder="Meses"
+                  value={datosSP.sp_meses}
+                />
+              </td>
+              {/*======================== Semanas ==========================*/}
+              <td>
+                <input
+                  className="agregar"
+                  type="number"
+                  name="sp_semanas"
+                  min="0"
+                  onChange={handleInputChangeSP}
+                  placeholder="Entrega semanas"
+                  value={datosSP.sp_semanas}
+                />
+              </td>
+              {/*======================== Moneda ==========================*/}
+              <td>
+                <select id="moneda" name="precio_id_moneda" onChange={handleInputChange} value={datos.precio_id_moneda}>
+                  <option value={0}></option>
+                  <option value={1}>MXN</option>
+                  <option value={2}>USD</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+
+        {/*======================== Tabla Números ==========================*/}
+
+
+        <Table responsive id="nombreDiv">
+          <thead>
+            <tr className="titulo-tabla-usuarios">
+              <th>Calcular</th>
+              <th>Cantidad</th>
+              <th>Precio Lista Unitario</th>
+              <th>Precio Unitario</th>
+              <th> Descuento (%)</th>
+              <th> Total </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="">
+              {/*======================== Cantidad ==========================*/}
+              <td>
                 <label className="switch">
-  <input type="checkbox" id="checa"     onClick={checa}/>
-  <span className="slider"></span>
-</label>
-                    
-                  
-                </td>
-               
-               
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="sp_cantidad"
-                    value={datos.sp_cantidad}
-                    onChange={handleInputChange}
-                    placeholder="Cantidad "
-                    
-                    />
-                </td>
-                {/*======================== Precio Lista ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="precio_lista"
-                    value={datos.precio_lista}
-                    onChange={handleInputChange}
-                    placeholder="Precio Lista"
-                    
-                    />
-                </td>
-
-                {/*======================== Precio Unitario ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    value={datos.precio_unitario}
-                    name="precio_unitario"
-                    onChange={handleInputChange}
-                    placeholder="Precio unitario"
-                    disabled={Bdesc2}
-                    step="any"
-                    />
-                </td>
-                {/*======================== Descuento==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    value={datos.precio_descuento}
-                    name="precio_descuento"
-                    onChange={handleInputChange}
-                    placeholder="Descuento"
-                    disabled ={Bdesc}
-                    min="0"
-                    step="any"
-                    />
-                </td>
-                {/*======================== Total ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="precio_total"
-                    value={datos.precio_total}
-                    readOnly
-                    placeholder="Total"
-                    step="any"
-                    />
-                </td>
-                </tr>
-            </tbody>
-            </Table>
+                  <input type="checkbox" id="checa" onClick={checa} />
+                  <span className="slider"></span>
+                </label>
 
 
-            {/*========================== Datos PTN ==========================*/}
-            <Table responsive id="nombreDiv">
-            <thead>
-                <tr className="titulo-tabla-usuarios">
-                <th>Proveedor</th>
-                <th>Marca</th>
-                <th>Comentarios </th>
-                <th>Categoría </th>
-                <th> - </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr className="">
-                {/*======================== Proveedor ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="proveedor_nombre"
-                    onChange={e => onChangeTextProv(e.target.value)}
-                    value={nombreProv}
-                    placeholder="Proveedor"
-                    />
-                    {suggestionsProv && suggestionsProv.map((suggestionProv,i)=>
-                      <div key={i} className="selectCliente" onClick={() => onSuggestHandlerProv(suggestionProv.proveedor_nombre)}>
-                      {suggestionProv.proveedor_nombre}
-                      </div>
-                    )}
-                </td>
-                {/*======================== Marca ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="marca_nombre"
-                    onChange={e => onChangeTextMarca(e.target.value)}
-                    value={nombreMarca}
-                    placeholder="Marca"
-                    />
-                    {suggestionsMarca && suggestionsMarca.map((suggestionMarca,i)=>
-                      <div key={i} className="selectCliente" onClick={() => onSuggestHandlerMarca(suggestionMarca.marca_nombre)}>
-                      {suggestionMarca.marca_nombre}
-                      </div>
-                    )}
-                </td>
+              </td>
 
-                {/*======================== Comentarios ==========================*/}
-                <td>
-                    {" "}
-                    <input
-                    className="agregar"
-                    type="text"
-                    name="sp_comentarios"
-                    onChange={handleInputChangeSP}
-                    placeholder="Comentarios"
-                    value={datosSP.sp_comentarios}
-                    />
-                </td>
-                {/*======================== Categorias ==========================*/}
-                <td>
-                    {" "}
-                    <select id="lista-opciones" name="categoria_id" onChange={handleInputChangeCategoria} value={datosCategoria.categoria_id}>
-                    <option value={0}></option>
-                    <option value={1}>Tecnología Principal</option>
-                    <option value={2}>Sub-tecnología</option>
-                    <option value={3}>Equipamiento</option>
-                    <option value={4}>Licencia</option>
-                    <option value={5}>Soporte</option>
-                    <option value={6}>Implementación</option>
-                    </select>
-                </td>
-                {/*======================== Agregra Datos  ==========================*/}
-                <td>
-                    <button className="btn btn-primary" > Agregar</button>
-                    {/* <button className="btn btn-primary" onClick={() => { enviarDatosDP(); enviarDatosSP(); enviarDatosM(); }}> Agregar</button> */}
-                </td>
-                </tr>
-            </tbody>
-            </Table>
-        </form>
+
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  name="sp_cantidad"
+                  value={datos.sp_cantidad}
+                  onChange={handleInputChange}
+                  placeholder="Cantidad "
+
+                />
+              </td>
+              {/*======================== Precio Lista ==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  name="precio_lista"
+                  value={datos.precio_lista}
+                  onChange={handleInputChange}
+                  placeholder="Precio Lista"
+
+                />
+              </td>
+
+              {/*======================== Precio Unitario ==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  value={datos.precio_unitario}
+                  name="precio_unitario"
+                  onChange={handleInputChange}
+                  placeholder="Precio unitario"
+                  disabled={Bdesc2}
+                  step="any"
+                />
+              </td>
+              {/*======================== Descuento==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  value={datos.precio_descuento}
+                  name="precio_descuento"
+                  onChange={handleInputChange}
+                  placeholder="Descuento"
+                  disabled={Bdesc}
+                  min="0"
+                  step="any"
+                />
+              </td>
+              {/*======================== Total ==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  name="precio_total"
+                  value={datos.precio_total}
+                  readOnly
+                  placeholder="Total"
+                  step="any"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+
+
+        {/*========================== Datos PTN ==========================*/}
+        <Table responsive id="nombreDiv">
+          <thead>
+            <tr className="titulo-tabla-usuarios">
+              <th>Proveedor</th>
+              <th>Marca</th>
+              <th>Comentarios </th>
+              <th>Categoría </th>
+              <th> - </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="">
+              {/*======================== Proveedor ==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  name="proveedor_nombre"
+                  onChange={e => onChangeTextProv(e.target.value)}
+                  value={nombreProv}
+                  placeholder="Proveedor"
+                />
+                {suggestionsProv && suggestionsProv.map((suggestionProv, i) =>
+                  <div key={i} className="selectCliente" onClick={() => onSuggestHandlerProv(suggestionProv.proveedor_nombre)}>
+                    {suggestionProv.proveedor_nombre}
+                  </div>
+                )}
+              </td>
+              {/*======================== Marca ==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  name="marca_nombre"
+                  onChange={e => onChangeTextMarca(e.target.value)}
+                  value={nombreMarca}
+                  placeholder="Marca"
+                />
+                {suggestionsMarca && suggestionsMarca.map((suggestionMarca, i) =>
+                  <div key={i} className="selectCliente" onClick={() => onSuggestHandlerMarca(suggestionMarca.marca_nombre)}>
+                    {suggestionMarca.marca_nombre}
+                  </div>
+                )}
+              </td>
+
+              {/*======================== Comentarios ==========================*/}
+              <td>
+                {" "}
+                <input
+                  className="agregar"
+                  type="text"
+                  name="sp_comentarios"
+                  onChange={handleInputChangeSP}
+                  placeholder="Comentarios"
+                  value={datosSP.sp_comentarios}
+                />
+              </td>
+              {/*======================== Categorias ==========================*/}
+              <td>
+                {" "}
+                <select id="lista-opciones" name="categoria_id" onChange={handleInputChangeCategoria} value={datosCategoria.categoria_id}>
+                  <option value={0}></option>
+                  <option value={1}>Tecnología Principal</option>
+                  <option value={2}>Sub-tecnología</option>
+                  <option value={3}>Equipamiento</option>
+                  <option value={4}>Licencia</option>
+                  <option value={5}>Soporte</option>
+                  <option value={6}>Implementación</option>
+                </select>
+              </td>
+              {/*======================== Agregra Datos  ==========================*/}
+              <td>
+                <button className="btn btn-primary" > Agregar</button>
+                {/* <button className="btn btn-primary" onClick={() => { enviarDatosDP(); enviarDatosSP(); enviarDatosM(); }}> Agregar</button> */}
+              </td>
+            </tr>
+          </tbody>
+        </Table>
+      </form>
     </div>
   );
 }

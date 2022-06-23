@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Cookies from 'universal-cookie';
 // Componentes
 import Partida from "../Menu-Bom/Partida";
@@ -245,7 +245,31 @@ function ContinuarProyecto() {
   return (
     /*==================== Continuar Proyecto ====================*/
     <div  className="contenido-marvilop">
-      <Table responsive id="nombreDiv">
+
+      <Animaciones mytext="Continuar Proyecto" />
+
+
+      
+<div className = "buscador-inteligente">
+
+ 
+<form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave 🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
+
+                </form>
+
+        </div>
+
+
+      <Table >
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
               <tr className="titulo-tabla-usuarios">
@@ -258,7 +282,7 @@ function ContinuarProyecto() {
                   {/*========================== Divisa ==========================*/}
                   <td>
                       <button
-                      className="btn btn-primary modificar"
+                      className="btn btn-primary Mod2"
                       type="button"
                       onClick={() => {
                       setShow6(!show6);
@@ -272,7 +296,7 @@ function ContinuarProyecto() {
                   </td>
                   <td>
                       <button
-                      className="btn btn-primary modificar"
+                      className="btn btn-primary Mod2"
                       type="button"
                       onClick={() => {
                       setShow7(!show7);
@@ -287,6 +311,10 @@ function ContinuarProyecto() {
               </tr>
           </tbody>
       </Table>
+
+
+      <br/>
+
       {show8 ? (
         <div></div>
       ):(
@@ -294,29 +322,9 @@ function ContinuarProyecto() {
         {/*============= Titulo Animación =============*/}
        {/*  <Animaciones mytext="Buscar nn proyectos" />
  */}
-        <div className="busqueda-proyectos">
-          <Table responsive id="nombreDiv">
-            <thead>
-              <tr className="titulo-tabla-usuarios">
-                <th className='ocultar'>Clave</th>
-              </tr>
-            </thead>
 
-            <tbody>
-              <tr className="">
-                <td className= "busqueda">
-                    <input className="agregar"
-                    type="text"
-                    name="proyecto_clave"
-                    onChange={e => onChangeTextClaveP(e.target.value)}
-                    value={claveP}
-                    placeholder="Ingrese clave del proyecto" />
-                </td>
-              </tr>
-            </tbody>
-          </Table>
 
-          </div>
+
           {/****************************Lista de los Proyectos Creados ****************************************/}
           {/*============= Titulo Animación =============*/}
        {/*    <div>
@@ -324,41 +332,36 @@ function ContinuarProyecto() {
             <Animaciones mytext="Lista de Proyectos" />{" "}
           </div>
  */}
-          <Table responsive  striped bordered hover size="sm">
-              <thead>
-
-              <tr className="titulo-tabla-usuarios">
-                  <th></th>
-                  <th className='titulo-tabla'>Proyectos</th>
-                </tr>
-                <tr className="titulo-tabla-usuarios">
-                  <th>ID</th>
-                  <th>Clave</th>
-                  <th>Descripción</th>
-                  <th>Cliente</th>
-                  <th>Fecha Creación</th>
-                  <th>Fecha Modificación</th>
-                  <th>Estatus</th>
-                  <th>Plazo Meses</th>
-                  <th>Continuar</th>
-                  <th>Finalizar</th>
-                </tr>
-              </thead>
+          <Table>
+              <Thead>    
+                <Tr >
+                  <Th>ID</Th>
+                  <Th>Clave</Th>
+                  <Th>Descripción</Th>
+                  <Th>Cliente</Th>
+                  <Th>Fecha Creación</Th>
+                  <Th>Fecha Modificación</Th>
+                  <Th>Estatus</Th>
+                  <Th>Plazo Meses</Th>
+                  <Th>Continuar</Th>
+                  <Th>Finalizar</Th>
+                </Tr>
+              </Thead>
                                   
-              <tbody>
+              <Tbody>
               {Object.keys(suggestions).map((key) => (    
-                  <tr key={suggestions[key].proyecto_id} >
-                      <td>{suggestions[key].proyecto_id}</td>   
-                      <td>{suggestions[key].proyecto_clave}</td>  
-                      <td>{suggestions[key].proyecto_descripcion}</td>  
-                      <td>{suggestions[key].nombre_cliente}</td> 
-                      <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                      <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                      <td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td>  
-                      <td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</td>  
-                      <td>
+                  <Tr key={suggestions[key].proyecto_id} >
+                      <Td>{suggestions[key].proyecto_id}</Td>   
+                      <Td>{suggestions[key].proyecto_clave}</Td>  
+                      <Td>{suggestions[key].proyecto_descripcion}</Td>  
+                      <Td>{suggestions[key].nombre_cliente}</Td> 
+                      <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
+                      <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                      <Td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</Td>  
+                      <Td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</Td>  
+                      <Td>
                         <button 
-                          className="btn btn-primary Mod" 
+                          className="sn-boton " 
                           type="button" 
                           onClick={() => {
                             getIdP(suggestions[key].proyecto_id);
@@ -372,10 +375,10 @@ function ContinuarProyecto() {
                             <i className=   {textBVer[key]} ></i>
 
                           </button>
-                      </td>
-                      <td>
+                      </Td>
+                      <Td>
                         <button 
-                          className="btn btn-primary modificar" 
+                          className="sn-boton" 
                           type="button" 
                           onClick={() => {
                             getIdP1(suggestions[key].proyecto_id);
@@ -385,15 +388,15 @@ function ContinuarProyecto() {
                             }}
                           > 
 
-                           <i className=   {textBVer1[key]}  ></i>
-
-                           
+                           <i className=   {textBVer1[key]}  ></i>                      
                           </button>
-                      </td>
-                  </tr>  
+                      </Td>
+                  </Tr>  
               ))}
-              </tbody>          
+              </Tbody>          
           </Table>
+
+          <br/>
        
       </div>
       )}
@@ -403,7 +406,7 @@ function ContinuarProyecto() {
         <div >
         </div>
       ) : (
-        <Table responsive  striped bordered hover size="sm">
+        <Table >
           <thead>
             <tr className="titulo-tabla-usuarios">
               <th className='ocultar'>Agregar más partidas</th>
@@ -411,11 +414,11 @@ function ContinuarProyecto() {
             </tr>
           </thead>
                               
-          <tbody>    
-              <tr>
-                  <td>
+          <Tbody>    
+              <Tr>
+                  <Td>
                     <button 
-                      className="btn btn-primary modificar" 
+                      className="btn btn-primary Mod2" 
                       type="button" 
                       onClick={() => { 
                         getIdPar('');
@@ -424,32 +427,32 @@ function ContinuarProyecto() {
                         setShow4(true);
                       }}
                       >{show2 ? 'Agregar Nueva Partidas' : 'Ocultar'} </button>
-                  </td>
-                  <td>
+                  </Td>
+                  <Td>
                     <button 
-                      className="btn btn-primary modificar" 
+                      className="btn btn-primary Mod2" 
                       type="button" 
                       onClick={() => { 
                         setShow3(!show3);
                         setShow2(true);
                       }}
                       >{show3 ? 'Continuar Partida' : 'Ocultar'} </button>
-                  </td>
-              </tr>  
-          </tbody>          
+                  </Td>
+              </Tr>  
+          </Tbody>          
       </Table>
       )}
 
       {show2 ? (
               <div ></div>
       ) : (
-              <div  className="arregla"> 
+              <div  className="menu2"> 
            {/*      <div className="contenido-usuarios">
                   {" "}
                   <Animaciones mytext="Datos PTN" />{" "}
                 </div> */}
                 {/*========================== Llamado a los Componentes ==========================*/} 
-                <Partida></Partida>
+                <Partida />
                             
                 <DatosSP clave={id}/>
               </div>
@@ -465,31 +468,31 @@ function ContinuarProyecto() {
                   <Animaciones mytext="Partidas del Proyecto" />{" "}
                 </div>
  */}
-                  <Table responsive  striped bordered hover size="sm">
-                      <thead>
+                  <Table>
+                      <Thead>
 
-                      <tr className="titulo-tabla-usuarios">
-                              <th></th>
-                              <th className='titulo-tabla'>Partidas del Proyecto</th>
+                      <Tr className="titulo-tabla-usuarios">
+                              <Th></Th>
+                              <Th className='titulo-tabla'>Partidas del Proyecto</Th>
                            
-                          </tr>
-                          <tr className="titulo-tabla-usuarios">
-                              <th>ID</th>
-                              <th>Nombre</th>
-                              <th>Descripción</th>
-                              <th>Continuar</th>
-                          </tr>
-                      </thead>
+                          </Tr>
+                          <Tr className="titulo-tabla-usuarios">
+                              <Th>ID</Th>
+                              <Th>Nombre</Th>
+                              <Th>Descripción</Th>
+                              <Th>Continuar</Th>
+                          </Tr>
+                      </Thead>
                                         
-                      <tbody>
+                      <Tbody>
                           {Object.keys(listaPartidas).map((key) => (    
                               //checar aqui va los titulos
-                              <tr key={key} >
-                                  <td>{listaPartidas[key].partida_id}</td>   
-                                  <td>{listaPartidas[key].partida_nombre}</td>  
-                                  <td>{listaPartidas[key].partida_descripcion}</td> 
+                              <Tr key={key} >
+                                  <Td>{listaPartidas[key].partida_id}</Td>   
+                                  <Td>{listaPartidas[key].partida_nombre}</Td>  
+                                  <Td>{listaPartidas[key].partida_descripcion}</Td> 
 
-                                  <td width={"100px"}>
+                                  <Td width={"100px"}>
                                     <button 
                                     className="btn btn-primary  Mod" 
                                     onClick={() => {
@@ -503,10 +506,10 @@ function ContinuarProyecto() {
                                    <i className=  {textBVer2[key]} ></i>
                                    
                                    </button>
-                                  </td> 
-                              </tr>  
+                                  </Td> 
+                              </Tr>  
                           ))}
-                      </tbody>          
+                      </Tbody>          
                   </Table>
                   {show4 ? (
                           <div >
