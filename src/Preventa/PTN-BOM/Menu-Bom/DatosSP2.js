@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-import { url2 } from '../../../Componentes/Ocultar';
+import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 
 import CreateIcon from "@material-ui/icons/Create";
@@ -28,7 +28,9 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { InsertDatosCats } from '../Routes/GuardarDatosCategorias';
 /*============== Operacions PTN BOM ==============*/
 import { precioUnitario, calcularDescuento, Total}  from '../Operaciones/Operaciones';
-
+import { listaProv } from '../../../Ventas/Operaciones/OperacionesAM';
+import { idPartidaInsertada } from '../Routes/GuardarPartida';
+import { pEstatus1 } from './ContinuarProyecto';
 
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
@@ -62,7 +64,7 @@ const useStyles = makeStyles({
 
 
 
-function DatosPTN2(props) {
+function DatosSp2(props) {
 
 	// Defining a state named rows
 	// which we can update by calling on setRows function
@@ -79,6 +81,8 @@ function DatosPTN2(props) {
 		  total:0 ,
 		  moneda:"", 
 		  categoria:"", 
+		  proveedor:"",
+		  marca:"",
 		  comentarios: ""		
 		},
 	]);
@@ -86,22 +90,150 @@ function DatosPTN2(props) {
 	//Key 
 	const [k, setK] = useState(0);
 
+	// ================================= Buscadores ================================= //
+		// =========== No de partes =========== //
+		// Almacenamiento de los No. de parte existentes para el buscador
+		const [listaNP, setListaNP] = useState ([]);
+
+		// Almacenamiento de los No. de parte semejantes al texto introducido en el input
+		const [suggestionsNP, setSuggestionsNP] = useState ([]);
+	
+		// Función que realiza la consulta a la tabla sp_no_parte
+		async function obtenerNP(){
+            try {
+				const resNp = await axios.get(url + '/api/cotizador/sp/viewSpnp');
+                setListaNP(resNp.data.data); 
+            } catch (error) {console.log(error);}
+		}
+
+		const onSuggestHandlerNP = (np) => {
+            const actualizar = [...rows];
+			actualizar[k]['n_parte'] = np;
+			setRows(actualizar);
+            setSuggestionsNP([]);
+        }
+		// ==================================== //
+
+		// =========== Descripciones =========== //
+		// Almacenamiento de los No. de parte existentes para el buscador
+		const [listaDesc, setListaDesc] = useState ([]);
+
+		// Almacenamiento de los No. de parte semejantes al texto introducido en el input
+		const [suggestionsDesc, setSuggestionsDesc] = useState ([]);
+	
+		// Función que realiza la consulta a la tabla sp_no_parte
+		async function obtenerDesc(){
+			try {
+				const resDes = await axios.get(url + '/api/cotizador/sp/viewSpd');
+				setListaDesc(resDes.data.data);
+			} catch (error) {console.log(error);}
+		}
+
+		const onSuggestHandlerDesc = (d) => {
+            const actualizar = [...rows];
+			actualizar[k]['descripcion'] = d;
+			setRows(actualizar);
+            setSuggestionsDesc([]);
+        }
+		// ==================================== //
+
+		// =========== Marcas =========== //
+		// Almacenamiento de las marcas existentes para el buscador
+		const [listaMarca, setListaMarca] = useState ([]);
+
+		// Almacenamiento de las marcas semejantes al texto introducido en el input
+		const [suggestionsMarca, setSuggestionsMarca] = useState ([]);
+	
+		// Función que realiza la consulta a la tablas proveedores
+		async function obtenerMarcas(proveedor){
+			let i = Object.keys(listaProv);
+			let proveedorId = {
+				proveedor_id:''
+			}
+            for (let c = 0; c < i.length; c++) {
+            if (proveedor === listaProv[c].proveedor_nombre) {
+                proveedorId.proveedor_id = listaProv[c].proveedor_id;
+                //console.log('proveedor id:',proveedorId);
+                }
+            }
+            try {
+                if(proveedorId.proveedor_id !== ''){
+                    const respuesta = await axios.get(url2 + `/api/cotizador/provmarcas/view/${proveedorId.proveedor_id}`);
+                    setListaMarca(respuesta.data.data);
+                }
+            } catch (error) {console.log(error);}
+		}
+
+		const onSuggestHandlerMarca = (nM) => {
+            const actualizar = [...rows];
+			actualizar[k]['marca'] = nM;
+			setRows(actualizar);
+            setSuggestionsMarca([]);
+        }
+	// ============================== // 
+	// =========== Proveedores =========== //
+	// Almacenamiento de los proveedores existentes para el buscador
+	const [listaProv, setListaProv] = useState ([]);
+
+	// Almacenamiento de los proveedores semejantes al texto introducido en el input
+	const [suggestionsProv, setSuggestionsProv] = useState ([]);
+
+	// Función que realiza la consulta a la tabla proveedores
+	async function obtenerProveedores(){
+		try{
+			const respuesta = await axios.get(url + '/api/cotizador/proveedor/view');
+			setListaProv(respuesta.data.data);
+		}catch(error){
+			console.log(error);
+		}
+	}
+
+	
+	// === Conteo de filas agregadas para condicionar la selección de elementos en los buscadores === //
+	const [enable, setEnable] = useState([]);
+
+	useEffect(()=>{
+		//console.log(rows);
+		const i = rows.length;
+		const newArr = [];
+		setEnable(Array(i).fill(true));
+		for(let c = 0 ; c < i ; c++){
+			if(parseInt(c) === parseInt(k)){
+				newArr[c] = false;
+			}else if(parseInt(c) !== parseInt(k)){
+				newArr[c] = true;
+			}
+		}
+		setEnable(newArr);
+		//console.log('Arreglo enable:',enable)
+		//console.log('rows:',rows);
+	},[rows])
+	
+	// ============================================================================================= //
+
+	// Función que obtiene el nombre del cliente seleccionado
+	const onSuggestHandlerProv = (nP) => {
+		const actualizar = [...rows];
+		actualizar[k]['proveedor'] = nP;
+		setRows(actualizar);
+		//console.log(listaMarca);
+		setSuggestionsProv([]);
+		obtenerMarcas(nP);
+	}
+	// =================================== //
+	// ============================================================================== // 
+
+	useEffect(()=>{
+		obtenerProveedores();
+		obtenerNP();
+		obtenerDesc();
+	},[])
 
     function checa(){
         validaOperacion = !validaOperacion;
         setBdesc(!Bdesc);
-        setBdesc2(!Bdesc2);
-        setDatos({
-            precio_lista: '',
-            precio_unitario: '',
-            precio_descuento: '',
-            cd_cantidad: '',
-            precio_total: '' 
-			
-			
-
-        });
-        }
+        setBdesc2(!Bdesc2);   
+    }
 
 		
 		if( validaOperacion === false){
@@ -109,63 +241,19 @@ function DatosPTN2(props) {
 		}else{
 			define = "Precio Unitario	";
 		}
-		const [datos, setDatos] = useState({
-			precio_lista: '',
-			precio_unitario: '',
-			precio_descuento: '',
-			cd_cantidad: '',
-			precio_total: '',
-			precio_id_moneda:''
-		});
-
-		const handleInputChangePrecio = (event) => {
-			setDatos({
-			...datos,[event.target.name]: event.target.value,
-			});
-		};
-	
-		
+				
 		///CALCULAR DESCUENTO
 		/*================================================================================*/
-		// useEffect(()=>{
-		// if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
-		// 	const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-		// 	const total = Total(datos.precio_unitario,datos.cd_cantidad)
-		// 	setDatos({ ...datos,  precio_total:   total, precio_descuento: desc });}
-		
-		// if(datos.precio_lista === '' || datos.precio_unitario === ''){
-		// 	setDatos({ ...datos,  precio_descuento:''});
-		// }
-
-		// },[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario   ])
 
 		useEffect(()=>{
 			if(rows[k].precio_lista != '' && rows[k].precio_unitario != ''  && validaOperacion == false){
 				const desc = calcularDescuento(rows[k].precio_lista, rows[k].precio_unitario);
 				const total = Total(rows[k].precio_unitario,rows[k].cantidad);
-				//console.log(k);
-
 				const actualizar = [...rows];
 				actualizar[k]['precio_descuento'] = desc;
 				actualizar[k]['total'] = total;
 				setRows(actualizar);
-				console.log('Variable actualiza (Calcular Descuento):',actualizar);
-				// let i = parseInt(k);
-				
-				// const change = rows.map(elemento=>(
-				// 	elemento.id === i+1 ?    elemento : 0
-				// ))
-
-				// change[i].total = total;
-				// change[i].descuento = desc;
-				//console.log('Varaible change:',change[i]);
-
-				//rows[k].total = total;
-				//rows[k].descuento = desc;
-				// setRows({
-				// 	...rows, total:total, descuento:desc
-				// });
-				//setRows(change);
+				//console.log('Variable actualiza (Calcular Descuento):',actualizar);
 			}
 			
 			if(rows[k].precio_lista === '' || rows[k].precio_unitario === ''){
@@ -196,7 +284,7 @@ function DatosPTN2(props) {
 				actualizar[k]['precio_unitario'] = precio_u;
 				actualizar[k]['total'] = total;
 				setRows(actualizar);
-				console.log('Variable actualizar (Calcular Precio Unitario):',actualizar);
+				//console.log('Variable actualizar (Calcular Precio Unitario):',actualizar);
 			}
 		  
 		  },[rows[k].precio_descuento,rows[k].precio_lista,rows[k].cantidad])
@@ -223,19 +311,7 @@ function DatosPTN2(props) {
 			}
 			
 		}
-	   const send =(e,datos)=>{
-		enviarDatos(e, datos);
-		setDatos({
-			precio_lista: '',
-			precio_unitario: '',
-			precio_descuento: '',
-			cd_cantidad: '',
-			precio_total: '',
-			precio_id_moneda:''
-		});
-	
-	   }
-	
+	   
 	   function confirFinalizar(){
 		const confirmacion = window.confirm(
 			"¿Seguro que quieres Finalizar este Proyecto?"
@@ -274,7 +350,7 @@ function DatosPTN2(props) {
 			{		
 		id: rows.length + 1   , n_parte: "", descripcion: "", meses: "" , semanas: "" , 
 		cantidad:1, precio_lista: 0, precio_unitario: 0, precio_descuento:0, total:0 ,
-        moneda:"", categoria:"", comentarios: "",
+        moneda:"", categoria:"", proveedor:"", marca:"", comentarios: ""
 	 
 			},
 		]);
@@ -291,6 +367,24 @@ function DatosPTN2(props) {
 		setEdit(!isEdit);
 	};
 
+	const guardarListaSP = async () =>{
+		
+		if (pEstatus1 === 'En revision') {
+			alert('No se puede continuar el Proyecto porque se encuentra En revision')
+		  } else if (pEstatus1 === 'Aceptado') {
+			alert('No se puede continuar el Proyecto porque ha sido Aceptado')
+		  } else {
+			try {
+				const respuesta = await axios.post(url2+`/api/cotizador/sp/insercionMultiple/${idPartidaInsertada}`,rows);
+				alert(respuesta.data.msg);
+			} catch (error) {
+				console.log(error);            
+			}
+		  }
+		
+		
+	}
+
 	// Function to handle save
 	const handleSave = () => {
 		setEdit(!isEdit);
@@ -298,6 +392,7 @@ function DatosPTN2(props) {
 		console.log("Guardado: ", rows);
 		setDisable(true);
 		setOpen(true);
+		guardarListaSP();
 	};
 
 	// The handleInputChange handler can be set up to handle
@@ -309,7 +404,56 @@ function DatosPTN2(props) {
 		setDisable(false);
 		const { name, value } = e.target;
 		const list = [...rows];
-		console.log('Variable list:',list);
+
+		if(name === 'n_parte'){
+			let coincidencias = [];
+			if(value.length>0){
+				coincidencias = listaNP.filter(np => {
+					const regex = new RegExp(`${value}`, "gi");
+					return np.spnp_np.match(regex)
+				})
+			}
+			setSuggestionsNP(coincidencias);
+			console.log('suggestionsNP:',suggestionsNP);
+		}
+
+		if(name === 'descripcion'){
+			let coincidencias = [];
+			if(value.length>0){
+				coincidencias = listaDesc.filter(desc => {
+					const regex = new RegExp(`${value}`, "gi");
+					return desc.spd_des.match(regex)
+				})
+			}
+			setSuggestionsDesc(coincidencias);
+			console.log('suggestionsDesc:', suggestionsDesc);
+		}
+
+		if(name === 'proveedor'){
+			let coincidencias = [];
+			if(value.length>0){
+				coincidencias = listaProv.filter(proveedor => {
+					const regex = new RegExp(`${value}`, "gi");
+					return proveedor.proveedor_nombre.match(regex)
+				})
+			}
+			setSuggestionsProv(coincidencias);
+			console.log('suggestionsProv:',suggestionsProv);
+		}
+
+		if(name === 'marca'){
+			let coincidencias = [];
+            if(value.length>0){
+            coincidencias = listaMarca.filter(marca => {
+                const regex = new RegExp(`${value}`, "gi");
+                return marca.marca_nombre.match(regex)
+                })
+            }
+            setSuggestionsMarca(coincidencias);
+			console.log('suggestionsMarca:',suggestionsMarca);
+			
+		}
+		//console.log('Variable list:',list);
 		list[index][name] = value;
 		setRows(list);
 		//console.log('list:',list)
@@ -433,6 +577,8 @@ return (
 			<TableCell  align="center">Total</TableCell>
 			<TableCell  align="center">Moneda</TableCell>
 			<TableCell  align="center">Categoria</TableCell>
+			<TableCell  align="center">Proveedor</TableCell>
+			<TableCell  align="center">Marca</TableCell>
 			<TableCell  align="center">Comentarios</TableCell>
 			<TableCell  align="center">X</TableCell>
 
@@ -445,7 +591,7 @@ return (
 			</TableRow>
 		</TableHead>
 		
-			{rows.map((row, i) => {
+			{Object.keys(rows).map((i) => {
 			return (
 				<TableBody key={i}>
 				<>
@@ -466,9 +612,27 @@ return (
                         name="n_parte"
 						onChange={(e) => handleInputChange(e, i)}
                         placeholder="No. Parte"
-						value={row.n_parte}
+						value={rows[i].n_parte}
                         />
+						{Object.keys(suggestionsNP).map((i)=>
+							{if(k == i){
+								return(
+								<></>
+								)
+							}else{
+								return(
+									<div 
+									key={i} 
+									className="selectCliente" 
+									onClick={() => onSuggestHandlerNP(suggestionsNP[i].spnp_np)}
+									>
+										{suggestionsNP[i].spnp_np}
+									</div>
+								)
+							}}
+						)}
 						</TableCell>
+
 						<TableCell padding="none">
 						<input
                         className="agregar"
@@ -476,14 +640,25 @@ return (
 						name="descripcion"
 						onChange={(e) => handleInputChange(e, i)}
                         placeholder="Descripción"
-						value={row.descripcion}
+						value={rows[i].descripcion}
                         />
-						{/* <input
-					        className="agregar"
-							value={row.descripcion}
-							name="descripcion"
-							onChange={(e) => handleInputChange(e, i)}
-						/> */}
+						{Object.keys(suggestionsDesc).map((i)=>
+							{if(k == i){
+								return(
+								<></>
+								)
+							}else{
+								return(
+									<div 
+									key={i} 
+									className="selectCliente" 
+									onClick={() => onSuggestHandlerDesc(suggestionsDesc[i].spd_des)}
+									>
+										{suggestionsDesc[i].spd_des}
+									</div>
+								)
+							}}
+						)}
 						</TableCell>
 
 						<TableCell padding="none">
@@ -495,7 +670,7 @@ return (
                         min="0"
 						onChange={(e) => handleInputChange(e, i)}
                         placeholder="Meses"
-						value={row.meses}
+						value={rows[i].meses}
                         />
 					{/* 	<input
 						    className="agregar"
@@ -512,7 +687,7 @@ return (
                         min="0"
 						onChange={(e) => handleInputChange(e, i)}
                         placeholder="Semanas"
-							value={row.semanas}
+							value={rows[i].semanas}
                         />
 					{/* 	<input
 					        className="agregar"
@@ -622,7 +797,7 @@ return (
 						</TableCell>
 						<TableCell padding="none">
 						<select id="combo-box" 
-							value={row.moneda}
+							value={rows[i].moneda}
 							name="moneda"
 					        onChange={(e) => handleInputChange(e, i)}
                         >
@@ -643,13 +818,15 @@ return (
 					    style={{ width: "170px" }}
 						 id="combo-box"
 						  name="categoria" 
-						  value={row.categoria}
+						  value={rows[i].categoria}
 						  	onChange={(e) => handleInputChange(e, i)}>
                             <option value={0}></option>
-                            <option value={1}>Capacitación</option>
-                            <option value={2}>Accesorios</option>
-                            <option value={3}>Servicios PTN</option>
-                            <option value={4}>Mesa de Ayuda</option>                       
+                            <option value={1}>Tecnología principal</option>
+                            <option value={2}>Subtecnología</option>
+                            <option value={3}>Equipamiento</option>
+                            <option value={4}>Licencia</option>
+							<option value={4}>Soporte</option>
+							<option value={4}>Implemetación</option>                       
                         </select>
 					{/* 	<input
 						    className="agregar"
@@ -658,9 +835,63 @@ return (
 							onChange={(e) => handleInputChange(e, i)}
 						/> */}
 						</TableCell>
-					
+						
+						<TableCell padding="none">
+					        	<input
+                                className="agregar"
+                                type="text"
+                                name="proveedor"
+                            	onChange={(e) => {handleInputChange(e, i)}}
+                                placeholder="Proveedor"
+								value={rows[i].proveedor}
+                                />
+								{Object.keys(suggestionsProv).map((i)=>
+                                    {if(k == i){
+                                        return(
+                                        <></>
+                                        )
+                                    }else{
+                                        return(
+                                            <div 
+                                            key={i} 
+                                            className="selectCliente" 
+                                            onClick={() => onSuggestHandlerProv(suggestionsProv[i].proveedor_nombre,i)}
+                                            >
+                                                {suggestionsProv[i].proveedor_nombre}
+                                            </div>
+                                        )
+                                    }}
+                                    )}
+						</TableCell>
 
-
+					    <TableCell padding="none">
+					        	<input
+                                className="agregar"
+                                type="text"
+                                name="marca"
+                            	onChange={(e) => handleInputChange(e, i)}
+                                placeholder="Marca"
+								value={rows[i].marca}
+                                />
+								{Object.keys(suggestionsMarca).map((i)=>
+                                    {if(k == i){
+                                        return(
+                                            <></>
+                                        )
+                                    }else{
+                                        return(
+                                            <div 
+                                            key={i} 
+                                            className="selectCliente" 
+                                            onClick={() => onSuggestHandlerMarca(suggestionsMarca[i].marca_nombre)}
+                                            >
+                                                {suggestionsMarca[i].marca_nombre}
+                                            </div>
+                                        )
+                                    }}
+                                    
+                                    )}
+						</TableCell>
 
 						<TableCell padding="none">
 
@@ -670,7 +901,7 @@ return (
                                 name="comentarios"
                             	onChange={(e) => handleInputChange(e, i)}
                                 placeholder="Comentarios"
-								value={row.comentarios}
+								value={rows[i].comentarios}
                                 />
                             
 					{/* 	<input
@@ -716,40 +947,46 @@ return (
 					) : (
 					<>
 						<TableCell component="th" scope="row" align="center">
-						{row.n_parte}
+						{rows[i].n_parte}
 						</TableCell>
 						<TableCell component="th" scope="row"  align="center">
-						{row.descripcion}
+						{rows[i].descripcion}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{row.meses}
+						{rows[i].meses}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{row.semanas}
+						{rows[i].semanas}
 						</TableCell>
 						<TableCell component="th" scope="row"  align="center">
-						{row.cantidad}
+						{rows[i].cantidad}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{row.precio_lista}
+						{rows[i].precio_lista}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{row.precio_unitario}
+						{rows[i].precio_unitario}
 						</TableCell>
 						<TableCell component="th" scope="row"  align="center">
-						{row.descuento}
+						{rows[i].precio_descuento}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{row.total}
+						{rows[i].total}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{row.moneda}
+						{rows[i].moneda}
 						</TableCell>
 						<TableCell component="th" scope="row"  align="center">
-						{row.categoria}
+						{rows[i].categoria}
+						</TableCell>
+						<TableCell component="th" scope="row"  align="center">
+						{rows[i].proveedor}
+						</TableCell>
+						<TableCell component="th" scope="row"  align="center">
+						{rows[i].marca}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{row.comentarios}
+						{rows[i].comentarios}
 						</TableCell>
 					</>
 					)}
@@ -762,7 +999,7 @@ return (
 
 
 					) : (
-					<Button className="mr10" onClick={handleConfirm}>
+					<Button className="mr10" onClick={() => handleConfirm}>
 						<DeleteOutlineIcon />
 					</Button>
 
@@ -824,4 +1061,4 @@ return (
 
 }
 
-export default DatosPTN2;
+export default DatosSp2;

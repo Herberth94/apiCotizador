@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Animaciones from "../../../Componentes/Animaciones";
 // Componentes
  import Partida from "../Menu-Bom/Partida";
- import DatosSP from "../Menu-Bom/DatosSP";
+ import DatosSp2 from "../Menu-Bom/DatosSP2";
  import Categorias from "../Menu-Bom/Categorias";
  
 
@@ -25,10 +25,10 @@ function DatosPTN(props) {
         <Partida/>
       {/*========================== Tabla Datos PTN ==========================*/}
       
-        <DatosSP clave={props.clave}/>
+        <DatosSp2 clave={props.clave}/>
         {/*========================== Añadir Categorias ==========================
         Solo cuando se termine el proyecto */}
-        <div className="contenido-usuarios">
+        {/* <div className="contenido-usuarios">
           <button
           className="btn btn-primary modificar"
           type="button"
@@ -45,12 +45,11 @@ function DatosPTN(props) {
             ) : (
             <div className="">
               {/*======================== Llamar al componente Categorias ==========================*/}
-              <Categorias clave={props.clave} />
+              {/* <Categorias clave={props.clave} />
             </div>
           )}
-        </div>
-      </div>
-      
+        </div>*/} 
+      </div> 
       
     </div>
   );

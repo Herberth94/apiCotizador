@@ -8,7 +8,6 @@ import Cookies from 'universal-cookie';
 import Animaciones from "../../../Componentes/Animaciones";
 import "../css/PTN_BOM.css";
 import DatosPTN from "../Menu-Bom/DatosPTN";
-import DatosPTN2 from "../Menu-Bom/DatosPTN2";
 import { url, url2 } from "../../../Componentes/Ocultar";
 
 
@@ -289,7 +288,7 @@ function NuevoProyecto() {
         <div className="arregla multiple">
       {/*     <DatosPTN clave={clavep} /> */}
 
-      <DatosPTN2   clave={clavep} />
+      <DatosPTN   clave={clavep} />
 
         </div>
       )}
