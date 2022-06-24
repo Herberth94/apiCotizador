@@ -45,7 +45,7 @@ function MenuHeramientas() {
             {/*========================== Divisa ==========================*/}
             <td>
               <form method="get" action={G}>
-                <button className="btn btn-primary PDF" > Descargar PDF
+                <button className="btn btn-primary PDF" > Manual de Usuario PDF
                 </button>
               </form>
             </td>

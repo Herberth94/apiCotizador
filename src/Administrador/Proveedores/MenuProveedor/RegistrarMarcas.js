@@ -95,7 +95,7 @@ function RegistrarMarcas() {
   
     {/*========= Botón Registrar ========= */}
               <div className="boton-login">
-                <button className="login" type="submit">
+                <button className="btn-login" type="submit">
                   <span>Registrar</span>
                 </button>
               </div>
