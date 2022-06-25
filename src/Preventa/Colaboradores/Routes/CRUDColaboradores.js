@@ -52,10 +52,10 @@ export const CrudColaboradores = (props) => {
                         {/*=================== Nombre/Email del Colaborador =================*/}
                         <Td>{props.colabs[parseInt(key)].email}</Td>
                         {/*=================== Botón Eliminar =================*/}
-                        <Td width={"100px"}>
+                        <Td>
                             {" "}
                             <button
-                                className="btn btn-primary eliminar"
+                                className="sn-boton  eliminar"
                                 type="button"
                                 onClick={() => {
                                     props.estado ? deleteColab(props.colabs[parseInt(key)].up_id):deleteColab(props.colabs[parseInt(key)].colab_id)

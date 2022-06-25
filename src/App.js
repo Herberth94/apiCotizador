@@ -12,7 +12,6 @@ import Footer from './Componentes/Footer';
 import PublicRoutes from "./Routes/PublicRoutes";
 
 //============ Rutas Private Públicas ============
-import MenuClientes from "./Administrador/Clientes/MenuClientes/MenuClientes";
 //============ Rutas Private Administrador ============
 import Administrador from "./Routes/ValidaAdministrador";
 import MenuHeramientas from "./Componentes/Herramientas/MenuHeramientas";
@@ -128,10 +127,10 @@ function App() {
         <Administrador exact path="/administrar-usuarios" component={AdministrarUsuarios} />
         <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />        
         <Administrador exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
-        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores} />
+        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores  } />
 
 
-
+      {/*   estado={true} */}
         <Administrador exact path="/administrar-asignaciones" component={AdministrarColaboradores}   />
         <Administrador exact path="/asignar-proyectos" component={AsignarProyecto} />
       

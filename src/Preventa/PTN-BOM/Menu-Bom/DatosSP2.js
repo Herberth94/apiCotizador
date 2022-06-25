@@ -69,12 +69,13 @@ function DatosSp2(props) {
 	// Defining a state named rows
 	// which we can update by calling on setRows function
 	const [rows, setRows] = useState([
-		{ id: 1,
+		{
+		  id: 0,
 		  n_parte: "",
 		  descripcion: "",
 		  meses: "" ,
 		  semanas: "" ,
-		  cantidad:1,
+		  cantidad:0,
 		  precio_lista: 0,
 		  precio_unitario: 0,
 		  precio_descuento: 0, 
@@ -482,7 +483,7 @@ function DatosSp2(props) {
 
 return (
 
-<div className=''>
+<div className='carga-multipe'>
 	
 
 	<TableBody>
@@ -545,8 +546,7 @@ return (
 
 				<Button align="right"   onClick={checa}>
 				<AutorenewIcon />
-		     	<span> Calcular  {define}    </span>
-			
+		     	<span> Calcular  {define}    </span>	
 				</Button>
 
 

@@ -5,9 +5,15 @@
   z-index: 1;
 
 }
+
+input:disabled {
+  background: rgba(221, 224, 224, 0.438);
+}
+
+
 .buscador-inteligente{
     position: fixed;
-    z-index: 2;
+    z-index: 11;
     justify-content: end;
     right: 20px;
     top: 0;

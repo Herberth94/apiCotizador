@@ -6,8 +6,6 @@ import axios from 'axios';
 import { pId2 } from "./NuevoProyecto";
 import {url2} from '../../../Componentes/Ocultar';
 
-
-
 let id;
 function Partida({clave} ) {
   const { handleInputChangePartida, enviarDatosPartida } = InsertDatosPartida();

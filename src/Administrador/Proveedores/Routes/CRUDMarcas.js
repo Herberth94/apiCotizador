@@ -131,7 +131,7 @@ export const CrudMarcas = (props) => {
                               
                               
                               < >
-                                    <Td width={"100px"} >
+                                    <Td  >
                                     <button 
                                     className="sn-boton " type="button"
                                     onClick={()=>{
@@ -145,7 +145,7 @@ export const CrudMarcas = (props) => {
                                 
                                 </Td>
 
-                                <Td width={"100px"}>
+                                <Td >
                                     <button 
                                     className="sn-boton cancelar" type="button"
                                     onClick={()=>{

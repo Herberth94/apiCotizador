@@ -141,6 +141,7 @@ function AdministrarColaboradores(props) {
    
       <Animaciones  mytext="Administrar Colaboradores"/>
       <div className="table-responsive">
+
         <div className = "buscador-inteligente">
 
  

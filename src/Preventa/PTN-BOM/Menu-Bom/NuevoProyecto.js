@@ -285,7 +285,7 @@ function NuevoProyecto() {
       
       
       (
-        <div className="arregla multiple">
+        <div className="">
       {/*     <DatosPTN clave={clavep} /> */}
 
       <DatosPTN   clave={clavep} />

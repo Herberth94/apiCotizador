@@ -172,7 +172,7 @@ export const CrudProveedores = (props) => {
                             ></input>
                         </Td>
                         {/*================= Teléfono ==================*/}
-                        <Td width={"200px"}>
+                        <Td >
                             <input
                             className="input-name"
                             defaultValue={props.proveedores[key].proveedor_telefono}
@@ -214,7 +214,7 @@ export const CrudProveedores = (props) => {
                         
 
 {enable[key] ? (
-                                <Td width={"100px"} >
+                                <Td >
                                     <button 
                                     className=  "sn-boton " type="button"
                                     onClick={()=>{

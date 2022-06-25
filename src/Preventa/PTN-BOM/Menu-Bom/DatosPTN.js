@@ -6,6 +6,7 @@ import Animaciones from "../../../Componentes/Animaciones";
  import DatosSp2 from "../Menu-Bom/DatosSP2";
  import Categorias from "../Menu-Bom/Categorias";
  
+ import K from "./K";
 
 function DatosPTN(props) {
   
@@ -14,7 +15,7 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="">
+    <div className="menu2">
       {/*========================== Titulos ==========================*/}
       <div>
         {" "}
@@ -22,10 +23,17 @@ function DatosPTN(props) {
       </div>
       {/*========================== Tabla Datos partida==========================*/}
       <div className="">
-        <Partida/>
+
+        <div className="partidas">
+
+     <Partida/>
+        </div>
+   
+
+   <K/>
       {/*========================== Tabla Datos PTN ==========================*/}
       
-        <DatosSp2 clave={props.clave}/>
+ {/*        <DatosSp2 clave={props.clave}/> */}
         {/*========================== Añadir Categorias ==========================
         Solo cuando se termine el proyecto */}
         {/* <div className="contenido-usuarios">

@@ -2,7 +2,7 @@ a#nav-dropdown-dark-example.dropdown-toggle.nav-link::after{
   color: #ffffff;
 }
 
-
+/* 
 
 
 table#h1.responsiveTable{
@@ -15,13 +15,11 @@ table#h1.responsiveTable{
 }
 
 
-
-
 table#h1.responsiveTable  tr {
 
   border: black 7px solid;
 }
-
+ */
 
 
 /* table#h1.responsiveTable  td{
@@ -38,12 +36,15 @@ table#h1.responsiveTable  tr {
 
 .sn-boton{
   border: none;
-  background-color: #757575;
+  background-color: #75757559;
   transition: 1s;
   -webkit-transition: 1s;
   -moz-transition: 1s;
   -ms-transition: 1s;
   -o-transition: 1s;
+  width: 40px;
+  height: 30px;
+
 }
 
 .sn-boton:hover{
@@ -76,8 +77,20 @@ table#h1.responsiveTable  tr {
   -o-transition: 1s;
 }
 
+select#rol{
+  border-radius: 10px ;
+  -webkit-border-radius: 10px ;
+  -moz-border-radius: 10px ;
+  -ms-border-radius: 10px ;
+  -o-border-radius: 10px ;
+
+}
+
+
+
+
 .sn-boton.resetear{
-  background-color: #757575;
+  background-color: #75757559;
   transition:  1s;
   -webkit-transition:  1s;
   -moz-transition:  1s;
@@ -102,16 +115,9 @@ input{
   text-align: center;
 }
 
-select#rol{
-  border-radius: 10px ;
-  -webkit-border-radius: 10px ;
-  -moz-border-radius: 10px ;
-  -ms-border-radius: 10px ;
-  -o-border-radius: 10px ;
-}
 
 .bus{
-  background-color: #1db88400;
+  background-color: #b7b9b900;
   border: none;
 
 }
