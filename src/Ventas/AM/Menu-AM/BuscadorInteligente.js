@@ -206,7 +206,7 @@ function BuscadorInteligente() {
             <Th>Fecha Modificación</Th>
             <Th>Estatus</Th>
             <Th>Plazo de meses</Th>
-            <Th>Resumen AM</Th>
+            <Th>Detalles</Th>
             </Tr>
             </Thead>
                     

@@ -12,15 +12,18 @@ import {
 } from "../../../Ventas/Operaciones/OperacionesAM";
 
 
-import { fecha, datos } from './Formulario';
+
+
+import { datos } from './Formulario';
 import { infPartida } from './ModalPartida';
-export let name_encargado = "OCM ";
+export let name_encargado = " ";
 export let atent = "Atentamente";
-export let cargo = "Account Manager";
+export let cargo = "";
 export let nombreP = "";
 
-
-
+const tiempoTranscurrido = Date.now();
+const hoy = new Date(tiempoTranscurrido);
+export let fecha = hoy.toLocaleDateString();
 
 
 
@@ -88,21 +91,22 @@ class ExportarPDF extends React.Component {
     //console.log(dataPartida2);
 
     //Datos Proyectos
-    let claveProyecto = clave_p;
-    let organizacion = name_cliente;
-    let nombreProyecto = datos.nombre;
-    let nombreContacto = datos.servicios;
+    let claveProyecto = datos.nombre_proyecto;
+    let organizacion = datos.nombre_cliente;
+
+ 
+    let nombreContacto = datos.nombre_cliente;
+    let nombre = datos.nombreP;
 
     let nombreEncargado = datos.firma;
     let nombreCargo = datos.cargo;
-    let nombre = datos.nombreP;
 
     const titulo = "PROPUESTA ECONÓMICA";
-    const fech = "Ciudad de México a " + fecha
+    const fech = "Ciudad de México a " + datos.fec;
 
 
     /*    Datos de Proyecto */
-    const proyecto = claveProyecto + " " + organizacion + " " + nombreProyecto;
+    const proyecto = claveProyecto + " " + organizacion ;
 
 
     const namePresente = nombre;
@@ -110,8 +114,7 @@ class ExportarPDF extends React.Component {
 
     /*    Nombre de Proyecto */
     const atencion = "No de Proyecto: " + " " + nombreContacto;
-    /*    const comentarios = "No de ProyectoX:  " + claveProyecto ;
-    */
+ 
 
     const cuota = "ANTES DE IVA";
 

@@ -3,6 +3,7 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { useState } from "react";
 import axios from 'axios';
 import { url2 } from '../../../Componentes/Ocultar';
+import Animaciones from '../../../Componentes/Animaciones';
 
 function AdministrarPropuesta(props) {
   const [show, setShow] = useState(true)
@@ -43,11 +44,12 @@ function AdministrarPropuesta(props) {
 
       <div className="table-responsive">
 
-
-        {/*    <div>
+  <br/>
+  <br/>
+            <div>
           <Animaciones mytext="Validación" />
         </div>
- */}
+ 
         <Table >
           {/*========================== Titulos Tabla ==========================*/}
           <Thead>

@@ -1,3 +1,12 @@
+h3{
+    text-align: center;
+}
+
+label{
+    color: #000000;
+    text-align: center;
+}
+
 .encabezado{
     background-color: rgb(23, 23, 24);
 }
@@ -328,18 +337,7 @@
   
   @media (max-width: 960px) {
   
-  
-    body{
-  /* 
-      background: #ffffff;
-       background: url('../images/Movil.png') no-repeat center center fixed; 
-       -webkit-background-size: cover;
-       -moz-background-size: cover;
-       -o-background-size: cover;
-       background-size: cover; */
-     
-     }
-  
+
   
   
   
