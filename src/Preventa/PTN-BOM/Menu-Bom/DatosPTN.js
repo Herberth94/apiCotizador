@@ -24,16 +24,16 @@ function DatosPTN(props) {
       {/*========================== Tabla Datos partida==========================*/}
       <div className="">
 
-        <div className="arregla">
+        <div className="">
 
      <Partida/>
         </div>
    
-
-   <K   clave={props.clave}/>
+{/* 
+   <K   clave={props.clave}/> */}
       {/*========================== Tabla Datos PTN ==========================*/}
       
- {/*        <DatosSp2 clave={props.clave}/> */}
+        <DatosSp2 clave={props.clave}/> 
         {/*========================== Añadir Categorias ==========================
         Solo cuando se termine el proyecto */}
         {/* <div className="contenido-usuarios">
