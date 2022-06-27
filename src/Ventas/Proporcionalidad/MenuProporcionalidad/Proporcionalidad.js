@@ -14,7 +14,7 @@ function Proporcionalidad() {
   return (
     
     
-    <div className="contenido-marvilop">
+    <div className="">
 
 
         <div>
@@ -32,9 +32,9 @@ function Proporcionalidad() {
                     {/*=================== Titulos Tabla Clientes ===================*/}
                     <Tr >
                         <Th>Descripción</Th>
-                        <Th > Precio Venta </Th>
-                        <Th>  % </Th>
-                        <Th>Proporcional MESA DE AYUDA </Th>
+                        <Th >Precio Venta </Th>
+                        <Th> % </Th>
+                        <Th>Prop MESA AYUDA </Th>
                         <Th>TOTAL</Th>
                         <Th>TOTAL MENSUAL</Th>
                         <Th>Financiamiento</Th>
@@ -60,17 +60,17 @@ function Proporcionalidad() {
                       
 
                          {/*================= Proporcional Mesa de Ayuda==================*/}
-                            <Td>  {" $ "}{ proporcionalMesaAyuda[key]}</Td>
+                            <Td>  {"$ "}{ proporcionalMesaAyuda[key]}</Td>
 
                             {/*================= Total ==================*/}
 
-                            <Td className="azul"> {" $ "} {TOTAL[key]} </Td>
+                            <Td className="azul"> {"$ "} {TOTAL[key]} </Td>
 
                   {/*================= Total Mensual ==================*/}
-                  <Td className=""> {" $ "} {totalMensual[key]}</Td>
+                  <Td className=""> {"$ "} {totalMensual[key]}</Td>
 
                     {/*================= Financiamiento ==================*/}
-                            <Td> {" $"} {financiamiento[key]}</Td>
+                            <Td> {"$ "} {financiamiento[key]}</Td>
                                 {/*================= eDITARF==================*/}   
                           
                         </Tr>

@@ -213,7 +213,7 @@ function ModificarFinanciamiento(prop) {
 
 
 {enable[key] ? (
-                                <Td width={"100px"} >
+                                <Td >
                                     <button 
                                     className=  "sn-boton" type="button"
                                     onClick={()=>{
@@ -228,7 +228,7 @@ function ModificarFinanciamiento(prop) {
                                 </Td>
                             ):(
                               < >
-                                    <Td width={"100px"} >
+                                    <Td >
                                     <button 
                                     className="sn-boton" type="button"
                                     onClick={()=>{
@@ -240,7 +240,7 @@ function ModificarFinanciamiento(prop) {
                                     </button>
                                 </Td>
 
-                                <Td width={"100px"}>
+                                <Td >
                                     <button 
                                     className="sn-boton cancelar" type="button"
                                     onClick={()=>{

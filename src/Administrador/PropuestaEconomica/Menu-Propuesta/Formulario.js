@@ -4,6 +4,7 @@ import logo from "../../../images/logo.png";
 import ExportarPDF from './ExportarPDF';
 import infPartida from './ModalPartida'
 import ModalPartida from './ModalPartida';
+import "../css/PropuestaEconomica.css"
 import {name_cliente  , clave_p , descripcionGeneral }from "../../../Ventas/Operaciones/OperacionesAM";
 import {name_encargado, cargo , nombreP , fecha} from './ExportarPDF';
 let validaOperacion = false;

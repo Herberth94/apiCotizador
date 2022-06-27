@@ -130,7 +130,7 @@ label{
   
   
    .contenedor {
-       max-width: 1170px;
+       width: 100%;
        margin: 0 auto 1rem;
        padding: 1.5rem;
   }
@@ -216,7 +216,17 @@ label{
    
    /*--------- END --------*/
   
-  
+   @media screen and (max-width: 960px) {
+    .contenedor {
+        width: 100%;
+        margin: 0 auto 1rem;
+        padding:0rem;
+   }
+
+   }
+
+
+
   
    
    @media screen and (min-width: 700px) {
@@ -338,9 +348,6 @@ label{
   @media (max-width: 960px) {
   
 
-  
-  
-  
      .re-Captcha{
       margin-left: -20px;
       width: 80%;

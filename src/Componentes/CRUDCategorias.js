@@ -337,6 +337,9 @@ export const CrudCategorias = (props) => {
                         />    
                     </div>
                 )}
+
+<br/>
+            <br/>
             {/* </form> */}
         </div>
     )

@@ -245,14 +245,11 @@ function ContinuarProyecto() {
   return (
     /*==================== Continuar Proyecto ====================*/
     <div  className="contenido-marvilop">
+      <Animaciones mytext="Continuar proyecto"/>
 
-      <Animaciones mytext="Continuar Proyecto" />
+      <div className = "buscador-inteligente">
 
 
-      
-<div className = "buscador-inteligente">
-
- 
 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" 
                     type="search" 
@@ -267,8 +264,6 @@ function ContinuarProyecto() {
                 </form>
 
         </div>
-
-
       <Table >
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
@@ -282,7 +277,7 @@ function ContinuarProyecto() {
                   {/*========================== Divisa ==========================*/}
                   <td>
                       <button
-                      className="btn btn-primary Mod2"
+                      className="btn btn-primary modificar"
                       type="button"
                       onClick={() => {
                       setShow6(!show6);
@@ -296,7 +291,7 @@ function ContinuarProyecto() {
                   </td>
                   <td>
                       <button
-                      className="btn btn-primary Mod2"
+                      className="btn btn-primary modificar"
                       type="button"
                       onClick={() => {
                       setShow7(!show7);
@@ -311,10 +306,6 @@ function ContinuarProyecto() {
               </tr>
           </tbody>
       </Table>
-
-
-      <br/>
-
       {show8 ? (
         <div></div>
       ):(
@@ -322,9 +313,13 @@ function ContinuarProyecto() {
         {/*============= Titulo Animación =============*/}
        {/*  <Animaciones mytext="Buscar nn proyectos" />
  */}
+        <div className="busqueda-proyectos">
+      
 
 
+    
 
+          </div>
           {/****************************Lista de los Proyectos Creados ****************************************/}
           {/*============= Titulo Animación =============*/}
        {/*    <div>
@@ -333,7 +328,9 @@ function ContinuarProyecto() {
           </div>
  */}
           <Table>
-              <Thead>    
+              <Thead>
+
+
                 <Tr >
                   <Th>ID</Th>
                   <Th>Clave</Th>
@@ -361,7 +358,7 @@ function ContinuarProyecto() {
                       <Td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</Td>  
                       <Td>
                         <button 
-                          className="sn-boton " 
+                          className="sn-boton modificar" 
                           type="button" 
                           onClick={() => {
                             getIdP(suggestions[key].proyecto_id);
@@ -378,7 +375,7 @@ function ContinuarProyecto() {
                       </Td>
                       <Td>
                         <button 
-                          className="sn-boton" 
+                          className="sn-boton modificar" 
                           type="button" 
                           onClick={() => {
                             getIdP1(suggestions[key].proyecto_id);
@@ -388,15 +385,15 @@ function ContinuarProyecto() {
                             }}
                           > 
 
-                           <i className=   {textBVer1[key]}  ></i>                      
+                           <i className=   {textBVer1[key]}  ></i>
+
+                           
                           </button>
                       </Td>
                   </Tr>  
               ))}
               </Tbody>          
           </Table>
-
-          <br/>
        
       </div>
       )}
@@ -408,17 +405,17 @@ function ContinuarProyecto() {
       ) : (
         <Table >
           <thead>
-            <tr className="titulo-tabla-usuarios">
+            <tr >
               <th className='ocultar'>Agregar más partidas</th>
               <th className='ocultar'>Continuar una partida</th>
             </tr>
           </thead>
                               
-          <Tbody>    
-              <Tr>
-                  <Td>
+          <tbody>    
+              <tr>
+                  <td>
                     <button 
-                      className="btn btn-primary Mod2" 
+                      className="btn btn-primary modificar" 
                       type="button" 
                       onClick={() => { 
                         getIdPar('');
@@ -427,32 +424,32 @@ function ContinuarProyecto() {
                         setShow4(true);
                       }}
                       >{show2 ? 'Agregar Nueva Partidas' : 'Ocultar'} </button>
-                  </Td>
-                  <Td>
+                  </td>
+                  <td>
                     <button 
-                      className="btn btn-primary Mod2" 
+                      className="btn btn-primary modificar" 
                       type="button" 
                       onClick={() => { 
                         setShow3(!show3);
                         setShow2(true);
                       }}
                       >{show3 ? 'Continuar Partida' : 'Ocultar'} </button>
-                  </Td>
-              </Tr>  
-          </Tbody>          
+                  </td>
+              </tr>  
+          </tbody>          
       </Table>
       )}
 
       {show2 ? (
               <div ></div>
       ) : (
-              <div  className="menu2"> 
+              <div  className=""> 
            {/*      <div className="contenido-usuarios">
                   {" "}
                   <Animaciones mytext="Datos PTN" />{" "}
                 </div> */}
                 {/*========================== Llamado a los Componentes ==========================*/} 
-                <Partida />
+                <Partida></Partida>
                             
                 <DatosSP clave={id}/>
               </div>
@@ -461,7 +458,7 @@ function ContinuarProyecto() {
       {show3 ? (
               <div ></div>
       ) : ( 
-              <div className="arregla"> 
+              <div className="menu2"> 
                 <div className="contenido-usuarios">
                {/*  <div>
                   {" "}
@@ -470,13 +467,7 @@ function ContinuarProyecto() {
  */}
                   <Table>
                       <Thead>
-
-                      <Tr className="titulo-tabla-usuarios">
-                              <Th></Th>
-                              <Th className='titulo-tabla'>Partidas del Proyecto</Th>
-                           
-                          </Tr>
-                          <Tr className="titulo-tabla-usuarios">
+                          <Tr >
                               <Th>ID</Th>
                               <Th>Nombre</Th>
                               <Th>Descripción</Th>
@@ -494,7 +485,7 @@ function ContinuarProyecto() {
 
                                   <Td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary  Mod" 
+                                    className="sn-boton modificar" 
                                     onClick={() => {
                                       getIdPar(listaPartidas[key].partida_id);
                                       habilitar2(key);
@@ -518,7 +509,7 @@ function ContinuarProyecto() {
                           </div>
                         ) : (
                           
-                          <div  className="arregla"> 
+                          <div  className=""> 
                           {/*    <div className="contenido-usuarios">
                               {" "}
                               <Animaciones mytext="Datos Servicios/Productos" />{" "}

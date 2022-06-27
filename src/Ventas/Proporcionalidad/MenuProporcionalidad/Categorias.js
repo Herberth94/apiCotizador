@@ -55,7 +55,7 @@ function Categorias() {
 
                         {/*    <td>{"$ "}{precioVenta[(partidasUnicas.length - 1) + parseFloat(key)]}</td>
  */}
-                            <Td  width={"100px"}>{stringDolar}</Td>
+                            <Td >{stringDolar}</Td>
                             {/*================= Precio Venta ==================*/}
                           
                         </Tr>

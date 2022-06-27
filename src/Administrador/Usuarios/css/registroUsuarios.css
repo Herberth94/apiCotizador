@@ -36,7 +36,7 @@ table#h1.responsiveTable  tr {
 
 .sn-boton{
   border: none;
-  background-color: #75757559;
+  background-color: #f1f1f1;
   transition: 1s;
   -webkit-transition: 1s;
   -moz-transition: 1s;
@@ -48,7 +48,8 @@ table#h1.responsiveTable  tr {
 }
 
 .sn-boton:hover{
-  background-color: #1e659b;
+
+  background-color: #75757559;
   transition: 1s ;
   -webkit-transition: 1s ;
   -moz-transition: 1s ;
@@ -225,7 +226,7 @@ select:enabled {
 
 select:hover {
 
-  background-color: #1e659b;
+  background-color: #509bd4;
   transition:1s ;
   -webkit-transition:1s ;
   -moz-transition:1s ;
@@ -330,7 +331,9 @@ td.h{
   
 .sn-boton{
   border: none;
-  background-color: #1e659b;
+  background-color: #b2eb7e;
+  justify-content: center;
+   text-align: center;
 
 }
 
@@ -394,4 +397,8 @@ select#rol{
 
 
 
+}
+
+label.rol{
+  color: #ffffff;
 }

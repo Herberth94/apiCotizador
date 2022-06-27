@@ -106,6 +106,7 @@ function Partida({clave} ) {
 
 
         </form>
+        
     </div>
   );
 }

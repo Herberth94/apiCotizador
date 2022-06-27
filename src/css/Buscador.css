@@ -10,6 +10,17 @@ input:disabled {
   background: rgba(221, 224, 224, 0.438);
 }
 
+input , td{
+  text-align: center;
+  justify-content: center;
+
+}
+
+div.tdBefore , td.pivoted{
+  text-align: center;
+  justify-content: center;
+
+}
 
 .buscador-inteligente{
     position: fixed;
@@ -51,13 +62,15 @@ input:disabled {
     position: absolute;
     width: 100%;
     left: 0px;
-    padding: 0px  20px;
     margin: 0px;
+    top: 100px;
+              
   
      }
 
 
     @media screen and (max-width: 960px) {
+
 
         .buscador-inteligente{
             position: fixed;
@@ -85,6 +98,8 @@ input:disabled {
                 left: 0px;
                 padding: 0px  20px;
                 margin: 0px;
+
+                top: 100px;
               
                  }
 

@@ -390,6 +390,9 @@ export const CrudPartidas = (props) => {
                     </div>
                 )}
             {/* </form> */}
+
+            <br/>
+            <br/>
         </div>
     )
 }

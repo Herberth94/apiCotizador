@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 //Componentes
-import {url, url2} from "../../../Componentes/Ocultar";
+import {url2} from "../../../Componentes/Ocultar";
 import { EditPartida } from '../../../Routes/ModificarPartida';
 import { EditCats } from '../../../Routes/ModificarCategorias';
 import {CrudPartidas2} from './CrudPartidas2';
@@ -293,90 +293,58 @@ export const CrudProyectos2 = (props) => {
     /*==============================================================================================================*/
     return (
         <div>
-            <Table responsive  striped bordered hover size="sm">
-                <thead>
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Clave</th>
-                        <th>Descripción</th>
-                        <th>Cliente</th>
-                        <th>Fecha Creación</th>
-                        <th>Fecha Modificación</th>
-                        <th>Estatus</th>
-                        <th>Plazo Meses</th>
+            <Table >
+                <Thead>
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>Clave</Th>
+                        <Th>Descripción</Th>
+                        <Th>Cliente</Th>
+                        <Th>Fecha Creación</Th>
+                        <Th>Fecha Modificación</Th>
+                        <Th>Estatus</Th>
+                        <Th>Plazo Meses</Th>
                      {/*    <th>Modificar</th> */}
-                        <th>Detalles</th>
-                        <th></th>
-                    </tr>
-                </thead>
+                        <Th>Detalles</Th>
+                        <Th></Th>
+                    </Tr>
+                </Thead>
                                 
-                <tbody>
+                <Tbody>
                     {Object.keys(props.suggestionsP).map((key) => (    
-                        <tr key={props.suggestionsP[key].proyecto_id} >
-                            <td>{props.suggestionsP[key].proyecto_id}</td>  
-                            <td>
-                                <input 
-                                className="input-name" 
-                                defaultValue={props.suggestionsP[key].proyecto_clave} 
-                                disabled={enable[key]} 
-                                onChange={handleInputChange}
-                                name="proyecto_clave" 
-                                ></input>
-                            </td>   
+                        <Tr key={props.suggestionsP[key].proyecto_id} >
+                            <Td>{props.suggestionsP[key].proyecto_id}</Td>  
+                            <Td>
+                            {props.suggestionsP[key].proyecto_clave} 
+                                
+                            </Td>   
 
-                            <td>
-                                <input 
-                                className="input-name" 
-                                defaultValue={props.suggestionsP[key].proyecto_descripcion} 
-                                disabled={enable[key]} 
-                                onChange={handleInputChange}
-                                name="proyecto_descripcion" 
-                                ></input>
-                            </td>  
+                            <Td>
+                            {props.suggestionsP[key].proyecto_descripcion} 
+                                
+                            </Td>  
 
-                            <td>
-                            {" "}
-                            <input
-                                className="agregar"
-                                type="text"
-                                name="nombre_cliente"
-                                disabled={enable[key]}
-                                value={nombreC[key]}
-                                onChange={e => onChangeTextCliente(e.target.value,key)}
-                                />
-                                {Object.keys(suggestionsClientes).map((i)=>
-                                    <div 
-                                    key={i}
-                                    disiable={enable[key]}
-                                    className="selectCliente" 
-                                    onClick={() => onSuggestHandler(suggestionsClientes[i].nombre_cliente, key)}
-                                    >
-                                        {suggestionsClientes[i].nombre_cliente}
-                                    </div>
-                                )}
-                            </td> 
+                            <Td>
+                            {nombreC[key]}
+                           
+                            </Td> 
 
-                            <td>{props.suggestionsP[key].proyecto_fecha_creacion}</td>
+                            <Td>{props.suggestionsP[key].proyecto_fecha_creacion}</Td>
 
-                            <td>{props.suggestionsP[key].proyecto_fecha_modificacion}</td>
+                            <Td>{props.suggestionsP[key].proyecto_fecha_modificacion}</Td>
 
-                            <td  className={props.suggestionsP[key].proyecto_estatus}>{props.suggestionsP[key].proyecto_estatus}</td>
-                            <td width={"100px"}>
-                                <input 
-                                className="input-name" 
-                                defaultValue={props.suggestionsP[key].proyecto_plazo_meses} 
-                                disabled={enable[key]} 
-                                onChange={handleInputChange}
-                                name="proyecto_plazo_meses" 
-                                ></input>
-                            </td> 
+                            <Td  className={props.suggestionsP[key].proyecto_estatus}>{props.suggestionsP[key].proyecto_estatus}</Td>
+                            <Td >
+                            {props.suggestionsP[key].proyecto_plazo_meses} 
+                               
+                            </Td> 
 
 
                         
-                        <td width={"100px"}>
+                        <Td >
                         {" "}
                         <button
-                            className="btn btn-primary Ver"
+                            className="sn-boton"
                             type="button"
                             onClick={() => {
                                 getIdP(props.suggestionsP[key]);
@@ -386,33 +354,28 @@ export const CrudProyectos2 = (props) => {
                         >
                             <i className= {textBVer[key]}></i>
                         </button>
-                    </td>
-                        </tr>  
+                    </Td>
+                        </Tr>  
                     ))}
-                </tbody>          
+                </Tbody>          
             </Table>
+
+            <br/>
+            <br/>
+
 
             {show ? (
                 <></>
             ):(
-                <div className='arregla'>
-                    <div className='contenido-usuarios'>
-                        <div className="table-responsive">
-                            <div>
-                            {/*      <Animaciones mytext="Resumen" />  */}
-                            </div>
-                            <Table responsive id="nombreDiv">
+                <div className='menu2'>
+                  
+
+                            <Table >
                                 {/*========================== Titulos Tabla ==========================*/}
                                 <thead>
-                                    {/* <tr className="titulo-tabla-usuarios">
-                                        <th className='titulo-tabla'>{proyecto}</th>
-                                    </tr> */}
-                                    <tr className="titulo-tabla-usuarios">
-                                        <th className='titulo-tabla'>Resumen por Apartados</th>
-                                    </tr>
-                                    <tr className="titulo-tabla-usuarios">
-                                        <th>Partidas</th>
-                                        <th>Categorías</th>
+                                    <tr >
+                                        <th className='ocultar'>Partidas</th>
+                                        <th className='ocultar'>Categorías</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -429,13 +392,13 @@ export const CrudProyectos2 = (props) => {
                                             }}
                                             >
                                             {" "}
-                                            {show2 ? "Mostrar" : "Ocultar"}{" "}
+                                            {show2 ? "Mostrar Partidas" : "Ocultar"}{" "}
                                             </button>
                                             {show2 ? (
                                             <></>
                                             ) : (
-                                                <div className='arregla'>
-                                                    <div className='contenido-usuarios'>
+                                                <div className='arregla multiple'>
+                                            
                                                         {/*=================== Botón Mostrar Lista DIV =====================*/}
                                                         <br />
                                                         <CrudPartidas2
@@ -444,7 +407,7 @@ export const CrudProyectos2 = (props) => {
                                                         envioDataPar={envioDataPartida}
                                                         proyecto={proyecto}
                                                         />   
-                                                    </div> 
+                                                 
                                                 </div>
                                             )}
                                         </td>
@@ -459,20 +422,20 @@ export const CrudProyectos2 = (props) => {
                                             }}
                                             >
                                             {" "}
-                                            {show3 ? "Mostrar" : "Ocultar"}{" "}
+                                            {show3 ? "Mostrar Categorias" : "Ocultar"}{" "}
                                             </button>
                                             {show3 ? (
                                                 <></>
                                             ):(
-                                                <div className="arregla">
-                                                    <div className='contenido-usuarios'>
+                                                <div className="arregla multiple">
+                                                  
                                                         {/*========================== Llamado al Componente ==========================*/}
                                                         <CrudCategorias2
                                                         dcats={listaCategorias}
                                                         setfirst={setfirst1}
                                                         envioData={envioDataCats}
                                                         />
-                                                    </div>
+                                                
                                                 </div>
                                             )}
                                         </td>
@@ -480,8 +443,7 @@ export const CrudProyectos2 = (props) => {
                                 </tbody>
                             </Table>
                         </div>
-                    </div>
-                </div>
+
             )}
             {/* </form> */}
         </div>

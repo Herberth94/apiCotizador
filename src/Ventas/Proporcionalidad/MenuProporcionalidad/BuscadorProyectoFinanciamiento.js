@@ -173,7 +173,9 @@ function BuscadorProyectoFinanciamiento() {
                                 <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
                                 <Td  className= {suggestions[key].proyecto_estatus} >{suggestions[key].proyecto_estatus}</Td> 
                                 <Td>{suggestions[key].proyecto_plazo_meses}</Td>
-                                <Td width={"100px"}>
+                                
+                                
+                                <Td >
                                     <button
                                     className="sn-boton"
                                     onClick={() => {

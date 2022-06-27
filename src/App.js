@@ -54,18 +54,6 @@ import AgregarColaborador from "./Preventa/Colaboradores/MenuColaborador/Agregar
 
 import CambioContraseña from "./Componentes/CambioContraseña";
 
-import MenuProveedor from "./Administrador/Proveedores/MenuProveedor/MenuProveedor";
-import MenuVentas2 from "./Preventa/AsignarVentas/MenuAsignacion/MenuVentas";
-
-import PTN_BOM from "./Preventa/PTN-BOM/Menu-Bom/PTN_BOM";
-import AM from "./Ventas/AM/Menu-AM/AmMenu";
-import Proporcionalidad from "./Ventas/Proporcionalidad/MenuProporcionalidad/ProporcionalidadMenu";
-
-/* import PropuestaEconomica from "./Administrator/PropuestEconomica"; */
-
-import PropuestaEconomica from "./Administrador/PropuestaEconomica/Menu-Propuesta/PropuestEconomica";
-import ExportarPDF from "./Administrador/PropuestaEconomica/Menu-Propuesta/ExportarPDF";
-
 
 //============ Preventas Private  ============
 import Preventa from "./Routes/ValidaPreventa";
@@ -79,9 +67,6 @@ import Venta from "./Routes/ValidaVenta";
 
 //============ Ventas  Páginas Private  ============
 import MenuVentas from "./Ventas/MenuVentas";
-import MenuValidacion from "./Ventas/AM-Resumen/MenuValidacion";
-
-import MenuFormulario from "./Ventas/AM-Resumen/MenuFormulario";
 import MenuResumenBom from "./Ventas/AM/ResumenBOM/MenuResumenBom";
   
 
@@ -223,9 +208,13 @@ function App() {
         <Venta  exact path="/imprimir-propuesta" component={ BuscadorInteligente3} /> 
         <Venta  exact path="/administrar-propuesta" component={ BuscadorInteligente4} />
 
-                       {/* proporcionalidad */}
+       {/* proporcionalidad */}
         <Venta  exact path="/resumen" component={BuscadorInteligente2} /> 
         <Venta  exact path="/registrar-financiamiento" component={BuscadorProyectoFinanciamiento} />
+
+
+        <Venta  exact path="/resumen-proyecto" component={MenuResumenBom } />
+      
       
 
                {/* Bom*/}

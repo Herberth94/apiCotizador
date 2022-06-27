@@ -18,7 +18,7 @@ function Registro() {
             <h2 >
               <span>Registrar Usuarios</span>
             </h2>
-            <label htmlFor="rol">Tipo rol: </label>
+            <label className="rol" htmlFor="rol">Tipo rol: </label>
 
             <select id="rol" name="usuario_id_rol" required onChange={handleInputChange}>
                 <option value={4}>--------------</option>
