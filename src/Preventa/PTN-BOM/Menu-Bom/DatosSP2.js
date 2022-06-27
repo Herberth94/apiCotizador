@@ -242,7 +242,7 @@ function DatosSp2(props) {
 		}else{
 			define = "Precio Unitario	";
 		}
-				
+	const [eKey,seteKey] = useState(false);
 		///CALCULAR DESCUENTO
 		/*================================================================================*/
 
@@ -267,6 +267,7 @@ function DatosSp2(props) {
 				// 	...rows[k], descuento:''
 				// });
 			}
+		// },[rows])
 		},[rows[k].cantidad,rows[k].precio_lista,rows[k].precio_unitario])
 	
 	
@@ -287,8 +288,8 @@ function DatosSp2(props) {
 				setRows(actualizar);
 				//console.log('Variable actualizar (Calcular Precio Unitario):',actualizar);
 			}
-		  
-		  },[rows[k].precio_descuento,rows[k].precio_lista,rows[k].cantidad])
+		// },[rows])
+		},[rows[k].precio_descuento,rows[k].precio_lista,rows[k].cantidad]) 
 	
 		  //OBTENER TOTALES
 	
@@ -370,18 +371,18 @@ function DatosSp2(props) {
 
 	const guardarListaSP = async () =>{
 		
-		if (pEstatus1 === 'En revision') {
-			alert('No se puede continuar el Proyecto porque se encuentra En revision')
-		  } else if (pEstatus1 === 'Aceptado') {
-			alert('No se puede continuar el Proyecto porque ha sido Aceptado')
-		  } else {
+		// if (pEstatus1 === 'En revision') {
+		// 	alert('No se puede continuar el Proyecto porque se encuentra En revision')
+		//   } else if (pEstatus1 === 'Aceptado') {
+		// 	alert('No se puede continuar el Proyecto porque ha sido Aceptado')
+		//   } else {
 			try {
 				const respuesta = await axios.post(url2+`/api/cotizador/sp/insercionMultiple/${idPartidaInsertada}`,rows);
-				alert(respuesta.data.msg);
+				//alert(respuesta.data.msg);
 			} catch (error) {
 				console.log(error);            
 			}
-		  }
+		  
 		
 		
 	}
@@ -415,43 +416,45 @@ function DatosSp2(props) {
 				})
 			}
 			setSuggestionsNP(coincidencias);
-			console.log('suggestionsNP:',suggestionsNP);
+			//console.log('suggestionsNP:',suggestionsNP);
 		}
 
 		if(name === 'descripcion'){
-			let coincidencias = [];
+			let coincidencias1 = [];
 			if(value.length>0){
-				coincidencias = listaDesc.filter(desc => {
+				coincidencias1 = listaDesc.filter(desc => {
 					const regex = new RegExp(`${value}`, "gi");
 					return desc.spd_des.match(regex)
 				})
 			}
-			setSuggestionsDesc(coincidencias);
-			console.log('suggestionsDesc:', suggestionsDesc);
+			setSuggestionsDesc(coincidencias1);
+			//console.log('suggestionsDesc:', suggestionsDesc);
 		}
 
-		if(name === 'proveedor'){
-			let coincidencias = [];
+		if(name == 'proveedor'){
+			// console.log(name);
+			// console.log(value);
+			let coincidencias2 = [];
 			if(value.length>0){
-				coincidencias = listaProv.filter(proveedor => {
+				coincidencias2 = listaProv.filter(proveedor => {
 					const regex = new RegExp(`${value}`, "gi");
 					return proveedor.proveedor_nombre.match(regex)
 				})
 			}
-			setSuggestionsProv(coincidencias);
-			console.log('suggestionsProv:',suggestionsProv);
+			setSuggestionsProv(coincidencias2);
+			//console.log('suggestionsProv:',suggestionsProv);
 		}
 
-		if(name === 'marca'){
-			let coincidencias = [];
+		if(name == 'marca'){
+			let coincidencias3 = [];
             if(value.length>0){
-            coincidencias = listaMarca.filter(marca => {
+            coincidencias3 = listaMarca.filter(marca => {
                 const regex = new RegExp(`${value}`, "gi");
                 return marca.marca_nombre.match(regex)
                 })
             }
-            setSuggestionsMarca(coincidencias);
-			console.log('suggestionsMarca:',suggestionsMarca);
+            setSuggestionsMarca(coincidencias3);
+			//console.log('suggestionsMarca:',suggestionsMarca);
 			
 		}
 		//console.log('Variable list:',list);
@@ -462,17 +465,24 @@ function DatosSp2(props) {
 	};
 
 	// Showing delete confirmation to users
-	const handleConfirm = () => {
+	const handleConfirm = (i) => {
 		setShowConfirm(true);
+		console.log('index:',i)
 	};
 
 	// Handle the case of delete confirmation where
 	// user click yes delete a specific row of id:i
 	const handleRemoveClick = (i) => {
+		//console.log(i);3
+		let i1 = parseInt(i)-1;
+		setK(i1);
+		console.log('Key antes de eliminar una fila:',k);
 		const list = [...rows];
 		list.splice(i, 1);
 		setRows(list);
 		setShowConfirm(false);
+		//setK(k-1);
+		console.log('Key despues de eliminar una fila:',k);
 	};
 
 	// Handle the case of delete confirmation
@@ -509,7 +519,7 @@ return (
 				{rows.length !== 0 && (
 				<>
 					{disable ? (
-					<Button disabled align="right" onClick={handleSave}>
+					<Button disabled align="right" onClick={() => handleSave()}>
 						<DoneIcon />
 						Guardar
 					</Button>
@@ -988,7 +998,7 @@ return (
 					</>
 					)}
 					{isEdit ? (
-					<Button className="mr10" onClick={handleConfirm}>
+					<Button className="mr10" onClick={() => handleConfirm(i)}>
 						<ClearIcon />
 					</Button>
 
@@ -996,7 +1006,7 @@ return (
 
 
 					) : (
-					<Button className="mr10" onClick={() => handleConfirm}>
+					<Button className="mr10" onClick={() => handleConfirm(i)}>
 						<DeleteOutlineIcon />
 					</Button>
 
