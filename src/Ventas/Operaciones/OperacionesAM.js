@@ -272,14 +272,15 @@ export function obtenPartidasUnicas(
   dataPorcentajes = [],
   dataPorcentajesC = [],
   dataFinancia = []
-) {
+) 
+
+{
   limpiaDatos();
 
   /* ANALIZAR TIPO DE DIVISA */
   if (Dolar.length != 0) {
     if (Dolar[0].proyecto_id_moneda === 1) {
-   
-   
+      console.log("conversion exitosaaaaaaaaaaa");
       conversion = "MXN";
       stringDolar = "MXN";
 
@@ -298,8 +299,8 @@ export function obtenPartidasUnicas(
 
       name_cliente = Dolar[0].nombre_cliente;
       clave_p = Dolar[0].proyecto_clave;
-      console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
-      console.log('Cliente - Archivo Operaciones AM:',name_cliente)
+/*       console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
+      console.log('Cliente - Archivo Operaciones AM:',name_cliente) */
 
     } else if (Dolar[0].proyecto_id_moneda === 2) {
     
@@ -311,8 +312,8 @@ export function obtenPartidasUnicas(
       plazo_meses = Dolar[0].proyecto_plazo_meses;
       name_cliente = Dolar[0].nombre_cliente;
       clave_p = Dolar[0].proyecto_clave;
-      console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
-      console.log('Cliente - Archivo Operaciones AM:',name_cliente)
+/*       console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
+      console.log('Cliente - Archivo Operaciones AM:',name_cliente) */
     }
   }
 
@@ -389,14 +390,15 @@ export function obtenPartidasUnicas(
   });
 
   /*============= GUardar Datos Partidas Unicas  ===============================*/
-
   for (var i = 0; i < partidasUnicas.length; i++) {
     for (var j = 0; j < datosPTN.length; j++) {
       //Sumatoria por Partidas por Separado por Monedas
 
       if (partidasUnicas[i] === datosPTN[j].partida_nombre) {
-        // console.log(datosPTN[j].nombrePartida, " = ", partidasUnicas[i]);
+        console.log(  partidasUnicas[i]  , " = ",datosPTN[j].nombrePartida,);
         contador++;
+
+
         if (datosPTN[j].precio_id_moneda === 1) {
           sumatoriaMXN += datosPTN[j].precio_total;
         } else if (datosPTN[j].precio_id_moneda === 2) {
@@ -412,13 +414,19 @@ export function obtenPartidasUnicas(
     totalUSD.push(sumatoriaUSD);
     sumatoriaMXN = 0;
     sumatoriaUSD = 0;
+
+    console.log("OK R ",totalMXN);
   }
   //////// Conversion
 
   for (var i = 0; i < totalMXN.length; i++) {
 
 
+    console.log("entrar")
+
     if (conversion === "MXN") {
+
+     console.log("pesos mexicanos ok")
 
       if (totalMXN[i] !== 0) {
      
