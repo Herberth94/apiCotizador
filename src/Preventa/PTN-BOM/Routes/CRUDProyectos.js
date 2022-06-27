@@ -297,7 +297,7 @@ export const CrudProyectos = (props) => {
         /*=========================================================================*/
     /*==============================================================================================================*/
     return (
-        <div>
+        <div className=''>
             <Table >
                 <Thead>
                     <Tr >
@@ -454,6 +454,8 @@ export const CrudProyectos = (props) => {
                 <></>
             ):(
                 <div className=''>
+            <br/>
+            <br/>
                             <div>
                              <Animaciones mytext="Resumen" />  
                             </div>
@@ -533,6 +535,9 @@ export const CrudProyectos = (props) => {
                                     </Tr>
                                 </Tbody>
                             </Table>
+
+                            <br/>
+                            <br/>
                  
                     </div>
          

@@ -356,7 +356,11 @@ export const CrudSp = (props) => {
 
 
     return (
-        <div>
+        <div className=''>
+             <br/>
+            <br/>
+            <br/>
+            
            {/* <form> */}
                 {/******************Lista de los servicios/productos de una partida ****************************************/}
                 {/*============= Titulo Animación =============*/}
@@ -605,6 +609,8 @@ export const CrudSp = (props) => {
                             ))}
                         </Tbody>                
                 </Table>
+                <br/>
+                 <br/>
                 {show ? (
                                 <></>
                             ):(

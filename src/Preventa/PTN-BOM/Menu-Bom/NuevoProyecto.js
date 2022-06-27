@@ -217,12 +217,11 @@ function NuevoProyecto() {
 
           <Tbody>
 
-            <Tr className="">
+            <Tr >
 
               {/*=======================  Clave proyecto ======================= */}
               <Td>
-                <input
-                 
+                <input      
                   type="text"
                   name="proyecto_clave"
                   onChange={handleInputChange}

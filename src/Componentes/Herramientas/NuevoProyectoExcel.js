@@ -90,7 +90,7 @@ function NuevoProyectoExcel() {
 
   /*=================================== Obtención de datos para la tabla proyecto ===================================*/
   // Almacenamiento de los datos
-  const [datos, setDatos] = useState([{
+   const [datos, setDatos] = useState([{
     proyecto_clave: '',
     proyecto_descripcion: '',
     proyecto_plazo_meses: ''
@@ -182,11 +182,12 @@ function NuevoProyectoExcel() {
 
   return (
 
+
     <div className="contenido-marvilop">
 
       <div>
 
-        <Animaciones  mytext= "Cargar Plantilla Excel" />
+        <Animaciones  mytext= "Datos Nuevo Proyecto" />
         
       </div>
       {/*======================= Titulo Animación =======================*/}
@@ -285,7 +286,7 @@ function NuevoProyectoExcel() {
         <div className="">
       {/*     <DatosPTN clave={clavep} /> */}
 
-      <Excel  clave={clavep} />
+      <Excel   clave={clavep} />
 
         </div>
       )}
@@ -294,7 +295,6 @@ function NuevoProyectoExcel() {
             </Tr>
           </Tbody>
         </Table>
-      {/* </form> */}
     </div>
   )
 }

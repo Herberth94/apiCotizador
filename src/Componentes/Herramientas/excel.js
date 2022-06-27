@@ -4,7 +4,7 @@ import Table from "react-bootstrap/Table";
 import "../css/excel.css"
 import axios from "axios";
 import {url2} from "../Ocultar";
-
+import { pId2 } from './NuevoProyectoExcel';
 
 export let dataPartidas = [];
 
@@ -51,13 +51,17 @@ function Excel() {
 
   async function cargarDatos(){
     if(show2){
-      let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${113}`, dataPartidas);
+      let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ pId2 }`, dataPartidas);
       alert(res.data.msg);
     }
   }
 
   return (
-    <div  className='arregla multiple'>
+    <div  className='arregla'>
+
+
+<div className='cargar-datos'>
+
       <input className="btn btn-primary Mod"
         type="file"
         onChange={(e) => {
@@ -66,9 +70,14 @@ function Excel() {
         }}
       />
 
-     
+</div>
 
-<Table responsive  striped bordered hover size="sm">
+
+     <div className='plantilla-excel'>
+
+    
+
+<Table  responsive  striped bordered hover size="sm">
         <thead>
           <tr>
             <th scope="col"> Partida</th>
@@ -115,10 +124,15 @@ function Excel() {
 
         </Table>
 
+        </div>
 
 
 
-     <button
+<br/>
+<br/>
+
+<div className='subir-datos'>
+            <button
               className="btn btn-primary Mod"
               type="button"
               onClick={() => {
@@ -129,6 +143,7 @@ function Excel() {
               {" "}
               {show2 ? "Subir Datos" : "Ocultar"}{" "}
             </button>
+  </div>
             
 {/* <button  className='btn btn-primary Mod'> Subir Datos</button>
  */}

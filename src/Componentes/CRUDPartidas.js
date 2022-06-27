@@ -209,9 +209,13 @@ export const CrudPartidas = (props) => {
     /*=========================================================================================================================*/
     return (
         <div className=''>
+
+            <br/>
+            <br/>
+            <br/>
            {/* <form> */}
-          {/*       <Animaciones mytext="Partidas" />
- */}
+               <Animaciones mytext="Partidas" />
+
                 <Table>
                     <Thead>
                         <Tr>
@@ -318,7 +322,7 @@ export const CrudPartidas = (props) => {
       
 
                         {enable[key] ? (
-                                <Td width={"100px"} >
+                                <Td  >
                                     <button 
                                     className=  "sn-boton" type="button"
                                     onClick={()=>{
@@ -336,7 +340,7 @@ export const CrudPartidas = (props) => {
                               
                               
                               < >
-                                    <Td width={"100px"} >
+                                    <Td  >
                                     <button 
                                     className="sn-boton" type="button"
                                     onClick={()=>{
@@ -350,7 +354,7 @@ export const CrudPartidas = (props) => {
                                 
                                 </Td>
 
-                                <Td width={"100px"}>
+                                <Td >
                                     <button 
                                     className="sn-boton cancelar" type="button"
                                     onClick={()=>{
@@ -371,12 +375,16 @@ export const CrudPartidas = (props) => {
                         ))}
                     </Tbody>          
                 </Table>
+
+
+                <br/>
+                <br/>
                 {show ? (
                     <div></div>
                 ):(
                     <div>
                     {/*=================== Botón Mostrar Lista DIV =====================*/}
-                    <br />
+
                         <CrudSp
                         sp={listaSP}
                         proveedores={ListaProv}
@@ -391,8 +399,7 @@ export const CrudPartidas = (props) => {
                 )}
             {/* </form> */}
 
-            <br/>
-            <br/>
+
         </div>
     )
 }

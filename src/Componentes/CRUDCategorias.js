@@ -150,11 +150,14 @@ export const CrudCategorias = (props) => {
 
     return (
         <div className=''>
+             <br/>
+            <br/>
+            <br/>
            {/* <form> */}
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-             {/*    <Animaciones mytext="Categorias " />
- */}
+               <Animaciones mytext="Categorias " />
+ 
                 <Table >
                     <Thead>
 

@@ -132,7 +132,7 @@ export const CrudPrecios = (props) => {
           },[,data.precio_unitario,data.cantidad])
 
     return (
-        <div>
+        <div className='arregla multiple'>
            {/* <form> */}
            <Animaciones mytext="Precios" />
             <Table >
@@ -279,6 +279,9 @@ export const CrudPrecios = (props) => {
                         }
                     </Tbody>
             </Table>
+
+            <br/>
+           <br/>
             {/* </form> */}
         </div>
     )

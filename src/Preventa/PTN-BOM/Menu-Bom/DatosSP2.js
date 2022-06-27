@@ -556,9 +556,6 @@ return (
 		</div>
 		</div>
 	
-
-		
-
 		<Table
 		className={classes.table}
 		size="small"

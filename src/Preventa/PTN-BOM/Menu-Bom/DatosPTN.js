@@ -24,13 +24,13 @@ function DatosPTN(props) {
       {/*========================== Tabla Datos partida==========================*/}
       <div className="">
 
-        <div className="partidas">
+        <div className="arregla">
 
      <Partida/>
         </div>
    
 
-   <K/>
+   <K   clave={props.clave}/>
       {/*========================== Tabla Datos PTN ==========================*/}
       
  {/*        <DatosSp2 clave={props.clave}/> */}

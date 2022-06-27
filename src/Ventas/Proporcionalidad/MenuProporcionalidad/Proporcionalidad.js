@@ -16,6 +16,10 @@ function Proporcionalidad() {
     
     <div className="">
 
+        <br/>
+        <br/>
+
+
 
         <div>
             <Animaciones mytext="Proporcionalidad" />

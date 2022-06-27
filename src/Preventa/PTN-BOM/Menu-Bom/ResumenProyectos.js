@@ -172,7 +172,7 @@ function Proyectos() {
             {show2 ? (
                 <div></div>
             ):(
-                <div className="table-responsive">
+                <div className="">
                 {/*============= Titulo Animación =============*/}
               {/*   <Animaciones mytext="Buscar proyectos" />
  */}
