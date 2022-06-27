@@ -4,7 +4,11 @@ import Table from "react-bootstrap/Table";
 import "../css/excel.css"
 import axios from "axios";
 import {url2} from "../Ocultar";
-import { pId2 } from './NuevoProyectoExcel';
+import Cookies from 'universal-cookie';
+
+//Obtención del id del usuario con sesión activa
+const cookies = new Cookies();
+export let validatorid = cookies.get('id_usuario');
 
 export let dataPartidas = [];
 
@@ -48,11 +52,22 @@ function Excel() {
 
 
   const [show2, setShow2] = useState(true)
+  let pIdExcel;
+
+  function getpIdExcel(id){
+    pIdExcel = id;
+  }
 
   async function cargarDatos(){
     if(show2){
-      let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ pId2 }`, dataPartidas);
+      const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+      let proy = resProy.data.data.pop(); 
+      getpIdExcel(proy.proyecto_id);
+      console.log('Objetos excel:',dataPartidas);
+      console.log('Id del proyecto:', pIdExcel);
+      let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ pIdExcel }`, dataPartidas);
       alert(res.data.msg);
+      
     }
   }
 
