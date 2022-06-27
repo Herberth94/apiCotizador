@@ -16,11 +16,11 @@ export let validatorid = cookies.get('id_usuario');
 const tiempoTranscurrido = Date.now();
 export const hoy = new Date(tiempoTranscurrido);
 
-export let pId2;
-export function getIdP2 (proyecto_id){
-  pId2 = proyecto_id;
-  //console.log('Ultimo proyecto creado:',pId1);
-}
+// export let pId2;
+// export function getIdP2 (proyecto_id){
+//   pId2 = proyecto_id;
+//   //console.log('Ultimo proyecto creado:',pId1);
+// }
 
 function NuevoProyectoExcel() {
 
@@ -33,7 +33,7 @@ function NuevoProyectoExcel() {
     try{
       const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
       let proy = resProy.data.data.pop(); 
-      getIdP2(proy.proyecto_id);
+      //getIdP2(proy.proyecto_id);
     }catch(error){console.log(error);}
   }
 
