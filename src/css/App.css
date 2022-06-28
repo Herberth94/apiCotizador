@@ -1,4 +1,8 @@
 
+th.listacl {
+  width: 200px;
+}
+
 
    table.makeStyles-table-2.responsiveTable{
     position:absolute;
@@ -146,9 +150,7 @@ input {
 
 } */
 
-th.listacl {
-  width: 200px;
-}
+
 td.editar {
   background-color: #c0e6f8;
 }
@@ -250,6 +252,10 @@ input {
 /* ================================== Transparencia fondo menus ==================================*/
 
 @media screen and (max-width: 960px) {
+
+  th.listacl {
+    width: 100%;
+  }
 
 
   .busqueda-proyectos {

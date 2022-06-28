@@ -493,7 +493,7 @@ function DatosSp2(props) {
 
 return (
 
-<div className='carga-multipe'>
+<div className=''>
 	
 
 	<TableBody>
