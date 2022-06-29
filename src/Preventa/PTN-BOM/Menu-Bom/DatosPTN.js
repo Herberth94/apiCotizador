@@ -32,6 +32,14 @@ function DatosPTN(props) {
         </div>
    
 
+
+
+   <div>
+
+
+    
+   </div>
+
          <div className="">
           <button
           className="btn btn-primary modificar"

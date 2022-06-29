@@ -5,7 +5,8 @@ import Cookies from 'universal-cookie';
 
 import CreateIcon from "@material-ui/icons/Create";
 
-import { Table } from 'react-super-responsive-table';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+
 import {
 	Box, Button, Snackbar,
 TableBody, TableCell, TableHead, TableRow
@@ -66,6 +67,50 @@ const useStyles = makeStyles({
 
 
 function DatosSp2(props) {
+
+	const [show, setShow] = useState(true); //Menu SP
+	const [suggestions, setSuggestions] = useState([]);
+	const [listaSP, setListaSP] = useState([]);
+	const [nP, setNP] = useState([]);
+
+
+	
+
+
+
+
+
+	
+  // Función que realiza la busqueda de los servicios/productos semejantes a la no_parte introducido 
+  const onChangeTextnp = (np) => {
+    let coincidencias = [];
+    if (np.length > 0) {
+      coincidencias = listaSP.filter(sp => {
+        const regex = new RegExp(`${np}`, "gi");
+        return sp.spnp_np.match(regex)
+      })
+    }
+    setSuggestions(coincidencias);
+    setNP(np);
+  }
+
+
+
+
+/*     // Función que realiza la copia de los datos del servicio/producto seleccionado
+	function copyDataSP(key) {
+		setDatosSP({
+		  ...datosSP, sp_no_parte: suggestions[key].spnp_np,
+		  sp_descripcion: suggestions[key].spd_des,
+		  sp_meses: suggestions[key].sp_meses,
+		  sp_semanas: suggestions[key].sp_semanas,
+		  sp_comentarios: suggestions[key].sp_comentarios
+		})
+  /*=================================================================================================================*/
+ 
+
+
+
 
 	// Defining a state named rows
 	// which we can update by calling on setRows function
@@ -506,6 +551,146 @@ function DatosSp2(props) {
 return (
 
 <div className=''>
+
+	<div  className='Buscador Productos'>
+
+	<Table>
+
+<thead>
+  <tr className="">
+
+
+	<th className="ocultar">Buscar Servicios y Productos</th>
+  </tr>
+</thead>
+<tbody>
+  <tr >
+
+
+	{/*                            
+<button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (clave)}} >
+<i class="bi bi-eye-fill"></i>
+</button><br/><br/>
+{modalShow && modalShow1 ?   
+<ModalPtnDatos
+show={modalShow}
+proyecto_id={proyecto_id}
+onHide={() => setModalShow(false)}  
+
+/>
+ :  ''  } 
+*/}
+
+
+
+
+	<td>
+
+	  <button type="button" className="btn btn-primary Mod" onClick={() => { setShow(!show); }} >
+		{show ? "Buscar servicios/productos" : "Ocultar  servicios/productos"}
+	  </button><br /><br />
+	  {show ? (
+		<div></div>
+	  ) : (
+
+		<div className="" >
+
+
+
+		  <div className="table-responsive">
+			{/*********Búsqueda de Lista de Proyectos por Clave ********/}
+			<div className="busqueda-proyecto">
+			  <Table >
+				<Thead>
+				  <Tr >
+
+					<Th>No. de Parte</Th>
+				  </Tr>
+				</Thead>
+				<Tbody>
+				  <Tr >
+					<Td>
+					  <input className="agregar"
+						type="text"
+						name="proyecto_clave"
+						onChange={e => onChangeTextnp(e.target.value)}
+						value={nP}
+						placeholder="Ingrese No. de Parte del Servicio/Producto" />
+					</Td>
+				  </Tr>
+				</Tbody>
+			  </Table>
+
+			</div>
+			{/*============= Titulo Animación =============*/}
+			{/*     <Animaciones mytext="Servicios/Productos " />
+
+
+
+*/}
+
+
+			<div className="bbb">
+
+
+			  <Table>
+				<Thead>
+				  <Tr>
+					<Th>Proyecto</Th>
+					<Th>Partida</Th>
+					<Th>No. de Parte SP</Th>
+					<Th>Descripción SP</Th>
+					<Th>-</Th>
+				  </Tr>
+				</Thead>
+
+				<Tbody>
+				  {Object.keys(suggestions).map((key) => (
+					<Tr key={key} >
+					  <Td>{suggestions[key].proyecto_clave}</Td>
+					  <Td>{suggestions[key].partida_nombre}</Td>
+					  <Td>{suggestions[key].spnp_np}</Td>
+					  <Td>{suggestions[key].spd_des}</Td>
+					  <Td>
+						<button
+						  className="btn btn-primary detalles"
+						  onClick={() => {
+							/* copyDataSP(key); */
+					
+						  }}
+						>
+						  COPIAR
+						  {/* {textBVer[key]} */}
+						</button>
+					  </Td>
+					</Tr>
+				  ))}
+				</Tbody>
+			  </Table>
+
+
+			  <br/>
+			  <br/>
+			  <br/>
+
+			</div>
+
+		  </div>
+		</div>
+
+
+	  )}
+
+	</td>
+  </tr>
+</tbody>
+
+</Table>
+
+
+
+
+	</div>
 	
 
 	<TableBody>
