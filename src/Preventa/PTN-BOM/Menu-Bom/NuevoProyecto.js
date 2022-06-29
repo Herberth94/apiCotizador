@@ -10,11 +10,7 @@ import "../css/PTN_BOM.css";
 import DatosPTN from "../Menu-Bom/DatosPTN";
 import { url, url2 } from "../../../Componentes/Ocultar";
 
-
-import Partida from "../Menu-Bom/Partida";
-import DatosSp2 from "../Menu-Bom/DatosSP2";
-import Categorias from "../Menu-Bom/Categorias";
-
+import Categorias from "./Categorias";
 
 
 //Obtención del id del usuario con sesión activa
@@ -271,8 +267,6 @@ function NuevoProyecto() {
                 />
               </Td>
               <Td>
-                {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
- {/*                <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button> */}
       <button 
       className="btn btn-primary modificar" 
       type="submit" 
@@ -286,15 +280,11 @@ function NuevoProyecto() {
         <div >
 
         </div>
-      ) : 
-      
-      
+      ) :     
       (
-        <div className="arregla multiple">
-      {/*     <DatosPTN clave={clavep} /> */}
+        <div className="">
 
       <DatosPTN   clave={clavep} />
-
         </div>
       )}
             

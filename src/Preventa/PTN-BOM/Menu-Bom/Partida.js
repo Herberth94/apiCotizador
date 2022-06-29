@@ -6,7 +6,6 @@ import axios from 'axios';
 import { pId2 } from "./NuevoProyecto";
 import {url2} from '../../../Componentes/Ocultar';
 
-
 let id;
 function Partida({clave} ) {
   const { handleInputChangePartida, enviarDatosPartida } = InsertDatosPartida();
@@ -36,7 +35,7 @@ function Partida({clave} ) {
   
 
   return (
-    <div className="contenido-usuarios">
+    <div className="">
       {/*========================== Nombre Partida ==========================*/}
 
       <form action="" method="post" onSubmit={enviarDatosPartida}>

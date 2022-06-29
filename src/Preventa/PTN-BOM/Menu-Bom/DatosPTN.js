@@ -15,32 +15,23 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="arregla multiple">
+    <div className="arregla">
       {/*========================== Titulos ==========================*/}
-      <div>
-        {" "}
-      {/*   <Animaciones mytext="Datos PTN" />{" "} */}
-      </div>
-      {/*========================== Tabla Datos partida==========================*/}
-      <div className="">
+
+
         <Animaciones mytext="Datos Partida" />
       <Partida/>
 
-        <div className="">
+   
+          <br/>
+          <br/>
         <Animaciones mytext="Datos Servicios y Productos" />
      <DatosSp2 clave={props.clave}/>
-        </div>
    
 
+   
 
-
-   <div>
-
-
-    
-   </div>
-
-         <div className="">
+       
           <button
           className="btn btn-primary modificar"
           type="button"
@@ -55,13 +46,13 @@ function DatosPTN(props) {
           {show ? (
             <div></div>
             ) : (
-            <div className="">
+            <>
               {/*======================== Llamar al componente Categorias ==========================*/}
               <Categorias clave={props.clave} />
-            </div>
+            </>
           )}
-        </div>
-      </div> 
+     
+ 
       
     </div>
   );

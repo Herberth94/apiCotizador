@@ -656,7 +656,7 @@ onHide={() => setModalShow(false)}
 						  className="btn btn-primary detalles"
 						  onClick={() => {
 							/* copyDataSP(key); */
-					
+							//habilitar1(key);
 						  }}
 						>
 						  COPIAR

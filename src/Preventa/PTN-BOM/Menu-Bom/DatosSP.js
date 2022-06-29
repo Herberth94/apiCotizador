@@ -550,7 +550,7 @@ function DatosSP({ clave }) {
 
   return (
 
-    <div className="contenido-usuarios">
+    <div className="">
 
 
       <Table>
