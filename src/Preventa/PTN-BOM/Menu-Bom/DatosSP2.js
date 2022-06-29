@@ -477,10 +477,13 @@ function DatosSp2(props) {
 		let i1 = parseInt(i);
 		console.log('Fila ',i);
 		let i2;
-		if(i1 === 0){
+		let l = rows.length;
+		if(l === 2){
+			i2 = 0;
+		}else if(i1 === 0){
 			i2 = i1 + 1;
 		}else{
-			i2 = i1-1;
+			i2 = i1 - 1;
 		}
 		setK(i2);
 		console.log('Key antes de eliminar una fila:',k);
