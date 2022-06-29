@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 
 import CreateIcon from "@material-ui/icons/Create";
 
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import { Table } from 'react-super-responsive-table';
 import {
 	Box, Button, Snackbar,
 TableBody, TableCell, TableHead, TableRow
@@ -13,6 +13,7 @@ TableBody, TableCell, TableHead, TableRow
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import AutorenewIcon from '@material-ui/icons/Autorenew';
+import { ArrowUpward } from '@material-ui/icons';
 
 
 
@@ -560,6 +561,13 @@ return (
 				</Button>
 
 
+				<Button align="right"         >
+				< ArrowUpward />
+		     	<span> Subir Datos    </span>	
+				</Button>
+
+
+
 
 			</div>
 			)}
@@ -1058,6 +1066,9 @@ return (
 		</Table>
 	</Box>
 	</TableBody>
+
+
+
 
 	</div>
  

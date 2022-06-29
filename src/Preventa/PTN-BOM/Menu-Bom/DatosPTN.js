@@ -15,27 +15,29 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="menu2">
+    <div className="">
       {/*========================== Titulos ==========================*/}
       <div>
         {" "}
       {/*   <Animaciones mytext="Datos PTN" />{" "} */}
       </div>
       {/*========================== Tabla Datos partida==========================*/}
-      <div className="">
+      <div className="arregla contenido">
+        <Animaciones mytext="Datos Partida" />
+      <Partida/>
 
         <div className="">
-
-     <Partida/>
-
+        <Animaciones mytext="Datos Servicios y Productos" />
      <DatosSp2 clave={props.clave}/>
+     <br/>
+	<br/>
         </div>
    
 
    {/* <K   clave={props.clave}/> */}
       {/*========================== Tabla Datos PTN ==========================*/}
      
-      <div className="arregla">
+      <div className="">
 
       
       </div>
