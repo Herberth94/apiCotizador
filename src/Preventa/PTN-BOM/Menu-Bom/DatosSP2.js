@@ -408,7 +408,7 @@ function DatosSp2(props) {
 		const { name, value } = e.target;
 		const list = [...rows];
 
-		if(name === 'n_parte'){
+		if(name == 'n_parte'){
 			let coincidencias = [];
 			if(value.length>0){
 				coincidencias = listaNP.filter(np => {
@@ -420,7 +420,7 @@ function DatosSp2(props) {
 			//console.log('suggestionsNP:',suggestionsNP);
 		}
 
-		if(name === 'descripcion'){
+		if(name == 'descripcion'){
 			let coincidencias1 = [];
 			if(value.length>0){
 				coincidencias1 = listaDesc.filter(desc => {
@@ -468,22 +468,31 @@ function DatosSp2(props) {
 	// Showing delete confirmation to users
 	const handleConfirm = (i) => {
 		setShowConfirm(true);
-		console.log('index:',i)
+		//console.log('index:',i)
 	};
 
 	// Handle the case of delete confirmation where
 	// user click yes delete a specific row of id:i
 	const handleRemoveClick = (i) => {
-		//console.log(i);3
-		let i1 = parseInt(i)-1;
-		setK(i1);
+		//console.log(typeof(i));
+		let i1 = parseInt(i);
+		console.log('Fila ',i);
+		let i2;
+		if(i1 === 0){
+			i2 = i1 + 1;
+		}else{
+			i2 = i1-1;
+		}
+		setK(i2);
 		console.log('Key antes de eliminar una fila:',k);
 		const list = [...rows];
-		list.splice(i, 1);
+		const eliminacion = list.splice(i1, 1);
+		console.log('Variable eliminación:',eliminacion);
 		setRows(list);
 		setShowConfirm(false);
 		//setK(k-1);
 		console.log('Key despues de eliminar una fila:',k);
+		console.log('Rows despues de eliminar una fila:', rows);
 	};
 
 	// Handle the case of delete confirmation
@@ -520,7 +529,7 @@ return (
 				{rows.length !== 0 && (
 				<>
 					{disable ? (
-					<Button disabled align="right" onClick={() => handleSave()}>
+					<Button disabled align="right" onClick={handleSave}>
 						<DoneIcon />
 						Guardar
 					</Button>
@@ -1006,7 +1015,7 @@ return (
 					</>
 					)}
 					{isEdit ? (
-					<Button className="mr10" onClick={() => handleConfirm(i)}>
+					<Button className="mr10" onClick={() => {handleConfirm(i); setK(i)}}>
 						<ClearIcon />
 					</Button>
 
@@ -1014,7 +1023,7 @@ return (
 
 
 					) : (
-					<Button className="mr10" onClick={() => handleConfirm(i)}>
+					<Button className="mr10" onClick={() => {handleConfirm(i); setK(i)}}>
 						<DeleteOutlineIcon />
 					</Button>
 
@@ -1040,7 +1049,7 @@ return (
 						</DialogContent>
 						<DialogActions>
 							<Button
-							onClick={() => handleRemoveClick(i)}
+							onClick={() => handleRemoveClick(k)}
 							color="primary"
 							autoFocus
 							>
