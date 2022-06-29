@@ -27,7 +27,7 @@ function DatosPTN(props) {
       <Partida/>
 
         <div className="">
-        <Animaciones mytext="Datos Servicios y Productos" />
+        <Animaciones mytext="Datos Servicios y Procustos" />
      <DatosSp2 clave={props.clave}/>
         </div>
    
@@ -35,11 +35,23 @@ function DatosPTN(props) {
    {/* <K   clave={props.clave}/> */}
       {/*========================== Tabla Datos PTN ==========================*/}
      
-      <div className="">
-
-      
-      </div>
-
+          <div>
+                    {/* <button className="btn btn-primary modificar" type="button" onClick={()=>llamadoUsuario()} >  {show ? 'Mostrar Lista' : 'Ocultar Lista'} </button> */}
+                    {show ? (
+                        <div >
+                        {/*=================== Ocultar Lista DIV  =====================*/}
+                        </div>
+                    ) : (
+                        <div >
+                        {/*=================== Botón Mostrar Lista DIV====================*/}
+                            <br />
+                            {/*===================     Tabla Usuarios    ====================*/}
+                            <div> 
+                                
+                            </div>         
+                        </div>
+                    )}
+                </div>
      
 
         

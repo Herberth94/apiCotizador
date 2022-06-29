@@ -502,7 +502,7 @@ function DatosSp2(props) {
 
 return (
 
-<div className=''>
+<div className='contenido-marvilop'>
 	
 
 	<TableBody>
