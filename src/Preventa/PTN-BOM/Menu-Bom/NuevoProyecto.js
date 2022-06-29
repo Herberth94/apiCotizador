@@ -11,6 +11,12 @@ import DatosPTN from "../Menu-Bom/DatosPTN";
 import { url, url2 } from "../../../Componentes/Ocultar";
 
 
+import Partida from "../Menu-Bom/Partida";
+import DatosSp2 from "../Menu-Bom/DatosSP2";
+import Categorias from "../Menu-Bom/Categorias";
+
+
+
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
 export let validatorid = cookies.get('id_usuario');
@@ -284,7 +290,7 @@ function NuevoProyecto() {
       
       
       (
-        <div className="">
+        <div className="arregla multiple">
       {/*     <DatosPTN clave={clavep} /> */}
 
       <DatosPTN   clave={clavep} />

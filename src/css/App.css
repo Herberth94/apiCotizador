@@ -1,4 +1,5 @@
 
+
 th.listacl {
   width: 200px;
 }
@@ -22,7 +23,9 @@ background-color: #116b20;
 
 
 
-
+.contenido-usuarios.ok{
+position: relative;
+}
 
 
 td{

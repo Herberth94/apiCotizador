@@ -15,14 +15,14 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="">
+    <div className="arregla multiple">
       {/*========================== Titulos ==========================*/}
       <div>
         {" "}
       {/*   <Animaciones mytext="Datos PTN" />{" "} */}
       </div>
       {/*========================== Tabla Datos partida==========================*/}
-      <div className="arregla contenido">
+      <div className="">
         <Animaciones mytext="Datos Partida" />
       <Partida/>
 
@@ -32,33 +32,7 @@ function DatosPTN(props) {
         </div>
    
 
-   {/* <K   clave={props.clave}/> */}
-      {/*========================== Tabla Datos PTN ==========================*/}
-     
-          <div>
-                    {/* <button className="btn btn-primary modificar" type="button" onClick={()=>llamadoUsuario()} >  {show ? 'Mostrar Lista' : 'Ocultar Lista'} </button> */}
-                    {show ? (
-                        <div >
-                        {/*=================== Ocultar Lista DIV  =====================*/}
-                        </div>
-                    ) : (
-                        <div >
-                        {/*=================== Botón Mostrar Lista DIV====================*/}
-                            <br />
-                            {/*===================     Tabla Usuarios    ====================*/}
-                            <div> 
-                                
-                            </div>         
-                        </div>
-                    )}
-                </div>
-     
-
-        
-        
-        {/*========================== Añadir Categorias ==========================
-        Solo cuando se termine el proyecto */}
-        {/* <div className="contenido-usuarios">
+         <div className="">
           <button
           className="btn btn-primary modificar"
           type="button"
@@ -75,10 +49,10 @@ function DatosPTN(props) {
             ) : (
             <div className="">
               {/*======================== Llamar al componente Categorias ==========================*/}
-              {/* <Categorias clave={props.clave} />
+              <Categorias clave={props.clave} />
             </div>
           )}
-        </div>*/} 
+        </div>
       </div> 
       
     </div>
