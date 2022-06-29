@@ -29,8 +29,6 @@ function DatosPTN(props) {
         <div className="">
         <Animaciones mytext="Datos Servicios y Productos" />
      <DatosSp2 clave={props.clave}/>
-     <br/>
-	<br/>
         </div>
    
 

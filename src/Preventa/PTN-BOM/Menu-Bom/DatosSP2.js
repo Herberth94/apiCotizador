@@ -246,8 +246,7 @@ function DatosSp2(props) {
 	const [eKey,seteKey] = useState(false);
 		///CALCULAR DESCUENTO
 		/*================================================================================*/
-
-		useEffect(()=>{
+	useEffect(()=>{
 			if(rows[k].precio_lista != '' && rows[k].precio_unitario != ''  && validaOperacion == false){
 				const desc = calcularDescuento(rows[k].precio_lista, rows[k].precio_unitario);
 				const total = Total(rows[k].precio_unitario,rows[k].cantidad);

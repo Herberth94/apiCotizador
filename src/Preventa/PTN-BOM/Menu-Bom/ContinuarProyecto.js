@@ -5,7 +5,7 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Cookies from 'universal-cookie';
 // Componentes
 import Partida from "../Menu-Bom/Partida";
-import DatosSP from "../Menu-Bom/DatosSP";
+import DatosSP2 from "../Menu-Bom/DatosSP2";
 import Categorias from "../Menu-Bom/Categorias";
 import Animaciones from '../../../Componentes/Animaciones';
 import {InsertDatosPartida} from '../Routes/GuardarPartida';
@@ -449,9 +449,16 @@ function ContinuarProyecto() {
                   <Animaciones mytext="Datos PTN" />{" "}
                 </div> */}
                 {/*========================== Llamado a los Componentes ==========================*/} 
+                <Animaciones mytext="Continuar Partida" />{" "}
+                          
+                
                 <Partida></Partida>
+
+                <Animaciones mytext="Datos Productos " />{" "}
+                          
+                
                             
-                <DatosSP clave={id}/>
+                <DatosSP2 clave={id}/>
               </div>
       )}
 
@@ -509,13 +516,15 @@ function ContinuarProyecto() {
                           </div>
                         ) : (
                           
-                          <div  className=""> 
+                          <div  className="contenido-usuarios"> 
                           {/*    <div className="contenido-usuarios">
                               {" "}
-                              <Animaciones mytext="Datos Servicios/Productos" />{" "}
+                        
                               </div> */}
                           {/*========================== Llamado al Componente ==========================*/} 
-                            <DatosSP clave={id}/>
+                          <Animaciones mytext="Continuar Partida" />{" "}
+                          
+                            <DatosSP2 clave={id}/>
                           </div>
                   )}
                 </div>

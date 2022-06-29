@@ -112,7 +112,7 @@ function App() {
         <Administrador exact path="/administrar-usuarios" component={AdministrarUsuarios} />
         <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />        
         <Administrador exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
-        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores  } />
+        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores   } />
 
 
       {/*   estado={true} */}
