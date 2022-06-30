@@ -394,8 +394,11 @@ function ContinuarProyecto() {
               ))}
               </Tbody>          
           </Table>
-       
+          <br/>
+           <br/>
       </div>
+
+
       )}
 
               {/* <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show) ;   }}>  {show ? 'Continuar' : 'Ocultar Proyecto'}    </button> */}
@@ -403,6 +406,9 @@ function ContinuarProyecto() {
         <div >
         </div>
       ) : (
+
+
+       
         <Table >
           <thead>
             <tr >
@@ -413,6 +419,8 @@ function ContinuarProyecto() {
                               
           <tbody>    
               <tr>
+
+              
                   <td>
                     <button 
                       className="btn btn-primary modificar" 
@@ -449,14 +457,10 @@ function ContinuarProyecto() {
                   <Animaciones mytext="Datos PTN" />{" "}
                 </div> */}
                 {/*========================== Llamado a los Componentes ==========================*/} 
-                <Animaciones mytext="Continuar Partida" />{" "}
-                          
-                
+         
                 <Partida></Partida>
 
-                <Animaciones mytext="Datos Productos " />{" "}
-                          
-                
+              
                             
                 <DatosSP2 clave={id}/>
               </div>
@@ -522,8 +526,7 @@ function ContinuarProyecto() {
                         
                               </div> */}
                           {/*========================== Llamado al Componente ==========================*/} 
-                          <Animaciones mytext="Continuar Partida" />{" "}
-                          
+                       
                             <DatosSP2 clave={id}/>
                           </div>
                   )}

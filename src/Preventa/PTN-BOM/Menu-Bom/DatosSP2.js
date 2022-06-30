@@ -664,7 +664,7 @@ return (
 					<Th>Partida</Th>
 					<Th>No. de Parte SP</Th>
 					<Th>Descripción SP</Th>
-					<Th>-</Th>
+					<Th>Copiar Info</Th>
 				  </Tr>
 				</Thead>
 
@@ -677,14 +677,15 @@ return (
 					  <Td>{suggestions[key].spd_des}</Td>
 					  <Td>
 						<button
-						  className="btn btn-primary detalles"
+						  className="sn-boton copiar"
 						  onClick={() => {
 							handleCopy(suggestions[key]);
 							/* copyDataSP(key); */
 							//habilitar1(key);
 						  }}
 						>
-						  COPIAR
+						 
+						  <i class="bi bi-scissors"></i>
 						  {/* {textBVer[key]} */}
 						</button>
 					  </Td>
