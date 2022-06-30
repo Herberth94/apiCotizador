@@ -12,8 +12,6 @@ import {InsertDatosPartida} from '../Routes/GuardarPartida';
 import {getIdPar} from './DatosSP';
 import {InsertDatosCats} from '../Routes/GuardarDatosCategorias';
 import {url, url2} from "../../../Componentes/Ocultar";
-import DatosCategorias from './DatosCategorias';
-
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
