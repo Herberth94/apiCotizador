@@ -592,6 +592,8 @@ return (
 
 <div className=''>
 
+<Animaciones  mytext="Datos de Servicios y Productos" />
+
 
 	<div  className='Buscador Productos'>
 
@@ -710,12 +712,18 @@ return (
 
 </Table>
 
-
-
-
 	</div>
 
-	<Animaciones  mytext="Datos de Servicios y Productos" />
+
+
+
+
+
+
+
+	
+
+
 	<TableBody>
 	<Snackbar
 		open={open}
@@ -1288,8 +1296,6 @@ return (
 
 
 
-<br/>
-<br/>
 
 
 	</div>

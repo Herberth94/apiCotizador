@@ -48,11 +48,29 @@ div.tdBefore , td.pivoted{
     }
     
 
-.ok{
-  display: block;
-  top: 200px;
-  padding: 20px;
+.caja1{
+  
+  width: 100%;
+ 
+ top: 0px;
+
+ background-color: aqua;
+ display: inline-block;
 }
+
+.caja2{
+
+   width: 100%;
+
+  top: 0px;
+
+  display: block;
+
+
+  background-color: rgb(4, 0, 255);
+ }
+
+
 
     .contenido-marvilop{
         width: 100%;

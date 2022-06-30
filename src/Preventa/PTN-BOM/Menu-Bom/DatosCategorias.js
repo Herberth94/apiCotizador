@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
+import Animaciones from '../../../Componentes/Animaciones';
 
 import CreateIcon from "@material-ui/icons/Create";
 
@@ -433,9 +434,33 @@ function DatosSp2(props) {
 
 return (
 		<div className=''>
-			<div  className='Buscador Productos'> 
-				
-			</div>
+
+<Animaciones mytext="Datos Categorias" />
+
+
+<div  className='Buscador Productos'>
+
+
+			  <Table>
+				<Thead>
+				  <Tr>
+					<Th>Proyecto</Th>
+					<Th>Partida</Th>
+					<Th>No. de Parte SP</Th>
+					<Th>Descripción SP</Th>
+					<Th>-</Th>
+				  </Tr>
+				</Thead>
+
+				<Tbody>
+				 
+				</Tbody>
+			  </Table>
+
+	</div>
+
+
+
 
 
 			<TableBody>

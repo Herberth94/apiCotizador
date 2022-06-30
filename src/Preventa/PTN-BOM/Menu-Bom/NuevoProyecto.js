@@ -282,14 +282,18 @@ function NuevoProyecto() {
         </div>
       ) :     
       (
+        <div className="">
+
+
+
         <div className="arregla">
 
+        <DatosPTN   clave={clavep} />
 
 
-          <Partida />
+        </div>
 
-          <DatosPTN   clave={clavep} />
-
+      
 
 
 
