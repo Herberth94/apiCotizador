@@ -6,6 +6,7 @@ import Animaciones from "../../../Componentes/Animaciones";
  import DatosSp2 from "../Menu-Bom/DatosSP2";
  import DatosCategorias from "../Menu-Bom/DatosCategorias";
  import Categorias from "../Menu-Bom/Categorias";
+ import Select from "./Select";
  
 
 function DatosPTN(props) {
@@ -15,25 +16,25 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="">
+    <div className="arregla contenido">
 
-      <div>
-
-        <Partida />
-      </div>
- 
-
-    <div >
+ <Select  />
+{/* 
+    <div  className="caja1">
 
     <DatosSp2 clave={props.clave}/>
-    </div>
- 
-  
- <div>
+
+
+
+    <div className="caja2">
  <DatosCategorias clave={props.clave}/>
       
     </div>
     
+    </div> */}
+ 
+  
+
 
    
 

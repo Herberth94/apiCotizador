@@ -1,3 +1,16 @@
+.solucion{
+  width: 100%;
+  left: 0px;
+  position: absolute;
+
+}
+
+
+.ppp{
+  position: absolute;
+
+}
+
 .menu2{
   position: absolute;
   width: 100%;
@@ -48,27 +61,12 @@ div.tdBefore , td.pivoted{
     }
     
 
-.caja1{
-  
-  width: 100%;
- 
- top: 0px;
 
- background-color: aqua;
- display: inline-block;
-}
+    .btn.btn-primary.Mod{
 
-.caja2{
+width: 90%;
+    }
 
-   width: 100%;
-
-  top: 0px;
-
-  display: block;
-
-
-  background-color: rgb(4, 0, 255);
- }
 
 
 

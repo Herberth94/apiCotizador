@@ -595,7 +595,7 @@ return (
 <Animaciones  mytext="Datos de Servicios y Productos" />
 
 
-	<div  className='Buscador Productos'>
+	<div  className=''>
 
 	<Table>
 
@@ -621,9 +621,9 @@ return (
 
 
 
-		  <div className="table-responsive">
+		  <div className="">
 			{/*********Búsqueda de Lista de Proyectos por Clave ********/}
-			<div className="busqueda-proyecto">
+			<div className="">
 			  <Table >
 				<Thead>
 				  <Tr >
@@ -654,7 +654,7 @@ return (
 */}
 
 
-			<div className="bbb">
+			<div className="">
 
 
 			  <Table>

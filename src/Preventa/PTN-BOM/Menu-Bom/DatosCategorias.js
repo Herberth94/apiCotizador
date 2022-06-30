@@ -435,31 +435,8 @@ function DatosSp2(props) {
 return (
 		<div className=''>
 
-<Animaciones mytext="Datos Categorias" />
 
-
-<div  className='Buscador Productos'>
-
-
-			  <Table>
-				<Thead>
-				  <Tr>
-					<Th></Th>
-
-				  </Tr>
-				</Thead>
-
-				<Tbody>
-				 
-				</Tbody>
-			  </Table>
-
-	</div>
-
-
-
-
-
+			<Animaciones  mytext="Datos Categorias" />
 			<TableBody>
 			<Snackbar
 				open={open}
@@ -576,7 +553,7 @@ return (
 							<>
 								<TableCell padding="none">
 								<input
-								className="agregar"
+								
 								type="text"
 								name="n_parte"
 								onChange={(e) => handleInputChange(e, i)} 
@@ -604,7 +581,7 @@ return (
 
 								<TableCell padding="none">
 								<input
-								className="agregar"
+								
 								type="text"
 								name="descripcion"
 								onChange={(e) => handleInputChange(e, i)}
@@ -633,7 +610,7 @@ return (
 								<TableCell padding="none">
 
 								<input
-								className="agregar"
+							
 								type="number"
 								name="meses"
 								min="0"
@@ -650,7 +627,7 @@ return (
 								</TableCell>
 								<TableCell padding="none">
 								<input
-								className="agregar"
+								
 								type="number"
 								name="semanas"
 								min="0"
@@ -668,7 +645,7 @@ return (
 
 								<TableCell padding="none">
 								<input
-								className="agregar"
+								
 								type="number"
 								name="cantidad"
 								value={rows[i].cantidad}
@@ -687,7 +664,7 @@ return (
 								<TableCell padding="none">
 
 								<input
-								className="agregar"
+							
 								type="number"
 								name="precio_lista"
 								value={rows[i].precio_lista}
@@ -706,7 +683,7 @@ return (
 
 								<TableCell padding="none">
 								<input
-								className="agregar"
+								
 								type="number"
 								value={rows[i].precio_unitario}
 								name="precio_unitario"
@@ -726,7 +703,7 @@ return (
 								<TableCell padding="none">
 
 								<input
-								className="agregar"
+								
 								type="number"
 								value={rows[i].precio_descuento}
 								name="precio_descuento"
@@ -749,7 +726,7 @@ return (
 								<TableCell padding="none">
 
 								<input
-								className="agregar"
+								
 								type="text"
 								name="total"
 								value={rows[i].total}
@@ -806,7 +783,7 @@ return (
 								<TableCell padding="none">
 
 										<input
-										className="agregar"
+										
 										type="text"
 										name="comentarios"
 										onChange={(e) => handleInputChange(e, i)}
