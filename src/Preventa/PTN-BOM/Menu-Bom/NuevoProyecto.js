@@ -10,7 +10,7 @@ import "../css/PTN_BOM.css";
 import DatosPTN from "../Menu-Bom/DatosPTN";
 import { url, url2 } from "../../../Componentes/Ocultar";
 
-import Categorias from "./Categorias";
+import Partida from "./Partida";
 
 
 //Obtención del id del usuario con sesión activa
@@ -282,9 +282,13 @@ function NuevoProyecto() {
         </div>
       ) :     
       (
-        <div className="">
+        <div className="arregla multiple">
 
-      <DatosPTN   clave={clavep} />
+
+
+          <Partida />
+
+          <DatosPTN   clave={clavep} />
 
 
 

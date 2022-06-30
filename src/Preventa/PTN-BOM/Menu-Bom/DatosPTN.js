@@ -4,6 +4,7 @@ import Animaciones from "../../../Componentes/Animaciones";
 // Componentes
  import Partida from "../Menu-Bom/Partida";
  import DatosSp2 from "../Menu-Bom/DatosSP2";
+ import DatosCategorias from "../Menu-Bom/DatosCategorias";
  import Categorias from "../Menu-Bom/Categorias";
  
 
@@ -18,25 +19,22 @@ function DatosPTN(props) {
       {/*========================== Titulos ==========================*/}
 
 
-<div className="ok">
 
-<Partida/>
-  
-</div  >
-
-    <div  className="ok">
+    <div  className="">
     <DatosSp2 clave={props.clave}/>
   
       </div>
   
 
+          <br/>
+          <br/>
+        <Animaciones mytext="Datos Categorias" />
+     <DatosCategorias clave={props.clave}/>
+   
 
-<div className="ok">
-<Categorias clave={props.clave} />
 
-</div>
 
- 
+     {/* <Categorias clave={props.clave} /> */}
    
       
     </div>
