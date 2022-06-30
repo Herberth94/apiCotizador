@@ -285,6 +285,15 @@ function NuevoProyecto() {
         <div className="">
 
       <DatosPTN   clave={clavep} />
+
+
+
+
+
+
+
+
+      
         </div>
       )}
             

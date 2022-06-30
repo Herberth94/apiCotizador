@@ -48,15 +48,40 @@ div.tdBefore , td.pivoted{
     }
     
 
+
+
     .contenido-marvilop{
         position: relative;
         padding: 20px  ;
         top: 100px;
+      
     }
 
     
+.ok{
+position: relative;
+  width: 100%;
+}
+ 
+
+  .contenido-responsive.hijo{
+  display: flex;
+    left: 0;
+    width: 100%;
+    padding: 20px  ;
+
+    background-color: rgba(0, 0, 0, 0.897);
+}
 
 
+    .cate{
+      width: 100%;
+      position: relative;
+      top: 100px;
+      z-index: 10;
+      padding: 20px;
+    }
+    
 .arregla.multiple{
 
     position: absolute;
@@ -64,12 +89,26 @@ div.tdBefore , td.pivoted{
     left: 0px;
     margin: 0px;
     top: 100px;
-              
-  
+     }
+
+     .buscar-servicios{
+     padding: 20px;
      }
 
 
+
+     .super-t{
+      position: relative;
+width: 100%;
+top: 100px;
+     }
+
     @media screen and (max-width: 960px) {
+
+
+      .cate{
+     top: 300px;
+      }
 
 
         .buscador-inteligente{

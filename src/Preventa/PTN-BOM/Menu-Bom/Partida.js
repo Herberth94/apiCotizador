@@ -5,6 +5,7 @@ import ModalPtnDatos from "../Routes/ModalPtnDatos";
 import axios from 'axios';
 import { pId2 } from "./NuevoProyecto";
 import {url2} from '../../../Componentes/Ocultar';
+import Animaciones from '../../../Componentes/Animaciones';
 
 let id;
 function Partida({clave} ) {
@@ -35,8 +36,11 @@ function Partida({clave} ) {
   
 
   return (
-    <div className="">
+    <div className="ok">
       {/*========================== Nombre Partida ==========================*/}
+
+
+      <Animaciones mytext="Datos Partida" />
 
       <form action="" method="post" onSubmit={enviarDatosPartida}>
         <Table >

@@ -131,7 +131,7 @@ function Categorias(props) {
     
     
     return (
-        <div className="">
+        <div className="ok">
              <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true);lista (props.clave)}} >
                  Ver Categorias agregadas
              </button><br/><br/>

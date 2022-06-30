@@ -6,7 +6,6 @@ import Animaciones from "../../../Componentes/Animaciones";
  import DatosSp2 from "../Menu-Bom/DatosSP2";
  import Categorias from "../Menu-Bom/Categorias";
  
- import K from "./K";
 
 function DatosPTN(props) {
   
@@ -15,44 +14,17 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="arregla">
+    <div className="arregla multiple">
       {/*========================== Titulos ==========================*/}
 
 
-        <Animaciones mytext="Datos Partida" />
       <Partida/>
-
-   
-          <br/>
-          <br/>
-        <Animaciones mytext="Datos Servicios y Productos" />
+  
      <DatosSp2 clave={props.clave}/>
+
+
+     <Categorias clave={props.clave} />
    
-
-   
-
-       
-          <button
-          className="btn btn-primary modificar"
-          type="button"
-          onClick={() => {
-            setShow(!show);
-          }}
-          >
-          {" "}
-          {show ? "Agregar categorias" : "Ocultar Categorias"}{" "}
-          </button>
-
-          {show ? (
-            <div></div>
-            ) : (
-            <>
-              {/*======================== Llamar al componente Categorias ==========================*/}
-              <Categorias clave={props.clave} />
-            </>
-          )}
-     
- 
       
     </div>
   );

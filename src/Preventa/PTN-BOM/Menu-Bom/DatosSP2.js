@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
+import Animaciones from '../../../Componentes/Animaciones';
 
 import CreateIcon from "@material-ui/icons/Create";
 
@@ -588,7 +589,8 @@ function DatosSp2(props) {
 
 return (
 
-<div className=''>
+<div className='ok'>
+
 
 	<div  className='Buscador Productos'>
 
@@ -730,8 +732,8 @@ onHide={() => setModalShow(false)}
 
 
 	</div>
-	
 
+	<Animaciones  mytext="Datos de Servicios y Productos" />
 	<TableBody>
 	<Snackbar
 		open={open}
@@ -1303,6 +1305,9 @@ onHide={() => setModalShow(false)}
 	</TableBody>
 
 
+
+<br/>
+<br/>
 
 
 	</div>
