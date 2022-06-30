@@ -48,9 +48,14 @@ div.tdBefore , td.pivoted{
     }
     
 
-
+.ok{
+  display: block;
+  top: 200px;
+  padding: 20px;
+}
 
     .contenido-marvilop{
+        width: 100%;
         position: relative;
         padding: 20px  ;
         top: 100px;
@@ -58,10 +63,7 @@ div.tdBefore , td.pivoted{
     }
 
     
-.ok{
-position: relative;
-  width: 100%;
-}
+
  
 
   .contenido-responsive.hijo{

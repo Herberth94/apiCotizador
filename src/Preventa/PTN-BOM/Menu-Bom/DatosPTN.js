@@ -18,12 +18,25 @@ function DatosPTN(props) {
       {/*========================== Titulos ==========================*/}
 
 
-      <Partida/>
+<div className="ok">
+
+<Partida/>
   
-     <DatosSp2 clave={props.clave}/>
+</div  >
+
+    <div  className="ok">
+    <DatosSp2 clave={props.clave}/>
+  
+      </div>
+  
 
 
-     <Categorias clave={props.clave} />
+<div className="ok">
+<Categorias clave={props.clave} />
+
+</div>
+
+ 
    
       
     </div>

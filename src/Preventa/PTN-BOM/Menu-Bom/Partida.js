@@ -36,7 +36,7 @@ function Partida({clave} ) {
   
 
   return (
-    <div className="ok">
+    <div className="">
       {/*========================== Nombre Partida ==========================*/}
 
 

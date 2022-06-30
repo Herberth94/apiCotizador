@@ -589,7 +589,7 @@ function DatosSp2(props) {
 
 return (
 
-<div className='ok'>
+<div className=''>
 
 
 	<div  className='Buscador Productos'>
