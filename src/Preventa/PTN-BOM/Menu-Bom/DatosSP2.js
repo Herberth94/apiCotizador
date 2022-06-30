@@ -68,35 +68,6 @@ const useStyles = makeStyles({
 
 function DatosSp2(props) {
 
-	const [show, setShow] = useState(true); //Menu SP
-	const [suggestions, setSuggestions] = useState([]);
-	const [listaSP, setListaSP] = useState([]);
-	const [nP, setNP] = useState([]);
-
-
-	
-
-
-
-
-
-	
-  // Función que realiza la busqueda de los servicios/productos semejantes a la no_parte introducido 
-  const onChangeTextnp = (np) => {
-    let coincidencias = [];
-    if (np.length > 0) {
-      coincidencias = listaSP.filter(sp => {
-        const regex = new RegExp(`${np}`, "gi");
-        return sp.spnp_np.match(regex)
-      })
-    }
-    setSuggestions(coincidencias);
-    setNP(np);
-  }
-
-
-
-
 /*     // Función que realiza la copia de los datos del servicio/producto seleccionado
 	function copyDataSP(key) {
 		setDatosSP({
@@ -138,6 +109,73 @@ function DatosSp2(props) {
 	const [k, setK] = useState(0);
 
 	// ================================= Buscadores ================================= //
+		// =========== Servicios/Productos =========== //
+		const [show, setShow] = useState(true); //Menu SP
+		const [suggestions, setSuggestions] = useState([]);
+		const [listaSP, setListaSP] = useState([]);
+		const [nP, setNP] = useState([]);
+		// Función que realiza la consulta a la tabla servicio/proyecto
+		const getSP = async () => {
+			try {
+			  const resSP = await axios.get(url + '/api/cotizador/sp/viewFindSP');
+			  setListaSP(resSP.data.data);
+			} catch (error) { console.log(error); }
+		  }
+		
+		  useEffect(() => {
+			getSP();
+		  }, [nP])
+		  
+		// Función que realiza la busqueda de los servicios/productos semejantes a la no_parte introducido 
+		const onChangeTextnp = (np) => {
+			let coincidencias = [];
+			if (np.length > 0) {
+			coincidencias = listaSP.filter(sp => {
+				const regex = new RegExp(`${np}`, "gi");
+				return sp.spnp_np.match(regex)
+			})
+			}
+			setSuggestions(coincidencias);
+			setNP(np);
+		}
+		// Funcion que copia un servicio/producto que se seleccione y lo agrega como una nueva fila a la tabla  
+		const [firtsCopy, setFirtsCopy] = useState(false);
+		const handleCopy = (sp) => {
+			
+			let l = rows.length;
+			if(l === 1 && firtsCopy === false){
+				const actualizar = [...rows];
+				actualizar[0]['n_parte'] = sp.spnp_np;
+				actualizar[0]['descripcion'] = sp.spd_des;
+				actualizar[0]['meses'] = sp.sp_meses;
+				actualizar[0]['semanas'] = sp.spd_des;
+				actualizar[0]['cantidad'] = sp.sp_cantidad;
+				actualizar[0]['precio_lista'] = sp.precio_lista;
+				actualizar[0]['precio_unitario'] = sp.precio_unitario;
+				actualizar[0]['precio_descuento'] = sp.precio_descuento;
+				actualizar[0]['total'] = sp.precio_total;
+				actualizar[0]['moneda'] = sp.precio_id_moneda;
+				actualizar[0]['categoria'] = sp.sp_id_categoria;
+				actualizar[0]['proveedor'] = sp.proveedor_nombre;
+				actualizar[0]['marca'] = sp.marca_nombre;
+				actualizar[0]['comentarios'] = sp.sp_comentarios;
+			}else{
+				setRows([
+					...rows,
+					{		
+				id: rows.length + 1   , n_parte: sp.spnp_np, descripcion: sp.spd_des, meses: sp.sp_meses , 
+				semanas: sp.sp_semanas, cantidad:sp.sp_cantidad, precio_lista: sp.precio_lista, precio_unitario: sp.precio_unitario, 
+				precio_descuento: sp.precio_descuento, total:sp.precio_total, moneda:sp.precio_id_moneda, categoria:sp.sp_id_categoria, 
+				proveedor:sp.proveedor_nombre, marca:sp.marca_nombre, comentarios: sp.sp_comentarios
+			
+					},
+				]);
+			}
+			setFirtsCopy(true);
+			setEdit(true);
+		};
+		// =========================================== //
+
 		// =========== No de partes =========== //
 		// Almacenamiento de los No. de parte existentes para el buscador
 		const [listaNP, setListaNP] = useState ([]);
@@ -217,57 +255,57 @@ function DatosSp2(props) {
 			setRows(actualizar);
             setSuggestionsMarca([]);
         }
-	// ============================== // 
-	// =========== Proveedores =========== //
-	// Almacenamiento de los proveedores existentes para el buscador
-	const [listaProv, setListaProv] = useState ([]);
+		// ============================== // 
+		// =========== Proveedores =========== //
+		// Almacenamiento de los proveedores existentes para el buscador
+		const [listaProv, setListaProv] = useState ([]);
 
-	// Almacenamiento de los proveedores semejantes al texto introducido en el input
-	const [suggestionsProv, setSuggestionsProv] = useState ([]);
+		// Almacenamiento de los proveedores semejantes al texto introducido en el input
+		const [suggestionsProv, setSuggestionsProv] = useState ([]);
 
-	// Función que realiza la consulta a la tabla proveedores
-	async function obtenerProveedores(){
-		try{
-			const respuesta = await axios.get(url + '/api/cotizador/proveedor/view');
-			setListaProv(respuesta.data.data);
-		}catch(error){
-			console.log(error);
-		}
-	}
-
-	
-	// === Conteo de filas agregadas para condicionar la selección de elementos en los buscadores === //
-	const [enable, setEnable] = useState([]);
-
-	useEffect(()=>{
-		//console.log(rows);
-		const i = rows.length;
-		const newArr = [];
-		setEnable(Array(i).fill(true));
-		for(let c = 0 ; c < i ; c++){
-			if(parseInt(c) === parseInt(k)){
-				newArr[c] = false;
-			}else if(parseInt(c) !== parseInt(k)){
-				newArr[c] = true;
+		// Función que realiza la consulta a la tabla proveedores
+		async function obtenerProveedores(){
+			try{
+				const respuesta = await axios.get(url + '/api/cotizador/proveedor/view');
+				setListaProv(respuesta.data.data);
+			}catch(error){
+				console.log(error);
 			}
 		}
-		setEnable(newArr);
-		//console.log('Arreglo enable:',enable)
-		//console.log('rows:',rows);
-	},[rows])
-	
-	// ============================================================================================= //
 
-	// Función que obtiene el nombre del cliente seleccionado
-	const onSuggestHandlerProv = (nP) => {
-		const actualizar = [...rows];
-		actualizar[k]['proveedor'] = nP;
-		setRows(actualizar);
-		//console.log(listaMarca);
-		setSuggestionsProv([]);
-		obtenerMarcas(nP);
-	}
-	// =================================== //
+		
+		// === Conteo de filas agregadas para condicionar la selección de elementos en los buscadores === //
+		const [enable, setEnable] = useState([]);
+
+		useEffect(()=>{
+			//console.log(rows);
+			const i = rows.length;
+			const newArr = [];
+			setEnable(Array(i).fill(true));
+			for(let c = 0 ; c < i ; c++){
+				if(parseInt(c) === parseInt(k)){
+					newArr[c] = false;
+				}else if(parseInt(c) !== parseInt(k)){
+					newArr[c] = true;
+				}
+			}
+			setEnable(newArr);
+			//console.log('Arreglo enable:',enable)
+			//console.log('rows:',rows);
+		},[rows])
+		
+		// ============================================================================================= //
+
+		// Función que obtiene el nombre del cliente seleccionado
+		const onSuggestHandlerProv = (nP) => {
+			const actualizar = [...rows];
+			actualizar[k]['proveedor'] = nP;
+			setRows(actualizar);
+			//console.log(listaMarca);
+			setSuggestionsProv([]);
+			obtenerMarcas(nP);
+		}
+		// =================================== //
 	// ============================================================================== // 
 
 	useEffect(()=>{
@@ -655,6 +693,7 @@ onHide={() => setModalShow(false)}
 						<button
 						  className="btn btn-primary detalles"
 						  onClick={() => {
+							handleCopy(suggestions[key]);
 							/* copyDataSP(key); */
 							//habilitar1(key);
 						  }}
@@ -1008,7 +1047,7 @@ onHide={() => setModalShow(false)}
 						</TableCell>
 						<TableCell padding="none">
 						<select id="combo-box" 
-							value={rows[i].moneda}
+							defaultValue={rows[i].moneda}
 							name="moneda"
 					        onChange={(e) => handleInputChange(e, i)}
                         >
@@ -1029,7 +1068,7 @@ onHide={() => setModalShow(false)}
 					    style={{ width: "170px" }}
 						 id="combo-box"
 						  name="categoria" 
-						  value={rows[i].categoria}
+						  defaultValue={rows[i].categoria}
 						  	onChange={(e) => handleInputChange(e, i)}>
                             <option value={0}></option>
                             <option value={1}>Tecnología principal</option>
