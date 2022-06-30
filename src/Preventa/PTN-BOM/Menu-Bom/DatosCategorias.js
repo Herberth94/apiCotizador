@@ -444,11 +444,8 @@ return (
 			  <Table>
 				<Thead>
 				  <Tr>
-					<Th>Proyecto</Th>
-					<Th>Partida</Th>
-					<Th>No. de Parte SP</Th>
-					<Th>Descripción SP</Th>
-					<Th>-</Th>
+					<Th></Th>
+
 				  </Tr>
 				</Thead>
 
