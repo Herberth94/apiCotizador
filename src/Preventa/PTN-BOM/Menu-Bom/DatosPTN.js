@@ -18,7 +18,9 @@ function DatosPTN(props) {
   return (
     <div className="arregla contenido">
 
- <Select  />
+ <Select  
+  clave={props.clave}
+ />
 {/* 
     <div  className="caja1">
 

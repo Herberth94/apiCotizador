@@ -322,7 +322,7 @@ function DatosSp2(props) {
 		setEdit(!isEdit);
 	};
 
-	const guardarListaSP = async () =>{
+	const guardarListaCatsD = async () =>{
 		
 		// if (pEstatus1 === 'En revision') {
 		// 	alert('No se puede continuar el Proyecto porque se encuentra En revision')
@@ -330,7 +330,7 @@ function DatosSp2(props) {
 		// 	alert('No se puede continuar el Proyecto porque ha sido Aceptado')
 		//   } else {
 			try {
-				//const respuesta = await axios.post(url2+`/api/cotizador/sp/insercionMultiple/${idPartidaInsertada}`,rows);
+				const respuesta = await axios.post(url2+`/api/cotizador/catd/multiInsert/${props.clave}`,rows);
 				//alert(respuesta.data.msg);
 			} catch (error) {
 				console.log(error);            
@@ -347,7 +347,6 @@ function DatosSp2(props) {
 		//console.log("Guardado: ", rows);
 		setDisable(true);
 		setOpen(true);
-		guardarListaSP();
 	};
 
 	// The handleInputChange handler can be set up to handle
@@ -501,7 +500,7 @@ return (
 						</Button>
 
 
-						<Button align="right"         >
+						<Button align="right" onClick={guardarListaCatsD}>
 						< ArrowUpward />
 						<span> Subir Datos    </span>	
 						</Button>
