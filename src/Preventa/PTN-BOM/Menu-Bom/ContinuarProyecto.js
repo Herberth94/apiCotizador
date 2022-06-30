@@ -6,7 +6,7 @@ import Cookies from 'universal-cookie';
 // Componentes
 import Partida from "../Menu-Bom/Partida";
 import DatosSP2 from "../Menu-Bom/DatosSP2";
-import Categorias from "../Menu-Bom/Categorias";
+import DatosCategorias from "../Menu-Bom/DatosCategorias";
 import Animaciones from '../../../Componentes/Animaciones';
 import {InsertDatosPartida} from '../Routes/GuardarPartida';
 import {getIdPar} from './DatosSP';
@@ -282,6 +282,10 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow6(!show6);
                       setShow7(true);
+                      setShow2(true);
+                      setShow(true);
+                      setShow3(true);
+                      setShow4(true);
                       show6 ? setShow8(false):setShow8(true);
                       }}
                       >
@@ -296,6 +300,10 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow7(!show7);
                       setShow6(true);
+                      setShow2(true);
+                      setShow(true);
+                      setShow3(true);
+                      setShow4(true);
                       show7 ? setShow8(false):setShow8(true);
                       }}
                       >
@@ -539,7 +547,7 @@ function ContinuarProyecto() {
       ):(
         <div  className="arregla"> 
           {/*======================== Llamar al componente Categorias ==========================*/}
-          <Categorias clave={id} />
+          <DatosCategorias clave={id} />
         </div>
       )}
       
