@@ -284,14 +284,14 @@ function DatosSp2(props) {
 			const newArr = [];
 			setEnable(Array(i).fill(true));
 			for(let c = 0 ; c < i ; c++){
-				if(parseInt(c) === parseInt(k)){
-					newArr[c] = false;
-				}else if(parseInt(c) !== parseInt(k)){
+				if(c === parseInt(k)){
 					newArr[c] = true;
+				}else if(c !== parseInt(k)){
+					newArr[c] = false;
 				}
 			}
 			setEnable(newArr);
-			//console.log('Arreglo enable:',enable)
+			console.log('Arreglo enable:',newArr)
 			//console.log('rows:',rows);
 		},[rows])
 		
@@ -462,7 +462,7 @@ function DatosSp2(props) {
 		//   } else {
 			try {
 				const respuesta = await axios.post(url2+`/api/cotizador/sp/insercionMultiple/${idPartidaInsertada}`,rows);
-				//alert(respuesta.data.msg);
+				alert(respuesta.data.msg);
 			} catch (error) {
 				console.log(error);            
 			}
@@ -475,23 +475,23 @@ function DatosSp2(props) {
 	const handleSave = () => {
 		setEdit(!isEdit);
 		setRows(rows);
-		console.log("Guardado: ", rows);
+		//console.log("Guardado: ", rows);
 		setDisable(true);
 		setOpen(true);
-		guardarListaSP();
 	};
 
 	// The handleInputChange handler can be set up to handle
 	// many different inputs in the form, listen for changes
 	// to input elements and record their values in state
 	const handleInputChange = (e, index) => {
+		
 		//console.log('Index:',index);
 		setK(index);
 		setDisable(false);
 		const { name, value } = e.target;
 		const list = [...rows];
 
-		if(name == 'n_parte'){
+		if(name === 'n_parte'){
 			let coincidencias = [];
 			if(value.length>0){
 				coincidencias = listaNP.filter(np => {
@@ -499,11 +499,12 @@ function DatosSp2(props) {
 					return np.spnp_np.match(regex)
 				})
 			}
+			console.log('Coincidencias:',coincidencias)
 			setSuggestionsNP(coincidencias);
 			//console.log('suggestionsNP:',suggestionsNP);
 		}
 
-		if(name == 'descripcion'){
+		if(name === 'descripcion'){
 			let coincidencias1 = [];
 			if(value.length>0){
 				coincidencias1 = listaDesc.filter(desc => {
@@ -515,7 +516,7 @@ function DatosSp2(props) {
 			//console.log('suggestionsDesc:', suggestionsDesc);
 		}
 
-		if(name == 'proveedor'){
+		if(name === 'proveedor'){
 			// console.log(name);
 			// console.log(value);
 			let coincidencias2 = [];
@@ -529,7 +530,7 @@ function DatosSp2(props) {
 			//console.log('suggestionsProv:',suggestionsProv);
 		}
 
-		if(name == 'marca'){
+		if(name === 'marca'){
 			let coincidencias3 = [];
             if(value.length>0){
             coincidencias3 = listaMarca.filter(marca => {
@@ -559,7 +560,7 @@ function DatosSp2(props) {
 	const handleRemoveClick = (i) => {
 		//console.log(typeof(i));
 		let i1 = parseInt(i);
-		console.log('Fila ',i);
+		//console.log('Fila ',i);
 		let i2;
 		let l = rows.length;
 		if(l === 2){
@@ -570,15 +571,15 @@ function DatosSp2(props) {
 			i2 = i1 - 1;
 		}
 		setK(i2);
-		console.log('Key antes de eliminar una fila:',k);
+		//console.log('Key antes de eliminar una fila:',k);
 		const list = [...rows];
 		const eliminacion = list.splice(i1, 1);
-		console.log('Variable eliminación:',eliminacion);
+		//console.log('Variable eliminación:',eliminacion);
 		setRows(list);
 		setShowConfirm(false);
 		//setK(k-1);
-		console.log('Key despues de eliminar una fila:',k);
-		console.log('Rows despues de eliminar una fila:', rows);
+		//console.log('Key despues de eliminar una fila:',k);
+		//console.log('Rows despues de eliminar una fila:', rows);
 	};
 
 	// Handle the case of delete confirmation
@@ -605,25 +606,6 @@ return (
 </thead>
 <tbody>
   <tr >
-
-
-	{/*                            
-<button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (clave)}} >
-<i class="bi bi-eye-fill"></i>
-</button><br/><br/>
-{modalShow && modalShow1 ?   
-<ModalPtnDatos
-show={modalShow}
-proyecto_id={proyecto_id}
-onHide={() => setModalShow(false)}  
-
-/>
- :  ''  } 
-*/}
-
-
-
-
 	<td>
 
 	  <button type="button" className="btn btn-primary Mod" onClick={() => { setShow(!show); }} >
@@ -798,7 +780,7 @@ onHide={() => setModalShow(false)}
 				</Button>
 
 
-				<Button align="right"         >
+				<Button align="right" onClick={guardarListaSP} > 
 				< ArrowUpward />
 		     	<span> Subir Datos    </span>	
 				</Button>
@@ -862,24 +844,24 @@ onHide={() => setModalShow(false)}
                         className="agregar"
                         type="text"
                         name="n_parte"
-						onChange={(e) => handleInputChange(e, i)}
+						onChange={(e) => handleInputChange(e, i)} 
                         placeholder="No. Parte"
 						value={rows[i].n_parte}
                         />
 						{Object.keys(suggestionsNP).map((i)=>
-							{if(k == i){
-								return(
-								<></>
-								)
-							}else{
+							{if(enable[i]){
 								return(
 									<div 
-									key={i} 
-									className="selectCliente" 
-									onClick={() => onSuggestHandlerNP(suggestionsNP[i].spnp_np)}
-									>
-										{suggestionsNP[i].spnp_np}
+										key={i} 
+										className="selectCliente" 
+										onClick={() => onSuggestHandlerNP(suggestionsNP[i].spnp_np)}
+										>
+											{suggestionsNP[i].spnp_np}
 									</div>
+								)
+							}else{
+								return(	
+									<></>
 								)
 							}}
 						)}
