@@ -282,7 +282,7 @@ function NuevoProyecto() {
         </div>
       ) :     
       (
-        <div className="arregla multiple">
+        <div className="arregla">
 
 
 

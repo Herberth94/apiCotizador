@@ -15,29 +15,21 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="arregla multiple">
-      {/*========================== Titulos ==========================*/}
+    <>
+ 
 
-
-
-    <div  className="">
+    
     <DatosSp2 clave={props.clave}/>
   
-      </div>
-  
 
-          <br/>
-          <br/>
-        <Animaciones mytext="Datos Categorias" />
+    <Animaciones mytext="Datos Categorias" />
      <DatosCategorias clave={props.clave}/>
    
-
-
 
      {/* <Categorias clave={props.clave} /> */}
    
       
-    </div>
+    </>
   );
 }
 
