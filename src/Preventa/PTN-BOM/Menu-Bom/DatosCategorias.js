@@ -508,6 +508,14 @@ return (
 
 
 
+						<Button align="right"         >
+						< ArrowUpward />
+						<span> Terminar Proyecto    </span>	
+						</Button>
+
+
+
+
 
 					</div>
 					)}

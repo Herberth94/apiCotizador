@@ -12,6 +12,7 @@ import {InsertDatosPartida} from '../Routes/GuardarPartida';
 import {getIdPar} from './DatosSP';
 import {InsertDatosCats} from '../Routes/GuardarDatosCategorias';
 import {url, url2} from "../../../Componentes/Ocultar";
+import DatosCategorias from './DatosCategorias';
 
 
 const cookies = new Cookies();
@@ -537,9 +538,9 @@ function ContinuarProyecto() {
       {show5 ? (
         <div></div>
       ):(
-        <div  className="arregla"> 
+        <div  className=""> 
           {/*======================== Llamar al componente Categorias ==========================*/}
-          <Categorias clave={id} />
+          <DatosCategorias clave={id} />
         </div>
       )}
       
