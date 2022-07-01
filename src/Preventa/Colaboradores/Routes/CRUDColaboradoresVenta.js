@@ -4,18 +4,13 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { url2 } from '../../../Componentes/Ocultar';
 
 export const CRUDColaboradoresVenta= (props) => {
-
+    console.log(props.colabs);
     const deleteColab = async (cId) => {
         const confirmacion = window.confirm("¿Seguro que quieres borrar este Colaborador?" );
         if (confirmacion) {
             try {
-                if(1 == 1){
                     await axios.delete(url2 + `/api/cotizador/delete/${cId}`);
                     alert('Colaborador eliminado exitosamente');
-                }else{
-                    await axios.delete(url2 + `/api/cotizador/colaboradores/delete/${cId}`);
-                    alert('Colaborador eliminado exitosamente');
-                }
             } catch (error) {
                 alert('Error al eliminar Colaborador');
             }
@@ -47,7 +42,7 @@ export const CRUDColaboradoresVenta= (props) => {
                 <Tbody>
                     {/*=================== Tabla de los colaboradores de un Proyecto =================*/}
                     {Object.keys(props.colabs).map((key) => (
-                    <Tr key={props.estado ? props.colabs[parseInt(key)].id_usuario : props.colabs[parseInt(key)].colab_id }>
+                    <Tr key={props.colabs[parseInt(key)].id_usuario }>
                         <Td>{props.colabs[parseInt(key)].id_usuario}</Td>
                         {/*=================== Nombre/Email del Colaborador =================*/}
                         <Td>{props.colabs[parseInt(key)].email}</Td>
@@ -57,8 +52,7 @@ export const CRUDColaboradoresVenta= (props) => {
                             <button
                                 className="sn-boton  eliminar"
                                 type="button"
-                                onClick={() => {
-                                    props.estado ? deleteColab(props.colabs[parseInt(key)].up_id):deleteColab(props.colabs[parseInt(key)].colab_id)
+                                onClick={() => {deleteColab(props.colabs[parseInt(key)].id_usuario)
                                 }}
                             >
                            <i className="bi bi-trash-fill"></i> 
