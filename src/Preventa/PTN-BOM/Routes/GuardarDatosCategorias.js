@@ -185,10 +185,10 @@ export const InsertDatosCats = () => {
                         /*==============================================================*/
 
                         /*=============== Inserción de datos AM de las categorías ===============*/
-                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/1`);
-                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/2`);
-                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/3`);
-                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/4`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/1`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/2`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/3`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${pId}/4`);
                         /*=======================================================================*/
 
                         /*=============== Inserción de datos de proporcionalidad ===============*/
@@ -207,10 +207,10 @@ export const InsertDatosCats = () => {
                         /*==============================================================*/
 
                         /*=============== Inserción de datos AM de las categorías ===============*/
-                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/1`);
-                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/2`);
-                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/3`);
-                        await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/4`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/1`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/2`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/3`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/4`);
                         /*=======================================================================*/
 
                         /*=============== Inserción de datos de proporcionalidad ===============*/

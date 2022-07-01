@@ -502,7 +502,7 @@ return (
 
 
 
-						<Button align="right"         >
+						<Button align="right"  onClick={confirFinalizar}     >
 						< ArrowUpward />
 						<span> Terminar Proyecto    </span>	
 						</Button>
