@@ -34,6 +34,7 @@ import { precioUnitario, calcularDescuento, Total}  from '../Operaciones/Operaci
 import { listaProv } from '../../../Ventas/Operaciones/OperacionesAM';
 import { idPartidaInsertada } from '../Routes/GuardarPartida';
 import { pEstatus1 } from './ContinuarProyecto';
+import { pId2, hoy } from "./NuevoProyecto";
 
 const cookies = new Cookies();
 let validatorid = cookies.get('id_usuario');
@@ -62,8 +63,11 @@ const useStyles = makeStyles({
 
 });
 
-
-
+export let parId;
+export function getIdPar(id){
+	parId = id;
+	console.log('Id de la partida seleccionada: ',parId);
+}
 
 
 
@@ -149,7 +153,7 @@ function DatosSp2(props) {
 				actualizar[0]['n_parte'] = sp.spnp_np;
 				actualizar[0]['descripcion'] = sp.spd_des;
 				actualizar[0]['meses'] = sp.sp_meses;
-				actualizar[0]['semanas'] = sp.spd_des;
+				actualizar[0]['semanas'] = sp.sp_semanas;
 				actualizar[0]['cantidad'] = sp.sp_cantidad;
 				actualizar[0]['precio_lista'] = sp.precio_lista;
 				actualizar[0]['precio_unitario'] = sp.precio_unitario;
@@ -454,21 +458,30 @@ function DatosSp2(props) {
 	};
 
 	const guardarListaSP = async () =>{
-		
-		// if (pEstatus1 === 'En revision') {
-		// 	alert('No se puede continuar el Proyecto porque se encuentra En revision')
-		//   } else if (pEstatus1 === 'Aceptado') {
-		// 	alert('No se puede continuar el Proyecto porque ha sido Aceptado')
-		//   } else {
+		const dataFM = {
+			proyecto_fecha_modificacion: hoy
+		  }
+
+		if (pEstatus1 === 'En revision') {
+			alert('No se puede continuar el Proyecto porque se encuentra En revision')
+		  } else if (pEstatus1 === 'Aceptado') {
+			alert('No se puede continuar el Proyecto porque ha sido Aceptado')
+		  } else {
+				
 			try {
-				const respuesta = await axios.post(url2+`/api/cotizador/sp/insercionMultiple/${idPartidaInsertada}`,rows);
-				alert(respuesta.data.msg);
+				await axios.put(url2 + `/api/cotizador/proyecto/updateFM/${props.clave}`, dataFM);
+
+				if(parId !== '' && parId !== undefined){
+					const respuesta = await axios.post(url2+`/api/cotizador/sp/insercionMultiple/${parId}`,rows);
+					alert(respuesta.data.msg);
+				}else{
+					const respuesta = await axios.post(url2+`/api/cotizador/sp/insercionMultiple/${idPartidaInsertada}`,rows);
+					alert(respuesta.data.msg);	
+				}
 			} catch (error) {
 				console.log(error);            
 			}
-		  
-		
-		
+		}
 	}
 
 	// Function to handle save
