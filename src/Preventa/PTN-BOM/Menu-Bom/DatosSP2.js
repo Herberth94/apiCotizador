@@ -97,7 +97,7 @@ function DatosSp2(props) {
 		  descripcion: "",
 		  meses: "" ,
 		  semanas: "" ,
-		  cantidad:0,
+		  cantidad:1,
 		  precio_lista: 0,
 		  precio_unitario: 0,
 		  precio_descuento: 0, 

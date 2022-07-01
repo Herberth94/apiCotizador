@@ -9,7 +9,7 @@ export const CRUDColaboradoresVenta= (props) => {
         const confirmacion = window.confirm("¿Seguro que quieres borrar este Colaborador?" );
         if (confirmacion) {
             try {
-                if(props.estado){
+                if(1 == 1){
                     await axios.delete(url2 + `/api/cotizador/delete/${cId}`);
                     alert('Colaborador eliminado exitosamente');
                 }else{
