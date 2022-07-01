@@ -34,7 +34,7 @@ import AdministrarUsuarios from "./Administrador/Usuarios/MenuUsuarios/Administr
 import AdministrarClientes from "./Administrador/Clientes/MenuClientes/AdministrarClientes";
 import AdministrarProveedor from "./Administrador/Proveedores/MenuProveedor/AdministrarProveedor";
 import AdministrarColaboradores from "./Preventa/Colaboradores/MenuColaborador/AdministrarColaboradores";
-
+import AdministrarColaboradoresVenta from "./Preventa/Colaboradores/MenuColaborador/AdministrarColaboradoresVenta";
 import AsignarProyecto from "./Preventa/AsignarVentas/MenuAsignacion/AsignarProyecto";
 
 import Divisa from "./Ventas/AM/Menu-AM/Divisa";
@@ -113,10 +113,11 @@ function App() {
         <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />        
         <Administrador exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
         <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores   } />
+        <Administrador exact path="/administrar-asignaciones" component={AdministrarColaboradoresVenta}   />
 
 
-      {/*   estado={true} */}
-        <Administrador exact path="/administrar-asignaciones" component={AdministrarColaboradores}   />
+
+
         <Administrador exact path="/asignar-proyectos" component={AsignarProyecto} />
       
 

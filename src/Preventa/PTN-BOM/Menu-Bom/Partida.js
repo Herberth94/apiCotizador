@@ -36,7 +36,7 @@ function Partida({clave} ) {
   
 
   return (
-    <div className="">
+    <div className="padding">
       {/*========================== Nombre Partida ==========================*/}
 
 

@@ -590,7 +590,7 @@ function DatosSp2(props) {
 
 return (
 
-<div className=''>
+<div className='padding'>
 
 <Animaciones  mytext="Datos de Servicios y Productos" />
 
@@ -634,7 +634,7 @@ return (
 				<Tbody>
 				  <Tr >
 					<Td>
-					  <input className="agregar"
+					  <input
 						type="text"
 						name="proyecto_clave"
 						onChange={e => onChangeTextnp(e.target.value)}
@@ -850,7 +850,7 @@ return (
 						/> */}
 
                         <input
-                        className="agregar"
+                        className='input-extends'
                         type="text"
                         name="n_parte"
 						onChange={(e) => handleInputChange(e, i)} 
@@ -878,7 +878,7 @@ return (
 
 						<TableCell padding="none">
 						<input
-                        className="agregar"
+                        className='input-extends'
                         type="text"
 						name="descripcion"
 						onChange={(e) => handleInputChange(e, i)}
@@ -907,7 +907,7 @@ return (
 						<TableCell padding="none">
 
 						<input
-                        className="agregar"
+                       
                         type="number"
 						name="meses"
                         min="0"
@@ -924,7 +924,7 @@ return (
 						</TableCell>
 						<TableCell padding="none">
 						<input
-                        className="agregar"
+                      
                         type="number"
                         name="semanas"
                         min="0"
@@ -942,7 +942,7 @@ return (
 
 						<TableCell padding="none">
 						<input
-                        className="agregar"
+                        
                         type="number"
                         name="cantidad"
                     	value={rows[i].cantidad}
@@ -961,7 +961,7 @@ return (
 						<TableCell padding="none">
 
 						<input
-                        className="agregar"
+                        
                         type="number"
                         name="precio_lista"
                         value={rows[i].precio_lista}
@@ -980,7 +980,7 @@ return (
 
 						<TableCell padding="none">
 						<input
-                        className="agregar"
+                        
                         type="number"
                         value={rows[i].precio_unitario}
                         name="precio_unitario"
@@ -1000,7 +1000,7 @@ return (
 						<TableCell padding="none">
 
 						<input
-                        className="agregar"
+                      
                         type="number"
                         value={rows[i].precio_descuento}
                         name="precio_descuento"
@@ -1023,7 +1023,7 @@ return (
 						<TableCell padding="none">
 
 						<input
-                        className="agregar"
+                        
                         type="text"
                         name="total"
                         value={rows[i].total}
@@ -1081,7 +1081,7 @@ return (
 						
 						<TableCell padding="none">
 					        	<input
-                                className="agregar"
+                              className='input-extends' 
                                 type="text"
                                 name="proveedor"
                             	onChange={(e) => {handleInputChange(e, i)}}
@@ -1109,7 +1109,7 @@ return (
 
 					    <TableCell padding="none">
 					        	<input
-                                className="agregar"
+                                className='input-extends'
                                 type="text"
                                 name="marca"
                             	onChange={(e) => handleInputChange(e, i)}
@@ -1139,7 +1139,7 @@ return (
 						<TableCell padding="none">
 
 					        	<input
-                                className="agregar"
+                                className='input-extends'
                                 type="text"
                                 name="comentarios"
                             	onChange={(e) => handleInputChange(e, i)}
@@ -1299,6 +1299,11 @@ return (
 
 
 
+
+<div  className='espacio'>
+
+
+</div>
 	</div>
  
 
