@@ -63,11 +63,13 @@ function Excel() {
       const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
       let proy = resProy.data.data.pop(); 
       getpIdExcel(proy.proyecto_id);
-      console.log('Objetos excel:',dataPartidas);
-      console.log('Id del proyecto:', pIdExcel);
+/*       console.log('Objetos excel:',dataPartidas);
+      console.log('Id del proyecto:', pIdExcel); */
       let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ pIdExcel }`, dataPartidas);
-      alert(res.data.msg);
-      
+      /* alert(res.data.msg);
+       */
+
+      alert("Datos Subidos Correctamente");
     }
   }
 
@@ -153,6 +155,7 @@ function Excel() {
               onClick={() => {
                 setShow2(!show2);
                 cargarDatos();
+                alert("Datos Subidos Correctamente")
               }}
             >
               {" "}
