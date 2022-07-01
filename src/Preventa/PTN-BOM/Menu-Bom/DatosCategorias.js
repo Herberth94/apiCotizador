@@ -328,7 +328,7 @@ function DatosSp2(props) {
 		  } else {
 			try {
 				const respuesta = await axios.post(url2+`/api/cotizador/catd/multiInsert/${props.clave}`,rows);
-				//alert(respuesta.data.msg);
+				alert(respuesta.data.msg);
 			} catch (error) {
 				console.log(error);            
 			}

@@ -84,16 +84,10 @@ function AdministrarColaboradoresVenta(props) {
   //Función que consulta todas las marcas existentes
   const getColabs = async (pId) => {
       try {
-          if( 1 == 1){
-            const resColabs =  await axios.get(url2 + `/api/cotizador/viewUsersVentaP/${pId}`);
-            setListaColabs(resColabs.data.reSql);
-          }else{
-            const resColabs =  await axios.get(url2 + `/api/cotizador/colaboradores/view/${pId}`);
-            setListaColabs(resColabs.data.data);
-          }
-          
+          const resColabs =  await axios.get(url2 + `/api/cotizador/colaboradores/view/${pId}`);
+          setListaColabs(resColabs.data.data);
       } catch(error){console.log(error)}
-      console.log(listaColabs);
+      //console.log(listaColabs);
   }
   /*===================================================================================================================*/
   
