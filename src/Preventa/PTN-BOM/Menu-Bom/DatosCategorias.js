@@ -100,8 +100,6 @@ function DatosSp2(props) {
 		  total:0 ,
 		  moneda:"", 
 		  categoria:"", 
-		  proveedor:"",
-		  marca:"",
 		  comentarios: ""		
 		},
 	]);
@@ -305,7 +303,7 @@ function DatosSp2(props) {
 			{		
 		id: rows.length + 1   , n_parte: "", descripcion: "", meses: "" , semanas: "" , 
 		cantidad:1, precio_lista: 0, precio_unitario: 0, precio_descuento:0, total:0 ,
-        moneda:"", categoria:"", proveedor:"", marca:"", comentarios: ""
+        moneda:"", categoria:"", comentarios: ""
 	 
 			},
 		]);
@@ -323,21 +321,18 @@ function DatosSp2(props) {
 	};
 
 	const guardarListaCatsD = async () =>{
-		
-		// if (pEstatus1 === 'En revision') {
-		// 	alert('No se puede continuar el Proyecto porque se encuentra En revision')
-		//   } else if (pEstatus1 === 'Aceptado') {
-		// 	alert('No se puede continuar el Proyecto porque ha sido Aceptado')
-		//   } else {
+		if (pEstatus1 === 'En revision') {
+			alert('No se puede continuar el Proyecto porque se encuentra En revision')
+		  } else if (pEstatus1 === 'Aceptado') {
+			alert('No se puede continuar el Proyecto porque ha sido Aceptado')
+		  } else {
 			try {
 				const respuesta = await axios.post(url2+`/api/cotizador/catd/multiInsert/${props.clave}`,rows);
 				//alert(respuesta.data.msg);
 			} catch (error) {
 				console.log(error);            
 			}
-		  
-		
-		
+		}
 	}
 
 	// Function to handle save
@@ -368,7 +363,7 @@ function DatosSp2(props) {
 					return np.cd_no_parte.match(regex)
 				})
 			}
-			console.log('Coincidencias:',coincidencias)
+			//console.log('Coincidencias:',coincidencias)
 			setSuggestionsNP(coincidencias);
 			//console.log('suggestionsNP:',suggestionsNP);
 		}

@@ -5,11 +5,10 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Cookies from 'universal-cookie';
 // Componentes
 import Partida from "../Menu-Bom/Partida";
-import DatosSP2 from "../Menu-Bom/DatosSP2";
+import DatosSP2, { getIdPar } from "../Menu-Bom/DatosSP2";
 import DatosCategorias from "../Menu-Bom/DatosCategorias";
 import Animaciones from '../../../Componentes/Animaciones';
 import {InsertDatosPartida} from '../Routes/GuardarPartida';
-import {getIdPar} from './DatosSP';
 import {InsertDatosCats} from '../Routes/GuardarDatosCategorias';
 import {url, url2} from "../../../Componentes/Ocultar";
 
@@ -22,6 +21,11 @@ let validatorid = cookies.get('id_usuario');
 export let proyectoIdCont;
 export let pEstatus1;
 
+function getProyEstatus(st){
+  console.log('Variable st:',st);
+  pEstatus1 = st;
+  console.log('Variable pEstatus1:',pEstatus1);
+}
 
 function ContinuarProyecto() {
     
@@ -42,7 +46,9 @@ function ContinuarProyecto() {
   const [textBVer2,setTextBVer2] = useState([]);// Texto de los botones de continuar partida
   /*=====================================================================*/
 
-  const [id, setid] = useState([]);
+  const [id, setid] = useState([]); // Almacenamiento del id del proyecto seleccionado
+  const [parId, setParId] = useState([]); //
+  //const [estatusP, setEstatusP] = useState();// Almacenenamiento del estatus del proyecto seleccionado
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
@@ -104,10 +110,6 @@ function ContinuarProyecto() {
   // Almacenamiento de las partidas de un proyecto en especifico
   const[listaPartidas, setListaPartidas] = useState([]);
 
-  function getProyEstatus(st){
-    pEstatus1 = st;
-  }
-
   //Almacenamiento de todos las partidas de un proyecto en específico
   async function getDatosPartida(proyecto_id){
       try{
@@ -117,13 +119,13 @@ function ContinuarProyecto() {
           console.log(error);
       }
       proyectoIdCont = proyecto_id;
-      let i = Object.keys(suggestions);
-      i = i.length;
-      for(let c = 0 ; c < i ; c++){
-        if(proyecto_id === suggestions[c].proyecto_id){
-          getProyEstatus(suggestions[c].proyecto_estatus);
-        }
-      }
+      // let i = Object.keys(suggestions);
+      // i = i.length;
+      // for(let c = 0 ; c < i ; c++){
+      //   if(proyecto_id === suggestions[c].proyecto_id){
+      //     getProyEstatus(suggestions[c].proyecto_estatus);
+      //   }
+      // }
       //console.log(pEstatus1); 
   }
   //console.log('Varible global proyecto id:', proyectoIdCont);
@@ -285,6 +287,7 @@ function ContinuarProyecto() {
                       setShow(true);
                       setShow3(true);
                       setShow4(true);
+                      setShow5(true);
                       show6 ? setShow8(false):setShow8(true);
                       }}
                       >
@@ -303,6 +306,7 @@ function ContinuarProyecto() {
                       setShow(true);
                       setShow3(true);
                       setShow4(true);
+                      setShow5(true);
                       show7 ? setShow8(false):setShow8(true);
                       }}
                       >
@@ -368,6 +372,7 @@ function ContinuarProyecto() {
                           className="sn-boton modificar" 
                           type="button" 
                           onClick={() => {
+                            getProyEstatus(suggestions[key].proyecto_estatus);
                             getIdP(suggestions[key].proyecto_id);
                             getDatosPartida(suggestions[key].proyecto_id); 
                             setid(suggestions[key].proyecto_id);
@@ -385,6 +390,8 @@ function ContinuarProyecto() {
                           className="sn-boton modificar" 
                           type="button" 
                           onClick={() => {
+                            getProyEstatus(suggestions[key].proyecto_estatus);
+                            setShow3(true);
                             getIdP1(suggestions[key].proyecto_id);
                             getDatosPartida(suggestions[key].proyecto_id); 
                             setid(suggestions[key].proyecto_id);
