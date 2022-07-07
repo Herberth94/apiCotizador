@@ -12,7 +12,7 @@ export let validatorid = cookies.get('id_usuario');
 
 export let dataPartidas = [];
 
-function Excel() {
+function Excel(props) {
 
    const [items, setItems] = useState([]);
 
@@ -63,9 +63,13 @@ function Excel() {
       const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
       let proy = resProy.data.data.pop(); 
       getpIdExcel(proy.proyecto_id);
+      if(props.clave !== '' && props.clave !== undefined){
+        let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ props.clave }`, dataPartidas);
+      }else{
+        let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ pIdExcel }`, dataPartidas);
+      }
 /*       console.log('Objetos excel:',dataPartidas);
       console.log('Id del proyecto:', pIdExcel); */
-      let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ pIdExcel }`, dataPartidas);
       /* alert(res.data.msg);
        */
 

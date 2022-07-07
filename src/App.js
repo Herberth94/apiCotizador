@@ -68,6 +68,8 @@ import Venta from "./Routes/ValidaVenta";
 //============ Ventas  Páginas Private  ============
 import MenuVentas from "./Ventas/MenuVentas";
 import MenuResumenBom from "./Ventas/AM/ResumenBOM/MenuResumenBom";
+import { LP } from "./Componentes/Herramientas/ListaProyectos";
+import ContinuarPCE from "./Componentes/Herramientas/ContinuarProyectoCE";
   
 
 function App() {
@@ -98,7 +100,7 @@ function App() {
         <Administrador exact path="/calculadora" component={CalculaDescuento} />
         <Administrador  path="/documentacion" component={MenuHeramientas} />
         <Administrador exact path="/plantilla-excel" component={NuevoProyectoExcel} />
-
+        <Administrador exact path="/continuarP-excel" component={ContinuarPCE}/>
 
         {/* <Administrador exact path="/" component={CambioContraseña} /> */}
         
@@ -158,6 +160,7 @@ function App() {
         <Preventa path="/calculadora" component={CalculaDescuento} />
         <Preventa path="/documentacion" component={MenuHeramientas} />
         <Preventa path="/plantilla-excel" component={NuevoProyectoExcel} />
+        <Preventa exact path="/continuarP-excel" component={ContinuarPCE}/>
 
 
                         {/*======== Registros ========*/}
