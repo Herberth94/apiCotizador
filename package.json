@@ -29,8 +29,9 @@
     "react-super-responsive-table": "^5.2.0",
     "react-to-print": "^2.14.4",
     "universal-cookie": "^4.0.4",
+    "upper-case": "^2.0.2",
     "web-vitals": "^2.1.4",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5"    
   },
   "homepage": "http://200.194.42.18:4001",
   "scripts": {

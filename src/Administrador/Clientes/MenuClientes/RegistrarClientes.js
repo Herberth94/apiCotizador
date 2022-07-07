@@ -1,12 +1,12 @@
 import React from 'react'
 import { useRegistro } from "../Routes/registroClientes"
 
-
 function Clientes() {
   const {
     handleInputChange,
     enviarDatos
   }=useRegistro()
+
 
     return (
         <div className="contenido-main-registro">
@@ -20,13 +20,19 @@ function Clientes() {
                     Nombre Cliente
                  </label>
               <input
+                type="text" 
                 id="user"
-                type="text"
-                name='nombre_cliente'
+                name='nombre_cliente'                                                                         
                 className="card-input"
-                onChange={handleInputChange}
-                placeholder="Nombre Cliente"
+                autoCapitalize='characters'
+                onChange={handleInputChange}                 
+                placeholder="Nombre Cliente"                
               />
+
+              <script>
+
+              </script>
+
     {/*========= Razón Social ========= */}
               <label htmlFor="user2" className=" label">
                 Razón Social
@@ -74,10 +80,10 @@ function Clientes() {
           </section>
         </div>
 
+             
+
         <br/>
         <br/>
-
-
 
       </div>
     )

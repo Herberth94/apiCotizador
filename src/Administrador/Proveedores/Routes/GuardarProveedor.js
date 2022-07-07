@@ -25,12 +25,12 @@ export const InsertDatosProvedor = () => {
     // Función que realiza la inserción de los datos a la tabla proveedor en la bd 
     async function SendProveedor() {
         const data = {
-            proveedor_nombre: datosProv.proveedor_nombre,
+            proveedor_nombre: datosProv.proveedor_nombre.toUpperCase(),
             proveedor_telefono: datosProv.proveedor_telefono,
             proveedor_email: datosProv.proveedor_email
         };
         //console.log(id);
-        if (data.proveedor_nombre !== '') {
+        if (data.proveedor_nombre.toUpperCase() !== '') {
             //console.log(data.proveedor_nombre)
             try {
                 const resProvs = await axios.get(url + "/api/cotizador/proveedor/view");
@@ -39,7 +39,7 @@ export const InsertDatosProvedor = () => {
                 k = k.length;
                 const arrayNoExiste = [];
                 for(let c = 0 ; c < k ; c++){
-                    if(datosProv.proveedor_nombre === resProvs.data.data[c].proveedor_nombre){
+                    if(datosProv.proveedor_nombre.toUpperCase() === resProvs.data.data[c].proveedor_nombre.toUpperCase()){
                         arrayNoExiste[c] = false;
                      }else{
                         arrayNoExiste[c] = true;
