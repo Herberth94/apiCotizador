@@ -84,7 +84,7 @@ export const CrudUsuarios = (props) => {
        <Animaciones  mytext="Lista de Usuarios" />
       </div>
       <form>
-        <Table    id = "daTable"  className="table table-striped"   >
+        <Table    id = "daTable"    >
           <Thead  className="lines"  >
          {/*    <tr className="titulo-tabla-usuarios">
               <th></th>
