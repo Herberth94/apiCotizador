@@ -1122,6 +1122,7 @@ return (
 
 					    <TableCell padding="none">
 					        	<input
+							     required
                                 className='input-extends'
                                 type="text"
                                 name="marca"

@@ -28,6 +28,7 @@
     "react-scripts": "5.0.0",
     "react-super-responsive-table": "^5.2.0",
     "react-to-print": "^2.14.4",
+    "sweetalert": "^2.1.2",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"

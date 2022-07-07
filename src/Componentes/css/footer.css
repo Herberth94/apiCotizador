@@ -2,7 +2,7 @@
 
 .footer {
     position: absolute;
-    background: var(--administrador-bg-color);
+    background: var(--color-principal);
     color: rgb(255, 255, 255);
     padding: 0% 2%;
     width: 100%;

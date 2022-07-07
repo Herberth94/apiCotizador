@@ -38,7 +38,7 @@ function Proporcionalidad() {
                         <Th>Descripción</Th>
                         <Th >Precio Venta </Th>
                         <Th> % </Th>
-                        <Th>Prop MESA AYUDA </Th>
+                        <Th>Proporcionalidad</Th>
                         <Th>TOTAL</Th>
                         <Th>TOTAL MENSUAL</Th>
                         <Th>Financiamiento</Th>

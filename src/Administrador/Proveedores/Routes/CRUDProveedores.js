@@ -132,7 +132,7 @@ export const CrudProveedores = (props) => {
     }
     /*============================================================================================================*/
     return (
-        <div  className='contenido-marvilop'>
+        <div  className='administracion'>
 
             <div>
                 <Animaciones  mytext="Administración  de Proveedores"/>

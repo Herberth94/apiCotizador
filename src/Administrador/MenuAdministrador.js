@@ -47,6 +47,8 @@ function Archivo() {
                                     
                                     >
                                         <NavDropdown.Item href="/plantilla-excel">Nuevo Proyecto</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                    
                                         <NavDropdown.Item href="/continuarP-excel">Continuar Proyecto</NavDropdown.Item>
                                     </NavDropdown>
                                     <NavDropdown.Divider />

@@ -6,14 +6,39 @@ import Excel from '../../../Componentes/Herramientas/excel';
 import DatosSp2 from './DatosSP2';
 import DatosCategorias from './DatosCategorias';
 import Partida from './Partida';
+import swal from "sweetalert"
+
+
 
 function Select(props) {
+
+
 
       /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
     /*========================== Mostrar Ocultar Tabla ==========================*/
     const [show2, setShow2] = useState(true);
+
+
+
+
+    const MostrarAlerta=()=>{
+
+   
+
+      if( show2 == true){ 
+        swal({
+          title: "Prorrateo",
+          text: "Nota: Para Finalizar el Proyecto sin prorrateo no agregue  productis ni servicios y dar click en el botón  Terminar Proyecto. ",
+          icon: "warning",
+          button: "Cerrar"
+      
+        })
+      }
+   
+    }
+  
 
   return (
   
@@ -76,6 +101,7 @@ function Select(props) {
       onClick={() => { 
         setShow2(!show2);
         setShow(true);
+       MostrarAlerta()
      
       }}>  
       {show2 ? 'Agregar Categorias' : 'Ocultar Datos'}    

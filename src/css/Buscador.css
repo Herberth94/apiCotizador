@@ -37,7 +37,7 @@ div.tdBefore , td.pivoted{
 
 .buscador-inteligente{
     position: fixed;
-    z-index: 11;
+    z-index: 100;
     justify-content: end;
     right: 20px;
     top: 0;
@@ -50,7 +50,62 @@ div.tdBefore , td.pivoted{
       width: 100%;
       left: 0px;
       padding: 0px 20px;
-    }
+      animation-duration: 2s;
+      animation-name: slidein;
+}
+
+
+.administracion2{
+
+  animation-duration: 2s;
+  animation-name: slidein2;
+}
+
+
+@keyframes slidein2 {
+  from {
+    margin-left: 100%;
+    width: 300%
+ 
+   
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%; 
+
+
+
+
+  }
+}
+
+
+
+@keyframes slidein {
+  from {
+  /*   margin-left: 100%;
+    width: 300%
+ */
+
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+  }
+
+  to {
+   /*  margin-left: 0%;
+    width: 100%; */
+
+
+
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+
+
+
+
 
 
 
@@ -210,4 +265,26 @@ top: 100px;
   .btn-login {
     transition: linear;
   }
+}
+
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
 }

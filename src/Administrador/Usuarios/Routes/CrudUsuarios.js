@@ -84,8 +84,8 @@ export const CrudUsuarios = (props) => {
        <Animaciones  mytext="Lista de Usuarios" />
       </div>
       <form>
-        <Table  id="h1"  >
-          <Thead  className="lines">
+        <Table    id = "daTable"  className="table table-striped"   >
+          <Thead  className="lines"  >
          {/*    <tr className="titulo-tabla-usuarios">
               <th></th>
               <th className="titulo-tabla">Lista de Usuarios</th>
@@ -93,7 +93,7 @@ export const CrudUsuarios = (props) => {
             {/*=================== Titulos Tabla Usuarios ====================*/}
             <Tr className="lines" >
               <Th>ID</Th>
-              <Th>Administrador</Th>
+              <Th>Rol</Th>
               <Th>Correo</Th>
               <Th>Contraseña</Th>
               {/*    <th>Eliminar</th> */}

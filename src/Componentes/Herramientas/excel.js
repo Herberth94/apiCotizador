@@ -6,6 +6,8 @@ import axios from "axios";
 import {url2} from "../Ocultar";
 import Cookies from 'universal-cookie';
 
+let validarFile = true;
+
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
 export let validatorid = cookies.get('id_usuario');
@@ -78,16 +80,25 @@ function Excel(props) {
   }
 
   return (
-    <div  className='arregla'>
+    <div  className=''>
 
 
 <div className='cargar-datos'>
+
+  <br/>
+  <br/>
+
+  <h3>Cargar Plantilla Excel</h3>
 
       <input className="btn btn-primary Mod"
         type="file"
         onChange={(e) => {
           const file = e.target.files[0];
           readExcel(file);
+
+          if (file != null){
+            validarFile = false;
+          }
         }}
       />
 
@@ -154,6 +165,7 @@ function Excel(props) {
 
 <div className='subir-datos'>
             <button
+              disabled={validarFile}
               className="btn btn-primary Mod"
               type="button"
               onClick={() => {
