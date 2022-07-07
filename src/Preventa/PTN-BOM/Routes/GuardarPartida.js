@@ -82,7 +82,7 @@ export const InsertDatosPartida = () => {
                 if(pId !== proyectoId.proveedor_id && pId!== ''){
                     const respuesta = await axios.post(url2 +`/api/cotizador/partida/${pId}`, data);
                     getIdPartidaInsertada(respuesta.data.data.insertId);
-                    console.log('Id de la nueva partida agregada: ',idPartidaInsertada);
+                    //console.log('Id de la nueva partida agregada: ',idPartidaInsertada);
                     await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                     //console.log(pId);
                     const respuestaBack = respuesta.data.msg;
@@ -93,7 +93,7 @@ export const InsertDatosPartida = () => {
                     const respuesta2 = await axios.post( url2 +`/api/cotizador/partida/${proyectoId.proyecto_id}`, data); 
                     await axios.put(url2 + `/api/cotizador/proyecto/updateFM/${proyectoId.proyecto_id}`, dataFM);
                     getIdPartidaInsertada(respuesta2.data.data.insertId);
-                    console.log('Id de la nueva partida agregada: ',idPartidaInsertada);
+                    //console.log('Id de la nueva partida agregada: ',idPartidaInsertada);
                     //console.log(proyectoId.proyecto_id);
                     const respuestaBack2 = respuesta2.data.msg;
                     alert(respuestaBack2);

@@ -366,14 +366,14 @@ const ResumenAM = () => {
                                 <Tr >
                                     <Th>Nombre Partida</Th>
                                     <Th className="listacl">Lista cl </Th>
-                                    <Th>Desc. Cliente % </Th>
-                                    <Th>Precio Venta </Th>
-                                    <Th>Margen de Ganancia %</Th>
-                                    <Th>Precio Lista Unitario Prov</Th>
+                                    <Th>Desc. Cliente %</Th>
+                                    <Th className="listacl">Precio  Venta</Th>
+                                    <Th>Margen Ganancia %</Th>
+                                    <Th className="listacl">Precio Lista Unitario Prov</Th>
                                     <Th>Cantidad</Th>
-                                    <Th>Lista Prov</Th>
+                                    <Th className="listacl">Lista Prov</Th>
                                     <Th>Desc Fabrica %</Th>
-                                    <Th>Costo PTN</Th>
+                                    <Th className="listacl">Costo PTN</Th>
                                     <Th>Margen Directo %</Th>
                                     <Th>Modificar</Th>
                                     <Th></Th>
@@ -385,7 +385,7 @@ const ResumenAM = () => {
                                 <Tr key={key}>
                                     <Td>{datosCompletosAM[key]}</Td>
                                     {/*================= Descripcion General Partida ==================*/}
-                                    <Td  > {" $ "} {datosCompletosTotal[key]}</Td>
+                                    <Td  > {"$ "} {datosCompletosTotal[key]}</Td>
                                     {/*================= Descuento Cliente ==================*/}
                                     <Td className="editar" >
                                         <input
@@ -398,7 +398,7 @@ const ResumenAM = () => {
                                         ></input> 
                                     </Td>
                                     {/*================= Precio Venta ==================*/}
-                                    <Td> {"$"} {precioVenta[key]} </Td>
+                                    <Td   > {"$ "} {precioVenta[key]} </Td>
                                     {/*================= Margen Ganancia==================*/}
                                     <Td  className="editar">
                                         <input
@@ -411,7 +411,7 @@ const ResumenAM = () => {
                                         ></input>
                                     </Td>
                                     {/*================= PrecioLista Unitario ==================*/}
-                                    <Td >{" $ "} {prov[key]}</Td>
+                                    <Td >{"$ "} {prov[key]}</Td>
                                     {/*================= Cantidad ==================*/}
                                     <Td className="editar">
                                         <input
@@ -424,7 +424,7 @@ const ResumenAM = () => {
                                         ></input>
                                     </Td>
                                     {/*================= Lista prov ==================*/}
-                                    <Td  > {" $ "} {listaProv[key]}</Td>
+                                    <Td  > {"$ "} {listaProv[key]}</Td>
                                     {/*================= Descuento Fabrica ==================*/}    
                                     <Td  className="editar">
                                         <input
@@ -437,7 +437,7 @@ const ResumenAM = () => {
                                         ></input>
                                     </Td>
                                     {/*================= Costo PTN ==================*/}
-                                    <Td >{" $ "} {costoPTN[key]}  </Td>
+                                    <Td >{"$ "} {costoPTN[key]}  </Td>
                                     {/*================= Margen Directo ==================*/}
                                     <Td>{margenDirecto[key] } {" % "}</Td>
                                     {/*================= Botón Modificar ==================*/}
@@ -549,7 +549,7 @@ const ResumenAM = () => {
                                         ></input> 
                                     </Td>
                             {/*================= Total Indirecto ==================*/}
-                            <Td >  {" $ "}  { totalIndirecto[key]} </Td>
+                            <Td >  {"$ "}  { totalIndirecto[key]} </Td>
                             <Td >{stringDolar}</Td>
 
                             
@@ -582,9 +582,9 @@ const ResumenAM = () => {
                                 <Tbody>
                                     {/*=================== Contenido Tabla Clientes =================*/}
                                             <Tr > 
-                                            <Td   className='amarillo'> {" $ "}{precioFinalVenta } {stringDolar}</Td>  
-                                            <Td className='azul'>{" $ "} {costoSinIndirectos}  {stringDolar}</Td>    
-                                            <Td  className='verde'>{" $ "} {costoFianalProyecto}  </Td>   
+                                            <Td   className='amarillo'> {"$ "}{precioFinalVenta } {stringDolar}</Td>  
+                                            <Td className='azul'>{"$ "} {costoSinIndirectos}  {stringDolar}</Td>    
+                                            <Td  className='verde'>{"$ "} {costoFianalProyecto}  </Td>   
                                             <Td   className='verde'>{stringDolar}   </Td>     
                                             </Tr >
                                 </Tbody>
@@ -621,15 +621,15 @@ const ResumenAM = () => {
                                 <Tbody>
                                     {/*=================== Contenido Tabla Clientes =================*/}
                                             <Tr > 
-                                            <Td   className='verde'> {" $ "}{precioFinalVenta } {stringDolar}</Td>  
+                                            <Td   className='verde'> {"$ "}{precioFinalVenta } {stringDolar}</Td>  
 
                                             
                                      {/*        <td className='azul'>{" $ "} {costoPTN[costoPTN.length -1]}  {stringDolar}</td>    
  */}
-                                            <Td  className='azul'>{" $ "} {costoFianalProyecto}  </Td> 
+                                            <Td  className='azul'>{"$ "} {costoFianalProyecto}  </Td> 
 
-                                                <Td   className='verde'>{" $ "}  {mensu}   </Td>   
-                                                <Td    className='azul'>{ margenReal } {" % "}   </Td>   
+                                                <Td   className='verde'>{"$ "}  {mensu}   </Td>   
+                                                <Td    className='azul'>{ margenReal } {" %"}   </Td>   
                                                 <Td   className='verde'>{stringDolar}   </Td> 
                                             </Tr >
                                 </Tbody>

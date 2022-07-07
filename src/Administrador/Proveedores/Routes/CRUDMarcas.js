@@ -68,7 +68,7 @@ export const CrudMarcas = (props) => {
     }
 
     return (
-        <div>
+        <div  className=' administracion2'>
             {/*===================     Tabla Proveedores   ========================*/}
             <Table >
                 <Thead>

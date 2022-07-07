@@ -5,14 +5,12 @@ import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Cookies from 'universal-cookie';
 // Componentes
 import Partida from "../Menu-Bom/Partida";
-import DatosSP from "../Menu-Bom/DatosSP";
-import Categorias from "../Menu-Bom/Categorias";
+import DatosSP2, { getIdPar } from "../Menu-Bom/DatosSP2";
+import DatosCategorias from "../Menu-Bom/DatosCategorias";
 import Animaciones from '../../../Componentes/Animaciones';
 import {InsertDatosPartida} from '../Routes/GuardarPartida';
-import {getIdPar} from './DatosSP';
 import {InsertDatosCats} from '../Routes/GuardarDatosCategorias';
 import {url, url2} from "../../../Componentes/Ocultar";
-
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -23,6 +21,11 @@ let validatorid = cookies.get('id_usuario');
 export let proyectoIdCont;
 export let pEstatus1;
 
+function getProyEstatus(st){
+  console.log('Variable st:',st);
+  pEstatus1 = st;
+  console.log('Variable pEstatus1:',pEstatus1);
+}
 
 function ContinuarProyecto() {
     
@@ -43,7 +46,9 @@ function ContinuarProyecto() {
   const [textBVer2,setTextBVer2] = useState([]);// Texto de los botones de continuar partida
   /*=====================================================================*/
 
-  const [id, setid] = useState([]);
+  const [id, setid] = useState([]); // Almacenamiento del id del proyecto seleccionado
+  const [parId, setParId] = useState([]); //
+  //const [estatusP, setEstatusP] = useState();// Almacenenamiento del estatus del proyecto seleccionado
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
@@ -105,10 +110,6 @@ function ContinuarProyecto() {
   // Almacenamiento de las partidas de un proyecto en especifico
   const[listaPartidas, setListaPartidas] = useState([]);
 
-  function getProyEstatus(st){
-    pEstatus1 = st;
-  }
-
   //Almacenamiento de todos las partidas de un proyecto en específico
   async function getDatosPartida(proyecto_id){
       try{
@@ -118,13 +119,13 @@ function ContinuarProyecto() {
           console.log(error);
       }
       proyectoIdCont = proyecto_id;
-      let i = Object.keys(suggestions);
-      i = i.length;
-      for(let c = 0 ; c < i ; c++){
-        if(proyecto_id === suggestions[c].proyecto_id){
-          getProyEstatus(suggestions[c].proyecto_estatus);
-        }
-      }
+      // let i = Object.keys(suggestions);
+      // i = i.length;
+      // for(let c = 0 ; c < i ; c++){
+      //   if(proyecto_id === suggestions[c].proyecto_id){
+      //     getProyEstatus(suggestions[c].proyecto_estatus);
+      //   }
+      // }
       //console.log(pEstatus1); 
   }
   //console.log('Varible global proyecto id:', proyectoIdCont);
@@ -282,6 +283,11 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow6(!show6);
                       setShow7(true);
+                      setShow2(true);
+                      setShow(true);
+                      setShow3(true);
+                      setShow4(true);
+                      setShow5(true);
                       show6 ? setShow8(false):setShow8(true);
                       }}
                       >
@@ -296,6 +302,11 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow7(!show7);
                       setShow6(true);
+                      setShow2(true);
+                      setShow(true);
+                      setShow3(true);
+                      setShow4(true);
+                      setShow5(true);
                       show7 ? setShow8(false):setShow8(true);
                       }}
                       >
@@ -361,6 +372,7 @@ function ContinuarProyecto() {
                           className="sn-boton modificar" 
                           type="button" 
                           onClick={() => {
+                            getProyEstatus(suggestions[key].proyecto_estatus);
                             getIdP(suggestions[key].proyecto_id);
                             getDatosPartida(suggestions[key].proyecto_id); 
                             setid(suggestions[key].proyecto_id);
@@ -378,6 +390,8 @@ function ContinuarProyecto() {
                           className="sn-boton modificar" 
                           type="button" 
                           onClick={() => {
+                            getProyEstatus(suggestions[key].proyecto_estatus);
+                            setShow3(true);
                             getIdP1(suggestions[key].proyecto_id);
                             getDatosPartida(suggestions[key].proyecto_id); 
                             setid(suggestions[key].proyecto_id);
@@ -394,8 +408,11 @@ function ContinuarProyecto() {
               ))}
               </Tbody>          
           </Table>
-       
+          <br/>
+           <br/>
       </div>
+
+
       )}
 
               {/* <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show) ;   }}>  {show ? 'Continuar' : 'Ocultar Proyecto'}    </button> */}
@@ -403,6 +420,9 @@ function ContinuarProyecto() {
         <div >
         </div>
       ) : (
+
+
+       
         <Table >
           <thead>
             <tr >
@@ -413,6 +433,8 @@ function ContinuarProyecto() {
                               
           <tbody>    
               <tr>
+
+              
                   <td>
                     <button 
                       className="btn btn-primary modificar" 
@@ -449,9 +471,12 @@ function ContinuarProyecto() {
                   <Animaciones mytext="Datos PTN" />{" "}
                 </div> */}
                 {/*========================== Llamado a los Componentes ==========================*/} 
+         
                 <Partida></Partida>
+
+              
                             
-                <DatosSP clave={id}/>
+                <DatosSP2 clave={id}/>
               </div>
       )}
 
@@ -509,13 +534,14 @@ function ContinuarProyecto() {
                           </div>
                         ) : (
                           
-                          <div  className=""> 
+                          <div  className="contenido-usuarios"> 
                           {/*    <div className="contenido-usuarios">
                               {" "}
-                              <Animaciones mytext="Datos Servicios/Productos" />{" "}
+                        
                               </div> */}
                           {/*========================== Llamado al Componente ==========================*/} 
-                            <DatosSP clave={id}/>
+                       
+                            <DatosSP2 clave={id}/>
                           </div>
                   )}
                 </div>
@@ -525,9 +551,9 @@ function ContinuarProyecto() {
       {show5 ? (
         <div></div>
       ):(
-        <div  className="arregla"> 
+        <div  className=""> 
           {/*======================== Llamar al componente Categorias ==========================*/}
-          <Categorias clave={id} />
+          <DatosCategorias clave={id} />
         </div>
       )}
       

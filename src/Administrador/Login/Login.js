@@ -3,29 +3,52 @@ import '../../css/ventanas.css';
 import {useLogin} from './Routes/useLogin';
 import ReCAPTCHA from "react-google-recaptcha";
 import {passwordCaptcha} from "../../Componentes/Ocultar";
+import swal from "sweetalert"
+
+
 export let valida =false;
 
 
 /*  Funcion Captcha Validación Correcta */
 
 function onChange(value) {
-    console.log("Captcha value:", value);
 
+
+
+  
+  /*   console.log("Captcha value:", value);
+ */
 
     if(value != null){
-      console.log("No eres un robot");
+ /*    console.log("No eres un robot");  */
       valida= true;
     }else{
-          console.log("No eres un robot");
+      /*     console.log("eres un robot"); */
           valida=false;
     }
 
   }
 
  
-
-
+ 
 export function Login() {
+
+
+
+  const MostrarAlerta=()=>{
+
+    if(valida== false){
+      swal({
+        title: "CAPTCHA",
+        text: "Por favor Valida el Captcha",
+        icon: "warning",
+        button: "Cerrar"
+    
+      })
+    }
+ 
+  }
+
 
   const {  
     handleInputChange,
@@ -90,8 +113,12 @@ export function Login() {
   
             <div className ="boton-login">
             <br></br>
-            <button className="btn-login" type="submit"   >   
+            <button className="btn-login" type="submit"  onClick={ ()=>MostrarAlerta()}    >   
               <span>Entrar</span>
+
+
+
+              
             </button>
             </div>
           </form>

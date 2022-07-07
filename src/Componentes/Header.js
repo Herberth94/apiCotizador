@@ -1,15 +1,17 @@
 import React from 'react'
 import './css/header.css'
 
+import logo from "../images/logo.png"
+
 
 function Header() {
     return (
-        <div className= "headernn">
+        <div className= "header">
 
-        <div className= "headernn">
+        <div className= "header">
 
-       {/*     <h3>  <img src={logo} className="log"  alt="Palo Tinto Networks" /></h3> 
- */}
+       <h3>  <img src={logo} className="log"  alt="Palo Tinto Networks" /></h3> 
+ 
        
         {/*    <h4>  <img src={marvilop} className="log2"  alt="Marvilop" /></h4> */}
 

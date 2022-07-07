@@ -10,6 +10,8 @@ import "../css/PTN_BOM.css";
 import DatosPTN from "../Menu-Bom/DatosPTN";
 import { url, url2 } from "../../../Componentes/Ocultar";
 
+import Partida from "./Partida";
+
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
@@ -265,8 +267,6 @@ function NuevoProyecto() {
                 />
               </Td>
               <Td>
-                {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
- {/*                <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button> */}
       <button 
       className="btn btn-primary modificar" 
       type="submit" 
@@ -280,15 +280,14 @@ function NuevoProyecto() {
         <div >
 
         </div>
-      ) : 
-      
-      
+      ) :     
       (
         <div className="">
-      {/*     <DatosPTN clave={clavep} /> */}
 
-      <DatosPTN   clave={clavep} />
 
+
+        <DatosPTN   clave={clavep} />
+        
         </div>
       )}
             

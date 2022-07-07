@@ -34,7 +34,7 @@ import AdministrarUsuarios from "./Administrador/Usuarios/MenuUsuarios/Administr
 import AdministrarClientes from "./Administrador/Clientes/MenuClientes/AdministrarClientes";
 import AdministrarProveedor from "./Administrador/Proveedores/MenuProveedor/AdministrarProveedor";
 import AdministrarColaboradores from "./Preventa/Colaboradores/MenuColaborador/AdministrarColaboradores";
-
+import AdministrarColaboradoresVenta from "./Preventa/Colaboradores/MenuColaborador/AdministrarColaboradoresVenta";
 import AsignarProyecto from "./Preventa/AsignarVentas/MenuAsignacion/AsignarProyecto";
 
 import Divisa from "./Ventas/AM/Menu-AM/Divisa";
@@ -68,6 +68,8 @@ import Venta from "./Routes/ValidaVenta";
 //============ Ventas  Páginas Private  ============
 import MenuVentas from "./Ventas/MenuVentas";
 import MenuResumenBom from "./Ventas/AM/ResumenBOM/MenuResumenBom";
+import { LP } from "./Componentes/Herramientas/ListaProyectos";
+import ContinuarPCE from "./Componentes/Herramientas/ContinuarProyectoCE";
   
 
 function App() {
@@ -98,7 +100,7 @@ function App() {
         <Administrador exact path="/calculadora" component={CalculaDescuento} />
         <Administrador  path="/documentacion" component={MenuHeramientas} />
         <Administrador exact path="/plantilla-excel" component={NuevoProyectoExcel} />
-
+        <Administrador exact path="/continuarP-excel" component={ContinuarPCE}/>
 
         {/* <Administrador exact path="/" component={CambioContraseña} /> */}
         
@@ -112,11 +114,12 @@ function App() {
         <Administrador exact path="/administrar-usuarios" component={AdministrarUsuarios} />
         <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />        
         <Administrador exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
-        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores  } />
+        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores   } />
+        <Administrador exact path="/administrar-asignaciones" component={AdministrarColaboradoresVenta}   />
 
 
-      {/*   estado={true} */}
-        <Administrador exact path="/administrar-asignaciones" component={AdministrarColaboradores}   />
+
+
         <Administrador exact path="/asignar-proyectos" component={AsignarProyecto} />
       
 
@@ -157,6 +160,7 @@ function App() {
         <Preventa path="/calculadora" component={CalculaDescuento} />
         <Preventa path="/documentacion" component={MenuHeramientas} />
         <Preventa path="/plantilla-excel" component={NuevoProyectoExcel} />
+        <Preventa exact path="/continuarP-excel" component={ContinuarPCE}/>
 
 
                         {/*======== Registros ========*/}

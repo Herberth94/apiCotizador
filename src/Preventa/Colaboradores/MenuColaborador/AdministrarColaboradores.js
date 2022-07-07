@@ -85,13 +85,10 @@ function AdministrarColaboradores(props) {
   //Función que consulta todas las marcas existentes
   const getColabs = async (pId) => {
       try {
-          if(props.estado){
-            const resColabs =  await axios.get(url2 + `/api/cotizador/viewUsersVentaP/${pId}`);
-            setListaColabs(resColabs.data.reSql);
-          }else{
+          
             const resColabs =  await axios.get(url2 + `/api/cotizador/colaboradores/view/${pId}`);
             setListaColabs(resColabs.data.data);
-          }
+          
           
       } catch(error){console.log(error)}
       console.log(listaColabs);

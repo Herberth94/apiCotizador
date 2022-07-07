@@ -283,7 +283,7 @@ function NuevoProyectoExcel() {
       
       
       (
-        <div className="">
+        <div className="arregla">
       {/*     <DatosPTN clave={clavep} /> */}
 
       <Excel   clave={clavep} />
