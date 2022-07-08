@@ -67,8 +67,30 @@ const useStyles = makeStyles({
 
 function CargaDatos(props) {
 
-    function checa(){
+	// Defining a state named rows
+	// which we can update by calling on setRows function
+	const [rows, setRows] = useState([
+		{ id: 1,
+		  n_parte: "",
+		  descripcion: "",
+		  meses: "" ,
+		  semanas: "" ,
+		  cantidad:1,
+		  precio_lista: 0,
+		  precio_unitario: 0,
+		  descuento: 0, 
+		  total:0 ,
+		  moneda:"", 
+		  categoria:"", 
+		  comentarios: ""		
+		},
+	]);
 
+	//Key 
+	const [k, setK] = useState(0);
+
+
+    function checa(){
         validaOperacion = !validaOperacion;
         setBdesc(!Bdesc);
         setBdesc2(!Bdesc2);
@@ -105,20 +127,52 @@ function CargaDatos(props) {
 			});
 		};
 	
-	///CALCULAR DESCUENTO
-		  /*================================================================================*/
-		  useEffect(()=>{
-	
-			if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
-			  const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
-			  const total = Total(datos.precio_unitario,datos.cd_cantidad)
-			  setDatos({ ...datos,  precio_total:   total, precio_descuento: desc });}
-		   
-			if(datos.precio_lista === '' || datos.precio_unitario === ''){
-			  setDatos({ ...datos,  precio_descuento:''});
+		
+		///CALCULAR DESCUENTO
+		/*================================================================================*/
+		// useEffect(()=>{
+		// if(datos.precio_lista !=='' && datos.precio_unitario !==''  && validaOperacion === false){
+		// 	const desc = calcularDescuento(datos.precio_lista, datos.precio_unitario);
+		// 	const total = Total(datos.precio_unitario,datos.cd_cantidad)
+		// 	setDatos({ ...datos,  precio_total:   total, precio_descuento: desc });}
+		
+		// if(datos.precio_lista === '' || datos.precio_unitario === ''){
+		// 	setDatos({ ...datos,  precio_descuento:''});
+		// }
+
+		// },[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario   ])
+
+		useEffect(()=>{
+			if(rows[k].precio_lista != '' && rows[k].precio_unitario != ''  && validaOperacion == false){
+				const desc = calcularDescuento(rows[k].precio_lista, rows[k].precio_unitario);
+				const total = Total(rows[k].precio_unitario,rows[k].cantidad);
+				console.log(k);
+				let i =parseInt(k)
+				
+				const change = rows.map(elemento=>(
+					elemento.id === i+1 ?    elemento : ''
+
+				))
+				change[i].total=total
+				change[i].descuento=desc
+				console.log(change[i])
+
+				//rows[k].total = total;
+				//rows[k].descuento = desc;
+				// setRows({
+				// 	...rows, total:total, descuento:desc
+				// });
+				setRows(change);
 			}
-	
-			},[datos.sp_cantidad,datos.precio_lista,datos.precio_unitario   ])
+			
+			if(rows[k].precio_lista === '' || rows[k].precio_unitario === ''){
+				//setDatos({ ...rows[k],  precio_descuento:''});
+				//rows[k].descuento = 0;
+				// setRows({
+				// 	...rows[k], descuento:''
+				// });
+			}
+		},[rows[k].cantidad,rows[k].precio_lista,rows[k].precio_unitario])
 	
 	
 	///CALCULAR PRECIO UNITARIO
@@ -140,13 +194,7 @@ function CargaDatos(props) {
 	
 	//checar
 			   /*===================================================================================================================*/
-			   useEffect(()=>{
-	
-				if(datos.precio_unitario === '' || datos.sp_cantidad === ''){
-				  setDatos({ ...datos,precio_total:''});
-				} 
-			  
-			  },[,datos.precio_unitario,datos.sp_cantidad])
+			   
 		/*===================================================================================================================*/
 		/*=============================================================================================================*/
 		const {enviarDatos,handleInputChange2,finalizarProy} = InsertDatosCats();
@@ -189,23 +237,10 @@ function CargaDatos(props) {
 		
 	   }
 		
-		
-
-
-
 	// Creating style object
 	const classes = useStyles();
 
-	// Defining a state named rows
-	// which we can update by calling on setRows function
-	const [rows, setRows] = useState([
-		{ id: 1, n_parte: "", descripcion: "", meses: "" , semanas: "" , 
-		cantidad:1, precio_lista: 0, precio_unitario: 0, descuento:0, total:0 ,
-        moneda:"", categoria:"", comentarios: "",
-	 
 	
-	},
-	]);
 
 	// Initial states
 	const [open, setOpen] = React.useState(false);
@@ -235,6 +270,9 @@ function CargaDatos(props) {
 		setEdit(true);
 	};
 
+
+	
+
 	// Function to handle edit
 	const handleEdit = (i) => {
 		// If edit mode is true setEdit will
@@ -255,11 +293,15 @@ function CargaDatos(props) {
 	// many different inputs in the form, listen for changes
 	// to input elements and record their values in state
 	const handleInputChange = (e, index) => {
+		//console.log('Index:',index);
+		setK(index);
 		setDisable(false);
 		const { name, value } = e.target;
 		const list = [...rows];
 		list[index][name] = value;
 		setRows(list);
+		//console.log('list:',list)
+		//console.log('Rows:',rows);
 	};
 
 	// Showing delete confirmation to users
@@ -389,9 +431,10 @@ return (
  */}
 			</TableRow>
 		</TableHead>
-		<TableBody>
+		
 			{rows.map((row, i) => {
 			return (
+				<TableBody key={i}>
 				<>
 				<TableRow  >
 					{isEdit ? (
@@ -471,7 +514,7 @@ return (
                         className="agregar"
                         type="number"
                         name="cantidad"
-                    	value={row.cantidad}
+                    	value={rows[i].cantidad}
 						onChange={(e) => handleInputChange(e, i)}
                
                         placeholder="Cantidad "
@@ -479,7 +522,7 @@ return (
                         />
 					{/* 	<input
 						    className="agregar"
-							value={row.cantidad}
+							value={rows[i].cantidad}
 							name="camtidad"
 							onChange={(e) => handleInputChange(e, i)}
 						/> */}
@@ -490,7 +533,7 @@ return (
                         className="agregar"
                         type="number"
                         name="precio_lista"
-                        value={row.precio_lista}
+                        value={rows[i].precio_lista}
 						onChange={(e) => handleInputChange(e, i)}
                     
                         placeholder="Precio Lista"
@@ -498,7 +541,7 @@ return (
                         />
 					{/* 	<input
 					        className="agregar"
-							value={row.precio_lista}
+							value={rows[i].precio_lista}
 							name="precio_lista"
 							onChange={(e) => handleInputChange(e, i)}
 						/> */}
@@ -508,7 +551,7 @@ return (
 						<input
                         className="agregar"
                         type="number"
-                        value={row.precio_unitario}
+                        value={rows[i].precio_unitario}
                         name="precio_unitario"
 						onChange={(e) => handleInputChange(e, i)}
                         
@@ -518,7 +561,7 @@ return (
                         />
 					{/* 	<input
 						    className="agregar"
-							value={row.precio_unitario}
+							value={rows[i].precio_unitario}
 							name="precio_unitario"
 							onChange={(e) => handleInputChange(e, i)}
 						/> */}
@@ -528,7 +571,7 @@ return (
 						<input
                         className="agregar"
                         type="number"
-                        value={row.descuento}
+                        value={rows[i].descuento}
                         name="precio_descuento"
 						onChange={(e) => handleInputChange(e, i)}
                         
@@ -539,7 +582,7 @@ return (
                         />
 						{/* <input
 					        className="agregar"
-							value={row.descuento}
+							value={rows[i][i].descuento}
 							name="descuento"
 							onChange={(e) => handleInputChange(e, i)}
 						/> */}
@@ -552,14 +595,14 @@ return (
                         className="agregar"
                         type="text"
                         name="total"
-                        value={row.total}
+                        value={rows[i].total}
                         readOnly
                         placeholder="Total"
                         step="any"
                         />
 						{/* <input
 						    className="agregar"
-							value={row.total}
+							value={rows[i].total}
 							name="total"
 							onChange={(e) => handleInputChange(e, i)}
 						/> */}
@@ -766,9 +809,10 @@ return (
 					)}
 				</TableRow>
 				</>
+				</TableBody>
 			);
 			})}
-		</TableBody>
+	
 		</Table>
 	</Box>
 	</TableBody>
