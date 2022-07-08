@@ -4,10 +4,9 @@ import logo from "../../../images/logo.png";
 import ExportarPDF from './ExportarPDF';
 import infPartida from './ModalPartida'
 import ModalPartida from './ModalPartida';
-import {Cantidad , name_cliente  , clave_p , descripcionGeneral , partidasUnicas2 , 
-  TOTALSTRING , totD , totD2, totMensual, mesesMensual, totalMen,  totalMenIva,
-  totalMensual}from "../../../Ventas/Operaciones/OperacionesAM";
-import {name_encargado, cargo , nombreP} from './ExportarPDF';
+import "../css/PropuestaEconomica.css"
+import {name_cliente  , clave_p , descripcionGeneral }from "../../../Ventas/Operaciones/OperacionesAM";
+import {name_encargado, cargo , nombreP , fecha} from './ExportarPDF';
 let validaOperacion = false;
 export let datos ={}
 export let datos2 =[];
@@ -34,15 +33,12 @@ var condicionesC = "CONDICIONES COMERCIALES \n"+
 " • El cargo por refacturación es de 200.m.n. + IVA ";
 
 
-const tiempoTranscurrido = Date.now();
-const hoy = new Date(tiempoTranscurrido);
-export const fecha = hoy.toLocaleDateString();
-
 function Formulario() {
   //console.log('Proyecto:',clave_p)
   const [data,setData] = useState ({
-    nombre:'De',
-    servicios:'',
+    nombre_proyecto:'',
+    fec:'',
+    nombre_cliente:'',
     firma:'',
     puesto: '',
     nombreP: '',
@@ -79,19 +75,20 @@ function Formulario() {
   const [modalShow, setModalShow] = useState(false);
 
   return (
-    <div className="contenido-usuarios">
+    <div className="">
 
 
 
 
 <div className="contenedor">
   <h1 className="logo">
+  <br/>
     <span className="nombre-empresa">Datos</span> Propuesta Económica</h1>
   <div className="wrapper animated bounceInLeft">
     <div className="info-empresa">
-      <h3><img className="logoPropuesta" ></img></h3>
+    <h3><img className="logoPropuesta" src={logo}></img></h3>
       <div className='divServicios'>
-        <ul className="servicios serviciosPropuestaEc">
+      {/*   <ul className="servicios serviciosPropuestaEc">
           <li><i className="bi bi-geo-alt-fill" />  </li>
           <li><i className="bi bi-telephone-fill" /> </li>
           <li><i className="bi bi-envelope-fill" /> </li>
@@ -100,17 +97,22 @@ function Formulario() {
           <li>Dirección </li>
           <li>5555</li>
           <li>contacto@gmail.com</li>
-        </ul>
+        </ul> */}
       </div>
     </div>
     <div className="contacto">
+
       <h3>Datos Propuesta</h3>
       <form className="formulario" >
         <p>
-          <label>Proyecto</label>
-          <input type="text" onChange={handleChange} name="nombre"  defaultValue={clave_p}  />
+          <label>Nombre Proyecto</label>
+          <input type="text" onChange={handleChange} name="nombre_proyecto"  defaultValue={clave_p}  />
         </p>
 
+        <p>
+          <label>Fecha</label>
+          <input type="text"    onChange={handleChange}  name="fec"  defaultValue={fecha} />
+        </p>
 
         <p>
           <label>Nombre</label>
@@ -118,29 +120,27 @@ function Formulario() {
         </p>
 
 
+      
+
         <p>
-          <label>Nombre Responsable</label>
+          <label>Nombre Cliente</label>
+          <input type="text" onChange={handleChange} name="nombre_cliente"  defaultValue={name_cliente}  />
+        </p>
+
+
+        <p>
+          <label>Colaborador Palo Tinto</label>
           <input type="text" onChange={handleChange} name="firma"   defaultValue={name_encargado}  />
         </p>
 
 
         <p>
-          <label>Nombre Proyecto</label>
-          <input type="text" onChange={handleChange} name="servicios"   defaultValue={name_cliente}  />
-        </p>
-
-
-        <p>
-          <label>Nombre Cargo</label>
+          <label>Cargo Colaborador</label>
           <input type="text" onChange={handleChange} name="cargo"   defaultValue={cargo}  />
         </p>
 
     
-        <p>
-          <label>Fecha</label>
-          <input type="text" name="fecha"  defaultValue={fecha} />
-        </p>
-
+  
        
      {/*    <p>
          

@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react'
-import Table from 'react-bootstrap/Table';
+import { Table} from 'react-super-responsive-table';
 import axios from "axios";
 import Cookies from 'universal-cookie';
+import Animaciones from '../../../Componentes/Animaciones';
 
 //Componentes
 import "../css/Proyectos.css";
 import {CrudProyectos} from '../Routes/CRUDProyectos';
 import { EditProyecto } from '../Routes/ModificarProyectos';
 import {url, url2} from "../../../Componentes/Ocultar";
-import { actualizarListaProy } from '../Routes/CRUDProyectos';
+/* import { actualizarListaProy } from '../Routes/CRUDProyectos'; */
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
 let validatorrol = cookies.get('rol');
@@ -99,8 +100,34 @@ function Proyectos() {
 
     /*===========================================================================================================*/
     return (
-        <div className="contenido-usuarios">
-            <Table responsive id="nombreDiv">
+        <div className="contenido-marvilop">
+
+<Animaciones mytext="Resumen Proyectos " />
+
+
+            
+            
+            <div className = "buscador-inteligente">
+
+ 
+<form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave 🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
+
+                </form>
+
+     
+
+
+        </div>
+            <Table >
                 {/*========================== Titulos Tabla ==========================*/}
                 <thead>
                     <tr className="titulo-tabla-usuarios">
@@ -122,7 +149,7 @@ function Proyectos() {
                             }}
                             >
                             {" "}
-                            {show ? "Mis Proyectos" : "Ocultar"}{" "}
+                            {show ? "Mis Proyectos " : "Ocultar"}{" "}
                             </button>
                         </td>
                         <td>
@@ -145,32 +172,13 @@ function Proyectos() {
             {show2 ? (
                 <div></div>
             ):(
-                <div className="table-responsive">
+                <div className="">
                 {/*============= Titulo Animación =============*/}
               {/*   <Animaciones mytext="Buscar proyectos" />
  */}
                 {/*********Búsqueda de Lista de Proyectos por Clave ********/}
-                <div className="busqueda-proyectos">
-                    <Table responsive id="nombreDiv">
-                        <thead>
-                            <tr className="titulo-tabla-usuarios">
-                                <th className='ocultar'>Búsqueda por clave</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <td className='busqueda'>
-                                    <input className="agregar"
-                                        type="text"
-                                        name="proyecto_clave"
-                                        onChange={e => onChangeTextClaveP(e.target.value)}
-                                        value={claveP}
-                                        placeholder="🔎 Búsqueda por clave del proyecto" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                </div>
+
+
                 <>
                     {/*=================== Botón Mostrar Lista DIV =====================*/}
                     <br />

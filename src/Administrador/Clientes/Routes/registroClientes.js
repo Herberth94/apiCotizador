@@ -16,6 +16,7 @@ export const useRegistro = () => {
     //console.log(event.target.value)
     setDatos ({
         ...datos,[event.target.name] : event.target.value ,
+        
     })
     
 }
@@ -23,7 +24,7 @@ export const useRegistro = () => {
 async function Send (){
 
     const data= {
-        nombre_cliente: datos.nombre_cliente,
+        nombre_cliente: datos.nombre_cliente.toUpperCase(),
         razon_social: datos.razon_social,
         telefono: datos.telefono,
         cliente_direccion: datos.cliente_direccion
@@ -34,7 +35,7 @@ async function Send (){
         try {
 
             const respuesta = await axios.post(url +'/api/cotizador/clientes/agregar',data);
-            const send2= respuesta.data.msg;
+            const send2= respuesta.data.msg;            
             console.log(send2);
             alert(send2);
                 

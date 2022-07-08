@@ -1,12 +1,12 @@
 import React from 'react'
 import { useRegistro } from "../Routes/registroClientes"
 
-
 function Clientes() {
   const {
     handleInputChange,
     enviarDatos
   }=useRegistro()
+
 
     return (
         <div className="contenido-main-registro">
@@ -14,19 +14,25 @@ function Clientes() {
           <section className="card-body">
             <form  method="post" className="card-form" onSubmit = {enviarDatos}>
                 {/*========= Registrar Clientes========= */}
-              <h2 >  <span>Registrar Clientes</span> </h2>
+              <h2 >  Registrar Clientes</h2>
    {/*========= Nombre Cliente========= */}
                  <label htmlFor="user" className=" label">
                     Nombre Cliente
                  </label>
               <input
+                type="text" 
                 id="user"
-                type="text"
-                name='nombre_cliente'
+                name='nombre_cliente'                                                                         
                 className="card-input"
-                onChange={handleInputChange}
-                placeholder="Nombre Cliente"
+                autoCapitalize='characters'
+                onChange={handleInputChange}                 
+                placeholder="Nombre Cliente"                
               />
+
+              <script>
+
+              </script>
+
     {/*========= Razón Social ========= */}
               <label htmlFor="user2" className=" label">
                 Razón Social
@@ -66,7 +72,7 @@ function Clientes() {
               />
     {/*========= Botón Registrar ========= */}
               <div className="boton-login">
-                <button className="login" type="submit">
+                <button className="btn-login" type="submit">
                   <span>Registrar</span>
                 </button>
               </div>
@@ -74,10 +80,10 @@ function Clientes() {
           </section>
         </div>
 
+             
+
         <br/>
         <br/>
-
-
 
       </div>
     )

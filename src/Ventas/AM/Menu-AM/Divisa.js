@@ -1,7 +1,7 @@
 import { computeHeadingLevel } from '@testing-library/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Cookies from 'universal-cookie';
 import Animaciones from "../../../Componentes/Animaciones";
 import {url, url2} from "../../../Componentes/Ocultar";
@@ -159,78 +159,68 @@ function Divisa() {
         /*==========================================================*/
     /*============================================================================================================*/
   return (
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
             {/*======================= Titulo Animación =======================*/}
-        {/*     <div> <Animaciones mytext="Divisa" /> </div> */}
+         <div> <Animaciones mytext="Datos Divisa" /> </div> 
                 {/*********Búsqueda de Proyectos AM ********/}
 
-                <div className="busqueda-proyectos">
-                    <Table responsive id="nombreDiv">
-                        <thead>
-                            <tr className="azul">
-                                <th className='ocultar'>Clave Proyecto</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <td className='busqueda'>
-                                <input className="agregar"
-                                        type="text"
-                                        name="proyecto_clave"
-                                        onChange={e => onChangeTextClaveP(e.target.value)}
-                                        value={claveP}
-                                        placeholder= "🔎 Búsqueda por Clave del Proyecto" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
+                <div className = "buscador-inteligente">
 
-             </div>
+ 
+<form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave 🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
+
+                </form>
+
+     
+
+
+        </div>
 
                     {/****************************Lista de los Proyectos Creados ****************************************/}
             {/*  
                 <div> <Animaciones mytext="Proyectos" /> </div>
  */}
-                <Table responsive  striped bordered hover size="sm">
+                <Table >
 
-                <thead>
-                        <tr className="titulo-tabla-usuarios">
-
-                            <th></th>
-                            <th className='titulo-tabla'>Divisa </th>
-                         
-                            
-                        </tr>
-                    </thead>         
-                    <thead>
-                        <tr className="titulo-tabla-usuarios">
-                            <th>ID</th>
-                            <th>Clave</th>
-                            <th>Descripción</th>
-                            <th>Cliente</th>
-                            <th>Fecha Creación</th>
-                            <th>Fecha Modificación</th>
-                            <th>Estatus</th>
-                            <th>Valor dolar</th>
-                            <th>Moneda</th>
-                            <th>Plazo Meses</th>
-                            <th>Divisa</th>
-                            <th></th>
-                            
-                        </tr>
-                    </thead>         
-                    <tbody>
+        
+                    <Thead>
+                        <Tr >
+                            <Th>ID</Th>
+                            <Th>Clave</Th>
+                            <Th>Descripción</Th>
+                            <Th>Cliente</Th>
+                            <Th>Fecha Creación</Th>
+                            <Th>Fecha Modificación</Th>
+                            <Th>Estatus</Th>
+                            <Th>Valor Divisa</Th>
+                            <Th>Moneda</Th>
+                            <Th>Plazo Meses</Th>
+                            <Th>Divisa</Th>
+                            <Th></Th>
+                             
+                        </Tr>
+                    </Thead>         
+                    <Tbody>
                         {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={suggestions[key].proyecto_id} >
-                                <td width={"50px"}>{suggestions[key].proyecto_id}</td>   
-                                <td>{suggestions[key].proyecto_clave}</td>  
-                                <td>{suggestions[key].proyecto_descripcion}</td>  
-                                <td>{suggestions[key].nombre_cliente}</td> 
-                                <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                                <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                                <td className={suggestions[key].proyecto_estatus}  width={"100px"}>{suggestions[key].proyecto_estatus}</td> 
-                                <td width={"100px"}>
+                            <Tr key={suggestions[key].proyecto_id} >
+                                <Td >{suggestions[key].proyecto_id}</Td>   
+                                <Td>{suggestions[key].proyecto_clave}</Td>  
+                                <Td>{suggestions[key].proyecto_descripcion}</Td>  
+                                <Td>{suggestions[key].nombre_cliente}</Td> 
+                                <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
+                                <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                                <Td className={suggestions[key].proyecto_estatus} >{suggestions[key].proyecto_estatus}</Td> 
+                                <Td >
                                     <input 
                                     className="input-name" 
                                     defaultValue={suggestions[key].proyecto_valor_dolar} 
@@ -238,9 +228,9 @@ function Divisa() {
                                     onChange={handleInputChange}
                                     name="proyecto_valor_dolar" 
                                     ></input>
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td >
                                 <select 
                                 id="lista-opciones" 
                                 name="proyecto_id_moneda" 
@@ -252,8 +242,8 @@ function Divisa() {
                                     <option value={1}>MXN</option>
                                     <option value={2}>USD</option>
                                 </select>
-                                </td>
-                                <td width={"5px"}>{suggestions[key].proyecto_plazo_meses}</td> 
+                                </Td>
+                                <Td>{suggestions[key].proyecto_plazo_meses}</Td> 
                               {/*   <td>
                                     <button 
                                     className="btn btn-primary" 
@@ -270,9 +260,9 @@ function Divisa() {
 
 
 {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td  >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton" type="button"
                                     onClick={()=>{
                                        // props.envioData(datos,key,data); 
                                        habilitar(key);
@@ -283,14 +273,14 @@ function Divisa() {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               
                               
                               < >
-                                    <td width={"100px"} >
+                                    <Td  >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton" type="button"
                                     onClick={()=>{
                                         habilitar(key);
                                         EnviarDivisa(datos,key,data);
@@ -300,11 +290,11 @@ function Divisa() {
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
                                 
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td >
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton cancelar" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                       habilitar(key);
@@ -315,12 +305,12 @@ function Divisa() {
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
                                    
-                                </td>
+                                </Td>
                                 </>
                             )}
-                            </tr>  
+                            </Tr>  
                         ))}
-                    </tbody>          
+                    </Tbody>          
                 </Table>
           
 

@@ -99,8 +99,10 @@ function CambioContraseña() {
               />
 
               <div className="boton-login">
-                <button className="login" type="submit">
+                <button className="btn-login" type="submit">
                   <span>Actualizar</span>
+
+                  
                 </button>
               </div>
             </form>

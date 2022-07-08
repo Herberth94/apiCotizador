@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from './Animaciones';
 
 import { EditPrecio } from '../Routes/ModificarPrecio';
@@ -356,82 +356,79 @@ export const CrudSp = (props) => {
 
 
     return (
-        <div>
+        <div className=''>
+             <br/>
+            <br/>
+            <br/>
+            
            {/* <form> */}
                 {/******************Lista de los servicios/productos de una partida ****************************************/}
                 {/*============= Titulo Animación =============*/}
                 <Animaciones mytext="Servicios/Productos" />
-                <Table responsive striped bordered hover size="sm">
-                    <thead>
-                        {/* <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>{props.proyecto}</th>
-                        </tr> */}
-                        {/* <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>{`Partida: ${props.partida}`}</th>
-                        </tr> */}
-                        <tr className="titulo-tabla-usuarios">
-                            <th>ID</th>
-                            <th># Parte</th>
-                            <th>Descripción</th>
-                            <th>Duración Meses</th>
-                            <th>Entrega Semanas</th>
-                            <th>Proveedor</th>
-                            <th>Marca</th>
-                            <th>Categoria</th>
-                            <th>Comentarios</th>
-                            <th>Eliminar</th>
-                            <th>Precios</th>
-                            <th>Modificar</th>
-                            <th></th>
-                        </tr>
-                        </thead>
+                <Table>
+                    <Thead>
+                     
+                        <Tr >
+                            <Th>ID</Th>
+                            <Th># Parte</Th>
+                            <Th>Descripción</Th>
+                            <Th>Duración Meses</Th>
+                            <Th>Entrega Semanas</Th>
+                            <Th>Proveedor</Th>
+                            <Th>Marca</Th>
+                            <Th>Categoria</Th>
+                            <Th>Comentarios</Th>
+                            <Th>Eliminar</Th>
+                            <Th>Precios</Th>
+                            <Th>Modificar</Th>
+                            <Th></Th>
+                        </Tr>
+                        </Thead>
 
-                        <tbody>
+                        <Tbody>
                             {Object.keys(props.sp).map((key) => (    
-                            <tr key={key} >
+                            <Tr key={key} >
                                 <td>{props.sp[key].sp_id}</td>
-                               <td width={"150px"}>
+                               <Td>
                                     <input
-                                    className="input-name" 
+                                   
                                     defaultValue={props.sp[key].spnp_np} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_no_parte" 
                                     ></input>
-                                </td>  
-                                <td width={"300px"}>
+                                </Td>  
+                                <Td >
                                     <input
-                                    className="input-name" 
+                                 
                                     defaultValue={props.sp[key].spd_des} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_descripcion" 
                                     ></input>
-                                </td>
-                                <td width={"50px"}>
+                                </Td>
+                                <Td>
                                     <input
-                                    className="input-name" 
+                                  
                                     defaultValue={props.sp[key].sp_meses} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_meses" 
                                     ></input>
-                                </td>
-                                <td width={"50px"}>
+                                </Td>
+                                <Td >
                                     <input
-                                    className="input-name" 
+                                 
                                     defaultValue={props.sp[key].sp_semanas} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_semanas" 
                                     ></input>
-                                </td>
-                                <td>
+                                </Td>
+                                <Td>
                                     {" "}
                                     <input
-                                    className="agregar"
+                                  
                                     type="text"
                                     name="proveedor_nombre"
                                     onChange={e => onChangeTextProv(e.target.value, key)}
@@ -456,11 +453,11 @@ export const CrudSp = (props) => {
                                         )
                                     }}
                                     )}
-                                </td>
-                                <td width={"100px"}>
+                                </Td>
+                                <Td >
                                     {" "}
                                     <input
-                                    className="agregar"
+                                   
                                     type="text"
                                     name="marca_nombre"
                                     onChange={e => onChangeTextMarca(e.target.value,key)}
@@ -486,8 +483,8 @@ export const CrudSp = (props) => {
                                     }}
                                     
                                     )}
-                                </td>
-                                <td width={"200px"}>
+                                </Td>
+                                <Td width={"200px"}>
                                     {" "}
                                     <select 
                                     id="lista-opciones" 
@@ -503,19 +500,19 @@ export const CrudSp = (props) => {
                                         <option value={5}>Soporte</option>
                                         <option value={6}>Implementación</option>
                                     </select>
-                                </td> 
-                                <td>
+                                </Td> 
+                                <Td>
                                     <input
-                                    className="input-name" 
+                        
                                     defaultValue={props.sp[key].sp_comentarios} 
                                     disabled={enable[key]} 
                                     onChange={handleInputChange}
                                     name="sp_comentarios" 
                                     ></input>
-                                </td>
-                                <td>
+                                </Td>
+                                <Td>
                                     <button 
-                                    className="btn btn-primary eliminar"
+                                    className="sn-boton eliminar"
                                     onClick={()=>{
                                         deleteSP(props.sp[key].sp_id_precio)
                                     }}
@@ -526,13 +523,13 @@ export const CrudSp = (props) => {
                                     
                                     
                                      </button>
-                                </td>
+                                </Td>
 
 
 
-                                <td>
+                                <Td>
                                     <button 
-                                    className="btn btn-primary Ver" 
+                                    className="sn-boton ver" 
                                     onClick={() => {
                                         getDatosPrecios(props.sp[key].sp_id); 
                                         habilitar1(key);
@@ -542,7 +539,7 @@ export const CrudSp = (props) => {
                                       <i className=     {textBVer[key]}  ></i>
                                    
                                     </button>
-                                </td>
+                                </Td>
 
 
 
@@ -562,9 +559,9 @@ export const CrudSp = (props) => {
 
                                 
 {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton" type="button"
                                     onClick={()=>{
                                     //    props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -574,12 +571,12 @@ export const CrudSp = (props) => {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               < >
-                                    <td width={"100px"} >
+                                    <Td  >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton" type="button"
                                     onClick={()=>{
                                         habilitar(key); 
                                         props.envioDataSP(nombreProv, props.proveedores,nombreMarca, listaMarca, data, key, datos);
@@ -588,11 +585,11 @@ export const CrudSp = (props) => {
                                     >
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td >
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton cancelar" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
@@ -603,15 +600,17 @@ export const CrudSp = (props) => {
                                     >
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
-                                </td>
+                                </Td>
                                 </>
                             )}
-                            </tr>  
+                            </Tr>  
                             
                             
                             ))}
-                        </tbody>                
+                        </Tbody>                
                 </Table>
+                <br/>
+                 <br/>
                 {show ? (
                                 <></>
                             ):(

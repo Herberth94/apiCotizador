@@ -38,7 +38,7 @@ export const InsertDatosMarca = () => {
         }
 
         const data = {
-            marca_nombre:datosMarca.marca_nombre
+            marca_nombre:datosMarca.marca_nombre.toUpperCase()
         };
 
         //console.log("proveedor id", proveedorId.proveedor_id);
@@ -49,7 +49,7 @@ export const InsertDatosMarca = () => {
                 // Obtención del id de la marca que se seleccionó en la búsqueda
                 let i1 = Object.keys(resMarcas.data.data);
                 for (let c = 0; c < i1.length; c++) {
-                    if (datosMarca.marca_nombre === resMarcas.data.data[c].marca_nombre) {
+                    if (datosMarca.marca_nombre.toUpperCase() === resMarcas.data.data[c].marca_nombre.toUpperCase()) {
                         marcaId.marca_id = resMarcas.data.data[c].marca_id
                     //console.log('proveedor id:',proveedorId);
                     }        

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
-
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from '../../../Componentes/Animaciones';
 import { EditPrecio } from '../../../Routes/ModificarPrecio';
 import { CrudPrecios2 } from './CRUDPrecios2';
@@ -350,125 +349,58 @@ export const CrudSp2 = (props) => {
            {/* <form> */}
                 {/******************Lista de los servicios/productos de una partida ****************************************/}
                 {/*============= Titulo Animación =============*/}
-               {/*  <Animaciones mytext="Servicios/Productos" /> */}
-                <Table responsive striped bordered hover size="sm">
-                    <thead>
-                        {/* <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>{props.proyecto}</th>
-                        </tr> */}
-                        {/* <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>{`Partida: ${props.partida}`}</th>
-                        </tr> */}
-
-                         <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>Servicios/Productors</th>
-                        </tr>
-                        <tr className="titulo-tabla-usuarios"> 
-                            <th>ID</th>
-                            <th># Parte</th>
-                            <th>Descripción</th>
-                            <th>Duración Meses</th>
-                            <th>Entrega Semanas</th>
-                            <th>Proveedor</th>
-                            <th>Marca</th>
-                            <th>Categoria</th>
-                            <th>Comentarios</th>
+                 <Animaciones mytext="Servicios/Productos" />
+                <Table>
+                    <Thead>
+                        <Tr > 
+                            <Th>ID</Th>
+                            <Th># Parte</Th>
+                            <Th>Descripción</Th>
+                            <Th>Meses</Th>
+                            <Th>Semanas</Th>
+                            <Th>Proveedor</Th>
+                            <Th>Marca</Th>
+                            <Th>Categoria</Th>
+                            <Th>Comentarios</Th>
                  {/*            <th>Eliminar</th> */}
-                            <th>Precios</th>
+                            <Th>Precios</Th>
                       {/*       <th>Modificar</th> */}
-                            <th></th>
-                        </tr>
-                        </thead>
+                            <Th></Th>
+                        </Tr>
+                        </Thead>
 
-                        <tbody>
+                        <Tbody>
                             {Object.keys(props.sp).map((key) => (    
-                            <tr key={key} >
-                                <td>{props.sp[key].sp_id}</td>
-                               <td width={"150px"}>
-                                    <input
-                                    className="input-name" 
-                                    defaultValue={props.sp[key].spnp_np} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="sp_no_parte" 
-                                    ></input>
-                                </td>  
-                                <td width={"300px"}>
-                                    <input
-                                    className="input-name" 
-                                    defaultValue={props.sp[key].spd_des} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="sp_descripcion" 
-                                    ></input>
-                                </td>
-                                <td width={"50px"}>
-                                    <input
-                                    className="input-name" 
-                                    defaultValue={props.sp[key].sp_meses} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="sp_meses" 
-                                    ></input>
-                                </td>
-                                <td width={"50px"}>
-                                    <input
-                                    className="input-name" 
-                                    defaultValue={props.sp[key].sp_semanas} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="sp_semanas" 
-                                    ></input>
-                                </td>
-                                <td>
-                                    {" "}
-                                    <input
-                                    className="agregar"
-                                    type="text"
-                                    name="proveedor_nombre"
-                                    onChange={e => onChangeTextProv(e.target.value, key)}
-                                    value={nombreProv[key]}
-                                    disabled={enable[key]} 
-                                    placeholder="Proveedor"
-                                    />
-                                    {Object.keys(suggestionsProv).map((i)=>
-                                    <div 
-                                    key={i} 
-                                    className="selectCliente" 
-                                    onClick={() => onSuggestHandlerProv(suggestionsProv[i].proveedor_nombre,key)}
-                                    >
-                                        {suggestionsProv[i].proveedor_nombre}
-                                    </div>
-                                    )}
-                                </td>
-                                <td width={"100px"}>
-                                    {" "}
-                                    <input
-                                    className="agregar"
-                                    type="text"
-                                    name="marca_nombre"
-                                    onChange={e => onChangeTextMarca(e.target.value,key)}
-                                    value={nombreMarca[key]}
-                                    disabled={enable[key]} 
-                                    placeholder="Marca"
-                                    />
-                                    {Object.keys(suggestionsMarca).map((i)=>
-                                    <div 
-                                    key={i} 
-                                    className="selectCliente" 
-                                    onClick={() => onSuggestHandlerMarca(suggestionsMarca[i].marca_nombre,key)}
-                                    >
-                                        {suggestionsMarca[i].marca_nombre}
-                                    </div>
-                                    )}
-                                </td>
-                                <td width={"200px"}>
+                            <Tr key={key} >
+                                <Td>{props.sp[key].sp_id}</Td>
+                               <Td >
+                               {props.sp[key].spnp_np} 
+                                   
+                                </Td>  
+                                <Td >
+                                {props.sp[key].spd_des}
+                                   
+                                </Td>
+                                <Td>
+                                {props.sp[key].sp_meses} 
+                                  
+                                </Td>
+                                <Td >
+                                {props.sp[key].sp_semanas} 
+                                   
+                                </Td>
+                                <Td>
+                                {nombreProv[key]}
+                                  
+                                </Td>
+                                <Td >
+                                {nombreMarca[key]}
+
+                                </Td>
+                                <Td >
                                     {" "}
                                     <select 
-                                    id="lista-opciones" 
+                                 
                                     name="sp_id_categoria" 
                                     defaultValue={props.sp[key].sp_id_categoria} 
                                     disabled={enable[key]} 
@@ -481,16 +413,11 @@ export const CrudSp2 = (props) => {
                                         <option value={5}>Soporte</option>
                                         <option value={6}>Implementación</option>
                                     </select>
-                                </td> 
-                                <td>
-                                    <input
-                                    className="input-name" 
-                                    defaultValue={props.sp[key].sp_comentarios} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="sp_comentarios" 
-                                    ></input>
-                                </td>
+                                </Td> 
+                                <Td>
+                                {props.sp[key].sp_comentarios} 
+                                   
+                                </Td>
                              {/*    <td>
                                     <button 
                                     className="btn btn-primary eliminar"
@@ -506,9 +433,9 @@ export const CrudSp2 = (props) => {
 
 
 
-                                <td>
+                                <Td>
                                     <button 
-                                    className="btn btn-primary Ver" 
+                                    className="sn-boton ver" 
                                     onClick={() => {
                                         getDatosPrecios(props.sp[key].sp_id); 
                                         habilitar1(key);
@@ -518,7 +445,7 @@ export const CrudSp2 = (props) => {
                                       <i className=     {textBVer[key]}  ></i>
                                    
                                     </button>
-                                </td>
+                                </Td>
 
 
 
@@ -536,12 +463,15 @@ export const CrudSp2 = (props) => {
 
 
 
-                            </tr>  
+                            </Tr>  
                             
                             
                             ))}
-                        </tbody>                
+                        </Tbody>                
                 </Table>
+
+                <br/>
+                <br/>
                 {show ? (
                                 <></>
                             ):(

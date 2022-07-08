@@ -1,6 +1,6 @@
 import React from 'react'
-import Table from "react-bootstrap/Table";
 import Animaciones from "../../../Componentes/Animaciones";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { categoriasUnicas,   totalCategoriasUSD2  , stringDolar  , precioVenta3 } 
      from "../../Operaciones/OperacionesAM";
 
@@ -13,55 +13,54 @@ function Categorias() {
     <div className="contenido-usuarios">
 
        <br/>
+<div>
 
+     <Animaciones  mytext="Categorias" />
+</div>
           {/*   <div> <Animaciones mytext="Resumen Categorias" /> </div>
   */}
-            <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
+            <Table>
+                <Thead>
 
-                <tr className="titulo-tabla-usuarios">
-                        <th className='titulo-tabla'>Resumen Categorias</th>
-                  
-                    </tr>
                     {/*=================== Titulos Tabla Clientes ===================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>Descripción</th>
-                        <th > Total </th>
-                        <th > Total Precio Venta </th>
-                        <th > Divisa </th>
+                    <Tr >
+                        <Th>Descripción</Th>
+                        <Th > Total </Th>
+                        <Th > Total Precio Venta </Th>
+                        <Th > Divisa </Th>
                      {/*    <th>  % </th>
                         <th>Proporcional MESA DE AYUDA </th>
                         <th>TOTAL</th>
                         <th>TOTAL MENSUAL</th>
                         <th>Financiamiento</th>
                         <th>Editar</th> */}
-                    </tr>
-                </thead>
-                <tbody>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/*=================== Contenido Tabla Clientes =================*/}
 
                     {Object.keys(categoriasUnicas).map((key) => (
-                        <tr key={key}>
+                        <Tr key={key}>
                             
                             {/*================= Descripción  ==================*/}
-                            <td>{categoriasUnicas[key]}</td>
+                            <Td>{categoriasUnicas[key]}</Td>
 
-                            <td>{"$ "}{totalCategoriasUSD2[key]}</td>
+                            <Td>{"$ "}{totalCategoriasUSD2[key]}</Td>
 
 
                         
-                            <td  className='azul'>{"$ "}{precioVenta3[key]}</td>
+                            <Td  className='azul'>{"$ "}{precioVenta3[key]}</Td>
 
 
 
                         {/*    <td>{"$ "}{precioVenta[(partidasUnicas.length - 1) + parseFloat(key)]}</td>
  */}
-                            <td  width={"100px"}>{stringDolar}</td>
+                            <Td >{stringDolar}</Td>
                             {/*================= Precio Venta ==================*/}
                           
-                        </tr>
+                        </Tr>
                     ))}
-                </tbody>
+                </Tbody>
             </Table>
 
 

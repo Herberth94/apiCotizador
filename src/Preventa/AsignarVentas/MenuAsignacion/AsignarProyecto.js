@@ -212,7 +212,7 @@ function AsignarProyecto() {
             />
 
             <div className="boton-login">
-              <button className="login" onClick={(event) => { Send(); event.preventDefault() }}>
+              <button className="btn-login" onClick={(event) => { Send(); event.preventDefault() }}>
                 <span>Asignar Proyecto</span>
               </button>
             </div>

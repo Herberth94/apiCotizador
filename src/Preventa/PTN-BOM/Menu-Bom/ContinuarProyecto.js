@@ -1,18 +1,16 @@
 import axios from 'axios';
 import React from 'react'
 import { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Cookies from 'universal-cookie';
 // Componentes
 import Partida from "../Menu-Bom/Partida";
-import DatosSP from "../Menu-Bom/DatosSP";
-import Categorias from "../Menu-Bom/Categorias";
+import DatosSP2, { getIdPar } from "../Menu-Bom/DatosSP2";
+import DatosCategorias from "../Menu-Bom/DatosCategorias";
 import Animaciones from '../../../Componentes/Animaciones';
 import {InsertDatosPartida} from '../Routes/GuardarPartida';
-import {getIdPar} from './DatosSP';
 import {InsertDatosCats} from '../Routes/GuardarDatosCategorias';
 import {url, url2} from "../../../Componentes/Ocultar";
-
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -23,6 +21,11 @@ let validatorid = cookies.get('id_usuario');
 export let proyectoIdCont;
 export let pEstatus1;
 
+function getProyEstatus(st){
+  console.log('Variable st:',st);
+  pEstatus1 = st;
+  console.log('Variable pEstatus1:',pEstatus1);
+}
 
 function ContinuarProyecto() {
     
@@ -43,7 +46,9 @@ function ContinuarProyecto() {
   const [textBVer2,setTextBVer2] = useState([]);// Texto de los botones de continuar partida
   /*=====================================================================*/
 
-  const [id, setid] = useState([]);
+  const [id, setid] = useState([]); // Almacenamiento del id del proyecto seleccionado
+  const [parId, setParId] = useState([]); //
+  //const [estatusP, setEstatusP] = useState();// Almacenenamiento del estatus del proyecto seleccionado
   /*======================================== Buscador de proyectos ========================================*/
   //Almacenamiento de todos los proyectos existentes
   const[listaProyectos, setListaProyectos] = useState([]);
@@ -105,10 +110,6 @@ function ContinuarProyecto() {
   // Almacenamiento de las partidas de un proyecto en especifico
   const[listaPartidas, setListaPartidas] = useState([]);
 
-  function getProyEstatus(st){
-    pEstatus1 = st;
-  }
-
   //Almacenamiento de todos las partidas de un proyecto en específico
   async function getDatosPartida(proyecto_id){
       try{
@@ -118,13 +119,13 @@ function ContinuarProyecto() {
           console.log(error);
       }
       proyectoIdCont = proyecto_id;
-      let i = Object.keys(suggestions);
-      i = i.length;
-      for(let c = 0 ; c < i ; c++){
-        if(proyecto_id === suggestions[c].proyecto_id){
-          getProyEstatus(suggestions[c].proyecto_estatus);
-        }
-      }
+      // let i = Object.keys(suggestions);
+      // i = i.length;
+      // for(let c = 0 ; c < i ; c++){
+      //   if(proyecto_id === suggestions[c].proyecto_id){
+      //     getProyEstatus(suggestions[c].proyecto_estatus);
+      //   }
+      // }
       //console.log(pEstatus1); 
   }
   //console.log('Varible global proyecto id:', proyectoIdCont);
@@ -244,8 +245,27 @@ function ContinuarProyecto() {
 
   return (
     /*==================== Continuar Proyecto ====================*/
-    <div  className="contenido-usuarios">
-      <Table responsive id="nombreDiv">
+    <div  className="contenido-marvilop">
+      <Animaciones mytext="Continuar proyecto"/>
+
+      <div className = "buscador-inteligente">
+
+
+<form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave 🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
+
+                </form>
+
+        </div>
+      <Table >
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
               <tr className="titulo-tabla-usuarios">
@@ -263,6 +283,11 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow6(!show6);
                       setShow7(true);
+                      setShow2(true);
+                      setShow(true);
+                      setShow3(true);
+                      setShow4(true);
+                      setShow5(true);
                       show6 ? setShow8(false):setShow8(true);
                       }}
                       >
@@ -277,6 +302,11 @@ function ContinuarProyecto() {
                       onClick={() => {
                       setShow7(!show7);
                       setShow6(true);
+                      setShow2(true);
+                      setShow(true);
+                      setShow3(true);
+                      setShow4(true);
+                      setShow5(true);
                       show7 ? setShow8(false):setShow8(true);
                       }}
                       >
@@ -295,26 +325,10 @@ function ContinuarProyecto() {
        {/*  <Animaciones mytext="Buscar nn proyectos" />
  */}
         <div className="busqueda-proyectos">
-          <Table responsive id="nombreDiv">
-            <thead>
-              <tr className="titulo-tabla-usuarios">
-                <th className='ocultar'>Clave</th>
-              </tr>
-            </thead>
+      
 
-            <tbody>
-              <tr className="">
-                <td className= "busqueda">
-                    <input className="agregar"
-                    type="text"
-                    name="proyecto_clave"
-                    onChange={e => onChangeTextClaveP(e.target.value)}
-                    value={claveP}
-                    placeholder="Ingrese clave del proyecto" />
-                </td>
-              </tr>
-            </tbody>
-          </Table>
+
+    
 
           </div>
           {/****************************Lista de los Proyectos Creados ****************************************/}
@@ -324,43 +338,41 @@ function ContinuarProyecto() {
             <Animaciones mytext="Lista de Proyectos" />{" "}
           </div>
  */}
-          <Table responsive  striped bordered hover size="sm">
-              <thead>
+          <Table>
+              <Thead>
 
-              <tr className="titulo-tabla-usuarios">
-                  <th></th>
-                  <th className='titulo-tabla'>Proyectos</th>
-                </tr>
-                <tr className="titulo-tabla-usuarios">
-                  <th>ID</th>
-                  <th>Clave</th>
-                  <th>Descripción</th>
-                  <th>Cliente</th>
-                  <th>Fecha Creación</th>
-                  <th>Fecha Modificación</th>
-                  <th>Estatus</th>
-                  <th>Plazo Meses</th>
-                  <th>Continuar</th>
-                  <th>Finalizar</th>
-                </tr>
-              </thead>
+
+                <Tr >
+                  <Th>ID</Th>
+                  <Th>Clave</Th>
+                  <Th>Descripción</Th>
+                  <Th>Cliente</Th>
+                  <Th>Fecha Creación</Th>
+                  <Th>Fecha Modificación</Th>
+                  <Th>Estatus</Th>
+                  <Th>Plazo Meses</Th>
+                  <Th>Continuar</Th>
+                  <Th>Finalizar</Th>
+                </Tr>
+              </Thead>
                                   
-              <tbody>
+              <Tbody>
               {Object.keys(suggestions).map((key) => (    
-                  <tr key={suggestions[key].proyecto_id} >
-                      <td>{suggestions[key].proyecto_id}</td>   
-                      <td>{suggestions[key].proyecto_clave}</td>  
-                      <td>{suggestions[key].proyecto_descripcion}</td>  
-                      <td>{suggestions[key].nombre_cliente}</td> 
-                      <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                      <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                      <td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td>  
-                      <td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</td>  
-                      <td>
+                  <Tr key={suggestions[key].proyecto_id} >
+                      <Td>{suggestions[key].proyecto_id}</Td>   
+                      <Td>{suggestions[key].proyecto_clave}</Td>  
+                      <Td>{suggestions[key].proyecto_descripcion}</Td>  
+                      <Td>{suggestions[key].nombre_cliente}</Td> 
+                      <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
+                      <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                      <Td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</Td>  
+                      <Td width={"10px"}>{suggestions[key].proyecto_plazo_meses}</Td>  
+                      <Td>
                         <button 
-                          className="btn btn-primary Mod" 
+                          className="sn-boton modificar" 
                           type="button" 
                           onClick={() => {
+                            getProyEstatus(suggestions[key].proyecto_estatus);
                             getIdP(suggestions[key].proyecto_id);
                             getDatosPartida(suggestions[key].proyecto_id); 
                             setid(suggestions[key].proyecto_id);
@@ -372,12 +384,14 @@ function ContinuarProyecto() {
                             <i className=   {textBVer[key]} ></i>
 
                           </button>
-                      </td>
-                      <td>
+                      </Td>
+                      <Td>
                         <button 
-                          className="btn btn-primary modificar" 
+                          className="sn-boton modificar" 
                           type="button" 
                           onClick={() => {
+                            getProyEstatus(suggestions[key].proyecto_estatus);
+                            setShow3(true);
                             getIdP1(suggestions[key].proyecto_id);
                             getDatosPartida(suggestions[key].proyecto_id); 
                             setid(suggestions[key].proyecto_id);
@@ -389,13 +403,16 @@ function ContinuarProyecto() {
 
                            
                           </button>
-                      </td>
-                  </tr>  
+                      </Td>
+                  </Tr>  
               ))}
-              </tbody>          
+              </Tbody>          
           </Table>
-       
+          <br/>
+           <br/>
       </div>
+
+
       )}
 
               {/* <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show) ;   }}>  {show ? 'Continuar' : 'Ocultar Proyecto'}    </button> */}
@@ -403,9 +420,12 @@ function ContinuarProyecto() {
         <div >
         </div>
       ) : (
-        <Table responsive  striped bordered hover size="sm">
+
+
+       
+        <Table >
           <thead>
-            <tr className="titulo-tabla-usuarios">
+            <tr >
               <th className='ocultar'>Agregar más partidas</th>
               <th className='ocultar'>Continuar una partida</th>
             </tr>
@@ -413,6 +433,8 @@ function ContinuarProyecto() {
                               
           <tbody>    
               <tr>
+
+              
                   <td>
                     <button 
                       className="btn btn-primary modificar" 
@@ -443,55 +465,52 @@ function ContinuarProyecto() {
       {show2 ? (
               <div ></div>
       ) : (
-              <div  className="arregla"> 
+              <div  className=""> 
            {/*      <div className="contenido-usuarios">
                   {" "}
                   <Animaciones mytext="Datos PTN" />{" "}
                 </div> */}
                 {/*========================== Llamado a los Componentes ==========================*/} 
+         
                 <Partida></Partida>
+
+              
                             
-                <DatosSP clave={id}/>
+                <DatosSP2 clave={id}/>
               </div>
       )}
 
       {show3 ? (
               <div ></div>
       ) : ( 
-              <div className="arregla"> 
+              <div className="menu2"> 
                 <div className="contenido-usuarios">
                {/*  <div>
                   {" "}
                   <Animaciones mytext="Partidas del Proyecto" />{" "}
                 </div>
  */}
-                  <Table responsive  striped bordered hover size="sm">
-                      <thead>
-
-                      <tr className="titulo-tabla-usuarios">
-                              <th></th>
-                              <th className='titulo-tabla'>Partidas del Proyecto</th>
-                           
-                          </tr>
-                          <tr className="titulo-tabla-usuarios">
-                              <th>ID</th>
-                              <th>Nombre</th>
-                              <th>Descripción</th>
-                              <th>Continuar</th>
-                          </tr>
-                      </thead>
+                  <Table>
+                      <Thead>
+                          <Tr >
+                              <Th>ID</Th>
+                              <Th>Nombre</Th>
+                              <Th>Descripción</Th>
+                              <Th>Continuar</Th>
+                          </Tr>
+                      </Thead>
                                         
-                      <tbody>
+                      <Tbody>
                           {Object.keys(listaPartidas).map((key) => (    
                               //checar aqui va los titulos
-                              <tr key={key} >
-                                  <td>{listaPartidas[key].partida_id}</td>   
-                                  <td>{listaPartidas[key].partida_nombre}</td>  
-                                  <td>{listaPartidas[key].partida_descripcion}</td> 
+                              <Tr key={key} >
+                                  <Td>{listaPartidas[key].partida_id}</Td>   
+                                  <Td>{listaPartidas[key].partida_nombre}</Td>  
+                                  <Td>{listaPartidas[key].partida_descripcion}</Td> 
 
-                                  <td width={"100px"}>
+                                  <Td width={"100px"}>
                                     <button 
-                                    className="btn btn-primary  Mod" 
+                                    className="sn-boton modificar" 
                                     onClick={() => {
                                       getIdPar(listaPartidas[key].partida_id);
                                       habilitar2(key);
@@ -503,10 +522,10 @@ function ContinuarProyecto() {
                                    <i className=  {textBVer2[key]} ></i>
                                    
                                    </button>
-                                  </td> 
-                              </tr>  
+                                  </Td> 
+                              </Tr>  
                           ))}
-                      </tbody>          
+                      </Tbody>          
                   </Table>
                   {show4 ? (
                           <div >
@@ -515,13 +534,14 @@ function ContinuarProyecto() {
                           </div>
                         ) : (
                           
-                          <div  className="arregla"> 
+                          <div  className="contenido-usuarios"> 
                           {/*    <div className="contenido-usuarios">
                               {" "}
-                              <Animaciones mytext="Datos Servicios/Productos" />{" "}
+                        
                               </div> */}
                           {/*========================== Llamado al Componente ==========================*/} 
-                            <DatosSP clave={id}/>
+                       
+                            <DatosSP2 clave={id}/>
                           </div>
                   )}
                 </div>
@@ -531,9 +551,9 @@ function ContinuarProyecto() {
       {show5 ? (
         <div></div>
       ):(
-        <div  className="arregla"> 
+        <div  className=""> 
           {/*======================== Llamar al componente Categorias ==========================*/}
-          <Categorias clave={id} />
+          <DatosCategorias clave={id} />
         </div>
       )}
       

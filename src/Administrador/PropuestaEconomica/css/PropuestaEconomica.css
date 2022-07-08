@@ -1,3 +1,12 @@
+h3{
+    text-align: center;
+}
+
+label{
+    color: #000000;
+    text-align: center;
+}
+
 .encabezado{
     background-color: rgb(23, 23, 24);
 }
@@ -121,7 +130,7 @@
   
   
    .contenedor {
-       max-width: 1170px;
+       width: 100%;
        margin: 0 auto 1rem;
        padding: 1.5rem;
   }
@@ -207,7 +216,17 @@
    
    /*--------- END --------*/
   
-  
+   @media screen and (max-width: 960px) {
+    .contenedor {
+        width: 100%;
+        margin: 0 auto 1rem;
+        padding:0rem;
+   }
+
+   }
+
+
+
   
    
    @media screen and (min-width: 700px) {
@@ -328,21 +347,7 @@
   
   @media (max-width: 960px) {
   
-  
-    body{
-  /* 
-      background: #ffffff;
-       background: url('../images/Movil.png') no-repeat center center fixed; 
-       -webkit-background-size: cover;
-       -moz-background-size: cover;
-       -o-background-size: cover;
-       background-size: cover; */
-     
-     }
-  
-  
-  
-  
+
      .re-Captcha{
       margin-left: -20px;
       width: 80%;

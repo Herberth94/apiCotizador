@@ -1,13 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import {url2} from '../../../Componentes/Ocultar';
-
-
 import Table from "react-bootstrap/Table";
-
 import Cookies from 'universal-cookie';
-
-
 import ModalCat from "../Routes/ModalCat";
 
 //Componentes
@@ -136,7 +131,7 @@ function Categorias(props) {
     
     
     return (
-        <div className="contenido-usuarios">
+        <div className="">
              <button type="button" className="btn btn-primary" onClick={() => {setModalShow(true);lista (props.clave)}} >
                  Ver Categorias agregadas
              </button><br/><br/>

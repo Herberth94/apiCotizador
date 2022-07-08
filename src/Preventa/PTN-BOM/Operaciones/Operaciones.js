@@ -1,5 +1,7 @@
+
 let Descuento = 0;
 let pUnitario =0;
+let decimal = 3;
 
 /*=== Calcular precioUnitario  con precioLista y Descuento ===*/
 function limpiar(){
@@ -11,6 +13,7 @@ export function precioUnitario(precioLista, Descuento) {
     limpiar();
     pUnitario = parseFloat(( parseFloat(precioLista) *  parseFloat(Descuento)) / 100);
     pUnitario = precioLista - pUnitario;
+    pUnitario =   pUnitario.toFixed(decimal);
     return pUnitario;
 
  
@@ -27,7 +30,7 @@ export function calcularDescuento(precioLista, precioUnitario) {
     limpiar();
        Descuento = parseFloat(100 - ( parseFloat(precioUnitario) * 100) /  parseFloat(precioLista));
 
-    Descuento = Descuento.toFixed(3)
+    Descuento = Descuento.toFixed(decimal)
             return Descuento;
 
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 
 //Componentes
 import Animaciones from './Animaciones';
@@ -132,55 +132,36 @@ export const CrudPrecios = (props) => {
           },[,data.precio_unitario,data.cantidad])
 
     return (
-        <div>
+        <div className=''>
            {/* <form> */}
            <Animaciones mytext="Precios" />
-            <Table responsive id="nombreDiv"  striped bordered hover size="sm">
-                <thead>
-                    {/* <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{props.proyecto}</th>
-                    </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{`Partida: ${props.partida}`}</th>
-                    </tr> */}
-                    {/* <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{`Servicio/Producto:`}</th>
-                    </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{`   No. de Parte: ${props.np}`}</th>
-                    </tr> */}
-                    {/* <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{`   Descripción: ${props.des}`}</th>
-                    </tr> */}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Función</th>
-                        <th>Cantidad</th>
-                        <th>Precio Lista</th>
-                        <th>Precio Unitario</th>
-                        <th>Desc(%)</th>
-                        <th>Precio Total</th>
-                        <th>Moneda</th>
-                        <th>Modificar</th>
-                    </tr>
-                    </thead>
+            <Table >
+                <Thead>
 
-                    <tbody>
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>Calcular</Th>
+                        <Th>Cantidad</Th>
+                        <Th>Precio Lista</Th>
+                        <Th>Precio Unitario</Th>
+                        <Th>Desc(%)</Th>
+                        <Th>Precio Total</Th>
+                        <Th>Moneda</Th>
+                        <Th>Modificar</Th>
+                    </Tr>
+                    </Thead>
+
+                    <Tbody>
                         {Object.keys(props.precios).map((key) => (    
-                        <tr key={key}>
-                            <td>{props.precios[key].precio_id}</td>
-                            <td>
+                        <Tr key={key}>
+                            <Td>{props.precios[key].precio_id}</Td>
+                            <Td>
                                 <label className="switch">
                                 <input type="checkbox" id="checa"     onClick={checa}/>
                                 <span className="slider"></span>
                                 </label>   
-                            </td>
-                            <td width={"50px"}>
+                            </Td>
+                            <Td >
                                 <input
                                 className="input-name"
                                 type="number" 
@@ -191,8 +172,8 @@ export const CrudPrecios = (props) => {
                                 onChange={handleInputChange}
                                 name="cantidad"
                                 ></input>
-                            </td>
-                            <td width={"250px"}>
+                            </Td>
+                            <Td>
                                 <input
                                 className="input-name"
                                 type="number" 
@@ -202,8 +183,8 @@ export const CrudPrecios = (props) => {
                                 onChange={handleInputChange}
                                 name="precio_lista" 
                                 ></input>  
-                            </td> 
-                            <td  width={"250px"}>
+                            </Td> 
+                            <Td >
                                 <input
                                 className="input-name"
                                 type="number" 
@@ -213,8 +194,8 @@ export const CrudPrecios = (props) => {
                                 onChange={handleInputChange}
                                 name="precio_unitario" 
                                 ></input>  
-                            </td>  
-                            <td width={"100px"}>
+                            </Td>  
+                            <Td>
                                 <input
                                 className="input-name"
                                 type="number" 
@@ -224,8 +205,8 @@ export const CrudPrecios = (props) => {
                                 onChange={handleInputChange}
                                 name="precio_descuento" 
                                 ></input>  
-                            </td> 
-                            <td width={"250px"}>
+                            </Td> 
+                            <Td>
                                 <input
                                 className="input-name" 
                                 placeholder={props.precios[key].precio_total} 
@@ -236,8 +217,8 @@ export const CrudPrecios = (props) => {
                                 //onChange={handleInputChange}
                                 name="precio_total" 
                                 ></input>  
-                            </td> 
-                            <td width={"100px"}>
+                            </Td> 
+                            <Td >
                                 <select 
                                 id="lista-opciones" 
                                 name="precio_id_moneda" 
@@ -249,11 +230,11 @@ export const CrudPrecios = (props) => {
                                     <option value={1}>MXN</option>
                                     <option value={2}>USD</option>
                                 </select>
-                            </td>
+                            </Td>
                             {enable[key] ? (
-                                <td>
+                                <Td>
                                 <button 
-                                className="btn btn-primary Mod"
+                                className="sn-boton"
                                 onClick={()=>{
                                     habilitar(key); 
                                     //props.envioDataPrecio(props.estado,datos, key, data);
@@ -262,12 +243,12 @@ export const CrudPrecios = (props) => {
                                 >
                                     <i className= "bi bi-pencil-square"></i>
                                 </button>
-                                </td>   
+                                </Td>   
                             ) : (       
                                 <>
-                                <td>
+                                <Td>
                                 <button 
-                                className="btn btn-primary Mod"
+                                className="sn-boton"
                                 onClick={()=>{
                                     habilitar(key); 
                                     props.envioDataPrecio(props.estado,datos, key, data);
@@ -276,11 +257,11 @@ export const CrudPrecios = (props) => {
                                 >
                                     <i className= "bi bi-check-lg" ></i>
                                 </button>
-                                </td> 
+                                </Td> 
 
-                                <td>
+                                <Td>
                                 <button 
-                                className="btn btn-primary Cancelar" type="button"
+                                className="sn-boton cancelar" type="button"
                                 onClick={()=>{
                                     habilitar(key); 
                                     //props.envioDataPrecio(props.estado,datos, key, data);
@@ -289,15 +270,18 @@ export const CrudPrecios = (props) => {
                                 >
                                     <i className= "bi bi-x-lg"  ></i>
                                 </button>
-                                </td> 
+                                </Td> 
                                 </>
                             )}
                              
-                        </tr>  
+                        </Tr>  
                         ))
                         }
-                    </tbody>
+                    </Tbody>
             </Table>
+
+            <br/>
+           <br/>
             {/* </form> */}
         </div>
     )

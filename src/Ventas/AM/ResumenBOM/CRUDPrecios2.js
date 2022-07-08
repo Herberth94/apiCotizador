@@ -1,10 +1,6 @@
 
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
-
-//Componentes
-
-
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from '../../../Componentes/Animaciones';
 import { precioUnitario, calcularDescuento, Total}  from "../../../Preventa/PTN-BOM/Operaciones/Operaciones";
 let validaOperacion = false;
@@ -135,62 +131,30 @@ export const CrudPrecios2 = (props) => {
     return (
         <div>
            {/* <form> */}
-          {/*  <Animaciones mytext="Precios" /> */}
-            <Table responsive id="nombreDiv"  striped bordered hover size="sm">
-                <thead>
-                    {/* <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{props.proyecto}</th>
-                    </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{`Partida: ${props.partida}`}</th>
-                    </tr> */}
-                    {/* <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{`Servicio/Producto:`}</th>
-                    </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{`   No. de Parte: ${props.np}`}</th>
-                    </tr> */}
-                    {/* <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>{`   Descripción: ${props.des}`}</th>
-                    </tr> */}
-
-                       <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>Precios</th>
-                  
+           <Animaciones mytext="Precios" /> 
+            <Table >
+                <Thead>
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>Cantidad</Th>
+                        <Th>Precio Lista</Th>
+                        <Th>Precio Unitario</Th>
+                        <Th>Desc(%)</Th>
+                        <Th>Precio Total</Th>
+                        <Th>Moneda</Th>
                       {/*   <th>Modificar</th> */}
-                    </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Función</th>
-                        <th>Cantidad</th>
-                        <th>Precio Lista</th>
-                        <th>Precio Unitario</th>
-                        <th>Desc(%)</th>
-                        <th>Precio Total</th>
-                        <th>Moneda</th>
-                      {/*   <th>Modificar</th> */}
-                    </tr>
-                    </thead>
+                    </Tr>
+                    </Thead>
 
-                    <tbody>
+                    <Tbody>
                         {Object.keys(props.precios).map((key) => (    
-                        <tr key={key}>
-                            <td>{props.precios[key].precio_id}</td>
-                            <td>
-                                <label className="switch">
-                                <input type="checkbox" id="checa"     onClick={checa}/>
-                                <span className="slider"></span>
-                                </label>   
-                            </td>
-                            <td width={"50px"}>
+                        <Tr key={key}>
+                            <Td>{props.precios[key].precio_id}</Td>
+
+                            <Td >
+                          
                                 <input
-                                className="input-name"
+                             
                                 type="number" 
                                 placeholder={activar ? 
                                     (props.estado ? props.precios[key].sp_cantidad : props.precios[key].cd_cantidad) : ""}
@@ -199,55 +163,29 @@ export const CrudPrecios2 = (props) => {
                                 onChange={handleInputChange}
                                 name="cantidad"
                                 ></input>
-                            </td>
-                            <td width={"250px"}>
-                                <input
-                                className="input-name"
-                                type="number" 
-                                placeholder={activar ? props.precios[key].precio_lista : ""} 
-                                value={data.precio_lista}
-                                disabled={enable[key]} 
-                                onChange={handleInputChange}
-                                name="precio_lista" 
-                                ></input>  
-                            </td> 
-                            <td  width={"250px"}>
-                                <input
-                                className="input-name"
-                                type="number" 
-                                placeholder={activar ? props.precios[key].precio_unitario : ""} 
-                                value={data.precio_unitario}
-                                disabled={enable[key]} 
-                                onChange={handleInputChange}
-                                name="precio_unitario" 
-                                ></input>  
-                            </td>  
-                            <td width={"100px"}>
-                                <input
-                                className="input-name"
-                                type="number" 
-                                placeholder={activar ? props.precios[key].precio_descuento : ""} 
-                                value={data.precio_descuento}
-                                disabled={enable[key]} 
-                                onChange={handleInputChange}
-                                name="precio_descuento" 
-                                ></input>  
-                            </td> 
-                            <td width={"250px"}>
-                                <input
-                                className="input-name" 
-                                placeholder={props.precios[key].precio_total} 
-                                value={data.precio_total}
-                                //disabled={true}
-                                readOnly
-                                disabled={true} 
-                                //onChange={handleInputChange}
-                                name="precio_total" 
-                                ></input>  
-                            </td> 
-                            <td width={"100px"}>
+                            </Td>
+                            <Td >
+                                {props.precios[key].precio_lista }
+
+                            </Td> 
+                            <Td  >
+
+                                {props.precios[key].precio_unitario}
+                               
+                            </Td>  
+                            <Td >
+                          {  props.precios[key].precio_descuento}
+                               
+                            </Td> 
+                            <Td >
+                      
+                            {props.precios[key].precio_total} 
+                             
+                            </Td> 
+                            <Td>
+                                
                                 <select 
-                                id="lista-opciones" 
+                               
                                 name="precio_id_moneda" 
                                 value={props.precios[key].precio_id_moneda} 
                                 disabled={enable[key]} 
@@ -257,26 +195,16 @@ export const CrudPrecios2 = (props) => {
                                     <option value={1}>MXN</option>
                                     <option value={2}>USD</option>
                                 </select>
-                            </td>
-                            {/* <td>
-                                <button 
-                                className="btn btn-primary Mod"
-                                onClick={()=>{
-                                    habilitar(key); 
-                                    props.envioDataPrecio(props.estado,datos, key, data);
-                                    props.setfirst(activar);
-                                }}
-                                >
-                                    
+                            </Td>
 
-                                    <i className= {activar ? "bi bi-pencil-square" : "bi bi-check-lg"}></i>
-                                </button>
-                            </td>     */}
-                        </tr>  
+                        </Tr>  
                         ))
                         }
-                    </tbody>
+                    </Tbody>
             </Table>
+
+            <br/>
+              <br/>
             {/* </form> */}
         </div>
     )

@@ -1,6 +1,5 @@
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
-
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 
 export const CrudMarcas = (props) => {
 
@@ -69,31 +68,27 @@ export const CrudMarcas = (props) => {
     }
 
     return (
-        <div>
+        <div  className=' administracion2'>
             {/*===================     Tabla Proveedores   ========================*/}
-            <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
+            <Table >
+                <Thead>
 
-                <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                        <th className='titulo-tabla'>Lista de Marcas</th>
-                        
-                    </tr>
+            
                     {/*=================== Titulos Tabla Proveedores ===================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Marca</th>
-                        <th>Modificar</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>Marca</Th>
+                        <Th>Modificar</Th>
+                        <Th></Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/*=================== Contenido Tabla Marcas =================*/}
                     {Object.keys(props.marcas).map((key) => (
-                    <tr key={key}>
-                        <td>{props.marcas[key].marca_id}</td>
+                    <Tr key={key}>
+                        <Td>{props.marcas[key].marca_id}</Td>
                         {/*=================== Nombre de la marca =================*/}
-                        <td>
+                        <Td>
                             <input
                             className="input-name"
                             defaultValue={props.marcas[key].marca_nombre}
@@ -101,7 +96,7 @@ export const CrudMarcas = (props) => {
                             disabled={enable[key]}
                             name="marca_nombre"
                             ></input>
-                        </td>
+                        </Td>
                         {/*=================== Botón modificar =================*/}
                   {/*       <td>
                             {" "}
@@ -119,9 +114,9 @@ export const CrudMarcas = (props) => {
 
 
 {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td width={"100px"} >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton " type="button"
                                     onClick={()=>{
                                        // props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -131,14 +126,14 @@ export const CrudMarcas = (props) => {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               
                               
                               < >
-                                    <td width={"100px"} >
+                                    <Td  >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton " type="button"
                                     onClick={()=>{
                                         props.envioData(datos,key,data); 
                                         habilitar(key); 
@@ -148,11 +143,11 @@ export const CrudMarcas = (props) => {
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
                                 
-                                </td>
+                                </Td>
 
-                                <td width={"100px"}>
+                                <Td >
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton cancelar" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
@@ -162,16 +157,16 @@ export const CrudMarcas = (props) => {
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
                                    
-                                </td>
+                                </Td>
                                 </>
                             )}
 
 
 
 
-                    </tr>  
+                    </Tr>  
                     ))}
-                </tbody>
+                </Tbody>
             </Table>
         </div>
     )

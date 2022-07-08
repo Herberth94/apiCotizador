@@ -49,8 +49,6 @@ position:relative;
 display:table;
 border-collapse:collapse;
 border-spacing:0;
-
- font-family: arial;
 font-size: 14px;
 text-decoration:none;
 -webkit-transition:all .1s linear;
@@ -73,7 +71,6 @@ position:relative;
 display:table-cell;
 vertical-align:middle;
 width:190px;
-  font-family: 'Titillium Web', sans-serif;
 }
 
 .main-menu>ul.logout {
@@ -137,10 +134,4 @@ color: var(--administrador-salir-color);
 
 
 
-/*============== OPTIONS VENTANA ==============*/
-#rol:hover{
-	background-color: var( --administrador-bg-color);
-	color: white;
-	}
-	
 

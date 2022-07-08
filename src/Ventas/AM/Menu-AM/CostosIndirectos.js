@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from "../../../Componentes/Animaciones";
 import {costosIndirectos, equivale,  totalIndirecto, stringDolar} from "../../Operaciones/OperacionesAM";
 import { EditCI } from '../Routes/ModificarPorcentajesCI';
@@ -76,40 +76,33 @@ function CostosIndirectos(props) {
 
   return (
       
-    <div className="contenido-usuarios">
-  <br/>   
- {/*   <div> <Animaciones mytext="Costos Indirectos" /> </div> */}
-
-   <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
-
-                   <tr className="titulo-tabla-usuarios">
-                       <th></th>
-                        <th className='titulo-tabla'>Costos Indirectos</th>
-           
+    <div className="contenido-marvilop">
  
-                    </tr>
+{/*    <div> <Animaciones mytext="Costos Indirectos" /> </div> 
+ */}
+   <Table >
+                <Thead>
                     {/*=================== Titulos Tabla Clientes ===================*/}
-                    <tr className="titulo-tabla-usuarios">
-                        <th>Descripción</th>
-                        <th>Equivale a % </th>
-                        <th>Total </th>
-                        <th>Divisa </th>
-                        <th>Modificar</th>
-                        <th></th>
+                    <Tr >
+                        <Th>Descripción</Th>
+                        <Th>Equivale a % </Th>
+                        <Th>Total </Th>
+                        <Th>Divisa </Th>
+                        <Th>Modificar</Th>
+                        <Th></Th>
  
-                    </tr>
-                </thead>
-                <tbody>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/*=================== Contenido Tabla Clientes =================*/}
 
                     {Object.keys(costosIndirectos).map((key) => (
-                        <tr key={key}>
+                        <Tr key={key}>
                             {/*================= Descripción==================*/}
-                            <td width={"200px"}>{costosIndirectos[key]}</td>
+                            <Td >{costosIndirectos[key]}</Td>
 
                             {/*================= Equivale ==================*/}
-                            <td  width={"200px"}   className="editar" >
+                            <Td     className="editar" >
                                         <input
                                         className="input-name"
                                         type="number"
@@ -118,10 +111,10 @@ function CostosIndirectos(props) {
                                         onChange={handleInputChange}
                                         name="porcentaje" 
                                         ></input> 
-                                    </td>
+                                    </Td>
                             {/*================= Total Indirecto ==================*/}
-                            <td> {" $ "}{ totalIndirecto[key]} </td>
-                            <td width={"100px" }>{stringDolar}</td>
+                            <Td> {" $ "}{ totalIndirecto[key]} </Td>
+                            <Td>{stringDolar}</Td>
 
                             {/*================= Editar==================*/}
                      {/*        <td>
@@ -136,9 +129,9 @@ function CostosIndirectos(props) {
                             </td> */}
                             
                             {enable[key] ? (
-                                <td width={"100px"} >
+                                <Td  >
                                     <button 
-                                    className=  "btn btn-primary Mod" type="button"
+                                    className=  "sn-boton" type="button"
                                     onClick={()=>{
                                     //    props.envioData(datos,key,data); 
                                     habilitar(key);
@@ -148,12 +141,12 @@ function CostosIndirectos(props) {
                                         <i className  = {textBModificar[key]}  ></i>
                                     </button>
                                     
-                                </td>
+                                </Td>
                             ):(
                               < >
-                                    <td width={"100px"} >
+                                    <Td >
                                     <button 
-                                    className="btn btn-primary Mod" type="button"
+                                    className="sn-boton" type="button"
                                     onClick={()=>{
                                         habilitar(key);
                                     envioData(key);
@@ -161,16 +154,16 @@ function CostosIndirectos(props) {
                                     >
                                         <i className= {textBModificar[key]}  ></i>
                                     </button>
-                                </td>
+                                </Td>
 
 
 
                              
 
 
-                                <td width={"100px"}>
+                                <Td >
                                     <button 
-                                    className="btn btn-primary Cancelar" type="button"
+                                    className="sn-boton cancelar" type="button"
                                     onClick={()=>{
                                       /*   props.envioData(datos,key,data);  */
                                         habilitar(key); 
@@ -179,13 +172,13 @@ function CostosIndirectos(props) {
                                     >
                                         <i className= "bi bi-x-lg"  ></i>
                                     </button>
-                                </td>
+                                </Td>
                                 </>
                             )}
 
-                        </tr>
+                        </Tr>
                     ))}
-                </tbody>
+                </Tbody>
             </Table>
 
 

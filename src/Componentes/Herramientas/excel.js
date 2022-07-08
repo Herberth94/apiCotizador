@@ -2,14 +2,19 @@ import React, { useState } from 'react'
 import * as XLSX from 'xlsx'
 import Table from "react-bootstrap/Table";
 import "../css/excel.css"
-import {PLN}  from "./PLN";
 import axios from "axios";
 import {url2} from "../Ocultar";
+import Cookies from 'universal-cookie';
 
+let validarFile = true;
+
+//Obtención del id del usuario con sesión activa
+const cookies = new Cookies();
+export let validatorid = cookies.get('id_usuario');
 
 export let dataPartidas = [];
 
-function Excel() {
+function Excel(props) {
 
    const [items, setItems] = useState([]);
 
@@ -49,27 +54,62 @@ function Excel() {
 
 
   const [show2, setShow2] = useState(true)
+  let pIdExcel;
+
+  function getpIdExcel(id){
+    pIdExcel = id;
+  }
 
   async function cargarDatos(){
     if(show2){
-      let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${113}`, dataPartidas);
-      alert(res.data.msg);
+      const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
+      let proy = resProy.data.data.pop(); 
+      getpIdExcel(proy.proyecto_id);
+      if(props.clave !== '' && props.clave !== undefined){
+        let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ props.clave }`, dataPartidas);
+      }else{
+        let res = await axios.post(url2 + `/api/cotizador/sp/insertExcel/${ pIdExcel }`, dataPartidas);
+      }
+/*       console.log('Objetos excel:',dataPartidas);
+      console.log('Id del proyecto:', pIdExcel); */
+      /* alert(res.data.msg);
+       */
+
+      alert("Datos Subidos Correctamente");
     }
   }
 
   return (
-    <div  className='contenido-usuarios'>
+    <div  className=''>
+
+
+<div className='cargar-datos'>
+
+  <br/>
+  <br/>
+
+  <h3>Cargar Plantilla Excel</h3>
+
       <input className="btn btn-primary Mod"
         type="file"
         onChange={(e) => {
           const file = e.target.files[0];
           readExcel(file);
+
+          if (file != null){
+            validarFile = false;
+          }
         }}
       />
 
-     
+</div>
 
-<Table responsive  striped bordered hover size="sm">
+
+     <div className='plantilla-excel'>
+
+    
+
+<Table  responsive  striped bordered hover size="sm">
         <thead>
           <tr>
             <th scope="col"> Partida</th>
@@ -116,25 +156,36 @@ function Excel() {
 
         </Table>
 
+        </div>
 
 
 
-     <button
+<br/>
+<br/>
+
+<div className='subir-datos'>
+            <button
+              disabled={validarFile}
               className="btn btn-primary Mod"
               type="button"
               onClick={() => {
                 setShow2(!show2);
                 cargarDatos();
+                alert("Datos Subidos Correctamente")
               }}
             >
               {" "}
               {show2 ? "Subir Datos" : "Ocultar"}{" "}
             </button>
+  </div>
             
 {/* <button  className='btn btn-primary Mod'> Subir Datos</button>
  */}
+
+
 <br/>
 <br/>
+
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 
@@ -9,6 +9,8 @@ import Animaciones from "../../../Componentes/Animaciones";
 import "../css/PTN_BOM.css";
 import DatosPTN from "../Menu-Bom/DatosPTN";
 import { url, url2 } from "../../../Componentes/Ocultar";
+
+import Partida from "./Partida";
 
 
 //Obtención del id del usuario con sesión activa
@@ -185,67 +187,63 @@ function NuevoProyecto() {
 
   return (
 
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
+
+      <div>
+
+        <Animaciones  mytext= "Datos Nuevo Proyecto" />
+        
+      </div>
       {/*======================= Titulo Animación =======================*/}
     {/*   <div> <Animaciones mytext="Datos Proyecto" /> </div>
  */}
       {/*=======================  Tabla Nuevo Proyecto ======================= */}
       {/* <form action="" method="post" onSubmit={enviarDatos}> */}
-        <Table responsive id="nombreDiv">
+        <Table >
 
           {/*======================= Titulos Tabla ======================= */}
 
 
-          <thead >
-            <tr className="titulo-tabla-usuarios">
-           
-              <th className="titulo-tabla" >Agregar Nuevo proyecto</th>
-            
-            </tr>
-
-          </thead>
+         
 
 
+          <Thead>
+            <Tr>
+              <Th>Clave</Th>
+              <Th>Descripción</Th>
+              <Th> Cliente </Th>
+              <Th> Plazo Meses </Th>
+              <Th> Agregar Proyecto </Th>
+            </Tr>
+          </Thead>
 
-          <thead>
-            <tr className="titulo-tabla-usuarios">
-              <th>Clave</th>
-              <th>Descripción</th>
-              <th> Cliente </th>
-              <th> Plazo Meses </th>
-              <th> Agregar Proyecto </th>
-            </tr>
-          </thead>
+          <Tbody>
 
-          <tbody>
-
-            <tr className="">
+            <Tr >
 
               {/*=======================  Clave proyecto ======================= */}
-              <td>
-                <input
-                  className="agregar"
+              <Td>
+                <input      
                   type="text"
                   name="proyecto_clave"
                   onChange={handleInputChange}
                   placeholder="Ingrese Clave"
                 />
-              </td>
+              </Td>
               {/*======================= Descripción ======================= */}
-              <td>
+              <Td>
                 <input
-                  className="agregar"
                   type="text"
                   name="proyecto_descripcion"
                   onChange={handleInputChange}
                   placeholder="Ingrese Descripción"
                 />
-              </td>
+              </Td>
               {/*======================= Lista Clientes ======================= */}
-              <td>
+              <Td>
                 {" "}
                 <input
-                  className="agregar"
+                 
                   type="text"
                   name="nombre_cliente"
                   onChange={e => onChangeTextCliente(e.target.value)}
@@ -257,20 +255,18 @@ function NuevoProyecto() {
                     {suggestion.nombre_cliente}
                   </div>
                 )}
-              </td>
+              </Td>
               {/*======================= Plazo meses ======================= */}
-              <td>
+              <Td>
                 <input
-                  className="agregar"
+                 
                   type="text"
                   name="proyecto_plazo_meses"
                   onChange={handleInputChange}
                   placeholder="Ingrese Plazo Meses"
                 />
-              </td>
-              <td>
-                {/*=======================  Boton Empezar Nuevo proyecto ======================= */}
- {/*                <button className="btn btn-primary modificar" type="submit"> Agregar proyecto  </button> */}
+              </Td>
+              <Td>
       <button 
       className="btn btn-primary modificar" 
       type="submit" 
@@ -284,18 +280,20 @@ function NuevoProyecto() {
         <div >
 
         </div>
-      ) : 
-      
-      
+      ) :     
       (
-        <div className="arregla">
-          <DatosPTN clave={clavep} />
+        <div className="">
+
+
+
+        <DatosPTN   clave={clavep} />
+        
         </div>
       )}
             
-              </td>
-            </tr>
-          </tbody>
+              </Td>
+            </Tr>
+          </Tbody>
         </Table>
       {/* </form> */}
     </div>

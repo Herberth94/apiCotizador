@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { InsertDatosPartida, pId } from "../Routes/GuardarPartida";
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
 import axios from 'axios';
 import { pId2 } from "./NuevoProyecto";
+import {url2} from '../../../Componentes/Ocultar';
+import Animaciones from '../../../Componentes/Animaciones';
 
 let id;
 function Partida({clave} ) {
@@ -16,7 +18,7 @@ function Partida({clave} ) {
   const lista = async (clave) =>{
     console.log(id);
     try {
-      const respuesta = await axios.get(`http://localhost:4001/api/cotizador/proyecto/viewModal/${clave}`);
+      const respuesta = await axios.get(url2 + `/api/cotizador/proyecto/viewModal/${clave}`);
       Setproyecto_id(respuesta.data.reSql)
     
       
@@ -34,53 +36,56 @@ function Partida({clave} ) {
   
 
   return (
-    <div className="contenido-usuarios">
+    <div className="padding">
       {/*========================== Nombre Partida ==========================*/}
 
-      <form action="" method="post" onSubmit={enviarDatosPartida}>
-        <Table responsive id="nombreDiv">
-          <thead>
-            <tr className="titulo-tabla-usuarios">
-              <th>Nombre Partida</th>
-              <th>Descripción </th>         
-              <th> Partidas Agregadas</th>
-              <th> Agregar Datos</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            <tr className="">
+      <Animaciones mytext="Datos Partida" />
+
+      <form action="" method="post" onSubmit={enviarDatosPartida}>
+        <Table >
+          <Thead>
+            <Tr >
+              <Th>Nombre Partida</Th>
+              <Th>Descripción </Th>         
+              <Th> Partidas Agregadas</Th>
+              <Th> Agregar Datos</Th>
+            </Tr>
+          </Thead>
+
+          <Tbody>
+            <Tr className="">
               {/*=======================  Nombre Partida ======================= */}
-              <td>
+              <Td>
                 <input
-                  className="agregar"
+                  className=""
                   type="text"
                   name="partida_nombre"
                   onChange={handleInputChangePartida}
                   placeholder="Ingrese Nombre Partida"
                 />
-              </td>
+              </Td>
 
               
               {/*=======================  DescripciónPartida ======================= */}
-              <td>
+              <Td>
                 <input
-                  className="agregar"
+                  className=""
                   type="text"
                   name="partida_descripcion"
                   onChange={handleInputChangePartida}
                   placeholder="ingrese Descripción Partida"
                 />
-              </td>
+              </Td>
 
 
 
-              <td width={"100px"}>
+              <Td width={"100px"}>
 
 
-      <button type="button" className="btn btn-primary Ver" onClick={() => {setModalShow(true);lista (id)}} >
+      <button type="button" className="sn-boton" onClick={() => {setModalShow(true);lista (id)}} >
         <i class="bi bi-eye-fill"></i>
-        </button><br/><br/>
+        </button>
       {modalShow && modalShow1 ?   
       <ModalPtnDatos
       show={modalShow}
@@ -89,17 +94,26 @@ function Partida({clave} ) {
      
       />
          :  ''  } 
-              </td>
-              <td width={"100px"}>
-                <button className="btn btn-primary Mod">
+              </Td>
+
+
+
+              <Td width={"100px"}>
+                <button className="sn-boton ">
                 <i class="bi bi-send"></i>
                 </button>
-              </td>
+              </Td>
               {/*========================== Botón Agregar Partidas ==========================*/}
-            </tr>
-          </tbody>
+            </Tr>
+          </Tbody>
         </Table>
+
+
         </form>
+
+        <br/>
+        <br/>
+        
     </div>
   );
 }

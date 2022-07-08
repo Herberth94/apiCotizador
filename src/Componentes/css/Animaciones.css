@@ -29,8 +29,15 @@ IMAGEN MOVIMIENTO LOGIN
     align-items: center;
     top: -40px;
     z-index: 9;
+
+
+
+ 
+  
     
   }
+
+
    .container .box {
      
        height: 60px;
@@ -67,9 +74,9 @@ IMAGEN MOVIMIENTO LOGIN
        display: flex;
        align-items: baseline;
        position: relative;
-      font-family:Georgia, 'Times New Roman', Times, serif;
-      
-    
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
 
     
   }

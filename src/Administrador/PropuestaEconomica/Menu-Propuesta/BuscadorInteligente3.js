@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from "../../../Componentes/Animaciones";
 import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
@@ -182,68 +182,66 @@ function BuscadorInteligente3() {
     }
 
     return (
-        <div className="contenido-usuarios">
-            <div className="busqueda-proyectos">
-                <Table responsive id="nombreDiv">
-                    <thead>
-                        <tr className="azul">
-                            <th className='ocultar'>Clave Proyecto</th>
-                        </tr>
-                    </thead>
+        <div className="contenido-marvilop">
 
-                    <tbody>
-                        <tr >
-                            <td  className='busqueda'>
-                                <input  
-                                className="agregar"
-                                type="text"
-                                name="proyecto_clave"
-                                onChange={e => onChangeTextClaveP(e.target.value)}
-                                value={claveP}
-                                placeholder=" 🔎 Búsqueda por Clave del Proyecto" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>   
+            <div>
+                <Animaciones mytext="Imprimir Propuesta" />
+            </div>
+            <div className = "buscador-inteligente">
+
+ 
+<form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave 🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
+
+                </form>
+
+     
+
+
+        </div>  
                 {/*============= Titulo Animación =============*/}
                {/*  <div> <Animaciones mytext="Proyectos " /> </div>
  */}
-            <Table responsive  striped bordered hover size="sm">
-                <thead>
+            <Table >
+                <Thead>
 
-                <tr className="titulo-tabla-usuarios">
-                        <th></th> 
-                        <th className='titulo-tabla'>Proyectos</th>        
-                    </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Clave</th>
-                        <th>Descripción</th>
-                        <th>Cliente</th>
-                        <th>Fecha Creación</th>
-                        <th>Fecha Modificación</th>
-                        <th>Estatus</th>
-                        <th>Plazo de meses</th>
-                        <th>Propuesta</th>
-                    </tr>
-                </thead>
+               
+                    <Tr>
+                        <Th>ID</Th>
+                        <Th>Clave</Th>
+                        <Th>Descripción</Th>
+                        <Th>Cliente</Th>
+                        <Th>Fecha Creación</Th>
+                        <Th>Fecha Modificación</Th>
+                        <Th>Estatus</Th>
+                        <Th>Plazo de meses</Th>
+                        <Th>Propuesta</Th>
+                    </Tr>
+                </Thead>
                                 
-                <tbody>
+                <Tbody>
                     {Object.keys(suggestions).map((key) => (    
                         //checar aqui va los titulos
-                    <tr key={suggestions[key].proyecto_id} >
-                        <td>{suggestions[key].proyecto_id}</td>   
-                        <td>{suggestions[key].proyecto_clave}</td>  
-                        <td>{suggestions[key].proyecto_descripcion}</td>  
-                        <td>{suggestions[key].nombre_cliente}</td> 
-                        <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                        <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                        <td className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
-                        <td>{suggestions[key].proyecto_plazo_meses}</td>
-                        <td>
+                    <Tr key={suggestions[key].proyecto_id} >
+                        <Td>{suggestions[key].proyecto_id}</Td>   
+                        <Td>{suggestions[key].proyecto_clave}</Td>  
+                        <Td>{suggestions[key].proyecto_descripcion}</Td>  
+                        <Td>{suggestions[key].nombre_cliente}</Td> 
+                        <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
+                        <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                        <Td className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</Td> 
+                        <Td>{suggestions[key].proyecto_plazo_meses}</Td>
+                        <Td>
                             <button 
-                            className="btn btn-primary Ver" 
+                            className="sn-boton ver" 
                             onClick={() => {
                             getEstatus(suggestions[key].proyecto_estatus);
                             {if(estatus === 'Aceptado'){
@@ -257,15 +255,15 @@ function BuscadorInteligente3() {
                            <i className=   {textBVer[key]}  ></i>
                     
                             </button>
-                        </td> 
-                    </tr>  
+                        </Td> 
+                    </Tr>  
                     ))}
-                </tbody>          
+                </Tbody>          
             </Table>
             {show2 ? (
                 <div></div>
             ) : (
-                <div className="arregla">
+                <div className="">
                     {/*========================== Llamado al Componente ==========================*/}
                     {/*           <CostosIndirectos/> */}
                     <Formulario/>

@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Table from "react-bootstrap/Table";
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import Animaciones from "../../../Componentes/Animaciones";
 import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../Operaciones/totalPartida'
-
 import Proporcionalidad from "../../Proporcionalidad/MenuProporcionalidad/Proporcionalidad";
 import Categorias from  "../../Proporcionalidad/MenuProporcionalidad/Categorias";
 
@@ -167,67 +166,63 @@ function BuscadorInteligente2() {
     }
     
   return (
-    <div className="contenido-usuarios">
-        <div className="busqueda-proyectos">
-                <Table responsive id="nombreDiv">
-                    <thead>
-                        <tr className="azul">
-                            <th className='ocultar'>Clave Proyecto</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr >
-                            <td className='busqueda'>
-                            <input className="agregar"
-                                    type="text"
-                                    name="proyecto_clave"
-                                    onChange={e => onChangeTextClaveP(e.target.value)}
-                                    value={claveP}
-                                    placeholder="🔎 Búsqueda por Clave del Proyecto" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>   
+    <div className="contenido-marvilop">
+            <Animaciones mytext="Resumen Proporcionalidad" />
+            <div className = "buscador-inteligente">
+
+ 
+<form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" 
+                    type="search" 
+                    placeholder="Buscar por Clave 🔎" 
+                    aria-label="Search"
+                    name="proyecto_clave"
+                    onChange={e => onChangeTextClaveP(e.target.value)}
+                    value={claveP}
+                    
+                    />
+
+                </form>
+
+     
+
+
+        </div>
                 {/*============= Titulo Animación =============*/}
          {/*        <div> <Animaciones mytext="Proyectos " /> </div> */}
 
-                <Table responsive  striped bordered hover size="sm">
-                    <thead>
+                <Table>
+                    <Thead>
 
-                    <tr className="titulo-tabla-usuarios">
-                        <th></th>
-                            <th className='titulo-tabla'>Proporcional</th>
-                      
-                        </tr>
-                        <tr className="titulo-tabla-usuarios">
-                            <th>ID</th>
-                            <th>Clave</th>
-                            <th>Descripción</th>
-                            <th>Cliente</th>
-                            <th>Fecha de creción</th>
-                            <th>Fecha de modificación</th>
-                            <th>Estatus</th>
-                            <th>Plazo de meses</th>
-                            <th>Proporcionalidad</th>
-                        </tr>
-                    </thead>
+                
+                        <Tr>
+                            <Th>ID</Th>
+                            <Th>Clave</Th>
+                            <Th>Descripción</Th>
+                            <Th>Cliente</Th>
+                            <Th>Fecha de creción</Th>
+                            <Th>Fecha de modificación</Th>
+                            <Th>Estatus</Th>
+                            <Th>Plazo de meses</Th>
+                            <Th>Proporcionalidad</Th>
+                        </Tr>
+                    </Thead>
                                     
-                    <tbody>
+                    <Tbody>
                         {Object.keys(suggestions).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={suggestions[key].proyecto_id} >
-                                <td>{suggestions[key].proyecto_id}</td>   
-                                <td>{suggestions[key].proyecto_clave}</td>  
-                                <td>{suggestions[key].proyecto_descripcion}</td>  
-                                <td>{suggestions[key].nombre_cliente}</td> 
-                                <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                                <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                                <td className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
-                                <td>{suggestions[key].proyecto_plazo_meses}</td>
-                                <td width={"50px"}>
+                            <Tr key={suggestions[key].proyecto_id} >
+                                <Td>{suggestions[key].proyecto_id}</Td>   
+                                <Td>{suggestions[key].proyecto_clave}</Td>  
+                                <Td>{suggestions[key].proyecto_descripcion}</Td>  
+                                <Td>{suggestions[key].nombre_cliente}</Td> 
+                                <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
+                                <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                                <Td className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</Td> 
+                                <Td>{suggestions[key].proyecto_plazo_meses}</Td>
+                                <Td width={"50px"}>
                                     <button 
-                                    className="btn btn-primary Ver" 
+                                    className="sn-boton" 
                                     onClick={() => {
                                     consultarTotalesP(suggestions[key].proyecto_id);
                                     habilitar(key);
@@ -238,15 +233,15 @@ function BuscadorInteligente2() {
                     
                                         
                                         </button>
-                                </td> 
-                            </tr>  
+                                </Td> 
+                            </Tr>  
                         ))}
-                    </tbody>          
+                    </Tbody>          
                 </Table>
                 {show1 ? (
                     <div></div>
                 ) : (
-                    <div className="arregla">
+                    <div className="">
                         {/*========================== Llamado al Componente ==========================*/}
                         {/*           <CostosIndirectos/> */}
                         <Categorias/>

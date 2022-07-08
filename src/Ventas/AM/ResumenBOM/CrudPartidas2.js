@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React ,{useState, useEffect} from 'react'
-import Table from 'react-bootstrap/Table'
-
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { EditSP } from '../../../Preventa/PTN-BOM/Routes/ModificarSP';
-
 import { CrudSp2 } from './CrudSP2.js';
 import { url, url2 } from '../../../Componentes/Ocultar';
+import Animaciones from '../../../Componentes/Animaciones';
 
 
 export const CrudPartidas2 = (props) => {
@@ -196,96 +195,42 @@ export const CrudPartidas2 = (props) => {
         /*=========================================================================*/
     /*=========================================================================================================================*/
     return (
-        <div>
+        <div className=''>
            {/* <form> */}
-          {/*       <Animaciones mytext="Partidas" />
- */}
-                <Table responsive  striped bordered hover size="sm">
-                    <thead>
-
-                         {/* <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>{props.proyecto}</th>
-                        </tr>
-                        <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>Partidas:</th>
-                        </tr> */}
-                        <tr className="titulo-tabla-usuarios">
-                            <th></th>
-                            <th className='titulo-tabla'>Resumen por Partidas</th>
-                        </tr>
-                        <tr className="titulo-tabla-usuarios">
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
+               <Animaciones mytext="Partidas" />
+ 
+                <Table>
+                    <Thead>
+                        <Tr >
+                            <Th>ID</Th>
+                            <Th>Nombre</Th>
+                            <Th>Descripción</Th>
                         {/*     <th>Eliminar</th>
                          */}
-                            <th>Servicios Productos</th>
+                            <Th>Servicios Productos</Th>
                           {/*   <th>Modificar</th> */}
-                            <th></th>
-                        </tr>
-                    </thead>
+                            <Th></Th>
+                        </Tr>
+                    </Thead>
                                     
-                    <tbody>
+                    <Tbody>
                         {Object.keys(props.partidas).map((key) => (    
                             //checar aqui va los titulos
-                            <tr key={key} >
-                                <td>{props.partidas[key].partida_id}</td>
-                                <td>
-                                    <input 
-                                    id={props.partidas[key].partida_id}
-                                    className="input-name" 
-                                    defaultValue={props.partidas[key].partida_nombre} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="partida_nombre" 
-                                    ></input>
-                                </td>
-                                <td>
-                                    <input
-                                    className="input-name" 
-                                    defaultValue={props.partidas[key].partida_descripcion} 
-                                    disabled={enable[key]} 
-                                    onChange={handleInputChange}
-                                    name="partida_descripcion" 
-                                    ></input>
-                                </td> 
-                            {/*     <td width={"100px"}>
-                                    <button 
-                                    className="btn btn-primary eliminar"
-                                    onClick={()=>{SendDeletePartida(props.partidas[key].partida_id)}}
-                                    >
-
-<i className="bi bi-trash-fill"></i>
-                                    
-                                    </button></td> */}
-
-
-
-
-
-
-                                                               
-          {/*                       <td>
-                                    <button 
-                                    className="btn btn-primary detalles" 
-                                    onClick={() => {
-                                        habilitar1(key);
-                                        getDatosSP(props.partidas[key].partida_id);
-                                    }}
-                                    >
-                                        {textBVer[key]}
-                                    </button>
-                                </td> 
-
-
- */}
-                                
-                        <td width={"100px"}>
+                            <Tr key={key} >
+                                <Td>{props.partidas[key].partida_id}</Td>
+                                <Td>
+                                {props.partidas[key].partida_nombre} 
+                                   
+                                </Td>
+                                <Td>
+                                {props.partidas[key].partida_descripcion}
+                                   
+                                </Td> 
+                        
+                        <Td width={"100px"}>
                             {" "}
                             <button
-                                className="btn btn-primary Ver"
+                                className="sn-boton ver"
                                 type="button"
                                 onClick={() => {
                                     habilitar1(key);
@@ -298,27 +243,15 @@ export const CrudPartidas2 = (props) => {
                                 
                              
                             </button>
-                        </td>
+                        </Td>
 
-
-
-
-                             {/*    <td>
-                                    <button 
-                                    className="btn btn-primary modificar" 
-                                    onClick={()=>{
-                                        habilitar(key); 
-                                        props.envioDataPar(datos, key, data);
-                                        props.setfirst(activar[key]);;
-                                    }}
-                                    >{textBModificar[key]}
-                                    </button> 
-                                </td>  */}
-  
-                            </tr>  
+                            </Tr>  
                         ))}
-                    </tbody>          
+                    </Tbody>          
                 </Table>
+
+                <br/>
+                <br/>
                 {show ? (
                     <div></div>
                 ):(

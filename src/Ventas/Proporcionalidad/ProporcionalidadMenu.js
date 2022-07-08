@@ -2,11 +2,6 @@ import React from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
-
-
-import BuscarProyecto from "./BuscarProyecto"
-
-import Financiamiento from "./Financiamiento";
 import BuscadorProyectoFinanciamiento from "./MenuProporcionalidad/BuscadorProyectoFinanciamiento"
 
 

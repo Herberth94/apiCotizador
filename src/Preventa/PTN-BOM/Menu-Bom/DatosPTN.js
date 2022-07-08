@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import Animaciones from "../../../Componentes/Animaciones";
 // Componentes
  import Partida from "../Menu-Bom/Partida";
- import DatosSP from "../Menu-Bom/DatosSP";
+ import DatosSp2 from "../Menu-Bom/DatosSP2";
+ import DatosCategorias from "../Menu-Bom/DatosCategorias";
  import Categorias from "../Menu-Bom/Categorias";
+ import Select from "./Select";
  
 
 function DatosPTN(props) {
@@ -14,43 +16,32 @@ function DatosPTN(props) {
 
   
   return (
-    <div className="contenido-usuarios">
-      {/*========================== Titulos ==========================*/}
-      <div>
-        {" "}
-      {/*   <Animaciones mytext="Datos PTN" />{" "} */}
-      </div>
-      {/*========================== Tabla Datos partida==========================*/}
-      <div className="arregla">
-        <Partida/>
-      {/*========================== Tabla Datos PTN ==========================*/}
-      
-        <DatosSP clave={props.clave}/>
-        {/*========================== Añadir Categorias ==========================
-        Solo cuando se termine el proyecto */}
-        <div className="contenido-usuarios">
-          <button
-          className="btn btn-primary modificar"
-          type="button"
-          onClick={() => {
-            setShow(!show);
-          }}
-          >
-          {" "}
-          {show ? "Agregar categorias" : "Ocultar Categorias"}{" "}
-          </button>
+    <div className="arregla contenido">
 
-          {show ? (
-            <div></div>
-            ) : (
-            <div className="arregla">
-              {/*======================== Llamar al componente Categorias ==========================*/}
-              <Categorias clave={props.clave} />
-            </div>
-          )}
-        </div>
-      </div>
+ <Select  
+  clave={props.clave}
+ />
+{/* 
+    <div  className="caja1">
+
+    <DatosSp2 clave={props.clave}/>
+
+
+
+    <div className="caja2">
+ <DatosCategorias clave={props.clave}/>
       
+    </div>
+    
+    </div> */}
+ 
+  
+
+
+   
+
+     {/* <Categorias clave={props.clave} /> */}
+   
       
     </div>
   );

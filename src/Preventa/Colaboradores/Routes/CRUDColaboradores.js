@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React from 'react'
-import Table from 'react-bootstrap/Table'
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { url2 } from '../../../Componentes/Ocultar';
-
 
 export const CrudColaboradores = (props) => {
 
@@ -10,13 +9,9 @@ export const CrudColaboradores = (props) => {
         const confirmacion = window.confirm("¿Seguro que quieres borrar este Colaborador?" );
         if (confirmacion) {
             try {
-                if(props.estado){
-                    await axios.delete(url2 + `/api/cotizador/delete/${cId}`);
-                    alert('Colaborador eliminado exitosamente');
-                }else{
-                    await axios.delete(url2 + `/api/cotizador/colaboradores/delete/${cId}`);
-                    alert('Colaborador eliminado exitosamente');
-                }
+                await axios.delete(url2 + `/api/cotizador/colaboradores/delete/${cId}`);
+                alert('Colaborador eliminado exitosamente');
+                
             } catch (error) {
                 alert('Error al eliminar Colaborador');
             }
@@ -27,45 +22,48 @@ export const CrudColaboradores = (props) => {
 
     return (
         <div>
+
+            <div className=''>
+
+      {/*        <Animaciones   mytext= "Administrar Colaboradores" />
+ */}
+            </div>
             {/*===================     Tabla Proveedores   ========================*/}
-            <Table responsive striped bordered hover size="sm" className="tablas">
-                <thead>
+            <Table>
+                <Thead>
                     {/*=================== Titulos Tabla Proveedores ===================*/}
                         
-                    <tr className="titulo-tabla-usuarios">
-                     <th></th>
-                        <th className='titulo-tabla'>{props.estado ? "Administrar Ventas" : "Administrar Preventa"}</th>
-                        </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
+
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</Th>
+                        <Th>Eliminar</Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
                     {/*=================== Tabla de los colaboradores de un Proyecto =================*/}
                     {Object.keys(props.colabs).map((key) => (
-                    <tr key={props.estado ? props.colabs[parseInt(key)].id_usuario : props.colabs[parseInt(key)].colab_id }>
-                        <td>{props.colabs[parseInt(key)].id_usuario}</td>
+                    <Tr key={props.colabs[parseInt(key)].colab_id }>
+                        <Td>{props.colabs[parseInt(key)].colab_id}</Td>
                         {/*=================== Nombre/Email del Colaborador =================*/}
-                        <td>{props.colabs[parseInt(key)].email}</td>
+                        <Td>{props.colabs[parseInt(key)].email}</Td>
                         {/*=================== Botón Eliminar =================*/}
-                        <td width={"100px"}>
+                        <Td>
                             {" "}
                             <button
-                                className="btn btn-primary eliminar"
+                                className="sn-boton  eliminar"
                                 type="button"
                                 onClick={() => {
-                                    props.estado ? deleteColab(props.colabs[parseInt(key)].up_id):deleteColab(props.colabs[parseInt(key)].colab_id)
+                                    deleteColab(props.colabs[parseInt(key)].colab_id)
                                 }}
                             >
                            <i className="bi bi-trash-fill"></i> 
                               
                             </button>
-                        </td>
-                    </tr>  
+                        </Td>
+                    </Tr>  
                     ))}
-                </tbody>
+                </Tbody>
             </Table>
         </div>
     )

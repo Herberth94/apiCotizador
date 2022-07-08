@@ -272,14 +272,15 @@ export function obtenPartidasUnicas(
   dataPorcentajes = [],
   dataPorcentajesC = [],
   dataFinancia = []
-) {
+) 
+
+{
   limpiaDatos();
 
   /* ANALIZAR TIPO DE DIVISA */
   if (Dolar.length != 0) {
     if (Dolar[0].proyecto_id_moneda === 1) {
-   
-   
+
       conversion = "MXN";
       stringDolar = "MXN";
 
@@ -298,11 +299,13 @@ export function obtenPartidasUnicas(
 
       name_cliente = Dolar[0].nombre_cliente;
       clave_p = Dolar[0].proyecto_clave;
-      console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
-      console.log('Cliente - Archivo Operaciones AM:',name_cliente)
+/*       console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
+      console.log('Cliente - Archivo Operaciones AM:',name_cliente) */
 
     } else if (Dolar[0].proyecto_id_moneda === 2) {
     
+
+      console.log("conversion exitosaaaaaaaaaaa");
 
       conversion = "USD";
       stringDolar = "USD";
@@ -311,8 +314,8 @@ export function obtenPartidasUnicas(
       plazo_meses = Dolar[0].proyecto_plazo_meses;
       name_cliente = Dolar[0].nombre_cliente;
       clave_p = Dolar[0].proyecto_clave;
-      console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
-      console.log('Cliente - Archivo Operaciones AM:',name_cliente)
+/*       console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
+      console.log('Cliente - Archivo Operaciones AM:',name_cliente) */
     }
   }
 
@@ -389,14 +392,15 @@ export function obtenPartidasUnicas(
   });
 
   /*============= GUardar Datos Partidas Unicas  ===============================*/
-
   for (var i = 0; i < partidasUnicas.length; i++) {
     for (var j = 0; j < datosPTN.length; j++) {
       //Sumatoria por Partidas por Separado por Monedas
 
       if (partidasUnicas[i] === datosPTN[j].partida_nombre) {
-        // console.log(datosPTN[j].nombrePartida, " = ", partidasUnicas[i]);
+        console.log(  partidasUnicas[i]  , " = ",datosPTN[j].nombrePartida,);
         contador++;
+
+
         if (datosPTN[j].precio_id_moneda === 1) {
           sumatoriaMXN += datosPTN[j].precio_total;
         } else if (datosPTN[j].precio_id_moneda === 2) {
@@ -412,14 +416,19 @@ export function obtenPartidasUnicas(
     totalUSD.push(sumatoriaUSD);
     sumatoriaMXN = 0;
     sumatoriaUSD = 0;
+
+    console.log("OK R ",totalMXN);
   }
   //////// Conversion
 
   for (var i = 0; i < totalMXN.length; i++) {
 
 
+    console.log("entrar")
+
     if (conversion === "MXN") {
 
+   
       if (totalMXN[i] !== 0) {
      
         if(totalUSD[i] !==0   ){
@@ -465,22 +474,33 @@ export function obtenPartidasUnicas(
 //CONVERSION A USD PARTIDAS
 
     } else if (conversion === "USD") {
+
+   
       if (totalMXN[i] !== 0) {
      
         if(totalUSD[i] !==0   ){
 
           let a  = parseFloat(totalUSD[i]);
-          let b = parseFloat(totalMXN[i]/ valorDolar);
+          let b = parseFloat(totalMXN[i] / valorDolar);
+
+          console.log(b , "nn");
+          console.log("dolar  "  , valorDolar)
 
           let c = a+b;
           monedaPTN.push(c.toFixed(decimal) );
           monedaPTN2.push(c.toFixed(decimal));
 
         }else{
-        
-          monedaPTN.push(totalUSD[i].toFixed(decimal) );
-          monedaPTN2.push(totalUSD[i].toFixed(decimal));
+        ///Arreglado codigo  
+          let conversion = parseFloat(totalMXN[i] / valorDolar);
+          monedaPTN.push(conversion.toFixed(decimal) );
+          monedaPTN2.push(conversion.toFixed(decimal));
+
+
+
         }
+
+      
 
       } else if(totalUSD[i] !==0   ){
 
@@ -736,9 +756,11 @@ function calcularPrecioVenta() {
     var z = x / k;
     /*============= Dejar Solo 3 Digitos despues del punto ===============================*/
     z = z.toFixed(decimal);
-
+    z = z*Cantidad[i];
     sumP += parseFloat(z);
     precioVenta.push(z);
+
+
   }
 
   precioVenta.push(sumP.toFixed(decimal));
@@ -762,14 +784,16 @@ function calcularPrecioVenta() {
   /* console.log("precio  ",  precio) */
 
   costosIndirectos.push("Total");
-
+let su = 0;
   for (var i = 0; i < costosIndirectos.length - 1; i++) {
-    calculaIndirecto = (equivale[i] / 100) * precio;
+    calculaIndirecto = ((equivale[i] / 100) * precio);
     totalIndirecto.push(calculaIndirecto.toFixed(decimal));
-    toIndirecto += calculaIndirecto;
+
+    su += calculaIndirecto ;
   }
 
-  totalIndirecto.push(parseFloat(toIndirecto.toFixed(decimal)));
+  totalIndirecto.push(su.toFixed(decimal));
+  su=0;
 
   precio2 = totalIndirecto[totalIndirecto.length - 1];
 
@@ -790,6 +814,7 @@ function final() {
     var k = (100 - margenGanancia[i]) / 100;
     var z = x / k;
     sumatoria += z;
+    z = z *Cantidad[i];
     precioVenta2.push(z.toFixed(decimal));
   }
   precioVenta2.push(sumatoria.toFixed(decimal));

@@ -1,8 +1,5 @@
 import  {useState} from 'react';
-
 import {obtenPartidasUnicas} from "./OperacionesAM";
-
-
 
 export let dataPartida = [];
 export let dataCategoria = [];
@@ -11,13 +8,6 @@ export let dataIndirectos =  [];
 export let dataFinanciamiento =  [];
 export let dataPorcentajes =  [];
 export let dataPorcentajesC =  [];
-
-
-
-
-
-
-
 export let dol = 0;
 
 
@@ -38,7 +28,7 @@ export const Partida_catalogo = () => {
       setPorcentajesPartidas(pPar);  
       dataPorcentajes = pPar;  
       //am_cantidad: 1      am_desc_cliente: 0      am_descuento_fabrica: 0       am_margen_ganancia: 32
-       // console.log('Data Porcentajes Partidas',   dataPorcentajes);
+/*        console.log('Data Porcentajes Partidas',   dataPorcentajes); */
         obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
 
     };
@@ -57,7 +47,7 @@ export const Partida_catalogo = () => {
         setDivisaProy(pDiv);   
         dolar = pDiv;
         obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
-       console.log("FUNCIONANDO   =  N  , " , dolar)
+    /*    console.log("FUNCIONANDO   =  N  , " , dolar) */
     };
 
 
@@ -75,7 +65,7 @@ export const Partida_catalogo = () => {
          dataFinanciamiento  = dF;
          obtenPartidasUnicas(dataPartida, dataCategoria, dolar , dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  ,  dataFinanciamiento) ;
 
-    /*      console.log(' Datos financiamineto xxxx  ',dF);
+    /*      console.log(' Datos financiamineto  ',dF);
 
  */
          
@@ -86,6 +76,8 @@ export const Partida_catalogo = () => {
             setotalesPartidas1(tP);
              dataPartida = tP ;    
              obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  , dataFinanciamiento );
+          
+          console.log("Datos de Partida"  , dataPartida);
             };
 
 
@@ -101,7 +93,7 @@ export const Partida_catalogo = () => {
             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes    );
               
 
-            console.log("verificar ",dataCategoria)
+ /*         console.log("verificar ",dataCategoria) */    
     
             };
 

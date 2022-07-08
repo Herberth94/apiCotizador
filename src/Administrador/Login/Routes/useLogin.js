@@ -29,7 +29,7 @@ export const useLogin = () => {
         // el URL se tiene que cambiar por la ruta donde ira alojado la aplicación
         const respuesta = await axios.post( url + '/api/cotizador/login',data);
         const send2= respuesta.data;
-        console.log(send2)
+       /*  console.log(send2) */
         alert(send2.msg)
         cookies.set('id_usuario', send2.id_usuario , {path:"/"});
         cookies.set('rol', send2.rol_nombre, {path:"/"});
@@ -49,7 +49,8 @@ export const useLogin = () => {
         }else{
             event.preventDefault();
             //guardado de datos
-             event.target.reset();
+          
+
         }
      
       

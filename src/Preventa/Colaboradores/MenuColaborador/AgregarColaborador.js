@@ -174,7 +174,7 @@ function Colaborador() {
         <section className="card-body">
 
           <h2 >
-            <span>Agregrar Colaborador</span>
+            <span>Agregar Colaborador</span>
           </h2>
           <label htmlFor="user" className=" label">
             Correo del Colaborador
@@ -230,7 +230,7 @@ function Colaborador() {
           />
 
           <div className="boton-login">
-            <button className="login" onClick={(event) => { Send(); event.preventDefault() }}>
+            <button className="btn-login" onClick={(event) => { Send(); event.preventDefault() }}>
               <span>Agregar al Proyecto</span>
             </button>
           </div>
