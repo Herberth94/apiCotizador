@@ -138,7 +138,7 @@ export const CrudProveedores = (props) => {
                 <Animaciones  mytext="Administración  de Proveedores"/>
             </div>
             {/*===================     Tabla Proveedores   ========================*/}
-            <Table >
+            <Table    id = "daTable"  >
                 <Thead>
 
                 {/* <tr className="titulo-tabla-usuarios">

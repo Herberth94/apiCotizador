@@ -93,7 +93,7 @@ export const CrudClientes = (props) => {
 
             <form>
                 {/*===================     Tabla Clientes   ========================*/}
-                <Table >
+                <Table    id = "daTable"   >
                     <Thead>
 
 

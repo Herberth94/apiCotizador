@@ -10,6 +10,7 @@ import Login from './Administrador/Login/Login';
 import Footer from './Componentes/Footer';
 //============ Rutas Private Públicas ============
 import PublicRoutes from "./Routes/PublicRoutes";
+import Direccion from "./Routes/ValidaDireccion";
 
 //============ Rutas Private Públicas ============
 //============ Rutas Private Administrador ============
@@ -92,58 +93,39 @@ function App() {
                                         {/*Administrador*/}
               {/* ======================================================  */} 
 
-        <Administrador path="/" component={MenuAdministrador}  />            
-        <Administrador exact path ="/" component={CambioContraseña} />
+        <Direccion path="/" component={MenuAdministrador}  />            
+        <Direccion exact path ="/" component={CambioContraseña} />
   
 
          
-        <Administrador exact path="/calculadora" component={CalculaDescuento} />
-        <Administrador  path="/documentacion" component={MenuHeramientas} />
-        <Administrador exact path="/plantilla-excel" component={NuevoProyectoExcel} />
-        <Administrador exact path="/continuarP-excel" component={ContinuarPCE}/>
-
+        <Direccion exact path="/calculadora" component={CalculaDescuento} />
+        <Direccion  path="/documentacion" component={MenuHeramientas} />
+        <Direccion exact path="/plantilla-excel" component={NuevoProyectoExcel} />
+        <Direccion exact path="/continuarP-excel" component={ContinuarPCE}/>
         {/* <Administrador exact path="/" component={CambioContraseña} /> */}
-        
-        <Administrador exact path="/registrar-usuarios" component={RegistrarUsuarios} />
-        <Administrador exact path="/registrar-clientes" component={RegistrarClientes} />        
-        <Administrador exact path="/registrar-proveedores" component={RegistrarProveedor} />
-        <Administrador exact path="/registrar-marcas" component={RegistrarMarcas} />
-        <Administrador exact path="/registrar-colaboradores" component={AgregarColaborador} />
-
-
-        <Administrador exact path="/administrar-usuarios" component={AdministrarUsuarios} />
-        <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />        
-        <Administrador exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
-        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores   } />
-        <Administrador exact path="/administrar-asignaciones" component={AdministrarColaboradoresVenta}   />
-
-
-
-
-        <Administrador exact path="/asignar-proyectos" component={AsignarProyecto} />
-      
-
+        <Direccion exact path="/registrar-usuarios" component={RegistrarUsuarios} />
+        <Direccion exact path="/registrar-clientes" component={RegistrarClientes} />        
+        <Direccion exact path="/registrar-proveedores" component={RegistrarProveedor} />
+        <Direccion exact path="/registrar-marcas" component={RegistrarMarcas} />
+        <Direccion exact path="/registrar-colaboradores" component={AgregarColaborador} />
+        <Direccion exact path="/administrar-usuarios" component={AdministrarUsuarios} />
+        <Direccion exact path="/administrar-clientes" component={AdministrarClientes} />        
+        <Direccion exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
+        <Direccion exact path="/administrar-colaboradores" component={AdministrarColaboradores   } />
+        <Direccion exact path="/administrar-asignaciones" component={AdministrarColaboradoresVenta}   />
+        <Direccion exact path="/asignar-proyectos" component={AsignarProyecto} />
 {/* /////////////Preventa */}
-        <Administrador exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
-        <Administrador exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
-        <Administrador exact path="/resumen-proyecto" component={Proyectos } /> 
-   
-   
- 
-   
- 
-
+        <Direccion exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
+        <Direccion exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
+        <Direccion exact path="/resumen-proyecto" component={Proyectos } /> 
 {/* /////////////Ventas */}
-
-        <Administrador exact path="/divisa" component={Divisa} /> 
-        <Administrador exact path="/costos-indirectos" component={BuscadorInteligente} /> 
-        <Administrador exact path="/imprimir-propuesta" component={ BuscadorInteligente3} /> 
-        <Administrador exact path="/administrar-propuesta" component={ BuscadorInteligente4} />
-        <Administrador exact path="/resumen-am" component={ResumenAM} /> 
-
-
-        <Administrador exact path="/resumen" component={BuscadorInteligente2} /> 
-        <Administrador exact path="/registrar-financiamiento" component={BuscadorProyectoFinanciamiento} />
+        <Direccion exact path="/divisa" component={Divisa} /> 
+        <Direccion exact path="/costos-indirectos" component={BuscadorInteligente} /> 
+        <Direccion exact path="/imprimir-propuesta" component={ BuscadorInteligente3} /> 
+        <Direccion exact path="/administrar-propuesta" component={ BuscadorInteligente4} />
+        <Direccion exact path="/resumen-am" component={ResumenAM} /> 
+        <Direccion exact path="/resumen" component={BuscadorInteligente2} /> 
+        <Direccion exact path="/registrar-financiamiento" component={BuscadorProyectoFinanciamiento} />
       
 
 
@@ -200,14 +182,11 @@ function App() {
 
         <Venta  exact path="/administrar-clientes" component={AdministrarClientes} />        
         <Venta  exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
-
-                  
+         
          {/* AM*/}
         <Venta exact path="/divisa" component={Divisa} /> 
         <Venta exact path="/resumen-am" component={ResumenAM} /> 
         <Venta exact path="/costos-indirectos" component={BuscadorInteligente} /> 
-       
-         
          {/* proyectos*/}
         <Venta  exact path="/imprimir-propuesta" component={ BuscadorInteligente3} /> 
         <Venta  exact path="/administrar-propuesta" component={ BuscadorInteligente4} />
@@ -215,9 +194,47 @@ function App() {
        {/* proporcionalidad */}
         <Venta  exact path="/resumen" component={BuscadorInteligente2} /> 
         <Venta  exact path="/registrar-financiamiento" component={BuscadorProyectoFinanciamiento} />
-
-
         <Venta  exact path="/resumen-proyecto" component={MenuResumenBom } />
+
+
+
+        
+
+
+
+        <Administrador path="/" component={MenuPreventa}  />            
+        <Administrador exact path ="/" component={CambioContraseña} />
+  
+        <Administrador exact path="/calculadora" component={CalculaDescuento} />
+        <Administrador  path="/documentacion" component={MenuHeramientas} />
+        <Administrador exact path="/plantilla-excel" component={NuevoProyectoExcel} />
+        <Administrador exact path="/continuarP-excel" component={ContinuarPCE}/>
+
+        {/* <Administrador exact path="/" component={CambioContraseña} /> */}
+        
+        <Administrador exact path="/registrar-usuarios" component={RegistrarUsuarios} />
+        <Administrador exact path="/registrar-clientes" component={RegistrarClientes} />        
+        <Administrador exact path="/registrar-proveedores" component={RegistrarProveedor} />
+        <Administrador exact path="/registrar-marcas" component={RegistrarMarcas} />
+        <Administrador exact path="/registrar-colaboradores" component={AgregarColaborador} />
+
+
+        <Administrador exact path="/administrar-usuarios" component={AdministrarUsuarios} />
+        <Administrador exact path="/administrar-clientes" component={AdministrarClientes} />        
+        <Administrador exact path="/administrar-proveedores-marcas" component={AdministrarProveedor} />
+        <Administrador exact path="/administrar-colaboradores" component={AdministrarColaboradores   } />
+        <Administrador exact path="/administrar-asignaciones" component={AdministrarColaboradoresVenta}   />
+
+
+
+
+        <Administrador exact path="/asignar-proyectos" component={AsignarProyecto} />
+      
+
+{/* /////////////Preventa */}
+        <Administrador exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
+        <Administrador exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
+        <Administrador exact path="/resumen-proyecto" component={Proyectos } /> 
       
       
 

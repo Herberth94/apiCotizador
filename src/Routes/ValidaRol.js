@@ -1,9 +1,6 @@
 import React from "react";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
-export let authAdmin1;
-export let authPreventa1;
-export let authVenta1;
 export let i = "";
 export let validator = cookies.get('rol');
 /* export let validator = 'administrador';  */
@@ -19,7 +16,9 @@ export function foo() {
         i = "preventa";
     } else if (validator === "venta") {
         i = "venta";
-    } else {
+    } else if (validator === "direccion") {
+        i = "direccion";
+    }else {
         i = "null";
 
     }
@@ -36,8 +35,7 @@ export default class ValidaUsuario extends React.Component {
         if(this.state.rol[0]=== "admin"){
          //   console.log("soy admin");
 
-            authAdmin1 =false;
-
+         
             return(
                 <div>
                     <h1>Hola Admin</h1>
@@ -45,7 +43,7 @@ export default class ValidaUsuario extends React.Component {
             )
         }else if  (this.state.rol[0]=== "preventa"){
         //    console.log("Soy Preventa");
-            authPreventa1=true;
+       
             return(
                 <div>
                     <h1>Hola Preventa</h1>
@@ -53,13 +51,24 @@ export default class ValidaUsuario extends React.Component {
             )
         }else if  (this.state.rol[0]=== "venta"){
          //   console.log("Soy de Ventas");
-            authVenta1=true;
+          
             return(
                 <div>
                     <h1>Hola Ventas</h1>
                 </div>
             )
-        }else{
+        }else if  (this.state.rol[0]=== "direccion"){
+         console.log("Soy de Dirección");
+              
+               return(
+                   <div>
+                       <h1>Hola Direccion</h1>
+                
+                   </div>
+               )
+           }
+        
+        else{
             console.log("ERROR");
             return(
                 <div>

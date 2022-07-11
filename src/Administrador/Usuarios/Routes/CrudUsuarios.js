@@ -119,6 +119,7 @@ export const CrudUsuarios = (props) => {
                     disabled={enable[key]}
                   >
                     <option value={4}>------</option>
+                    <option value={5}>Dirección</option>
                     <option value={1}>Administrador</option>
                     <option value={2}>Preventa</option>
                     <option value={3}>Venta</option>

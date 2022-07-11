@@ -45,7 +45,7 @@ function PTN_BOM() {
       <Animaciones mytext=" Cotizaciones " />
 
       {/*========================== Tabla  Categorias ==========================*/}
-      <Table responsive id="nombreDiv">
+      <Table  >
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">

@@ -30,7 +30,7 @@ function Select(props) {
       if( show2 == true){ 
         swal({
           title: "Prorrateo",
-          text: "Nota: Para Finalizar el Proyecto sin prorrateo no agregue  productis ni servicios y dar click en el botón  Terminar Proyecto. ",
+          text: "Nota: Para Finalizar el Proyecto sin prorrateo No agregue productos ni servicios y dar click en el botón  <Terminar Proyecto>. ",
           icon: "warning",
           button: "Cerrar"
       

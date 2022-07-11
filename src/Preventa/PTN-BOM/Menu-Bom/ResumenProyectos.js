@@ -41,7 +41,7 @@ function Proyectos() {
     // Función que realiza la consulta a la tabla proyecto
     const getProyectos = async () => {
         try{
-            if(validatorrol === "administrador"){
+            if(validatorrol === "direccion"){
                 const resProy = await axios.get(url +'/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);

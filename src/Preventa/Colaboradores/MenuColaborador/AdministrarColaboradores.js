@@ -43,7 +43,7 @@ function AdministrarColaboradores(props) {
   // Función que realiza la consulta a la tabla proyectos 
   const getProyectos = async () => {
     try{
-      if(validatorrol === "administrador"){
+      if(validatorrol === "direccion"){
         const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
         setListaProyectos(resProy.data.data);
         setSuggestions(resProy.data.data);
@@ -136,12 +136,10 @@ function AdministrarColaboradores(props) {
   return (
     <div className="contenido-marvilop">
    
-      <Animaciones  mytext="Administrar Colaboradores"/>
+      <Animaciones  mytext="Administrar Colaboradores "/>
       <div className="table-responsive">
 
-        <div className = "buscador-inteligente">
-
- 
+ {/*        <div className = "buscador-inteligente">
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" 
                     type="search" 
@@ -154,33 +152,11 @@ function AdministrarColaboradores(props) {
                     />
 
                 </form>
-
-     {/*    <Table  >
-          <Thead>
-            <Tr className="titulo-tabla-usuarios">
-              <Th className="ocultar">Clave</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Tr className="">
-              <Td className =  "busqueda">
-                  <input className="agregar"
-                  type="text"
-                  name="proyecto_clave"
-                  onChange={e => onChangeTextClaveP(e.target.value)}
-                  value={claveP}
-                  placeholder=" 🔍︎Búsqueda por clave del proyecto" />
-              </Td>
-            </Tr>
-          </Tbody>
-        </Table> */}
-
-
-        </div>
+        </div> */}
         {/****************************Lista de los Proyectos Creados ****************************************/}
         {/*============= Titulo Animación =============*/}
      
-        <Table >
+        <Table id = "daTable" >
             <Thead>
 
    {/*             <tr className="titulo-tabla-usuarios">
