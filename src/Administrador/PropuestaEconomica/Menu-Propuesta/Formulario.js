@@ -7,6 +7,7 @@ import ModalPartida from './ModalPartida';
 import "../css/PropuestaEconomica.css"
 import {name_cliente  , clave_p , descripcionGeneral }from "../../../Ventas/Operaciones/OperacionesAM";
 import {name_encargado, cargo , nombreP , fecha} from './ExportarPDF';
+import ExportExcel from './ExportExcel';
 let validaOperacion = false;
 export let datos ={}
 export let datos2 =[];
@@ -64,13 +65,12 @@ function Formulario() {
       
     }
     datos2=descripcionGeneral
-    console.log(datos);
+   // console.log(datos);
     setTimeout(function(){
       setshow(false);
    
-  }, 3000);
-  
-  }
+  }, 5000);
+    }
   
   const [modalShow, setModalShow] = useState(false);
 
@@ -199,6 +199,8 @@ function Formulario() {
 
 
 { show ? <ExportarPDF/> : ''}
+<p></p>
+{show ? <ExportExcel/>: ''}
 
 </div>
     </div>
