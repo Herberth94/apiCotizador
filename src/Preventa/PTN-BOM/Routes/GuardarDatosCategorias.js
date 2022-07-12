@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import {url,url2} from "../../../Componentes/Ocultar";
 import { pEstatus1 } from "../Menu-Bom/ContinuarProyecto";
 import { hoy } from "../Menu-Bom/NuevoProyecto";
+import swal from "sweetalert"
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
@@ -124,7 +125,7 @@ export const InsertDatosCats = () => {
         }
     }
 
-    async function finalizarProy (){
+    async function finalizarProy (clave){
         var ListaProyectos = {
             proyecto_id:'',
             proyecto_clave:'',
@@ -154,16 +155,28 @@ export const InsertDatosCats = () => {
                 ListaProyectos = resGetProyectos.data.data.pop();
                 proyectoId.proyecto_id = ListaProyectos.proyecto_id;
 
-                if(pId !== proyectoId.proyecto_id && pId !== ''){
+                if(pId !== undefined && pId !== ''){
                     await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${pId}`, dataFM);
                     await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${pId}`,dataEstatus);
-                    alert('Se finalizó el proyecto correctamente');
-                    alert('El proyecto entro al estatus: En revisón');
+                    swal({
+                        title:"Finalizar proyecto",
+                        text: "Se finalizó el proyecto correctamente\n El proyecto entro al estatus: En revisón",
+                        icon: "success",
+                        button: "Cerrar" 
+                    })
+                    // alert('Se finalizó el proyecto correctamente');
+                    // alert('El proyecto entro al estatus: En revisón');
                 }else{
-                    await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${proyectoId.proyecto_id}`, dataFM);
-                    await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${proyectoId.proyecto_id}`,dataEstatus);
-                    alert('Se finalizó el proyecto correctamente');
-                    alert('El proyecto entro al estatus: En revisón');
+                    await axios.put(url2 +`/api/cotizador/proyecto/updateFM/${clave}`, dataFM);
+                    await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${clave}`,dataEstatus);
+                    swal({
+                        title:"Finalizar proyecto",
+                        text: "Se finalizó el proyecto correctamente\n El proyecto entro al estatus: En revisón",
+                        icon: "success",
+                        button: "Cerrar" 
+                    })
+                    // alert('Se finalizó el proyecto correctamente');
+                    // alert('El proyecto entro al estatus: En revisón');
                 }
 
                 if(pEstatus1 === 'En revision'){
@@ -173,7 +186,7 @@ export const InsertDatosCats = () => {
                 }else if(pEstatus1 === 'Rechazado'){
                     //alert('El proyecto no puede ser finalizado nuevamente')
                 }else{
-                    if(pId !== proyectoId.proyecto_id && pId !== ''){
+                    if(pId !== undefined && pId !== ''){
                         //Inserción de estatus al proyecto
                         
                         /*=============== Inserción de costos indirectos ===============*/
@@ -199,22 +212,22 @@ export const InsertDatosCats = () => {
                         //Inserción de estatus al proyecto
                         
                         /*=============== Inserción de costos indirectos ===============*/
-                        await axios.post(url2 + `/api/cotizador/ci/agregar/1/2/${proyectoId.proyecto_id}`);
-                        await axios.post(url2 + `/api/cotizador/ci/agregar/2/1/${proyectoId.proyecto_id}`);
-                        await axios.post(url2 + `/api/cotizador/ci/agregar/3/5/${proyectoId.proyecto_id}`);
-                        await axios.post(url2 + `/api/cotizador/ci/agregar/4/1/${proyectoId.proyecto_id}`);
-                        await axios.post(url2 + `/api/cotizador/ci/agregar/5/4/${proyectoId.proyecto_id}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/1/2/${clave}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/2/1/${clave}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/3/5/${clave}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/4/1/${clave}`);
+                        await axios.post(url2 + `/api/cotizador/ci/agregar/5/4/${clave}`);
                         /*==============================================================*/
 
                         /*=============== Inserción de datos AM de las categorías ===============*/
-                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/1`);
-                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/2`);
-                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/3`);
-                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${proyectoId.proyecto_id}/4`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${clave}/1`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${clave}/2`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${clave}/3`);
+                        // await axios.post(url2 + `/api/cotizador/am/AgregarAMCategorias/${clave}/4`);
                         /*=======================================================================*/
 
                         /*=============== Inserción de datos de proporcionalidad ===============*/
-                        await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${proyectoId.proyecto_id}`);
+                        await axios.post(url2 + `/api/cotizador/proporcionalidad/insert/${clave}`);
                         /*======================================================================*/
                         // alert('Se finalizó el proyecto correctamente');
                         // alert('El proyecto entro al estatus: En revisón');

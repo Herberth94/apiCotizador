@@ -16,7 +16,7 @@ import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 import { ArrowUpward } from '@material-ui/icons';
-
+import swal from "sweetalert"
 
 
 import DoneIcon from "@material-ui/icons/Done";
@@ -270,7 +270,23 @@ function DatosSp2(props) {
 			"¿Seguro que quieres Finalizar este Proyecto?"
 		  );
 		  if(confirmacion){
-			finalizarProy()
+			if (pEstatus1 === 'En revision') {
+				swal({
+					title:"Finalizar proyecto",
+					text: "No se puede finalizar el Proyecto porque se encuentra En revision",
+					icon: "warning",
+					button: "Cerrar" 
+				  })
+			  } else if (pEstatus1 === 'Aceptado') {
+				swal({
+					title:"Finalizar proyecto",
+					text: "No se puede finalizar el Proyecto porque se encuentra Aceptado",
+					icon: "warning",
+					button: "Cerrar" 
+				})
+			  } else {
+				finalizarProy(props.clave);
+			  }
 		  }else{
 	
 		  }

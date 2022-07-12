@@ -34,45 +34,6 @@ let statusProyecto =0;
 
 
 function NuevoProyecto() {
-
-
-  function validar(){
-    if (datos.proyecto_clave == null   ) {
-      console.log(clienteId.proyecto_id_cliente)
-      swal({
-        title: "Clave de Proyecto",
-        text: "Ingresa la Clave del Proyecto",
-        icon: "warning",
-        button: "Cerrar" 
-      })
-        return false;
-    }   
-    
-    if (datos.proyecto_clave != null   && statusProyecto  !== 1 ) {
-      setShow(!show);
-      enviarDatos(); 
-
-      swal({
-        title: "Proyecto Creado Exitosamente",
-        text: "",
-        icon: "success",
-        button: "Cerrar" 
-      })
-        return false;
-    }
-    
-    
-    else{
-     setShow(!show);
-      swal({
-        title: "Proyecto Iniciado",
-        text: "Proyecto Iniciado, Ya puede agregar Datos",
-        icon: "warning",
-        button: "Cerrar" 
-      })
-    }
-};
-
   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
@@ -181,7 +142,16 @@ function NuevoProyecto() {
     try {
       /*=================================== Inserción de proyecto con condicionante ===================================*/
       //Consulta de los usuarios registrados
-      const resUsers = await axios.get(url + '/api/cotizador/registro');
+
+      let resUsers;
+      let findProy;
+      try {
+        resUsers = await axios.get(url + '/api/cotizador/registro');
+
+      } catch (error) {
+        
+      }
+      
       let i = Object.keys(resUsers.data.reSql);
       i = parseInt(i.length);
 
@@ -193,8 +163,8 @@ function NuevoProyecto() {
         if (validatorid !== '' && parseInt(validatorid) === parseInt(resUsers.data.reSql[cont].id_usuario)) {
           const clave = await axios.post(url2 + `/api/cotizador/proyecto/agregar/${validatorid}`, data);
           setclavep(clave.data.id_proyecto);
-          const claveRespuestaBack = clave.data.msg
-          alert(claveRespuestaBack);
+          //const claveRespuestaBack = clave.data.msg
+          //alert(claveRespuestaBack);
         } else if (validatorid === '' || parseInt(validatorid) !== parseInt(resUsers.data.reSql[cont].id_usuario)) {
           newArray[cont] = true;
         }
@@ -207,8 +177,8 @@ function NuevoProyecto() {
         notFound = true;
       }
       if (notFound) {
-        alert('Error al registrar el Proyecto')
-        alert('El usuario que esta activo no se encuentra registrado');
+        // alert('Error al registrar el Proyecto')
+        // alert('El usuario que esta activo no se encuentra registrado');
       }
       /*===============================================================================================================*/
     } catch (error) {
@@ -235,11 +205,62 @@ function NuevoProyecto() {
                   proyecto_descripcion: '',
                   proyecto_plazo_meses: ''
       })
+      setNombreC('');
     // event.preventDefault()
     // event.target.reset();
 
     }
   }
+
+  function validar(){
+    if (datos.proyecto_clave === '') {
+      //console.log(clienteId.proyecto_id_cliente)
+      swal({
+        title: "Clave de Proyecto",
+        text: "Ingresa la Clave del Proyecto",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+        return false;
+    }   
+    
+    else if(nombreC === '') {
+      //console.log(clienteId.proyecto_id_cliente)
+      swal({
+        title: "Nombre del cliente",
+        text: "Ingresa el nombre del cliente",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+        return false;
+    }else{
+      if (datos.proyecto_clave !== ''  && nombreC !== '' && statusProyecto  !== 1 ) {
+        setShow(!show);
+        enviarDatos(); 
+  
+        swal({
+          title: "Proyecto Creado Exitosamente",
+          text: "",
+          icon: "success",
+          button: "Cerrar" 
+        })
+          return false;
+      }
+      
+      
+      else{
+       //setShow(!show);
+        swal({
+          title: "Error: Nuevo proyecto",
+          text: "Error al crear el proyecto",
+          icon: "warning",
+          button: "Cerrar" 
+        })
+      }
+    }
+
+    
+};
   /*=================================================================================================================*/
 
   return (
