@@ -58,7 +58,8 @@ function NuevoProyecto() {
   const [ListaC, setListaC] = useState([]);
 
   // Almacenamiento del id cliente encontrado en la busqueda
-  var clienteId = { proyecto_id_cliente: '' }
+  //let clienteId = { proyecto_id_cliente: '' }
+  const [idCliente, setIdCliente] = useState();
 
   // Almacenamiento del nombre del cliente a buscar
   const [nombreC, setNombreC] = useState('');
@@ -94,6 +95,14 @@ function NuevoProyecto() {
   // Función que obtiene el nombre del cliente seleccionado
   const onSuggestHandler = (nombreC) => {
     setNombreC(nombreC);
+    let i = Object.keys(ListaC);
+    for (let c = 0; c < i.length; c++) {
+      if (nombreC === ListaC[c].nombre_cliente) {
+        setIdCliente(ListaC[c].cliente_id);
+        //console.log(clienteId);
+      }
+    }
+    //console.log(idCliente)
     setSuggestions([]);
   }
   /*============================================================================================*/
@@ -122,18 +131,11 @@ function NuevoProyecto() {
     statusProyecto =1;
     //console.log(hoy);
     // Obtención del id del cliente que se seleccionó en la búsqueda
-    let i = Object.keys(ListaC);
-    for (let c = 0; c < i.length; c++) {
-      if (nombreC === ListaC[c].nombre_cliente) {
-        clienteId.proyecto_id_cliente = ListaC[c].cliente_id
-        //console.log(clienteId);
-      }
-    }
 
     const data = {
       proyecto_clave: datos.proyecto_clave,
       proyecto_descripcion: datos.proyecto_descripcion,
-      proyecto_id_cliente: clienteId.proyecto_id_cliente,
+      proyecto_id_cliente: idCliente,
       proyecto_fecha_creacion: hoy,
       proyecto_fecha_modificacion: hoy,
       proyecto_plazo_meses: datos.proyecto_plazo_meses
@@ -204,11 +206,10 @@ function NuevoProyecto() {
         ...datos, proyecto_clave: '',
                   proyecto_descripcion: '',
                   proyecto_plazo_meses: ''
-      })
+      });
       setNombreC('');
     // event.preventDefault()
     // event.target.reset();
-
     }
   }
 
@@ -223,7 +224,6 @@ function NuevoProyecto() {
       })
         return false;
     }   
-    
     else if(nombreC === '') {
       //console.log(clienteId.proyecto_id_cliente)
       swal({
@@ -233,8 +233,15 @@ function NuevoProyecto() {
         button: "Cerrar" 
       })
         return false;
+    }else if(idCliente === '' || idCliente === undefined){
+      swal({
+        title: "Nombre del cliente",
+        text: "No se encuentra registrado el cliente ingresado",
+        icon: "warning",
+        button: "Cerrar" 
+      })
     }else{
-      if (datos.proyecto_clave !== ''  && nombreC !== '' && statusProyecto  !== 1 ) {
+      if (datos.proyecto_clave !== ''  && nombreC !== '' && idCliente !== '' && idCliente !== undefined && statusProyecto  !== 1 ) {
         setShow(!show);
         enviarDatos(); 
   
@@ -301,6 +308,7 @@ function NuevoProyecto() {
                   type="text"
                   name="proyecto_clave"
                   onChange={handleInputChange}
+                  value={datos.proyecto_clave}
                   placeholder="Ingrese Clave"
                   required
                   id="clave_proyecto"
@@ -312,6 +320,7 @@ function NuevoProyecto() {
                   type="text"
                   name="proyecto_descripcion"
                   onChange={handleInputChange}
+                  value={datos.proyecto_descripcion}
                   placeholder="Ingrese Descripción"
                 />
               </Td>
@@ -341,6 +350,7 @@ function NuevoProyecto() {
                   type="text"
                   name="proyecto_plazo_meses"
                   onChange={handleInputChange}
+                  value={datos.proyecto_plazo_meses}
                   placeholder="Ingrese Plazo Meses"
                 />
               </Td>
