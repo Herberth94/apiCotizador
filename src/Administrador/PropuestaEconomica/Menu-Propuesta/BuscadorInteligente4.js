@@ -47,7 +47,7 @@ function BuscadorInteligente4() {
     /*== Función que realiza la consulta a la tabla proyectos ==*/
     const getProyectos = async () => {
         try{
-            if(validatorrol === "administrador"){
+            if(validatorrol === "direccion"){
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
@@ -180,7 +180,7 @@ async function consultarTotalesP(id){          //console.log(id)
 
 <div> <Animaciones mytext="Propuestas Económicas" /> </div> 
 
-<div className = "buscador-inteligente">
+{/* <div className = "buscador-inteligente">
 
  
 <form className="form-inline my-2 my-lg-0">
@@ -196,13 +196,10 @@ async function consultarTotalesP(id){          //console.log(id)
 
                 </form>
 
-     
-
-
-        </div>
+        </div> */}
             {/*============= Titulo Animación =============*/}
     
-            <Table>
+            <Table    id = "daTable">
                 <Thead>
 
              

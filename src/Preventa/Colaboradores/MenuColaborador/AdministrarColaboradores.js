@@ -156,7 +156,7 @@ function AdministrarColaboradores(props) {
         {/****************************Lista de los Proyectos Creados ****************************************/}
         {/*============= Titulo Animación =============*/}
      
-        <Table id = "daTable" >
+        <Table    id = "daTable"  >
             <Thead>
 
    {/*             <tr className="titulo-tabla-usuarios">

@@ -122,7 +122,7 @@ function BuscadorProyectoFinanciamiento() {
           <div> <Animaciones mytext="Datos Financiamiento" /> </div> 
             {/*********Búsqueda de Proyectos AM ********/}
 
-            <div className = "buscador-inteligente">
+{/*             <div className = "buscador-inteligente">
 
  
 <form className="form-inline my-2 my-lg-0">
@@ -137,16 +137,12 @@ function BuscadorProyectoFinanciamiento() {
                     />
 
                 </form>
-
-     
-
-
-        </div>
+        </div> */}
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
               {/*   <div> <Animaciones mytext="Proyectos" /> </div>
  */}
-                <Table >
+                <Table    id = "daTable">
                     <Thead>
 
                    

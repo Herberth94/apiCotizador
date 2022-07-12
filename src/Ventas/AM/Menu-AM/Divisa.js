@@ -164,7 +164,7 @@ function Divisa() {
          <div> <Animaciones mytext="Datos Divisa" /> </div> 
                 {/*********Búsqueda de Proyectos AM ********/}
 
-                <div className = "buscador-inteligente">
+{/*                 <div className = "buscador-inteligente">
 
  
 <form className="form-inline my-2 my-lg-0">
@@ -183,13 +183,13 @@ function Divisa() {
      
 
 
-        </div>
+        </div> */}
 
                     {/****************************Lista de los Proyectos Creados ****************************************/}
             {/*  
                 <div> <Animaciones mytext="Proyectos" /> </div>
  */}
-                <Table >
+                <Table   id = "daTable" >
 
         
                     <Thead>

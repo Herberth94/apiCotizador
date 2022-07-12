@@ -168,7 +168,7 @@ function BuscadorInteligente2() {
   return (
     <div className="contenido-marvilop">
             <Animaciones mytext="Resumen Proporcionalidad" />
-            <div className = "buscador-inteligente">
+{/*             <div className = "buscador-inteligente">
 
  
 <form className="form-inline my-2 my-lg-0">
@@ -183,15 +183,11 @@ function BuscadorInteligente2() {
                     />
 
                 </form>
-
-     
-
-
-        </div>
+        </div> */}
                 {/*============= Titulo Animación =============*/}
          {/*        <div> <Animaciones mytext="Proyectos " /> </div> */}
 
-                <Table>
+                <Table    id = "daTable">
                     <Thead>
 
                 

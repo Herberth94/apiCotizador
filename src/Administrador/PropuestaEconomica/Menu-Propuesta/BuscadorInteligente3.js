@@ -40,7 +40,7 @@ function BuscadorInteligente3() {
     // Función que realiza la consulta a la tabla proyecto
     const getProyectos = async () => {
         try{
-            if(validatorrol === "administrador"){
+            if(validatorrol === "direccion"){
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
@@ -187,7 +187,7 @@ function BuscadorInteligente3() {
             <div>
                 <Animaciones mytext="Imprimir Propuesta" />
             </div>
-            <div className = "buscador-inteligente">
+{/*             <div className = "buscador-inteligente">
 
  
 <form className="form-inline my-2 my-lg-0">
@@ -202,15 +202,11 @@ function BuscadorInteligente3() {
                     />
 
                 </form>
-
-     
-
-
-        </div>  
+        </div>  */} 
                 {/*============= Titulo Animación =============*/}
                {/*  <div> <Animaciones mytext="Proyectos " /> </div>
  */}
-            <Table >
+            <Table    id = "daTable">
                 <Thead>
 
                

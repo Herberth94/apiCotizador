@@ -135,9 +135,7 @@ function AdministrarColaboradoresVenta(props) {
       <Animaciones  mytext="Administrar Colaboradores Venta"/>
       <div className="table-responsive">
 
-        <div className = "buscador-inteligente">
-
- 
+{/*         <div className = "buscador-inteligente">
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" 
                     type="search" 
@@ -150,33 +148,11 @@ function AdministrarColaboradoresVenta(props) {
                     />
 
                 </form>
-
-     {/*    <Table  >
-          <Thead>
-            <Tr className="titulo-tabla-usuarios">
-              <Th className="ocultar">Clave</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            <Tr className="">
-              <Td className =  "busqueda">
-                  <input className="agregar"
-                  type="text"
-                  name="proyecto_clave"
-                  onChange={e => onChangeTextClaveP(e.target.value)}
-                  value={claveP}
-                  placeholder=" 🔍︎Búsqueda por clave del proyecto" />
-              </Td>
-            </Tr>
-          </Tbody>
-        </Table> */}
-
-
-        </div>
+        </div> */}
         {/****************************Lista de los Proyectos Creados ****************************************/}
         {/*============= Titulo Animación =============*/}
      
-        <Table >
+        <Table      id = "daTable"  >
             <Thead>
 
    {/*             <tr className="titulo-tabla-usuarios">
@@ -185,7 +161,7 @@ function AdministrarColaboradoresVenta(props) {
                 <th className="titulo-tabla">{props.estado ? "Colaboradores Ventas" : "Colaboradores Preventa"}</th>
               </tr> */}
               <Tr >
-                <Th>ID</Th>
+                <Th>ID n</Th>
                 <Th>Clave</Th>
                 <Th>Descripción</Th>
                 <Th>Cliente</Th>

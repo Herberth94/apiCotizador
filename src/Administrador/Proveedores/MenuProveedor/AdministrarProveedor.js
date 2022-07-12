@@ -73,7 +73,7 @@ function AdministrarProveedor() {
     <div className="">
 
 
-
+{/* 
         <div className="buscador-inteligente">
           <form className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2"
@@ -85,14 +85,9 @@ function AdministrarProveedor() {
               value={nombreProv}
 
             />
-
           </form>
-
-
-
-
         </div>
-
+ */}
 
 
         <div>

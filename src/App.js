@@ -10,6 +10,7 @@ import Login from './Administrador/Login/Login';
 import Footer from './Componentes/Footer';
 //============ Rutas Private Públicas ============
 import PublicRoutes from "./Routes/PublicRoutes";
+import MenuAdministrador from "./Preventa/MenuAdministrador";
 import Direccion from "./Routes/ValidaDireccion";
 
 //============ Rutas Private Públicas ============
@@ -23,7 +24,7 @@ import NuevoProyectoExcel from "./Componentes/Herramientas/NuevoProyectoExcel";
 import Excel from "./Componentes/Herramientas/excel";
 
 //============ Administrador Páginas Private Administrador ============
-import MenuAdministrador from "./Administrador/MenuAdministrador";
+import MenuDireccion from "./Administrador/MenuDireccion";
 import MenuUsuarios from './Administrador/Usuarios/MenuUsuarios/MenuUsuarios';
 import RegistrarUsuarios from "./Administrador/Usuarios/MenuUsuarios/RegistrarUsuarios"
 import RegistrarClientes from "./Administrador/Clientes/MenuClientes/RegistrarClientes"
@@ -93,7 +94,7 @@ function App() {
                                         {/*Administrador*/}
               {/* ======================================================  */} 
 
-        <Direccion path="/" component={MenuAdministrador}  />            
+        <Direccion path="/" component={MenuDireccion}  />            
         <Direccion exact path ="/" component={CambioContraseña} />
   
 
@@ -202,9 +203,8 @@ function App() {
 
 
 
-        <Administrador path="/" component={MenuPreventa}  />            
+        <Administrador path="/" component={ MenuAdministrador}  />            
         <Administrador exact path ="/" component={CambioContraseña} />
-  
         <Administrador exact path="/calculadora" component={CalculaDescuento} />
         <Administrador  path="/documentacion" component={MenuHeramientas} />
         <Administrador exact path="/plantilla-excel" component={NuevoProyectoExcel} />

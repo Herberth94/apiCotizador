@@ -283,7 +283,7 @@ const ResumenAM = () => {
 <div > <Animaciones mytext="Proyectos " /> </div>
 
       {/*       <div> <Animaciones mytext="AM COMPLETO" /> </div> */}
-      <div className = "buscador-inteligente">
+{/*       <div className = "buscador-inteligente">
 
  
 <form className="form-inline my-2 my-lg-0">
@@ -299,14 +299,11 @@ const ResumenAM = () => {
 
                 </form>
 
-     
-
-
-        </div>
+        </div> */}
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
           
-                <Table>
+                <Table    id = "daTable" >
 
                
                     

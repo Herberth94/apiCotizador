@@ -248,7 +248,7 @@ function ContinuarProyecto() {
     <div  className="contenido-marvilop">
       <Animaciones mytext="Continuar proyecto"/>
 
-      <div className = "buscador-inteligente">
+{/*       <div className = "buscador-inteligente">
 
 
 <form className="form-inline my-2 my-lg-0">
@@ -263,9 +263,9 @@ function ContinuarProyecto() {
                     />
 
                 </form>
-
-        </div>
-      <Table >
+                
+        </div> */}
+      <Table   >
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
               <tr className="titulo-tabla-usuarios">
@@ -316,6 +316,8 @@ function ContinuarProyecto() {
                   </td>
               </tr>
           </tbody>
+
+      
       </Table>
       {show8 ? (
         <div></div>
@@ -324,13 +326,7 @@ function ContinuarProyecto() {
         {/*============= Titulo Animación =============*/}
        {/*  <Animaciones mytext="Buscar nn proyectos" />
  */}
-        <div className="busqueda-proyectos">
-      
-
-
     
-
-          </div>
           {/****************************Lista de los Proyectos Creados ****************************************/}
           {/*============= Titulo Animación =============*/}
        {/*    <div>
@@ -338,10 +334,8 @@ function ContinuarProyecto() {
             <Animaciones mytext="Lista de Proyectos" />{" "}
           </div>
  */}
-          <Table>
+          <Table    id = "daTable" >
               <Thead>
-
-
                 <Tr >
                   <Th>ID</Th>
                   <Th>Clave</Th>
@@ -352,7 +346,7 @@ function ContinuarProyecto() {
                   <Th>Estatus</Th>
                   <Th>Plazo Meses</Th>
                   <Th>Continuar</Th>
-                  <Th>Finalizar</Th>
+                  <Th>Finalizar  ok</Th>
                 </Tr>
               </Thead>
                                   
@@ -408,8 +402,7 @@ function ContinuarProyecto() {
               ))}
               </Tbody>          
           </Table>
-          <br/>
-           <br/>
+      
       </div>
 
 

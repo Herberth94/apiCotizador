@@ -3,20 +3,21 @@ import { useState, useEffect } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-
 //Componentes
 import Animaciones from "../../../Componentes/Animaciones";
 import "../css/PTN_BOM.css";
 import DatosPTN from "../Menu-Bom/DatosPTN";
 import { url, url2 } from "../../../Componentes/Ocultar";
+import swal from "sweetalert"
+
 
 import Partida from "./Partida";
+
 
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
 export let validatorid = cookies.get('id_usuario');
-
 //Obtención de la fecha
 const tiempoTranscurrido = Date.now();
 export const hoy = new Date(tiempoTranscurrido);
@@ -27,7 +28,50 @@ export function getIdP2 (proyecto_id){
   //console.log('Ultimo proyecto creado:',pId1);
 }
 
+let statusProyecto =0;
+
+
+
+
 function NuevoProyecto() {
+
+
+  function validar(){
+    if (datos.proyecto_clave == null   ) {
+      console.log(clienteId.proyecto_id_cliente)
+      swal({
+        title: "Clave de Proyecto",
+        text: "Ingresa la Clave del Proyecto",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+        return false;
+    }   
+    
+    if (datos.proyecto_clave != null   && statusProyecto  !== 1 ) {
+      setShow(!show);
+      enviarDatos(); 
+
+      swal({
+        title: "Proyecto Creado Exitosamente",
+        text: "",
+        icon: "success",
+        button: "Cerrar" 
+      })
+        return false;
+    }
+    
+    
+    else{
+     setShow(!show);
+      swal({
+        title: "Proyecto Iniciado",
+        text: "Proyecto Iniciado, Ya puede agregar Datos",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+    }
+};
 
   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
@@ -113,6 +157,8 @@ function NuevoProyecto() {
 
   // Función que realiza la inserción del proyecto
   async function Send() {
+
+    statusProyecto =1;
     //console.log(hoy);
     // Obtención del id del cliente que se seleccionó en la búsqueda
     let i = Object.keys(ListaC);
@@ -166,9 +212,20 @@ function NuevoProyecto() {
       }
       /*===============================================================================================================*/
     } catch (error) {
-      alert('Registro invalido del Proyecto')
+ /*      alert('Registro invalido del Proyecto')
+
+ */
+      swal({
+        title: "Registro del Proyecto",
+        text: "Registr",
+        icon: "error",
+        button: "Cerrar"
+    
+      })
     }
   }
+
+
 
   const enviarDatos = () => {
     if(show === true){
@@ -203,10 +260,6 @@ function NuevoProyecto() {
 
           {/*======================= Titulos Tabla ======================= */}
 
-
-         
-
-
           <Thead>
             <Tr>
               <Th>Clave</Th>
@@ -228,6 +281,8 @@ function NuevoProyecto() {
                   name="proyecto_clave"
                   onChange={handleInputChange}
                   placeholder="Ingrese Clave"
+                  required
+                  id="clave_proyecto"
                 />
               </Td>
               {/*======================= Descripción ======================= */}
@@ -249,6 +304,8 @@ function NuevoProyecto() {
                   onChange={e => onChangeTextCliente(e.target.value)}
                   value={nombreC}
                   placeholder="Ingrese el nombre del cliente"
+                  id="nombre_cliente"
+                  required
                 />
                 {suggestions && suggestions.map((suggestion, i) =>
                   <div key={i} className="selectCliente" onClick={() => onSuggestHandler(suggestion.nombre_cliente)}>
@@ -271,8 +328,9 @@ function NuevoProyecto() {
       className="btn btn-primary modificar" 
       type="submit" 
       onClick={() => { 
-        setShow(!show);
-        enviarDatos();
+       /*  setShow(!show);
+        enviarDatos(); */
+        validar();
       }}>  
       {show ? 'Iniciar' : 'Ocultar Datos'}    
       </button>
