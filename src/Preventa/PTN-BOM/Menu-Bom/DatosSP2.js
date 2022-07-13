@@ -3,10 +3,9 @@ import axios from 'axios';
 import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import Animaciones from '../../../Componentes/Animaciones';
-
 import CreateIcon from "@material-ui/icons/Create";
-
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import swal from "sweetalert";
 
 import {
 	Box, Button, Snackbar,
@@ -463,10 +462,31 @@ function DatosSp2(props) {
 		  }
 
 		if (pEstatus1 === 'En revision') {
-			alert('No se puede continuar el Proyecto porque se encuentra En revision')
+	/* 		alert('No se puede continuar el Proyecto porque se encuentra En revision') */
+
+	swal({
+        title: "Proyecto en Estado de Revisión",
+        text: "No se puede Agregrar datos por que le proyecto se encuentra en estado de revisión",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+        return false;
 		  } else if (pEstatus1 === 'Aceptado') {
-			alert('No se puede continuar el Proyecto porque ha sido Aceptado')
-		  } else {
+			/* alert('No se puede continuar el Proyecto porque ha sido Aceptado') */
+			swal({
+				title: "Proyecto en Estado Aceptado",
+				text: "No se puede Agregrar datos por que le proyecto se encuentra en estado de Aceptado",
+				icon: "warning",
+				button: "Cerrar" 
+			  })
+				return false;
+
+		  } 
+		  
+		  
+		 
+		 
+		  else {
 				
 			try {
 				await axios.put(url2 + `/api/cotizador/proyecto/updateFM/${props.clave}`, dataFM);
@@ -482,6 +502,9 @@ function DatosSp2(props) {
 				console.log(error);            
 			}
 		}
+
+
+		
 	}
 
 	// Function to handle save

@@ -720,12 +720,18 @@ console.log(datosCompletosTotal);
 
   //COSTO PTN
 
-  for (var i = 0; i < listaProv.length; i++) {
-    let m = 1 - desFabrica[i] / 100;
+  let sumT =0;
 
+  for (var i = 0; i < listaProv.length-1; i++) {
+    let m = 1 - desFabrica[i] / 100;
     let x = listaProv[i] * m;
+
+    sumT += x;
     costoPTN.push(x.toFixed(decimal));
   }
+  costoPTN.push(sumT.toFixed(decimal));
+
+  sumT =0;
 
   precio3 = costoPTN[costoPTN.length - 1];
   costoSinIndirectos = precio3;
