@@ -202,44 +202,6 @@ input {
 } */
 
 
-td.editar {
-  background-color: #c0e6f8;
-}
-
-td.verde {
-  background-color: #4ba6f01c;
-}
-
-td.azul {
-  background-color: #9ab1e2b0;
-}
-
-td.Aceptado {
-  background-color: #00f335d7;
-}
-td.En.revision {
-  background-color: #f6fa00d0;
-
-  content: "\2193";
-}
-
-td.Rechazado {
-  background-color: hsla(0, 100%, 65%, 0.795);
-}
-
-td.Rechazado span {
-  color: #ffffff;
-}
-
-td {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
-
-
-
 
 
 

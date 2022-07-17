@@ -184,6 +184,9 @@ function BuscadorInteligente3() {
     return (
         <div className="contenido-marvilop">
 
+<div  className='animacion-table'>
+   
+
             <div>
                 <Animaciones mytext="Imprimir Propuesta" />
             </div>
@@ -219,7 +222,7 @@ function BuscadorInteligente3() {
                         <Th>Fecha Modificación</Th>
                         <Th>Estatus</Th>
                         <Th>Plazo de meses</Th>
-                        <Th>Propuesta</Th>
+                        <Th>Propuesta </Th>
                     </Tr>
                 </Thead>
                                 
@@ -266,6 +269,8 @@ function BuscadorInteligente3() {
                 </div>
             )}
               
+              </div>
+                            
     </div>
   );
 };

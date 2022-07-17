@@ -1,6 +1,3 @@
-//VARIABLE EXTRAIDAS DE LA BD
-
-import { computeHeadingLevel } from "@testing-library/react";
 
 export let comprobacionFinanciamieno = false;
 export let plazo_meses = 0;
@@ -134,9 +131,8 @@ export let totalMensualFinanciamiento = [];
 export let TotalFinanciamiento= [];
 
 
-financiamientoDescripcion.push("xhcjhksjxhckj");
 
-function limpiaDatos() {
+export function limpiaDatos() {
   comprobacionFinanciamieno = false; 
   tMensual =0;
   tMensualIVA =0;

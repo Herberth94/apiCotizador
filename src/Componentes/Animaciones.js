@@ -1,4 +1,9 @@
 import React from 'react'
+import swal from "sweetalert"
+
+
+
+
 
 
 function Animaciones(props) {

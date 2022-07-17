@@ -1,10 +1,73 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import Animaciones from "../../../Componentes/Animaciones";
 import {costosIndirectos, equivale,  totalIndirecto, stringDolar} from "../../Operaciones/OperacionesAM";
 import { EditCI } from '../Routes/ModificarPorcentajesCI';
+import {Partida_catalogo} from '../../Operaciones/totalPartida'
+import { url, url2 } from '../../../Componentes/Ocultar';
+import { pId
+
+} from './BuscadorInteligente';
 
 function CostosIndirectos(props) {
+
+
+    const[pCI, setPCI] = useState([]);
+
+
+    const { 
+        getTotalPar,
+        getPorcentajesPar,
+        getTotalCats,
+        getPorcentajesCats,
+        getDivisaProy,
+        getFinanciamieno,
+        getPorcentajesCI} = Partida_catalogo();
+
+
+        async function consultarTotalesP(id){          //console.log(id)
+            try{
+    
+                getTotalPar('');
+                getPorcentajesPar('');
+                getPorcentajesCats('');
+                getDivisaProy('');
+                getPorcentajesCI('');
+                getFinanciamieno('');
+    
+              
+     
+                const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
+                getTotalPar(resTotPar.data.data);
+    
+                const resAMPar = await axios.get(url2 + `/api/cotizador/am/viewAMPartidas/${id}`);
+                getPorcentajesPar(resAMPar.data.data);
+    
+                const resTotCats = await axios.get(url2 + `/api/cotizador/am/viewTotalesCategorias/${id}`);
+                getTotalCats(resTotCats.data.data);
+    
+                const resAMCats = await axios.get(url2 + `/api/cotizador/am/viewAMCategorias/${id}`);
+                getPorcentajesCats(resAMCats.data.data);
+    
+                const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${id}`);
+                getDivisaProy(dProy.data.data);
+    
+                const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${id}`);
+                getPorcentajesCI(resCI.data.data);
+                setPCI(resCI.data.data);
+    
+                const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
+                getFinanciamieno(resdF.data.data);
+    
+            }catch (error){
+                console.log(error);
+            }//console.log('Categorias',totalCategorias);
+        }
+
+
+
+
+
     /*========================== Mostrar/Ocultar ==========================*/
     const [activar, setActivar] = useState([]);
     const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
@@ -88,7 +151,7 @@ function CostosIndirectos(props) {
                         <Th>Equivale a % </Th>
                         <Th>Total </Th>
                         <Th>Divisa </Th>
-                        <Th>Modificar</Th>
+                        <Th>Modificar </Th>
                         <Th></Th>
  
                     </Tr>
@@ -149,7 +212,16 @@ function CostosIndirectos(props) {
                                     className="sn-boton" type="button"
                                     onClick={()=>{
                                         habilitar(key);
-                                    envioData(key);
+                                        envioData(key);
+                                        
+
+                                        
+                                    consultarTotalesP(pId);
+
+                                        
+
+
+
                                     }}
                                     >
                                         <i className= {textBModificar[key]}  ></i>

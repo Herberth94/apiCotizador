@@ -19,7 +19,8 @@ comprobacionFinanciamieno
 } from "../../Operaciones/OperacionesAM";
 import { EditAM } from '../Routes/ModificarDatosAm';
 import {costosIndirectos, equivale,  totalIndirecto} from "../../Operaciones/OperacionesAM";
-import { TableChartOutlined } from '@material-ui/icons';
+import swal from "sweetalert"
+
 
 
 let y = ["No Aplica"];
@@ -38,8 +39,6 @@ let validatorrol = cookies.get('rol');
 //let validatorrol ="administrador";
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
-
-let ancho =  "200px";
 
 export let estatusProy;
 export let pId;
@@ -280,6 +279,11 @@ const ResumenAM = () => {
     return (
         <div className="contenido-marvilop">
 
+
+
+<div  className='animacion-table'>   
+
+
 <div > <Animaciones mytext="Proyectos " /> </div>
 
       {/*       <div> <Animaciones mytext="AM COMPLETO" /> </div> */}
@@ -302,11 +306,10 @@ const ResumenAM = () => {
         </div> */}
                 {/****************************Lista de los Proyectos Creados ****************************************/}
                 {/*============= Titulo Animación =============*/}
-          
-                <Table    id = "daTable" >
 
-               
-                    
+
+                <Table    id = "daTable">
+          
                     <Thead>                
                         <Tr>
                             <Th>ID</Th>
@@ -350,15 +353,17 @@ const ResumenAM = () => {
                         ))}
                     </Tbody>          
                 </Table>
+
+  </div>   
       
             {show1 ? (
                 <div></div>
             ):(
-                <div className="">
+                <div className="animacion-table">
 
-                    <Animaciones mytext="Resumen Am" />
+                    <Animaciones mytext="Resumen Am " />
                     <div className="">
-                        <Table >
+                        <Table  id="edit"  className="edit">
                             <Thead>                     
                                 <Tr >
                                     <Th>Nombre Partida</Th>
@@ -373,6 +378,7 @@ const ResumenAM = () => {
                                     <Th className="listacl">Costo PTN</Th>
                                     <Th>Margen Directo %</Th>
                                     <Th>Modificar</Th>
+                                    
                                     <Th></Th>
                                 </Tr>
                             </Thead>
@@ -423,6 +429,7 @@ const ResumenAM = () => {
                                     {/*================= Lista prov ==================*/}
                                     <Td  > {"$ "} {listaProv[key]}</Td>
                                     {/*================= Descuento Fabrica ==================*/}    
+                               
                                     <Td  className="editar">
                                         <input
                                         className="input-name"
@@ -437,6 +444,12 @@ const ResumenAM = () => {
                                     <Td >{"$ "} {costoPTN[key]}  </Td>
                                     {/*================= Margen Directo ==================*/}
                                     <Td>{margenDirecto[key] } {" % "}</Td>
+
+
+
+
+
+
                                     {/*================= Botón Modificar ==================*/}
                              {/*        <td>
                                         <button 
@@ -476,6 +489,11 @@ const ResumenAM = () => {
                                       
                                         habilitar(key); 
                                         envioData(key);
+
+
+                                        /* checar si funciona */
+                                        consultarTotalesP(suggestions[key].proyecto_id);
+                                      
                                     }}
                                     >
                                         <i className= {textBModificar[key]}  ></i>
@@ -496,6 +514,12 @@ const ResumenAM = () => {
                                     </button>
                                    
                                 </Td>
+
+
+
+
+                                
+                              
                                 </>
                             )}
 
@@ -508,6 +532,7 @@ const ResumenAM = () => {
 
 
 
+               
 <br/>
 <br/>
                         <div> <Animaciones mytext="Costos Indirectos " /> </div>

@@ -178,6 +178,9 @@ async function consultarTotalesP(id){          //console.log(id)
   return (
     <div className="contenido-marvilop">
 
+
+<div  className='animacion-table'>
+   
 <div> <Animaciones mytext="Propuestas Económicas" /> </div> 
 
 {/* <div className = "buscador-inteligente">
@@ -257,6 +260,8 @@ async function consultarTotalesP(id){          //console.log(id)
                 </div>
             )}
                 
+    </div>
+
     </div>
   )
 }

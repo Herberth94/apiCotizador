@@ -121,7 +121,6 @@ function BuscadorInteligente() {
             getPorcentajesCI(resCI.data.data);
             setPCI(resCI.data.data);
 
-
             const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${id}`);
             getFinanciamieno(resdF.data.data);
 
@@ -171,7 +170,13 @@ function BuscadorInteligente() {
     }
 
   return (
+
     <div className="contenido-marvilop">
+
+
+        <div  className='animacion-table'>
+   
+   
       <div> <Animaciones mytext="Costos Indirectos" /> </div>
 {/*       <div className = "buscador-inteligente">
 <form className="form-inline my-2 my-lg-0">
@@ -220,9 +225,12 @@ function BuscadorInteligente() {
                 <button 
                  className="sn-boton" 
                 onClick={() => {
-                    consultarTotalesP(suggestions[key].proyecto_id);
+           
                     habilitar(key);
                     getEstatusProy(suggestions[key].proyecto_estatus,suggestions[key].proyecto_id);
+
+                   consultarTotalesP(pId);
+
                 }}
                 >
                      <i className=   {textBVer[key]}  ></i>
@@ -247,6 +255,9 @@ function BuscadorInteligente() {
             
 
     </div>
+    </div>
+
+
   )
 }
 

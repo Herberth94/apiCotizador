@@ -160,6 +160,12 @@ function Divisa() {
     /*============================================================================================================*/
   return (
     <div className="contenido-marvilop">
+
+
+        <div  className='animacion-table'> 
+
+
+     
             {/*======================= Titulo Animación =======================*/}
          <div> <Animaciones mytext="Datos Divisa" /> </div> 
                 {/*********Búsqueda de Proyectos AM ********/}
@@ -313,7 +319,7 @@ function Divisa() {
                     </Tbody>          
                 </Table>
           
-
+                </div>
     </div>
   )
 }

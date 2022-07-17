@@ -167,6 +167,12 @@ function BuscadorInteligente2() {
     
   return (
     <div className="contenido-marvilop">
+
+        
+
+
+<div  className='animacion-table'>
+   
             <Animaciones mytext="Resumen Proporcionalidad" />
 {/*             <div className = "buscador-inteligente">
 
@@ -245,6 +251,8 @@ function BuscadorInteligente2() {
                     </div>
                 )}
        
+    </div>
+
     </div>
   )
 }
