@@ -29,9 +29,9 @@ var URLactual = window.location.href;
 
 
 function getProyEstatus(st){
-  console.log('Variable st:',st);
+  //console.log('Variable st:',st);
   pEstatus1 = st;
-  console.log('Variable pEstatus1:',pEstatus1);
+  //console.log('Variable pEstatus1:',pEstatus1);
 }
 
 function ContinuarProyecto() {

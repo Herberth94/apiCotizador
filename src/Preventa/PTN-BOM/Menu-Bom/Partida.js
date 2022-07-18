@@ -3,20 +3,20 @@ import { InsertDatosPartida, pId } from "../Routes/GuardarPartida";
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
 import axios from 'axios';
-import { pId2 } from "./NuevoProyecto";
 import {url2} from '../../../Componentes/Ocultar';
 import Animaciones from '../../../Componentes/Animaciones';
 
 let id;
-function Partida({clave} ) {
+function Partida(props) {
   const { handleInputChangePartida, enviarDatosPartida } = InsertDatosPartida();
 
   const [modalShow, setModalShow] = useState(false);
 
   const [modalShow1, setModalShow1] = useState(true)
   const [proyecto_id, Setproyecto_id] = useState([])
+
   const lista = async (clave) =>{
-    console.log(id);
+    //console.log(id);
     try {
       const respuesta = await axios.get(url2 + `/api/cotizador/proyecto/viewModal/${clave}`);
       Setproyecto_id(respuesta.data.reSql)
@@ -28,10 +28,10 @@ function Partida({clave} ) {
     }
   }
   
-  if(pId2 !== ''){
-    id = pId2;
-  } else{
+  if(pId !== '' && pId !== undefined){
     id = pId;
+  } else{
+    id = props.clave;
   }
   
 

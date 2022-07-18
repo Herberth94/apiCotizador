@@ -80,7 +80,7 @@ function Select(props) {
         <div className="arregla contenido">
 
 
-            <Partida />
+      <Partida clave={props.clave}/>
       {/*     <DatosPTN clave={clavep} /> */}
 
       <DatosSp2   clave={props.clave}/>
