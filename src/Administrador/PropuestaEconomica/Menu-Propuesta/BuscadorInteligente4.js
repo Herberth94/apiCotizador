@@ -17,7 +17,7 @@ let validatorid = cookies.get('id_usuario');
 
 let pId;
 
-function BuscadorInteligente4() {
+export function BuscadorInteligente4() {
 
     const { 
         getTotalPar,
@@ -123,20 +123,15 @@ const habilitar = (key) =>{
     setTextBVer(newArr2);
 }
 
-async function consultarTotalesP(id){          //console.log(id)
-
-
+async function consultarTotalesP(id){     
+         //console.log(id)
     getTotalPar('');
     getPorcentajesPar('');
-
     getTotalCats('');
     getPorcentajesCats('');
-
     getDivisaProy('');
     getPorcentajesCI('');
     getFinanciamieno('');
-
-
 
     try{
         const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
@@ -215,7 +210,7 @@ async function consultarTotalesP(id){          //console.log(id)
                         <Th>Fecha Modificación</Th>
                         <Th>Estatus</Th>
                         <Th>Plazo de meses</Th>
-                        <Th>Propuesta</Th>
+                        <Th>Propuesta </Th>
                     </Tr>
                 </Thead>
                                 

@@ -6,9 +6,7 @@ import { url, url2 } from '../../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
 import {Partida_catalogo} from '../../../Ventas/Operaciones/totalPartida';
 import Formulario from './Formulario';
-import { computeHeadingLevel } from '@testing-library/react';
-
-
+import swal from "sweetalert"
 
 
 
@@ -21,6 +19,23 @@ let validatorid = cookies.get('id_usuario');
 
 let estatus;
 function BuscadorInteligente3() {
+
+
+
+    const MostrarError=()=>{
+
+ 
+        swal({
+          title: "Validación",
+          text: "Solo se puede generar una Propuesta Económica en proyectos aceptados.",
+          icon: "warning",
+          button: "Cerrar"
+      
+        })
+      
+   
+    }
+
     /*========================== Mostrar/Ocultar ==========================*/
     const [show,setShow] = useState([]); 
     const [show2,setShow2] = useState(true); // Resumen AM
@@ -247,7 +262,11 @@ function BuscadorInteligente3() {
                                 consultarTotalesP(suggestions[key].proyecto_id);
                                 habilitar(key);
                             }else{
-                                alert('Solo se puede generar una Propuesta Economica en proyectos aceptados')}
+                                /* alert('Solo se puede generar una Propuesta Economica en proyectos aceptados') */
+                                MostrarError();
+                            }
+                               
+                           
                             } 
                             }}
                             >

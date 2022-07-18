@@ -4,8 +4,27 @@ import { useState } from "react";
 import axios from 'axios';
 import { url2 } from '../../../Componentes/Ocultar';
 import Animaciones from '../../../Componentes/Animaciones';
+import swal from "sweetalert"
+
+
 
 function AdministrarPropuesta(props) {
+
+
+  const MostrarValidacion=()=>{
+
+ 
+      swal({
+        title: "Validación",
+        text: "Se ha Cambiado el Status Exitosamente",
+        icon: "success",
+        button: "Cerrar"
+    
+      })
+  }
+
+
+
   const [show, setShow] = useState(true)
 
   // cambio de estatus en el la base de datos del proyecto seleccionado a validado
@@ -17,8 +36,9 @@ function AdministrarPropuesta(props) {
       console.log(data)
       const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${props.proyId}`, data);
       const send2 = respuesta.data
-      console.log(send2)
-      alert("Estatus del proyecto actualizado")
+ /*      console.log(send2) */
+/*       alert("Estatus del proyecto actualizado") */
+      MostrarValidacion();
     } catch (error) {
       console.log(error)
     }
@@ -31,8 +51,9 @@ function AdministrarPropuesta(props) {
       }
       const respuesta = await axios.put(url2 + `/api/cotizador/proyecto/updateEstatus/${props.proyId}`, data);
       const send2 = respuesta.data
-      console.log(send2)
-      alert("Estatus del proyecto actualizado")
+     /*  console.log(send2) */
+   /*    alert("Estatus del proyecto actualizado") */
+      MostrarValidacion();
     } catch (error) {
       console.log(error)
     }
