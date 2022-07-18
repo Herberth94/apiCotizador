@@ -72,6 +72,7 @@ import MenuVentas from "./Ventas/MenuVentas";
 import MenuResumenBom from "./Ventas/AM/ResumenBOM/MenuResumenBom";
 import { LP } from "./Componentes/Herramientas/ListaProyectos";
 import ContinuarPCE from "./Componentes/Herramientas/ContinuarProyectoCE";
+import MenuValidacion from "./Ventas/AM-Resumen/MenuValidacion";
   
 
 function App() {
@@ -201,7 +202,9 @@ function App() {
         <Venta exact path="/costos-indirectos" component={BuscadorInteligente} /> 
          {/* proyectos*/}
         <Venta  exact path="/imprimir-propuesta" component={ BuscadorInteligente3} /> 
-        <Venta  exact path="/administrar-propuesta" component={ BuscadorInteligente4} />
+
+     {/*    checar */}
+        <Venta  exact path="/administrar-propuesta" component={ MenuValidacion} />
 
        {/* proporcionalidad */}
         <Venta  exact path="/resumen" component={BuscadorInteligente2} /> 
