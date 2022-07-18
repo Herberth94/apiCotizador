@@ -1,14 +1,11 @@
 import React from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import Cookies from "universal-cookie";
-
-
-
 const cookies = new Cookies();
 
 
-function MenuPreventa() {
 
+function MenuPreventa() {
 
     const cierreSesion = () => {
         cookies.remove("id_usuario", { path: "/" });
@@ -16,6 +13,10 @@ function MenuPreventa() {
         cookies.remove('estado_login', { path: "/" });
         window.location.href = "../Login.js";
     };
+
+
+
+
 
     return (
 
@@ -134,11 +135,37 @@ function MenuPreventa() {
                                     >
                                         <NavDropdown.Item href="/nuevo-proyecto">Nuevo proyecto</NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/continuar-proyecto">Continuar Proyecto           
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/resumen-proyecto">Resumen</NavDropdown.Item>
 
+
+
+                             <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Continuar Proyecto"
+                                menuVariant="dark"
+                            >                        
+                                        <NavDropdown.Item href="/mis-proyectos"   > Mis Proyectos</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/proyectos-compartidos"   >Proyectos Compartidos          
+                                    </NavDropdown.Item>
+                            </NavDropdown>
+
+
+
+                            <NavDropdown.Divider />
+
+                            <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Resumen"
+                                menuVariant="dark"
+                            >                        
+                                        <NavDropdown.Item href="/mis-proyectos-r"   > Mis Proyectos</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/proyectos-compartidos-r"   >Proyectos Compartidos          
+                                    </NavDropdown.Item>
+                            </NavDropdown>
+
+                                 
+                            
 
                                     </NavDropdown>
 

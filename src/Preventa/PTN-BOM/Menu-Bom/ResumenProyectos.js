@@ -16,12 +16,23 @@ let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
 
+
+//Obtener URL 
+var URLactual = window.location.href;
+
+
+
 function Proyectos() {
 
     /*========================== Mostrar/Ocultar ==========================*/
     //Condicionales para almacenar datos
     const [show,setShow] = useState(true);//Lista de proyectos del usuario activo
     const [show1,setShow1] = useState(true);//Lista de proyectos en los que colabora el usuario activo
+
+
+
+
+
 
     const [show2,setShow2] = useState(true);//Tabla de proyectos
     /*=====================================================================*/
@@ -46,11 +57,11 @@ function Proyectos() {
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
             }else{
-                if(show === false){
+                if(URLactual === "http://localhost:3000/mis-proyectos-r"   ||  URLactual === "10.200.10.9:3000/mis-proyectos-r"     ){
                     const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                     setListaProyectos(resProy.data.data);
                     setSuggestions(resProy.data.data);
-                  }else if(show1 === false){
+                  }else if(URLactual === "http://localhost:3000/proyectos-compartidos-r"        ||  URLactual === "10.200.10.9:3000/proyectos-compartidos-r"){
                     const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
                     setListaProyectos(resProy.data.data);
                     setSuggestions(resProy.data.data);
@@ -127,61 +138,8 @@ function Proyectos() {
 
 
         </div>
-            <Table >
-                {/*========================== Titulos Tabla ==========================*/}
-                <thead>
-                    <tr className="titulo-tabla-usuarios">
-                        <th className='ocultar'>Mis Proyectos</th>
-                        <th className='ocultar'>Proyectos en Colaboración</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className="">
-                        {/*========================== Divisa ==========================*/}
-                        <td>
-                            <button
-                            className="btn btn-primary Mod2"
-                            type="button"
-                            onClick={() => {
-                            setShow(!show);
-                            setShow1(true);
-                            show ? setShow2(false):setShow2(true);
-                            }}
-                            >
-                            {" "}
-                            {show ? "Mis Proyectos " : "Ocultar"}{" "}
-                            </button>
-                        </td>
-                        <td>
-                            <button
-                            className="btn btn-primary Mod2"
-                            type="button"
-                            onClick={() => {
-                            setShow1(!show1);
-                            setShow(true);
-                            show1 ? setShow2(false):setShow2(true);
-                            }}
-                            >
-                            {" "}
-                            {show1 ? "Proyectos Compartidos" : "Ocultar"}{" "}
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
-            {show2 ? (
-                <div></div>
-            ):(
-                <div className="">
-                {/*============= Titulo Animación =============*/}
-              {/*   <Animaciones mytext="Buscar proyectos" />
- */}
-                {/*********Búsqueda de Lista de Proyectos por Clave ********/}
 
-
-                <>
-                    {/*=================== Botón Mostrar Lista DIV =====================*/}
-                    <br />
+                   
                     <CrudProyectos
                         suggestionsP={suggestions}
                         clientes={ListaC}
@@ -190,10 +148,10 @@ function Proyectos() {
                         show2={show2}
                         setShow2={setShow2}
                     />    
-                </>
-            </div>
-            )}
-        </div>
+           
+                   </div>
+            
+     
     );
 }
 export default Proyectos

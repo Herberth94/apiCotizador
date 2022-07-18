@@ -298,10 +298,10 @@ export const CrudProyectos = (props) => {
     /*==============================================================================================================*/
     return (
         <div className=''>
-            <Table   id = "daTable"   >
+            <Table    id ="daTable" >
                 <Thead>
                     <Tr >
-                        <Th>ID</Th>
+                        <Th>ID n</Th>
                         <Th>Clave</Th>
                         <Th>Descripción</Th>
                         <Th>Cliente</Th>

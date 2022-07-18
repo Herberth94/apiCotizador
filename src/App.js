@@ -116,9 +116,14 @@ function App() {
         <Direccion exact path="/administrar-asignaciones" component={AdministrarColaboradoresVenta}   />
         <Direccion exact path="/asignar-proyectos" component={AsignarProyecto} />
 {/* /////////////Preventa */}
+
         <Direccion exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
-        <Direccion exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
-        <Direccion exact path="/resumen-proyecto" component={Proyectos } /> 
+        <Direccion exact path="/mis-proyectos" component={ContinuarProyecto } /> 
+        <Direccion exact path="/proyectos-compartidos" component={ContinuarProyecto } /> 
+        <Direccion exact path="/mis-proyectos-r" component={Proyectos } /> 
+        <Direccion exact path="/proyectos-compartidos-r" component={Proyectos } /> 
+
+
 {/* /////////////Ventas */}
         <Direccion exact path="/divisa" component={Divisa} /> 
         <Direccion exact path="/costos-indirectos" component={BuscadorInteligente} /> 
@@ -161,9 +166,15 @@ function App() {
                
                      {/*======== BOM========*/}
         <Preventa exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
-        <Preventa exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
-        <Preventa exact path="/resumen-proyecto" component={Proyectos } /> 
-   
+        <Preventa exact path="/mis-proyectos" component={ContinuarProyecto } /> 
+        <Preventa exact path="/proyectos-compartidos" component={ContinuarProyecto } /> 
+
+
+        <Preventa exact path="/mis-proyectos-r" component={Proyectos } /> 
+        <Preventa exact path="/proyectos-compartidos-r" component={Proyectos } /> 
+
+
+        
    
  
               {/* ======================================================  */}                  
@@ -233,8 +244,12 @@ function App() {
 
 {/* /////////////Preventa */}
         <Administrador exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
-        <Administrador exact path="/continuar-proyecto" component={ContinuarProyecto } /> 
-        <Administrador exact path="/resumen-proyecto" component={Proyectos } /> 
+        <Administrador exact path="/mis-proyectos" component={ContinuarProyecto } />
+        <Administrador exact path="/proyectos-compartidos" component={ContinuarProyecto } />  
+        <Administrador exact path="/mis-proyectos-r" component={Proyectos } /> 
+        <Administrador exact path="/proyectos-compartido-r" component={Proyectos } /> 
+        
+  
       
       
 

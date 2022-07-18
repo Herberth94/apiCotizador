@@ -28,9 +28,9 @@ function MenuAdministrador() {
                                 id="nav-dropdown-dark-example"
                                 title="Home"
                                 menuVariant="dark"
-                                
+
                             >
-                        
+
 
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
@@ -39,16 +39,16 @@ function MenuAdministrador() {
                                 >
                                     <NavDropdown.Item href="/calculadora">Calculadora</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    
+
                                     <NavDropdown
-                                    id="nav-dropdown-dark-example"
-                                    title="Cargar Plantilla Excel"
-                                    menuVariant="dark"
-                                    
+                                        id="nav-dropdown-dark-example"
+                                        title="Cargar Plantilla Excel"
+                                        menuVariant="dark"
+
                                     >
                                         <NavDropdown.Item href="/plantilla-excel">Nuevo Proyecto</NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                    
+
                                         <NavDropdown.Item href="/continuarP-excel">Continuar Proyecto</NavDropdown.Item>
                                     </NavDropdown>
                                     <NavDropdown.Divider />
@@ -68,7 +68,7 @@ function MenuAdministrador() {
                                 menuVariant="dark"
                             >
 
-                              {/*   Registros */}
+                                {/*   Registros */}
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
                                     title="Registros"
@@ -87,42 +87,42 @@ function MenuAdministrador() {
                                 </NavDropdown>
 
 
-                        {/*    Administración */}
+                                {/*    Administración */}
                                 <NavDropdown
-                                id="nav-dropdown-dark-example"
-                                title="Administración"
-                                menuVariant="dark"
-                            >
-                                <NavDropdown.Item href="/administrar-usuarios">Usuarios</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/administrar-clientes">Clientes</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/administrar-proveedores-marcas">Proveedores y Marcas</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/administrar-colaboradores">Colaboradores</NavDropdown.Item>
+                                    id="nav-dropdown-dark-example"
+                                    title="Administración"
+                                    menuVariant="dark"
+                                >
+                                    <NavDropdown.Item href="/administrar-usuarios">Usuarios</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/administrar-clientes">Clientes</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/administrar-proveedores-marcas">Proveedores y Marcas</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/administrar-colaboradores">Colaboradores</NavDropdown.Item>
+                                </NavDropdown>
+
+
+                                {/*    Proyectos*/}
+
+                                <NavDropdown
+                                    id="nav-dropdown-dark-example"
+                                    title="Proyectos"
+                                    menuVariant="dark"
+                                >
+                                    <NavDropdown.Item href="/asignar-proyectos">Asignar Proyecto</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item href="/administrar-asignaciones">Administrar Asignaciones</NavDropdown.Item>
+                                </NavDropdown>
+
+
+
+
                             </NavDropdown>
 
-
-                              {/*    Proyectos*/}
-
-                            <NavDropdown
-                                id="nav-dropdown-dark-example"
-                                title="Proyectos"
-                                menuVariant="dark"
-                            >
-                                <NavDropdown.Item href="/asignar-proyectos">Asignar Proyecto</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="/administrar-asignaciones">Administrar Asignaciones</NavDropdown.Item>
-                            </NavDropdown>
-
-
-
-
-                            </NavDropdown>
-
-                    {/* ======================================================  */}                  
-                                             {/* Preventa */}
-                    {/* ======================================================  */}    
+                            {/* ======================================================  */}
+                            {/* Preventa */}
+                            {/* ======================================================  */}
                             <NavDropdown
                                 id="nav-dropdown-dark-example"
                                 title="Preventa"
@@ -137,24 +137,49 @@ function MenuAdministrador() {
                                     >
                                         <NavDropdown.Item href="/nuevo-proyecto">Nuevo proyecto</NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/continuar-proyecto">Continuar Proyecto           
-                                        </NavDropdown.Item>
+
+
+
+                             <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Continuar Proyecto"
+                                menuVariant="dark"
+                            >                        
+                                        <NavDropdown.Item href="/mis-proyectos"   > Mis Proyectos</NavDropdown.Item>
                                         <NavDropdown.Divider />
-                                        <NavDropdown.Item href="/resumen-proyecto">Resumen</NavDropdown.Item>
-
-
-                                    </NavDropdown>
-
-
+                                        <NavDropdown.Item href="/proyectos-compartidos"   >Proyectos Compartidos          
+                                    </NavDropdown.Item>
                             </NavDropdown>
 
 
 
-                    {/* ======================================================  */}                  
-                                             {/* Venta */}
-                    {/* ======================================================  */} 
+                            <NavDropdown.Divider />
 
-{/* 
+                            <NavDropdown
+                                id="nav-dropdown-dark-example"
+                                title="Resumen"
+                                menuVariant="dark"
+                            >                        
+                                        <NavDropdown.Item href="/mis-proyectos-r"   > Mis Proyectos</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+                                        <NavDropdown.Item href="/proyectos-compartidos-r"   >Proyectos Compartidos          
+                                    </NavDropdown.Item>
+                            </NavDropdown>
+
+                                 
+                            
+
+                                    </NavDropdown>
+
+                                    </NavDropdown>
+
+
+
+                            {/* ======================================================  */}
+                            {/* Venta */}
+                            {/* ======================================================  */}
+
+                            {/* 
 
                             <NavDropdown
                                 id="nav-dropdown-dark-example"

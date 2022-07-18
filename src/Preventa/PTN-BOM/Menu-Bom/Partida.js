@@ -83,7 +83,7 @@ function Partida({clave} ) {
               <Td width={"100px"}>
 
 
-      <button type="button" className="sn-boton" onClick={() => {setModalShow(true);lista (id)}} >
+      <button type="button" className="sn-boton" onClick={() => {setModalShow(true);  lista (id)}} >
         <i class="bi bi-eye-fill"></i>
         </button>
       {modalShow && modalShow1 ?   

@@ -12,6 +12,8 @@ import {InsertDatosPartida} from '../Routes/GuardarPartida';
 import {InsertDatosCats} from '../Routes/GuardarDatosCategorias';
 import {url, url2} from "../../../Componentes/Ocultar";
 
+
+
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
 let validatorrol = cookies.get('rol');
@@ -20,6 +22,11 @@ let validatorid = cookies.get('id_usuario');
 
 export let proyectoIdCont;
 export let pEstatus1;
+
+
+//Obtener URL 
+var URLactual = window.location.href;
+
 
 function getProyEstatus(st){
   console.log('Variable st:',st);
@@ -35,8 +42,11 @@ function ContinuarProyecto() {
   const [show3,setShow3] = useState(true);// Lista de las partidas de un proyecto
   const [show4,setShow4] = useState(true);// Continuar una partida
   const [show5,setShow5] = useState(true);// Categorias/Finalizar proyecto
+
   const [show6,setShow6] = useState(true);//Lista de proyectos del usuario activo
   const [show7,setShow7] = useState(true);//Lista de proyectos en los que colabora el usuario activo
+
+  
   const [show8,setShow8] = useState(true);//Buscador de proyectos
   const [show9,setShow9] = useState([]);
   const [textBVer,setTextBVer] = useState([]);// Texto de los botones de continuar proyecto
@@ -68,14 +78,16 @@ function ContinuarProyecto() {
         setSuggestions(resProy.data.data);
         
     }else{
-        if(show6 === false){
+        if(URLactual === "http://localhost:3000/mis-proyectos"   ||  URLactual === "10.200.10.9:3000/mis-proyectos"        ){
           const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
           setListaProyectos(resProy.data.data);
           setSuggestions(resProy.data.data);
-        }else if(show7 === false){
+
+        }else if(URLactual === "http://localhost:3000/proyectos-compartidos"        ||  URLactual === "10.200.10.9:3000/proyectos-compartidos" ){
           const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
           setListaProyectos(resProy.data.data);
           setSuggestions(resProy.data.data);
+
           //console.log(listaProyectos)
         }
     }
@@ -246,95 +258,14 @@ function ContinuarProyecto() {
   return (
     /*==================== Continuar Proyecto ====================*/
     <div  className="contenido-marvilop">
-      <Animaciones mytext="Continuar proyecto"/>
-
-{/*       <div className = "buscador-inteligente">
+      <Animaciones mytext="Continuar proyectos"/>
 
 
-<form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" 
-                    type="search" 
-                    placeholder="Buscar por Clave 🔎" 
-                    aria-label="Search"
-                    name="proyecto_clave"
-                    onChange={e => onChangeTextClaveP(e.target.value)}
-                    value={claveP}
-                    
-                    />
 
-                </form>
-                
-        </div> */}
-      <Table   >
-          {/*========================== Titulos Tabla ==========================*/}
-          <thead>
-              <tr className="titulo-tabla-usuarios">
-                  <th className= "ocultar">Mis Proyectos</th>
-                  <th className = "ocultar">Otros Proyectos</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr className="">
-                  {/*========================== Divisa ==========================*/}
-                  <td>
-                      <button
-                      className="btn btn-primary modificar"
-                      type="button"
-                      onClick={() => {
-                      setShow6(!show6);
-                      setShow7(true);
-                      setShow2(true);
-                      setShow(true);
-                      setShow3(true);
-                      setShow4(true);
-                      setShow5(true);
-                      show6 ? setShow8(false):setShow8(true);
-                      }}
-                      >
-                      {" "}
-                      {show6 ? "Mis Proyectos" : "Ocultar"}{" "}
-                      </button>
-                  </td>
-                  <td>
-                      <button
-                      className="btn btn-primary modificar"
-                      type="button"
-                      onClick={() => {
-                      setShow7(!show7);
-                      setShow6(true);
-                      setShow2(true);
-                      setShow(true);
-                      setShow3(true);
-                      setShow4(true);
-                      setShow5(true);
-                      show7 ? setShow8(false):setShow8(true);
-                      }}
-                      >
-                      {" "}
-                      {show7 ? "Proyectos Compartidos" : "Ocultar"}{" "}
-                      </button>
-                  </td>
-              </tr>
-          </tbody>
 
-      
-      </Table>
-      {show8 ? (
-        <div></div>
-      ):(
       <div className="table-responsive">
-        {/*============= Titulo Animación =============*/}
-       {/*  <Animaciones mytext="Buscar nn proyectos" />
- */}
-    
-          {/****************************Lista de los Proyectos Creados ****************************************/}
-          {/*============= Titulo Animación =============*/}
-       {/*    <div>
-            {" "}
-            <Animaciones mytext="Lista de Proyectos" />{" "}
-          </div>
- */}
-          <Table    id = "daTable" >
+
+          <Table    id ="daTable" >
               <Thead>
                 <Tr >
                   <Th>ID</Th>
@@ -346,7 +277,7 @@ function ContinuarProyecto() {
                   <Th>Estatus</Th>
                   <Th>Plazo Meses</Th>
                   <Th>Continuar</Th>
-                  <Th>Finalizar  ok</Th>
+                  <Th>Finalizar</Th>
                 </Tr>
               </Thead>
                                   
@@ -406,7 +337,11 @@ function ContinuarProyecto() {
       </div>
 
 
-      )}
+
+
+
+
+
 
               {/* <button className="btn btn-primary modificar" type="button" onClick={() => { setShow(!show) ;   }}>  {show ? 'Continuar' : 'Ocultar Proyecto'}    </button> */}
       {show ? (
