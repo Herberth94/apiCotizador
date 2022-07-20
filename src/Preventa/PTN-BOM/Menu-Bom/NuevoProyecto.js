@@ -124,7 +124,7 @@ function NuevoProyecto() {
     if(state === true){
       swal({
         title: "Listo",
-        text: "Proyecto resgistrado correctamnete",
+        text: "Proyecto resgistrado correctamente",
         icon: "success",
         button: "Cerrar" 
       })

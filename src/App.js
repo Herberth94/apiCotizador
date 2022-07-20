@@ -253,7 +253,7 @@ function App() {
         <Administrador exact path="/mis-proyectos" component={ContinuarProyecto } />
         <Administrador exact path="/proyectos-compartidos" component={ContinuarProyecto } />  
         <Administrador exact path="/mis-proyectos-r" component={Proyectos } /> 
-        <Administrador exact path="/proyectos-compartido-r" component={Proyectos } /> 
+        <Administrador exact path="/proyectos-compartidos-r" component={Proyectos } /> 
         
   
       
