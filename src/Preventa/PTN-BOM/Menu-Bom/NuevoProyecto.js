@@ -11,8 +11,6 @@ import { url, url2 } from "../../../Componentes/Ocultar";
 import swal from "sweetalert"
 
 
-import Partida from "./Partida";
-
 
 
 //Obtención del id del usuario con sesión activa
@@ -189,7 +187,7 @@ function NuevoProyecto() {
  */
       swal({
         title: "Registro del Proyecto",
-        text: "Registr",
+        text: "Registro invalido del Proyecto",
         icon: "error",
         button: "Cerrar"
     

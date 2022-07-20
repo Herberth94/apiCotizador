@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Table from "react-bootstrap/Table";
 import { url, url2 } from '../../Componentes/Ocultar';
 import Cookies from 'universal-cookie';
-
+import {  Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { Partida_catalogo } from '../Operaciones/totalPartida';
 import Rechazar from './Rechazar';
 import Animaciones from '../../Componentes/Animaciones';
+
+
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -176,69 +177,44 @@ async function consultarTotalesP(id){          //console.log(id)
 
 
   return (
-    <div className="contenido-usuarios">
+    <div className="contenido-marvilop">
           <div><Animaciones mytext="Validación de Proyectos" /> </div>
 
-        <div className="busqueda-proyectos">  
-            <Table responsive id="nombreDiv">
-                <thead>
-                    <tr className="azul">
-                        <th  className='ocultar'>Clave Proyecto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr >
-                        <td className='busqueda'>
-                        <input className="agregar"
-                                type="text"
-                                name="proyecto_clave"
-                                onChange={e => onChangeTextClaveP(e.target.value)}
-                                value={claveP}
-                                placeholder="🔎 Búsqueda por Clave del Proyecto" />
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
-
-            </div>  
+       
             {/*============= Titulo Animación =============*/}
            {/*  <div> <Animaciones mytext="Proyectos " /> </div> */}
 
-            <Table responsive  striped bordered hover size="sm">
-                <thead>
+            <Table >
+                <Thead>
 
-                <tr className="titulo-tabla-usuarios">
-                       <th></th>
-                        <th className='titulo-tabla'>Proyectos</th>            
-                    </tr>
-                    <tr className="titulo-tabla-usuarios">
-                        <th>ID</th>
-                        <th>Clave</th>
-                        <th>Descripción</th>
-                        <th>Cliente</th>
-                        <th>Fecha de creación</th>
-                        <th>Fecha de modificación</th>
-                        <th>Estatus</th>
-                        <th>Plazo de meses</th>
-                        <th>Propuesta</th>
-                    </tr>
-                </thead>
+                    <Tr >
+                        <Th>ID</Th>
+                        <Th>Clave</Th>
+                        <Th>Descripción</Th>
+                        <Th>Cliente</Th>
+                        <Th>Fecha de creación</Th>
+                        <Th>Fecha de modificación</Th>
+                        <Th>Estatus</Th>
+                        <Th>Plazo de meses</Th>
+                        <Th>Propuesta</Th>
+                    </Tr>
+                </Thead>
                                 
-                <tbody>
+                <Tbody>
                     {Object.keys(suggestions).map((key) => (    
                         //checar aqui va los titulos
-                        <tr key={suggestions[key].proyecto_id} >
-                            <td>{suggestions[key].proyecto_id}</td>   
-                            <td>{suggestions[key].proyecto_clave}</td>  
-                            <td>{suggestions[key].proyecto_descripcion}</td>  
-                            <td>{suggestions[key].nombre_cliente}</td> 
-                            <td>{suggestions[key].proyecto_fecha_creacion}</td>
-                            <td>{suggestions[key].proyecto_fecha_modificacion}</td>
-                            <td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</td> 
-                            <td>{suggestions[key].proyecto_plazo_meses}</td>
-                            <td>
+                        <Tr key={suggestions[key].proyecto_id} >
+                            <Td>{suggestions[key].proyecto_id}</Td>   
+                            <Td>{suggestions[key].proyecto_clave}</Td>  
+                            <Td>{suggestions[key].proyecto_descripcion}</Td>  
+                            <Td>{suggestions[key].nombre_cliente}</Td> 
+                            <Td>{suggestions[key].proyecto_fecha_creacion}</Td>
+                            <Td>{suggestions[key].proyecto_fecha_modificacion}</Td>
+                            <Td  className={suggestions[key].proyecto_estatus}>{suggestions[key].proyecto_estatus}</Td> 
+                            <Td>{suggestions[key].proyecto_plazo_meses}</Td>
+                            <Td>
                                 <button 
-                                className="btn btn-primary Ver" 
+                                className="sn-boton" 
                                 onClick={() => {
                                 consultarTotalesP(suggestions[key].proyecto_id);
                                 getIdProy(suggestions[key].proyecto_id);
@@ -248,10 +224,10 @@ async function consultarTotalesP(id){          //console.log(id)
                                        <i className=   {textBVer[key]}  ></i>
                     
                                 </button>
-                            </td> 
-                        </tr>  
+                            </Td> 
+                        </Tr>  
                     ))}
-                </tbody>          
+                </Tbody>          
             </Table>
             {show2 ? (
                 <div></div>

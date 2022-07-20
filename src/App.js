@@ -73,6 +73,7 @@ import MenuResumenBom from "./Ventas/AM/ResumenBOM/MenuResumenBom";
 import { LP } from "./Componentes/Herramientas/ListaProyectos";
 import ContinuarPCE from "./Componentes/Herramientas/ContinuarProyectoCE";
 import MenuValidacion from "./Ventas/AM-Resumen/MenuValidacion";
+import Tablel from "./Ventas/AM-Resumen/Tablel";
   
 
 function App() {
@@ -204,7 +205,9 @@ function App() {
         <Venta  exact path="/imprimir-propuesta" component={ BuscadorInteligente3} /> 
 
      {/*    checar */}
-        <Venta  exact path="/administrar-propuesta" component={ MenuValidacion} />
+        {/* <Venta  exact path="/administrar-propuesta" component={Tablel} /> */}
+        <Venta  exact path="/administrar-propuesta" component={MenuValidacion} />
+
 
        {/* proporcionalidad */}
         <Venta  exact path="/resumen" component={BuscadorInteligente2} /> 

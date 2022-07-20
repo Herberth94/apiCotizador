@@ -3,8 +3,6 @@ import axios from "axios";
 import Cookies from 'universal-cookie';
 
 //Componentes
-
-import { CrudProyectos } from '../../../Preventa/PTN-BOM/Routes/CRUDProyectos';
 import { CrudProyectos2 } from './CrudProyectos2';
 import { EditProyecto } from '../../../Preventa/PTN-BOM/Routes/ModificarProyectos';
 import { url, url2 } from "../../../Componentes/Ocultar";
@@ -16,6 +14,11 @@ const cookies = new Cookies();
 let validatorrol = cookies.get('rol');
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get('id_usuario');
+
+
+//Obtener URL 
+var URLactual = window.location.href;
+
 
 function MenuResumenBom() {
 
@@ -42,12 +45,12 @@ function MenuResumenBom() {
     // Función que realiza la consulta a la tabla proyecto
     const getProyectos = async () => {
         try {
-            if (validatorrol === "administrador") {
+            if (validatorrol === "direccion") {
                 const resProy = await axios.get(url + '/api/cotizador/proyecto/viewadmin');
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
             } else {
-                if (show === false) {
+                if (URLactual === "http://localhost:3000/resumen-proyecto"   ||  URLactual === "10.200.10.9:3000/resumen-proyecto"  ) {
                     const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                     setListaProyectos(resProy.data.data);
                     setSuggestions(resProy.data.data);
@@ -106,96 +109,15 @@ function MenuResumenBom() {
             <div><Animaciones mytext="Resumen BOM" /> </div>
 
 
-            <div className="buscador-inteligente">
-
-
-            </div>
-            <Table >
-                {/*========================== Titulos Tabla ==========================*/}
-                <thead>
-                    <tr className="titulo-tabla-usuarios">
-                        <th className='ocultar'>Mis Proyectos</th>
-                        <th className='ocultar'>Proyectos en Colaboración</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr className="">
-
-                        <td>
-                            <button
-                                className="btn btn-primary Mod2"
-                                type="button"
-                                onClick={() => {
-                                    setShow(!show);
-                                    setShow1(true);
-                                    show ? setShow2(false) : setShow2(true);
-                                }}
-                            >
-                                {" "}
-                                {show ? "Mis Proyectos" : "Ocultar"}{" "}
-                            </button>
-                        </td>
-                        {/*    <td>
-                            <button
-                            className="btn btn-primary Mod2"
-                            type="button"
-                            onClick={() => {
-                            setShow1(!show1);
-                            setShow(true);
-                            show1 ? setShow2(false):setShow2(true);
-                            }}
-                            >
-                            {" "}
-                            {show1 ? "Proyectos " : "Ocultar"}{" "}
-                            </button>
-                        </td> */}
-                    </tr>
-                </tbody>
-            </Table>
-            {show2 ? (
-                <div></div>
-            ) : (
-                <div >
-                    {/*============= Titulo Animación =============*/}
-                    {/*   <Animaciones mytext="Buscar proyectos" />
- */}
-                    {/*********Búsqueda de Lista de Proyectos por Clave ********/}
-
-                    <>
-                        {/*=================== Botón Mostrar Lista DIV =====================*/}
-                        <br />
-
-
-                        <div className="buscador-inteligente">
-
-
-                            <form className="form-inline my-2 my-lg-0">
-                                <input className="form-control mr-sm-2"
-                                    type="search"
-                                    placeholder="Buscar por Clave 🔎"
-                                    aria-label="Search"
-                                    name="proyecto_clave"
-                                    onChange={e => onChangeTextClaveP(e.target.value)}
-                                    value={claveP}
-
-                                />
-
-                            </form>
-
-                        </div>
-
                         <CrudProyectos2
                             suggestionsP={suggestions}
                             clientes={ListaC}
                             setfirst={setfirst}
                             envioDataP={envioDataProy}
-                            show2={show2}
-                            setShow2={setShow2}
                         />
-                    </>
+              
                 </div>
-            )}
-        </div>
+      
     );
 }
 export default MenuResumenBom

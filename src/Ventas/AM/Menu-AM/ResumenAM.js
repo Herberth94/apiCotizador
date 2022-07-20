@@ -112,13 +112,13 @@ const ResumenAM = () => {
         try{
             getTotalPar('');
             getPorcentajesPar('');
-            setPartidas('');
             getTotalCats('');
-            getPorcentajesCats('');
-            setCats('');
+            getPorcentajesCats('');  
             getDivisaProy('');
             getPorcentajesCI('');
             getFinanciamieno('');
+            setCats('');
+            setPartidas('');
 
             const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
             getTotalPar(resTotPar.data.data);
@@ -487,12 +487,9 @@ const ResumenAM = () => {
                                     className="sn-boton" type="button"
                                     onClick={()=>{
                                       
-                                        habilitar(key); 
-                                        envioData(key);
-
-
-                                        /* checar si funciona */
-                                        consultarTotalesP(suggestions[key].proyecto_id);
+                                       /*  habilitar(key); 
+                                        envioData(key); */
+                                      consultarTotalesP(suggestions[key].proyecto_id); 
                                       
                                     }}
                                     >

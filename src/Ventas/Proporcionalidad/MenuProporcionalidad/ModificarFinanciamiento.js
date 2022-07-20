@@ -5,6 +5,27 @@ import {  url2 } from "../../../Componentes/Ocultar";
 import { estatusProy2,idAsignado } from './BuscadorProyectoFinanciamiento';
 import { hoy } from '../../../Preventa/PTN-BOM/Menu-Bom/NuevoProyecto';
 
+import swal from "sweetalert"
+
+
+
+const MostrarNotificacion=()=>{
+
+    
+      swal({
+        title: "Financiamiento",
+        text: "Los %  de Tasa de Interés y Diferimiento de Tasa van en rangos de 1-100",
+        icon: "warning",
+        button: "Cerrar"
+      })
+    }
+ 
+  
+
+
+
+
+
 function ModificarFinanciamiento(prop) {
 
     /*========================== Mostrar/Ocultar ==========================*/
@@ -149,7 +170,7 @@ function ModificarFinanciamiento(prop) {
                     {/*=================== Titulos Tabla Clientes ===================*/}
                     <Tr >
                         <Th>ID</Th>
-                        <Th>Tasa de Interes</Th>
+                        <Th>Tasa de Interés</Th>
                         <Th>Años Financiamiento</Th>
                         <Th>Diferimiento de Tasa</Th>
                         <Th>Modificar</Th>
@@ -219,6 +240,7 @@ function ModificarFinanciamiento(prop) {
                                     onClick={()=>{
                                     //    props.envioData(datos,key,data); 
                                         habilitar(key); 
+                                        MostrarNotificacion();
                                      
                                     }}
                                     >

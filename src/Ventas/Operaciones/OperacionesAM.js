@@ -1,83 +1,67 @@
 
 export let comprobacionFinanciamieno = false;
-export let plazo_meses = 0;
-export let pd_financiamiento = 0;
-export let pd_pago_anuales = 0;
-export let tasa_interes = 0;
+export let plazo_meses               = 0;
+export let pd_financiamiento         = 0;
+export let pd_pago_anuales           = 0;
+export let tasa_interes              = 0;
 export let name_cliente;
 export let clave_p;
-let valorDolar = 1;
-let summm = 0;
-
-let precio3 = 0;
-let precio2 = 0;
-export let stringDolar = "";
-export let margenReal = "";
-export var totalPropuesta = "";
-
+export let stringDolar        = "";
+export let margenReal         = "";
+export var totalPropuesta     = "";
 export let costosIndirectos = [];
-
-/*============= Calcular Costos Indirectos ===============================*/
+let valorDolar      = 1;
+let summm           = 0;
+let precio3         = 0;
+let precio2         = 0;
 
 /*============= Porcentajes Costos Indirectos Default ===============================*/
-
-export let tMensual =0;
-export let tMensualIVA =0;
-export let tMensualSUMA =0;
-
-
-export let totD  = 0;
-export let totDIVA = 0;
-
-export var totMensual =  "" ;
-export var mesesMensual = "";
-export var totalMen = "";
-export var totalMenIva = "";
-
-
-export var totalsnIVA = "";
-
-
-export let equivale = [];
-
-let decimal = 3;
-
-export let totalMensual = [];
-export let financiamiento = [];
-export let desFabrica = [];
-export let margenGanancia = [];
-export let Cantidad = [];
-export let descuentoCliente = [];
-export let datosCompletosAM = [];
+let decimal                         = 3;
+export let tMensual                 =0;
+export let tMensualIVA              =0;
+export let tMensualSUMA             =0;
+export let totD                     = 0;
+export let totDIVA                  = 0;
+export var totMensual               =  "" ;
+export var mesesMensual             = "";
+export var totalMen                 = "";
+export var totalMenIva              = "";
+export var totalsnIVA               = "";
+export let equivale                 = [];
+export let totalMensual        = [];
+export let financiamiento      = [];
+export let desFabrica          = [];
+export let margenGanancia      = [];
+export let Cantidad            = [];
+export let descuentoCliente    = [];
+export let datosCompletosAM    = [];
 export let datosCompletosTotal = [];
-
-
+let data                       = [];
+let data2                      = [];
+let data3                      = [];
+let dataCategoria              = [];
+let monedaAM                   = [];
 let sumatoriaMXN2 = 0;
 let sumatoriaUSD2 = 0;
 let totalBom = 0;
-let data = [];
-let data2 = [];
-let data3 = [];
-let dataCategoria = [];
-let monedaAM = [];
 
 /*============= Eliminar Valores Repetidos ===============================*/
 
-export let partidasUnicas = [];
-export let categoriasUnicas = [];
-export let descripcionGeneral = [];
-export let partidasUnicas2 = [];
-export let descripcionGeneral2 = [];
+export let partidasUnicas       = [];
+export let categoriasUnicas     = [];
+export let descripcionGeneral   = [];
+export let partidasUnicas2      = [];
+export let descripcionGeneral2  = [];
 
 //Datos Partida
-export let totalMXN = [];
-export let totalUSD = [];
+export let totalMXN      = [];
+export let totalUSD      = [];
 //DATOS Categoria
-export let totalMXN2 = [];
-export let totalUSD2 = [];
+export let totalMXN2     = [];
+export let totalUSD2     = [];
 // Moneda Unificada Categoria USD
-export let totalCategoriasUSD = [];
-export let totalCategoriasUSD2 = [];
+export let totalCategoriasUSD       = [];
+export let totalCategoriasUSD2      = [];
 
 let contador = 0;
 let sumatoriaMXN = 0;
@@ -137,47 +121,32 @@ export function limpiaDatos() {
   tMensual =0;
   tMensualIVA =0;
   tMensualSUMA =0;
-
   totalMensualFinanciamiento = [];
   TotalFinanciamiento= [];
-
-
-   totD  = 0;
-   totDIVA = 0;
-
-
-
-   totMensual =  "" ;
-   mesesMensual = "";
-   totalMen = "";
+  totD  = 0;
+  totDIVA = 0;
+  totMensual =  "" ;
+  mesesMensual = "";
+  totalMen = "";
   totalMenIva = "";
-
   totalsnIVA = "";
-
-
   TOTALSTRING = [];
   TOTALSTRINGMENSUAL = [];
-
-
   financiamiento = [];
-
   plazo_meses = 0;
   pd_financiamiento = 0;
   pd_pago_anuales = 0;
   tasa_interes = 0;
   name_cliente = "";
-
   costosIndirectos = [];
   equivale = [];
   totalMensual = [];
-
   desFabrica = [];
   margenGanancia = [];
   Cantidad = [];
   descuentoCliente = [];
   datosCompletosAM = [];
   datosCompletosTotal = [];
-
   sumatoriaMXN2 = 0;
   sumatoriaUSD2 = 0;
   totalBom = 0;
@@ -187,13 +156,11 @@ export function limpiaDatos() {
   dataCategoria = [];
   monedaAM = [];
   /*============= Eliminar Valores Repetidos ===============================*/
-
   partidasUnicas = [];
   categoriasUnicas = [];
   descripcionGeneral = [];
   partidasUnicas2 = [];
   descripcionGeneral2 = [];
-
   //Datos Partida
   totalMXN = [];
   totalUSD = [];
@@ -202,59 +169,42 @@ export function limpiaDatos() {
   totalUSD2 = [];
   // Moneda Unificada Categoria USD
   totalCategoriasUSD = [];
-
   contador = 0;
   sumatoriaMXN = 0;
   sumatoriaUSD = 0;
-
   monedaPTN = [];
   monedaPTN2 = [];
-
   monedaPTN3 = [];
   prov = [];
-
   costoPTN = [];
-
   totalIndirecto = [];
   listaProv = [];
   totallistaprov = 0;
-
   precioVenta = [];
-
   totalPrecioVenta = 0;
   totalprov = 0;
   totalCostoPTN = 0;
-
   margenDirecto = [];
-
   toIndirecto = 0;
   calculaIndirecto = 0;
   costoSinIndirectos = 0;
   costoFianalProyecto = 0;
   precioFinalVenta = 0;
   margenReal = 0;
-
   precioVenta2 = [];
   proporcional = [];
   proporcionalMesaAyuda = [];
   TOTAL = [];
   totalCategorias = 0;
-
   Cantidad = [];
-
   precioVenta3 = [];
-
   summm = 0;
-
   pd_financiamiento = 0;
   pd_pago_anuales = 0;
   tasa_interes = 0;
-
   precio3 = 0;
   precio2 = 0;
-
   stringDolar = "";
-
   totalPropuesta = "";
 }
 
@@ -284,7 +234,9 @@ export function obtenPartidasUnicas(
       plazo_meses = Dolar[0].proyecto_plazo_meses;
 
 
-      if(  plazo_meses > 0 ){
+
+      console.log( plazo_meses  ,"HOLALKALJALKJSLK")
+      if(  plazo_meses != 0 ){
         comprobacionFinanciamieno = true; 
       }else{
         comprobacionFinanciamieno = false; 
@@ -312,6 +264,29 @@ export function obtenPartidasUnicas(
       clave_p = Dolar[0].proyecto_clave;
 /*       console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
       console.log('Cliente - Archivo Operaciones AM:',name_cliente) */
+
+
+
+
+
+
+      plazo_meses = Dolar[0].proyecto_plazo_meses;
+
+
+
+/*       console.log( plazo_meses  ,"HOLALKALJALKJSLK") */
+      if(  plazo_meses != 0 ){
+        comprobacionFinanciamieno = true; 
+      }else{
+        comprobacionFinanciamieno = false; 
+      }
+
+
+
+
+
+
+
     }
   }
 
@@ -321,6 +296,10 @@ export function obtenPartidasUnicas(
     pd_financiamiento = dataFinancia[0].pd_anio_financiamiento;
     pd_pago_anuales = dataFinancia[0].pd_pagos_anuales;
     tasa_interes = dataFinancia[0].pd_tasa_interes;
+  }else{
+    pd_financiamiento = 0;
+    pd_pago_anuales = 0;
+    tasa_interes = 0;
   }
 
   for (var i = 0; i < costosIndi.length; i++) {
@@ -757,10 +736,10 @@ function calcularPrecioVenta() {
     var k = (100 - margenGanancia[i]) / 100;
     var z = x / k;
     /*============= Dejar Solo 3 Digitos despues del punto ===============================*/
-    z = z.toFixed(decimal);
+  
     z = z*Cantidad[i];
     sumP += parseFloat(z);
-    precioVenta.push(z);
+    precioVenta.push(z.toFixed(decimal));
 
 
   }
@@ -922,7 +901,6 @@ function final() {
     //console.log("Cuota Cap + Int: " + a.toFixed(3));
 
 
-
     if (comprobacionFinanciamieno == false){
       financiamiento.push("No Aplica");
     } else if (comprobacionFinanciamieno == true){
@@ -934,7 +912,7 @@ function final() {
   /*============= Total Mensual===============================*/
 
   for (var i = 0; i < TOTAL.length; i++) {
-    var j = TOTAL[i] / plazo_meses;
+   let  j = TOTAL[i] / plazo_meses;
 
     if (comprobacionFinanciamieno == false){
       totalMensual.push("No Aplica");

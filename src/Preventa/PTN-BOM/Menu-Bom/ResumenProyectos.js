@@ -57,11 +57,11 @@ function Proyectos() {
                 setListaProyectos(resProy.data.data);
                 setSuggestions(resProy.data.data);
             }else{
-                if(URLactual === "http://localhost:3000/mis-proyectos-r"   ||  URLactual === "10.200.10.9:3000/mis-proyectos-r"     ){
+                if(URLactual === "http://localhost:3000/mis-proyectos-r"   ||  URLactual === "http://10.200.10.9:3000/mis-proyectos-r"     ){
                     const resProy = await axios.get(url2 + `/api/cotizador/proyecto/viewpreventas/${validatorid}`);
                     setListaProyectos(resProy.data.data);
                     setSuggestions(resProy.data.data);
-                  }else if(URLactual === "http://localhost:3000/proyectos-compartidos-r"        ||  URLactual === "10.200.10.9:3000/proyectos-compartidos-r"){
+                  }else if(URLactual === "http://localhost:3000/proyectos-compartidos-r"        ||  URLactual === "http://10.200.10.9:3000/proyectos-compartidos-r"){
                     const resProy = await axios.get(url2 + `/api/cotizador/colaboradores/viewProyectos/${validatorid}`);
                     setListaProyectos(resProy.data.data);
                     setSuggestions(resProy.data.data);

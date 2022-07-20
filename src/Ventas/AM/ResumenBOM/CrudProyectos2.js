@@ -293,7 +293,7 @@ export const CrudProyectos2 = (props) => {
     /*==============================================================================================================*/
     return (
         <div>
-            <Table >
+            <Table  id ="daTable">
                 <Thead>
                     <Tr >
                         <Th>ID</Th>
