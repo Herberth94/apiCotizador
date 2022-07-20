@@ -92,6 +92,8 @@ let calculaIndirecto = 0;
 export let costoSinIndirectos = 0;
 export let costoFianalProyecto = 0;
 export let precioFinalVenta = 0;
+export let totalMensualFinal = 0;
+
 
 export let precioVenta3 = [];
 export let precioVenta2 = [];
@@ -117,6 +119,7 @@ export let TotalFinanciamiento= [];
 
 
 export function limpiaDatos() {
+  totalMensualFinal = 0;
   comprobacionFinanciamieno = false; 
   tMensual =0;
   tMensualIVA =0;
@@ -234,8 +237,6 @@ export function obtenPartidasUnicas(
       plazo_meses = Dolar[0].proyecto_plazo_meses;
 
 
-
-      console.log( plazo_meses  ,"HOLALKALJALKJSLK")
       if(  plazo_meses != 0 ){
         comprobacionFinanciamieno = true; 
       }else{
@@ -253,13 +254,13 @@ export function obtenPartidasUnicas(
     } else if (Dolar[0].proyecto_id_moneda === 2) {
     
 
-      console.log("conversion exitosaaaaaaaaaaa");
-
+      
       conversion = "USD";
       stringDolar = "USD";
       valorDolar = Dolar[0].proyecto_valor_dolar;
 
       plazo_meses = Dolar[0].proyecto_plazo_meses;
+      
       name_cliente = Dolar[0].nombre_cliente;
       clave_p = Dolar[0].proyecto_clave;
 /*       console.log('Clave del proyecto - Archivo Operaciones AM:',clave_p)
@@ -917,7 +918,8 @@ function final() {
     if (comprobacionFinanciamieno == false){
       totalMensual.push("No Aplica");
     }else{
-      totalMensual.push(j.toFixed(decimal));
+
+     totalMensual.push(j.toFixed(decimal)); 
     }
 
   }
@@ -952,6 +954,8 @@ function final() {
 
 
   totMensual = totalMensual[totalMensual.length-1];
+
+  totalMensualFinal =totalMensual[totalMensual.length-1];
   mesesMensual = " " +  plazo_meses;
   totalMen =   (totalMensual[totalMensual.length-1] * 12);
    let cx =  (totalMensual[totalMensual.length-1] * 12) *  .16;

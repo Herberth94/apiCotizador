@@ -100,7 +100,7 @@ function DatosSp2(props) {
 		  precio_lista: 0,
 		  precio_unitario: 0,
 		  precio_descuento: 0, 
-		  total:0 ,
+		  total: 0 ,
 		  moneda:"", 
 		  categoria:"", 
 		  proveedor:"",

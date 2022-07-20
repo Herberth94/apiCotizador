@@ -271,6 +271,7 @@ function DatosSp2(props) {
 		  );
 		  if(confirmacion){
 			if (pEstatus1 === 'En revision') {
+				
 				swal({
 					title:"Finalizar proyecto",
 					text: "No se puede finalizar el Proyecto porque se encuentra En revision",
@@ -285,7 +286,9 @@ function DatosSp2(props) {
 					button: "Cerrar" 
 				})
 			  } else {
+				guardarListaCatsD();
 				finalizarProy(props.clave);
+
 			  }
 		  }else{
 	
@@ -511,11 +514,7 @@ return (
 						</Button>
 
 
-						<Button align="right" onClick={guardarListaCatsD}>
-						< ArrowUpward />
-						<span> Subir Datos    </span>	
-						</Button>
-
+					
 
 
 						<Button align="right"  onClick={confirFinalizar}     >

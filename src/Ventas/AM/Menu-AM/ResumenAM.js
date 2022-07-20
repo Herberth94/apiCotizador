@@ -15,6 +15,7 @@ datosCompletosTotal,
 stringDolar,
 totalMensual,
 margenReal,
+totalMensualFinal,
 comprobacionFinanciamieno
 } from "../../Operaciones/OperacionesAM";
 import { EditAM } from '../Routes/ModificarDatosAm';
@@ -23,7 +24,7 @@ import swal from "sweetalert"
 
 
 
-let mensu = totalMensual[totalMensual.length-1];
+let mensu = totalMensual[totalMensual.length];
 
 
 const cookies = new Cookies();
@@ -639,7 +640,7 @@ const ResumenAM = () => {
  */}
                                             <Td  className='azul'>{"$ "} {costoFianalProyecto}  </Td> 
 
-                                                <Td   className='verde'>{"$ "} {mensu}   </Td>   
+                                                <Td   className='verde'>{"$ "} { totalMensualFinal}   </Td>   
                                                 <Td    className='azul'>{ margenReal } {" %"}   </Td>   
                                                 <Td   className='verde'>{stringDolar}   </Td> 
                                             </Tr >

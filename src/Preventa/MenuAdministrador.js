@@ -130,12 +130,8 @@ function MenuAdministrador() {
                             >
 
                                 
-                                    <NavDropdown
-                                        id="nav-dropdown-dark-example"
-                                        title="BOM"
-                                        menuVariant="dark"
-                                    >
-                                        <NavDropdown.Item href="/nuevo-proyecto">Nuevo proyecto</NavDropdown.Item>
+                                 
+                                        <NavDropdown.Item href="/nuevo-proyecto">Nuevo proyecto (BOM)</NavDropdown.Item>
                                         <NavDropdown.Divider />
 
 
@@ -169,7 +165,7 @@ function MenuAdministrador() {
                                  
                             
 
-                                    </NavDropdown>
+                               
 
                                     </NavDropdown>
 
