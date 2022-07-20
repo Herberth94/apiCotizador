@@ -122,7 +122,23 @@ function NuevoProyecto() {
     })
   }
 
-
+  function notificacion (state){
+    if(state === true){
+      swal({
+        title: "Listo",
+        text: "Proyecto resgistrado correctamnete",
+        icon: "success",
+        button: "Cerrar" 
+      })
+    }else{
+      swal({
+        title: "Error",
+        text: "Error al crear el proyecto",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+    }
+  }
   
 
   // Función que realiza la inserción del proyecto
@@ -148,7 +164,7 @@ function NuevoProyecto() {
       let resUsers;
       let findProy;
       try {
-        resUsers = await axios.get(url + '/api/cotizador/registro');
+        resUsers = await axios.get(url + '/api/cotizador/users/view');
 
       } catch (error) {
         
@@ -165,6 +181,7 @@ function NuevoProyecto() {
         if (validatorid !== '' && parseInt(validatorid) === parseInt(resUsers.data.reSql[cont].id_usuario)) {
           const clave = await axios.post(url2 + `/api/cotizador/proyecto/agregar/${validatorid}`, data);
           setclavep(clave.data.id_proyecto);
+          notificacion(clave.data.estado);
           //const claveRespuestaBack = clave.data.msg
           //alert(claveRespuestaBack);
         } else if (validatorid === '' || parseInt(validatorid) !== parseInt(resUsers.data.reSql[cont].id_usuario)) {
@@ -244,29 +261,9 @@ function NuevoProyecto() {
       if (datos.proyecto_clave !== ''  && nombreC !== '' && idCliente !== '' && idCliente !== undefined && statusProyecto  !== 1 ) {
         setShow(!show);
         enviarDatos(); 
-  
-        swal({
-          title: "Proyecto Creado Exitosamente",
-          text: "",
-          icon: "success",
-          button: "Cerrar" 
-        })
           return false;
       }
-      
-      
-      else{
-       //setShow(!show);
-        swal({
-          title: "Error: Nuevo proyecto",
-          text: "Error al crear el proyecto",
-          icon: "warning",
-          button: "Cerrar" 
-        })
-      }
     }
-
-    
 };
   /*=================================================================================================================*/
 
