@@ -109,6 +109,21 @@ function DatosSp2(props) {
 		},
 	]);
 
+	const [monedas,setMonedas] = useState('');
+	const [categorias,setCategorias] = useState('');
+	// Function to handle save
+
+	// useEffect(()=>{
+	// 	let newArray = [];
+	// 	let newArray1 = [];
+	// 	newArray[0] = '';
+	// 	newArray1[0] = '';
+	// 	setMonedas(newArray);
+	// 	setCategorias(newArray1);
+	// 	console.log('Monedas:',monedas);
+	// 	console.log('Categorias:',categorias);
+	// },[])
+
 	//Key 
 	const [k, setK] = useState(0);
 
@@ -507,10 +522,37 @@ function DatosSp2(props) {
 		
 	}
 
-	// Function to handle save
+	
 	const handleSave = () => {
 		setEdit(!isEdit);
 		setRows(rows);
+		let l = Object.keys(rows);
+		l = l.length;
+		let newArray = [];
+		let newArray1 = [];
+		for(let c = 0 ; c < l ; c++){
+			if(rows[c].moneda === 1){
+				newArray[c] = 'MXN';
+			}else{
+				newArray[c] = 'USD';
+			}
+
+			if(rows[c].categoria == 1){
+				newArray1[c] = 'Tecnología principal';
+			}else if(rows[c].categoria == 2){
+				newArray1[c] = 'Subtecnología';
+			}else if(rows[c].categoria == 3){
+				newArray1[c] = 'Equipamiento';
+			}else if(rows[c].categoria == 4){
+				newArray1[c] = 'Licencia';
+			}else if(rows[c].categoria == 5){
+				newArray1[c] = 'Soporte';
+			}else{
+				newArray1[c] = 'Implementación';
+			}
+		}
+		setMonedas(newArray);
+		setCategorias(newArray1);
 		//console.log("Guardado: ", rows);
 		setDisable(true);
 		setOpen(true);
@@ -1104,8 +1146,8 @@ return (
                             <option value={2}>Subtecnología</option>
                             <option value={3}>Equipamiento</option>
                             <option value={4}>Licencia</option>
-							<option value={4}>Soporte</option>
-							<option value={4}>Implemetación</option>                       
+							<option value={5}>Soporte</option>
+							<option value={6}>Implementación</option>                       
                         </select>
 					{/* 	<input
 						    className="agregar"
@@ -1125,7 +1167,7 @@ return (
 								value={rows[i].proveedor}
                                 />
 								{Object.keys(suggestionsProv).map((i)=>
-                                    {if(k == i){
+                                    {if(false){
                                         return(
                                         <></>
                                         )
@@ -1154,7 +1196,7 @@ return (
 								value={rows[i].marca}
                                 />
 								{Object.keys(suggestionsMarca).map((i)=>
-                                    {if(k == i){
+                                    {if(false){
                                         return(
                                             <></>
                                         )
@@ -1254,10 +1296,12 @@ return (
 						{rows[i].total}
 						</TableCell>
 						<TableCell component="th" scope="row" align="center">
-						{rows[i].moneda}
+						{monedas[i]}
+						{/* {rows[i].moneda} */}
 						</TableCell>
 						<TableCell component="th" scope="row"  align="center">
-						{rows[i].categoria}
+						{categorias[i]}
+						{/* {rows[i].categoria} */}
 						</TableCell>
 						<TableCell component="th" scope="row"  align="center">
 						{rows[i].proveedor}
