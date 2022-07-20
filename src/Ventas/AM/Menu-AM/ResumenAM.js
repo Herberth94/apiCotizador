@@ -23,15 +23,8 @@ import swal from "sweetalert"
 
 
 
-let y = ["No Aplica"];
 let mensu = totalMensual[totalMensual.length-1];
 
-
-if( comprobacionFinanciamieno == false){
-   mensu =  y[0];
-}else if (comprobacionFinanciamieno == true){
-   mensu = totalMensual[totalMensual.length-1];  
-}
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
@@ -630,8 +623,7 @@ const ResumenAM = () => {
                                     <Tr >
                                         <Th>Precio Total de Venta Sin IVA </Th>
                                         <Th>Costo Final</Th>
-                                        <Th>Mensual</Th>
-                          
+                                        <Th>Mensual</Th>                
                                         <Th>Margen Real</Th>
                                         <Th>Divisa</Th>
                                       
@@ -647,7 +639,7 @@ const ResumenAM = () => {
  */}
                                             <Td  className='azul'>{"$ "} {costoFianalProyecto}  </Td> 
 
-                                                <Td   className='verde'>{"$ "}  {mensu}   </Td>   
+                                                <Td   className='verde'>{"$ "} {mensu}   </Td>   
                                                 <Td    className='azul'>{ margenReal } {" %"}   </Td>   
                                                 <Td   className='verde'>{stringDolar}   </Td> 
                                             </Tr >
