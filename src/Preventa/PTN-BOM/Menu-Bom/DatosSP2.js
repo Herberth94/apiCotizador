@@ -531,7 +531,7 @@ function DatosSp2(props) {
 		let newArray = [];
 		let newArray1 = [];
 		for(let c = 0 ; c < l ; c++){
-			if(rows[c].moneda === 1){
+			if(rows[c].moneda == 1){
 				newArray[c] = 'MXN';
 			}else{
 				newArray[c] = 'USD';
