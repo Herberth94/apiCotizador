@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import swal from "sweetalert";
 //Componentes
 import Animaciones from "../Animaciones";
 import Excel from "./excel";
 import { url, url2 } from  "../Ocultar";
+
 
 //Obtención del id del usuario con sesión activa
 const cookies = new Cookies();
@@ -26,6 +28,7 @@ function NuevoProyectoExcel() {
 
   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
+  const [idCliente, setIdCliente] = useState();
 
   
 
@@ -84,6 +87,14 @@ function NuevoProyectoExcel() {
   // Función que obtiene el nombre del cliente seleccionado
   const onSuggestHandler = (nombreC) => {
     setNombreC(nombreC);
+    let i = Object.keys(ListaC);
+    for (let c = 0; c < i.length; c++) {
+      if (nombreC === ListaC[c].nombre_cliente) {
+        setIdCliente(ListaC[c].cliente_id);
+        //console.log(clienteId);
+      }
+    }
+    //console.log(idCliente)
     setSuggestions([]);
   }
   /*============================================================================================*/
@@ -103,6 +114,23 @@ function NuevoProyectoExcel() {
     })
   }
 
+  function notificacion (state){
+    if(state === true){
+      swal({
+        title: "Listo",
+        text: "Proyecto resgistrado correctamnete",
+        icon: "success",
+        button: "Cerrar" 
+      })
+    }else{
+      swal({
+        title: "Error",
+        text: "Error al crear el proyecto",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+    }
+  }
 
   
 
@@ -130,7 +158,7 @@ function NuevoProyectoExcel() {
     try {
       /*=================================== Inserción de proyecto con condicionante ===================================*/
       //Consulta de los usuarios registrados
-      const resUsers = await axios.get(url + '/api/cotizador/registro');
+      const resUsers = await axios.get(url + '/api/cotizador/users/view');
       let i = Object.keys(resUsers.data.reSql);
       i = parseInt(i.length);
 
@@ -142,6 +170,7 @@ function NuevoProyectoExcel() {
         if (validatorid !== '' && parseInt(validatorid) === parseInt(resUsers.data.reSql[cont].id_usuario)) {
           const clave = await axios.post(url2 + `/api/cotizador/proyecto/agregar/${validatorid}`, data);
           setclavep(clave.data.id_proyecto);
+          notificacion(clave.data.estado);
           const claveRespuestaBack = clave.data.msg
           alert(claveRespuestaBack);
         } else if (validatorid === '' || parseInt(validatorid) !== parseInt(resUsers.data.reSql[cont].id_usuario)) {
@@ -172,12 +201,48 @@ function NuevoProyectoExcel() {
         ...datos, proyecto_clave: '',
                   proyecto_descripcion: '',
                   proyecto_plazo_meses: ''
-      })
+      });
+      setNombreC('');
     // event.preventDefault()
     // event.target.reset();
-
     }
   }
+
+  function validar(){
+    if (datos.proyecto_clave === '') {
+      //console.log(clienteId.proyecto_id_cliente)
+      swal({
+        title: "Clave de Proyecto",
+        text: "Ingresa la Clave del Proyecto",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+        return false;
+    }   
+    else if(nombreC === '') {
+      //console.log(clienteId.proyecto_id_cliente)
+      swal({
+        title: "Nombre del cliente",
+        text: "Ingresa el nombre del cliente",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+        return false;
+    }else if(idCliente === '' || idCliente === undefined){
+      swal({
+        title: "Nombre del cliente",
+        text: "No se encuentra registrado el cliente ingresado",
+        icon: "warning",
+        button: "Cerrar" 
+      })
+    }else{
+      if (datos.proyecto_clave !== ''  && nombreC !== '' && idCliente !== '' && idCliente !== undefined) {
+        setShow(!show);
+        enviarDatos(); 
+          return false;
+      }
+    }
+};
   /*=================================================================================================================*/
 
   return (
@@ -224,6 +289,7 @@ function NuevoProyectoExcel() {
                   type="text"
                   name="proyecto_clave"
                   onChange={handleInputChange}
+                  value={datos.proyecto_clave}
                   placeholder="Ingrese Clave"
                 />
               </Td>
@@ -233,6 +299,7 @@ function NuevoProyectoExcel() {
                   type="text"
                   name="proyecto_descripcion"
                   onChange={handleInputChange}
+                  value={datos.proyecto_descripcion}
                   placeholder="Ingrese Descripción"
                 />
               </Td>
@@ -260,6 +327,7 @@ function NuevoProyectoExcel() {
                   type="text"
                   name="proyecto_plazo_meses"
                   onChange={handleInputChange}
+                  value={datos.proyecto_plazo_meses}
                   placeholder="Ingrese Plazo Meses"
                 />
               </Td>
@@ -270,8 +338,7 @@ function NuevoProyectoExcel() {
       className="btn btn-primary modificar" 
       type="submit" 
       onClick={() => { 
-        setShow(!show);
-        enviarDatos();
+        validar();
       }}>  
       {show ? 'Iniciar' : 'Ocultar Datos'}    
       </button>

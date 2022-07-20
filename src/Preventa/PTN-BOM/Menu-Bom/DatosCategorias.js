@@ -80,7 +80,8 @@ function DatosSp2(props) {
 		})
   /*=================================================================================================================*/
  
-
+	const [monedas,setMonedas] = useState('');
+	const [categorias,setCategorias] = useState('');
 
 
 
@@ -355,6 +356,29 @@ function DatosSp2(props) {
 	const handleSave = () => {
 		setEdit(!isEdit);
 		setRows(rows);
+		let l = Object.keys(rows);
+		l = l.length;
+		let newArray = [];
+		let newArray1 = [];
+		for(let c = 0 ; c < l ; c++){
+			if(rows[c].moneda == 1){
+				newArray[c] = 'MXN';
+			}else{
+				newArray[c] = 'USD';
+			}
+
+			if(rows[c].categoria == 1){
+				newArray1[c] = 'Capacitación';
+			}else if(rows[c].categoria == 2){
+				newArray1[c] = 'Accesorios';
+			}else if(rows[c].categoria == 3){
+				newArray1[c] = 'Servicios PTN';
+			}else{
+				newArray1[c] = 'Mesa de Ayuda';
+			}
+		}
+		setMonedas(newArray);
+		setCategorias(newArray1);
 		//console.log("Guardado: ", rows);
 		setDisable(true);
 		setOpen(true);
@@ -841,10 +865,12 @@ return (
 								{rows[i].total}
 								</TableCell>
 								<TableCell component="th" scope="row" align="center">
-								{rows[i].moneda}
+								{/* {rows[i].moneda} */}
+								{monedas[i]}
 								</TableCell>
 								<TableCell component="th" scope="row"  align="center">
-								{rows[i].categoria}
+								{/* {rows[i].categoria} */}
+								{categorias[i]} 
 								</TableCell>
 								<TableCell component="th" scope="row" align="center">
 								{rows[i].comentarios}
