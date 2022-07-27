@@ -28,8 +28,8 @@ export const EditSP = () => {
    
     async function SendEditProy (proveedor_id, marca_id, dataSP,newDataSP,sp_id){
         const dataActualizacion ={
-                sp_id_spnp:dataSP.sp_id_spnp,
-                sp_id_spd:dataSP.sp_id_spd,
+                sp_no_parte:dataSP.spnp_np,
+                sp_descripcion:dataSP.spd_des,
                 sp_meses:dataSP.sp_meses,
                 sp_semanas:dataSP.sp_semanas,
                 sp_id_categoria:dataSP.sp_id_categoria,
@@ -39,47 +39,6 @@ export const EditSP = () => {
         const dataFM = {
             proyecto_fecha_modificacion:hoy
         }
-
-        const dataSpnp = {
-            spnp_np: ''
-        }
-      
-          const dataSpd = {
-            spd_des: ''
-        }
-
-        // Almacenamiento del id del spnp = no_parte
-        let spnp = {spnp_id:''}
-        // Almacenamiento del id del spd = descripción
-        let spd = {spd_id:''}
-        const resSP = await axios.get(url +'/api/cotizador/sp/viewFindSP');
-        // Obtención del id del no_parte y descripción
-        let n = Object.keys(resSP.data.data);
-        for (let c = 0; c < n.length; c++) {
-            if (newDataSP.sp_no_parte === resSP.data.data[c].spnp_np && newDataSP.sp_no_parte !== '') {
-                spnp.spnp_id = resSP.data.data[c].spnp_id;
-                dataActualizacion.sp_id_spnp = spnp.spnp_id;
-            }       
-            if (newDataSP.sp_descripcion === resSP.data.data[c].spd_des && newDataSP.sp_descripcion !== '') {
-                spd.spd_id = resSP.data.data[c].spd_id;
-                dataActualizacion.sp_id_spd = spd.spd_id;
-            }     
-        }
-
-        // if(spnp.spnp_id !== '' && spnp.spnp_id !== dataSP.spnp_id){
-        //     dataActualizacion.sp_id_spnp = spnp.spnp_id;
-        // }else{
-        //     const resSpnp = await axios.post(url + '/api/cotizador/sp/agregarSpnp', dataSpnp);
-        //     dataActualizacion.sp_id_spnp = resSpnp.data.data.insertId;
-        // }
-
-        // // Obtención del Id de la descripción de un servicio/producto 
-        // if(spd.spd_id !== '' &&  spd.spd_id !== dataSP.spd_id){
-        //     dataActualizacion.sp_id_spd = spd.spd_id;
-        // }else{
-        // const resSpd = await axios.post(url + '/api/cotizador/sp/agregarSpd', dataSpd);
-        //     dataActualizacion.sp_id_spd = resSpd.data.data.insertId;
-        // }
 
         const k = Object.keys(newDataSP);
         for(let keys of k){

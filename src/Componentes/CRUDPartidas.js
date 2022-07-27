@@ -388,8 +388,8 @@ export const CrudPartidas = (props) => {
                         <CrudSp
                         sp={listaSP}
                         proveedores={ListaProv}
-                        // nP={ListaNp}
-                        // descripciones={ListaDes}
+                        listaNP={ListaNp}
+                        listaDesc={ListaDes}
                         setfirst={setfirst}
                         envioDataSP={envioDataSp}
                         proyecto={props.proyecto}
