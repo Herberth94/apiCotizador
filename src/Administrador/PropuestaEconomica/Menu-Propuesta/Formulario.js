@@ -8,6 +8,7 @@ import "../css/PropuestaEconomica.css"
 import {name_cliente  , clave_p , descripcionGeneral }from "../../../Ventas/Operaciones/OperacionesAM";
 import {name_encargado, cargo , nombreP , fecha} from './ExportarPDF';
 import ExportExcel from './ExportExcel';
+import ExportExcel2 from  './ExportarExcel2';
 let validaOperacion = false;
 export let datos ={}
 export let datos2 =[];
@@ -200,7 +201,7 @@ function Formulario() {
 
 { show ? <ExportarPDF/> : ''}
 <p></p>
-{show ? <ExportExcel/>: ''}
+{show ? <ExportExcel2/>: ''}
 
 </div>
     </div>

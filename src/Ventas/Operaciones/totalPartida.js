@@ -36,7 +36,7 @@ export const Partida_catalogo = () => {
         setPorcentajesCategorias('');
         setPorcentajesCategorias(pCats);
         dataPorcentajesC  = pCats;
-       // console.log('Dta Porcentajes Categorias',porcentajesCategorias);
+        console.log('Dta Porcentajes Categorias',porcentajesCategorias);
          obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
 
         };
@@ -76,8 +76,7 @@ export const Partida_catalogo = () => {
             setotalesPartidas1(tP);
              dataPartida = tP ;    
              obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes,  dataPorcentajesC  , dataFinanciamiento );
-          
-          console.log("Datos de Partida"  , dataPartida);
+
             };
 
 
@@ -93,7 +92,6 @@ export const Partida_catalogo = () => {
             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes    );
               
 
- /*         console.log("verificar ",dataCategoria) */    
     
             };
 

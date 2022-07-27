@@ -116,6 +116,8 @@ export let financiamientoDescripcion = [];
 export let totalMensualFinanciamiento = [];
 export let TotalFinanciamiento= [];
 
+export let datosPTN = [];
+
 
 
 export function limpiaDatos() {
@@ -367,7 +369,7 @@ export function obtenPartidasUnicas(
     return dataCategoria.indexOf(valor) === indice;
   });
 
-  /*============= GUardar Datos Partidas Unicas  ===============================*/
+
   for (var i = 0; i < partidasUnicas.length; i++) {
     for (var j = 0; j < datosPTN.length; j++) {
       //Sumatoria por Partidas por Separado por Monedas
@@ -631,10 +633,8 @@ export function obtenPartidasUnicas(
 
 
   totalCategoriasUSD2 = totalCategoriasUSD;
-
   sumatoriaMXN2 = 0;
   sumatoriaUSD2 = 0;
-
   concatenaDatos(
     partidasUnicas,
     categoriasUnicas,
