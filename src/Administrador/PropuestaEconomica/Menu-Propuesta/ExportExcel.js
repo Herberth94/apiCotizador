@@ -2,9 +2,7 @@ import React,{useState, useEffect} from 'react';
 import * as XLSX from 'xlsx';
 import {
     Cantidad, name_cliente, clave_p, descripcionGeneral, partidasUnicas2,
-    TOTALSTRING, totD, totD2, totMensual, mesesMensual, totalMen, totalMenIva,
-    totalMensual, comprobacionFinanciamieno, plazo_meses , tMensual , tMensualIVA  ,  totDIVA ,  
-    tMensualSUMA , TOTALSTRINGMENSUAL  ,   totalsnIVA
+    TOTALSTRING, TOTALSTRINGMENSUAL  ,   totalsnIVA
   } from "../../../Ventas/Operaciones/OperacionesAM";
   
 const ExportExcel = () => {
@@ -20,7 +18,6 @@ const dataToEconomic =()=>{
             deleteToString=deleteToString.slice(1);
             TOTALSTRING[i]=deleteToString;
             console.log(deleteToString);
-
         }
          
         prueba[i]={

@@ -6,7 +6,7 @@ import infPartida from './ModalPartida'
 import ModalPartida from './ModalPartida';
 import "../css/PropuestaEconomica.css"
 import {name_cliente  , clave_p , descripcionGeneral }from "../../../Ventas/Operaciones/OperacionesAM";
-import {name_encargado, cargo , nombreP , fecha} from './ExportarPDF';
+import {name_encargado, cargo , nombreP , fecha  } from './ExportarPDF';
 import ExportExcel from './ExportExcel';
 import ExportExcel2 from  './ExportarExcel2';
 let validaOperacion = false;
@@ -14,7 +14,7 @@ export let datos ={}
 export let datos2 =[];
 
 
-
+console.log("HOLA")
 
 function checa(){
    

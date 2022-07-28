@@ -1,37 +1,57 @@
 import React,{useState, useEffect} from 'react';
 import * as XLSX from 'xlsx';
 import {
-   datosPTN
+   dataExcel
   } from "../../../Ventas/Operaciones/OperacionesAM";
 
-  import {dataPartida} from "../../../Ventas/Operaciones/totalPartida";
+ var  nombreArchivo = "excel.xlsx";
+ var extension =".xlsx";
 
-  console.log("----------------------------------------");
-  console.log("Datakkkkkk",dataPartida);
-  
 const ExportExcel2 = () => {
 
-   
-const dataToEconomic =()=>{
-    const prueba=[]
-    let deleteToString 
-    for (let i=0;i<   datosPTN.length-1;i++){
-        if(   datosPTN[i].includes('$')){
-            deleteToString  =    datosPTN[i]
-            deleteToString = deleteToString.trim();
-            deleteToString=deleteToString.slice(1);
-            datosPTN[i]=deleteToString;
-           /*  console.log(deleteToString); */
+    console.log("----------------------------------------");
+    console.log("Datos Excel",dataExcel);
+    console.log("----------------------------------------");
 
-        }
-         
+ 
+const dataToEconomic =()=>{
+
+   
+    if(dataExcel.length > 0){
+       nombreArchivo = dataExcel[dataExcel.length-1].proyecto_clave + extension;
+    }else{
+        nombreArchivo = "excel.xlsx";
+    }
+
+
+    const prueba=[]
+
+    let deleteToString 
+
+
+    for (let i= 0;i<  dataExcel.length ;i++){
+       
+           
+
+       /*     console.log("size ", dataExcel.length);
+         console.log("name " ,dataExcel[i].partida_nombre)
+ */
+      
         prueba[i]={
-            Partida:datosPTN[i].partida_nombre,
-            Descripcion_Partida:datosPTN[i].partida_descripcion,
-            Moneda: datosPTN[i].moneda_nombre,
-            Cantidad:datosPTN[i].sp_cantidad,
-            Precio_Lista:datosPTN[i].precio_lista,
-            Descuento:datosPTN[i].precio_descuento,
+            Partida: dataExcel[i].partida_nombre,
+            Descripcion_Partida: dataExcel[i].partida_descripcion,
+            Categoria:dataExcel[i].categoria_nombre,
+            Proveedor:dataExcel[i].proveedor_nombre,
+            Marca:dataExcel[i].marca_nombre,
+            No_Parte:dataExcel[i].spnp_np,
+            Descripcion:dataExcel[i].spd_des,
+            Duracion_Meses:dataExcel[i].sp_meses,
+            Entrega_Semanas:dataExcel[i].sp_semanas,
+            Moneda:  dataExcel[i].moneda_nombre,
+            Cantidad: dataExcel[i].sp_cantidad,
+            Precio_Lista: dataExcel[i].precio_lista,
+            Descuento: dataExcel[i].precio_descuento,
+            Comentarios: dataExcel[i].sp_comentarios,
             
             }
     }
@@ -55,7 +75,7 @@ const createToExcel = ()=>{
     const convertToJson = XLSX.utils.json_to_sheet(sheetData);
     
     XLSX.utils.book_append_sheet(new_workbook,convertToJson);
-    XLSX.writeFile(new_workbook,"prueba.xlsx");
+    XLSX.writeFile(new_workbook, nombreArchivo );
     
 
 

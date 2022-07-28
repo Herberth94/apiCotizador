@@ -140,9 +140,9 @@ function Excel(props) {
               <td>{d.Proveedor}</td>
               <td> {d.Marca} </td>
               <td>{d.No_Parte} </td>
-              <td>{d.Descipcion} </td>
-              <td>{d.Duracion}</td>
-              <td> {d.Entega} </td>
+              <td>{d.Descripcion} </td>
+              <td>{d.Duracion_Meses}</td>
+              <td> {d.Entrega_Semanas} </td>
               <td>{d.Moneda} </td>
               <td>{d.Cantidad} </td>
               <td>{d.Precio_Lista}</td>

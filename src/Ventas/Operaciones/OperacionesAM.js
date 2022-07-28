@@ -116,11 +116,14 @@ export let financiamientoDescripcion = [];
 export let totalMensualFinanciamiento = [];
 export let TotalFinanciamiento= [];
 
-export let datosPTN = [];
+
+export let dataExcel = [];
 
 
 
 export function limpiaDatos() {
+
+  clave_p ="";
   totalMensualFinal = 0;
   comprobacionFinanciamieno = false; 
   tMensual =0;
@@ -211,6 +214,7 @@ export function limpiaDatos() {
   precio2 = 0;
   stringDolar = "";
   totalPropuesta = "";
+  dataExcel = [];
 }
 
 let conversion = "";
@@ -223,10 +227,15 @@ export function obtenPartidasUnicas(
   dataPorcentajes = [],
   dataPorcentajesC = [],
   dataFinancia = []
+
+
+
 ) 
 
 {
   limpiaDatos();
+
+
 
   /* ANALIZAR TIPO DE DIVISA */
   if (Dolar.length != 0) {
@@ -340,6 +349,8 @@ export function obtenPartidasUnicas(
 
   /*=============GUardar Datos para Comparar ===============================*/
 
+
+
   for (const value of datosPTN) {
     data.push(value.partida_nombre);
     data2.push(value.partida_descripcion);
@@ -370,12 +381,15 @@ export function obtenPartidasUnicas(
   });
 
 
+  dataExcel = datosPTN;
+
+
   for (var i = 0; i < partidasUnicas.length; i++) {
     for (var j = 0; j < datosPTN.length; j++) {
       //Sumatoria por Partidas por Separado por Monedas
 
       if (partidasUnicas[i] === datosPTN[j].partida_nombre) {
-        console.log(  partidasUnicas[i]  , " = ",datosPTN[j].nombrePartida,);
+   
         contador++;
 
 
@@ -395,14 +409,13 @@ export function obtenPartidasUnicas(
     sumatoriaMXN = 0;
     sumatoriaUSD = 0;
 
-    console.log("OK R ",totalMXN);
   }
   //////// Conversion
 
   for (var i = 0; i < totalMXN.length; i++) {
 
 
-    console.log("entrar")
+    
 
     if (conversion === "MXN") {
 
@@ -461,9 +474,9 @@ export function obtenPartidasUnicas(
           let a  = parseFloat(totalUSD[i]);
           let b = parseFloat(totalMXN[i] / valorDolar);
 
-          console.log(b , "nn");
+      /*     console.log(b , "nn");
           console.log("dolar  "  , valorDolar)
-
+ */
           let c = a+b;
           monedaPTN.push(c.toFixed(decimal) );
           monedaPTN2.push(c.toFixed(decimal));

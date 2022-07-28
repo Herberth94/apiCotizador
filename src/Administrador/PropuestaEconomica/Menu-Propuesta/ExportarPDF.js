@@ -23,6 +23,8 @@ export let nombreP = "";
 
 const tiempoTranscurrido = Date.now();
 const hoy = new Date(tiempoTranscurrido);
+
+export let clavepro = clave_p;
 export let fecha = hoy.toLocaleDateString();
 
 

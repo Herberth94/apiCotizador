@@ -9,11 +9,71 @@ import { EditPartida } from '../../../Routes/ModificarPartida';
 import { EditCats } from '../../../Routes/ModificarCategorias';
 import { CrudPartidas } from '../../../Componentes/CRUDPartidas';
 import { CrudCategorias } from '../../../Componentes/CRUDCategorias';
+import ExportExcel2 from '../../../Administrador/PropuestaEconomica/Menu-Propuesta/ExportarExcel2';
+import { Partida_catalogo } from '../../../Ventas/Operaciones/totalPartida';
 
 export let pId;
 export let pEstatus;
 
 export const CrudProyectos = (props) => {
+
+
+
+
+
+
+
+    const { 
+        getTotalPar,
+        getPorcentajesPar,
+        getTotalCats,
+        getPorcentajesCats,
+        getDivisaProy,
+        getPorcentajesCI,
+        getFinanciamieno
+  
+    } = Partida_catalogo();
+
+    async function consultarTotalesP(id){
+
+        getTotalPar('');
+        getPorcentajesPar('');
+
+        getTotalCats('');
+        getPorcentajesCats('');
+    
+        getDivisaProy('');
+        getPorcentajesCI('');
+        getFinanciamieno('');
+
+        try{
+            const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${pId}`);
+            getTotalPar(resTotPar.data.data);
+
+            const resAMPar = await axios.get(url2 + `/api/cotizador/am/viewAMPartidas/${pId}`);
+            getPorcentajesPar(resAMPar.data.data);
+
+            const resTotCats = await axios.get(url2 + `/api/cotizador/am/viewTotalesCategorias/${pId}`);
+            getTotalCats(resTotCats.data.data);
+
+            const resAMCats = await axios.get(url2 + `/api/cotizador/am/viewAMCategorias/${pId}`);
+            getPorcentajesCats(resAMCats.data.data);
+
+            const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${pId}`);
+            getDivisaProy(dProy.data.data);
+            //console.log(dProy.data.data);
+
+            const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${pId}`);
+            getPorcentajesCI(resCI.data.data);
+            
+            const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${pId}`);
+            getFinanciamieno(resdF.data.data);
+
+        }catch (error){
+            console.log(error);
+        }
+        //console.log('Categorias',totalCategorias);
+    }
     /*======================================== Habilitar/Deshabilitar ========================================*/
     const [enable, setenable] = useState([]);// Inputs
     const [activar, setActivar] = useState([]);
@@ -309,8 +369,9 @@ export const CrudProyectos = (props) => {
                         <Th>Fecha Modificación</Th>
                         <Th>Estatus</Th>
                         <Th>Plazo Meses</Th>
-                        <Th>Modificar</Th>
                         <Th>Detalles</Th>
+                        <Th>Excel</Th>
+                        <Th>Modificar</Th>
                         <Th></Th>
                     </Tr>
                 </Thead>
@@ -385,6 +446,54 @@ export const CrudProyectos = (props) => {
                             </Td> 
 
 
+                            <Td width={"100px"}>
+                        {" "}
+                        <button
+                            className="sn-boton ver"
+                            type="button"
+                            onClick={() => {
+                                getIdP(props.suggestionsP[key]);
+                                //getDatosPartida(props.suggestionsP[key]);
+                                habilitar1(key);
+                                consultarTotalesP(props.suggestionsP[key].proyecto_clave);
+                            }}
+                        >
+                            <i className= {textBVer[key]}></i>
+                        </button>
+                    </Td>
+
+
+
+{/* EXCEL */}
+
+                    <Td width={"100px"}>
+                        {" "}
+                        <button
+                            className="sn-boton ver"
+                            type="button"
+                            onClick={() => {
+                                getIdP(props.suggestionsP[key]);
+            
+                            }}
+                        >
+                         
+                            <i className= "bi bi-download"></i>
+                        </button>
+                    </Td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             {enable[key] ? (
                             <Td width={"100px"} >
                                 <button 
@@ -431,20 +540,7 @@ export const CrudProyectos = (props) => {
                             </>
                         )}
                         
-                        <Td width={"100px"}>
-                        {" "}
-                        <button
-                            className="sn-boton ver"
-                            type="button"
-                            onClick={() => {
-                                getIdP(props.suggestionsP[key]);
-                                //getDatosPartida(props.suggestionsP[key]);
-                                habilitar1(key);
-                            }}
-                        >
-                            <i className= {textBVer[key]}></i>
-                        </button>
-                    </Td>
+
                         </Tr>  
                     ))}
                 </Tbody>          
@@ -468,6 +564,7 @@ export const CrudProyectos = (props) => {
                                  
                                     <Tr >
                                         <Th className='ocultar'>Partidas</Th>
+                                        <Th  className='ocultar'>Categorías</Th>
                                         <Th  className='ocultar'>Categorías</Th>
                                     </Tr>
                                 </Thead>
@@ -528,6 +625,41 @@ export const CrudProyectos = (props) => {
                                                         setfirst={setfirst1}
                                                         envioData={envioDataCats}
                                                         />
+                                                
+                                                </div>
+                                            )}
+                                        </Td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <Td>
+                                            <button
+                                            className="btn btn-primary modificar"
+                                            type="button"
+                                            onClick={() => {
+                                                getDatosCats(pId);
+                                                setShow3(!show3);
+                                                setShow2(true);
+                                            }}
+                                            >
+                                            {" "}
+                                            {show3 ? "Descargar Excel" : "Ocultar"}{" "}
+                                            </button>
+                                            {show3 ? (
+                                                <></>
+                                            ):(
+                                                <div className="menu2">
+                                              {/* y */}
                                                 
                                                 </div>
                                             )}
