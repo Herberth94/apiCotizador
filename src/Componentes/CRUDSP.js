@@ -37,15 +37,19 @@ export const CrudSp = (props) => {
         const handleInputChange = (event) => {
             setData ({
             ...data,[event.target.name] : event.target.value ,
-        })
+            })
         }
 
         const [datos, Setdatos] = useState();
+
         // Almacenamiento del nombre del proveedor a buscar
         const [nombreProv, setNombreProv] = useState([]);
         // Almacenamiento del nombre del proveedor a buscar
         const [nombreMarca, setNombreMarca] = useState([]);
-        
+        // Almacenamiento del No. de lista de un servicio/producto a buscar
+        const [nP, setNP] = useState([]);
+        // Almacenamiento de la Descripcion de un servicio/producto a buscar
+        const [desc, setDesc] = useState([]);
 
         useEffect(() => {
             Setdatos(props.sp); 
@@ -62,16 +66,19 @@ export const CrudSp = (props) => {
             setTextBVer(Array(i).fill('bi bi-eye'));
 
             const arrayNombresProv = []
+            const arrayNombresMarca = []
+            const arrayNP = [];
+            const arrayDesc = [];
             for(let c = 0 ; c < i ;c++){
                 arrayNombresProv[c] = props.sp[c].proveedor_nombre;
+                arrayNombresMarca[c] = props.sp[c].marca_nombre;
+                arrayNP[c] = props.sp[c].spnp_np;
+                arrayDesc[c] = props.sp[c].spd_des;
             }
             setNombreProv(arrayNombresProv);
-
-            const arrayNombresMarca = []
-            for(let c = 0 ; c < i ;c++){
-                arrayNombresMarca[c] = props.sp[c].marca_nombre;
-            }
             setNombreMarca(arrayNombresMarca);
+            setNP(arrayNP);
+            setDesc(arrayDesc);
         },[props.sp])
 
         
@@ -113,25 +120,27 @@ export const CrudSp = (props) => {
             setActivar(newArr3);
 
             const arrayNombresProv = [];
-            const arrayNombresMarca = []
+            const arrayNombresMarca = [];
+            const arrayNP = [];
+            const arrayDesc = [];
             if (activar === true){
                 for(let c = 0 ; c < c1 ;c++){
                     if(c === key){
                         arrayNombresProv[c] = '';
+                        arrayNombresMarca[c] = '';
+                        arrayNP[c] = '';
+                        arrayDesc[c] = '';
                     }else{
                         arrayNombresProv[c] = nombreProv[c];
+                        arrayNombresMarca[c] = nombreMarca[c];
+                        arrayNP[c] = nP[c];
+                        arrayDesc[c] = desc[c];
                     }
                 }
                 setNombreProv(arrayNombresProv);
-
-                for(let c = 0 ; c < c1 ;c++){
-                    if(c === key){
-                        arrayNombresMarca[c] = '';
-                    }else{
-                        arrayNombresMarca[c] = nombreMarca[c];
-                    }
-                }
                 setNombreMarca(arrayNombresMarca);
+                setNP(arrayNP);
+                setDesc(arrayDesc);
             } 
         }
 
@@ -164,6 +173,116 @@ export const CrudSp = (props) => {
         /*==========================================================*/
 
         /*================================================================ Buscadores ================================================================*/
+        /*=================================== Buscador de No. de lista ===================================*/
+        // Almacenamiento de los No. de lista semejantes al texto introducido en el input
+        const [suggestionsNP, setSuggestionsNP] = useState ([]);
+
+         // Función que realiza la busqueda de los No. lista similares al introducido
+         const onChangeTextNP = (noP,key) => {
+            let coincidencias = [];
+            if(noP.length>0){
+                coincidencias = props.listaNP.filter(np => {
+                    const regex = new RegExp(`${noP}`, "gi");
+                    return np.spnp_np.match(regex)
+                })
+            }
+            setSuggestionsNP(coincidencias);
+
+            key = parseInt(key);
+            let i = Object.keys(props.sp)
+            i = i.length;
+            const arrayNP = []
+            for(let c = 0 ; c < i ;c++){
+                if(c === key){
+                    arrayNP[c] = noP;
+                }else{
+                    arrayNP[c] = nP[c];
+                }
+            }
+            setNP(arrayNP);
+            setData ({
+                ...data,['sp_no_parte'] : noP ,
+            })
+            //console.log(data);
+        }
+
+        // Función que obtiene el No. de parte seleccionado
+        const onSuggestHandlerNP = (noP,key) => {
+            key = parseInt(key);
+            let i = Object.keys(props.sp)
+            i = i.length;
+            const arrayNP = []
+            for(let c = 0 ; c < i ;c++){
+                if(c === key){
+                    arrayNP[c] = noP;
+                }else{
+                    arrayNP[c] = nP[c];
+                }
+            }
+            setNP(arrayNP);
+            setData ({
+                ...data,['sp_no_parte'] : noP ,
+            })
+            //console.log(data);
+            //console.log(listaMarca);
+            setSuggestionsNP([]);
+        }
+        /*================================================================================================*/
+
+        /*=================================== Buscador de Descripciones ===================================*/
+        // Almacenamiento de las descripciones semejantes al texto introducido en el input
+        const [suggestionsDesc, setSuggestionsDesc] = useState ([]);
+
+         // Función que realiza la busqueda de los No. lista similares al introducido
+         const onChangeTextDesc = (d,key) => {
+            let coincidencias = [];
+            if(d.length>0){
+                coincidencias = props.listaDesc.filter(des => {
+                    const regex = new RegExp(`${d}`, "gi");
+                    return des.spd_des.match(regex)
+                })
+            }
+            setSuggestionsDesc(coincidencias);
+
+            key = parseInt(key);
+            let i = Object.keys(props.sp)
+            i = i.length;
+            const arrayDesc = []
+            for(let c = 0 ; c < i ;c++){
+                if(c === key){
+                    arrayDesc[c] = d;
+                }else{
+                    arrayDesc[c] = desc[c];
+                }
+            }
+            setDesc(arrayDesc);
+            setData ({
+                ...data,['sp_descripcion'] : d ,
+            })
+        }
+
+        // Función que obtiene el No. de parte seleccionado
+        const onSuggestHandlerDesc = (d,key) => {
+            key = parseInt(key);
+            let i = Object.keys(props.sp)
+            i = i.length;
+            const arrayDesc = []
+            for(let c = 0 ; c < i ;c++){
+                if(c === key){
+                    arrayDesc[c] = d;
+                }else{
+                    arrayDesc[c] = desc[c];
+                }
+            }
+            setDesc(arrayDesc);
+            setData ({
+                ...data,['sp_descripcion'] : d ,
+            })
+            //console.log(listaMarca);
+            setSuggestionsDesc([]);
+        }
+        /*================================================================================================*/
+
         /*=================================== Buscador de proveedores ===================================*/
         // Almacenamiento del id del proveedor encontrado en la busqueda
         var proveedorId = {proveedor_id:''}
@@ -391,22 +510,56 @@ export const CrudSp = (props) => {
                                 <td>{props.sp[key].sp_id}</td>
                                <Td>
                                     <input
-                                   
-                                    defaultValue={props.sp[key].spnp_np} 
+                                    value={nP[key]} 
                                     disabled={enable[key]} 
-                                    onChange={handleInputChange}
+                                    onChange={e => onChangeTextNP(e.target.value, key)}
                                     name="sp_no_parte" 
-                                    ></input>
+                                    />
+                                    {Object.keys(suggestionsNP).map((i)=>
+                                    {if(enable[key]){
+                                        return(
+                                        <></>
+                                        )
+                                    }else{
+                                        return(
+                                            <div 
+                                            key={i} 
+                                            className="selectCliente" 
+                                            onClick={() => onSuggestHandlerNP(suggestionsNP[i].spnp_np,key)}
+                                            >
+                                                {suggestionsNP[i].spnp_np}
+                                            </div>
+                                        )
+                                    }}
+                                    )}
+
                                 </Td>  
-                                <Td >
+                                <Td>
                                     <input
-                                 
-                                    defaultValue={props.sp[key].spd_des} 
+                                    value={desc[key]} 
                                     disabled={enable[key]} 
-                                    onChange={handleInputChange}
+                                    onChange={e => onChangeTextDesc(e.target.value, key)}
                                     name="sp_descripcion" 
-                                    ></input>
-                                </Td>
+                                    />
+                                    {Object.keys(suggestionsDesc).map((i)=>
+                                    {if(enable[key]){
+                                        return(
+                                        <></>
+                                        )
+                                    }else{
+                                        return(
+                                            <div 
+                                            key={i} 
+                                            className="selectCliente" 
+                                            onClick={() => onSuggestHandlerDesc(suggestionsDesc[i].spd_des,key)}
+                                            >
+                                                {suggestionsDesc[i].spd_des}
+                                            </div>
+                                        )
+                                    }}
+                                    )}
+
+                                </Td> 
                                 <Td>
                                     <input
                                   
