@@ -214,7 +214,8 @@ export function limpiaDatos() {
   precio2 = 0;
   stringDolar = "";
   totalPropuesta = "";
-  dataExcel = [];
+
+  
 }
 
 let conversion = "";
@@ -228,11 +229,12 @@ export function obtenPartidasUnicas(
   dataPorcentajesC = [],
   dataFinancia = []
 
-
-
 ) 
 
 {
+
+
+ 
   limpiaDatos();
 
 
@@ -381,7 +383,6 @@ export function obtenPartidasUnicas(
   });
 
 
-  dataExcel = datosPTN;
 
 
   for (var i = 0; i < partidasUnicas.length; i++) {
@@ -654,6 +655,13 @@ export function obtenPartidasUnicas(
     monedaPTN,
     totalCategoriasUSD
   );
+
+
+  dataExcel=datosPTN;
+  console.log("Data Operaciones" ,    dataExcel);
+
+
+
   return datosPTN;
 }
 

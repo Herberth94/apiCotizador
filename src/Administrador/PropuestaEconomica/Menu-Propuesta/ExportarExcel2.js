@@ -1,30 +1,29 @@
 import React,{useState, useEffect} from 'react';
 import * as XLSX from 'xlsx';
-import {
-   dataExcel
-  } from "../../../Ventas/Operaciones/OperacionesAM";
+import { dataExcel} from "../../../Ventas/Operaciones/OperacionesAM";
 
  var  nombreArchivo = "excel.xlsx";
  var extension =".xlsx";
 
+ const prueba=[];
+
+
+
+
 const ExportExcel2 = () => {
-
-    console.log("----------------------------------------");
-    console.log("Datos Excel",dataExcel);
-    console.log("----------------------------------------");
-
  
-const dataToEconomic =()=>{
 
-   
+    console.log("DATa economic ", dataExcel)
+
     if(dataExcel.length > 0){
+       nombreArchivo="";
        nombreArchivo = dataExcel[dataExcel.length-1].proyecto_clave + extension;
     }else{
         nombreArchivo = "excel.xlsx";
     }
 
 
-    const prueba=[]
+ 
 
     let deleteToString 
 
@@ -32,11 +31,6 @@ const dataToEconomic =()=>{
     for (let i= 0;i<  dataExcel.length ;i++){
        
            
-
-       /*     console.log("size ", dataExcel.length);
-         console.log("name " ,dataExcel[i].partida_nombre)
- */
-      
         prueba[i]={
             Partida: dataExcel[i].partida_nombre,
             Descripcion_Partida: dataExcel[i].partida_descripcion,
@@ -56,6 +50,9 @@ const dataToEconomic =()=>{
             }
     }
     deleteToString=[]
+
+const dataToEconomic =()=>{
+ 
     
     return prueba
 }
@@ -83,6 +80,8 @@ const createToExcel = ()=>{
    
   return (
     <div>
+
+        <p></p>
         <button className="btn btn-success " onClick={createToExcel}> Excel </button>
 
     </div>

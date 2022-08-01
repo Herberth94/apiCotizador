@@ -76,6 +76,8 @@ import MenuValidacion from "./Ventas/AM-Resumen/MenuValidacion";
 import Tablel from "./Ventas/AM-Resumen/Tablel";
   
 
+import Prueba2 from "./Preventa/PTN-BOM/Routes/Prueba2";
+
 function App() {
   
 
@@ -122,6 +124,9 @@ function App() {
         <Direccion exact path="/nuevo-proyecto" component={NuevoProyecto} /> 
         <Direccion exact path="/mis-proyectos" component={ContinuarProyecto } /> 
         <Direccion exact path="/proyectos-compartidos" component={ContinuarProyecto } /> 
+
+
+      {/*   Excel prueba */}
         <Direccion exact path="/mis-proyectos-r" component={Proyectos } /> 
         <Direccion exact path="/proyectos-compartidos-r" component={Proyectos } /> 
 

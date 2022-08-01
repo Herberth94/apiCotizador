@@ -6,9 +6,11 @@ import {
   } from "../../../Ventas/Operaciones/OperacionesAM";
   
 const ExportExcel = () => {
-
+console.log("Datos");
    
 const dataToEconomic =()=>{
+
+    console.log("Datos LLenados");
     const prueba=[]
     let deleteToString 
     for (let i=0;i<TOTALSTRING.length-1;i++){

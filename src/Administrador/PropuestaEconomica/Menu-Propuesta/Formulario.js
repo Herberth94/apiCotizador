@@ -14,7 +14,7 @@ export let datos ={}
 export let datos2 =[];
 
 
-console.log("HOLA")
+console.log("FORMULARIO")
 
 function checa(){
    

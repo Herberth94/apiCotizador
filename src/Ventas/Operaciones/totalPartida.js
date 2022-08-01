@@ -9,6 +9,7 @@ export let dataFinanciamiento =  [];
 export let dataPorcentajes =  [];
 export let dataPorcentajesC =  [];
 export let dol = 0;
+export let dataCompleta =[];
 
 
 
@@ -26,11 +27,19 @@ export const Partida_catalogo = () => {
     const getPorcentajesPar = (pPar) => {   
       setPorcentajesPartidas('');
       setPorcentajesPartidas(pPar);  
-      dataPorcentajes = pPar;  
+      dataPorcentajes = pPar;    
       //am_cantidad: 1      am_desc_cliente: 0      am_descuento_fabrica: 0       am_margen_ganancia: 32
-    console.log('Data Porcentajes Partidas',   dataPorcentajes); 
+   /*      console.log('Data Porcentajes Partidas ',  dataPartida);  */
         obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes ,  dataPorcentajesC ,  dataFinanciamiento) ;
-    };
+        dataCompleta =dataPartida;
+
+ 
+      }
+    
+
+
+    
+    ;
     const getPorcentajesCats = (pCats) => {    
         setPorcentajesCategorias('');
         setPorcentajesCategorias(pCats);
@@ -86,13 +95,8 @@ export const Partida_catalogo = () => {
         const getTotalCats = (tC) => {
             setotalesCategorias1('');
             setotalesCategorias1(tC);
-    
             dataCategoria= tC;
-    
             obtenPartidasUnicas(dataPartida,dataCategoria, dolar ,  dataIndirectos ,  dataPorcentajes    );
-              
-
-    
             };
 
   

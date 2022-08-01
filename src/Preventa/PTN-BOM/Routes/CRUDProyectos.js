@@ -12,62 +12,36 @@ import { CrudCategorias } from '../../../Componentes/CRUDCategorias';
 import ExportExcel2 from '../../../Administrador/PropuestaEconomica/Menu-Propuesta/ExportarExcel2';
 import { Partida_catalogo } from '../../../Ventas/Operaciones/totalPartida';
 
+import { descripcionGeneral } from '../../../Ventas/Operaciones/OperacionesAM';
+import { infPartida } from '../../../Administrador/PropuestaEconomica/Menu-Propuesta/ModalPartida';
+
 export let pId;
 export let pEstatus;
 
+
+export let datos ={}
+export let datos2 =[];
+
+
+
 export const CrudProyectos = (props) => {
-
-
-
-
-
-
+    
 
     const { 
         getTotalPar,
-        getPorcentajesPar,
-        getTotalCats,
-        getPorcentajesCats,
-        getDivisaProy,
-        getPorcentajesCI,
-        getFinanciamieno
-  
+    
+        
     } = Partida_catalogo();
 
-    async function consultarTotalesP(id){
+    async function consultarTotalesP(){
 
-        getTotalPar('');
-        getPorcentajesPar('');
-
-        getTotalCats('');
-        getPorcentajesCats('');
-    
-        getDivisaProy('');
-        getPorcentajesCI('');
-        getFinanciamieno('');
+   
 
         try{
             const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${pId}`);
             getTotalPar(resTotPar.data.data);
 
-            const resAMPar = await axios.get(url2 + `/api/cotizador/am/viewAMPartidas/${pId}`);
-            getPorcentajesPar(resAMPar.data.data);
-
-            const resTotCats = await axios.get(url2 + `/api/cotizador/am/viewTotalesCategorias/${pId}`);
-            getTotalCats(resTotCats.data.data);
-
-            const resAMCats = await axios.get(url2 + `/api/cotizador/am/viewAMCategorias/${pId}`);
-            getPorcentajesCats(resAMCats.data.data);
-
-            const dProy = await axios.get(url2 + `/api/cotizador/am/viewDivisa/${pId}`);
-            getDivisaProy(dProy.data.data);
-            //console.log(dProy.data.data);
-
-            const resCI = await axios.get(url2 + `/api/cotizador/ci/view/${pId}`);
-            getPorcentajesCI(resCI.data.data);
-            
-            const resdF = await axios.get(url2 + `/api/cotizador/proporcionalidad/view/${pId}`);
-            getFinanciamieno(resdF.data.data);
+      
 
         }catch (error){
             console.log(error);
@@ -80,11 +54,17 @@ export const CrudProyectos = (props) => {
     /*=========================================================================================================*/
 
     /*========================== Mostrar/Ocultar ==========================*/
+
     const [show,setShow] = useState(true); //Menu resumen
     const [show2,setShow2] = useState(true); //Lista de partidas
     const [show3,setShow3] = useState(true); //Lista de categorias
     const [textBModificar,setTextBModificar] = useState([]);//Texto de los botones de modificar
     const [show4,setShow4] = useState([]);
+    const [show5,setShow5] = useState([]);
+
+
+
+
     const [textBVer,setTextBVer] = useState([]);// Texto de los botones de mostrar
     /*=====================================================================*/
 
@@ -309,6 +289,13 @@ export const CrudProyectos = (props) => {
             try{
                 const resPP = await axios.get(url2 + `/api/cotizador/partida/viewPP/${id}`); 
                     setListaPartidas(resPP.data.data);
+
+
+
+                    const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${id}`);
+                    getTotalPar(resTotPar.data.data);
+        
+              
             }catch(error){
                 console.log(error);
             }
@@ -354,6 +341,8 @@ export const CrudProyectos = (props) => {
                 actualizacionCats(data[key], newdata);
             }
         }
+
+      
         /*=========================================================================*/
     /*==============================================================================================================*/
     return (
@@ -456,6 +445,8 @@ export const CrudProyectos = (props) => {
                                 //getDatosPartida(props.suggestionsP[key]);
                                 habilitar1(key);
                                 consultarTotalesP(props.suggestionsP[key].proyecto_clave);
+
+                                getDatosPartida(pId); 
                             }}
                         >
                             <i className= {textBVer[key]}></i>
@@ -468,7 +459,7 @@ export const CrudProyectos = (props) => {
 
                     <Td width={"100px"}>
                         {" "}
-                        <button
+                       {/*  <button
                             className="sn-boton ver"
                             type="button"
                             onClick={() => {
@@ -478,7 +469,8 @@ export const CrudProyectos = (props) => {
                         >
                          
                             <i className= "bi bi-download"></i>
-                        </button>
+                        </button> */}
+ 
                     </Td>
 
 
@@ -643,27 +635,8 @@ export const CrudProyectos = (props) => {
 
 
                                         <Td>
-                                            <button
-                                            className="btn btn-primary modificar"
-                                            type="button"
-                                            onClick={() => {
-                                                getDatosCats(pId);
-                                                setShow3(!show3);
-                                                setShow2(true);
-                                            }}
-                                            >
-                                            {" "}
-                                            {show3 ? "Descargar Excel" : "Ocultar"}{" "}
-                                            </button>
-                                            {show3 ? (
-                                                <></>
-                                            ):(
-                                                <div className="menu2">
-                                              {/* y */}
-                                                
-                                                </div>
-                                            )}
-                                        </Td>
+                          <ExportExcel2/>
+                          </Td>
                                     </Tr>
                                 </Tbody>
                             </Table>
