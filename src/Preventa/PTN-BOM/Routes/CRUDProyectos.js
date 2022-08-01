@@ -28,15 +28,11 @@ export const CrudProyectos = (props) => {
     
 
     const { 
-        getTotalPar,
-    
-        
+        getTotalPar
     } = Partida_catalogo();
 
     async function consultarTotalesP(){
-
-   
-
+        getTotalPar('')
         try{
             const resTotPar = await axios.get(url2 + `/api/cotizador/am/viewTotalesPartidas/${pId}`);
             getTotalPar(resTotPar.data.data);

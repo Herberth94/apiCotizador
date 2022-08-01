@@ -5,7 +5,7 @@ import { dataExcel} from "../../../Ventas/Operaciones/OperacionesAM";
  var  nombreArchivo = "excel.xlsx";
  var extension =".xlsx";
 
- const prueba=[];
+ let prueba=[];
 
 
 
@@ -21,16 +21,14 @@ const ExportExcel2 = () => {
     }else{
         nombreArchivo = "excel.xlsx";
     }
-
-
- 
-
+    if(dataExcel.length > 0){
+        prueba = Array(dataExcel.length).fill('');
+    }
+    
+    //setPrueba1('');
     let deleteToString 
-
-
-    for (let i= 0;i<  dataExcel.length ;i++){
-       
-           
+    for (let i= 0; i<  dataExcel.length ;i++){
+        
         prueba[i]={
             Partida: dataExcel[i].partida_nombre,
             Descripcion_Partida: dataExcel[i].partida_descripcion,
@@ -49,7 +47,8 @@ const ExportExcel2 = () => {
             
             }
     }
-    deleteToString=[]
+    deleteToString=[];
+
 
 const dataToEconomic =()=>{
  
@@ -60,11 +59,11 @@ const dataToEconomic =()=>{
 
 const [sheetData, setsheetData] = useState([]);
 useEffect(() => {
+    setsheetData('');
+    console.log('variable prueba:',prueba);
     const data = dataToEconomic();
     setsheetData(data);
-    
-   
-},[])
+},[dataExcel])
 
 const createToExcel = ()=>{
     const new_workbook = XLSX.utils.book_new();
@@ -73,9 +72,6 @@ const createToExcel = ()=>{
     
     XLSX.utils.book_append_sheet(new_workbook,convertToJson);
     XLSX.writeFile(new_workbook, nombreArchivo );
-    
-
-
 }
    
   return (

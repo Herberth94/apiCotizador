@@ -214,7 +214,7 @@ export function limpiaDatos() {
   precio2 = 0;
   stringDolar = "";
   totalPropuesta = "";
-
+  dataExcel = "";
   
 }
 
@@ -656,7 +656,7 @@ export function obtenPartidasUnicas(
     totalCategoriasUSD
   );
 
-
+  
   dataExcel=datosPTN;
   console.log("Data Operaciones" ,    dataExcel);
 
