@@ -44,7 +44,7 @@ function MenuVentas() {
                                     <NavDropdown.Item href="/documentacion">Documentación</NavDropdown.Item>
                                 </NavDropdown>
 
-
+                                <NavDropdown.Divider />
 
 
                                 <NavDropdown.Item href="#" onClick={cierreSesion} >Salir</NavDropdown.Item>
@@ -71,6 +71,8 @@ function MenuVentas() {
                                     <NavDropdown.Item href="/registrar-marcas">Marcas</NavDropdown.Item>
 
                                 </NavDropdown>
+
+                                <NavDropdown.Divider />
 
 
                         {/*    Administración */}
@@ -158,7 +160,7 @@ function MenuVentas() {
                                         <NavDropdown.Item href="/costos-indirectos">Costos Indirectos</NavDropdown.Item>
                                     </NavDropdown>
 
-
+                                    <NavDropdown.Divider />
                                             
                                     <NavDropdown
                                         id="nav-dropdown-dark-example"
@@ -171,7 +173,7 @@ function MenuVentas() {
                                     </NavDropdown>
 
 
-
+                                    <NavDropdown.Divider />
                                             
                                     <NavDropdown
                                         id="nav-dropdown-dark-example"

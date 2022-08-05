@@ -57,6 +57,7 @@ function Archivo() {
 
 
 
+                                <NavDropdown.Divider />
 
                                 <NavDropdown.Item href="#" onClick={cierreSesion} >Salir</NavDropdown.Item>
                             </NavDropdown>
@@ -86,6 +87,8 @@ function Archivo() {
 
                                 </NavDropdown>
 
+                                <NavDropdown.Divider />
+
 
                                 {/*    Administración */}
                                 <NavDropdown
@@ -102,7 +105,7 @@ function Archivo() {
                                     <NavDropdown.Item href="/administrar-colaboradores">Colaboradores</NavDropdown.Item>
                                 </NavDropdown>
 
-
+                                <NavDropdown.Divider />
                                 {/*    Proyectos*/}
 
                                 <NavDropdown
@@ -222,7 +225,7 @@ function Archivo() {
                                     <NavDropdown.Item href="/costos-indirectos">Costos Indirectos</NavDropdown.Item>
                                 </NavDropdown>
 
-
+                                <NavDropdown.Divider />
 
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
@@ -236,7 +239,8 @@ function Archivo() {
 
 
 
-
+                                <NavDropdown.Divider />
+                                
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
                                     title="Propuesta Económica "

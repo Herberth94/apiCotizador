@@ -46,7 +46,7 @@ function MenuAdministrador() {
                                 </NavDropdown>
 
 
-
+                                <NavDropdown.Divider />
 
                                 <NavDropdown.Item href="#" onClick={cierreSesion} >Salir</NavDropdown.Item>
                             </NavDropdown>
@@ -77,6 +77,9 @@ function MenuAdministrador() {
                                 </NavDropdown>
 
 
+                                <NavDropdown.Divider />
+
+
                                 {/*    Administración */}
                                 <NavDropdown
                                     id="nav-dropdown-dark-example"
@@ -91,6 +94,8 @@ function MenuAdministrador() {
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="/administrar-colaboradores">Colaboradores</NavDropdown.Item>
                                 </NavDropdown>
+
+                                <NavDropdown.Divider />
 
 
                                 {/*    Proyectos*/}
