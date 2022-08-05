@@ -355,7 +355,6 @@ export const CrudProyectos = (props) => {
                         <Th>Estatus</Th>
                         <Th>Plazo Meses</Th>
                         <Th>Detalles</Th>
-                        <Th>Excel</Th>
                         <Th>Modificar</Th>
                         <Th></Th>
                     </Tr>
@@ -452,10 +451,10 @@ export const CrudProyectos = (props) => {
 
 
 {/* EXCEL */}
-
+{/*
                     <Td width={"100px"}>
                         {" "}
-                       {/*  <button
+                         <button
                             className="sn-boton ver"
                             type="button"
                             onClick={() => {
@@ -465,18 +464,11 @@ export const CrudProyectos = (props) => {
                         >
                          
                             <i className= "bi bi-download"></i>
-                        </button> */}
+                        </button> 
  
                     </Td>
 
-
-
-
-
-
-
-
-
+                    */}
 
 
 
