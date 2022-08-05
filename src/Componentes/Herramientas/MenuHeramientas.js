@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
 import Cookies from 'universal-cookie';
@@ -15,9 +14,9 @@ let G;
 const cookies = new Cookies();
 let tipoRol = cookies.get('rol');
 let i = "";
-if (tipoRol === "administrador") {
+if (tipoRol === "direccion") {
   G = pdf;
-} else if (tipoRol === "preventa") {
+} else if (tipoRol === "administrador"    ||  tipoRol === "preventa"    ) {
   G = pdf2;
 } else if (tipoRol === "venta") {
   G = pdf3;
