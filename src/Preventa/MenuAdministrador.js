@@ -40,17 +40,7 @@ function MenuAdministrador() {
                                     <NavDropdown.Item href="/calculadora">Calculadora</NavDropdown.Item>
                                     <NavDropdown.Divider />
 
-                                    <NavDropdown
-                                        id="nav-dropdown-dark-example"
-                                        title="Cargar Plantilla Excel"
-                                        menuVariant="dark"
 
-                                    >
-                                        <NavDropdown.Item href="/plantilla-excel">Nuevo Proyecto</NavDropdown.Item>
-                                        <NavDropdown.Divider />
-
-                                        <NavDropdown.Item href="/continuarP-excel">Continuar Proyecto</NavDropdown.Item>
-                                    </NavDropdown>
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="/documentacion">Documentación</NavDropdown.Item>
                                 </NavDropdown>
@@ -147,6 +137,20 @@ function MenuAdministrador() {
                                     </NavDropdown.Item>
                             </NavDropdown>
 
+
+                            <NavDropdown.Divider />
+
+                            <NavDropdown
+                                        id="nav-dropdown-dark-example"
+                                        title="Cargar Plantilla Excel"
+                                        menuVariant="dark"
+
+                                    >
+                                        <NavDropdown.Item href="/plantilla-excel">Nuevo Proyecto</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+
+                                        <NavDropdown.Item href="/continuarP-excel">Continuar Proyecto</NavDropdown.Item>
+                                    </NavDropdown>
 
 
                             <NavDropdown.Divider />

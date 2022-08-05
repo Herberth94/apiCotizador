@@ -39,7 +39,7 @@ function Archivo() {
                                 >
                                     <NavDropdown.Item href="/calculadora">Calculadora</NavDropdown.Item>
                                     <NavDropdown.Divider />
-
+{/* 
                                     <NavDropdown
                                         id="nav-dropdown-dark-example"
                                         title="Cargar Plantilla Excel"
@@ -50,7 +50,7 @@ function Archivo() {
                                         <NavDropdown.Divider />
 
                                         <NavDropdown.Item href="/continuarP-excel">Continuar Proyecto</NavDropdown.Item>
-                                    </NavDropdown>
+                                    </NavDropdown> */}
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="/documentacion">Documentación</NavDropdown.Item>
                                 </NavDropdown>
@@ -150,6 +150,28 @@ function Archivo() {
 
 
 
+
+
+                                    <NavDropdown.Divider />
+                                    <NavDropdown
+                                        id="nav-dropdown-dark-example"
+                                        title="Cargar Plantilla Excel"
+                                        menuVariant="dark"
+
+                                    >
+                                        <NavDropdown.Item href="/plantilla-excel">Nuevo Proyecto</NavDropdown.Item>
+                                        <NavDropdown.Divider />
+
+                                        <NavDropdown.Item href="/continuarP-excel">Continuar Proyecto</NavDropdown.Item>
+                                    </NavDropdown>
+
+
+
+
+
+
+
+
                                     <NavDropdown.Divider />
 
                                     <NavDropdown
@@ -162,6 +184,11 @@ function Archivo() {
                                         <NavDropdown.Item href="/proyectos-compartidos-r"   >Proyectos Compartidos
                                         </NavDropdown.Item>
                                     </NavDropdown>
+
+
+
+
+
 
 
                                 
