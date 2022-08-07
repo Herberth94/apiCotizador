@@ -1,37 +1,30 @@
 import React from "react";
-import { Redirect, Route } from "react-router"
-import ValidaRol from './ValidaRol';
-import {i} from './ValidaRol';
+import { Redirect, Route } from "react-router";
+import ValidaRol from "./ValidaRol";
+import { i } from "./ValidaRol";
 
 //Validacion de Usuario Administrador
 
-let  auth = true;
+let auth = true;
 
-if(i=== "preventa"){
-
+if (i === "preventa") {
   auth = true;
-}else{
+} else {
   auth = false;
 }
-const Preventa= ({component:Component, ...rest}) => {
-    <ValidaRol />
+const Preventa = ({ component: Component, ...rest }) => {
+  <ValidaRol />;
 
-    if( i==="preventa"){
-//console.log("Hola Venta")
+  if (i === "preventa") {
+    //console.log("Hola Venta")
 
-return (
-    
-    <Route {...rest}>{auth? <Component/> : <Redirect to ="/"/>}   </Route>  
-      
-  )
-    }else{
+    return (
+      <Route {...rest}>{auth ? <Component /> : <Redirect to="/" />} </Route>
+    );
+  } else {
     //    console.log("No soy  de Preventa")
+  }
+  return null;
+};
 
-    }
-    return (null )
-    
-}
-
-
-
-export  default Preventa
+export default Preventa;

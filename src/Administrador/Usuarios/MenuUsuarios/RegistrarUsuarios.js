@@ -1,31 +1,38 @@
 import React from "react";
+import { useRegistro } from "../Routes/useRegistro";
 import "../css/registroUsuarios.css";
-import {useRegistro} from '../Routes/useRegistro';
-
 
 function Registro() {
-  const {  
-    handleInputChange,
-    enviarDatos
-  } = useRegistro();
+  const { handleInputChange, enviarDatos } = useRegistro();
 
   return (
-
     <div className="contenido-main-registro">
       <div className="scene flex">
         <section className="card-body">
-          <form  action="" method="post" className="card-form" onSubmit = {enviarDatos}>
-            <h2 >
+          <form
+            action=""
+            method="post"
+            className="card-form"
+            onSubmit={enviarDatos}
+          >
+            <h2>
               <span>Registrar Usuarios</span>
             </h2>
-            <label className="rol" htmlFor="rol">Tipo rol: </label>
+            <label className="rol" htmlFor="rol">
+              Tipo rol:{" "}
+            </label>
 
-            <select id="rol" name="usuario_id_rol" required onChange={handleInputChange}>
-                <option value={4}>--------------</option>
-            {/*     <option value={5}>Dirección</option> */}
-                <option value={1}>Administrador</option>
-                <option value={2}>Preventa</option>
-                <option value={3}>Venta</option>
+            <select
+              id="rol"
+              name="usuario_id_rol"
+              required
+              onChange={handleInputChange}
+            >
+              <option value={4}>--------------</option>
+              {/*     <option value={5}>Dirección</option> */}
+              <option value={1}>Administrador</option>
+              <option value={2}>Preventa</option>
+              <option value={3}>Venta</option>
             </select>
             <br />
             <br />
@@ -36,7 +43,7 @@ function Registro() {
             <input
               id="user"
               type="email"
-              name ="email"
+              name="email"
               onChange={handleInputChange}
               className="card-input"
               placeholder="Ingrese Correo"
@@ -48,7 +55,7 @@ function Registro() {
             <input
               id="user2"
               type="text"
-              name= "remail"
+              name="remail"
               onChange={handleInputChange}
               className="card-input"
               placeholder="Repita el Correo"
@@ -71,22 +78,15 @@ function Registro() {
               <button className="btn-login" type="submit">
                 <span>Registrar</span>
               </button>
-
-
             </div>
-
-
-
           </form>
         </section>
       </div>
 
+      <br />
+      <br />
 
-      <br/>
-      <br/>
-
-<br/>
-
+      <br />
     </div>
   );
 }

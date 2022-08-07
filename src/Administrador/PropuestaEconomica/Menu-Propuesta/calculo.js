@@ -142,9 +142,6 @@ export let numeroALetras = (function() {
                 centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
                 letrasCentavos: '',
                 letrasMonedaPlural: currency.plural || 'PESOS',//'PESOS', 'Dólares', 'Bolívares', 'etcs'
-                //letrasMonedaSingular: currency.singular || 'PESO', //'PESO', 'Dólar', 'Bolivar', 'etc'
-                //letrasMonedaCentavoPlural: currency.centPlural || 'MXN',
-                //letrasMonedaCentavoSingular: currency.centSingular || 'centavo'
             };
             
     

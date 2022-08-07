@@ -1,27 +1,26 @@
-import React from 'react'
+import React from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../../Componentes/Animaciones";
-import RegistrarUsuarios   from "./RegistrarUsuarios";
+import RegistrarUsuarios from "./RegistrarUsuarios";
 import AdministrarUsuarios from "./AdministrarUsuarios";
-
 
 function MenuUsuarios() {
   /*========================== Mostrar/Ocultar =========================*/
-  const [show, setShow] = useState(true);//Componente registrar Usuario
-  const [show2, setShow2] = useState(true);// Componentes administrar Usuario
+  const [show, setShow] = useState(true); //Componente registrar Usuario
+  const [show2, setShow2] = useState(true); // Componentes administrar Usuario
   /*====================================================================*/
 
   return (
     <div className="contenido-usuarios">
-      <Animaciones mytext= " Usuarios " />
+      <Animaciones mytext=" Usuarios " />
       {/*========================== Tabla  Categorias ==========================*/}
       <Table responsive id="nombreDiv">
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
-            <th className='ocultar'>Registrar Usuarios</th>
-            <th className='ocultar'> Administrar Usuarios </th>
+            <th className="ocultar">Registrar Usuarios</th>
+            <th className="ocultar"> Administrar Usuarios </th>
           </tr>
         </thead>
         <tbody>
@@ -44,7 +43,7 @@ function MenuUsuarios() {
               ) : (
                 <div className="arregla divBuscadorInteligente">
                   {/*========================== Llamado al Componente ==========================*/}
-                  < RegistrarUsuarios />
+                  <RegistrarUsuarios />
                 </div>
               )}
             </td>
@@ -65,14 +64,8 @@ function MenuUsuarios() {
                 <div></div>
               ) : (
                 <div className="arregla">
-              
-
-
-
-
-
                   {/*========================== Llamado al Componente ==========================*/}
-                  <AdministrarUsuarios/>
+                  <AdministrarUsuarios />
                 </div>
               )}
             </td>
@@ -80,7 +73,7 @@ function MenuUsuarios() {
         </tbody>
       </Table>
     </div>
-  )
+  );
 }
 
-export default MenuUsuarios
+export default MenuUsuarios;

@@ -1,11 +1,4 @@
 import React from 'react'
-import swal from "sweetalert"
-
-
-
-
-
-
 function Animaciones(props) {
   return (
 
@@ -17,12 +10,6 @@ function Animaciones(props) {
                             <span className="block"></span>
                             <h1 > {props.mytext}<span></span></h1>
                         </div>
-                 {/*========= Subtitulo Animación ========= */}
-                 {/*        <div className="role">
-                            <div className="block"></div>
-                            <p>  Delfos369</p>
-                        </div>
- */}
                     </div>
                 </div>
   )

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Table from "react-bootstrap/Table";
-import axios from "axios";
-import Animaciones from "../../../Componentes/Animaciones";
-//Componentes
-import { EditProvs } from "../Routes/ModificarProveedor";
-import { url } from "../../../Componentes/Ocultar";
-import { CrudProveedores } from "../Routes/CRUDProveedores";
+import axios                          from "axios";
+import { EditProvs }                  from "../Routes/ModificarProveedor";
+import { url }                        from "../../../Componentes/Ocultar";
+import { CrudProveedores }            from "../Routes/CRUDProveedores";
 
 
 
@@ -71,25 +68,6 @@ function AdministrarProveedor() {
 
   return (
     <div className="">
-
-
-{/* 
-        <div className="buscador-inteligente">
-          <form className="form-inline my-2 my-lg-0">
-            <input className="form-control mr-sm-2"
-              type="search"
-              placeholder="Buscar por Clave 🔎"
-              aria-label="Search"
-              name="proyecto_clave"
-              onChange={e => onChangeTextNombreProv(e.target.value)}
-              value={nombreProv}
-
-            />
-          </form>
-        </div>
- */}
-
-
         <div>
           {/*=================== Botón Mostrar Lista DIV =====================*/}
     
@@ -97,7 +75,6 @@ function AdministrarProveedor() {
             proveedores={suggestions}
             setfirst={setfirst}
             envioData={envioData}
-          //setActualizarProvs={setActualizarProvs}
           />
         </div>
       </div>

@@ -1,55 +1,45 @@
-
-
-.valor_dolar{
-    width: 50%;
- float: left;
+.valor_dolar {
+  width: 50%;
+  float: left;
 }
 
-div.subir_dolar{
-    width: 50%;
-    float: right;
-   padding: 10px;
+div.subir_dolar {
+  width: 50%;
+  float: right;
+  padding: 10px;
 }
-.btn-dolar{
-    background-color: rgb(75, 231, 36);
-    text-decoration: none;
-
-
+.btn-dolar {
+  background-color: rgb(75, 231, 36);
+  text-decoration: none;
 }
-#edit{
-    background-color: #1a0257;
+#edit {
+  background-color: #1a0257;
 }
 
-
-.espacio{
-    display: flex;
-    width: 100%;
-    height: 20%;
-    background-color: rgb(0, 0, 0);
+.espacio {
+  display: flex;
+  width: 100%;
+  height: 20%;
+  background-color: rgb(0, 0, 0);
 }
-
 
 /* tabla de proporcionalidad titulo y totales */
-.azul{
-    background-color: #3c1053;
-    COLOR: WHITE;
+.azul {
+  background-color: #3c1053;
+  color: WHITE;
 }
 
-.total{
-    background-color: #1a0257 ;
-    color: aliceblue;
+.total {
+  background-color: #1a0257;
+  color: aliceblue;
 }
 
-
-
-.resumen{
-    background-color: rgb(255, 255, 255);
+.resumen {
+  background-color: rgb(255, 255, 255);
 }
 
-
-.white{
-    background-color: #1a0257;
-    width: 100%;
-    height: 100%;
+.white {
+  background-color: #1a0257;
+  width: 100%;
+  height: 100%;
 }
-

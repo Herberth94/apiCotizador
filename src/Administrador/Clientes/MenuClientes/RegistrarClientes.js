@@ -5,88 +5,78 @@ function Clientes() {
   const {
     handleInputChange,
     enviarDatos
-  }=useRegistro()
+  } = useRegistro()
 
 
-    return (
-        <div className="contenido-main-registro">
-        <div className="scene flex">
-          <section className="card-body">
-            <form  method="post" className="card-form" onSubmit = {enviarDatos}>
-                {/*========= Registrar Clientes========= */}
-              <h2 >  Registrar Clientes</h2>
-   {/*========= Nombre Cliente========= */}
-                 <label htmlFor="user" className=" label">
-                    Nombre Cliente
-                 </label>
-              <input
-                type="text" 
-                id="user"
-                name='nombre_cliente'                                                                         
-                className="card-input"
-                autoCapitalize='characters'
-                onChange={handleInputChange}                 
-                placeholder="Nombre Cliente"                
-              />
+  return (
+    <div className="contenido-main-registro">
+      <div className="scene flex">
+        <section className="card-body">
+          <form method="post" className="card-form" onSubmit={enviarDatos}>
+            {/*========= Registrar Clientes========= */}
+            <h2 >  Registrar Clientes</h2>
+            {/*========= Nombre Cliente========= */}
+            <label htmlFor="user" className=" label">
+              Nombre Cliente
+            </label>
+            <input
+              type="text"
+              id="user"
+              name='nombre_cliente'
+              className="card-input"
+              autoCapitalize='characters'
+              onChange={handleInputChange}
+              placeholder="Nombre Cliente"
+            />
 
-              <script>
+            {/*========= Razón Social ========= */}
+            <label htmlFor="user2" className=" label">
+              Razón Social
+            </label>
+            <input
+              id="user2"
+              type="text"
+              name="razon_social"
+              onChange={handleInputChange}
+              className="card-input"
+              placeholder="Razón Social"
+            />
 
-              </script>
-
-    {/*========= Razón Social ========= */}
-              <label htmlFor="user2" className=" label">
-                Razón Social
-              </label>
-              <input
-                id="user2"
-                type="text"
-                name ="razon_social"
-                onChange={handleInputChange}
-                className="card-input"
-                placeholder="Razón Social"
-              />
-  
-   {/*========= FALTA Teléfono ========= */}
-  <label htmlFor="user2" className=" label">
+            {/*=========Teléfono ========= */}
+            <label htmlFor="user2" className=" label">
               Contacto (Teléfono)
-              </label>
-              <input
-                id="user2"
-                type="number"
-                name ="telefono"
-                onChange={handleInputChange}
-                className="card-input"
-                placeholder="Ingrese Número Telefónico"
-              />
-   {/*========= FALTA Dirección ========= */}
-     <label htmlFor="user2" className=" label">
-             Dirección
-              </label>
-              <input
-                id="user2"
-                type="text"
-                name ="cliente_direccion"
-                onChange={handleInputChange}
-                className="card-input"
-                placeholder="Ingrese Dirección"
-              />
-    {/*========= Botón Registrar ========= */}
-              <div className="boton-login">
-                <button className="btn-login" type="submit">
-                  <span>Registrar</span>
-                </button>
-              </div>
-            </form>
-          </section>
-        </div>
-
-             
-
-        <br/>
-        <br/>
-
+            </label>
+            <input
+              id="user2"
+              type="number"
+              name="telefono"
+              onChange={handleInputChange}
+              className="card-input"
+              placeholder="Ingrese Número Telefónico"
+            />
+            {/*========= Dirección ========= */}
+            <label htmlFor="user2" className=" label">
+              Dirección
+            </label>
+            <input
+              id="user2"
+              type="text"
+              name="cliente_direccion"
+              onChange={handleInputChange}
+              className="card-input"
+              placeholder="Ingrese Dirección"
+            />
+            {/*========= Botón Registrar ========= */}
+            <div className="boton-login">
+              <button className="btn-login" type="submit">
+                <span>Registrar</span>
+              </button>
+            </div>
+          </form>
+        </section>
       </div>
-    )
+    </div>
+  )
 }
 
 export default Clientes

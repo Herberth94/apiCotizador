@@ -3,13 +3,12 @@ import { useState } from "react";
 import "../css/PTN_BOM.css";
 import Table from "react-bootstrap/Table";
 
-
 import Animaciones from "../../../Componentes/Animaciones";
 import NuevoProyecto from "../Menu-Bom/NuevoProyecto";
 import ContinuarProyecto from "../Menu-Bom/ContinuarProyecto";
 import Proyectos from "../Menu-Bom/ResumenProyectos";
-import { InsertDatosPartida } from '../Routes/GuardarPartida';
-import { getIdPar } from '../Menu-Bom/DatosSP';
+import { InsertDatosPartida } from "../Routes/GuardarPartida";
+import { getIdPar } from "../Menu-Bom/DatosSP";
 import { InsertDatosCats } from "../Routes/GuardarDatosCategorias";
 import { getIdP2 } from "../Menu-Bom/NuevoProyecto";
 import axios from "axios";
@@ -31,12 +30,10 @@ function PTN_BOM() {
   }
   const [show3, setShow3] = useState(true);
 
-  const {getIdP} = InsertDatosPartida();
-  const {getIdP1} = InsertDatosCats();
-  
-  // Función que realiza la consulta a la tabla proyectos 
-  
+  const { getIdP } = InsertDatosPartida();
+  const { getIdP1 } = InsertDatosCats();
 
+  // Función que realiza la consulta a la tabla proyectos
 
   return (
     <div className="contenido-usuarios">
@@ -45,7 +42,7 @@ function PTN_BOM() {
       <Animaciones mytext=" Cotizaciones " />
 
       {/*========================== Tabla  Categorias ==========================*/}
-      <Table  >
+      <Table>
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
@@ -62,9 +59,9 @@ function PTN_BOM() {
                 className="btn btn-primary modificar"
                 type="button"
                 onClick={() => {
-                  getIdP('');
-                  getIdPar('');
-                  getIdP1('');
+                  getIdP("");
+                  getIdPar("");
+                  getIdP1("");
                   setShow(!show);
                   setShow2(true);
                   setShow3(true);
@@ -88,7 +85,7 @@ function PTN_BOM() {
                 className="btn btn-primary modificar"
                 type="button"
                 onClick={() => {
-                  getIdP2(''); 
+                  getIdP2("");
                   setShow2(!show2);
                   setShow(true);
                   setShow3(true);
@@ -100,7 +97,7 @@ function PTN_BOM() {
               {show2 ? (
                 <div></div>
               ) : (
-                <div className="arregla divBuscadorInteligente" >
+                <div className="arregla divBuscadorInteligente">
                   {/*========================== Llamado al Componente ==========================*/}
                   <ContinuarProyecto />
                 </div>

@@ -1,24 +1,14 @@
-import React from 'react'
-import Table from 'react-bootstrap/Table'
+import React from "react";
+import Table from "react-bootstrap/Table";
 import { useState } from "react";
-import Animaciones from '../../Componentes/Animaciones';
-import MenuValidacion from './MenuValidacion';
-
-import BuscadorInteligente3 from '../../Administrador/PropuestaEconomica/Menu-Propuesta/BuscadorInteligente3';
-
-import Formulario from '../../Administrador/PropuestaEconomica/Menu-Propuesta/Formulario';
-
-
-
+import Animaciones from "../../Componentes/Animaciones";
+import MenuValidacion from "./MenuValidacion";
+import BuscadorInteligente3 from "../../Administrador/PropuestaEconomica/Menu-Propuesta/BuscadorInteligente3";
 /* import BuscadorInteligente3 from './BuscadorInteligente3';
 import BuscadorInteligente4 from './BuscadorInteligente4';
  */
 
-
-
-
 function MenuFormulario() {
-
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
 
@@ -26,15 +16,15 @@ function MenuFormulario() {
     <div className="contenido-usuarios">
       <div className="table-responsive">
         <div>
-          <Animaciones mytext="Propuesta Económica" /> 
+          <Animaciones mytext="Propuesta Económica" />
         </div>
 
         <Table responsive id="nombreDiv">
           {/*========================== Titulos Tabla ==========================*/}
           <thead>
             <tr className="titulo-tabla-usuarios">
-              <th className='ocultar'>Editar Propuesta</th>
-              <th className='ocultar'>Administrar propuestas </th>
+              <th className="ocultar">Editar Propuesta</th>
+              <th className="ocultar">Administrar propuestas </th>
             </tr>
           </thead>
 
@@ -51,16 +41,18 @@ function MenuFormulario() {
                   }}
                 >
                   {" "}
-                  {show ? "Editar Propuesta  Económica" : "Ocultar Edición"}{" "}
+                  {show
+                    ? "Editar Propuesta  Económica"
+                    : "Ocultar Edición"}{" "}
                 </button>
                 {show ? (
                   <div></div>
                 ) : (
                   <div className="arregla divBuscadorInteligente">
                     {/*========================== Llamado al Componente ==========================*/}
-               {/*      <BuscadorInteligente3/> */}
+                    {/*      <BuscadorInteligente3/> */}
 
-               < BuscadorInteligente3/>
+                    <BuscadorInteligente3 />
                   </div>
                 )}
               </td>
@@ -83,13 +75,9 @@ function MenuFormulario() {
                   <div className="arregla">
                     {/*========================== Llamado al Componente ==========================*/}
                     {/*      <AdministrarPropuesta /> */}
-                {/*     <BuscadorInteligente4/> */}
+                    {/*     <BuscadorInteligente4/> */}
 
-                <MenuValidacion/>
-
-
-
-
+                    <MenuValidacion />
                   </div>
                 )}
               </td>
@@ -100,4 +88,4 @@ function MenuFormulario() {
     </div>
   );
 }
-export default MenuFormulario
+export default MenuFormulario;

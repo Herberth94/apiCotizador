@@ -122,26 +122,6 @@ function BuscadorProyectoFinanciamiento() {
           <div> <Animaciones mytext="Datos Financiamiento" /> </div> 
             {/*********Búsqueda de Proyectos AM ********/}
 
-{/*             <div className = "buscador-inteligente">
-
- 
-<form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" 
-                    type="search" 
-                    placeholder="Buscar por Clave 🔎" 
-                    aria-label="Search"
-                    name="proyecto_clave"
-                    onChange={e => onChangeTextClaveP(e.target.value)}
-                    value={claveP}
-                    
-                    />
-
-                </form>
-        </div> */}
-                {/****************************Lista de los Proyectos Creados ****************************************/}
-                {/*============= Titulo Animación =============*/}
-              {/*   <div> <Animaciones mytext="Proyectos" /> </div>
- */}
                 <Table    id = "daTable">
                     <Thead>
 

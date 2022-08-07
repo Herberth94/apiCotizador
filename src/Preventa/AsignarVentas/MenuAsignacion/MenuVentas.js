@@ -15,8 +15,6 @@ function MenuVentas() {
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
   return (
-
-    
     <div className="contenido-usuarios">
       <Animaciones mytext="Proyectos " />
 

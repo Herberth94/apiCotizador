@@ -1,8 +1,7 @@
-import React from 'react'
+import {  React ,useState } from "react";
 import "../css/PropuestaEconomica.css";
-import Table from 'react-bootstrap/Table'
-import { useState } from "react";
-import Animaciones from "../../../Componentes/Animaciones";
+import Table                from 'react-bootstrap/Table'
+import Animaciones          from "../../../Componentes/Animaciones";
 import BuscadorInteligente3 from './BuscadorInteligente3';
 import BuscadorInteligente4 from './BuscadorInteligente4';
 

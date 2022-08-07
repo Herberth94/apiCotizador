@@ -2,25 +2,30 @@ import React from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
-import BuscadorProyectoFinanciamiento from "./MenuProporcionalidad/BuscadorProyectoFinanciamiento"
-
+import BuscadorProyectoFinanciamiento from "./MenuProporcionalidad/BuscadorProyectoFinanciamiento";
 
 import BuscadorInteligente2 from "../AM/BuscadorInteligente2";
 
-
 function ProporcionalidadMenu() {
-  {  /*========================== Mostrar Ocultar Tabla ==========================*/}
+  {
+    /*========================== Mostrar Ocultar Tabla ==========================*/
+  }
   const [show, setShow] = useState(true);
 
-  {  /*========================== Mostrar Ocultar Botón ==========================*/}
+  {
+    /*========================== Mostrar Ocultar Botón ==========================*/
+  }
   const [show2, setShow2] = useState(true);
 
-  {  /*========================== Mostrar Ocultar Datos Adicionales ==========================*/}
+  {
+    /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
+  }
   const [show3, setShow3] = useState(true);
 
-  {  /*========================== Mostrar Ocultar Datos Adicionales ==========================*/}
+  {
+    /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
+  }
   const [show4, setShow4] = useState(true);
-
 
   return (
     <div className="contenido-usuarios">
@@ -33,10 +38,8 @@ function ProporcionalidadMenu() {
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
-        
             <th>Resumen</th>
             <th>Financiamiento</th>
-    
           </tr>
         </thead>
         <tbody>
@@ -58,7 +61,7 @@ function ProporcionalidadMenu() {
               ) : (
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
-                <BuscadorInteligente2/>
+                  <BuscadorInteligente2 />
                 </div>
               )}
             </td>
@@ -79,15 +82,10 @@ function ProporcionalidadMenu() {
               ) : (
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
-                  <BuscadorProyectoFinanciamiento/>
+                  <BuscadorProyectoFinanciamiento />
                 </div>
               )}
             </td>
-
-          
-
-
-
           </tr>
         </tbody>
       </Table>

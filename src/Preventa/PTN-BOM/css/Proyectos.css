@@ -1,30 +1,26 @@
-.titulo-proyectos h1{
-    text-align: center;
-    }
-    .lista-proyectos label{
-        background-color: black;
-    }
-    
-    .titulo-proyectos label{
-        background-color: black;
-        }
-    
-    
-    
-        .boton-cotizador{
-    
-            display: flex;
-            justify-content: center;
-            width: 100%;
-             margin: 0 auto;
-             padding: 1%;
-        }
-    
+.titulo-proyectos h1 {
+  text-align: center;
+}
+.lista-proyectos label {
+  background-color: black;
+}
 
-        .btn.btn-primary.detalles{
-background-color: rgb(39 123 6);
-        }
+.titulo-proyectos label {
+  background-color: black;
+}
 
-        .btn.btn-primary.detalles:hover{
-            background-color: rgb(71 214 15);
-                    }
+.boton-cotizador {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1%;
+}
+
+.btn.btn-primary.detalles {
+  background-color: rgb(39 123 6);
+}
+
+.btn.btn-primary.detalles:hover {
+  background-color: rgb(71 214 15);
+}

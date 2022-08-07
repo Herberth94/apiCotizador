@@ -1,27 +1,18 @@
-import React from 'react'
-import './css/header.css'
-
-import logo from "../images/logo.png"
-
+import React from "react";
+import "./css/header.css";
+import logo from "../images/logo.png";
 
 function Header() {
-    return (
-        <div className= "header">
-
-        <div className= "header">
-
-       <h3>  <img src={logo} className="log"  alt="Palo Tinto Networks" /></h3> 
- 
-       
-        {/*    <h4>  <img src={marvilop} className="log2"  alt="Marvilop" /></h4> */}
-
-  
-            
-        </div>
-
-
-        </div>
-    )
+  return (
+    <div className="header">
+      <div className="header">
+        <h3>
+          {" "}
+          <img src={logo} className="log" alt="Palo Tinto Networks" />
+        </h3>
+      </div>
+    </div>
+  );
 }
 
-export default Header
+export default Header;

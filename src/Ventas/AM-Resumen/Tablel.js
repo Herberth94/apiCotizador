@@ -37,7 +37,7 @@ function Tablel() {
   };
 
   return (
-    <div  className="contenido-marvilop">
+    <div className="contenido-marvilop">
       <h2>Data</h2>
       <button onClick={() => descargarArchivo()}>Descargar Archivo</button>
       {usuarios && (

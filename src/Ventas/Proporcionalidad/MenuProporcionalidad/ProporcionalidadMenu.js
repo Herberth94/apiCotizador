@@ -3,16 +3,13 @@ import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../../Componentes/Animaciones";
 
-
-import BuscadorProyectoFinanciamiento from "./BuscadorProyectoFinanciamiento"
+import BuscadorProyectoFinanciamiento from "./BuscadorProyectoFinanciamiento";
 import BuscadorInteligente2 from "../../AM/Menu-AM/BuscadorInteligente2";
 
 function ProporcionalidadMenu() {
-
   /*========================== Mostrar/Ocultar Componente ==========================*/
   const [show, setShow] = useState(true);
   const [show2, setShow2] = useState(true);
-
 
   return (
     <div className="contenido-usuarios">
@@ -25,10 +22,8 @@ function ProporcionalidadMenu() {
         {/*========================== Titulos Tabla ==========================*/}
         <thead>
           <tr className="titulo-tabla-usuarios">
-        
             <th className="ocultar">Resumen</th>
             <th className="ocultar">Financiamiento</th>
-    
           </tr>
         </thead>
         <tbody>
@@ -51,7 +46,7 @@ function ProporcionalidadMenu() {
               ) : (
                 <div className="arregla divBuscadorInteligente">
                   {/*========================== Llamado al Componente ==========================*/}
-                <BuscadorInteligente2/>
+                  <BuscadorInteligente2 />
                 </div>
               )}
             </td>
@@ -73,7 +68,7 @@ function ProporcionalidadMenu() {
               ) : (
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
-                  <BuscadorProyectoFinanciamiento/>
+                  <BuscadorProyectoFinanciamiento />
                 </div>
               )}
             </td>

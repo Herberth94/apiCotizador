@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { InsertDatosPartida, pId } from "../Routes/GuardarPartida";
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import ModalPtnDatos from "../Routes/ModalPtnDatos";
-import axios from 'axios';
-import {url2} from '../../../Componentes/Ocultar';
-import Animaciones from '../../../Componentes/Animaciones';
+import axios from "axios";
+import { url2 } from "../../../Componentes/Ocultar";
+import Animaciones from "../../../Componentes/Animaciones";
 
 let id;
 function Partida(props) {
@@ -12,42 +12,39 @@ function Partida(props) {
 
   const [modalShow, setModalShow] = useState(false);
 
-  const [modalShow1, setModalShow1] = useState(true)
-  const [proyecto_id, Setproyecto_id] = useState([])
+  const [modalShow1, setModalShow1] = useState(true);
+  const [proyecto_id, Setproyecto_id] = useState([]);
 
-  const lista = async (clave) =>{
+  const lista = async (clave) => {
     //console.log(id);
     try {
-      const respuesta = await axios.get(url2 + `/api/cotizador/proyecto/viewModal/${clave}`);
-      Setproyecto_id(respuesta.data.reSql)
-    
-      
+      const respuesta = await axios.get(
+        url2 + `/api/cotizador/proyecto/viewModal/${clave}`
+      );
+      Setproyecto_id(respuesta.data.reSql);
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
-  }
-  
-  if(pId !== '' && pId !== undefined){
+  };
+
+  if (pId !== "" && pId !== undefined) {
     id = pId;
-  } else{
+  } else {
     id = props.clave;
   }
-  
 
   return (
     <div className="padding">
       {/*========================== Nombre Partida ==========================*/}
 
-
       <Animaciones mytext="Datos Partida" />
 
       <form action="" method="post" onSubmit={enviarDatosPartida}>
-        <Table >
+        <Table>
           <Thead>
-            <Tr >
+            <Tr>
               <Th>Nombre Partida</Th>
-              <Th>Descripción </Th>         
+              <Th>Descripción </Th>
               <Th> Partidas Agregadas</Th>
               <Th> Agregar Datos</Th>
             </Tr>
@@ -66,7 +63,6 @@ function Partida(props) {
                 />
               </Td>
 
-              
               {/*=======================  DescripciónPartida ======================= */}
               <Td>
                 <input
@@ -78,42 +74,41 @@ function Partida(props) {
                 />
               </Td>
 
-
-
               <Td width={"100px"}>
-
-
-      <button type="button" className="sn-boton" onClick={() => {setModalShow(true);  lista (id)}} >
-        <i class="bi bi-eye-fill"></i>
-        </button>
-      {modalShow && modalShow1 ?   
-      <ModalPtnDatos
-      show={modalShow}
-      proyecto_id={proyecto_id}
-      onHide={() => setModalShow(false)}  
-     
-      />
-         :  ''  } 
+                <button
+                  type="button"
+                  className="sn-boton"
+                  onClick={() => {
+                    setModalShow(true);
+                    lista(id);
+                  }}
+                >
+                  <i class="bi bi-eye-fill"></i>
+                </button>
+                {modalShow && modalShow1 ? (
+                  <ModalPtnDatos
+                    show={modalShow}
+                    proyecto_id={proyecto_id}
+                    onHide={() => setModalShow(false)}
+                  />
+                ) : (
+                  ""
+                )}
               </Td>
-
-
 
               <Td width={"100px"}>
                 <button className="sn-boton ">
-                <i class="bi bi-send"></i>
+                  <i class="bi bi-send"></i>
                 </button>
               </Td>
               {/*========================== Botón Agregar Partidas ==========================*/}
             </Tr>
           </Tbody>
         </Table>
+      </form>
 
-
-        </form>
-
-        <br/>
-        <br/>
-        
+      <br />
+      <br />
     </div>
   );
 }

@@ -1,56 +1,50 @@
-import React from 'react'
+import React from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../Componentes/Animaciones";
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 import pdf from "../../Componentes/Manuales/Manual_Administrador_V1.pdf";
 import pdf2 from "../../Componentes/Manuales/Manual_Preventa_V1.pdf";
 import pdf3 from "../../Componentes/Manuales/Manual_Ventas_V1.pdf";
-import Plantilla from "../../Componentes/Manuales/Plantilla.xlsx"
-
-
-
+import Plantilla from "../../Componentes/Manuales/Plantilla.xlsx";
 let G;
 
 const cookies = new Cookies();
-let tipoRol = cookies.get('rol');
+let tipoRol = cookies.get("rol");
 let i = "";
 if (tipoRol === "direccion") {
   G = pdf;
-} else if (tipoRol === "administrador"    ||  tipoRol === "preventa"    ) {
+} else if (tipoRol === "administrador" || tipoRol === "preventa") {
   G = pdf2;
 } else if (tipoRol === "venta") {
   G = pdf3;
 } else {
   i = "null";
-
 }
 
 function MenuHeramientas() {
-
-
   return (
-
-
     <div className="contenido-marvilop">
-
-
       <Animaciones mytext="Documentos" />
 
       {/*========================== Tabla  Categorias ==========================*/}
-      <Table >
+      <Table>
         {/*========================== Titulos Tabla ==========================*/}
         <tbody>
           <tr className="headerPropuesta">
             {/*========================== Divisa ==========================*/}
             <td>
               <form method="get" action={G}>
-                <button className="btn btn-primary PDF" > Manual de Usuario PDF
+                <button className="btn btn-primary PDF">
+                  {" "}
+                  Manual de Usuario PDF
                 </button>
               </form>
             </td>
             <td>
               <form method="get" action={Plantilla}>
-                <button className="btn btn-primary Excel" > Descargar Plantilla Excel
+                <button className="btn btn-primary Excel">
+                  {" "}
+                  Descargar Plantilla Excel
                 </button>
               </form>
             </td>
@@ -58,7 +52,7 @@ function MenuHeramientas() {
         </tbody>
       </Table>
     </div>
-  )
+  );
 }
 
-export default MenuHeramientas
+export default MenuHeramientas;

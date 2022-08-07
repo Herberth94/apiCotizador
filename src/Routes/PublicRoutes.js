@@ -1,41 +1,34 @@
 import React from "react";
-import { Redirect, Route } from "react-router"
-import ValidaRol from './ValidaRol';
-import {i} from './ValidaRol';
-
+import { Redirect, Route } from "react-router";
+import ValidaRol from "./ValidaRol";
+import { i } from "./ValidaRol";
 
 //Validacion de Usuario Administrador
-let  auth = true;
+let auth = true;
 
-
-if(i=== "null"){
-
+if (i === "null") {
   auth = true;
-/*   console.log("No valido")
+  /*   console.log("No valido")
    */
-}else{
+} else {
   auth = false;
 }
 
+const PublicRoutes = ({ component: Component, ...rest }) => {
+  <ValidaRol />;
 
-const PublicRoutes = ({component:Component, ...rest}) => {
+  if (i === "null") {
+    /* console.log("Usuario No Encontrado") */
 
-    <ValidaRol />
-    
-    if( i=== "null"){
-/* console.log("Usuario No Encontrado") */
+    return (
+      <Route {...rest}>
+        {auth ? <Component /> : <Redirect to="/no-found" />}{" "}
+      </Route>
+    );
+  } else {
+    /*    console.log("Usuario logueado") */
+  }
+  return null;
+};
 
-return (  
-    <Route {...rest}>{auth? <Component/> : <Redirect to ="/no-found"/>}   </Route>     
-  )
-    } else{
-     /*    console.log("Usuario logueado") */
-
-    }
-    return (null )
-    
-}
-
-
-
-export  default PublicRoutes
+export default PublicRoutes;

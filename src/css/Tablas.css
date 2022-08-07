@@ -1,105 +1,81 @@
-
-.contenido-usuarios{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 1% 2% 0%;
-    top: 10px;
-    background-color: #ffffff00;
+.contenido-usuarios {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 1% 2% 0%;
+  top: 10px;
+  background-color: #ffffff00;
 }
 
-
-#nombreDiv{
-   width: 100%;
-   height: 100%;
+#nombreDiv {
+  width: 100%;
+  height: 100%;
 }
 
-
-
-.titulo-tabla-usuarios{
-    background-color: var(--administrador-bg-color);
-    color: rgb(255, 255, 255);
-
-}
-    
-
-th.titulo-tabla{
-    background-color:  var(--titulo-bg-color);
-    color: black;
+.titulo-tabla-usuarios {
+  background-color: var(--administrador-bg-color);
+  color: rgb(255, 255, 255);
 }
 
-
-
-
-
-
-.arregla{
- position: absolute;
- height: 100%;
-left: 0px;
-
-
-width: 100%;
-
-
-top: 200px;
+th.titulo-tabla {
+  background-color: var(--titulo-bg-color);
+  color: black;
 }
 
+.arregla {
+  position: absolute;
+  height: 100%;
+  left: 0px;
 
-.data-PTN{
+  width: 100%;
 
-    position: absolute;
-    height: 100%;
-   left: -60px;
-   width: calc(100% + 60px);
-   margin-top: 2%;
-
+  top: 200px;
 }
 
-
-
-
+.data-PTN {
+  position: absolute;
+  height: 100%;
+  left: -60px;
+  width: calc(100% + 60px);
+  margin-top: 2%;
+}
 
 /*Arreglar el -14px*/
-.fa-trash{
-    justify-content: center;
+.fa-trash {
+  justify-content: center;
   text-align: center;
   justify-items: center;
 }
 
-.btn.btn-primary.actualizar{
-    background-color: green;
+.btn.btn-primary.actualizar {
+  background-color: green;
 }
 
-.btn.btn-primary.eliminar{
- 
-    background-color: rgb(129, 11, 11);
+.btn.btn-primary.eliminar {
+  background-color: rgb(129, 11, 11);
 }
-.btn.btn-primary.modificar.usuarios{
- 
-    background-color: rgb(224 77 16);
+.btn.btn-primary.modificar.usuarios {
+  background-color: rgb(224 77 16);
 }
-.btn.btn-primary.modificar.usuarios:hover{
-    background-color: rgb(255, 164, 45);
+.btn.btn-primary.modificar.usuarios:hover {
+  background-color: rgb(255, 164, 45);
 }
 
 .btn.btn-primary.eliminar:hover {
-    background-color: rgb(255, 0, 0);;
+  background-color: rgb(255, 0, 0);
 }
 
-.btn.btn-primary.actualizar:hover{
-    background-color: rgb(31, 168, 31);
+.btn.btn-primary.actualizar:hover {
+  background-color: rgb(31, 168, 31);
 }
 
-.btn.btn-primary.modificar:hover{
-    background-color: rgb(30, 89, 128);
+.btn.btn-primary.modificar:hover {
+  background-color: rgb(30, 89, 128);
 }
 
-
-.input-name{
-    text-align: center;
+.input-name {
+  text-align: center;
 }
-
 
 /* tbody{
   background-color: rgb(21, 72, 102);
@@ -115,91 +91,67 @@ top: 200px;
 transition-delay: 2s
 }
  */
- .animacion-table{
-     
-      animation-duration: 2s;
-      animation-name: slidein3;
+.animacion-table {
+  animation-duration: 2s;
+  animation-name: slidein3;
 }
-
-
-
-
 
 @keyframes slidein3 {
   from {
-  /*   margin-left: 100%;
+    /*   margin-left: 100%;
     width: 300%
  */
     opacity: 0;
-
   }
   to {
-   /*  margin-left: 0%;
+    /*  margin-left: 0%;
     width: 100%; */
     opacity: 1;
-
   }
 }
-
-
-
-
-
-
-
-
-
 
 td.editar {
-    background-color: #c0e6f8;
-  }
-  
-  td.verde {
-    background-color: #4ba6f01c;
-  }
-  
-  td.azul {
-    background-color: #9ab1e2b0;
-  }
-  
-  td.Aceptado {
-    border: 1px black solid;
-    background-color: #16e004;
-    font-weight: 600;
-
-  }
-  td.En.revision {
-    background-color: #eeff00;
-    border: 1px black solid;
-    font-weight: 600;
-
-  }
-  
-  td.Rechazado {
-    background-color: hsla(0, 80%, 34%, 0.973);
-    color: white;
-    border: 1px black solid;
-    font-weight: 600;
-    border-radius:1px ;
-    -webkit-border-radius:1px ;
-    -moz-border-radius:1px ;
-    -ms-border-radius:1px ;
-    -o-border-radius:1px ;
+  background-color: #c0e6f8;
 }
-  
 
-  
-  td {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    font-size: 14px;
-  }
-  
+td.verde {
+  background-color: #4ba6f01c;
+}
 
+td.azul {
+  background-color: #9ab1e2b0;
+}
 
+td.Aceptado {
+  border: 1px black solid;
+  background-color: #16e004;
+  font-weight: 600;
+}
+td.En.revision {
+  background-color: #eeff00;
+  border: 1px black solid;
+  font-weight: 600;
+}
 
- td {
-    border: solid rgba(0, 0, 0, 0.2) 1px;
-  }
+td.Rechazado {
+  background-color: hsla(0, 80%, 34%, 0.973);
+  color: white;
+  border: 1px black solid;
+  font-weight: 600;
+  border-radius: 1px;
+  -webkit-border-radius: 1px;
+  -moz-border-radius: 1px;
+  -ms-border-radius: 1px;
+  -o-border-radius: 1px;
+}
 
+td {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+td {
+  border: solid rgba(0, 0, 0, 0.2) 1px;
+}

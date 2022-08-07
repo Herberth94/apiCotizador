@@ -6,17 +6,14 @@ import Divisa from "./Divisa";
 import ResumenAM from "./ResumenAM";
 import BuscadorInteligente from "./BuscadorInteligente";
 
-
-
-
 function AmMenu() {
-   /*========================== Mostrar Ocultar Tabla ==========================*/
+  /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
-   /*========================== Mostrar Ocultar Botón ==========================*/
+  /*========================== Mostrar Ocultar Botón ==========================*/
   const [show2, setShow2] = useState(true);
 
-   /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
+  /*========================== Mostrar Ocultar Datos Adicionales ==========================*/
   const [show3, setShow3] = useState(true);
 
   return (
@@ -54,7 +51,7 @@ function AmMenu() {
               ) : (
                 <div className="arregla divBuscadorInteligente">
                   {/*========================== Llamado al Componente ==========================*/}
-                   <Divisa/>
+                  <Divisa />
                 </div>
               )}
             </td>
@@ -77,7 +74,7 @@ function AmMenu() {
               ) : (
                 <div className="arregla divBuscadorInteligente">
                   {/*========================== Llamado al Componente ==========================*/}
-                <ResumenAM/>
+                  <ResumenAM />
                 </div>
               )}
             </td>
@@ -101,11 +98,10 @@ function AmMenu() {
                 <div className="arregla">
                   {/*========================== Llamado al Componente ==========================*/}
                   {/*           <CostosIndirectos/> */}
-                  <BuscadorInteligente/>
+                  <BuscadorInteligente />
                 </div>
               )}
             </td>
-
           </tr>
         </tbody>
       </Table>

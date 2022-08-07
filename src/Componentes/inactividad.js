@@ -3,9 +3,7 @@ const cookies = new Cookies();
 
 var timeoutID;
 export function Rem() {
-  
   startTimer();
-
 }
 function startTimer() {
   // wait 2 seconds before calling goInactive

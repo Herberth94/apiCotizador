@@ -1,10 +1,7 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
-import Animaciones from "../../../Componentes/Animaciones"
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css'
-
+import React, { useState, useEffect }      from "react";
+import Animaciones                         from "../../../Componentes/Animaciones";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 export const CrudUsuarios = (props) => {
   /*========================== Mostrar/Ocultar ==========================*/
@@ -81,17 +78,17 @@ export const CrudUsuarios = (props) => {
   return (
     <div className="administracion">
       <div>
-       <Animaciones  mytext="Lista de Usuarios" />
+        <Animaciones mytext="Lista de Usuarios" />
       </div>
       <form>
-        <Table    id = "daTable"    >
-          <Thead  className="lines"  >
-         {/*    <tr className="titulo-tabla-usuarios">
+        <Table id="daTable">
+          <Thead className="lines">
+            {/*    <tr className="titulo-tabla-usuarios">
               <th></th>
               <th className="titulo-tabla">Lista de Usuarios</th>
             </tr> */}
             {/*=================== Titulos Tabla Usuarios ====================*/}
-            <Tr className="lines" >
+            <Tr className="lines">
               <Th>ID</Th>
               <Th>Rol</Th>
               <Th>Correo</Th>
@@ -105,7 +102,7 @@ export const CrudUsuarios = (props) => {
             {/*=================== Contenido Tabla Usuarios =================*/}
             {Object.keys(props.usuarios).map((key) => (
               //checar aqui va los titulos
-              <Tr key={props.usuarios[key].id_usuario }>
+              <Tr key={props.usuarios[key].id_usuario}>
                 <Td>{props.usuarios[key].id_usuario}</Td>
                 <Td width={"200px"}>
                   {/*<input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>
@@ -119,23 +116,22 @@ export const CrudUsuarios = (props) => {
                     disabled={enable[key]}
                   >
                     <option value={4}>------</option>
-        {/*             <option value={5}>Dirección</option> */}
+                    {/*             <option value={5}>Dirección</option> */}
                     <option value={1}>Administrador</option>
                     <option value={2}>Preventa</option>
                     <option value={3}>Venta</option>
                   </select>
                 </Td>
 
-                <Td >
+                <Td>
                   <input
-                  
                     defaultValue={props.usuarios[key].email}
                     onChange={handleInputChange}
                     disabled={enable[key]}
                     name="email"
                   ></input>{" "}
                 </Td>
-                <Td width={"100px"} >
+                <Td width={"100px"}>
                   <button
                     className="sn-boton resetear"
                     type="button"
@@ -159,7 +155,7 @@ export const CrudUsuarios = (props) => {
                             </td> */}
                 {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
                 {enable[key] ? (
-                  <Td width={"100px"} >
+                  <Td width={"100px"}>
                     <button
                       className="sn-boton"
                       type="button"
@@ -200,8 +196,6 @@ export const CrudUsuarios = (props) => {
                       >
                         <i className="bi bi-x-lg"></i>
                       </button>
-
-                      
                     </Td>
                   </>
                 )}
