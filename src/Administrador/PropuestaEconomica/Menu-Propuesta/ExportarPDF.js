@@ -21,7 +21,7 @@ import {
   totalsnIVA,
 }                         from "../../../Ventas/Operaciones/OperacionesAM";
 import "jspdf-autotable";
-import "../css/Exportar.css";
+
 
 export let name_encargado = " ";
 export let atent          = "Atentamente";

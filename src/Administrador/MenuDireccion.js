@@ -71,15 +71,15 @@ function Archivo() {
                   title="Registros"
                   menuVariant="dark"
                 >
-                  <NavDropdown.Item href="/registrar-usuarios">
+                  <NavDropdown.Item href="/registrar-usuarios"  id="funcion">
                     Usuarios
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/registrar-clientes">
+                  <NavDropdown.Item href="/registrar-clientes"  id="funcion">
                     Clientes
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/registrar-proveedores">
+                  <NavDropdown.Item href="/registrar-proveedores"   id="funcion">
                     Proveedores
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
@@ -87,7 +87,7 @@ function Archivo() {
                     Marcas
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/registrar-colaboradores">
+                  <NavDropdown.Item href="/registrar-colaboradores" id="funcion">
                     Colaboradores
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -100,19 +100,19 @@ function Archivo() {
                   title="Administración"
                   menuVariant="dark"
                 >
-                  <NavDropdown.Item href="/administrar-usuarios">
+                  <NavDropdown.Item href="/administrar-usuarios"  id="funcion">
                     Usuarios
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/administrar-clientes">
+                  <NavDropdown.Item href="/administrar-clientes"  id="funcion">
                     Clientes
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/administrar-proveedores-marcas">
+                  <NavDropdown.Item href="/administrar-proveedores-marcas"  id="funcion">
                     Proveedores y Marcas
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/administrar-colaboradores">
+                  <NavDropdown.Item href="/administrar-colaboradores"  id="funcion">
                     Colaboradores
                   </NavDropdown.Item>
                 </NavDropdown>
