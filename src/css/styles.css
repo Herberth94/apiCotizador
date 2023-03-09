@@ -1,5 +1,5 @@
 :root {
-
+    --color-principal: black;
     --border-radius: 20px;
     --color-text: rgb(34, 34, 34);
     --box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -77,3 +77,37 @@
     align-items: center;
     padding: 10px;
 }
+
+
+
+.box-footer{
+    position: absolute;
+    width: 100vw;
+    height: 80px;
+    bottom: 0;
+    background-color: var(--color-principal);
+}
+
+.social-media{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.social-media a{
+margin: 10px 20px;
+}
+
+.copiright h3{
+    text-align: center;
+    color: white;
+    font-size: 12px;
+}
+
+
+@media (max-width: 960px) {
+    .card-box{
+     width: 90%;
+    }
+  }

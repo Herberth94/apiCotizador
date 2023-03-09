@@ -1,33 +1,36 @@
 import React from "react";
+import Icono from "../pages/componentes/Icono";
 import "./css/footer.css";
 
 function Footer() {
   return (
     //============ Footer Página Web ============
-    <div className="footer">
+    <div className="box-footer">
       {/* //============ Redes Sociales ============ */}
-      <div className="redes-sociales">
-        <h4>
+      <div className="social-media">
+   
           <a href={"#"} target="_blank" rel="noreferrer">
-            {" "}
-            <i className="bi bi-telephone-fill"></i>
+          <Icono  icono="bi:telephone-fill"   color="white" />
           </a>
+
           <a href={"#"} target="_blank" rel="noreferrer">
-            {" "}
-            <i className="bi bi-geo-alt-fill"></i>{" "}
+          <Icono  icono="mingcute:mail-fill"   color="white"/>
           </a>
+
+
           <a href={"#"} target="_blank" rel="noreferrer">
-            {" "}
-            <i className="bi bi-envelope-fill"></i>
+          <Icono  icono="mdi:map-marker-radius"  color="white"/>
           </a>
+
+
           <a href={"#"} target="_blank" rel="noreferrer">
-            {" "}
-            <i className="bi bi-linkedin"></i>{" "}
+          <Icono  icono="akar-icons:linkedin-box-fill"   color="white"/>
           </a>
-        </h4>
+
+
       </div>
-      <div className="box1">
-        <h3>Marvilop</h3>
+      <div className="copiright">
+        <h3>Marvilop  © Copyright 2022</h3>
       </div>
     </div>
   );
