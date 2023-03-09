@@ -1,6 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
+import "./css/styles.css";
 import "./Componentes/css/Animaciones.css";
 import "./css/Tablas.css";
 import "./css/Buscador.css";

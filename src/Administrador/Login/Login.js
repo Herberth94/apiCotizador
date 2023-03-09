@@ -2,8 +2,12 @@ import React from "react";
 import { useLogin } from "./Routes/useLogin";
 import ReCAPTCHA from "react-google-recaptcha";
 import { passwordCaptcha } from "../../Componentes/Ocultar";
-import swal from "sweetalert";
+
 import "../../css/ventanas.css";
+
+
+
+import { mensajeAlerta } from "../../pages/componentes/Alerta";
 
 export let valida = false;
 /*  Funcion Captcha Validación Correcta */
@@ -17,13 +21,10 @@ function onChange(value) {
 
 export function Login() {
   const MostrarAlerta = () => {
+
+
     if (valida == false) {
-      swal({
-        title: "CAPTCHA",
-        text: "Por favor Valida el Captcha",
-        icon: "warning",
-        button: "Cerrar",
-      });
+      mensajeAlerta("CAPTCHA"  , "Por favor Valida el Captcha" ,"warning" , "Cerrar" );
     }
   };
 
@@ -34,9 +35,9 @@ export function Login() {
   return (
     /* //============ Login ============ */
 
-    <div className="contenido-main-registro login">
-      <div className="scene flex">
-        <section className="card-body">
+    <div className="container">
+      <div className="box">
+        <section className="card-box">
           <form
             action=""
             method="post"
@@ -44,15 +45,11 @@ export function Login() {
             className="card-form"
             onSubmit={enviarDatos}
           >
-            {/* //============Titulo ============ */}
-            <h2>
-              {" "}
-              <span>Login</span>
-            </h2>
+            <h2>Login </h2>
 
             {/* //============ Correo ============ */}
 
-            <label htmlFor="user" className=" label">
+            <label htmlFor="user" >
               Usuario
             </label>
             <input
@@ -66,7 +63,7 @@ export function Login() {
 
             {/* //============ Contraseña ============ */}
 
-            <label htmlFor="password" className="label">
+            <label htmlFor="password" >
               Contraseña
             </label>
             <input
@@ -79,15 +76,11 @@ export function Login() {
               placeholder="Ingrese Contraseña"
             />
 
-            <div className="re-Captcha">
-              {/*========== ReCAPTCHA Seguridad ==========*/}
+            <div className="captcha">
               <ReCAPTCHA sitekey={passwordCaptcha} onChange={onChange} />
             </div>
 
-            {/* //============ Botón Entrar ============ */}
-
-            <div className="boton-login">
-              <br></br>
+            <div className="boton-login">           
               <button
                 className="btn-login"
                 type="submit"
