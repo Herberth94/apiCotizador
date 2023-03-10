@@ -9,7 +9,7 @@ let validatorrol = cookies.get("rol");
 //Obtención del id del usuario con sesión activa
 let validatorid = cookies.get("id_usuario");
 console.log("soy el id del usuario", validatorid);
-function Colaborador() {
+function AgregarColaborador() {
   /*======================================== Buscadores de proyectos y usuarios ========================================*/
   // Almacenamiento de todos los proyectos existentes
   const [listaProyectos, setListaProyectos] = useState([]);
@@ -264,4 +264,4 @@ function Colaborador() {
   );
 }
 
-export default Colaborador;
+export default AgregarColaborador;

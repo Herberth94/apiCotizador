@@ -1,5 +1,6 @@
 :root {
     --color-principal: black;
+    --color-secondary: #006eff;
     --border-radius: 20px;
     --color-text: rgb(34, 34, 34);
     --box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -14,14 +15,35 @@
   }
 
 
-.container{
-   position: relative;
-   width: 100vw;
-   height: 100vh;
+.full{
+   position: absolute;
+   width: calc(100vw - 60px);
+   height: 100%;
+   margin-left: 60px;
+   background-color: #006eff;
+   top: 0;
+   transition: 1s ease;
+   -webkit-transition: 1s ease;
+   -moz-transition: 1s ease;
+   -ms-transition: 1s ease;
+   -o-transition: 1s ease;
    display: flex;
    justify-content: center;
    align-items: center;
 }
+
+.full.active{
+    width: calc(100% - 250px );
+    height: 100vh;
+    margin-left: 250px;
+    background-color: #3c4044;
+    transition: 1s ease;
+    -webkit-transition: 1s ease;
+    -moz-transition: 1s ease;
+    -ms-transition: 1s ease;
+    -o-transition: 1s ease;
+}
+ 
 
 .box{
     display: flex;
@@ -135,3 +157,24 @@ margin: 10px 20px;
      width: 90%;
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

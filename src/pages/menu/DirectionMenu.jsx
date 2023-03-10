@@ -1,55 +1,58 @@
 import React from 'react'
-import Icono from '../componentes/Icono'
 
 function DirectionMenu() {
     return (
-<div className="contenedor">
-  <div className="sidebar ancho">
-    <div className="logo text-warning">
-      <i className="fa fa-ravelry fa-2x logo-sym" /><span className="logo-texto">Marvilop</span>
-    </div>
-    <div className="user">
-      <img src="https://source.unsplash.com/VM42AzcEBdI/50x50/?faces" alt="" />
-      <span className="user-nombre">Administrador</span>
-    </div>
-    <nav className="menu-nav">
-      <ul>
-    
-        <li className="menu-items"><a href="#"><i className="fa fa-user-plus menu-nav--icon fa-fw" /><span>Registros</span></a>
-          <a href="#" className="menu-boton"><i className="fa fa-caret-right" /></a>
-          <ul className="menu-nav-seg">
-            <li className="menu-items-seg"><a href="#">Usuarios</a></li>
-            <li className="menu-items-seg"><a href="#">Clientes</a></li>
-            <li className="menu-items-seg"><a href="#">Marcas</a></li>
-          </ul>
-        </li>
+        <div class="">
+            <div class="menu-btn">
+                <button id='menu'><i class="fas fa-bars"></i></button>
+            </div>
 
 
-  
-        <li className="menu-items"><a href="#"><i className="fa fa-users menu-nav--icon fa-fw" /><span>Administración</span></a>
-          <a href="#" className="menu-boton"><i className="fa fa-caret-right" /></a>
-          <ul className="menu-nav-seg">
-            <li className="menu-items-seg"><a href="#">Usuarios</a></li>
-            <li className="menu-items-seg"><a href="#">Clientes</a></li>
-            <li className="menu-items-seg"><a href="#">Marcas</a></li>
-          </ul>
-        </li>
+            <div class="side-bar">
+
+                <header>
+                    <div class="close-btn">
+                     <i class="fas fa-times"></i>           
+                    </div>
+                    <h1>MARVILOP</h1>
+                </header>
+                <div class="menu">
+                    <div class="item"><a href="#"><i className="fas fa-home"></i>Home</a></div>
+                    <div class="item">
+                        <a class="sub-btn"><i class="fas fa-users"></i>Registros<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <a href="registrar-usuarios" class="sub-item"><i class="fas fa-user"></i>Usuarios</a>
+                            <a href="registrar-usuarios" class="sub-item"><i class="fas fa-user"></i>Clientes</a>
+                            <a href="registrar-usuarios" class="sub-item"><i class="fas fa-user"></i>Marcas</a>
+                            <a href="registrar-usuarios" class="sub-item"><i class="fas fa-user"></i>Proveedores</a>
+                            <a href="registrar-usuarios" class="sub-item"><i class="fas fa-user"></i>Colaboradores</a>
+                        </div>
+                    </div>
 
 
 
-        <li className="menu-items"><a href="#"><i className="fa fa-inbox  menu-nav--icon fa-fw" /><span className="menu-items">Inbox</span></a></li>
-        <li className="menu-items"><a href="#"><i className="fa fa-file-text-o  menu-nav--icon fa-fw" /><span className="menu-items">Forms</span></a></li>
-      </ul>
-    </nav>
-  </div>
-  <div className="main bg-light">
-    <div className="barra">
-      <a className="menu-toggle"><i className="fa fa-bars menu-nav--icon" /></a>
+                    <div class="item">
+                        <a class="sub-btn"><i class="fas fa-table"></i>Tables<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <a href="#" class="sub-item">Sub Item 01</a>
+                            <a href="#" class="sub-item">Sub Item 02</a>
+                            <a href="#" class="sub-item">Sub Item 03</a>
+                        </div>
+                    </div>
 
-    </div>
 
-  </div>
-</div>
+                    <div class="item"><a href="#"><i class="fas fa-th"></i>Forms</a></div>
+                    <div class="item">
+                        <a class="sub-btn"><i class="fas fa-cogs"></i>Settings<i class="fas fa-angle-right dropdown"></i></a>
+                        <div class="sub-menu">
+                            <a href="#" class="sub-item">Sub Item 01</a>
+                            <a href="#" class="sub-item">Sub Item 02</a>
+                        </div>
+                    </div>
+                    <div class="item"><a href="#"><i class="fas fa-info-circle"></i>About</a></div>
+                </div>
+            </div>
+        </div>
 
     )
 }

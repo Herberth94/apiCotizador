@@ -81,6 +81,7 @@ import MenuValidacion from "./Ventas/AM-Resumen/MenuValidacion";
 import Tablel from "./Ventas/AM-Resumen/Tablel";
 
 import Prueba2 from "./Preventa/PTN-BOM/Routes/Prueba2";
+import Registros from "./Routes/Registros";
 
 function App() {
   return (
@@ -97,6 +98,13 @@ function App() {
         {/* ======================================================  */}
 
         <Direccion path="/" component={DirectionMenu } />
+        <Direccion path="/" component={Registros } />
+
+
+
+
+
+
    {/*      <Direccion exact path="/" component={CambioContraseña} />
  */}
         <Direccion exact path="/calculadora" component={CalculaDescuento} />
@@ -108,27 +116,7 @@ function App() {
         />
         <Direccion exact path="/continuarP-excel" component={ContinuarPCE} />
         {/* <Administrador exact path="/" component={CambioContraseña} /> */}
-        <Direccion
-          exact
-          path="/registrar-usuarios"
-          component={RegistrarUsuarios}
-        />
-        <Direccion
-          exact
-          path="/registrar-clientes"
-          component={RegistrarClientes}
-        />
-        <Direccion
-          exact
-          path="/registrar-proveedores"
-          component={RegistrarProveedor}
-        />
-        <Direccion exact path="/registrar-marcas" component={RegistrarMarcas} />
-        <Direccion
-          exact
-          path="/registrar-colaboradores"
-          component={AgregarColaborador}
-        />
+       
         <Direccion
           exact
           path="/administrar-usuarios"

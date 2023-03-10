@@ -2,11 +2,11 @@ import React from "react";
 import { useRegistro } from "../Routes/useRegistro";
 import "../css/registroUsuarios.css";
 
-function Registro() {
+function RegistrarUsuarios() {
   const { handleInputChange, enviarDatos } = useRegistro();
 
   return (
-    <div className="contenido-main-registro">
+    <div className="full">
       <div className="scene flex">
         <section className="card-body">
           <form
@@ -91,4 +91,4 @@ function Registro() {
   );
 }
 
-export default Registro;
+export default RegistrarUsuarios;

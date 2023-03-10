@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRegistro } from "../Routes/registroClientes"
 
-function Clientes() {
+function RegistrarClientes() {
   const {
     handleInputChange,
     enviarDatos
@@ -79,4 +79,4 @@ function Clientes() {
   )
 }
 
-export default Clientes
+export default RegistrarClientes
