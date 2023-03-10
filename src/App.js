@@ -5,10 +5,15 @@ import "./css/styles.css";
 import "./Componentes/css/Animaciones.css";
 import "./css/Tablas.css";
 import "./css/Buscador.css";
-import Header from "./Componentes/Header";
+
 //============ Rutas Públicas ============
-import Login from "./Administrador/Login/Login";
-import Footer from "./Componentes/Footer";
+import Login from "./pages/login/Login";
+import Footer from "./pages/componentes/Footer";
+import Header from "./pages/componentes/Header";
+
+
+
+
 //============ Rutas Private Públicas ============
 import PublicRoutes from "./Routes/PublicRoutes";
 import MenuAdministrador from "./Preventa/MenuAdministrador";

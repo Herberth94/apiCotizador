@@ -1,6 +1,5 @@
 import React from "react";
-import Icono from "../pages/componentes/Icono";
-import "./css/footer.css";
+import Icono from "./Icono";
 
 function Footer() {
   return (
