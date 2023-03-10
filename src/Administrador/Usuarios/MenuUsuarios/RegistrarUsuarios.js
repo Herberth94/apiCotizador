@@ -1,14 +1,13 @@
 import React from "react";
 import { useRegistro } from "../Routes/useRegistro";
-import "../css/registroUsuarios.css";
 
 function RegistrarUsuarios() {
   const { handleInputChange, enviarDatos } = useRegistro();
 
   return (
     <div className="full">
-      <div className="scene flex">
-        <section className="card-body">
+      <div className="box">
+        <section className="card-box">
           <form
             action=""
             method="post"
@@ -37,7 +36,7 @@ function RegistrarUsuarios() {
             <br />
             <br />
 
-            <label htmlFor="user" className=" label">
+            <label htmlFor="user">
               Correo
             </label>
             <input
@@ -49,7 +48,7 @@ function RegistrarUsuarios() {
               placeholder="Ingrese Correo"
             />
 
-            <label htmlFor="user2" className=" label">
+            <label htmlFor="user2" >
               Repetir Correo
             </label>
             <input
@@ -61,7 +60,7 @@ function RegistrarUsuarios() {
               placeholder="Repita el Correo"
             />
 
-            <label htmlFor="password" className="label">
+            <label htmlFor="password" >
               Contraseña
             </label>
             <input

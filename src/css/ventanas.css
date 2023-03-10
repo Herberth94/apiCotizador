@@ -150,14 +150,14 @@ label {
   display: block;
   font-size: 1rem;
   letter-spacing: 0.15rem;
-  padding: 10px;
+  padding: 6px;
   width: 100%;
   margin-bottom: 15px;
 }
 
 .card-input:focus,
 .card-input:active {
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(3, 3, 3, 0.75);
   outline: none;
 
   background-color: #ffffff;
