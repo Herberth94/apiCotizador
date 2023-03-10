@@ -2,6 +2,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/App.css";
 import "./css/styles.css";
+import "./css/styles.scss";
 import "./Componentes/css/Animaciones.css";
 import "./css/Tablas.css";
 import "./css/Buscador.css";
@@ -10,6 +11,8 @@ import "./css/Buscador.css";
 import Login from "./pages/login/Login";
 import Footer from "./pages/componentes/Footer";
 import Header from "./pages/componentes/Header";
+
+import DirectionMenu from "./pages/menu/DirectionMenu";
 
 
 
@@ -93,9 +96,9 @@ function App() {
         {/*Administrador*/}
         {/* ======================================================  */}
 
-        <Direccion path="/" component={MenuDireccion} />
-        <Direccion exact path="/" component={CambioContraseña} />
-
+        <Direccion path="/" component={DirectionMenu } />
+   {/*      <Direccion exact path="/" component={CambioContraseña} />
+ */}
         <Direccion exact path="/calculadora" component={CalculaDescuento} />
         <Direccion path="/documentacion" component={MenuHeramientas} />
         <Direccion
