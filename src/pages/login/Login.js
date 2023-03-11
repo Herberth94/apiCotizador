@@ -35,7 +35,7 @@ export function Login() {
   return (
     /* //============ Login ============ */
 
-    <div className="container">
+    <div className="full">
       <div className="box">
         <section className="card-box">
           <form

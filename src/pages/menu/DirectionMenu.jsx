@@ -1,6 +1,14 @@
 import React from 'react'
+import Cookies                                 from "universal-cookie";
+const cookies = new Cookies();
 
 function DirectionMenu() {
+  const cierreSesion = () => {
+    cookies.remove("id_usuario", { path: "/" });
+    cookies.remove("rol", { path: "/" });
+    cookies.remove("estado_login", { path: "/" });
+    window.location.href = "../Login.js";
+  };
     return (
 <div className>
   <div className="menu-btn">
@@ -14,7 +22,7 @@ function DirectionMenu() {
       <h1>MARVILOP</h1>
     </header>
     <div className="menu">
-      <div className="item"><a href="#"><i classname="fas fa-home" />Home</a></div>
+     
       <div className="item">
         <a className="sub-btn"><i className="fas fa-users" />Registros<i className="fas fa-angle-right dropdown" /></a>
         <div className="sub-menu">
@@ -26,11 +34,13 @@ function DirectionMenu() {
         </div>
       </div>
       <div className="item">
-        <a className="sub-btn"><i className="fas fa-table" />Tables<i className="fas fa-angle-right dropdown" /></a>
+        <a className="sub-btn"><i className="fas fa-table" />Administración<i className="fas fa-angle-right dropdown" /></a>
         <div className="sub-menu">
-          <a href="#" className="sub-item">Sub Item 01</a>
-          <a href="#" className="sub-item">Sub Item 02</a>
-          <a href="#" className="sub-item">Sub Item 03</a>
+          <a href="adm-usuarios" className="sub-item"><i className="fas fa-user" />Usuarios</a>
+          <a href="adm-clientes" className="sub-item"><i className="fas fa-user" />Clientes</a>
+          <a href="adm-marcas" className="sub-item"><i className="fas fa-user" />Marcas</a>
+          <a href="adm-proveedores" className="sub-item"><i className="fas fa-user" />Proveedores</a>
+          <a href="adm-colaboradores" className="sub-item"><i className="fas fa-user" />Colaboradores</a>
         </div>
       </div>
       <div className="item"><a href="#"><i className="fas fa-th" />Forms</a></div>
@@ -41,7 +51,7 @@ function DirectionMenu() {
           <a href="#" className="sub-item">Sub Item 02</a>
         </div>
       </div>
-      <div className="item"><a href="#"><i className="fas fa-info-circle" />About</a></div>
+      <div className="item"><a href="# "   onClick={cierreSesion}><i className="fas fa-info-circle" />Salir</a></div>
     </div>
   </div>
 </div>

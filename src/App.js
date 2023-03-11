@@ -75,6 +75,7 @@ import Tablel from "./Ventas/AM-Resumen/Tablel";
 
 import Prueba2 from "./Preventa/PTN-BOM/Routes/Prueba2";
 import Registros from "./Routes/Registros";
+import Administracion from "./Routes/Registros";
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -84,6 +85,7 @@ import "./css/styles.scss";
 import "./Componentes/css/Animaciones.css";
 import "./css/Tablas.css";
 import "./css/Buscador.css";
+import Example from "./Administrador/Usuarios/Example";
 
 
 function App() {
@@ -102,8 +104,11 @@ function App() {
 
         <Direccion path="/" component={DirectionMenu } />
         <Direccion path="/" component={Registros } />
+        <Direccion path="/" component={Administracion } />
 
 
+
+        <Direccion exact path="/adm-usuarios" component={AdministrarUsuarios}/>
 
 
 
@@ -120,31 +125,7 @@ function App() {
         <Direccion exact path="/continuarP-excel" component={ContinuarPCE} />
         {/* <Administrador exact path="/" component={CambioContraseña} /> */}
        
-        <Direccion
-          exact
-          path="/administrar-usuarios"
-          component={AdministrarUsuarios}
-        />
-        <Direccion
-          exact
-          path="/administrar-clientes"
-          component={AdministrarClientes}
-        />
-        <Direccion
-          exact
-          path="/administrar-proveedores-marcas"
-          component={AdministrarProveedor}
-        />
-        <Direccion
-          exact
-          path="/administrar-colaboradores"
-          component={AdministrarColaboradores}
-        />
-        <Direccion
-          exact
-          path="/administrar-asignaciones"
-          component={AdministrarColaboradoresVenta}
-        />
+       
         <Direccion
           exact
           path="/asignar-proyectos"
