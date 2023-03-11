@@ -48,7 +48,7 @@ function AdministrarUsuarios() {
   };
 
   return (
-    <div className="contenido-usuarios">
+    <div className="full">
       <div className="">
         <div>
           {/*======================= Titulo Animación =======================*/}

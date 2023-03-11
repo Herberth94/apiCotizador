@@ -103,10 +103,12 @@ function App() {
         {/* ======================================================  */}
 
         <Direccion path="/" component={DirectionMenu } />
-        <Direccion path="/" component={Registros } />
-        <Direccion path="/" component={Administracion } />
-
-
+ 
+        <Direccion exact path="/registrar-usuarios" component={RegistrarUsuarios}/>
+        <Direccion exact path="/registrar-clientes" component={RegistrarClientes} />
+        <Direccion exact path="/registrar-proveedores" component={RegistrarProveedor}/>
+        <Direccion exact path="/registrar-marcas" component={RegistrarMarcas} />
+        <Direccion  exact  path="/registrar-colaboradores"  component={AgregarColaborador}/>
 
         <Direccion exact path="/adm-usuarios" component={AdministrarUsuarios}/>
 
