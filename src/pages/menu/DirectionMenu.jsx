@@ -19,10 +19,10 @@ function DirectionMenu() {
         <a className="sub-btn"><i className="fas fa-users" />Registros<i className="fas fa-angle-right dropdown" /></a>
         <div className="sub-menu">
           <a href="registrar-usuarios" className="sub-item"><i className="fas fa-user" />Usuarios</a>
-          <a href="registrar-usuarios" className="sub-item"><i className="fas fa-user" />Clientes</a>
-          <a href="registrar-usuarios" className="sub-item"><i className="fas fa-user" />Marcas</a>
-          <a href="registrar-usuarios" className="sub-item"><i className="fas fa-user" />Proveedores</a>
-          <a href="registrar-usuarios" className="sub-item"><i className="fas fa-user" />Colaboradores</a>
+          <a href="registrar-clientes" className="sub-item"><i className="fas fa-user" />Clientes</a>
+          <a href="registrar-marcas" className="sub-item"><i className="fas fa-user" />Marcas</a>
+          <a href="registrar-proveedores" className="sub-item"><i className="fas fa-user" />Proveedores</a>
+          <a href="registrar-colaboradores" className="sub-item"><i className="fas fa-user" />Colaboradores</a>
         </div>
       </div>
       <div className="item">

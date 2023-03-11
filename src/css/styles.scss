@@ -32,10 +32,15 @@
      letter-spacing: 2px;
 
    }
+
+   .fas.fa-bars{
+    color: var(--color-secondary);
+   }
    
    .side-bar .menu{
     width: 100%;
     margin-top: 30px;
+
    }
    
    .side-bar .menu .item{

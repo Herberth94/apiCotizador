@@ -52,9 +52,9 @@ function RegistrarMarcas() {
   const { enviarDatosMarca, handleInputChange } = InsertDatosMarca();
 
   return (
-    <div className="contenido-main-registro">
-      <div className="scene flex">
-        <section className="card-body">
+    <div className="full">
+    <div className="box">
+      <section className="card-box">
           <form
             method="post"
             className="card-form"
@@ -68,7 +68,7 @@ function RegistrarMarcas() {
               <span>Registrar Marcas</span>{" "}
             </h2>
             {/*========= Nombre Proveedor ========= */}
-            <label htmlFor="user" className=" label">
+            <label htmlFor="user" >
               Nombre Proveedor
             </label>
             <input
@@ -93,7 +93,7 @@ function RegistrarMarcas() {
                 </div>
               ))}
             {/*========= Marca ========= */}
-            <label htmlFor="user2" className=" label">
+            <label htmlFor="user2" >
               Marca
             </label>
             <input

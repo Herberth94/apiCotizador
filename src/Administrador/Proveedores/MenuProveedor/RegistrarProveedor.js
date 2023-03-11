@@ -4,9 +4,9 @@ import { InsertDatosProvedor } from "../Routes/GuardarProveedor";
 function RegistrarProveedor() {
   const { handleInputChange, enviarDatosProv } = InsertDatosProvedor();
   return (
-    <div className="contenido-main-registro">
-      <div className="scene flex">
-        <section className="card-body">
+    <div className="full">
+    <div className="box">
+      <section className="card-box">
           <form method="post" className="card-form" onSubmit={enviarDatosProv}>
             {/*========= Registrar Clientes========= */}
             <h2>
@@ -14,7 +14,7 @@ function RegistrarProveedor() {
               <span>Registrar Proveedor</span>{" "}
             </h2>
             {/*========= Nombre Cliente========= */}
-            <label htmlFor="user" className=" label">
+            <label htmlFor="user" >
               Nombre Proveedor
             </label>
             <input
@@ -26,7 +26,7 @@ function RegistrarProveedor() {
               placeholder="Ingrese Nombre del Proveedor"
             />
             {/*========= Razón Social ========= */}
-            <label htmlFor="user2" className=" label">
+            <label htmlFor="user2">
               teléfono
             </label>
             <input
@@ -39,7 +39,7 @@ function RegistrarProveedor() {
             />
 
             {/*========= FALTA Teléfono ========= */}
-            <label htmlFor="user2" className=" label">
+            <label htmlFor="user2" >
               Correo Electronico
             </label>
             <input

@@ -1,6 +1,6 @@
 :root {
     --color-principal: black;
-    --color-secondary: #006eff;
+    --color-secondary: #5693e2;
     --border-radius: 20px;
     --color-text: rgb(34, 34, 34);
     --box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -14,6 +14,9 @@
     box-sizing: border-box;
   }
 
+body{
+    background-color: #ffffff;
+}
 
 .full{
    position: absolute;
@@ -54,7 +57,7 @@
     background-color: rgba(231, 231, 231, 0.068);
     width: 400px;
     height: 500px;
-    padding: 20px;
+    padding: 0px;
     border-radius: var(--border-radius) ;
     -webkit-border-radius: var(--border-radius) ;
     -moz-border-radius: var(--border-radius) ;
@@ -62,6 +65,11 @@
     -o-border-radius: var(--border-radius) ;
     border: none;
     box-shadow: var(--box-shadow);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 .card-box:hover{
  
@@ -86,6 +94,8 @@
     align-items: center;
     color: var(--color-text);
 }
+
+
 
 
 .captcha{

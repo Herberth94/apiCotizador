@@ -168,12 +168,12 @@ function AgregarColaborador() {
   /*=======================================================================================================*/
 
   return (
-    <div className="contenido-main-registro">
-      <div className="scene flex">
-        <section className="card-body">
-          <h2>
-            <span>Agregar Colaborador</span>
-          </h2>
+    <div className="full">
+      <div className="box">
+        <section className="card-box">
+
+        <form method="post" className="card-form" onSubmit={ Send}>
+          <h2>Agregar Colaborador  </h2>
           <label htmlFor="user" className=" label">
             Correo del Colaborador
           </label>
@@ -255,11 +255,11 @@ function AgregarColaborador() {
               <span>Agregar al Proyecto</span>
             </button>
           </div>
+
+          </form>
         </section>
       </div>
 
-      <br />
-      <br />
     </div>
   );
 }

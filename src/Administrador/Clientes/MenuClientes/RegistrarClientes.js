@@ -9,14 +9,14 @@ function RegistrarClientes() {
 
 
   return (
-    <div className="contenido-main-registro">
-      <div className="scene flex">
-        <section className="card-body">
+    <div className="full">
+      <div className="box">
+        <section className="card-box">
           <form method="post" className="card-form" onSubmit={enviarDatos}>
             {/*========= Registrar Clientes========= */}
             <h2 >  Registrar Clientes</h2>
             {/*========= Nombre Cliente========= */}
-            <label htmlFor="user" className=" label">
+            <label htmlFor="user" >
               Nombre Cliente
             </label>
             <input
@@ -30,7 +30,7 @@ function RegistrarClientes() {
             />
 
             {/*========= Razón Social ========= */}
-            <label htmlFor="user2" className=" label">
+            <label htmlFor="user2" >
               Razón Social
             </label>
             <input
@@ -43,7 +43,7 @@ function RegistrarClientes() {
             />
 
             {/*=========Teléfono ========= */}
-            <label htmlFor="user2" className=" label">
+            <label htmlFor="user2">
               Contacto (Teléfono)
             </label>
             <input
@@ -55,7 +55,7 @@ function RegistrarClientes() {
               placeholder="Ingrese Número Telefónico"
             />
             {/*========= Dirección ========= */}
-            <label htmlFor="user2" className=" label">
+            <label htmlFor="user2" >
               Dirección
             </label>
             <input

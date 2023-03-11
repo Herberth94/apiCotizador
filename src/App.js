@@ -1,11 +1,4 @@
 import { BrowserRouter as Router } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./css/App.css";
-import "./css/styles.css";
-import "./css/styles.scss";
-import "./Componentes/css/Animaciones.css";
-import "./css/Tablas.css";
-import "./css/Buscador.css";
 
 //============ Rutas Públicas ============
 import Login from "./pages/login/Login";
@@ -82,6 +75,16 @@ import Tablel from "./Ventas/AM-Resumen/Tablel";
 
 import Prueba2 from "./Preventa/PTN-BOM/Routes/Prueba2";
 import Registros from "./Routes/Registros";
+
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/App.css";
+import "./css/styles.css";
+import "./css/styles.scss";
+import "./Componentes/css/Animaciones.css";
+import "./css/Tablas.css";
+import "./css/Buscador.css";
+
 
 function App() {
   return (
