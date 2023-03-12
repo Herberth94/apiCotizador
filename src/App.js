@@ -86,6 +86,8 @@ import "./Componentes/css/Animaciones.css";
 import "./css/Tablas.css";
 import "./css/Buscador.css";
 import Example from "./Administrador/Usuarios/Example";
+import TableExample from "./Administrador/Usuarios/Routes/TableExample";
+import DataTable from "./Administrador/Usuarios/Routes/TableExample";
 
 
 function App() {
@@ -110,7 +112,7 @@ function App() {
         <Direccion exact path="/registrar-marcas" component={RegistrarMarcas} />
         <Direccion  exact  path="/registrar-colaboradores"  component={AgregarColaborador}/>
 
-        <Direccion exact path="/adm-usuarios" component={AdministrarUsuarios}/>
+        <Direccion exact path="/adm-usuarios" component={DataTable}/>
 
 
 

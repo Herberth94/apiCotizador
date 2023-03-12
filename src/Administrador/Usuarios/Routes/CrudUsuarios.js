@@ -1,6 +1,5 @@
 import React, { useState, useEffect }      from "react";
 import Animaciones                         from "../../../Componentes/Animaciones";
-import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 export const CrudUsuarios = (props) => {
@@ -31,6 +30,9 @@ export const CrudUsuarios = (props) => {
   useEffect(() => {
     Setdatos(props.usuarios);
   }, [props.usuarios]);
+
+
+ /*  console.log(datos) */
 
   useEffect(() => {
     let i = Object.keys(props.usuarios);
@@ -79,32 +81,48 @@ export const CrudUsuarios = (props) => {
     <div className="administracion">
       <div>
         <Animaciones mytext="Lista de Usuarios" />
+
+
+
+        <div class="form-group">
+			 		<select class  ="form-control" name="state" id="maxRows">
+						 <option value="5000">Show ALL Rows</option>
+						 <option value="5">5</option>
+						 <option value="10">10</option>
+						 <option value="15">15</option>
+						 <option value="20">20</option>
+						 <option value="50">50</option>
+						 <option value="70">70</option>
+						 <option value="100">100</option>
+						</select>
+			 		
+			  	</div>
       </div>
       <form>
-        <Table id="daTable">
-          <Thead className="lines">
+        <table className="table table-striped table-class" id= "table-id">
+          <thead className="lines">
             {/*    <tr className="titulo-tabla-usuarios">
               <th></th>
               <th className="titulo-tabla">Lista de Usuarios</th>
             </tr> */}
             {/*=================== Titulos Tabla Usuarios ====================*/}
-            <Tr className="lines">
-              <Th>ID</Th>
-              <Th>Rol</Th>
-              <Th>Correo</Th>
-              <Th>Contraseña</Th>
+            <tr className="lines">
+              <th>ID</th>
+              <th>Rol</th>
+              <th>Correo</th>
+              <th>Contraseña</th>
               {/*    <th>Eliminar</th> */}
-              <Th>Modificar</Th>
-              <Th></Th>
-            </Tr>
-          </Thead>
-          <Tbody>
+              <th>Modificar</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
             {/*=================== Contenido Tabla Usuarios =================*/}
             {Object.keys(props.usuarios).map((key) => (
               //checar aqui va los titulos
-              <Tr key={props.usuarios[key].id_usuario}>
-                <Td>{props.usuarios[key].id_usuario}</Td>
-                <Td width={"200px"}>
+              <tr key={props.usuarios[key].id_usuario}>
+                <td>{props.usuarios[key].id_usuario}</td>
+                <td width={"200px"}>
                   {/*<input className="input-name" defaultValue={props.usuarios[key].rol} onChange={handleInputChange} disabled={enable[key]} name='rol' ></input>
                    */}
                   <select
@@ -121,17 +139,17 @@ export const CrudUsuarios = (props) => {
                     <option value={2}>Preventa</option>
                     <option value={3}>Venta</option>
                   </select>
-                </Td>
+                </td>
 
-                <Td>
+                <td>
                   <input
                     defaultValue={props.usuarios[key].email}
                     onChange={handleInputChange}
                     disabled={enable[key]}
                     name="email"
                   ></input>{" "}
-                </Td>
-                <Td width={"100px"}>
+                </td>
+                <td width={"100px"}>
                   <button
                     className="sn-boton resetear"
                     type="button"
@@ -144,7 +162,7 @@ export const CrudUsuarios = (props) => {
                   >
                     <i className="bi bi-lock"></i>
                   </button>
-                </Td>
+                </td>
 
                 {/*                          <td>
                                 <button 
@@ -155,7 +173,7 @@ export const CrudUsuarios = (props) => {
                             </td> */}
                 {/*=================== Button modificar cliente ==================== props.borrar(props.usuarios[key].id_usuario)*/}
                 {enable[key] ? (
-                  <Td width={"100px"}>
+                  <td width={"100px"}>
                     <button
                       className="sn-boton"
                       type="button"
@@ -167,10 +185,10 @@ export const CrudUsuarios = (props) => {
                     >
                       <i className={textBModificar[key]}></i>
                     </button>
-                  </Td>
+                  </td>
                 ) : (
                   <>
-                    <Td width={"100px"}>
+                    <td width={"100px"}>
                       <button
                         className="sn-boton"
                         type="button"
@@ -182,9 +200,9 @@ export const CrudUsuarios = (props) => {
                       >
                         <i className={textBModificar[key]}></i>
                       </button>
-                    </Td>
+                    </td>
 
-                    <Td width={"100px"}>
+                    <td width={"100px"}>
                       <button
                         className="sn-boton cancelar"
                         type="button"
@@ -196,14 +214,31 @@ export const CrudUsuarios = (props) => {
                       >
                         <i className="bi bi-x-lg"></i>
                       </button>
-                    </Td>
+                    </td>
                   </>
                 )}
-              </Tr>
+              </tr>
             ))}
-          </Tbody>
-        </Table>
+          </tbody>
+        </table>
       </form>
+
+
+
+      <div className="pagination-container">
+  <nav>
+    <ul className="pagination">
+      <li data-page="prev">
+        <span> &lt; <span className="sr-only">(current)</span></span>
+      </li>
+      {/*	Here the JS Function Will Add the Rows */}
+      <li data-page="next" id="prev">
+        <span> &gt; <span className="sr-only">(current)</span></span>
+      </li>
+    </ul>
+  </nav>
+</div>
+
     </div>
   );
 };

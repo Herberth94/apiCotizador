@@ -63,10 +63,12 @@
         $('.close-btn').click(function(){
           $('.side-bar').removeClass('active');
           $('.full').removeClass('active');
+          $('.box-table').removeClass('active');
           $('.menu-btn').css("visibility", "visible");
         });
   $("#menu").click(function () {
     $(".full").addClass("active");
+    $('.box-table').addClass('active');
   });
           
        
