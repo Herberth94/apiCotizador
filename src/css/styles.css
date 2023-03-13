@@ -2,7 +2,7 @@
     --color-principal: black;
     --color-secondary: #5693e2;
     --border-radius: 20px;
-    --color-text: rgb(34, 34, 34);
+    --color-text: rgb(255, 255, 255);
     --box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     --box-shadow-hover: 4px 4px 8px rgba(0, 0, 0, 0.6);
 
@@ -15,7 +15,7 @@
   }
 
 body{
-    background-color: #a8a8a8;
+    background-color: #000000;
 }
 
 
