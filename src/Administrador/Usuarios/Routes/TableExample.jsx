@@ -44,7 +44,7 @@ const TableExample = () => {
 
   return (
 
-    <div className='full'>
+    <div className='box-table'>
     <MaterialReactTable
       columns={columns}
       data={tableData}
