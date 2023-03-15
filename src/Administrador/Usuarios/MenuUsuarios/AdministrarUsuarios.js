@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRegistro } from "../Routes/ModificarUsuarios";
+import { useRegistroUpdate } from "../Routes/ModificarUsuarios";
 import axios from "axios";
 import { CrudUsuarios } from "../Routes/CrudUsuarios";
 import { url, url2 } from "../../../Componentes/Ocultar";
@@ -8,7 +8,7 @@ function AdministrarUsuarios() {
   /*========================== Mostrar Ocultar Tabla ==========================*/
   const [show, setShow] = useState(true);
 
-  const { actualizacion } = useRegistro();
+  const { actualizacion } = useRegistroUpdate ();
   const [first, setfirst] = useState(false);
 
   const [listaUsuarios, setlistaUsarios] = useState([]);

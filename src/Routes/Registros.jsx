@@ -2,10 +2,10 @@ import React from 'react'
 import { BrowserRouter as Router } from "react-router-dom";
 import Direccion from './ValidaDireccion';
 import CalculaDescuento from '../Componentes/Herramientas/CalculaDescuento';
-import RegistrarMarcas from '../Administrador/Proveedores/MenuProveedor/RegistrarMarcas';
-import RegistrarUsuarios from '../Administrador/Usuarios/MenuUsuarios/RegistrarUsuarios';
-import RegistrarClientes from '../Administrador/Clientes/MenuClientes/RegistrarClientes';
-import RegistrarProveedor from '../Administrador/Proveedores/MenuProveedor/RegistrarProveedor';
+import RegistrarMarcas from '../pages/registers/RegistrarMarcas';
+import RegistrarUsuarios from '../pages/registers/RegistrarUsuarios';
+import RegistrarClientes from '../pages/registers/RegistrarClientes';
+import RegistrarProveedor from '../pages/registers/RegistrarProveedor';
 import AgregarColaborador from '../Preventa/Colaboradores/MenuColaborador/AgregarColaborador';
 
 

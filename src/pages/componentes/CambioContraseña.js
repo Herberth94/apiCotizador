@@ -1,8 +1,7 @@
-import axios               from "axios";
+import axios from "axios";
 import React, { useState } from "react";
-import Cookies             from "universal-cookie";
-import { url2 }            from "../Componentes/Ocultar";
-
+import Cookies from "universal-cookie";
+import { url2 } from "../../Componentes/Ocultar";
 
 const cookies = new Cookies();
 const estado = () => {
@@ -64,9 +63,9 @@ function CambioContraseña() {
       {estado() ? (
         ""
       ) : (
-        <div className="contenido-main-registro">
-          <div className="scene flex">
-            <section className="card-body">
+        <div className="full">
+          <div className="box">
+            <section className="card-box">
               <form
                 action=""
                 method="post"

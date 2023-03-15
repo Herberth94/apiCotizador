@@ -5,18 +5,13 @@ import MaterialReactTable from 'material-react-table';
 import swal from "sweetalert"
 
 import axios from "axios";
-import { url, url2 } from '../../../Componentes/Ocultar';
+import { url, url2 } from  '../../Componentes/Ocultar';
 import { Delete, Edit, LockPerson } from '@mui/icons-material';
-import {
-  Box,
-  IconButton,
-  Tooltip,
-} from '@mui/material';
-
-import { useRegistroUpdate } from './ModificarUsuarios';
+import { Box, IconButton, Tooltip,} from '@mui/material';
+import { useRegistroUpdate } from './routes/useRegistroUpdate';
 
 
-const TableExample = () => {
+const AdmUsers = () => {
 
 
   const [listaUsuarios, setlistaUsarios] = useState([]);
@@ -226,6 +221,6 @@ console.log(values);
   );
 };
 
-export default TableExample;
+export default AdmUsers;
 
 

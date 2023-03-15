@@ -1,5 +1,5 @@
 import React from "react";
-import { useRegistro } from "../Routes/useRegistro";
+import { useRegistro } from "./routes/useRegistro";
 
 function RegistrarUsuarios() {
   const { handleInputChange, enviarDatos } = useRegistro();

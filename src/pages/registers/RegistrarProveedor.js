@@ -1,5 +1,5 @@
 import React from "react";
-import { InsertDatosProvedor } from "../Routes/GuardarProveedor";
+import { InsertDatosProvedor } from "./routes/GuardarProveedor";
 
 function RegistrarProveedor() {
   const { handleInputChange, enviarDatosProv } = InsertDatosProvedor();

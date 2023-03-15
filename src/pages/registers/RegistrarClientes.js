@@ -1,5 +1,5 @@
 import React from 'react'
-import { useRegistro } from "../Routes/registroClientes"
+import { useRegistro } from "./routes/registroClientes"
 
 function RegistrarClientes() {
   const {

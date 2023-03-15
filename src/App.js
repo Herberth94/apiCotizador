@@ -28,10 +28,10 @@ import Excel from "./Componentes/Herramientas/excel";
 //============ Administrador Páginas Private Administrador ============
 import MenuDireccion from "./Administrador/MenuDireccion";
 import MenuUsuarios from "./Administrador/Usuarios/MenuUsuarios/MenuUsuarios";
-import RegistrarUsuarios from "./Administrador/Usuarios/MenuUsuarios/RegistrarUsuarios";
-import RegistrarClientes from "./Administrador/Clientes/MenuClientes/RegistrarClientes";
-import RegistrarProveedor from "./Administrador/Proveedores/MenuProveedor/RegistrarProveedor";
-import RegistrarMarcas from "./Administrador/Proveedores/MenuProveedor/RegistrarMarcas";
+import RegistrarUsuarios from "./pages/registers/RegistrarUsuarios";
+import RegistrarClientes from "./pages/registers/RegistrarClientes";
+import RegistrarProveedor from "./pages/registers/RegistrarProveedor"
+import RegistrarMarcas from "./pages/registers/RegistrarMarcas";
 
 import AdministrarUsuarios from "./Administrador/Usuarios/MenuUsuarios/AdministrarUsuarios";
 import AdministrarClientes from "./Administrador/Clientes/MenuClientes/AdministrarClientes";
@@ -53,7 +53,7 @@ import ContinuarProyecto from "./Preventa/PTN-BOM/Menu-Bom/ContinuarProyecto";
 
 import AgregarColaborador from "./Preventa/Colaboradores/MenuColaborador/AgregarColaborador";
 
-import CambioContraseña from "./Componentes/CambioContraseña";
+import CambioContraseña from "./pages/componentes/CambioContraseña";
 
 //============ Preventas Private  ============
 import Preventa from "./Routes/ValidaPreventa";
@@ -88,6 +88,7 @@ import "./css/Buscador.css";
 import Example from "./Administrador/Usuarios/Example";
 import TableExample from "./Administrador/Usuarios/Routes/TableExample";
 import DataTable from "./Administrador/Usuarios/Routes/TableExample";
+import AdmUsers from "./pages/administer/AdmUsers";
 
 
 function App() {
@@ -112,13 +113,12 @@ function App() {
         <Direccion exact path="/registrar-marcas" component={RegistrarMarcas} />
         <Direccion  exact  path="/registrar-colaboradores"  component={AgregarColaborador}/>
 
-        <Direccion exact path="/adm-usuarios" component={DataTable}/>
+        <Direccion exact path="/adm-usuarios" component={AdmUsers}/>
 
 
 
 
-   {/*      <Direccion exact path="/" component={CambioContraseña} />
- */}
+        <Direccion exact path="/" component={CambioContraseña} />
         <Direccion exact path="/calculadora" component={CalculaDescuento} />
         <Direccion path="/documentacion" component={MenuHeramientas} />
         <Direccion

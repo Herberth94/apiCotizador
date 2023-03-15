@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios        from "axios";
-import { url }      from "../../../Componentes/Ocultar";
-
+import { url } from "../../../Componentes/Ocultar";
 export const useRegistro = () => {
   const [datos, setDatos] = useState({
     usuario_id_rol: "",

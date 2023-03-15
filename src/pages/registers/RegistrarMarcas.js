@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios                          from "axios";
-import { InsertDatosMarca }           from "../Routes/GuardarMarca";
-import { url }                        from "../../../Componentes/Ocultar";
+import { InsertDatosMarca }           from "./routes/GuardarMarca";
+import { url }                        from "../../Componentes/Ocultar";
 
 function RegistrarMarcas() {
   /*=================================== Buscador de proveedores ===================================*/

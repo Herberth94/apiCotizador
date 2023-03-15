@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../../Componentes/Animaciones";
-import RegistrarUsuarios from "./RegistrarUsuarios";
+import RegistrarUsuarios from "../../../pages/registers/RegistrarUsuarios";
 import AdministrarUsuarios from "./AdministrarUsuarios";
 
 function MenuUsuarios() {
