@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import Animaciones from "../../../Componentes/Animaciones";
-import RegistrarColaboradores from "./AgregarColaborador";
+import RegistrarColaboradores from "../../../pages/registers/AgregarColaborador";
 import AdministrarColaboradores from "./AdministrarColaboradores";
 
 function MenuColaboradores() {

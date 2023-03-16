@@ -11,33 +11,22 @@ import { Box, IconButton, Tooltip,} from '@mui/material';
 import { useRegistroUpdate } from './routes/useRegistroUpdate';
 
 
-const AdmUsers = () => {
+const AdmCustomers = () => {
 
 
-
-  const data = {
-    usuario_id_rol: "",
-    email: "",
-    password: "",
-    estado_login: 0,
-  }
-  const [listaUsuarios, setlistaUsarios] = useState([]);
-
+  const [listaClientes, setlistaClientes] = useState([]);
   /*=================== Leer todos los usuarios registrados  =================*/
-  const llamadoUsuario = async () => {
-    const respuesta = await axios.get(url + "/api/cotizador/registro");
-    setlistaUsarios(respuesta.data.reSql);
 
+
+
+  const  llamadoCliente = async () => {
+    const respuesta = await axios.get(url + "/api/cotizador/clientes/view");
+    setlistaClientes(respuesta.data.reSql);
   };
 
   useEffect(() => {
-    llamadoUsuario();
+    llamadoCliente();
   }, []);
-
-
-  console.log("-------------------")
-  console.log(listaUsuarios);
-  console.log("-------------------")
 
 /* Resetear contraseña */
   const resetearContraseña = async (id,user) => {
@@ -65,25 +54,28 @@ const AdmUsers = () => {
     () => [
 
       {
-        accessorKey: 'id_usuario',
+        accessorKey: 'cliente_id',
         header: 'ID',
       },
       {
-        accessorKey: 'email',
+        accessorKey: 'nombre_cliente',
 
-        header: 'Correo',
+        header: 'Cliente',
       },
 
       {
-        accessorKey: 'rol_nombre',
-        header: 'Rol',
+        accessorKey: 'razon_social',
+        header: 'Razón Social',
+      },
+      {
+        accessorKey: 'telefono',
+        header: 'Teléfono',
+      },
+      {
+        accessorKey: 'cliente_direccion',
+        header: 'Dirección',
       },
 
-      {
-        accessorKey: 'estado_login',
-        header: 'Estado',
-      },
-      
 
 
 
@@ -95,11 +87,12 @@ const AdmUsers = () => {
   const handleSaveRow = async ({ exitEditingMode, row, values }) => {
     //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
 
-      console.log(values);
+console.log(values);
 
      var id = row.getValue('id_usuario');
   
-   
+    
+
   
      console.log("Tu id es : " , id)
      actualizacion( id,  values );
@@ -123,7 +116,7 @@ const AdmUsers = () => {
     (row) => {
 
 
-      var user = row.getValue('email');
+      var user = row.getValue('nombre_cliente');
       /*    alert(row.getValue('email')); */
       swal({
         title: "Estas seguro de borrar a " + user + " ?",
@@ -139,8 +132,8 @@ const AdmUsers = () => {
             });
 
 
-            listaUsuarios.splice(row.index, 1);
-            setlistaUsarios([...listaUsuarios]);
+            listaClientes.splice(row.index, 1);
+            setlistaClientes([...listaClientes]);
 
 
           } else {
@@ -158,42 +151,9 @@ const AdmUsers = () => {
       /*     listaUsuarios.splice(row.index, 1);
           setlistaUsarios([...listaUsuarios]); */
     },
-    [listaUsuarios],
+    [listaClientes],
   );
 
-
-
-
-  const handlePasswordRow = useCallback(
-
-
-    (row) => {
-
-
-      var user = row.getValue('email');
-      var id = row.getValue('id_usuario');
-      /*    alert(row.getValue('email')); */
-      swal({
-        title: "Estas seguro de resetear la contraseña del usuario " + user + " ?",
-        text: "Una vez actualizado no podras revertir los cambios",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-        .then((willUpdate) => {
-          if (willUpdate) {
-            swal("Contraseña reseteada, la contraseña es:" + user, {
-              icon: "success",
-            });
-            resetearContraseña(id, user);
-          } else {
-            swal("Tus datos no se han borrado");
-          }
-        });
-
-    },
-    [listaUsuarios],
-  );
 
 
 
@@ -203,7 +163,7 @@ const AdmUsers = () => {
     <div className='box-table'>
       <MaterialReactTable
         columns={columns}
-        data={listaUsuarios}
+        data={listaClientes}
         editingMode="modal" //default
         enableEditing
         enableClickToCopy={true}
@@ -222,11 +182,11 @@ const AdmUsers = () => {
               </IconButton>
             </Tooltip>
 
-            <Tooltip arrow placement="right" title="Desbloquear">
+   {/*          <Tooltip arrow placement="right" title="Desbloquear">
               <IconButton onClick={() => handlePasswordRow(row)}>
                 <LockPerson />
               </IconButton>
-            </Tooltip>
+            </Tooltip> */}
           </Box>
         )}
 
@@ -236,6 +196,5 @@ const AdmUsers = () => {
   );
 };
 
-export default AdmUsers;
-
+export default AdmCustomers;
 

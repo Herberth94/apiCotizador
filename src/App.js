@@ -25,6 +25,10 @@ import NuevoProyecto from "./Preventa/PTN-BOM/Menu-Bom/NuevoProyecto";
 import NuevoProyectoExcel from "./Componentes/Herramientas/NuevoProyectoExcel";
 import Excel from "./Componentes/Herramientas/excel";
 
+import CambioContraseña from "./pages/componentes/CambioContraseña";
+
+
+
 //============ Administrador Páginas Private Administrador ============
 import MenuDireccion from "./Administrador/MenuDireccion";
 import MenuUsuarios from "./Administrador/Usuarios/MenuUsuarios/MenuUsuarios";
@@ -32,6 +36,8 @@ import RegistrarUsuarios from "./pages/registers/RegistrarUsuarios";
 import RegistrarClientes from "./pages/registers/RegistrarClientes";
 import RegistrarProveedor from "./pages/registers/RegistrarProveedor"
 import RegistrarMarcas from "./pages/registers/RegistrarMarcas";
+import AgregarColaborador from "./pages/registers/AgregarColaborador";
+
 
 import AdministrarUsuarios from "./Administrador/Usuarios/MenuUsuarios/AdministrarUsuarios";
 import AdministrarClientes from "./Administrador/Clientes/MenuClientes/AdministrarClientes";
@@ -51,9 +57,7 @@ import ResumenAM from "./Ventas/AM/Menu-AM/ResumenAM";
 import Proyectos from "./Preventa/PTN-BOM/Menu-Bom/ResumenProyectos";
 import ContinuarProyecto from "./Preventa/PTN-BOM/Menu-Bom/ContinuarProyecto";
 
-import AgregarColaborador from "./Preventa/Colaboradores/MenuColaborador/AgregarColaborador";
 
-import CambioContraseña from "./pages/componentes/CambioContraseña";
 
 //============ Preventas Private  ============
 import Preventa from "./Routes/ValidaPreventa";
@@ -89,6 +93,7 @@ import Example from "./Administrador/Usuarios/Example";
 import TableExample from "./Administrador/Usuarios/Routes/TableExample";
 import DataTable from "./Administrador/Usuarios/Routes/TableExample";
 import AdmUsers from "./pages/administer/AdmUsers";
+import AdmCustomers from "./pages/administer/AdmCustomers";
 
 
 function App() {
@@ -114,6 +119,9 @@ function App() {
         <Direccion  exact  path="/registrar-colaboradores"  component={AgregarColaborador}/>
 
         <Direccion exact path="/adm-usuarios" component={AdmUsers}/>
+        <Direccion exact path="/adm-clientes" component={AdmCustomers}/>
+
+
 
 
 

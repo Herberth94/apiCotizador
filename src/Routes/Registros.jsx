@@ -6,7 +6,7 @@ import RegistrarMarcas from '../pages/registers/RegistrarMarcas';
 import RegistrarUsuarios from '../pages/registers/RegistrarUsuarios';
 import RegistrarClientes from '../pages/registers/RegistrarClientes';
 import RegistrarProveedor from '../pages/registers/RegistrarProveedor';
-import AgregarColaborador from '../Preventa/Colaboradores/MenuColaborador/AgregarColaborador';
+import AgregarColaborador from '../pages/registers/AgregarColaborador';
 
 
 function Registros() {

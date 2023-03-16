@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-import { url, url2 } from "../../../Componentes/Ocultar";
+import { url, url2 } from "../../Componentes/Ocultar";
+
 
 const cookies = new Cookies();
 //Obtención del rol del usuario con sesión activa
