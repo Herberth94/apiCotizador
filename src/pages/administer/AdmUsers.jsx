@@ -187,7 +187,7 @@ const AdmUsers = () => {
             });
             resetearContraseña(id, user);
           } else {
-            swal("Tus datos no se han borrado");
+            swal("Tus datos no se han actualizado");
           }
         });
 
