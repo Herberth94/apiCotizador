@@ -1,9 +1,7 @@
 import React, { useMemo, useCallback, useState } from 'react';
 import { useEffect } from "react";
 import MaterialReactTable from 'material-react-table';
-
 import swal from "sweetalert"
-
 import axios from "axios";
 import { url, url2 } from '../../../Componentes/Ocultar';
 import { Delete, Edit, LockPerson } from '@mui/icons-material';
@@ -20,6 +18,7 @@ const TableExample = () => {
 
 
   const [listaUsuarios, setlistaUsarios] = useState([]);
+  const [first, setfirst] = useState(false)
 
   /*=================== Leer todos los usuarios registrados  =================*/
   const llamadoUsuario = async () => {
@@ -30,7 +29,7 @@ const TableExample = () => {
 
   useEffect(() => {
     llamadoUsuario();
-  }, []);
+  }, [first]);
 
 
 
@@ -74,7 +73,11 @@ const TableExample = () => {
         header: 'Rol',
       },
 
-
+      {
+        accessorKey:'password',
+        header:'Contraseña'
+      },
+      
 
     ],
     [],
@@ -93,6 +96,8 @@ console.log(values);
   
      console.log("Tu id es : " , id)
      actualizacion( id,  values );
+     setfirst(()=>!first);
+     //llamadoUsuario();
 
     exitEditingMode(); //required to exit editing mode
     

@@ -3,6 +3,7 @@ import { useRegistroUpdate } from "../Routes/ModificarUsuarios";
 import axios from "axios";
 import { CrudUsuarios } from "../Routes/CrudUsuarios";
 import { url, url2 } from "../../../Componentes/Ocultar";
+import TableExample from "../Routes/TableExample";
 
 function AdministrarUsuarios() {
   /*========================== Mostrar Ocultar Tabla ==========================*/
@@ -68,13 +69,7 @@ function AdministrarUsuarios() {
               <br />
               {/*===================     Tabla Usuarios    ====================*/}
               <div>
-                <CrudUsuarios
-                  usuarios={listaUsuarios}
-                  //borrar={borrarUsuario}
-                  setfirst={setfirst}
-                  resetearContraseña={resetearContraseña}
-                  envioData={envioData}
-                />
+                <TableExample></TableExample>
               </div>
             </div>
           )}
