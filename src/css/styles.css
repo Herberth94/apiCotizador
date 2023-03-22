@@ -241,7 +241,7 @@ margin: 10px 20px;
 .tool{
     background-color: rgba(16, 13, 151, 0.116);
     width: 40%;
-    height: 600px;
+   
     text-align: center;
     color: white;
     border-radius: 10px;
@@ -259,7 +259,7 @@ margin: 10px 20px;
 }
 
 .tool h2{
-    padding: 20px;
+    padding: 0px;
 }
 
 .tool input{
