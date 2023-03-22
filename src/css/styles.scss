@@ -40,6 +40,9 @@
     margin-top: 0px;
     position: fixed;
     top: 20px;
+    z-index: 1000;
+
+    color: white;
    }
    
    .side-bar .menu{
@@ -58,7 +61,7 @@
     font-size: 16px;
     text-decoration: none;
     display: block;
-    padding: 5px 30px;
+    padding: 0px 20px;
     line-height: 60px;
    }
    
@@ -84,7 +87,7 @@
    }
    
    .side-bar .menu .item .sub-menu a{
-    padding-left: 80px;
+    padding-left: 40px;
    }
    
    .rotate{

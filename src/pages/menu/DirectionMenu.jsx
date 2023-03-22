@@ -43,15 +43,47 @@ function DirectionMenu() {
           <a href="adm-colaboradores" className="sub-item"><i className="fas fa-user" />Colaboradores</a>
         </div>
       </div>
-      <div className="item"><a href="#"><i className="fas fa-th" />Forms</a></div>
-      <div className="item">
+ {/*      <div className="item"><a href="#"><i className="fas fa-th" />Forms</a></div> */}
+ {/*      <div className="item">
         <a className="sub-btn"><i className="fas fa-cogs" />Settings<i className="fas fa-angle-right dropdown" /></a>
         <div className="sub-menu">
           <a href="#" className="sub-item">Sub Item 01</a>
           <a href="#" className="sub-item">Sub Item 02</a>
         </div>
       </div>
-      <div className="item"><a href="# "   onClick={cierreSesion}><i className="fas fa-info-circle" />Salir</a></div>
+ */}
+
+      <div className="item">
+        <a className="sub-btn"><i className="fa fa-tasks" />Preventa<i className="fas fa-angle-right dropdown" /></a>
+        <div className="sub-menu">
+          <a href="#" className="sub-item">Proyectos</a>
+          <a href="#" className="sub-item">Excel</a>
+          <a href="#" className="sub-item">Resumen</a>
+        </div>
+      </div>
+
+
+      <div className="item">
+        <a className="sub-btn"><i className="fas fa-cogs" />Ventas<i className="fas fa-angle-right dropdown" /></a>
+        <div className="sub-menu">
+          <a href="#" className="sub-item">Analisís de Margen</a>
+          <a href="#" className="sub-item">Proporcionalidad</a>
+          <a href="#" className="sub-item">Propuesta Eco</a>
+        </div>
+      </div>
+
+
+      <div className="item">
+        <a className="sub-btn"><i className="fas fa-cogs" />Herramientas<i className="fas fa-angle-right dropdown" /></a>
+        <div className="sub-menu">
+          <a href="/calculadora" className="sub-item"><i className="fa fa-calculator" /> Calculadora</a>
+          <a href="/documentación" className="sub-item"><i className="fa fa-file-pdf" /> Documentación</a>
+        </div>
+      </div>
+
+
+
+      <div className="item"><a href="# "   onClick={cierreSesion}><i className="fa fa-arrow-left" />Salir</a></div>
     </div>
   </div>
 </div>

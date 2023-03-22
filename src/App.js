@@ -95,6 +95,7 @@ import DataTable from "./Administrador/Usuarios/Routes/TableExample";
 import AdmUsers from "./pages/administer/AdmUsers";
 import AdmCustomers from "./pages/administer/AdmCustomers";
 import AdmProviders from "./pages/administer/AdmProviders";
+import Calculator from "./pages/tools/Calculator";
 
 
 function App() {
@@ -122,6 +123,9 @@ function App() {
         <Direccion exact path="/adm-usuarios" component={AdmUsers}/>
         <Direccion exact path="/adm-clientes" component={AdmCustomers}/>
         <Direccion exact path="/adm-proveedores" component={AdmProviders}/>
+
+
+        <Direccion exact path="/calculadora" component={Calculator} />
         
 
         
@@ -132,7 +136,7 @@ function App() {
 
 
         <Direccion exact path="/" component={CambioContraseña} />
-        <Direccion exact path="/calculadora" component={CalculaDescuento} />
+  
         <Direccion path="/documentacion" component={MenuHeramientas} />
         <Direccion
           exact
@@ -201,7 +205,7 @@ function App() {
 
         {/*======== Home ========*/}
 
-        <Preventa path="/calculadora" component={CalculaDescuento} />
+        <Preventa path="/calculadora" component={Calculator} />
         <Preventa path="/documentacion" component={MenuHeramientas} />
         <Preventa path="/plantilla-excel" component={NuevoProyectoExcel} />
         <Preventa exact path="/continuarP-excel" component={ContinuarPCE} />
