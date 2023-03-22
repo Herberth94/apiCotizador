@@ -10,7 +10,7 @@ function DirectionMenu() {
     window.location.href = "../Login.js";
   };
     return (
-<div className>
+<div className="menu-sidebar">
   <div className="menu-btn">
     <button id="menu"><i className="fas fa-bars" /></button>
   </div>

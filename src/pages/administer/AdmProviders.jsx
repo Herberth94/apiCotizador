@@ -11,34 +11,31 @@ import { Box, IconButton, Tooltip,} from '@mui/material';
 import { useRegistroUpdate } from './routes/useRegistroUpdate';
 
 
-const AdmCustomers = () => {
+const AdmProviders = () => {
+
+  const [listaProv, setListaProv] = useState([]);
 
 
-  const [listaClientes, setlistaClientes] = useState([]);
-  /*=================== Leer todos los usuarios registrados  =================*/
+  // Función que realiza la consulta a la tabla proyectos 
+  const getProvs = async () => {
+    try {
+      const resProv = await axios.get(url + '/api/cotizador/proveedor/view');
+      setListaProv(resProv.data.data);
 
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-
-  const  llamadoCliente = async () => {
-    const respuesta = await axios.get(url + "/api/cotizador/clientes/view");
-    setlistaClientes(respuesta.data.reSql);
-  };
+  //const [actualizarProvs,setActualizarProvs] = useState(false);
 
   useEffect(() => {
-    llamadoCliente();
-  }, []);
+    getProvs();
+  }, [])
 
-/* Resetear contraseña */
-  const resetearContraseña = async (id,user) => {
-    const estado_login = 0;
-    let newpassword = user;
-    const respuesta = await axios.post(
-      url2 + `/api/cotizador/edit/pass/${id}`,
-      { password: newpassword, estado_login }
-    );
- /*    const respuestaBack = respuesta.data.msg;
-    alert(respuestaBack); */
-  };
+
+
+
 
   
 
@@ -54,28 +51,23 @@ const AdmCustomers = () => {
     () => [
 
       {
-        accessorKey: 'cliente_id',
+        accessorKey: 'proveedor_id',
         header: 'ID',
       },
       {
-        accessorKey: 'nombre_cliente',
-
-        header: 'Cliente',
+        accessorKey: 'proveedor_nombre',
+        header: 'Nombre',
       },
 
       {
-        accessorKey: 'razon_social',
-        header: 'Razón Social',
-      },
-      {
-        accessorKey: 'telefono',
+        accessorKey: 'proveedor_telefono',
         header: 'Teléfono',
       },
       {
-        accessorKey: 'cliente_direccion',
-        header: 'Dirección',
+        accessorKey: 'proveedor_email',
+        header: 'Correo',
       },
-
+     
 
 
 
@@ -116,7 +108,7 @@ console.log(values);
     (row) => {
 
 
-      var user = row.getValue('nombre_cliente');
+      var user = row.getValue('proveedor_nombre');
       /*    alert(row.getValue('email')); */
       swal({
         title: "Estas seguro de borrar a " + user + " ?",
@@ -132,8 +124,8 @@ console.log(values);
             });
 
 
-            listaClientes.splice(row.index, 1);
-            setlistaClientes([...listaClientes]);
+            listaProv.splice(row.index, 1);
+            setListaProv([... listaProv]);
 
 
           } else {
@@ -151,7 +143,7 @@ console.log(values);
       /*     listaUsuarios.splice(row.index, 1);
           setlistaUsarios([...listaUsuarios]); */
     },
-    [listaClientes],
+    [ listaProv],
   );
 
 
@@ -162,10 +154,9 @@ console.log(values);
 
     <div className='box-table'>
       <MaterialReactTable
-       initialState={{ density: 'compact' }}
-        
+        initialState={{ density: 'compact' }}     
         columns={columns}
-        data={listaClientes}
+        data={listaProv}
         editingMode="modal" //default
         enableEditing
         enableClickToCopy={true}
@@ -184,11 +175,11 @@ console.log(values);
               </IconButton>
             </Tooltip>
 
-   {/*          <Tooltip arrow placement="right" title="Desbloquear">
-              <IconButton onClick={() => handlePasswordRow(row)}>
+            <Tooltip arrow placement="right" title="Desbloquear">
+              <IconButton onClick={() =>  handleDeleteRow(row)}>
                 <LockPerson />
               </IconButton>
-            </Tooltip> */}
+            </Tooltip> 
           </Box>
         )}
 
@@ -198,5 +189,5 @@ console.log(values);
   );
 };
 
-export default AdmCustomers;
+export default AdmProviders;
 

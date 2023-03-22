@@ -66,6 +66,7 @@ const AdmUsers = () => {
 
       {
         accessorKey: 'id_usuario',
+        enableColumnActions: false,
         header: 'ID',
       },
       {
@@ -202,6 +203,8 @@ const AdmUsers = () => {
 
     <div className='box-table'>
       <MaterialReactTable
+       initialState={{ density: 'compact' }}
+        
         columns={columns}
         data={listaUsuarios}
         editingMode="modal" //default

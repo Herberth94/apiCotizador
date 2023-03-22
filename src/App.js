@@ -94,6 +94,7 @@ import TableExample from "./Administrador/Usuarios/Routes/TableExample";
 import DataTable from "./Administrador/Usuarios/Routes/TableExample";
 import AdmUsers from "./pages/administer/AdmUsers";
 import AdmCustomers from "./pages/administer/AdmCustomers";
+import AdmProviders from "./pages/administer/AdmProviders";
 
 
 function App() {
@@ -120,6 +121,10 @@ function App() {
 
         <Direccion exact path="/adm-usuarios" component={AdmUsers}/>
         <Direccion exact path="/adm-clientes" component={AdmCustomers}/>
+        <Direccion exact path="/adm-proveedores" component={AdmProviders}/>
+        
+
+        
 
 
 
