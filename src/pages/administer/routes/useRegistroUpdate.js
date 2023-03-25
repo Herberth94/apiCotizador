@@ -2,28 +2,24 @@ import   axios  from "axios";
 import { url2 } from "../../../Componentes/Ocultar";
 
 export const useRegistroUpdate= () => {
-  const actualizacion = (id_user, datos) => {
-    Send(id_user, datos);
+  const actualizacion = (data, datos) => {
+    Send(data, datos);
   };
-
+  
   async function Send( id, datos) {
-    /* const dataActulizacion = {
-      usuario_id_rol: data.usuario_id_rol,
-      email: data.email,
-    }; */
+    let rolID = '';
+    if(datos.rol_nombre=='administrador'){ rolID ='1' }
+    if(datos.rol_nombre=='preventa'){ rolID ='2' }
+    if(datos.rol_nombre=='venta'){ rolID ='3' }
+    if(datos.rol_nombre=='direccion'){ rolID ='4' }
+    const newData = Object.assign({}, datos, { usuario_id_rol: rolID, estado_login:'0' });
+    console.log(id ,'datos', newData)
 
-   /*  const prueba = Object.keys(datos);
-    for (let keys of prueba) {
-      if (datos[keys] !== "") {
-        dataActulizacion[keys] = datos[keys];
-      }
-    } */
-
-    console.log(id , " " , datos);
+    //console.log(dataActulizacion);
     try {
       const respuesta = await axios.post(
-        url2 + `/api/cotizador/edit/${id}`,
-        datos
+       url2 + `/api/cotizador/edit/${id}`,newData
+        
       );
       const send2 = respuesta.data.msg;
       //console.log(send2);

@@ -22,17 +22,20 @@ const AdmUsers = () => {
     estado_login: 0,
   }
   const [listaUsuarios, setlistaUsarios] = useState([]);
+  const [first, setfirst] = useState(false)
+
 
   /*=================== Leer todos los usuarios registrados  =================*/
   const llamadoUsuario = async () => {
     const respuesta = await axios.get(url + "/api/cotizador/registro");
     setlistaUsarios(respuesta.data.reSql);
+    
 
   };
 
   useEffect(() => {
     llamadoUsuario();
-  }, []);
+  }, [first]);
 
 
   console.log("-------------------")
@@ -66,7 +69,7 @@ const AdmUsers = () => {
 
       {
         accessorKey: 'id_usuario',
-        enableColumnActions: false,
+        enableColumnActions: true,
         header: 'ID',
       },
       {
@@ -80,10 +83,7 @@ const AdmUsers = () => {
         header: 'Rol',
       },
 
-      {
-        accessorKey: 'estado_login',
-        header: 'Estado',
-      },
+ 
       
 
 
@@ -93,17 +93,21 @@ const AdmUsers = () => {
   );
 
 
+
   const handleSaveRow = async ({ exitEditingMode, row, values }) => {
     //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
 
-      console.log(values);
+console.log(values);
 
      var id = row.getValue('id_usuario');
   
-   
+    
+
   
      console.log("Tu id es : " , id)
      actualizacion( id,  values );
+     setfirst(()=>!first);
+     //llamadoUsuario();
 
     exitEditingMode(); //required to exit editing mode
     
