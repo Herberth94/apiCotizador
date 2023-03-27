@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import { useEffect } from "react";
 import MaterialReactTable from 'material-react-table';
 
@@ -8,13 +8,14 @@ import axios from "axios";
 import { url, url2 } from  '../../Componentes/Ocultar';
 import { Delete, Edit, LockPerson } from '@mui/icons-material';
 import { Box, IconButton, Tooltip,} from '@mui/material';
-import { useRegistroUpdate } from './routes/useRegistroUpdate';
+import { useRegistro } from './routes/ModificarCLientes';
 
 
 const AdmCustomers = () => {
 
 
   const [listaClientes, setlistaClientes] = useState([]);
+  const [status, setStatus] = useState(0)
   /*=================== Leer todos los usuarios registrados  =================*/
 
 
@@ -26,7 +27,7 @@ const AdmCustomers = () => {
 
   useEffect(() => {
     llamadoCliente();
-  }, []);
+  }, [status]);
 
 /* Resetear contraseña */
   const resetearContraseña = async (id,user) => {
@@ -42,7 +43,7 @@ const AdmCustomers = () => {
 
   
 
-  const { actualizacion } =useRegistroUpdate ();  
+  const { actualizacion } =useRegistro();  
  
 
 
@@ -86,36 +87,17 @@ const AdmCustomers = () => {
 
   const handleSaveRow = async ({ exitEditingMode, row, values }) => {
     //if using flat data and simple accessorKeys/ids, you can just do a simple assignment here.
-
-console.log(values);
-
-     var id = row.getValue('id_usuario');
-  
-    
-
-  
+     console.log(values);
+     setStatus(!status);
+     var id = row.getValue('cliente_id');
      console.log("Tu id es : " , id)
      actualizacion( id,  values );
-
-    exitEditingMode(); //required to exit editing mode
-    
-
-
-
-  };
-
-
-
-
-
-
+     
+     exitEditingMode(); //required to exit editing mode
+   };
 
   const handleDeleteRow = useCallback(
-
-
     (row) => {
-
-
       var user = row.getValue('nombre_cliente');
       /*    alert(row.getValue('email')); */
       swal({

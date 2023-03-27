@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import { useMemo, useCallback, useState } from 'react';
 import { useEffect } from "react";
 import MaterialReactTable from 'material-react-table';
 
@@ -13,16 +13,8 @@ import { useRegistroUpdate } from './routes/useRegistroUpdate';
 
 const AdmUsers = () => {
 
-
-
-  const data = {
-    usuario_id_rol: "",
-    email: "",
-    password: "",
-    estado_login: 0,
-  }
   const [listaUsuarios, setlistaUsarios] = useState([]);
-  const [first, setfirst] = useState(false)
+  const [first, setfirst] = useState(false);
 
 
   /*=================== Leer todos los usuarios registrados  =================*/
