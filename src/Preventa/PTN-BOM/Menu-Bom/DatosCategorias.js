@@ -39,8 +39,7 @@ import {
   calcularDescuento,
   Total,
 } from "../Operaciones/Operaciones";
-import { listaProv } from "../../../Ventas/Operaciones/OperacionesAM";
-import { idPartidaInsertada } from "../Routes/GuardarPartida";
+
 import { pEstatus1 } from "./ContinuarProyecto";
 
 const cookies = new Cookies();
